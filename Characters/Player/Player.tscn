@@ -1,4 +1,4 @@
-[gd_scene load_steps=237 format=3 uid="uid://r8py7ts46u7k"]
+[gd_scene load_steps=236 format=3 uid="uid://r8py7ts46u7k"]
 
 [ext_resource type="Texture2D" uid="uid://d35r1od61sr3i" path="res://Assets/Student/Attack/Down/0000.png" id="1_o8vk1"]
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
@@ -57,20 +57,13 @@
 [ext_resource type="Texture2D" uid="uid://cd3m03n64l0er" path="res://Assets/Student/Attack/Right/0008.png" id="27_yeqwp"]
 [ext_resource type="Texture2D" uid="uid://r0ca83s7vcby" path="res://Assets/Student/Attack/Up/0000.png" id="28_88hpg"]
 [ext_resource type="Texture2D" uid="uid://cignmwj2vkljs" path="res://Assets/Student/Idle Knife/Right/0006.png" id="28_bv5ue"]
-[ext_resource type="Texture2D" uid="uid://banv0houtlwwe" path="res://Assets/Student/Idle Knife/Up/0000.png" id="29_l5ocn"]
 [ext_resource type="Texture2D" uid="uid://chnwy53cy65ss" path="res://Assets/Student/Attack/Up/0001.png" id="29_lktf2"]
-[ext_resource type="Texture2D" uid="uid://05ysabhe1dc2" path="res://Assets/Student/Idle Knife/Up/0001.png" id="30_jeb5g"]
 [ext_resource type="Texture2D" uid="uid://boyso7d547gq6" path="res://Assets/Student/Attack/Up/0002.png" id="30_xeqgb"]
-[ext_resource type="Texture2D" uid="uid://csix5vude3gig" path="res://Assets/Student/Idle Knife/Up/0002.png" id="31_0iqh7"]
 [ext_resource type="Texture2D" uid="uid://c2p8rtuyowin1" path="res://Assets/Student/Attack/Up/0003.png" id="31_8341e"]
-[ext_resource type="Texture2D" uid="uid://crwt3u2betnm7" path="res://Assets/Student/Idle Knife/Up/0003.png" id="32_50cto"]
 [ext_resource type="Texture2D" uid="uid://pmm066kf0xwe" path="res://Assets/Student/Attack/Up/0004.png" id="32_gk8o1"]
 [ext_resource type="Texture2D" uid="uid://d27fjneowwjne" path="res://Assets/Student/Attack/Up/0005.png" id="33_xvoif"]
-[ext_resource type="Texture2D" uid="uid://blcimy7asum1h" path="res://Assets/Student/Idle Knife/Up/0004.png" id="33_y80rj"]
 [ext_resource type="Texture2D" uid="uid://behydj7817dej" path="res://Assets/Student/Attack/Up/0006.png" id="34_4hjjn"]
-[ext_resource type="Texture2D" uid="uid://i30xw7v6rwh0" path="res://Assets/Student/Idle Knife/Up/0005.png" id="34_cuf4j"]
 [ext_resource type="Texture2D" uid="uid://dpwnx6qdc1yty" path="res://Assets/Student/Attack/Up/0007.png" id="35_8lmx5"]
-[ext_resource type="Texture2D" uid="uid://tj4ip1dbiu8n" path="res://Assets/Student/Idle Knife/Up/0006.png" id="35_c2et2"]
 [ext_resource type="Texture2D" uid="uid://b5yc8wcyv7q2b" path="res://Assets/Student/Attack/Up/0008.png" id="36_v5ix2"]
 [ext_resource type="Texture2D" uid="uid://dnfv7wtthhgkm" path="res://Assets/Student/Idle/Left/0000.png" id="36_w7ht5"]
 [ext_resource type="Texture2D" uid="uid://hlx4ulg0nex1" path="res://Assets/Student/Idle/Left/0001.png" id="37_o8vk1"]
@@ -171,6 +164,27 @@
 [ext_resource type="Texture2D" uid="uid://c7n3e016pp5fx" path="res://Assets/Student/Walk/Up/0008.png" id="132_2veuo"]
 [ext_resource type="Texture2D" uid="uid://bigo7yb3jjxtx" path="res://Assets/Student/Walk/Up/0009.png" id="133_tcnfb"]
 [ext_resource type="Texture2D" uid="uid://crj06mj47acem" path="res://Assets/Student/Walk/Up/0010.png" id="134_heih0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q3a7n"]
+load_path = "res://.godot/imported/0000.png-750f1e866f3d7917d3b360a0254b8445.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hdxfm"]
+load_path = "res://.godot/imported/0001.png-10dca10c7332c8c5e06c9d352a14db89.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqhww"]
+load_path = "res://.godot/imported/0002.png-dae692d518c71ed9053e6e58d91b0928.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3sf4b"]
+load_path = "res://.godot/imported/0003.png-73123b286da249937f773f83863bca21.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lx17i"]
+load_path = "res://.godot/imported/0004.png-dee84b73051768973e56c9c071fdb6e9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s0hae"]
+load_path = "res://.godot/imported/0005.png-b8e814004a5b4d67633890bfb2fedf5e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fmf53"]
+load_path = "res://.godot/imported/0006.png-ef5454a70272276aba07294b34107a5f.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teq0n"]
 animations = [{
@@ -468,47 +482,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("29_l5ocn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_jeb5g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_0iqh7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_jeb5g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_l5ocn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("32_50cto")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_y80rj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("34_cuf4j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("35_c2et2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("34_cuf4j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_y80rj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("32_50cto")
-}],
-"loop": true,
-"name": &"Idle Knife Up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("36_w7ht5")
 }, {
 "duration": 1.0,
@@ -591,40 +564,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("29_l5ocn")
+"texture": SubResource("CompressedTexture2D_q3a7n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("30_jeb5g")
+"texture": SubResource("CompressedTexture2D_hdxfm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("31_0iqh7")
+"texture": SubResource("CompressedTexture2D_qqhww")
 }, {
 "duration": 1.0,
-"texture": ExtResource("30_jeb5g")
+"texture": SubResource("CompressedTexture2D_hdxfm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("29_l5ocn")
+"texture": SubResource("CompressedTexture2D_q3a7n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("32_50cto")
+"texture": SubResource("CompressedTexture2D_3sf4b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("33_y80rj")
+"texture": SubResource("CompressedTexture2D_lx17i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("34_cuf4j")
+"texture": SubResource("CompressedTexture2D_s0hae")
 }, {
 "duration": 1.0,
-"texture": ExtResource("35_c2et2")
+"texture": SubResource("CompressedTexture2D_fmf53")
 }, {
 "duration": 1.0,
-"texture": ExtResource("34_cuf4j")
+"texture": SubResource("CompressedTexture2D_s0hae")
 }, {
 "duration": 1.0,
-"texture": ExtResource("33_y80rj")
+"texture": SubResource("CompressedTexture2D_lx17i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("32_50cto")
+"texture": SubResource("CompressedTexture2D_3sf4b")
 }],
 "loop": true,
 "name": &"Idle Up",
@@ -1136,24 +1109,6 @@ tracks/0/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_3qxlu"]
-resource_name = "Idle Knife Up"
-step = 0.0833333
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Idle Knife Up", 1.0, false],
-"method": &"play"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_xr4ud"]
 resource_name = "Idle Left"
 length = 0.916675
@@ -1385,7 +1340,6 @@ _data = {
 &"Idle Knife Down": SubResource("Animation_s7t4j"),
 &"Idle Knife Left": SubResource("Animation_7hpic"),
 &"Idle Knife Right": SubResource("Animation_qmb3r"),
-&"Idle Knife Up": SubResource("Animation_3qxlu"),
 &"Idle Left": SubResource("Animation_xr4ud"),
 &"Idle Right": SubResource("Animation_dv7ya"),
 &"Idle Up": SubResource("Animation_kauok"),
@@ -1424,7 +1378,7 @@ blend_point_3/pos = Vector2(0, 1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o34un"]
-animation = &"Idle Knife Up"
+animation = &"Idle Up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vht3x"]
 animation = &"Idle Knife Down"
@@ -1596,7 +1550,7 @@ states/Walk/position = Vector2(382, 241)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_r0rls"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_vau5h"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_71w3q")]
 graph_offset = Vector2(23.7683, 129.712)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 motion_mode = 1
 up_direction = Vector2(0, 1)
 script = ExtResource("1_q4m4l")
@@ -1605,7 +1559,7 @@ script = ExtResource("1_q4m4l")
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_teq0n")
-animation = &"Idle Down"
+animation = &"Attack Up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wtmhg")

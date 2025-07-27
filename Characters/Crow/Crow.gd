@@ -12,12 +12,21 @@ var player
 var facing = Vector2(0,1)
 var direction_changed = false
 var prev_position = position
-var player_in_range = false
+var attacking = false
 var aggrod = false
 var moving = false
+var _projectile = load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
 
 func _ready():
 	search_area.player_nearby.connect(_on_player_nearby)
+
+func reset_attack():
+	attacking = false
+
+func launch_projectile():
+	var projectile = _projectile.instantiate()
+	add_child(projectile)
+	projectile.launch(facing)
 	
 func _on_player_nearby(_player):
 	aggrod = true
@@ -25,8 +34,11 @@ func _on_player_nearby(_player):
 	
 func update_movement(delta):
 	if aggrod:
-		var to_player = (player.global_position - global_position).normalized()
-		position += (SPEED*delta) * to_player
+		if attacking:
+			position = prev_position
+		else:
+			var to_player = (player.global_position - global_position).normalized()
+			position += (SPEED*delta) * to_player
 	else:
 		var next = path.get_next_point(position, delta, SPEED)
 		position += (SPEED*delta) * (next - position).normalized()
@@ -37,16 +49,18 @@ func update_direction():
 	facing = (position - prev_position).normalized()
 	if (abs(facing.angle_to(prev_facing)) > 0.02):
 		direction_changed = true
-		var state_machine = anim_tree["parameters/playback"]
-		state_machine.travel("Walk/Transition")
-	if facing.is_zero_approx():
+		# For some reason the AnimationTree won't go to the next animation
+		# if the current animation is looped. So I have to do it manually here.
+		if not aggrod:
+			var state_machine = anim_tree["parameters/playback"]
+			state_machine.travel("Walk/Transition")
+	if facing.is_zero_approx() or attacking:
 		facing = prev_facing
 		moving = false
 	else:
 		moving = true
 	search_ray.target_position = facing * 200
-
-
+	
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walking/blend_position", facing)
 	anim_tree.set("parameters/Walk/Transition/blend_position", facing)
@@ -55,10 +69,16 @@ func update_animation_blend_positions():
 	anim_tree.set("parameters/Prepare Attack/blend_position", facing)
 	
 func update_attack():
-	player_in_range = false
 	if search_ray.is_colliding():
 		if search_ray.get_collider() == player:
-			player_in_range = true
+			# This is set to false with an animation in the AnimationTree state machine. 
+			# I know it's stupid but it's the easiest way to set it to false exactly at the end of 
+			# the animation that I can think of.
+			attacking = true
+			# For some reason the AnimationTree won't go to the next animation
+			# if the current animation is looped. So I have to do it manually here.
+			var state_machine = anim_tree["parameters/playback"]
+			state_machine.travel("Attack")
 	
 func _process(_delta):
 	update_movement(_delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=260 format=3 uid="uid://bbirthebgbru2"]
+[gd_scene load_steps=269 format=3 uid="uid://bbirthebgbru2"]
 
 [ext_resource type="Texture2D" uid="uid://8m7v6ht7rfgg" path="res://Assets/Badguys/Crow/Idle/Down/0000.png" id="1_1hy2b"]
 [ext_resource type="Texture2D" uid="uid://d3t1tpisjdws6" path="res://Assets/Badguys/Crow/Idle/Up/0000.png" id="1_d2frl"]
@@ -195,6 +195,12 @@
 [ext_resource type="Texture2D" uid="uid://by6uenj2oj4sp" path="res://Assets/Badguys/Crow/Walk/Down/0009.png" id="157_ovynb"]
 [ext_resource type="Texture2D" uid="uid://83elr6qvldtw" path="res://Assets/Badguys/Crow/Walk/Down/0010.png" id="158_qs3ly"]
 [ext_resource type="Texture2D" uid="uid://d21i5qh4lq44j" path="res://Assets/Badguys/Crow/Walk/Down/0011.png" id="159_syxla"]
+[ext_resource type="Texture2D" uid="uid://bumwyrwajkyq1" path="res://Assets/Badguys/Crow/Walk/Left/0006.png" id="167_f372u"]
+[ext_resource type="Texture2D" uid="uid://cao1l7u46eug2" path="res://Assets/Badguys/Crow/Walk/Left/0007.png" id="168_kobm1"]
+[ext_resource type="Texture2D" uid="uid://l7gn4bixcc6q" path="res://Assets/Badguys/Crow/Walk/Left/0008.png" id="169_1knxt"]
+[ext_resource type="Texture2D" uid="uid://bsutmy03n0mdx" path="res://Assets/Badguys/Crow/Walk/Left/0009.png" id="170_me0gi"]
+[ext_resource type="Texture2D" uid="uid://bvevox0i0eexp" path="res://Assets/Badguys/Crow/Walk/Left/0010.png" id="171_rei2a"]
+[ext_resource type="Texture2D" uid="uid://dvjhww7ikfjtg" path="res://Assets/Badguys/Crow/Walk/Left/0011.png" id="172_co7n7"]
 [ext_resource type="Script" uid="uid://bh4lnfxy1tke8" path="res://Characters/Crow/Path.gd" id="191_lbpjm"]
 [ext_resource type="Script" uid="uid://d4gknvy62ktak" path="res://Characters/Crow/SearchArea.gd" id="202_syxla"]
 
@@ -231,7 +237,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_m8wtb")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack Down",
 "speed": 12.0
 }, {
@@ -266,7 +272,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_r3bdx")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack Left",
 "speed": 12.0
 }, {
@@ -301,9 +307,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("20_divt5")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack Right",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -336,7 +342,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_3vbrp")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack Up",
 "speed": 12.0
 }, {
@@ -389,7 +395,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_sp4fr")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle Down",
 "speed": 12.0
 }, {
@@ -442,7 +448,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("32_y1w75")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle Left",
 "speed": 12.0
 }, {
@@ -495,7 +501,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("48_3vbrp")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle Right",
 "speed": 12.0
 }, {
@@ -548,7 +554,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_tvky2")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle Up",
 "speed": 12.0
 }, {
@@ -589,7 +595,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("116_jkier")
 }],
-"loop": true,
+"loop": false,
 "name": &"Prepare Attack Down",
 "speed": 12.0
 }, {
@@ -630,7 +636,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("86_pp713")
 }],
-"loop": true,
+"loop": false,
 "name": &"Prepare Attack Left",
 "speed": 12.0
 }, {
@@ -671,7 +677,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("118_nimse")
 }],
-"loop": true,
+"loop": false,
 "name": &"Prepare Attack Right",
 "speed": 12.0
 }, {
@@ -712,7 +718,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("86_jv12y")
 }],
-"loop": true,
+"loop": false,
 "name": &"Prepare Attack Up",
 "speed": 12.0
 }, {
@@ -735,7 +741,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("159_syxla")
 }],
-"loop": true,
+"loop": false,
 "name": &"Walk Down",
 "speed": 12.0
 }, {
@@ -762,8 +768,26 @@ animations = [{
 "name": &"Walk Down Transition",
 "speed": 12.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("167_f372u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_kobm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_1knxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_me0gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_rei2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_co7n7")
+}],
+"loop": false,
 "name": &"Walk Left",
 "speed": 12.0
 }, {
@@ -855,7 +879,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_8gc1s")
 }],
-"loop": true,
+"loop": false,
 "name": &"Walk Up",
 "speed": 12.0
 }, {
@@ -964,6 +988,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_1knxt"]
 resource_name = "Idle Down"
 length = 1.33334
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -983,6 +1008,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_me0gi"]
 resource_name = "Idle Left"
 length = 0.533337
+loop_mode = 1
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1033,6 +1059,25 @@ tracks/0/keys = {
 "values": [{
 "args": [&"Idle Up", 1.0, false],
 "method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jkier"]
+resource_name = "Launch Projectile"
+length = 0.0833416
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_projectile"
 }]
 }
 
@@ -1105,6 +1150,25 @@ tracks/0/keys = {
 "values": [{
 "args": [&"Prepare Attack Up", 1.0, false],
 "method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_q0sw6"]
+resource_name = "Reset Attack"
+length = 0.0833416
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_attack"
 }]
 }
 
@@ -1274,10 +1338,12 @@ _data = {
 &"Idle Left": SubResource("Animation_me0gi"),
 &"Idle Right": SubResource("Animation_rei2a"),
 &"Idle Up": SubResource("Animation_kobm1"),
+&"Launch Projectile": SubResource("Animation_jkier"),
 &"Prepare Attack Down": SubResource("Animation_m8wtb"),
 &"Prepare Attack Left": SubResource("Animation_ko7na"),
 &"Prepare Attack Right": SubResource("Animation_6rq47"),
 &"Prepare Attack Up": SubResource("Animation_co7n7"),
+&"Reset Attack": SubResource("Animation_q0sw6"),
 &"Walk Down": SubResource("Animation_qs3ly"),
 &"Walk Down Transition": SubResource("Animation_hfi6h"),
 &"Walk Left": SubResource("Animation_syxla"),
@@ -1333,6 +1399,9 @@ blend_point_2/pos = Vector2(-1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_co7n7")
 blend_point_3/pos = Vector2(1, 0)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_10q45"]
+animation = &"Launch Projectile"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_atbsc"]
 animation = &"Prepare Attack Up"
 
@@ -1354,6 +1423,10 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_5jji8")
 blend_point_2/pos = Vector2(-1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_hk4et")
 blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a5l33"]
+animation = &"Reset Attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_syxla"]
 animation = &"Walk Up Transition"
@@ -1409,10 +1482,6 @@ advance_mode = 2
 advance_mode = 2
 advance_expression = "not moving"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_voslc"]
-advance_mode = 2
-advance_expression = "direction_changed"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_48xe0"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q0sw6"]
@@ -1423,42 +1492,47 @@ states/Transition/node = SubResource("AnimationNodeBlendSpace2D_4mf1n")
 states/Transition/position = Vector2(466, 83)
 states/Walking/node = SubResource("AnimationNodeBlendSpace2D_uurad")
 states/Walking/position = Vector2(662, 83)
-transitions = ["Transition", "Walking", SubResource("AnimationNodeStateMachineTransition_f372u"), "Walking", "End", SubResource("AnimationNodeStateMachineTransition_1knxt"), "Walking", "Transition", SubResource("AnimationNodeStateMachineTransition_voslc"), "Start", "Transition", SubResource("AnimationNodeStateMachineTransition_48xe0")]
+transitions = ["Transition", "Walking", SubResource("AnimationNodeStateMachineTransition_f372u"), "Walking", "End", SubResource("AnimationNodeStateMachineTransition_1knxt"), "Start", "Transition", SubResource("AnimationNodeStateMachineTransition_48xe0")]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qs3ly"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_10q45"]
+switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jkier"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_002tq"]
+switch_mode = 2
 advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iw8wp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rei2a"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kobm1"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_me0gi"]
 advance_mode = 2
-advance_expression = "player_in_range"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rei2a"]
-advance_mode = 2
-advance_expression = "player_in_range"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_co7n7"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m8wtb"]
-switch_mode = 2
-advance_mode = 2
+advance_expression = "attacking"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ovynb"]
 state_machine_type = 1
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_qs3ly")
-states/Attack/position = Vector2(602, 70)
+states/Attack/position = Vector2(602, -10)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_m8wtb")
-states/Idle/position = Vector2(410, 70)
+states/Idle/position = Vector2(826, 53)
+"states/Launch Projectile/node" = SubResource("AnimationNodeAnimation_10q45")
+"states/Launch Projectile/position" = Vector2(602, 70)
 "states/Prepare Attack/node" = SubResource("AnimationNodeBlendSpace2D_syxla")
 "states/Prepare Attack/position" = Vector2(602, 166)
-states/Start/position = Vector2(258, 70)
+"states/Reset Attack/node" = SubResource("AnimationNodeAnimation_a5l33")
+"states/Reset Attack/position" = Vector2(410, -10)
+states/Start/position = Vector2(201, 59)
 states/Walk/node = SubResource("AnimationNodeStateMachine_q0sw6")
 states/Walk/position = Vector2(410, 166)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qs3ly"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_jkier"), "Walk", "Prepare Attack", SubResource("AnimationNodeStateMachineTransition_me0gi"), "Idle", "Prepare Attack", SubResource("AnimationNodeStateMachineTransition_rei2a"), "Prepare Attack", "Attack", SubResource("AnimationNodeStateMachineTransition_co7n7"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_m8wtb")]
+transitions = ["Attack", "Reset Attack", SubResource("AnimationNodeStateMachineTransition_10q45"), "Prepare Attack", "Launch Projectile", SubResource("AnimationNodeStateMachineTransition_002tq"), "Launch Projectile", "Attack", SubResource("AnimationNodeStateMachineTransition_iw8wp"), "Reset Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_rei2a"), "Start", "Reset Attack", SubResource("AnimationNodeStateMachineTransition_kobm1"), "Walk", "Prepare Attack", SubResource("AnimationNodeStateMachineTransition_me0gi")]
+graph_offset = Vector2(0, -42.4033)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qs3ly"]
 radius = 304.647
@@ -1477,6 +1551,8 @@ script = ExtResource("1_qs3ly")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h653l")
 animation = &"Walk Right"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_h2hex")
@@ -1489,7 +1565,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ovynb")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Attack/blend_position = Vector2(-0.0048154, -0.0109891)
 parameters/Idle/blend_position = Vector2(0, 0)
 "parameters/Prepare Attack/blend_position" = Vector2(0, 0)
 parameters/Walk/Transition/blend_position = Vector2(0, 0)

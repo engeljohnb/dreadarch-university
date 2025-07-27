@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i30xw7v6rwh0"
-path="res://.godot/imported/0005.png-b8e814004a5b4d67633890bfb2fedf5e.ctex"
+uid="uid://dyt4c4mao3por"
+path="res://.godot/imported/0002.png-face1bd85142a73957679b12766c4a88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Student/Idle Knife/Up/0005.png"
-dest_files=["res://.godot/imported/0005.png-b8e814004a5b4d67633890bfb2fedf5e.ctex"]
+source_file="res://Assets/Badguys/Crow/Attack/Projectile/Up/0002.png"
+dest_files=["res://.godot/imported/0002.png-face1bd85142a73957679b12766c4a88.ctex"]
 
 [params]
 
