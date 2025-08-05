@@ -2,6 +2,19 @@ extends RigidBody2D
 
 var facing = Vector2(0,-1)
 @onready var anim_player = $AnimationPlayer
+@onready var fx_player = $FXPlayer
+@onready var hitbox = $CollisionShape2D
+@onready var launch_sprite = $"Launch Effect"
+
+func _on_body_entered(body):
+	if (body != get_parent()):
+		queue_free()
+	
+func _ready():
+	launch_sprite.modulate = Color(0.6, 0.0, 0.85, 1)
+	contact_monitor = true
+	max_contacts_reported = 1
+	body_entered.connect(_on_body_entered)
 
 func name_to_vector(_name):
 	match _name:
@@ -41,4 +54,5 @@ func launch(direction):
 	if (animation_name == "Up"):
 		position.y -= 20
 		position.x += 10
-	anim_player.play(get_animation_name(direction))
+	anim_player.play(animation_name)
+	fx_player.play(animation_name)
