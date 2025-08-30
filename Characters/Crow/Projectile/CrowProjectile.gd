@@ -5,6 +5,7 @@ var facing = Vector2(0,-1)
 @onready var fx_player = $FXPlayer
 @onready var hitbox = $CollisionShape2D
 @onready var launch_sprite = $"Launch Effect"
+@onready var outline_sprite = $"Launch Effect/Launch Effect Outline"
 
 func _on_body_entered(body):
 	if (body != get_parent()):
@@ -12,6 +13,7 @@ func _on_body_entered(body):
 	
 func _ready():
 	launch_sprite.modulate = Color(0.6, 0.0, 0.85, 1)
+	outline_sprite.modulate = Color(0,0,0)
 	contact_monitor = true
 	max_contacts_reported = 1
 	body_entered.connect(_on_body_entered)

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca20ol0nw11s6"]
+
+[ext_resource type="Script" uid="uid://cvjinndq56d62" path="res://Characters/Player/Scripts/player_attack_fx.gd" id="1_cgdpr"]
+[ext_resource type="Texture2D" uid="uid://bw36dh2n1qh5a" path="res://Assets/Student/Attack/FX/0000.png" id="2_leuhs"]
+[ext_resource type="Texture2D" uid="uid://b3r7fymc7xitv" path="res://Assets/Student/Attack/FX/0001.png" id="3_q3mst"]
+[ext_resource type="Texture2D" uid="uid://ba6ogy7mxt1k5" path="res://Assets/Student/Attack/FX/0002.png" id="4_ipacc"]
+[ext_resource type="Texture2D" uid="uid://b61mroqrnkhim" path="res://Assets/Student/Attack/FX/0003.png" id="5_keau2"]
+[ext_resource type="Texture2D" uid="uid://dqy1il7iw376j" path="res://Assets/Student/Attack/FX/0004.png" id="6_hkbws"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l75vj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_leuhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q3mst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ipacc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_keau2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hkbws")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="PlayerAttackFX" type="StaticBody2D" groups=["Weapons"]]
+scale = Vector2(0.34, 0.34)
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_cgdpr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(-77, -95, -16, -67, 22, -26, 4, 42, -19, 89, 20, 63, 50, 11, 56, -16, 30, -66, -26, -90)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l75vj")
+frame = 4
+frame_progress = 1.0
+
+[node name="OutlineSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_l75vj")
+frame = 4
+frame_progress = 1.0

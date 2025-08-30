@@ -99,10 +99,13 @@ tracks/0/path = NodePath("../Launch Effect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.916667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Init", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Flying", 1.0, false],
 "method": &"play"
 }]
 }
@@ -129,6 +132,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -62.84)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Launch Effect/Launch Effect Outline")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Init", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Flying", 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_y31cg"]
@@ -175,6 +195,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(70.81, -2.425)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Launch Effect/Launch Effect Outline")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Init", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Flying", 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_845w8"]
@@ -249,6 +286,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-70, -2.425)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Launch Effect/Launch Effect Outline")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Init", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Flying", 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_m0ud5"]
 resource_name = "Up"
@@ -294,6 +348,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 55.495)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Launch Effect/Launch Effect Outline")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Init", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Flying", 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_845w8"]
@@ -548,7 +619,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="CrowProjectile" type="RigidBody2D"]
+[node name="CrowProjectile" type="RigidBody2D" groups=["Weapons"]]
+collision_layer = 4
 gravity_scale = 0.0
 script = ExtResource("1_c6877")
 
@@ -573,5 +645,12 @@ libraries = {
 
 [node name="Launch Effect" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.220833, 0.220833)
+sprite_frames = SubResource("SpriteFrames_uakoa")
+animation = &"Init"
+
+[node name="Launch Effect Outline" type="AnimatedSprite2D" parent="Launch Effect"]
+z_index = -1
+rotation = 0.010472
+scale = Vector2(1.22264, 1.22264)
 sprite_frames = SubResource("SpriteFrames_uakoa")
 animation = &"Init"

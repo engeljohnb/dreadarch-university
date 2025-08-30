@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=3 uid="uid://cso8xftk6i6m2"]
+
+[ext_resource type="Texture2D" uid="uid://b23xtf5f4475h" path="res://Assets/Student/Lifebar/Left/0000.png" id="1_c6o27"]
+[ext_resource type="Texture2D" uid="uid://b5sy6uovbxvdt" path="res://Assets/Student/Lifebar/Left/0001.png" id="2_4cvd2"]
+[ext_resource type="Texture2D" uid="uid://csymadcocuj6v" path="res://Assets/Student/Lifebar/Left/0002.png" id="3_q7fiq"]
+[ext_resource type="Texture2D" uid="uid://ndorc73mg074" path="res://Assets/Student/Lifebar/Left/0003.png" id="4_apjf4"]
+[ext_resource type="Texture2D" uid="uid://cw1tnedpnd1ov" path="res://Assets/Student/Lifebar/Middle/0000.png" id="5_vkg6y"]
+[ext_resource type="Texture2D" uid="uid://cwunsr43kw2fi" path="res://Assets/Student/Lifebar/Middle/0001.png" id="6_7i0hw"]
+[ext_resource type="Texture2D" uid="uid://w7c7mlitxpfn" path="res://Assets/Student/Lifebar/Middle/0002.png" id="7_5bgai"]
+[ext_resource type="Texture2D" uid="uid://h5pbep088ohr" path="res://Assets/Student/Lifebar/Middle/0003.png" id="8_leee8"]
+[ext_resource type="Texture2D" uid="uid://dtr0m1oipnljw" path="res://Assets/Student/Lifebar/Right/0000.png" id="9_8u33x"]
+[ext_resource type="Texture2D" uid="uid://cqel1d0bb3aki" path="res://Assets/Student/Lifebar/Right/0001.png" id="10_5of1l"]
+[ext_resource type="Texture2D" uid="uid://4jcbql5b37xw" path="res://Assets/Student/Lifebar/Right/0002.png" id="11_26abr"]
+[ext_resource type="Texture2D" uid="uid://bnugqmom3nux6" path="res://Assets/Student/Lifebar/Right/0003.png" id="12_vo2rs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fe8ex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c6o27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4cvd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q7fiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_apjf4")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vkg6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7i0hw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5bgai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_leee8")
+}],
+"loop": true,
+"name": &"Middle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_8u33x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5of1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_26abr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vo2rs")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 8.0
+}]
+
+[node name="LifebarSegment" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_fe8ex")
+animation = &"Right"

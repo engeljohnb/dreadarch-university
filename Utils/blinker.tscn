@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wao4sse2oke3"]
+
+[ext_resource type="Script" uid="uid://85r86jsqybq0" path="res://Utils/blinker.gd" id="1_kps1q"]
+
+[node name="Blinker" type="Node"]
+script = ExtResource("1_kps1q")

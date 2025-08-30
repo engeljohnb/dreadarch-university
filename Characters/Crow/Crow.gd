@@ -5,7 +5,8 @@ extends CharacterBody2D
 @onready var search_area = $SearchArea
 @onready var search_ray = $SearchRay
 @onready var path = $Path2D
-
+@onready var hitbox = $Hitbox
+@onready var blinker = $Blinker
 const SPEED = 100.0
 
 var player
@@ -16,9 +17,28 @@ var attacking = false
 var aggrod = false
 var moving = false
 var _projectile = load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
+var life = 2
+
+func death():
+	queue_free()
+
+func on_blinker_flip(state):
+	if state:
+		set_modulate(Color(3, 3, 3))
+	else:
+		set_modulate(Color(1,1,1))
+
+func on_hit(_body):
+	if (not blinker.blinking):
+		blinker.blink(0.5)
+		life -= 1
+		if life <= 0:
+			death()
 
 func _ready():
 	search_area.player_nearby.connect(_on_player_nearby)
+	hitbox.hit.connect(on_hit)
+	blinker.flip.connect(on_blinker_flip)
 
 func reset_attack():
 	attacking = false
