@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca20ol0nw11s6"]
+[gd_scene load_steps=10 format=3 uid="uid://ca20ol0nw11s6"]
 
 [ext_resource type="Script" uid="uid://cvjinndq56d62" path="res://Characters/Player/Scripts/player_attack_fx.gd" id="1_cgdpr"]
 [ext_resource type="Texture2D" uid="uid://bw36dh2n1qh5a" path="res://Assets/Student/Attack/FX/0000.png" id="2_leuhs"]
@@ -27,8 +27,17 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 12.0
+"speed": 16.0
 }]
+
+[sub_resource type="Gradient" id="Gradient_leuhs"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q3mst"]
+gradient = SubResource("Gradient_leuhs")
+fill = 1
+fill_from = Vector2(0.512195, 0.47561)
+fill_to = Vector2(0.847561, 0.835366)
 
 [node name="PlayerAttackFX" type="StaticBody2D" groups=["Weapons"]]
 scale = Vector2(0.34, 0.34)
@@ -38,7 +47,7 @@ script = ExtResource("1_cgdpr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -2)
-polygon = PackedVector2Array(-77, -95, -16, -67, 22, -26, 4, 42, -19, 89, 20, 63, 50, 11, 56, -16, 30, -66, -26, -90)
+polygon = PackedVector2Array(-77, -95, -35.2941, -53.8823, -32.3529, 16.7059, -29.4118, 69.647, -44.1176, 104.941, 26.4706, 72.5882, 50, 11, 56, -16, 30, -66, -26, -90)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l75vj")
@@ -50,3 +59,11 @@ scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_l75vj")
 frame = 4
 frame_progress = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(38.2353, 0)
+scale = Vector2(22.0832, 22.0832)
+color = Color(0.7, 0.3, 0.15, 1)
+energy = 0.25
+texture = SubResource("GradientTexture2D_q3mst")
+texture_scale = 1.5

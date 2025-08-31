@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgoy8xigbxvtw"]
+
+[ext_resource type="Texture2D" uid="uid://d1dgtn4nj4ip3" path="res://Dungeon Elements/Tiles/ImageFiles/TestTileset01.png" id="1_1cqpq"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_du8cu"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3qwna"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3f5u"]
+texture = ExtResource("1_1cqpq")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_3qwna")
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_du8cu")
+1:0/0/physics_layer_0/linear_velocity = Vector2(250, 250)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qnfxq"]
+tile_size = Vector2i(64, 64)
+occlusion_layer_0/light_mask = 4
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 141
+physics_layer_1/collision_layer = 16
+physics_layer_1/collision_mask = 137
+sources/0 = SubResource("TileSetAtlasSource_x3f5u")
+
+[node name="TestTileset01" type="TileMapLayer"]
+visibility_layer = 512
+tile_set = SubResource("TileSet_qnfxq")

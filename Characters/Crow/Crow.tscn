@@ -207,6 +207,8 @@
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="205_1knxt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2hex"]
+radius = 16.0
+height = 58.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h653l"]
 animations = [{
@@ -1587,6 +1589,45 @@ tracks/3/keys = {
 "values": [Vector2(1.375, 1.795)]
 }
 
+[sub_resource type="Animation" id="Animation_a5l33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7.215, 3.975)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.07338]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.24, 1.24)]
+}
+
 [sub_resource type="Animation" id="Animation_q0sw6"]
 resource_name = "Reset Attack"
 length = 0.0833416
@@ -1906,45 +1947,6 @@ tracks/0/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_a5l33"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(7.215, 3.975)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.07338]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.24, 1.24)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qs3ly"]
 _data = {
 &"Attack Down": SubResource("Animation_atbsc"),
@@ -2162,8 +2164,8 @@ _data = {
 point_count = 5
 
 [node name="Crow" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 12
-collision_mask = 28
+collision_layer = 8
+collision_mask = 24
 motion_mode = 1
 script = ExtResource("1_qs3ly")
 
@@ -2176,12 +2178,14 @@ collision_layer = 20
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_h2hex")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h653l")
-animation = &"Prepare Attack Down"
+animation = &"Prepare Attack Right"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

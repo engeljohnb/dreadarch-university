@@ -21,6 +21,7 @@ func _process(delta):
 			state = (not state)
 			flip.emit(state)
 		if total_timer >= total_duration:
+			total_timer = 0.0
 			blinking = false
 			state = false
 			flip.emit(false)

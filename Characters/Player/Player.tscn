@@ -149,6 +149,8 @@
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="166_qqhww"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdxfm"]
+radius = 12.0
+height = 60.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q3a7n"]
 load_path = "res://.godot/imported/0000.png-750f1e866f3d7917d3b360a0254b8445.ctex"

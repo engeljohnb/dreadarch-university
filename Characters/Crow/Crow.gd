@@ -10,6 +10,8 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 var player
+var knockback_direction = Vector2()
+var knockback_speed = 0.0
 var facing = Vector2(0,1)
 var direction_changed = false
 var prev_position = position
@@ -17,7 +19,7 @@ var attacking = false
 var aggrod = false
 var moving = false
 var _projectile = load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
-var life = 2
+var life = 10
 
 func death():
 	queue_free()
@@ -30,6 +32,8 @@ func on_blinker_flip(state):
 
 func on_hit(_body):
 	if (not blinker.blinking):
+		knockback_direction = (_body.get_parent().global_position - global_position).normalized()
+		knockback_speed = 400.0
 		blinker.blink(0.5)
 		life -= 1
 		if life <= 0:
@@ -53,16 +57,17 @@ func _on_player_nearby(_player):
 	player = _player
 	
 func update_movement(delta):
-	if aggrod:
-		if attacking:
-			position = prev_position
+	if not blinker.blinking:
+		if aggrod:
+			if attacking:
+				position = prev_position
+			else:
+				var to_player = (player.global_position - global_position).normalized()
+				position += (SPEED*delta) * to_player
 		else:
-			var to_player = (player.global_position - global_position).normalized()
-			position += (SPEED*delta) * to_player
-	else:
-		var next = path.get_next_point(position, delta, SPEED)
-		position += (SPEED*delta) * (next - position).normalized()
-	
+			var next = path.get_next_point(position, delta, SPEED)
+			position += (SPEED*delta) * (next - position).normalized()
+
 func update_direction():
 	direction_changed = false
 	var prev_facing = facing
@@ -99,6 +104,13 @@ func update_attack():
 			# if the current animation is looped. So I have to do it manually here.
 			var state_machine = anim_tree["parameters/playback"]
 			state_machine.travel("Attack")
+	
+func _physics_process(_delta):
+	if blinker.blinking:
+		position += -(knockback_direction*knockback_speed*_delta)
+	knockback_speed -= 10.0
+	if knockback_speed < 0.0:
+		knockback_speed = 0.0
 	
 func _process(_delta):
 	update_movement(_delta)

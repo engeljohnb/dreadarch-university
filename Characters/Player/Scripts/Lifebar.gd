@@ -28,7 +28,7 @@ func set_life_total(lt):
 	
 	for i in range(0, lt):
 		var rect = ColorRect.new()
-		rect.color = Color(0.6,0.1,0.05, 0.8)
+		rect.color = Color(0.6,0.2,0.15, 0.6)
 		rect.position = Vector2(-20,-20)
 		rect.size = Vector2(40,40)
 		rect.position.x += (i*40)

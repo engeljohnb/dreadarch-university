@@ -14,11 +14,13 @@ const SPEED = 300.0
 
 var _attack_fx = load("res://Characters/Player/PlayerAttackFX.tscn")
 var attack_fx = null
-var facing = Vector2()
+var facing = Vector2(0,1)
 var direction_changed = false
 var moving = false
 var knife_equipped = true
 var attacking = false
+
+var direction_priority
 
 func reset_direction_changed():
 	direction_changed = false
@@ -26,26 +28,47 @@ func reset_direction_changed():
 func update_direction():
 	direction_changed = false
 	if moving:
+		if Input.is_action_just_pressed("Left"):
+			direction_priority = "Left"
+			direction_changed = true
+		if Input.is_action_just_pressed("Right"):
+			direction_priority = "Right"
+			direction_changed = true
+		if Input.is_action_just_pressed("Up"):
+			direction_priority = "Up"
+			direction_changed = true
+		if Input.is_action_just_pressed("Down"):
+			direction_priority = "Down"
+			direction_changed = true
 		if (Input.is_action_just_released("Left")
 		or Input.is_action_just_released("Right")
 		or Input.is_action_just_released("Up")
-		or Input.is_action_just_released("Down")
-		or Input.is_action_just_pressed("Left")
-		or Input.is_action_just_pressed("Right")
-		or Input.is_action_just_pressed("Up")
-		or Input.is_action_just_pressed("Down")):
+		or Input.is_action_just_released("Down")):
 			direction_changed = true
-
+		
 	var movement_direction = Vector2()
 	if Input.is_action_pressed("Left"):
-		movement_direction += LEFT
+		if direction_priority == "Left":
+			movement_direction += LEFT*2
+		else:
+			movement_direction += LEFT
 	if Input.is_action_pressed("Right"):
-		movement_direction += RIGHT
+		if direction_priority == "Right":
+			movement_direction += RIGHT*2.0
+		else:
+			movement_direction += RIGHT
 	if Input.is_action_pressed("Up"):
-		movement_direction += UP
+		if direction_priority == "Up":
+			movement_direction += UP*2.0
+		else:
+			movement_direction += UP
 	if Input.is_action_pressed("Down"):
-		movement_direction += DOWN
+		if direction_priority == "Down":
+			movement_direction += DOWN*2.0
+		else:
+			movement_direction += DOWN
 	movement_direction = movement_direction.normalized()
+
 	
 	if movement_direction.is_zero_approx():
 		moving = false
@@ -73,8 +96,9 @@ func update_attack_state():
 		add_child(attack_fx)
 
 func reset_attack_state():
-	remove_child(attack_fx)
-	attack_fx = null
+	if attack_fx:
+		remove_child(attack_fx)
+		attack_fx = null
 	attacking = false
 	
 func update_position(delta):

@@ -5,7 +5,7 @@ extends StaticBody2D
 
 func _ready():
 	$AnimatedSprite2D.animation_finished.connect(queue_free)
-	set_modulate(Color(0.7,0.2,0.1,0.8))
+	set_modulate(Color(0.7,0.4,0.3,0.8))
 	$OutlineSprite.set_modulate(Color(0,0,0))
 	$OutlineSprite.z_index = -1
 	$OutlineSprite.position.x -= 10

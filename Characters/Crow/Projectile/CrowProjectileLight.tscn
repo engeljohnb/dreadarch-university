@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgaexsj1hvlja"]
+
+[sub_resource type="Gradient" id="Gradient_m0ud5"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_845w8"]
+gradient = SubResource("Gradient_m0ud5")
+width = 194
+height = 20
+fill = 2
+fill_from = Vector2(0, 0.460027)
+fill_to = Vector2(0.22561, 0.532317)
+
+[node name="PointLight2D" type="PointLight2D"]
+scale = Vector2(3.88, 3.76)
+color = Color(0.70738, 0.36047, 0.843633, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_845w8")
