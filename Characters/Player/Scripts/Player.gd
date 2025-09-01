@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+signal dead()
+signal lost_life(damage)
+signal gained_life(life)
 @onready var anim_tree = $AnimationTree
 @onready var anim_player = $AnimationPlayer
 @onready var hitbox = $Hitbox
 @onready var blinker = $Blinker
-@onready var lifebar = $Lifebar
 
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
@@ -12,6 +14,8 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 300.0
 
+var life = 3
+var total_life = 3
 var _attack_fx = load("res://Characters/Player/PlayerAttackFX.tscn")
 var attack_fx = null
 var facing = Vector2(0,1)
@@ -109,29 +113,36 @@ func update_position(delta):
 		move_and_slide()
 	
 func death():
-	queue_free()
-
+	dead.emit()
+	
 func on_hit(_body):
 	# Check for i-frames
 	if not blinker.blinking:
-		lifebar.on_hit()
+		life -= 1
+		lost_life.emit(1)
 		blinker.blink(0.5)
+	if life <= 0:
+		death()
 	
 func on_blinker_flip(state):
 	if state:
-		set_modulate(Color(3, 3, 3))
+		set_modulate(Color(1.4, 1.4, 1.4))
 	else:
 		set_modulate(Color(1,1,1))
 
 func _ready():
 	hitbox.hit.connect(on_hit)
 	blinker.flip.connect(on_blinker_flip)
-	lifebar.dead.connect(death)
-	lifebar.set_life_total(7)
-	lifebar.top_level = true
-	lifebar.position = Vector2(40,40)
+
+func gain_life(_life):
+	life += 1
+	if life >= total_life:
+		life = total_life
+	gained_life.emit(_life)
 	
 func _process(delta):
+	if Input.is_action_just_pressed("GainLifeCheat"):
+		gain_life(1)
 	update_direction()
 	update_attack_state()
 	update_position(delta)

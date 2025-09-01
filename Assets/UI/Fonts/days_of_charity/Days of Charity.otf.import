@@ -1,0 +1,35 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bulvrkgvcig85"
+path="res://.godot/imported/Days of Charity.otf-f9ffc9268bd38ab77a6c457f6249e607.fontdata"
+
+[deps]
+
+source_file="res://Assets/UI/Fonts/days_of_charity/Days of Charity.otf"
+dest_files=["res://.godot/imported/Days of Charity.otf-f9ffc9268bd38ab77a6c457f6249e607.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=219 format=3 uid="uid://r8py7ts46u7k"]
+[gd_scene load_steps=220 format=3 uid="uid://r8py7ts46u7k"]
 
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
 [ext_resource type="Texture2D" uid="uid://bkyy4clb40hvk" path="res://Assets/Student/Idle/Down/0000.png" id="1_v8ubu"]
@@ -145,7 +145,6 @@
 [ext_resource type="Texture2D" uid="uid://c7n3e016pp5fx" path="res://Assets/Student/Walk/Up/0008.png" id="132_2veuo"]
 [ext_resource type="Texture2D" uid="uid://bigo7yb3jjxtx" path="res://Assets/Student/Walk/Up/0009.png" id="133_tcnfb"]
 [ext_resource type="Texture2D" uid="uid://crj06mj47acem" path="res://Assets/Student/Walk/Up/0010.png" id="134_heih0"]
-[ext_resource type="PackedScene" uid="uid://bswtbuop815mn" path="res://Characters/Player/Lifebar.tscn" id="146_e2f0o"]
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="166_qqhww"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdxfm"]
@@ -1475,14 +1474,24 @@ states/Walk/position = Vector2(382, 241)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_r0rls"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_vau5h"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_71w3q")]
 graph_offset = Vector2(23.7683, 129.712)
 
+[sub_resource type="Gradient" id="Gradient_yuaiq"]
+colors = PackedColorArray(0.775063, 0.775063, 0.775063, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e2f0o"]
+gradient = SubResource("Gradient_yuaiq")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.522472, 0.505618)
+fill_to = Vector2(0.904494, 0.865169)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+y_sort_enabled = true
 collision_layer = 8
-collision_mask = 28
+collision_mask = 120
 motion_mode = 1
 up_direction = Vector2(0, 1)
 script = ExtResource("1_q4m4l")
-
-[node name="Lifebar" parent="." instance=ExtResource("146_e2f0o")]
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_hdxfm")
@@ -1512,3 +1521,9 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 "parameters/Walk/Walk Knife/blend_position" = Vector2(0, 0)
 
 [node name="Blinker" parent="." instance=ExtResource("166_qqhww")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 1.7
+texture = SubResource("GradientTexture2D_e2f0o")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq2lvogek4uis"]
+
+[ext_resource type="PackedScene" uid="uid://bswtbuop815mn" path="res://Characters/Player/Lifebar.tscn" id="1_36717"]
+[ext_resource type="Script" uid="uid://b1uf85m6bm0bk" path="res://UI/Scripts/Hud.gd" id="1_k1dq0"]
+
+[node name="Hud" type="Control"]
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k1dq0")
+
+[node name="Lifebar" parent="." instance=ExtResource("1_36717")]
+position = Vector2(40, 40)

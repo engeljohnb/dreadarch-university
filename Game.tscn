@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch1hebxpmn75b"]
+
+[ext_resource type="Script" uid="uid://5edqqs26rci6" path="res://Game Scripts/Game.gd" id="1_wbfu4"]
+[ext_resource type="PackedScene" uid="uid://bq2lvogek4uis" path="res://UI/Hud.tscn" id="2_xkndl"]
+[ext_resource type="PackedScene" uid="uid://ctcsa2iivywjj" path="res://UI/PauseMenu.tscn" id="3_u44n3"]
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_wbfu4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_xkndl")]
+z_index = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_u44n3")]

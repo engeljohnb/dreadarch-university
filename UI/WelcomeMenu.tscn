@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://dibqpvs8847mq"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_sh2gw"]
+[ext_resource type="Script" uid="uid://i0fseqrk78fi" path="res://UI/Scripts/WelcomeMenu.gd" id="2_dj11p"]
+
+[node name="WelcomeMenu" type="Control"]
+process_mode = 2
+z_index = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sh2gw")
+script = ExtResource("2_dj11p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.144
+anchor_top = 0.054
+anchor_right = 0.9
+anchor_bottom = 0.272
+offset_left = 44.112
+offset_top = 0.00799942
+offset_right = 44.2
+offset_bottom = -0.256012
+text = "Dreadarch University"
+
+[node name="NewGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.295
+anchor_right = 0.724
+anchor_bottom = 0.431
+offset_left = 0.399994
+offset_top = -0.160004
+offset_right = 273.952
+offset_bottom = -0.288025
+scale = Vector2(0.64, 1)
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.481
+anchor_right = 0.722
+anchor_bottom = 0.614
+offset_left = 0.399994
+offset_top = 0.311981
+offset_right = 0.25592
+offset_bottom = 0.127991
+text = "Load Game"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.682
+anchor_right = 0.725
+anchor_bottom = 0.806
+offset_left = 0.399994
+offset_top = 0.0639648
+offset_right = -0.200012
+offset_bottom = -0.288025
+text = "Quit"
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.221971, 0.198227, 0.204396, 1)

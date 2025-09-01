@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctcsa2iivywjj"]
+
+[ext_resource type="FontFile" uid="uid://bulvrkgvcig85" path="res://Assets/UI/Fonts/days_of_charity/Days of Charity.otf" id="1_pbsus"]
+[ext_resource type="Script" uid="uid://8n2h3lit7oky" path="res://UI/Scripts/PauseMenu.gd" id="1_tsvmi"]
+[ext_resource type="Texture2D" uid="uid://cs08el3h671jy" path="res://Assets/UI/LongButton/LongButtonFocused.png" id="2_4lql7"]
+[ext_resource type="Texture2D" uid="uid://d1pxm0dknqmre" path="res://Assets/UI/LongButton/SquareButtonHover.png" id="3_jsuq4"]
+[ext_resource type="Texture2D" uid="uid://dfj6n087hm1pb" path="res://Assets/UI/LongButton/ButtonNormal.png" id="4_qxt2n"]
+[ext_resource type="Texture2D" uid="uid://dvj312qe5cnd6" path="res://Assets/UI/Parchment.jpg" id="5_cvf32"]
+[ext_resource type="FontFile" uid="uid://bbg2g22ht2tgr" path="res://Assets/UI/Fonts/chomsky/Chomsky.otf" id="6_1p4m1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf1sp"]
+texture = ExtResource("2_4lql7")
+modulate_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f8btd"]
+texture = ExtResource("3_jsuq4")
+modulate_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pbsus"]
+texture = ExtResource("4_qxt2n")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+modulate_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7w814"]
+texture = ExtResource("3_jsuq4")
+modulate_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yvmn"]
+texture = ExtResource("5_cvf32")
+modulate_color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="Theme" id="Theme_wi1q8"]
+Button/colors/font_color = Color(0, 0, 0, 0.6)
+Button/colors/font_focus_color = Color(0, 0, 0, 0.5)
+Button/colors/font_hover_color = Color(0, 0, 0, 0.5)
+Button/colors/font_pressed_color = Color(0, 0, 0, 0.5)
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_pbsus")
+Button/styles/focus = SubResource("StyleBoxTexture_wf1sp")
+Button/styles/hover = SubResource("StyleBoxTexture_f8btd")
+Button/styles/normal = SubResource("StyleBoxTexture_pbsus")
+Button/styles/pressed = SubResource("StyleBoxTexture_7w814")
+Panel/styles/panel = SubResource("StyleBoxTexture_7yvmn")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/font_sizes/normal_font_size = 100
+RichTextLabel/fonts/normal_font = ExtResource("6_1p4m1")
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+z_index = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wi1q8")
+script = ExtResource("1_tsvmi")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.997
+anchor_bottom = 1.006
+offset_right = 0.455933
+offset_bottom = 0.112
+
+[node name="Load" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.6
+anchor_right = 0.66
+anchor_bottom = 0.75
+text = "Load
+"
+
+[node name="Continue" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.2
+anchor_right = 0.66
+anchor_bottom = 0.35
+text = "Continue"
+
+[node name="Save" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.4
+anchor_right = 0.66
+anchor_bottom = 0.55
+offset_top = -0.248001
+offset_bottom = -0.279999
+text = "Save"
+
+[node name="Quit" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.8
+anchor_right = 0.66
+anchor_bottom = 0.95
+text = "Quit
+"

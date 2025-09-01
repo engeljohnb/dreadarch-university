@@ -19,14 +19,14 @@ var attacking = false
 var aggrod = false
 var moving = false
 var _projectile = load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
-var life = 10
+var life = 3
 
 func death():
 	queue_free()
 
 func on_blinker_flip(state):
 	if state:
-		set_modulate(Color(3, 3, 3))
+		set_modulate(Color(1.4, 1.4, 1.4))
 	else:
 		set_modulate(Color(1,1,1))
 
@@ -67,6 +67,7 @@ func update_movement(delta):
 		else:
 			var next = path.get_next_point(position, delta, SPEED)
 			position += (SPEED*delta) * (next - position).normalized()
+	move_and_slide()
 
 func update_direction():
 	direction_changed = false

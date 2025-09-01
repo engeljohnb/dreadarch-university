@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk0pe72fx6mii"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_dbqb0"]
+[ext_resource type="Script" uid="uid://b7psfqc2d1p5y" path="res://UI/Scripts/DeathMenu.gd" id="2_1hmi0"]
+
+[node name="DeathMenu" type="Control"]
+process_mode = 2
+z_index = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dbqb0")
+script = ExtResource("2_1hmi0")
+
+[node name="NewGame" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.2
+anchor_right = 0.66
+anchor_bottom = 0.35
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.4
+anchor_right = 0.66
+anchor_bottom = 0.55
+offset_top = -0.248001
+offset_bottom = -0.279999
+text = "Load Game"
+
+[node name="Quit" type="Button" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.6
+anchor_right = 0.66
+anchor_bottom = 0.75
+offset_right = 19.84
+offset_bottom = 2.80002
+text = "Quit
+"
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.997
+anchor_bottom = 1.006
+offset_right = 0.455933
+offset_bottom = 0.112
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.139
+anchor_right = 0.857
+anchor_bottom = 0.204
+offset_left = -0.128021
+offset_top = -9.0
+offset_right = -0.264038
+offset_bottom = -0.192001
+bbcode_enabled = true
+text = "You Died
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.221971, 0.198227, 0.204396, 1)

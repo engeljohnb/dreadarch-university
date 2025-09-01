@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwllva472wjts"]
+
+[ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="1_0snf7"]
+[ext_resource type="Texture2D" uid="uid://duwovw4qbjqin" path="res://Assets/UI/LongButton/LongButtonNormal.png" id="1_81og5"]
+[ext_resource type="Texture2D" uid="uid://d1pxm0dknqmre" path="res://Assets/UI/LongButton/SquareButtonHover.png" id="1_irbur"]
+[ext_resource type="Texture2D" uid="uid://dfj6n087hm1pb" path="res://Assets/UI/LongButton/ButtonNormal.png" id="1_v44as"]
+[ext_resource type="Texture2D" uid="uid://cs08el3h671jy" path="res://Assets/UI/LongButton/LongButtonFocused.png" id="2_xdsh6"]
+[ext_resource type="Script" uid="uid://2pus1b3dipku" path="res://UI/Scripts/LongButton.gd" id="3_xdsh6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_do5xx"]
+texture = ExtResource("1_0snf7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_irbur"]
+texture = ExtResource("1_irbur")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ehhwk"]
+texture = ExtResource("1_v44as")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0snf7"]
+texture = ExtResource("1_v44as")
+
+[sub_resource type="Theme" id="Theme_ehhwk"]
+Button/styles/focus = SubResource("StyleBoxTexture_do5xx")
+Button/styles/hover = SubResource("StyleBoxTexture_irbur")
+Button/styles/normal = SubResource("StyleBoxTexture_ehhwk")
+HBoxContainer/constants/separation = 4
+HBoxContainer/styles/focus = SubResource("StyleBoxTexture_0snf7")
+
+[node name="LongButton" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.434
+anchor_bottom = 0.154
+offset_right = -459.968
+offset_bottom = -59.792
+theme = SubResource("Theme_ehhwk")
+texture_normal = ExtResource("1_81og5")
+texture_focused = ExtResource("2_xdsh6")
+script = ExtResource("3_xdsh6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.084
+anchor_top = 0.27
+anchor_right = 0.884
+anchor_bottom = 0.77
+offset_right = -3.05176e-05
+pivot_offset = Vector2(200, 25)
+bbcode_enabled = true
+text = "Text"
+horizontal_alignment = 1
+vertical_alignment = 1
