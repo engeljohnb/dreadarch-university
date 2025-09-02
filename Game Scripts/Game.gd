@@ -71,7 +71,14 @@ func on_won():
 	canvas.add_child(current_scene)
 	get_tree().paused = true
 
+func init_wm_settings():
+	var screen_size = DisplayServer.window_get_size()
+	get_window().size = screen_size
+	ProjectSettings.set_setting("display/window/size/mode", DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED)
+	
+	
 func _ready():
+	init_wm_settings()
 	ObjectSerializer.register_script("Save", Save)
 	ObjectSerializer.register_script("Player", Player)
 	

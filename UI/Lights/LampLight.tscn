@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf180idxwrjwm"]
+
+[sub_resource type="Gradient" id="Gradient_txavx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yxqvu"]
+gradient = SubResource("Gradient_txavx")
+fill = 1
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+
+[node name="LampLight" type="PointLight2D"]
+scale = Vector2(30.5156, 17.4062)
+color = Color(0.624801, 0.531788, 0.360917, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_yxqvu")

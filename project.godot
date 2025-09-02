@@ -21,6 +21,9 @@ SceneTransition="*res://SceneTransition.tscn"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
 window/size/resizable=false
 
 [global_group]
@@ -87,3 +90,7 @@ GainLifeCheat={
 2d_physics/layer_5="ActorSearch"
 2d_physics/layer_6="Walls"
 2d_physics/layer_7="FloorObstacles"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.0140021, 0.0180818, 0.0254896, 1)

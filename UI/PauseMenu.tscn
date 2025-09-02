@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctcsa2iivywjj"]
+[gd_scene load_steps=15 format=3 uid="uid://ctcsa2iivywjj"]
 
 [ext_resource type="FontFile" uid="uid://bulvrkgvcig85" path="res://Assets/UI/Fonts/days_of_charity/Days of Charity.otf" id="1_pbsus"]
 [ext_resource type="Script" uid="uid://8n2h3lit7oky" path="res://UI/Scripts/PauseMenu.gd" id="1_tsvmi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dfj6n087hm1pb" path="res://Assets/UI/LongButton/ButtonNormal.png" id="4_qxt2n"]
 [ext_resource type="Texture2D" uid="uid://dvj312qe5cnd6" path="res://Assets/UI/Parchment.jpg" id="5_cvf32"]
 [ext_resource type="FontFile" uid="uid://bbg2g22ht2tgr" path="res://Assets/UI/Fonts/chomsky/Chomsky.otf" id="6_1p4m1"]
+[ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="8_4lql7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf1sp"]
 texture = ExtResource("2_4lql7")
@@ -50,7 +51,7 @@ RichTextLabel/fonts/normal_font = ExtResource("6_1p4m1")
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
-z_index = 4
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,6 +64,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_wi1q8")
 script = ExtResource("1_tsvmi")
+
+[node name="LampLight" parent="." instance=ExtResource("8_4lql7")]
+position = Vector2(1025, 582)
+rotation = -1.57952
+scale = Vector2(20.4591, 36.0143)
 
 [node name="Panel" type="Panel" parent="."]
 z_index = -1

@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b17lr4dyh7q7l"]
+[gd_scene load_steps=5 format=3 uid="uid://b17lr4dyh7q7l"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_amcms"]
 [ext_resource type="Script" uid="uid://bwi1onn5yc2n3" path="res://UI/Scripts/VictroryMenu.gd" id="2_0d8mn"]
+[ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="3_gye63"]
+[ext_resource type="AudioStream" uid="uid://3jkcbgfvsg30" path="res://Music/DeathMusic.mp3" id="4_0r0va"]
 
 [node name="VictoryMenu" type="Control"]
 process_mode = 2
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
 z_index = 4
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,18 +19,23 @@ grow_vertical = 2
 theme = ExtResource("1_amcms")
 script = ExtResource("2_0d8mn")
 
+[node name="LampLight" parent="." instance=ExtResource("3_gye63")]
+position = Vector2(982, 561)
+rotation = 3.14159
+scale = Vector2(35.2422, 20.0312)
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.182
+anchor_left = 0.162
 anchor_top = 0.054
-anchor_right = 0.9
-anchor_bottom = 0.272
-offset_left = -37.664
-offset_top = 0.00799942
-offset_right = -37.7999
-offset_bottom = -0.256012
+anchor_right = 0.829
+anchor_bottom = 0.321
+offset_left = 0.959991
+offset_top = -0.32
+offset_right = -0.680054
+offset_bottom = 0.319977
 bbcode_enabled = true
 text = "You Won!"
 horizontal_alignment = 1
@@ -35,24 +44,23 @@ vertical_alignment = 1
 [node name="NewGame" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.295
-anchor_right = 0.724
-anchor_bottom = 0.431
-offset_left = 0.399994
-offset_top = -0.160004
-offset_right = 273.952
-offset_bottom = -0.288025
+anchor_left = 0.33
+anchor_top = 0.35
+anchor_right = 0.66
+anchor_bottom = 0.5
+offset_left = 0.399963
+offset_right = 355.8
+offset_bottom = -3.0
 scale = Vector2(0.64, 1)
 text = "New Game"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.477
-anchor_right = 0.725
-anchor_bottom = 0.6
+anchor_left = 0.33
+anchor_top = 0.55
+anchor_right = 0.66
+anchor_bottom = 0.7
 offset_left = 0.399994
 offset_top = -0.0960083
 offset_right = -0.200012
@@ -75,8 +83,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1.0
-offset_bottom = -2.0
+offset_left = -19.0
+offset_top = -7.0
+offset_right = -20.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0r0va")
+autoplay = true
+parameters/looping = true

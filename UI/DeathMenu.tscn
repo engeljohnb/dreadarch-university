@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk0pe72fx6mii"]
+[gd_scene load_steps=5 format=3 uid="uid://bk0pe72fx6mii"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_dbqb0"]
 [ext_resource type="Script" uid="uid://b7psfqc2d1p5y" path="res://UI/Scripts/DeathMenu.gd" id="2_1hmi0"]
+[ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="3_lw4sn"]
+[ext_resource type="AudioStream" uid="uid://3jkcbgfvsg30" path="res://Music/DeathMusic.mp3" id="3_ti4v2"]
 
 [node name="DeathMenu" type="Control"]
 process_mode = 2
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
 z_index = 4
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +18,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_dbqb0")
 script = ExtResource("2_1hmi0")
+
+[node name="LampLight" parent="." instance=ExtResource("3_lw4sn")]
+position = Vector2(1008.75, 574.501)
+scale = Vector2(32.3828, 18.8281)
 
 [node name="NewGame" type="Button" parent="."]
 custom_minimum_size = Vector2(400, 100)
@@ -89,3 +97,8 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ti4v2")
+autoplay = true
+parameters/looping = true

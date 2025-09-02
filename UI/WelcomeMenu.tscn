@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dibqpvs8847mq"]
+[gd_scene load_steps=5 format=3 uid="uid://dibqpvs8847mq"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_sh2gw"]
 [ext_resource type="Script" uid="uid://i0fseqrk78fi" path="res://UI/Scripts/WelcomeMenu.gd" id="2_dj11p"]
+[ext_resource type="AudioStream" uid="uid://cemd5ctcxst53" path="res://Music/IntroMusic.mp3" id="3_txavx"]
+[ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="4_yxqvu"]
 
 [node name="WelcomeMenu" type="Control"]
 process_mode = 2
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
 z_index = 4
 layout_mode = 3
 anchors_preset = 15
@@ -19,37 +22,39 @@ script = ExtResource("2_dj11p")
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.144
+anchor_left = 0.131
 anchor_top = 0.054
-anchor_right = 0.9
-anchor_bottom = 0.272
-offset_left = 44.112
-offset_top = 0.00799942
-offset_right = 44.2
-offset_bottom = -0.256012
+anchor_right = 0.887
+anchor_bottom = 0.269
+offset_left = 0.47998
+offset_top = -3.32
+offset_right = 0.567871
+offset_bottom = -0.344025
 text = "Dreadarch University"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NewGame" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.295
-anchor_right = 0.724
-anchor_bottom = 0.431
-offset_left = 0.399994
-offset_top = -0.160004
-offset_right = 273.952
-offset_bottom = -0.288025
+anchor_left = 0.33
+anchor_top = 0.3
+anchor_right = 0.66
+anchor_bottom = 0.45
+offset_left = 0.399963
+offset_top = -1.0
+offset_right = 358.8
+offset_bottom = -1.0
 scale = Vector2(0.64, 1)
 text = "New Game"
 
 [node name="LoadGame" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.481
-anchor_right = 0.722
-anchor_bottom = 0.614
+anchor_left = 0.33
+anchor_top = 0.5
+anchor_right = 0.66
+anchor_bottom = 0.65
 offset_left = 0.399994
 offset_top = 0.311981
 offset_right = 0.25592
@@ -59,10 +64,10 @@ text = "Load Game"
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.682
-anchor_right = 0.725
-anchor_bottom = 0.806
+anchor_left = 0.33
+anchor_top = 0.7
+anchor_right = 0.66
+anchor_bottom = 0.85
 offset_left = 0.399994
 offset_top = 0.0639648
 offset_right = -0.200012
@@ -75,12 +80,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
+custom_minimum_size = Vector2(1920, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,3 +95,14 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_txavx")
+autoplay = true
+parameters/looping = true
+
+[node name="LampLight" parent="." instance=ExtResource("4_yxqvu")]
+position = Vector2(972.5, 558)
+scale = Vector2(31.2344, 22.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
