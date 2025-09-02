@@ -26,8 +26,9 @@ func init_player():
 
 func end_gameplay():
 	player = current_scene.get_node("Player")
-	if (player.get_node("PlayerAttackFX")):
-		player.get_node("PlayerAttacKFX").queue_free()
+	if (player.get_node_or_null("PlayerAttackFX")):
+		player.get_node("PlayerAttackFX").queue_free()
+	player.queue_free()
 	current_scene.queue_free()
 
 func on_player_lost_life(damage):
@@ -109,7 +110,6 @@ func save_game():
 
 func load_game():
 	var file = FileAccess.open("user://save.da", FileAccess.READ)
-	print(file.get_path_absolute())
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	_player = _save.player
 	if (not player):

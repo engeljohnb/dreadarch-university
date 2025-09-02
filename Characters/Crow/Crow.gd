@@ -49,7 +49,11 @@ func reset_attack():
 
 func launch_projectile():
 	var projectile = _projectile.instantiate()
-	add_child(projectile)
+	hitbox.my_weapon = projectile
+	# Add as sibling instead of child so Crow's movement doesn't
+	# affect the projectile
+	projectile.global_position = position
+	add_sibling(projectile)
 	projectile.launch(facing)
 	
 func _on_player_nearby(_player):

@@ -72,7 +72,7 @@ func launch(direction):
 		position.y -= 20
 		position.x += 10
 		light.position.y += 400
-	launch_velocity =cardinal_direction * 350
+	launch_velocity = cardinal_direction * 350
 
 func _physics_process(_delta):
 	global_position += launch_velocity*_delta

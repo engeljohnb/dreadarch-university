@@ -7,7 +7,6 @@ extends Control
 func on_new_game():
 	SceneTransition.change_scene("Dungeons/01/01-01.tscn", Vector2(500,500))
 	
-	
 func on_quit():
 	get_tree().quit()
 

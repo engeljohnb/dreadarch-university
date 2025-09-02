@@ -645,13 +645,19 @@ libraries = {
 }
 
 [node name="Launch Effect" type="AnimatedSprite2D" parent="."]
+z_index = 1
+z_as_relative = false
 scale = Vector2(0.220833, 0.220833)
 sprite_frames = SubResource("SpriteFrames_uakoa")
 animation = &"Init"
+frame = 9
+frame_progress = 1.0
 
 [node name="Launch Effect Outline" type="AnimatedSprite2D" parent="Launch Effect"]
-z_index = -1
+z_as_relative = false
 rotation = 0.010472
 scale = Vector2(1.22264, 1.22264)
 sprite_frames = SubResource("SpriteFrames_uakoa")
 animation = &"Init"
+frame = 9
+frame_progress = 1.0
