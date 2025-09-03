@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var path = $Path2D
 @onready var hitbox = $Hitbox
 @onready var blinker = $Blinker
+@onready var animation_player = $AnimationPlayer
+@onready var sprite = $AnimatedSprite2D
 const SPEED = 100.0
 
 var player
@@ -20,9 +22,38 @@ var aggrod = false
 var moving = false
 var _projectile = load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
 var life = 3
+var in_cutscene = false
+var current_cutscene = null
+var cutscene_timer = 0.0
+var cutscene_duration = 0.0
+var dead
 
+func play_death_cutscene(delta):
+	in_cutscene = true
+	cutscene_duration = 2.66
+	current_cutscene = play_death_cutscene
+	var deathlight = $DeathLight
+	if (delta == 0.0):
+		$CollisionShape2D.set_deferred("disabled", true)
+		if (get_node_or_null("AnimationPlayer")):
+			animation_player.queue_free()
+		if (get_node_or_null("AnimationTree")):
+			$AnimationTree.queue_free()
+		deathlight.visible = true
+		deathlight.energy = 1.0
+		deathlight.modulate = Color(1,0,0,)
+		sprite.visible = false
+	else:
+		deathlight.modulate = Color(1,0,0,)
+		cutscene_timer += delta
+		var cutscene_percent = 2.66/cutscene_timer
+		deathlight.energy = cutscene_percent*0.175
+		if cutscene_timer >= cutscene_duration:
+			queue_free()
+	
+	
 func death():
-	queue_free()
+	play_death_cutscene(0.0)
 
 func on_blinker_flip(state):
 	if state:
@@ -118,9 +149,13 @@ func _physics_process(_delta):
 		knockback_speed = 0.0
 	
 func _process(_delta):
-	update_movement(_delta)
-	update_direction()
-	prev_position = position
-	if aggrod:
-		update_attack()
-	update_animation_blend_positions()
+	if not in_cutscene:
+		update_movement(_delta)
+		update_direction()
+		prev_position = position
+		if aggrod:
+			update_attack()
+		update_animation_blend_positions()
+	else:
+		if current_cutscene:
+			current_cutscene.call(_delta)

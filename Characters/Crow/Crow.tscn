@@ -1,4 +1,4 @@
-[gd_scene load_steps=272 format=3 uid="uid://bbirthebgbru2"]
+[gd_scene load_steps=275 format=3 uid="uid://bbirthebgbru2"]
 
 [ext_resource type="Texture2D" uid="uid://8m7v6ht7rfgg" path="res://Assets/Badguys/Crow/Idle/Down/0000.png" id="1_1hy2b"]
 [ext_resource type="Texture2D" uid="uid://d3t1tpisjdws6" path="res://Assets/Badguys/Crow/Idle/Up/0000.png" id="1_d2frl"]
@@ -205,6 +205,16 @@
 [ext_resource type="Script" uid="uid://bh4lnfxy1tke8" path="res://Characters/Crow/Path.gd" id="191_lbpjm"]
 [ext_resource type="Script" uid="uid://d4gknvy62ktak" path="res://Characters/Crow/SearchArea.gd" id="202_syxla"]
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="205_1knxt"]
+
+[sub_resource type="Gradient" id="Gradient_txavx"]
+offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
+colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yxqvu"]
+gradient = SubResource("Gradient_txavx")
+fill = 1
+fill_from = Vector2(0.491453, 0.487179)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2hex"]
 radius = 16.0
@@ -1133,6 +1143,47 @@ tracks/3/keys = {
 "values": [Vector2(1.375, 1.795)]
 }
 
+[sub_resource type="Animation" id="Animation_10q45"]
+resource_name = "DeathCutscene"
+length = 2.66667
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.66667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathLight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_1knxt"]
 resource_name = "Idle Down"
 length = 1.33334
@@ -1627,6 +1678,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1.24, 1.24)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DeathLight:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.59]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathLight:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_q0sw6"]
 resource_name = "Reset Attack"
@@ -1953,6 +2040,7 @@ _data = {
 &"Attack Left": SubResource("Animation_6nxnq"),
 &"Attack Right": SubResource("Animation_5jji8"),
 &"Attack Up": SubResource("Animation_1ld67"),
+&"DeathCutscene": SubResource("Animation_10q45"),
 &"Idle Down": SubResource("Animation_1knxt"),
 &"Idle Left": SubResource("Animation_me0gi"),
 &"Idle Right": SubResource("Animation_rei2a"),
@@ -2169,7 +2257,19 @@ collision_mask = 56
 motion_mode = 1
 script = ExtResource("1_qs3ly")
 
+[node name="DeathLight" type="PointLight2D" parent="."]
+visible = false
+modulate = Color(0.586917, 0.0587543, 0.725085, 1)
+position = Vector2(-7, -7)
+scale = Vector2(2.389, 2.372)
+color = Color(0.14902, 0.137255, 0.156863, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_yxqvu")
+
 [node name="Hitbox" parent="." instance=ExtResource("2_kobm1")]
+visible = false
 z_index = 1
 position = Vector2(7.215, 3.975)
 rotation = 1.07338
@@ -2178,6 +2278,7 @@ collision_layer = 20
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_h2hex")
@@ -2206,6 +2307,7 @@ collision_mask = 11
 collide_with_areas = true
 
 [node name="SearchArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 11
 script = ExtResource("202_syxla")

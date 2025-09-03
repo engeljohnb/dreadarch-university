@@ -71,11 +71,18 @@
 [ext_resource type="Texture2D" uid="uid://bl57krpofj11r" path="res://Assets/Student/Walk/Down/0009.png" id="58_7qayh"]
 [ext_resource type="Texture2D" uid="uid://bd0q7n45qy661" path="res://Assets/Student/Walk/Down Dagger/0000.png" id="59_nyw3p"]
 [ext_resource type="Texture2D" uid="uid://7xt76l46e2ij" path="res://Assets/Student/Walk/Down Dagger/0001.png" id="60_phc28"]
+[ext_resource type="Texture2D" uid="uid://banv0houtlwwe" path="res://Assets/Student/Idle/Up/0000.png" id="60_tafc4"]
 [ext_resource type="Texture2D" uid="uid://dtwf7y4hfv17j" path="res://Assets/Student/Walk/Down Dagger/0002.png" id="61_2eb37"]
+[ext_resource type="Texture2D" uid="uid://05ysabhe1dc2" path="res://Assets/Student/Idle/Up/0001.png" id="61_4mvhf"]
+[ext_resource type="Texture2D" uid="uid://csix5vude3gig" path="res://Assets/Student/Idle/Up/0002.png" id="62_j8ien"]
 [ext_resource type="Texture2D" uid="uid://d1xxcq7lhateo" path="res://Assets/Student/Walk/Down Dagger/0003.png" id="62_me5pj"]
+[ext_resource type="Texture2D" uid="uid://crwt3u2betnm7" path="res://Assets/Student/Idle/Up/0003.png" id="63_jm7rd"]
 [ext_resource type="Texture2D" uid="uid://maussvlrby5c" path="res://Assets/Student/Walk/Down Dagger/0004.png" id="63_yeqwp"]
 [ext_resource type="Texture2D" uid="uid://cjpfg7d2gktn1" path="res://Assets/Student/Walk/Down Dagger/0005.png" id="64_88hpg"]
+[ext_resource type="Texture2D" uid="uid://blcimy7asum1h" path="res://Assets/Student/Idle/Up/0004.png" id="64_aef2j"]
 [ext_resource type="Texture2D" uid="uid://bn7f46vp3n23v" path="res://Assets/Student/Walk/Down Dagger/0006.png" id="65_lktf2"]
+[ext_resource type="Texture2D" uid="uid://i30xw7v6rwh0" path="res://Assets/Student/Idle/Up/0005.png" id="65_p44o4"]
+[ext_resource type="Texture2D" uid="uid://tj4ip1dbiu8n" path="res://Assets/Student/Idle/Up/0006.png" id="66_lnbj5"]
 [ext_resource type="Texture2D" uid="uid://brh06hd6fr3qd" path="res://Assets/Student/Walk/Down Dagger/0007.png" id="66_xeqgb"]
 [ext_resource type="Texture2D" uid="uid://crm253om85g8j" path="res://Assets/Student/Walk/Down Dagger/0008.png" id="67_8341e"]
 [ext_resource type="Texture2D" uid="uid://brvpr3n5di0f5" path="res://Assets/Student/Walk/Down Dagger/0009.png" id="68_gk8o1"]
@@ -150,27 +157,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdxfm"]
 radius = 12.0
 height = 60.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q3a7n"]
-load_path = "res://.godot/imported/0000.png-750f1e866f3d7917d3b360a0254b8445.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hdxfm"]
-load_path = "res://.godot/imported/0001.png-10dca10c7332c8c5e06c9d352a14db89.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqhww"]
-load_path = "res://.godot/imported/0002.png-dae692d518c71ed9053e6e58d91b0928.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3sf4b"]
-load_path = "res://.godot/imported/0003.png-73123b286da249937f773f83863bca21.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lx17i"]
-load_path = "res://.godot/imported/0004.png-dee84b73051768973e56c9c071fdb6e9.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s0hae"]
-load_path = "res://.godot/imported/0005.png-b8e814004a5b4d67633890bfb2fedf5e.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fmf53"]
-load_path = "res://.godot/imported/0006.png-ef5454a70272276aba07294b34107a5f.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teq0n"]
 animations = [{
@@ -490,40 +476,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_q3a7n")
+"texture": ExtResource("60_tafc4")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_hdxfm")
+"texture": ExtResource("61_4mvhf")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_qqhww")
+"texture": ExtResource("62_j8ien")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_hdxfm")
+"texture": ExtResource("61_4mvhf")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_q3a7n")
+"texture": ExtResource("60_tafc4")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_3sf4b")
+"texture": ExtResource("63_jm7rd")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_lx17i")
+"texture": ExtResource("64_aef2j")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_s0hae")
+"texture": ExtResource("65_p44o4")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_fmf53")
+"texture": ExtResource("66_lnbj5")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_s0hae")
+"texture": ExtResource("64_aef2j")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_lx17i")
+"texture": ExtResource("65_p44o4")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_3sf4b")
+"texture": ExtResource("63_jm7rd")
 }],
 "loop": true,
 "name": &"Idle Up",
@@ -1073,8 +1059,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_kauok"]
 resource_name = "Idle Up"
-length = 0.916675
-step = 0.0833333
+length = 2.20002
+step = 0.2
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1503,7 +1489,7 @@ collision_mask = 20
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_teq0n")
-animation = &"Attack Down"
+animation = &"Idle Up"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1523,7 +1509,10 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 [node name="Blinker" parent="." instance=ExtResource("166_qqhww")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 1.7
+position = Vector2(-12, -1.62499)
+scale = Vector2(1.36, 0.81075)
+energy = 3.0
 texture = SubResource("GradientTexture2D_e2f0o")

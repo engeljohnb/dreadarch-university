@@ -3,6 +3,7 @@ extends Node2D
 @onready var hud = $CanvasLayer/HUD
 @onready var pause_menu = $CanvasLayer/PauseMenu
 @onready var canvas = $CanvasLayer
+@onready var close_menu_sound = $CloseMenuSound
 
 class Player:
 	var position: Vector2
@@ -65,17 +66,12 @@ func open_load_game_menu():
 	load_game()
 	
 func on_won():
-	end_gameplay()
-	current_scene = load("res://UI/VictoryMenu.tscn").instantiate()
-	current_scene.z_index = 3
-	canvas.add_child(current_scene)
-	get_tree().paused = true
+	player.play_victory_cutscene(0.0)
 
 func init_wm_settings():
 	var screen_size = DisplayServer.window_get_size()
 	get_window().size = screen_size
 	ProjectSettings.set_setting("display/window/size/mode", DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED)
-	
 	
 func _ready():
 	init_wm_settings()
@@ -93,6 +89,8 @@ func _ready():
 	
 	pause_menu.save_button.pressed.connect(save_game)
 	pause_menu.load_button.pressed.connect(load_game)
+	pause_menu.continue_button.pressed.connect(close_menu_sound.play)
+	
 	
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)
@@ -129,8 +127,15 @@ func load_game():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("Pause"):
-		get_tree().paused = true
-		pause_menu.continue_button.grab_focus()
-		pause_menu.visible = true
+		pause_menu.pause_game()
+	if player.won:
+		# Victory Cutsceene needs to end first
+		if not player.in_cutscene:
+			end_gameplay()
+			current_scene = load("res://UI/VictoryMenu.tscn").instantiate()
+			current_scene.z_index = 3
+			canvas.add_child(current_scene)
+			get_tree().paused = true
+
 		
 	

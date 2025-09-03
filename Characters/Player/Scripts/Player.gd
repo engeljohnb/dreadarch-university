@@ -14,6 +14,10 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 300.0
 
+var in_cutscene = false
+var current_cutscene = null
+var cutscene_timer = 0.0
+var cutscene_duration = 0.0
 var life = 3
 var total_life = 3
 var _attack_fx = load("res://Characters/Player/PlayerAttackFX.tscn")
@@ -23,8 +27,21 @@ var direction_changed = false
 var moving = false
 var knife_equipped = true
 var attacking = false
+var won = false
 
 var direction_priority
+
+func play_victory_cutscene(delta):
+	won = true
+	in_cutscene = true
+	current_cutscene = play_victory_cutscene
+	cutscene_duration = 3.0
+	$AnimatedSprite2D.play("Idle Down")
+	cutscene_timer += delta
+	if cutscene_timer >= cutscene_duration:
+		in_cutscene = false
+		current_cutscene = null
+		cutscene_timer = 0.0
 
 func reset_direction_changed():
 	direction_changed = false
@@ -141,9 +158,13 @@ func gain_life(_life):
 	gained_life.emit(_life)
 	
 func _process(delta):
-	if Input.is_action_just_pressed("GainLifeCheat"):
-		gain_life(1)
-	update_direction()
-	update_attack_state()
-	update_position(delta)
-	update_animation_blend_positions()
+	if (not in_cutscene):
+		if Input.is_action_just_pressed("GainLifeCheat"):
+			gain_life(1)
+		update_direction()
+		update_attack_state()
+		update_position(delta)
+		update_animation_blend_positions()
+	else:
+		if current_cutscene:
+			current_cutscene.call(delta)

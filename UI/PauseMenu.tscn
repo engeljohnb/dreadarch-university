@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctcsa2iivywjj"]
+[gd_scene load_steps=17 format=3 uid="uid://ctcsa2iivywjj"]
 
 [ext_resource type="FontFile" uid="uid://bulvrkgvcig85" path="res://Assets/UI/Fonts/days_of_charity/Days of Charity.otf" id="1_pbsus"]
 [ext_resource type="Script" uid="uid://8n2h3lit7oky" path="res://UI/Scripts/PauseMenu.gd" id="1_tsvmi"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dvj312qe5cnd6" path="res://Assets/UI/Parchment.jpg" id="5_cvf32"]
 [ext_resource type="FontFile" uid="uid://bbg2g22ht2tgr" path="res://Assets/UI/Fonts/chomsky/Chomsky.otf" id="6_1p4m1"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="8_4lql7"]
+[ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="9_jsuq4"]
+[ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="10_qxt2n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf1sp"]
 texture = ExtResource("2_4lql7")
@@ -122,3 +124,11 @@ anchor_right = 0.66
 anchor_bottom = 0.95
 text = "Quit
 "
+
+[node name="OpenMenuSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_jsuq4")
+pitch_scale = 2.0
+
+[node name="MenuSelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_qxt2n")
+volume_db = 2.0

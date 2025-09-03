@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dibqpvs8847mq"]
+[gd_scene load_steps=6 format=3 uid="uid://dibqpvs8847mq"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_sh2gw"]
 [ext_resource type="Script" uid="uid://i0fseqrk78fi" path="res://UI/Scripts/WelcomeMenu.gd" id="2_dj11p"]
 [ext_resource type="AudioStream" uid="uid://cemd5ctcxst53" path="res://Music/IntroMusic.mp3" id="3_txavx"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="4_yxqvu"]
+[ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="5_7of3o"]
 
 [node name="WelcomeMenu" type="Control"]
 process_mode = 2
@@ -96,13 +97,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_txavx")
 autoplay = true
 parameters/looping = true
 
 [node name="LampLight" parent="." instance=ExtResource("4_yxqvu")]
-position = Vector2(972.5, 558)
-scale = Vector2(31.2344, 22.5)
+position = Vector2(1179.5, 569.5)
+scale = Vector2(37.7031, 22.8594)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuSelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7of3o")
+volume_db = 2.0
