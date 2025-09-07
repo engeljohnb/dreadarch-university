@@ -11,7 +11,7 @@ var fade_timer = 0.0
 var fading = true
 
 func on_new_game():
-	SceneTransition.change_scene("Dungeons/01/01-01.tscn", Vector2(500, 500))
+	SceneTransition.change_scene("Dungeons/01/01-01.tscn", Vector2(30, 30))
 	
 func on_quit():
 	get_tree().quit()

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_amcms"]
 [ext_resource type="Script" uid="uid://bwi1onn5yc2n3" path="res://UI/Scripts/VictroryMenu.gd" id="2_0d8mn"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="3_gye63"]
-[ext_resource type="AudioStream" uid="uid://3jkcbgfvsg30" path="res://Music/DeathMusic.mp3" id="4_0r0va"]
+[ext_resource type="AudioStream" uid="uid://bol0dxhtrbn12" path="res://Music/DeathMusic.ogg" id="4_b3lcr"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="5_b3lcr"]
 
 [node name="VictoryMenu" type="Control"]
@@ -77,6 +77,7 @@ anchor_bottom = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.03935, 1.08)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
@@ -90,10 +91,11 @@ offset_right = -20.0
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.04, 1.2)
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_0r0va")
+stream = ExtResource("4_b3lcr")
 autoplay = true
 parameters/looping = true
 

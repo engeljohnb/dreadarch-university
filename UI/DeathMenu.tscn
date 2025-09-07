@@ -3,8 +3,8 @@
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_dbqb0"]
 [ext_resource type="Script" uid="uid://b7psfqc2d1p5y" path="res://UI/Scripts/DeathMenu.gd" id="2_1hmi0"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="3_lw4sn"]
-[ext_resource type="AudioStream" uid="uid://3jkcbgfvsg30" path="res://Music/DeathMusic.mp3" id="3_ti4v2"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="4_8ij66"]
+[ext_resource type="AudioStream" uid="uid://bol0dxhtrbn12" path="res://Music/DeathMusic.ogg" id="5_8ij66"]
 
 [node name="DeathMenu" type="Control"]
 process_mode = 2
@@ -104,6 +104,6 @@ stream = ExtResource("4_8ij66")
 volume_db = 2.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_ti4v2")
+stream = ExtResource("5_8ij66")
 autoplay = true
 parameters/looping = true

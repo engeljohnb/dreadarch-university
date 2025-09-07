@@ -15,4 +15,3 @@ script = ExtResource("1_k1dq0")
 
 [node name="Lifebar" parent="." instance=ExtResource("1_36717")]
 z_as_relative = false
-position = Vector2(40, 40)

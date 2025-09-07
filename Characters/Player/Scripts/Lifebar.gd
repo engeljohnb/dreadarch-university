@@ -8,6 +8,10 @@ var outline_segs = []
 var full_color = Color(0.6, 0.2, 0.15)
 var empty_color = Color(0.5,0.5,0.5)
 
+func _ready():
+	var viewport_size = get_viewport_rect().size
+	position = viewport_size/10.0
+
 func set_life_total(lt, _life = lt):
 	for rect in rects:
 		rect.queue_free()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_sh2gw"]
 [ext_resource type="Script" uid="uid://i0fseqrk78fi" path="res://UI/Scripts/WelcomeMenu.gd" id="2_dj11p"]
-[ext_resource type="AudioStream" uid="uid://cemd5ctcxst53" path="res://Music/IntroMusic.mp3" id="3_txavx"]
+[ext_resource type="AudioStream" uid="uid://btr08ylvrrnv8" path="res://Music/IntroMusic.ogg" id="3_7of3o"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="4_yxqvu"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="5_7of3o"]
 
@@ -98,7 +98,7 @@ grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_txavx")
+stream = ExtResource("3_7of3o")
 autoplay = true
 parameters/looping = true
 

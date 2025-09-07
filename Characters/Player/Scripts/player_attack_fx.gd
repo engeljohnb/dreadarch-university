@@ -1,4 +1,5 @@
-extends StaticBody2D
+# Should be StaticBody2D, but for some reason some hitboxes detect it and others won't
+extends CharacterBody2D
 
 @onready var main_sprite = $AnimatedSprite2D
 @onready var outline_sprite = $OutlineSprite
@@ -39,6 +40,10 @@ func change_direction(facing):
 			position.y += 40
 		"Right":
 			position.x += 40
-	$AnimatedSprite2D.play("default")
-	$OutlineSprite.play("default")
+	if direction_name == "Down":
+		$AnimatedSprite2D.play_backwards("default")
+		$OutlineSprite.play_backwards("default")
+	else:
+		$AnimatedSprite2D.play("default")
+		$OutlineSprite.play("default")
 	

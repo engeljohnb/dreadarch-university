@@ -8,7 +8,7 @@ func on_quit():
 	get_tree().quit()
 	
 func on_new_game():
-	SceneTransition.change_scene("Dungeons/01/01-01.tscn", Vector2(500,500))
+	SceneTransition.change_scene("Dungeons/01/01-01.tscn", Vector2(30,30))
 	
 func _ready():
 	get_tree().paused = true

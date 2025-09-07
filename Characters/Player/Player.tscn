@@ -155,8 +155,8 @@
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="166_qqhww"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdxfm"]
-radius = 12.0
-height = 60.0
+radius = 8.0
+height = 32.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teq0n"]
 animations = [{
@@ -1469,17 +1469,20 @@ width = 1000
 height = 1000
 fill = 1
 fill_from = Vector2(0.522472, 0.505618)
-fill_to = Vector2(0.904494, 0.865169)
+fill_to = Vector2(0.880342, 0.820513)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+show_behind_parent = true
 y_sort_enabled = true
+texture_filter = 1
 collision_layer = 8
 collision_mask = 120
 motion_mode = 1
 up_direction = Vector2(0, 1)
 script = ExtResource("1_q4m4l")
 
-[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+[node name="ActorCollision" type="CollisionShape2D" parent="."]
+position = Vector2(1, 10)
 shape = SubResource("CapsuleShape2D_hdxfm")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_hdxfm")]
@@ -1512,7 +1515,7 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 zoom = Vector2(1.5, 1.5)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-12, -1.62499)
-scale = Vector2(1.36, 0.81075)
+position = Vector2(-5.72205e-06, 3)
+scale = Vector2(0.775, 0.775)
 energy = 3.0
 texture = SubResource("GradientTexture2D_e2f0o")

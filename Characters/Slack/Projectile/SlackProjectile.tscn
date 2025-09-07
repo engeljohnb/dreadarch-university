@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://chv0cq7n5xdoh"]
+
+[ext_resource type="Texture2D" uid="uid://dg2x6mrhrle58" path="res://Assets/Badguys/Slack/Projectile/0000.png" id="1_dexgh"]
+[ext_resource type="Script" uid="uid://iyhanwsy02a2" path="res://Characters/Slack/Projectile/SlackProjectile.gd" id="1_rydyq"]
+[ext_resource type="Texture2D" uid="uid://cf85ldc87jfq5" path="res://Assets/Badguys/Slack/Projectile/0001.png" id="2_rydyq"]
+[ext_resource type="Texture2D" uid="uid://b0m45s1x3p2dm" path="res://Assets/Badguys/Slack/Projectile/0002.png" id="3_0mbej"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dexgh"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_74pnf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dexgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rydyq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0mbej")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_txavx"]
+offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
+colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rydyq"]
+gradient = SubResource("Gradient_txavx")
+fill = 1
+fill_from = Vector2(0.491453, 0.487179)
+fill_to = Vector2(0, 0)
+
+[node name="SlackProjectile" type="RigidBody2D" groups=["Weapons"]]
+texture_filter = 1
+collision_layer = 4
+collision_mask = 15
+mass = 0.2
+gravity_scale = 0.0
+script = ExtResource("1_rydyq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+shape = SubResource("CircleShape2D_dexgh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_74pnf")
+
+[node name="DeathLight" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-7, -7)
+scale = Vector2(2.389, 2.372)
+color = Color(0.14902, 0.137255, 0.156863, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_rydyq")

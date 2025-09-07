@@ -23,6 +23,7 @@ var total_life = 3
 var _attack_fx = load("res://Characters/Player/PlayerAttackFX.tscn")
 var attack_fx = null
 var facing = Vector2(0,1)
+var prev_facing = Vector2(0,1)
 var direction_changed = false
 var moving = false
 var knife_equipped = true
@@ -93,9 +94,11 @@ func update_direction():
 	
 	if movement_direction.is_zero_approx():
 		moving = false
+		facing = prev_facing
 	else:
 		moving = true
 		facing = movement_direction
+	prev_facing = facing
 		
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)

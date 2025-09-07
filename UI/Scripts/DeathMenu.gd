@@ -6,7 +6,7 @@ extends Control
 @onready var menu_select_sound = $MenuSelectSound
 
 func on_new_game():
-	SceneTransition.change_scene("Dungeons/01/01-01.tscn", Vector2(500,500))
+	SceneTransition.change_scene("Dungeons/01/01-01.tscn", Vector2(30,30))
 	
 func on_quit():
 	get_tree().quit()

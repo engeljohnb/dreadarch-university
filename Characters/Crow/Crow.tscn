@@ -1,4 +1,4 @@
-[gd_scene load_steps=275 format=3 uid="uid://bbirthebgbru2"]
+[gd_scene load_steps=236 format=3 uid="uid://bbirthebgbru2"]
 
 [ext_resource type="Texture2D" uid="uid://8m7v6ht7rfgg" path="res://Assets/Badguys/Crow/Idle/Down/0000.png" id="1_1hy2b"]
 [ext_resource type="Texture2D" uid="uid://d3t1tpisjdws6" path="res://Assets/Badguys/Crow/Idle/Up/0000.png" id="1_d2frl"]
@@ -21,48 +21,61 @@
 [ext_resource type="Texture2D" uid="uid://ckepce0lr4wrr" path="res://Assets/Badguys/Crow/Idle/Down/0001.png" id="2_vumqd"]
 [ext_resource type="Texture2D" uid="uid://bkj10qc2cla2y" path="res://Assets/Badguys/Crow/Idle/Up/0001.png" id="2_wlfmx"]
 [ext_resource type="Texture2D" uid="uid://c4b127nirxbyc" path="res://Assets/Badguys/Crow/Attack/Left/frame0014.png" id="3_4vnbt"]
+[ext_resource type="Texture2D" uid="uid://bvjkhqmfdvggs" path="res://Assets/Badguys/Crow/Aggro/Right/0000.png" id="3_divt5"]
 [ext_resource type="Texture2D" uid="uid://hpipej7ale86" path="res://Assets/Badguys/Crow/Walk/Up/0006.png" id="3_ejth6"]
 [ext_resource type="Texture2D" uid="uid://cunq8pkopho14" path="res://Assets/Badguys/Crow/Idle/Up/0002.png" id="3_h1rct"]
+[ext_resource type="Texture2D" uid="uid://dpnmwxfb1nnvi" path="res://Assets/Badguys/Crow/Aggro/Down/0000.png" id="3_nimse"]
 [ext_resource type="Texture2D" uid="uid://cr3jkau8odl6s" path="res://Assets/Badguys/Crow/Walk/Right/0006.png" id="3_qa8sq"]
 [ext_resource type="Texture2D" uid="uid://tpw78dx7bwa4" path="res://Assets/Badguys/Crow/Idle/Down/0002.png" id="3_qy4wg"]
 [ext_resource type="Texture2D" uid="uid://b8femj8tir32e" path="res://Assets/Badguys/Crow/Attack/Down/0014.png" id="3_syxla"]
 [ext_resource type="Texture2D" uid="uid://mukrqxit7iuf" path="res://Assets/Badguys/Crow/Attack/Up/0014.png" id="3_uvh74"]
 [ext_resource type="Texture2D" uid="uid://d0qpfv8pgwypq" path="res://Assets/Badguys/Crow/Walk/Right/0007.png" id="4_8t21o"]
 [ext_resource type="Texture2D" uid="uid://d16agpo0w03ar" path="res://Assets/Badguys/Crow/Walk/Up/0007.png" id="4_a18ii"]
+[ext_resource type="Texture2D" uid="uid://dlee7vnv4qg6p" path="res://Assets/Badguys/Crow/Aggro/Right/0001.png" id="4_bg82q"]
 [ext_resource type="Texture2D" uid="uid://c5jv3aw4bwvf8" path="res://Assets/Badguys/Crow/Attack/Up/0015.png" id="4_d4nqg"]
 [ext_resource type="Texture2D" uid="uid://dfke3sg7ko65h" path="res://Assets/Badguys/Crow/Attack/Left/frame0015.png" id="4_ew0hb"]
 [ext_resource type="Texture2D" uid="uid://dju22ub0p6ie8" path="res://Assets/Badguys/Crow/Attack/Down/0015.png" id="4_f372u"]
 [ext_resource type="Texture2D" uid="uid://dppj2tu47mrc5" path="res://Assets/Badguys/Crow/Idle/Down/0003.png" id="4_h0f2h"]
+[ext_resource type="Texture2D" uid="uid://bi6w3d0mssab" path="res://Assets/Badguys/Crow/Aggro/Down/0001.png" id="4_ovynb"]
 [ext_resource type="Texture2D" uid="uid://c3jm8f3r6n6wv" path="res://Assets/Badguys/Crow/Idle/Up/0003.png" id="4_udfrd"]
+[ext_resource type="Texture2D" uid="uid://bee6otc4h8qw0" path="res://Assets/Badguys/Crow/Aggro/Right/0002.png" id="5_6c5qy"]
 [ext_resource type="Texture2D" uid="uid://qqxmhqs0yiga" path="res://Assets/Badguys/Crow/Walk/Right/0008.png" id="5_8rn1p"]
 [ext_resource type="Texture2D" uid="uid://cq1j0e81588bv" path="res://Assets/Badguys/Crow/Attack/Left/frame0016.png" id="5_bp1om"]
 [ext_resource type="Texture2D" uid="uid://ctkr2gtfpug2i" path="res://Assets/Badguys/Crow/Idle/Up/0004.png" id="5_ckhv2"]
 [ext_resource type="Texture2D" uid="uid://7gw0ld8d4oew" path="res://Assets/Badguys/Crow/Attack/Up/0016.png" id="5_h83pf"]
 [ext_resource type="Texture2D" uid="uid://mu0mlei5vbpc" path="res://Assets/Badguys/Crow/Attack/Down/0016.png" id="5_kobm1"]
+[ext_resource type="Texture2D" uid="uid://bxfknkmagtl17" path="res://Assets/Badguys/Crow/Aggro/Down/0002.png" id="5_qs3ly"]
 [ext_resource type="Texture2D" uid="uid://ctben8c0m5w55" path="res://Assets/Badguys/Crow/Walk/Up/0008.png" id="5_wgh8f"]
 [ext_resource type="Texture2D" uid="uid://677cc1t72p0i" path="res://Assets/Badguys/Crow/Idle/Down/0004.png" id="5_xl0ua"]
 [ext_resource type="Texture2D" uid="uid://da8njfn56mic3" path="res://Assets/Badguys/Crow/Attack/Down/0017.png" id="6_1knxt"]
 [ext_resource type="Texture2D" uid="uid://dontsa8meir1x" path="res://Assets/Badguys/Crow/Walk/Right/0009.png" id="6_35pie"]
 [ext_resource type="Texture2D" uid="uid://dxqfrxyuy6k67" path="res://Assets/Badguys/Crow/Idle/Up/0005.png" id="6_52nan"]
+[ext_resource type="Texture2D" uid="uid://bjsxkerj7eg3w" path="res://Assets/Badguys/Crow/Aggro/Right/0003.png" id="6_adkio"]
 [ext_resource type="Texture2D" uid="uid://ctv5m3aogox7b" path="res://Assets/Badguys/Crow/Attack/Left/frame0017.png" id="6_jcp66"]
 [ext_resource type="Texture2D" uid="uid://dyhe3utp1xe0m" path="res://Assets/Badguys/Crow/Idle/Down/0005.png" id="6_leghf"]
 [ext_resource type="Texture2D" uid="uid://ptbqrxyoitbm" path="res://Assets/Badguys/Crow/Walk/Up/0009.png" id="6_qorjh"]
+[ext_resource type="Texture2D" uid="uid://74s4l85fhiur" path="res://Assets/Badguys/Crow/Aggro/Down/0003.png" id="6_syxla"]
 [ext_resource type="Texture2D" uid="uid://bux3oj2qqwryn" path="res://Assets/Badguys/Crow/Attack/Up/0017.png" id="6_woyii"]
 [ext_resource type="Texture2D" uid="uid://kq6rutf3cq63" path="res://Assets/Badguys/Crow/Walk/Up/0010.png" id="7_2l244"]
 [ext_resource type="Texture2D" uid="uid://dv2ruyqcyqgxm" path="res://Assets/Badguys/Crow/Idle/Up/0006.png" id="7_a3skq"]
 [ext_resource type="Texture2D" uid="uid://d1hc2m6200j8v" path="res://Assets/Badguys/Crow/Idle/Down/0006.png" id="7_e7bu5"]
+[ext_resource type="Texture2D" uid="uid://dfmksgua0i2wc" path="res://Assets/Badguys/Crow/Aggro/Down/0004.png" id="7_f372u"]
 [ext_resource type="Texture2D" uid="uid://cm7joxbuxetb4" path="res://Assets/Badguys/Crow/Walk/Right/0010.png" id="7_fg2xc"]
 [ext_resource type="Texture2D" uid="uid://c4r3ahnqmtp7m" path="res://Assets/Badguys/Crow/Attack/Up/0018.png" id="7_j6daj"]
+[ext_resource type="Texture2D" uid="uid://m8okn0wb5src" path="res://Assets/Badguys/Crow/Aggro/Right/0004.png" id="7_lbpjm"]
 [ext_resource type="Texture2D" uid="uid://dppjg54y6fsu7" path="res://Assets/Badguys/Crow/Attack/Down/0018.png" id="7_me0gi"]
 [ext_resource type="Texture2D" uid="uid://drx8pe14ca6vo" path="res://Assets/Badguys/Crow/Attack/Left/frame0018.png" id="7_mrsei"]
 [ext_resource type="Texture2D" uid="uid://npmqlna1vr1r" path="res://Assets/Badguys/Crow/Attack/Left/frame0019.png" id="8_4famn"]
 [ext_resource type="Texture2D" uid="uid://05372fg6kv2p" path="res://Assets/Badguys/Crow/Walk/Up/0011.png" id="8_8gc1s"]
 [ext_resource type="Texture2D" uid="uid://u3ufyi8jiypd" path="res://Assets/Badguys/Crow/Walk/Right/0011.png" id="8_ccb72"]
+[ext_resource type="Texture2D" uid="uid://4px08kg5bsoo" path="res://Assets/Badguys/Crow/Aggro/Down/0005.png" id="8_kobm1"]
 [ext_resource type="Texture2D" uid="uid://cxqrovffc70gn" path="res://Assets/Badguys/Crow/Idle/Down/0007.png" id="8_nmil3"]
 [ext_resource type="Texture2D" uid="uid://bmsm20qshgy2b" path="res://Assets/Badguys/Crow/Attack/Down/0019.png" id="8_rei2a"]
+[ext_resource type="Texture2D" uid="uid://djnlk53a42d4q" path="res://Assets/Badguys/Crow/Aggro/Right/0005.png" id="8_v0f44"]
 [ext_resource type="Texture2D" uid="uid://b1phhdxrb2s34" path="res://Assets/Badguys/Crow/Attack/Up/0019.png" id="8_w0kyt"]
 [ext_resource type="Texture2D" uid="uid://ck1v0s822j01u" path="res://Assets/Badguys/Crow/Idle/Up/0007.png" id="8_x0oiu"]
 [ext_resource type="Texture2D" uid="uid://c6vv2ouyt70g4" path="res://Assets/Badguys/Crow/Walk/Down/0000.png" id="9_0tnui"]
+[ext_resource type="Texture2D" uid="uid://dffidakqcggqi" path="res://Assets/Badguys/Crow/Aggro/Left/0000.png" id="9_1knxt"]
 [ext_resource type="Texture2D" uid="uid://cosmqi8eka0yf" path="res://Assets/Badguys/Crow/Idle/Up/0008.png" id="9_58fo8"]
 [ext_resource type="Texture2D" uid="uid://hosnd5mwuwdw" path="res://Assets/Badguys/Crow/Walk/Up/0000.png" id="9_bl50x"]
 [ext_resource type="Texture2D" uid="uid://c3xid4utwfo1m" path="res://Assets/Badguys/Crow/Attack/Down/0020.png" id="9_co7n7"]
@@ -76,6 +89,7 @@
 [ext_resource type="Texture2D" uid="uid://ce8nxkshcy7vc" path="res://Assets/Badguys/Crow/Idle/Up/0009.png" id="10_jnhux"]
 [ext_resource type="Texture2D" uid="uid://c2ox0f1qfb1ph" path="res://Assets/Badguys/Crow/Walk/Right/0001.png" id="10_jv4vw"]
 [ext_resource type="Texture2D" uid="uid://c0twf73ky30if" path="res://Assets/Badguys/Crow/Attack/Down/0021.png" id="10_m8wtb"]
+[ext_resource type="Texture2D" uid="uid://dghs6vv8rfnl" path="res://Assets/Badguys/Crow/Aggro/Left/0001.png" id="10_me0gi"]
 [ext_resource type="Texture2D" uid="uid://b1oc1whqro3q0" path="res://Assets/Badguys/Crow/Walk/Up/0001.png" id="10_no28u"]
 [ext_resource type="Texture2D" uid="uid://6ycr288dc2fy" path="res://Assets/Badguys/Crow/Attack/Left/frame0021.png" id="10_r3bdx"]
 [ext_resource type="Texture2D" uid="uid://cs2v6iagesyjv" path="res://Assets/Badguys/Crow/Walk/Down/0001.png" id="10_v7kb3"]
@@ -84,6 +98,7 @@
 [ext_resource type="Texture2D" uid="uid://b4f0jro8unjlf" path="res://Assets/Badguys/Crow/Idle/Down/0010.png" id="11_51x72"]
 [ext_resource type="Texture2D" uid="uid://h2obo0upoyg8" path="res://Assets/Badguys/Crow/Walk/Left/0002.png" id="11_fwa5j"]
 [ext_resource type="Texture2D" uid="uid://dbuckxao1qeo6" path="res://Assets/Badguys/Crow/Attack/Right/0012.png" id="11_h0qyp"]
+[ext_resource type="Texture2D" uid="uid://clppdcvmuwkjo" path="res://Assets/Badguys/Crow/Aggro/Left/0002.png" id="11_rei2a"]
 [ext_resource type="Texture2D" uid="uid://cphtqvvqe3jyu" path="res://Assets/Badguys/Crow/Idle/Up/0010.png" id="11_ry5pa"]
 [ext_resource type="Texture2D" uid="uid://dyypm3vlca4h5" path="res://Assets/Badguys/Crow/Walk/Right/0002.png" id="11_uct5d"]
 [ext_resource type="Texture2D" uid="uid://cwwpa57oyvaoc" path="res://Assets/Badguys/Crow/Walk/Down/0002.png" id="11_w7lee"]
@@ -92,12 +107,15 @@
 [ext_resource type="Texture2D" uid="uid://cet3t2t3amd27" path="res://Assets/Badguys/Crow/Attack/Right/0013.png" id="12_6cawe"]
 [ext_resource type="Texture2D" uid="uid://cuk4knaabpt7a" path="res://Assets/Badguys/Crow/Walk/Left/0003.png" id="12_8t4lg"]
 [ext_resource type="Texture2D" uid="uid://dig7thyi6i57k" path="res://Assets/Badguys/Crow/Walk/Up/0003.png" id="12_14q0v"]
+[ext_resource type="Texture2D" uid="uid://7caa18saq3d4" path="res://Assets/Badguys/Crow/Aggro/Left/0003.png" id="12_co7n7"]
 [ext_resource type="Texture2D" uid="uid://spvaqgoxojy6" path="res://Assets/Badguys/Crow/Idle/Up/0011.png" id="12_jlsbh"]
 [ext_resource type="Texture2D" uid="uid://brupur1wu6fnr" path="res://Assets/Badguys/Crow/Idle/Down/0011.png" id="12_sc55a"]
 [ext_resource type="Texture2D" uid="uid://b85hckyrl8q7w" path="res://Assets/Badguys/Crow/Attack/Right/0014.png" id="13_2kr6b"]
 [ext_resource type="Texture2D" uid="uid://dqx0osrvxtmx8" path="res://Assets/Badguys/Crow/Idle/Down/0012.png" id="13_jmgdq"]
+[ext_resource type="Texture2D" uid="uid://cgimrd0qdedjo" path="res://Assets/Badguys/Crow/Aggro/Left/0004.png" id="13_m8wtb"]
 [ext_resource type="Texture2D" uid="uid://buies8rdjk2bh" path="res://Assets/Badguys/Crow/Idle/Up/0012.png" id="13_xokov"]
 [ext_resource type="Texture2D" uid="uid://d22ky7dwjd3ic" path="res://Assets/Badguys/Crow/Idle/Down/0013.png" id="14_8poi7"]
+[ext_resource type="Texture2D" uid="uid://cueaxxr0ainap" path="res://Assets/Badguys/Crow/Aggro/Left/0005.png" id="14_ko7na"]
 [ext_resource type="Texture2D" uid="uid://cuwh82vk42hvb" path="res://Assets/Badguys/Crow/Attack/Right/0015.png" id="14_okabl"]
 [ext_resource type="Texture2D" uid="uid://b8e5eu62c4x6n" path="res://Assets/Badguys/Crow/Idle/Up/0013.png" id="14_uidel"]
 [ext_resource type="Texture2D" uid="uid://cku7aa0l4kkfx" path="res://Assets/Badguys/Crow/Attack/Right/0016.png" id="15_5wj0n"]
@@ -142,53 +160,31 @@
 [ext_resource type="Texture2D" uid="uid://dvyhu1kxpamdn" path="res://Assets/Badguys/Crow/Idle/Right/0013.png" id="46_w0kyt"]
 [ext_resource type="Texture2D" uid="uid://da3clawi4qn64" path="res://Assets/Badguys/Crow/Idle/Right/0014.png" id="47_sdqpw"]
 [ext_resource type="Texture2D" uid="uid://cnpihk675rxbx" path="res://Assets/Badguys/Crow/Idle/Right/0015.png" id="48_3vbrp"]
-[ext_resource type="Texture2D" uid="uid://icnme7flcixb" path="res://Assets/Badguys/Crow/Attack/Left/frame0000.png" id="75_ji003"]
 [ext_resource type="Texture2D" uid="uid://b1mjwuvdvq21" path="res://Assets/Badguys/Crow/Attack/Up/0000.png" id="75_p2eew"]
 [ext_resource type="Texture2D" uid="uid://3ekquq2lpstn" path="res://Assets/Badguys/Crow/Attack/Left/frame0001.png" id="76_6rwen"]
 [ext_resource type="Texture2D" uid="uid://jy307behy0rw" path="res://Assets/Badguys/Crow/Attack/Up/0001.png" id="76_i342j"]
-[ext_resource type="Texture2D" uid="uid://bibxx3k2gbm0t" path="res://Assets/Badguys/Crow/Attack/Left/frame0002.png" id="77_d6afq"]
 [ext_resource type="Texture2D" uid="uid://cf8rflnb2j8nb" path="res://Assets/Badguys/Crow/Attack/Up/0002.png" id="77_ji003"]
 [ext_resource type="Texture2D" uid="uid://d20noo73t5jnc" path="res://Assets/Badguys/Crow/Attack/Left/frame0003.png" id="78_0y1tn"]
 [ext_resource type="Texture2D" uid="uid://gp7qudob4plk" path="res://Assets/Badguys/Crow/Attack/Up/0003.png" id="78_6rwen"]
-[ext_resource type="Texture2D" uid="uid://b2n1l5nd5t1nv" path="res://Assets/Badguys/Crow/Attack/Left/frame0004.png" id="79_2gmd8"]
-[ext_resource type="Texture2D" uid="uid://bu1bakw886pkl" path="res://Assets/Badguys/Crow/Attack/Up/0004.png" id="79_d6afq"]
 [ext_resource type="Texture2D" uid="uid://cqomjbhxxl046" path="res://Assets/Badguys/Crow/Attack/Up/0005.png" id="80_0y1tn"]
 [ext_resource type="Texture2D" uid="uid://xc1dpejqinny" path="res://Assets/Badguys/Crow/Attack/Left/frame0005.png" id="80_gtsk4"]
-[ext_resource type="Texture2D" uid="uid://bl5i35tbmaduc" path="res://Assets/Badguys/Crow/Attack/Up/0006.png" id="81_2gmd8"]
-[ext_resource type="Texture2D" uid="uid://cq70bajsio5kv" path="res://Assets/Badguys/Crow/Attack/Left/frame0006.png" id="81_bbqxn"]
 [ext_resource type="Texture2D" uid="uid://d0ley47m8rubn" path="res://Assets/Badguys/Crow/Attack/Up/0007.png" id="82_gtsk4"]
 [ext_resource type="Texture2D" uid="uid://bbdbb76f0o4e2" path="res://Assets/Badguys/Crow/Attack/Left/frame0007.png" id="82_xmxji"]
-[ext_resource type="Texture2D" uid="uid://xcrkpuukiwvy" path="res://Assets/Badguys/Crow/Attack/Up/0008.png" id="83_bbqxn"]
-[ext_resource type="Texture2D" uid="uid://gxehrly358f1" path="res://Assets/Badguys/Crow/Attack/Left/frame0008.png" id="83_f4gtg"]
 [ext_resource type="Texture2D" uid="uid://bwqt2rne144oy" path="res://Assets/Badguys/Crow/Attack/Left/frame0009.png" id="84_jv12y"]
 [ext_resource type="Texture2D" uid="uid://btmdbkx5jujpj" path="res://Assets/Badguys/Crow/Attack/Up/0009.png" id="84_xmxji"]
-[ext_resource type="Texture2D" uid="uid://mrc7oo2joqeq" path="res://Assets/Badguys/Crow/Attack/Up/0010.png" id="85_f4gtg"]
-[ext_resource type="Texture2D" uid="uid://dvq1u7cjyexxn" path="res://Assets/Badguys/Crow/Attack/Left/frame0010.png" id="85_gqbh7"]
 [ext_resource type="Texture2D" uid="uid://dkev2ryjabmmy" path="res://Assets/Badguys/Crow/Attack/Up/0011.png" id="86_jv12y"]
 [ext_resource type="Texture2D" uid="uid://bfqeebw8h8g0i" path="res://Assets/Badguys/Crow/Attack/Left/frame0011.png" id="86_pp713"]
-[ext_resource type="Texture2D" uid="uid://bpevl30odrbwm" path="res://Assets/Badguys/Crow/Attack/Down/0000.png" id="105_ko7na"]
 [ext_resource type="Texture2D" uid="uid://wtydwt4psjm" path="res://Assets/Badguys/Crow/Attack/Down/0001.png" id="106_6rq47"]
-[ext_resource type="Texture2D" uid="uid://bhy0rmmksviv2" path="res://Assets/Badguys/Crow/Attack/Down/0002.png" id="107_1ld67"]
-[ext_resource type="Texture2D" uid="uid://bcqsw8dw24iew" path="res://Assets/Badguys/Crow/Attack/Right/0000.png" id="107_bg82q"]
 [ext_resource type="Texture2D" uid="uid://1kpj36apek6t" path="res://Assets/Badguys/Crow/Attack/Right/0001.png" id="108_6c5qy"]
 [ext_resource type="Texture2D" uid="uid://bk8e0o3gixqs6" path="res://Assets/Badguys/Crow/Attack/Down/0003.png" id="108_atbsc"]
-[ext_resource type="Texture2D" uid="uid://t0gm80m48av5" path="res://Assets/Badguys/Crow/Attack/Down/0004.png" id="109_6nxnq"]
-[ext_resource type="Texture2D" uid="uid://c773g0afnkseg" path="res://Assets/Badguys/Crow/Attack/Right/0002.png" id="109_adkio"]
 [ext_resource type="Texture2D" uid="uid://dbea1o1infjpf" path="res://Assets/Badguys/Crow/Attack/Down/0005.png" id="110_5jji8"]
 [ext_resource type="Texture2D" uid="uid://dsgntcrhrq3yv" path="res://Assets/Badguys/Crow/Attack/Right/0003.png" id="110_lbpjm"]
-[ext_resource type="Texture2D" uid="uid://cbeetuco1r14a" path="res://Assets/Badguys/Crow/Attack/Down/0006.png" id="111_hk4et"]
-[ext_resource type="Texture2D" uid="uid://b3v8krdaploum" path="res://Assets/Badguys/Crow/Attack/Right/0004.png" id="111_v0f44"]
 [ext_resource type="Texture2D" uid="uid://vgc6hkxo043t" path="res://Assets/Badguys/Crow/Attack/Down/0007.png" id="112_hfi6h"]
 [ext_resource type="Texture2D" uid="uid://deqvyo240mldt" path="res://Assets/Badguys/Crow/Attack/Right/0005.png" id="112_kt3g5"]
-[ext_resource type="Texture2D" uid="uid://df7nbsn444diw" path="res://Assets/Badguys/Crow/Attack/Down/0008.png" id="113_4mf1n"]
-[ext_resource type="Texture2D" uid="uid://ou6mshpcpytg" path="res://Assets/Badguys/Crow/Attack/Right/0006.png" id="113_58ohr"]
 [ext_resource type="Texture2D" uid="uid://bacrvse8g68q4" path="res://Assets/Badguys/Crow/Attack/Right/0007.png" id="114_6tdmk"]
 [ext_resource type="Texture2D" uid="uid://1asago4skki" path="res://Assets/Badguys/Crow/Attack/Down/0009.png" id="114_uurad"]
-[ext_resource type="Texture2D" uid="uid://b5jfp6jokdcf5" path="res://Assets/Badguys/Crow/Attack/Right/0008.png" id="115_7cs46"]
-[ext_resource type="Texture2D" uid="uid://cdwh1goq7lrog" path="res://Assets/Badguys/Crow/Attack/Down/0010.png" id="115_q0sw6"]
 [ext_resource type="Texture2D" uid="uid://cbctkm80so0kh" path="res://Assets/Badguys/Crow/Attack/Down/0011.png" id="116_jkier"]
 [ext_resource type="Texture2D" uid="uid://qbp8rdoepm64" path="res://Assets/Badguys/Crow/Attack/Right/0009.png" id="116_voslc"]
-[ext_resource type="Texture2D" uid="uid://bmnrel10j7ces" path="res://Assets/Badguys/Crow/Attack/Right/0010.png" id="117_48xe0"]
 [ext_resource type="Texture2D" uid="uid://htah8wnenixi" path="res://Assets/Badguys/Crow/Attack/Right/0011.png" id="118_nimse"]
 [ext_resource type="Texture2D" uid="uid://m42uojbehm" path="res://Assets/Badguys/Crow/Walk/Down/0006.png" id="154_voslc"]
 [ext_resource type="Texture2D" uid="uid://bmumh03kl3rlr" path="res://Assets/Badguys/Crow/Walk/Down/0007.png" id="155_48xe0"]
@@ -202,16 +198,16 @@
 [ext_resource type="Texture2D" uid="uid://bsutmy03n0mdx" path="res://Assets/Badguys/Crow/Walk/Left/0009.png" id="170_me0gi"]
 [ext_resource type="Texture2D" uid="uid://bvevox0i0eexp" path="res://Assets/Badguys/Crow/Walk/Left/0010.png" id="171_rei2a"]
 [ext_resource type="Texture2D" uid="uid://dvjhww7ikfjtg" path="res://Assets/Badguys/Crow/Walk/Left/0011.png" id="172_co7n7"]
-[ext_resource type="Script" uid="uid://bh4lnfxy1tke8" path="res://Characters/Crow/Path.gd" id="191_lbpjm"]
 [ext_resource type="Script" uid="uid://d4gknvy62ktak" path="res://Characters/Crow/SearchArea.gd" id="202_syxla"]
+[ext_resource type="Script" uid="uid://ck8g2wbwkdve7" path="res://Characters/Crow/AnimationPlayer.gd" id="203_1knxt"]
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="205_1knxt"]
 
-[sub_resource type="Gradient" id="Gradient_txavx"]
+[sub_resource type="Gradient" id="Gradient_qs3ly"]
 offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
 colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yxqvu"]
-gradient = SubResource("Gradient_txavx")
+gradient = SubResource("Gradient_qs3ly")
 fill = 1
 fill_from = Vector2(0.491453, 0.487179)
 fill_to = Vector2(0, 0)
@@ -222,6 +218,98 @@ height = 58.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h653l"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nimse")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ovynb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qs3ly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_syxla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f372u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kobm1")
+}],
+"loop": true,
+"name": &"Aggro Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_1knxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_me0gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rei2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_co7n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_m8wtb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ko7na")
+}],
+"loop": false,
+"name": &"Aggro Left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_divt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bg82q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6c5qy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_adkio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lbpjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_v0f44")
+}],
+"loop": false,
+"name": &"Aggro Right",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("75_p2eew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_i342j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_ji003")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_6rwen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_ji003")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_6rwen")
+}],
+"loop": false,
+"name": &"Aggro Up",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_ovynb")
@@ -576,37 +664,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("105_ko7na")
-}, {
-"duration": 1.0,
 "texture": ExtResource("106_6rq47")
-}, {
-"duration": 1.0,
-"texture": ExtResource("107_1ld67")
 }, {
 "duration": 1.0,
 "texture": ExtResource("108_atbsc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("109_6nxnq")
-}, {
-"duration": 1.0,
 "texture": ExtResource("110_5jji8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("111_hk4et")
 }, {
 "duration": 1.0,
 "texture": ExtResource("112_hfi6h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("113_4mf1n")
-}, {
-"duration": 1.0,
 "texture": ExtResource("114_uurad")
-}, {
-"duration": 1.0,
-"texture": ExtResource("115_q0sw6")
 }, {
 "duration": 1.0,
 "texture": ExtResource("116_jkier")
@@ -617,37 +687,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("75_ji003")
-}, {
-"duration": 1.0,
 "texture": ExtResource("76_6rwen")
-}, {
-"duration": 1.0,
-"texture": ExtResource("77_d6afq")
 }, {
 "duration": 1.0,
 "texture": ExtResource("78_0y1tn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("79_2gmd8")
-}, {
-"duration": 1.0,
 "texture": ExtResource("80_gtsk4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("81_bbqxn")
 }, {
 "duration": 1.0,
 "texture": ExtResource("82_xmxji")
 }, {
 "duration": 1.0,
-"texture": ExtResource("83_f4gtg")
-}, {
-"duration": 1.0,
 "texture": ExtResource("84_jv12y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("85_gqbh7")
 }, {
 "duration": 1.0,
 "texture": ExtResource("86_pp713")
@@ -658,37 +710,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("107_bg82q")
-}, {
-"duration": 1.0,
 "texture": ExtResource("108_6c5qy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("109_adkio")
 }, {
 "duration": 1.0,
 "texture": ExtResource("110_lbpjm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("111_v0f44")
-}, {
-"duration": 1.0,
 "texture": ExtResource("112_kt3g5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("113_58ohr")
 }, {
 "duration": 1.0,
 "texture": ExtResource("114_6tdmk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("115_7cs46")
-}, {
-"duration": 1.0,
 "texture": ExtResource("116_voslc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("117_48xe0")
 }, {
 "duration": 1.0,
 "texture": ExtResource("118_nimse")
@@ -699,37 +733,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("75_p2eew")
-}, {
-"duration": 1.0,
 "texture": ExtResource("76_i342j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("77_ji003")
 }, {
 "duration": 1.0,
 "texture": ExtResource("78_6rwen")
 }, {
 "duration": 1.0,
-"texture": ExtResource("79_d6afq")
-}, {
-"duration": 1.0,
 "texture": ExtResource("80_0y1tn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("81_2gmd8")
 }, {
 "duration": 1.0,
 "texture": ExtResource("82_gtsk4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("83_bbqxn")
-}, {
-"duration": 1.0,
 "texture": ExtResource("84_xmxji")
-}, {
-"duration": 1.0,
-"texture": ExtResource("85_f4gtg")
 }, {
 "duration": 1.0,
 "texture": ExtResource("86_jv12y")
@@ -757,7 +773,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("159_syxla")
 }],
-"loop": false,
+"loop": true,
 "name": &"Walk Down",
 "speed": 12.0
 }, {
@@ -803,7 +819,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("172_co7n7")
 }],
-"loop": false,
+"loop": true,
 "name": &"Walk Left",
 "speed": 12.0
 }, {
@@ -849,7 +865,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_ccb72")
 }],
-"loop": false,
+"loop": true,
 "name": &"Walk Right",
 "speed": 12.0
 }, {
@@ -895,7 +911,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_8gc1s")
 }],
-"loop": false,
+"loop": true,
 "name": &"Walk Up",
 "speed": 12.0
 }, {
@@ -922,6 +938,82 @@ animations = [{
 "name": &"Walk Up Transition",
 "speed": 12.0
 }]
+
+[sub_resource type="Animation" id="Animation_h1bhj"]
+resource_name = "Aggro Down"
+length = 0.500008
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Aggro Down", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_iw8wp"]
+resource_name = "Aggro Left"
+length = 0.500008
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Aggro Left", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_io6m6"]
+resource_name = "Aggro Right"
+length = 0.500008
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Aggro Right", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_002tq"]
+resource_name = "Aggro Up"
+length = 0.500008
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Aggro Up", 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_atbsc"]
 resource_name = "Attack Down"
@@ -976,6 +1068,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1.55, 1.55)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_projectile"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6nxnq"]
@@ -1032,6 +1138,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1.41, 1.59)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_projectile"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_5jji8"]
 resource_name = "Attack Right"
@@ -1087,6 +1207,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1.24, 1.465)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_projectile"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_1ld67"]
 resource_name = "Attack Up"
@@ -1141,6 +1275,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1.375, 1.795)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_projectile"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_10q45"]
@@ -1242,8 +1390,9 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_me0gi"]
 resource_name = "Idle Left"
-length = 0.533337
+length = 1.33334
 loop_mode = 1
+step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1298,6 +1447,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_rei2a"]
 resource_name = "Idle Right"
 length = 1.33334
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1353,6 +1503,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_kobm1"]
 resource_name = "Idle Up"
 length = 1.33334
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1426,6 +1577,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_m8wtb"]
 resource_name = "Prepare Attack Down"
+length = 0.500004
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1480,6 +1632,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_ko7na"]
 resource_name = "Prepare Attack Left"
+length = 0.500004
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1534,6 +1687,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_6rq47"]
 resource_name = "Prepare Attack Right"
+length = 0.500004
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1588,6 +1742,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_co7n7"]
 resource_name = "Prepare Attack Up"
+length = 0.500004
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1792,7 +1947,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_hfi6h"]
 resource_name = "Walk Down Transition"
-length = 0.500008
+length = 0.583341
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1801,10 +1956,13 @@ tracks/0/path = NodePath("AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.583333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Walk Down Transition", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Walk Down", 1.0, false],
 "method": &"play"
 }]
 }
@@ -1867,7 +2025,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_4mf1n"]
 resource_name = "Walk Left Transition"
-length = 0.500008
+length = 0.583341
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1876,10 +2034,13 @@ tracks/0/path = NodePath("AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.583333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Walk Left Transition", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Walk Left", 1.0, false],
 "method": &"play"
 }]
 }
@@ -1942,7 +2103,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_uurad"]
 resource_name = "Walk Right Transition"
-length = 0.500008
+length = 0.583341
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1951,10 +2112,13 @@ tracks/0/path = NodePath("AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.583333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [&"Walk Right Transition", 1.0, false],
+"args": [&"Walk Right", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Walk Right", 1.0, false],
 "method": &"play"
 }]
 }
@@ -2017,7 +2181,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_hk4et"]
 resource_name = "Walk Up Transition"
-length = 0.500008
+length = 0.583341
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -2026,16 +2190,23 @@ tracks/0/path = NodePath("AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.583333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Walk Up Transition", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Walk Up", 1.0, false],
 "method": &"play"
 }]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qs3ly"]
 _data = {
+&"Aggro Down": SubResource("Animation_h1bhj"),
+&"Aggro Left": SubResource("Animation_iw8wp"),
+&"Aggro Right": SubResource("Animation_io6m6"),
+&"Aggro Up": SubResource("Animation_002tq"),
 &"Attack Down": SubResource("Animation_atbsc"),
 &"Attack Left": SubResource("Animation_6nxnq"),
 &"Attack Right": SubResource("Animation_5jji8"),
@@ -2062,194 +2233,8 @@ _data = {
 &"Walk Up Transition": SubResource("Animation_hk4et")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m8wtb"]
-animation = &"Attack Up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ko7na"]
-animation = &"Attack Down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6rq47"]
-animation = &"Attack Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1ld67"]
-animation = &"Attack Right"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qs3ly"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_m8wtb")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_ko7na")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_6rq47")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_1ld67")
-blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1knxt"]
-animation = &"Idle Up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_me0gi"]
-animation = &"Idle Down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rei2a"]
-animation = &"Idle Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_co7n7"]
-animation = &"Idle Right"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_m8wtb"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_1knxt")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_me0gi")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_rei2a")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_co7n7")
-blend_point_3/pos = Vector2(1, 0)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_10q45"]
-animation = &"Launch Projectile"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_atbsc"]
-animation = &"Prepare Attack Up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6nxnq"]
-animation = &"Prepare Attack Down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5jji8"]
-animation = &"Prepare Attack Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hk4et"]
-animation = &"Prepare Attack Right"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_syxla"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_atbsc")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_6nxnq")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_5jji8")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_hk4et")
-blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a5l33"]
-animation = &"Reset Attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_syxla"]
-animation = &"Walk Up Transition"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f372u"]
-animation = &"Walk Down Transition"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kobm1"]
-animation = &"Walk Left Transition"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hfi6h"]
-animation = &"Walk Right Transition"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_4mf1n"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_syxla")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_f372u")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_kobm1")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_hfi6h")
-blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4mf1n"]
-animation = &"Walk Up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uurad"]
-animation = &"Walk Down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q0sw6"]
-animation = &"Walk Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jkier"]
-animation = &"Walk Right"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_uurad"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_4mf1n")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_uurad")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_q0sw6")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_jkier")
-blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f372u"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1knxt"]
-advance_mode = 2
-advance_expression = "not moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_48xe0"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q0sw6"]
-state_machine_type = 2
-states/End/position = Vector2(840, 83)
-states/Start/position = Vector2(270, 83)
-states/Transition/node = SubResource("AnimationNodeBlendSpace2D_4mf1n")
-states/Transition/position = Vector2(466, 83)
-states/Walking/node = SubResource("AnimationNodeBlendSpace2D_uurad")
-states/Walking/position = Vector2(662, 83)
-transitions = ["Transition", "Walking", SubResource("AnimationNodeStateMachineTransition_f372u"), "Walking", "End", SubResource("AnimationNodeStateMachineTransition_1knxt"), "Start", "Transition", SubResource("AnimationNodeStateMachineTransition_48xe0")]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_10q45"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_002tq"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iw8wp"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rei2a"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kobm1"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_me0gi"]
-advance_mode = 2
-advance_expression = "attacking"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ovynb"]
-state_machine_type = 1
-states/Attack/node = SubResource("AnimationNodeBlendSpace2D_qs3ly")
-states/Attack/position = Vector2(602, -10)
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_m8wtb")
-states/Idle/position = Vector2(826, 53)
-"states/Launch Projectile/node" = SubResource("AnimationNodeAnimation_10q45")
-"states/Launch Projectile/position" = Vector2(602, 70)
-"states/Prepare Attack/node" = SubResource("AnimationNodeBlendSpace2D_syxla")
-"states/Prepare Attack/position" = Vector2(602, 166)
-"states/Reset Attack/node" = SubResource("AnimationNodeAnimation_a5l33")
-"states/Reset Attack/position" = Vector2(410, -10)
-states/Start/position = Vector2(201, 59)
-states/Walk/node = SubResource("AnimationNodeStateMachine_q0sw6")
-states/Walk/position = Vector2(410, 166)
-transitions = ["Attack", "Reset Attack", SubResource("AnimationNodeStateMachineTransition_10q45"), "Prepare Attack", "Launch Projectile", SubResource("AnimationNodeStateMachineTransition_002tq"), "Launch Projectile", "Attack", SubResource("AnimationNodeStateMachineTransition_iw8wp"), "Reset Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_rei2a"), "Start", "Reset Attack", SubResource("AnimationNodeStateMachineTransition_kobm1"), "Walk", "Prepare Attack", SubResource("AnimationNodeStateMachineTransition_me0gi")]
-graph_offset = Vector2(0, -42.4033)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_qs3ly"]
 radius = 304.647
-
-[sub_resource type="Curve2D" id="Curve2D_syxla"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 139, 73, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, 0)
-}
-point_count = 5
 
 [node name="Crow" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 8
@@ -2259,7 +2244,6 @@ script = ExtResource("1_qs3ly")
 
 [node name="DeathLight" type="PointLight2D" parent="."]
 visible = false
-modulate = Color(0.586917, 0.0587543, 0.725085, 1)
 position = Vector2(-7, -7)
 scale = Vector2(2.389, 2.372)
 color = Color(0.14902, 0.137255, 0.156863, 1)
@@ -2269,16 +2253,13 @@ range_layer_max = 4
 texture = SubResource("GradientTexture2D_yxqvu")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_kobm1")]
-visible = false
 z_index = 1
 position = Vector2(7.215, 3.975)
 rotation = 1.07338
 scale = Vector2(1.24, 1.24)
-collision_layer = 20
-collision_mask = 4
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 y_sort_enabled = true
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_h2hex")
@@ -2286,28 +2267,19 @@ shape = SubResource("CapsuleShape2D_h2hex")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h653l")
-animation = &"Prepare Attack Right"
+animation = &"Aggro Left"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_qs3ly")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_ovynb")
-anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/blend_position = Vector2(-0.0048154, -0.0109891)
-parameters/Idle/blend_position = Vector2(0, 0)
-"parameters/Prepare Attack/blend_position" = Vector2(0, -0.0109891)
-parameters/Walk/Transition/blend_position = Vector2(0, 0)
-parameters/Walk/Walking/blend_position = Vector2(0, 0)
+script = ExtResource("203_1knxt")
 
 [node name="SearchRay" type="RayCast2D" parent="."]
 collision_mask = 11
 collide_with_areas = true
 
 [node name="SearchArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 11
 script = ExtResource("202_syxla")
@@ -2315,11 +2287,7 @@ script = ExtResource("202_syxla")
 [node name="CollsionShape2D" type="CollisionShape2D" parent="SearchArea"]
 shape = SubResource("CircleShape2D_qs3ly")
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_syxla")
-script = ExtResource("191_lbpjm")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-rotation = 0.483588
-
 [node name="Blinker" parent="." instance=ExtResource("205_1knxt")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true

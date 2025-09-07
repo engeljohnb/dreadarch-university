@@ -7,6 +7,7 @@
 
 [node name="Game" type="Node2D"]
 process_mode = 1
+y_sort_enabled = true
 script = ExtResource("1_wbfu4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

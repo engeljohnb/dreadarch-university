@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://co6kb4lm0j77x"]
+
+[ext_resource type="Script" uid="uid://dr1yqg04216gr" path="res://Characters/PathNPC.gd" id="1_rvala"]
+
+[sub_resource type="Curve2D" id="Curve2D_r6xc6"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1696, 1152, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1688, 1160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="PathNPC" type="Path2D"]
+curve = SubResource("Curve2D_r6xc6")
+script = ExtResource("1_rvala")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(1696, 1152)
+rotation = -2.54493
+rotates = false

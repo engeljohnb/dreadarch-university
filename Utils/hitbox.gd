@@ -9,8 +9,14 @@ signal hit(body)
 var my_weapon = null
 
 func on_body_entered(body):
-	if (body != my_weapon) and (body.get_parent() != get_parent()):
-		hit.emit(body)
+	if body.is_in_group("Weapons"):
+		if my_weapon:
+			if (body != my_weapon): 
+				hit.emit(body)
+		else:
+			if (body.get_parent() != get_parent()):
+				hit.emit(body)
 
 func _ready():
 	body_entered.connect(on_body_entered)
+	area_entered.connect(on_body_entered)
