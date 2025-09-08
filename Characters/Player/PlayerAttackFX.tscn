@@ -40,7 +40,7 @@ fill_from = Vector2(0.512195, 0.47561)
 fill_to = Vector2(0.847561, 0.835366)
 
 [node name="PlayerAttackFX" type="CharacterBody2D" groups=["Weapons"]]
-z_index = 1
+z_index = 2
 scale = Vector2(0.34, 0.34)
 collision_layer = 4
 collision_mask = 15
@@ -56,7 +56,6 @@ frame = 4
 frame_progress = 1.0
 
 [node name="OutlineSprite" type="AnimatedSprite2D" parent="."]
-z_index = -2
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_l75vj")
 frame = 4

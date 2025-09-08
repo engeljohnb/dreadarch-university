@@ -1517,5 +1517,6 @@ zoom = Vector2(1.5, 1.5)
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-5.72205e-06, 3)
 scale = Vector2(0.775, 0.775)
+color = Color(0.940371, 0.870002, 0.737402, 1)
 energy = 3.0
 texture = SubResource("GradientTexture2D_e2f0o")

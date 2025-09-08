@@ -16,7 +16,7 @@ var death_cutscene_duration = 0.5
 
 
 func _on_body_entered(body):
-	if (body != get_parent()):
+	if (body.name != "Slack") and not (body is TileMapLayer):
 		$AnimatedSprite2D.visible = false
 		$CollisionShape2D.set_deferred("disabled", true)
 		deathlight.visible = true
@@ -29,9 +29,10 @@ func _ready():
 
 func launch(direction, _player):
 	player = _player
-	position += 50*direction
+	position += 75*direction
 	facing = (player.global_position - global_position).normalized()
 	apply_impulse(direction*200.0)
+	$AnimatedSprite2D.play("default")
 
 func play_death_cutscene(delta):
 		deathlight.modulate = Color(1,0,0,)

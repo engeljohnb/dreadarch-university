@@ -22,7 +22,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_txavx"]
@@ -38,7 +38,7 @@ fill_to = Vector2(0, 0)
 [node name="SlackProjectile" type="RigidBody2D" groups=["Weapons"]]
 texture_filter = 1
 collision_layer = 4
-collision_mask = 15
+collision_mask = 47
 mass = 0.2
 gravity_scale = 0.0
 script = ExtResource("1_rydyq")

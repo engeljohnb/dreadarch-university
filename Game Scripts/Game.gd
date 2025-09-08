@@ -56,7 +56,7 @@ func on_scene_changed():
 		player.reparent(current_scene)
 	else:
 		current_scene.add_child(player)
-	player.global_position = SceneTransition.player_start_pos
+	player.global_position = SceneTransition.player_newgame_position
 	hud.lifebar.set_life_total(player.total_life, player.life)
 	add_child(current_scene)
 	get_tree().paused = false

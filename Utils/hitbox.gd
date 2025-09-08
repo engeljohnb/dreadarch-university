@@ -7,9 +7,12 @@ signal hit(body)
 # best way I could think of -- just set the weapon when the calling node 
 # creates the weapon.
 var my_weapon = null
+var ignore = []
 
 func on_body_entered(body):
 	if body.is_in_group("Weapons"):
+		if body in ignore:
+			return
 		if my_weapon:
 			if (body != my_weapon): 
 				hit.emit(body)

@@ -32,16 +32,17 @@ func on_player_went_away():
 	
 func launch_projectile():
 	var projectile = _weapon.instantiate()
-	hitbox.my_weapon = projectile
 	# Add as sibling instead of child so Crow's movement doesn't
 	# affect the projectile
 	projectile.global_position = position
 	add_sibling(projectile)
 	projectile.launch((player.global_position - global_position).normalized(), player)
+	hitbox.ignore.append(projectile)
 		
 func _ready():
 	if direction == "Right":
-		scale.x = -1.0
+		$AnimatedSprite2D.scale.x = -$AnimatedSprite2D.scale.x
+		$StupidShadow.scale.x = -$StupidShadow.scale.x
 	animation_player.play("Idle")
 	search_area.player_nearby.connect(on_player_nearby)
 	search_area.player_went_away.connect(on_player_went_away)
@@ -56,6 +57,7 @@ func play_death_cutscene(delta):
 		var cutscene_percent = cutscene_timer/death_cutscene_duration
 		deathlight.energy = 1.0/cutscene_percent
 		if cutscene_timer >= death_cutscene_duration:
+			SceneTransition.win()
 			queue_free()
 
 func _process(_delta):

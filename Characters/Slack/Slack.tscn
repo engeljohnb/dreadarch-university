@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://boac31030chjh"]
+[gd_scene load_steps=34 format=3 uid="uid://boac31030chjh"]
 
 [ext_resource type="Script" uid="uid://lnv0ayrafonh" path="res://Characters/Slack/Scripts/Slack.gd" id="1_41v3w"]
 [ext_resource type="Texture2D" uid="uid://bbjkavlt3tv47" path="res://Assets/Badguys/Slack/0000.png" id="2_632d0"]
@@ -150,7 +150,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b750k"]
-radius = 250.0
+radius = 328.877
 
 [sub_resource type="Gradient" id="Gradient_nocy6"]
 offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
@@ -173,6 +173,16 @@ gradient = SubResource("Gradient_ve43x")
 fill = 1
 fill_from = Vector2(0.495726, 0.491453)
 fill_to = Vector2(0.632479, 0.705128)
+
+[sub_resource type="Gradient" id="Gradient_6fv88"]
+offsets = PackedFloat32Array(0.401294, 0.601942)
+colors = PackedColorArray(0, 0, 0, 0.724, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oor3y"]
+gradient = SubResource("Gradient_6fv88")
+fill = 1
+fill_from = Vector2(0.393162, 0.512821)
+fill_to = Vector2(0.965812, 0.034188)
 
 [node name="Slack" type="CharacterBody2D" groups=["Enemies"]]
 modulate = Color(1.3, 1.3, 1.3, 1)
@@ -204,7 +214,6 @@ position = Vector2(-224, 0)
 shape = SubResource("CircleShape2D_b750k")
 
 [node name="DeathLight" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(-7, -7)
 scale = Vector2(2.389, 2.372)
 color = Color(0.14902, 0.137255, 0.156863, 1)
@@ -229,3 +238,9 @@ position = Vector2(9.09495e-13, -24)
 scale = Vector2(5.125, 5.125)
 color = Color(0.996078, 0.839216, 0.819608, 1)
 texture = SubResource("GradientTexture2D_nocy6")
+
+[node name="StupidShadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(18.5, 36)
+scale = Vector2(1.57812, 0.625)
+texture = SubResource("GradientTexture2D_oor3y")
