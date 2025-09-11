@@ -11,6 +11,9 @@ var ignore = []
 
 func on_body_entered(body):
 	if body.is_in_group("Weapons"):
+		if "dead" in body:
+			if body.dead:
+				return
 		if body in ignore:
 			return
 		if my_weapon:

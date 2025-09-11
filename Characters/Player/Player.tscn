@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=3 uid="uid://r8py7ts46u7k"]
+[gd_scene load_steps=216 format=3 uid="uid://r8py7ts46u7k"]
 
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
 [ext_resource type="Texture2D" uid="uid://bkyy4clb40hvk" path="res://Assets/Student/Idle/Down/0000.png" id="1_v8ubu"]
@@ -91,7 +91,6 @@
 [ext_resource type="Texture2D" uid="uid://wsfoo23lv5m7" path="res://Assets/Student/Walk/Left Dagger/0002.png" id="71_8lmx5"]
 [ext_resource type="Texture2D" uid="uid://hrj4u0uv6d6e" path="res://Assets/Student/Walk/Left Dagger/0003.png" id="72_v5ix2"]
 [ext_resource type="Texture2D" uid="uid://bw1jymem353xh" path="res://Assets/Student/Walk/Left Dagger/0004.png" id="73_5l3xl"]
-[ext_resource type="Texture2D" uid="uid://cafgs30y3svgv" path="res://Assets/Student/Walk/Left Dagger/0005.png" id="74_me43d"]
 [ext_resource type="Texture2D" uid="uid://gj4o0cfjwc3c" path="res://Assets/Student/Walk/Left Dagger/0006.png" id="75_q3lx4"]
 [ext_resource type="Texture2D" uid="uid://dcwrkktjd1fjg" path="res://Assets/Student/Walk/Left Dagger/0007.png" id="76_fdphh"]
 [ext_resource type="Texture2D" uid="uid://bnsbjckn3ie7f" path="res://Assets/Student/Walk/Left Dagger/0008.png" id="77_63dte"]
@@ -102,7 +101,6 @@
 [ext_resource type="Texture2D" uid="uid://bnnmcdwms1x6k" path="res://Assets/Student/Walk/Right Dagger/frame0002.png" id="82_kr864"]
 [ext_resource type="Texture2D" uid="uid://cpbmj7o45oqbl" path="res://Assets/Student/Walk/Right Dagger/frame0003.png" id="83_yooba"]
 [ext_resource type="Texture2D" uid="uid://danw03f426xqj" path="res://Assets/Student/Walk/Right Dagger/frame0004.png" id="84_2cbao"]
-[ext_resource type="Texture2D" uid="uid://behjpcmrs5tey" path="res://Assets/Student/Walk/Right Dagger/frame0005.png" id="85_tex3o"]
 [ext_resource type="Texture2D" uid="uid://clg8wnw4onfqf" path="res://Assets/Student/Walk/Right Dagger/frame0006.png" id="86_egl34"]
 [ext_resource type="Texture2D" uid="uid://b0wuf675hcpce" path="res://Assets/Student/Walk/Right Dagger/frame0007.png" id="87_efy5o"]
 [ext_resource type="Texture2D" uid="uid://cgeh06pqfrbg6" path="res://Assets/Student/Walk/Right Dagger/frame0008.png" id="88_rscyk"]
@@ -113,7 +111,6 @@
 [ext_resource type="Texture2D" uid="uid://b0d8ei71ljqx3" path="res://Assets/Student/Walk/Up Dagger/frame0002.png" id="93_frnst"]
 [ext_resource type="Texture2D" uid="uid://dmkvelbquklke" path="res://Assets/Student/Walk/Up Dagger/frame0003.png" id="94_2vshi"]
 [ext_resource type="Texture2D" uid="uid://bia1q3ondp4ja" path="res://Assets/Student/Walk/Up Dagger/frame0004.png" id="95_e8bbf"]
-[ext_resource type="Texture2D" uid="uid://bclb0nemruw7m" path="res://Assets/Student/Walk/Up Dagger/frame0005.png" id="96_jl8x0"]
 [ext_resource type="Texture2D" uid="uid://dmn25bipsgetm" path="res://Assets/Student/Walk/Up Dagger/frame0006.png" id="97_ebjbr"]
 [ext_resource type="Texture2D" uid="uid://bcnsq6h3fabq3" path="res://Assets/Student/Walk/Up Dagger/frame0007.png" id="98_3vus2"]
 [ext_resource type="Texture2D" uid="uid://c2tdv5g5im33o" path="res://Assets/Student/Walk/Up Dagger/frame0008.png" id="99_8kmww"]
@@ -124,7 +121,6 @@
 [ext_resource type="Texture2D" uid="uid://6qui4akwi7ky" path="res://Assets/Student/Walk/Left/0002.png" id="104_acghe"]
 [ext_resource type="Texture2D" uid="uid://cmw7jdamf5hty" path="res://Assets/Student/Walk/Left/0003.png" id="105_amtr4"]
 [ext_resource type="Texture2D" uid="uid://4nbq2xm7fe86" path="res://Assets/Student/Walk/Left/0004.png" id="106_od3ev"]
-[ext_resource type="Texture2D" uid="uid://b5yw8cvyw1dtd" path="res://Assets/Student/Walk/Left/0005.png" id="107_8jrxs"]
 [ext_resource type="Texture2D" uid="uid://b433hn66ugdls" path="res://Assets/Student/Walk/Left/0006.png" id="108_idmbr"]
 [ext_resource type="Texture2D" uid="uid://cahdecyvkme25" path="res://Assets/Student/Walk/Left/0007.png" id="109_cawqe"]
 [ext_resource type="Texture2D" uid="uid://byjv2rfxsqx8d" path="res://Assets/Student/Walk/Left/0008.png" id="110_tjkmw"]
@@ -135,7 +131,6 @@
 [ext_resource type="Texture2D" uid="uid://cjiw1hhrd6602" path="res://Assets/Student/Walk/Right/0002.png" id="115_icdsb"]
 [ext_resource type="Texture2D" uid="uid://crvg3eho3pbl3" path="res://Assets/Student/Walk/Right/0003.png" id="116_lw2ou"]
 [ext_resource type="Texture2D" uid="uid://bm5524lnhh1om" path="res://Assets/Student/Walk/Right/0004.png" id="117_e8jwf"]
-[ext_resource type="Texture2D" uid="uid://b8n5jwx7c0nn" path="res://Assets/Student/Walk/Right/0005.png" id="118_pf6jm"]
 [ext_resource type="Texture2D" uid="uid://7jprmgc444cg" path="res://Assets/Student/Walk/Right/0006.png" id="119_8g07q"]
 [ext_resource type="Texture2D" uid="uid://xu3f2uu6ic4q" path="res://Assets/Student/Walk/Right/0007.png" id="120_gqgq1"]
 [ext_resource type="Texture2D" uid="uid://cjrs4pdidobv5" path="res://Assets/Student/Walk/Right/0008.png" id="121_mmfqm"]
@@ -146,12 +141,13 @@
 [ext_resource type="Texture2D" uid="uid://dd5wjga0t1g61" path="res://Assets/Student/Walk/Up/0002.png" id="126_n8n2g"]
 [ext_resource type="Texture2D" uid="uid://didbym7qgeydd" path="res://Assets/Student/Walk/Up/0003.png" id="127_djnml"]
 [ext_resource type="Texture2D" uid="uid://bbpmkos1bs4mv" path="res://Assets/Student/Walk/Up/0004.png" id="128_3fwut"]
-[ext_resource type="Texture2D" uid="uid://cam1ayxwmnjsq" path="res://Assets/Student/Walk/Up/0005.png" id="129_jitqj"]
 [ext_resource type="Texture2D" uid="uid://dhlwwohdeacwh" path="res://Assets/Student/Walk/Up/0006.png" id="130_scjah"]
 [ext_resource type="Texture2D" uid="uid://ly3lyhtn16sf" path="res://Assets/Student/Walk/Up/0007.png" id="131_i813t"]
 [ext_resource type="Texture2D" uid="uid://c7n3e016pp5fx" path="res://Assets/Student/Walk/Up/0008.png" id="132_2veuo"]
 [ext_resource type="Texture2D" uid="uid://bigo7yb3jjxtx" path="res://Assets/Student/Walk/Up/0009.png" id="133_tcnfb"]
 [ext_resource type="Texture2D" uid="uid://crj06mj47acem" path="res://Assets/Student/Walk/Up/0010.png" id="134_heih0"]
+[ext_resource type="AudioStream" uid="uid://dogfe5isrx6u6" path="res://Assets/Sounds/AttackSound.ogg" id="154_4mvhf"]
+[ext_resource type="AudioStream" uid="uid://cuo1v30rot222" path="res://Assets/Sounds/Student/StepSound.ogg" id="155_j8ien"]
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="166_qqhww"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hdxfm"]
@@ -602,9 +598,6 @@ animations = [{
 "texture": ExtResource("73_5l3xl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("74_me43d")
-}, {
-"duration": 1.0,
 "texture": ExtResource("75_q3lx4")
 }, {
 "duration": 1.0,
@@ -638,9 +631,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("84_2cbao")
-}, {
-"duration": 1.0,
-"texture": ExtResource("85_tex3o")
 }, {
 "duration": 1.0,
 "texture": ExtResource("86_egl34")
@@ -678,9 +668,6 @@ animations = [{
 "texture": ExtResource("95_e8bbf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("96_jl8x0")
-}, {
-"duration": 1.0,
 "texture": ExtResource("97_ebjbr")
 }, {
 "duration": 1.0,
@@ -714,9 +701,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("106_od3ev")
-}, {
-"duration": 1.0,
-"texture": ExtResource("107_8jrxs")
 }, {
 "duration": 1.0,
 "texture": ExtResource("108_idmbr")
@@ -754,9 +738,6 @@ animations = [{
 "texture": ExtResource("117_e8jwf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("118_pf6jm")
-}, {
-"duration": 1.0,
 "texture": ExtResource("119_8g07q")
 }, {
 "duration": 1.0,
@@ -790,9 +771,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("128_3fwut")
-}, {
-"duration": 1.0,
-"texture": ExtResource("129_jitqj")
 }, {
 "duration": 1.0,
 "texture": ExtResource("130_scjah")
@@ -1374,6 +1352,7 @@ blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_xr4ud")
 blend_point_3/pos = Vector2(0, 1)
 blend_mode = 1
+sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_33rc2"]
 animation = &"Walk Up"
@@ -1492,7 +1471,7 @@ collision_mask = 20
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_teq0n")
-animation = &"Idle Up"
+animation = &"Walk Knife Up"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1519,4 +1498,15 @@ position = Vector2(-5.72205e-06, 3)
 scale = Vector2(0.775, 0.775)
 color = Color(0.940371, 0.870002, 0.737402, 1)
 energy = 3.0
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_e2f0o")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("154_4mvhf")
+volume_db = -10.0
+bus = &"FXNoReverb"
+
+[node name="StepSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("155_j8ien")
+volume_db = 2.0
+parameters/looping = true

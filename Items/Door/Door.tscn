@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bod7jgxpa8fed"]
+
+[ext_resource type="Texture2D" uid="uid://bfitjcy3b6ohd" path="res://Assets/Items/Stairs/Up.png" id="1_fnujl"]
+[ext_resource type="Script" uid="uid://uk4afpexxsvc" path="res://Items/Door/Scripts/Door.gd" id="1_sl0wq"]
+[ext_resource type="Texture2D" uid="uid://b46hgj1mev3y0" path="res://Assets/Items/Stairs/Door.png" id="2_1065n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_imfhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1065n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_fnujl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
+size = Vector2(112, 120)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_sl0wq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 4)
+sprite_frames = SubResource("SpriteFrames_imfhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_fnujl")

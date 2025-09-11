@@ -2,19 +2,29 @@ extends RigidBody2D
 
 var facing = Vector2(0,-1)
 var launch_velocity = facing
+var countdown = 2.5
 @onready var anim_player = $AnimationPlayer
 @onready var fx_player = $FXPlayer
 @onready var hitbox = $CollisionShape2D
 @onready var launch_sprite = $"Launch Effect"
 @onready var outline_sprite = $"Launch Effect/Launch Effect Outline"
+@onready var deathlight = $DeathLight
 @onready var _light = load("res://Characters/Crow/Projectile/CrowProjectileLight.tscn")
 
-func _on_body_entered(body):
-	if (body != get_parent()):
-		queue_free()
+var cutscene_timer = 0.0
+var death_cutscene_duration = 0.33
+var dead = false
+
+func death():
+	dead = true
+	$AnimatedSprite2D.visible = false
+	$"Launch Effect".visible = false
+	deathlight.visible = true
+	hitbox.set_deferred("disabled", true)
+func _on_body_entered(_body):
+	death()
 	
 func _ready():
-	launch_sprite.modulate = Color(0.6, 0.0, 0.85, 1)
 	outline_sprite.modulate = Color(0,0,0)
 	contact_monitor = true
 	max_contacts_reported = 1
@@ -45,11 +55,20 @@ func get_animation_name(direction):
 			return "Up"
 		else:
 			return "Down"
-			
+
+func play_death_cutscene(delta):
+		deathlight.modulate = Color(1,0,0,)
+		cutscene_timer += delta
+		var cutscene_percent = cutscene_timer/death_cutscene_duration
+		deathlight.energy = 1.0/cutscene_percent
+		if cutscene_timer >= death_cutscene_duration:
+			queue_free()
+
 func launch(direction):
 	var animation_name = get_animation_name(direction)
 	var cardinal_direction = name_to_vector(animation_name)
 	var light = _light.instantiate()
+	light.energy = 0.5
 	add_child(light)
 	anim_player.play(animation_name)
 	fx_player.play(animation_name)
@@ -75,4 +94,10 @@ func launch(direction):
 	launch_velocity = cardinal_direction * 350
 
 func _physics_process(_delta):
-	global_position += launch_velocity*_delta
+	countdown -= _delta
+	if countdown <= 0.0:
+		death()
+	if dead:
+		play_death_cutscene(_delta)
+	else:
+		global_position += launch_velocity*_delta

@@ -244,3 +244,6 @@ z_index = -1
 position = Vector2(18.5, 36)
 scale = Vector2(1.57812, 0.625)
 texture = SubResource("GradientTexture2D_oor3y")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+bus = &"FXNoReverb"

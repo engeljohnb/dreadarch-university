@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-signal dead()
+signal died()
 signal lost_life(damage)
 signal gained_life(life)
 @onready var anim_tree = $AnimationTree
 @onready var anim_player = $AnimationPlayer
 @onready var hitbox = $Hitbox
 @onready var blinker = $Blinker
+@onready var light = $PointLight2D
+@onready var attack_sound = $AttackSound
 
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
@@ -14,6 +16,7 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 300.0
 
+var dead = false
 var in_cutscene = false
 var current_cutscene = null
 var cutscene_timer = 0.0
@@ -29,9 +32,28 @@ var moving = false
 var knife_equipped = true
 var attacking = false
 var won = false
-
+# For counting frames to know when to play the step sound
 var direction_priority
 
+func direction_just_released():
+	return (Input.is_action_just_released("Left")
+		or Input.is_action_just_released("Right")
+		or Input.is_action_just_released("Up")
+		or Input.is_action_just_released("Down"))
+		
+func direction_just_pressed():
+	return (Input.is_action_just_pressed("Left")
+		or Input.is_action_just_pressed("Right")
+		or Input.is_action_just_pressed("Up")
+		or Input.is_action_just_pressed("Down"))
+		
+func direction_held():
+	return (Input.is_action_pressed("Left")
+	or Input.is_action_pressed("Right")
+	or Input.is_action_pressed("Up")
+	or Input.is_action_pressed("Down"))
+	
+	
 func play_victory_cutscene(delta):
 	won = true
 	in_cutscene = true
@@ -62,12 +84,8 @@ func update_direction():
 		if Input.is_action_just_pressed("Down"):
 			direction_priority = "Down"
 			direction_changed = true
-		if (Input.is_action_just_released("Left")
-		or Input.is_action_just_released("Right")
-		or Input.is_action_just_released("Up")
-		or Input.is_action_just_released("Down")):
+		if direction_just_released():
 			direction_changed = true
-		
 	var movement_direction = Vector2()
 	if Input.is_action_pressed("Left"):
 		if direction_priority == "Left":
@@ -98,7 +116,6 @@ func update_direction():
 	else:
 		moving = true
 		facing = movement_direction
-	prev_facing = facing
 		
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
@@ -114,6 +131,7 @@ func update_attack_state():
 		attacking = false
 		return
 	if Input.is_action_just_pressed("Attack") and (not attacking):
+		attack_sound.play()
 		attacking = true
 		attack_fx = _attack_fx.instantiate()
 		attack_fx.change_direction(facing)
@@ -128,12 +146,19 @@ func reset_attack_state():
 func update_position(delta):
 	if attacking:
 		return
+	if direction_held():
+		if not $StepSound.playing:
+			$StepSound.play()
+	else:
+		$StepSound.stop()
 	if moving:
 		position += SPEED * facing * delta
-		move_and_slide()
+	move_and_slide()
+	#print(Input.is_action_pressed("Left"), Input.is_action_pressed("Right"), direction_held())
 	
 func death():
-	dead.emit()
+	dead = true
+	died.emit()
 	
 func on_hit(_body):
 	# Check for i-frames
@@ -146,7 +171,7 @@ func on_hit(_body):
 	
 func on_blinker_flip(state):
 	if state:
-		set_modulate(Color(1.4, 1.4, 1.4))
+		set_modulate(Color(1.6, 1.6, 1.6))
 	else:
 		set_modulate(Color(1,1,1))
 
@@ -168,6 +193,7 @@ func _process(delta):
 		update_attack_state()
 		update_position(delta)
 		update_animation_blend_positions()
+		prev_facing = facing
 	else:
 		if current_cutscene:
 			current_cutscene.call(delta)

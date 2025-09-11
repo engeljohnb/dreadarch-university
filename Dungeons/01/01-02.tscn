@@ -1,0 +1,340 @@
+[gd_scene load_steps=40 format=4 uid="uid://cb1cgciev2wbo"]
+
+[ext_resource type="Script" uid="uid://bph43j7r35hpo" path="res://Dungeons/01/Scripts/01-02.gd" id="1_favaq"]
+[ext_resource type="PackedScene" uid="uid://dtdx4k7brygo3" path="res://Tiles/DungeonBuildingTiles.tscn" id="1_lxfan"]
+[ext_resource type="PackedScene" uid="uid://e0pns0rnrf62" path="res://Tiles/DungeonGroundTiles.tscn" id="2_oro4g"]
+[ext_resource type="PackedScene" uid="uid://bod7jgxpa8fed" path="res://Items/Door/Door.tscn" id="3_oro4g"]
+[ext_resource type="Script" uid="uid://lnv0ayrafonh" path="res://Characters/Slack/Scripts/Slack.gd" id="4_2ojm8"]
+[ext_resource type="Texture2D" uid="uid://bbjkavlt3tv47" path="res://Assets/Badguys/Slack/0000.png" id="5_n5xgt"]
+[ext_resource type="Texture2D" uid="uid://b4480pyuhdsjs" path="res://Assets/Badguys/Slack/0001.png" id="6_favaq"]
+[ext_resource type="Texture2D" uid="uid://b1f2oknd02ynw" path="res://Assets/Badguys/Slack/0002.png" id="7_jau7m"]
+[ext_resource type="Texture2D" uid="uid://byv2lcya0hwx4" path="res://Assets/Badguys/Slack/0003.png" id="8_h2abj"]
+[ext_resource type="Texture2D" uid="uid://taadngdjfra" path="res://Assets/Badguys/Slack/0004.png" id="9_yno7r"]
+[ext_resource type="Texture2D" uid="uid://83k616ojx8p7" path="res://Assets/Badguys/Slack/0005.png" id="10_6djxx"]
+[ext_resource type="Texture2D" uid="uid://6wmw4uuokqcd" path="res://Assets/Badguys/Slack/0006.png" id="11_q38bf"]
+[ext_resource type="Texture2D" uid="uid://eya7w0sm5xjh" path="res://Assets/Badguys/Slack/0007.png" id="12_m3h0q"]
+[ext_resource type="Texture2D" uid="uid://cyetxnp15xxtn" path="res://Assets/Badguys/Slack/0008.png" id="13_3y0ym"]
+[ext_resource type="Texture2D" uid="uid://bxyoygff73ocm" path="res://Assets/Badguys/Slack/0009.png" id="14_mpdqh"]
+[ext_resource type="Texture2D" uid="uid://byfsjx6v6rha3" path="res://Assets/Badguys/Slack/0010.png" id="15_rwuyw"]
+[ext_resource type="Texture2D" uid="uid://cnfy17knie20j" path="res://Assets/Badguys/Slack/0011.png" id="16_48415"]
+[ext_resource type="Texture2D" uid="uid://2xtjdpfv47vq" path="res://Assets/Badguys/Slack/0012.png" id="17_jrrsf"]
+[ext_resource type="Texture2D" uid="uid://dan0ok74ywj0m" path="res://Assets/Badguys/Slack/0013.png" id="18_xf6oa"]
+[ext_resource type="Texture2D" uid="uid://bq6sqtsn0y4i" path="res://Assets/Badguys/Slack/0014.png" id="19_bqi03"]
+[ext_resource type="Texture2D" uid="uid://b26qkj6laxx23" path="res://Assets/Badguys/Slack/0015.png" id="20_i0qon"]
+[ext_resource type="Texture2D" uid="uid://w8w1rsqnu65p" path="res://Assets/Badguys/Slack/0016.png" id="21_ghj2s"]
+[ext_resource type="Script" uid="uid://26xt3lsefn0n" path="res://Characters/Slack/Scripts/SearchArea.gd" id="22_qv38u"]
+[ext_resource type="Script" uid="uid://tobitg2nf2yn" path="res://Utils/hitbox.gd" id="23_qb61a"]
+[ext_resource type="PackedScene" uid="uid://bbirthebgbru2" path="res://Characters/Crow/Crow.tscn" id="24_n5xgt"]
+[ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="25_jau7m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yhojs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_n5xgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_favaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jau7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h2abj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yno7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6djxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_q38bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m3h0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3y0ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mpdqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rwuyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_48415")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_jrrsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xf6oa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_bqi03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_i0qon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ghj2s")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b750k"]
+radius = 8.0
+height = 80.0
+
+[sub_resource type="Animation" id="Animation_bv7yh"]
+resource_name = "Attack"
+length = 1.00001
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Attack", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_projectile"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_b750k"]
+resource_name = "Idle"
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b750k"]
+_data = {
+&"Attack": SubResource("Animation_bv7yh"),
+&"Idle": SubResource("Animation_b750k")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b750k"]
+radius = 384.0
+
+[sub_resource type="Gradient" id="Gradient_nocy6"]
+offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
+colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b750k"]
+gradient = SubResource("Gradient_nocy6")
+fill = 1
+fill_from = Vector2(0.491453, 0.487179)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ve43x"]
+radius = 44.75
+
+[sub_resource type="Gradient" id="Gradient_ve43x"]
+colors = PackedColorArray(0.962217, 0.962217, 0.962217, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nocy6"]
+gradient = SubResource("Gradient_ve43x")
+fill = 1
+fill_from = Vector2(0.495726, 0.491453)
+fill_to = Vector2(0.632479, 0.705128)
+
+[sub_resource type="Gradient" id="Gradient_6fv88"]
+offsets = PackedFloat32Array(0.401294, 0.601942)
+colors = PackedColorArray(0, 0, 0, 0.724, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oor3y"]
+gradient = SubResource("Gradient_6fv88")
+fill = 1
+fill_from = Vector2(0.393162, 0.512821)
+fill_to = Vector2(0.965812, 0.034188)
+
+[node name="01-02" type="Node2D"]
+modulate = Color(0.592157, 0.592157, 0.592157, 1)
+script = ExtResource("1_favaq")
+
+[node name="BuildingTiles" parent="." instance=ExtResource("1_lxfan")]
+tile_map_data = PackedByteArray("AAAAAP//AAAFAAoAAAABAP//AAAHAAgAAQACAP//AAAHAAgAAQADAP//AAAHAAgAAQAEAP//AAAHAAgAAQAFAP//AAAHAAgAAQAGAP//AAAFAAoAAAAHAP//AAAHAAgAAQAJAP//AAAHAAgAAQAKAP//AAAHAAgAAQALAP//AAAHAAgAAQAMAP//AAAFAAoAAAANAP//AAAHAAgAAQAOAP//AAAHAAgAAQAPAP//AAAHAAgAAQAQAP//AAAHAAgAAQARAP//AAAHAAgAAQAAAP3/AAAFAAgAAAAAAP7/AAAFAAkAAAAGAP3/AAAFAAgAAAAGAP7/AAAFAAkAAAAMAP3/AAAFAAgAAAAMAP7/AAAFAAkAAAABAP3/AAAHAAYAAAABAP7/AAAHAAcAAAACAP7/AAAHAAcAAAADAP7/AAAHAAcAAAAEAP7/AAAHAAcAAAAFAP7/AAAHAAcAAAAFAP3/AAAHAAYAAAAEAP3/AAAHAAYAAAADAP3/AAAHAAYAAAACAP3/AAAHAAYAAAAHAP3/AAAHAAYAAAAHAP7/AAAHAAcAAAAJAP3/AAAHAAYAAAAJAP7/AAAHAAcAAAAKAP3/AAAHAAYAAAAKAP7/AAAHAAcAAAALAP3/AAAHAAYAAAALAP7/AAAHAAcAAAANAP3/AAAHAAYAAAANAP7/AAAHAAcAAAAOAP3/AAAHAAYAAAAOAP7/AAAHAAcAAAAPAP3/AAAHAAYAAAAPAP7/AAAHAAcAAAAQAP3/AAAHAAYAAAAQAP7/AAAHAAcAAAARAP3/AAAHAAYAAAARAP7/AAAHAAcAAAAAAPz/AAABAAAAAAABAPz/AAABAAAAAAACAPz/AAABAAAAAAADAPz/AAABAAAAAAAEAPz/AAABAAAAAAAFAPz/AAABAAAAAAAGAPz/AAABAAAAAAAHAPz/AAABAAAAAAAJAPz/AAABAAAAAAAKAPz/AAABAAAAAAALAPz/AAABAAAAAAAMAPz/AAABAAAAAAANAPz/AAABAAAAAAAOAPz/AAABAAAAAAAPAPz/AAABAAAAAAAQAPz/AAABAAAAAAARAPz/AAABAAAAAAD///z/AAAAAAIABQD///3/AAACAAIABQD///7/AAACAAIABQD/////AAACAAIABQD//wAAAAACAAIABQD//wEAAAACAAIABQD//wIAAAACAAIABQD//wMAAAACAAIABQD//wQAAAACAAIABQD//wUAAAACAAIABQD//wYAAAACAAIABQD//wcAAAACAAIABQD//wgAAAACAAIABQD//wkAAAACAAIABQD//woAAAACAAIABQD//wsAAAACAAIABQD//w0AAAACAAMAAQD//wwAAAACAAIAAQAAAA0AAAABAAAABwABAA0AAAABAAAABwACAA0AAAABAAAABwADAA0AAAABAAAABwAEAA0AAAABAAAABwAFAA0AAAABAAAABwAGAA0AAAABAAAABwAHAA0AAAABAAAABwAIAA0AAAABAAAABwAJAA0AAAABAAAABwAKAA0AAAABAAAABwALAA0AAAABAAAABwAMAA0AAAABAAAABwANAA0AAAABAAAABwAOAA0AAAABAAAABwAPAA0AAAABAAAABwAQAA0AAAABAAAABwARAA0AAAABAAAABwASAA0AAAADAAMABQASAAwAAAACAAIABQASAAsAAAACAAIABQASAAoAAAACAAIABQASAAkAAAACAAIABQASAAgAAAACAAIABQASAAcAAAACAAIABQASAAYAAAACAAIABQASAAUAAAACAAIABQASAAQAAAACAAIABQASAAEAAAACAAIABQASAAAAAAACAAIABQASAP//AAACAAIABQASAP7/AAACAAIABQASAP3/AAACAAIABQASAPz/AAAAAAIAAQAIAP3/AAAHAAYAAAAIAPz/AAABAAAAAAAIAP7/AAAHAAcAAAAIAP//AAAHAAgAAQASAAMAAAACAAIABQASAAIAAAACAAIABQA=")
+
+[node name="GroundTiles" parent="." instance=ExtResource("2_oro4g")]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAABAAAAAAABAAAAAAABAAEAAAABAAEAAAACAAAAAAAFAAEAAAACAAEAAAAFAAEAAAACAAIAAAAEAAEAAAABAAIAAAAFAAEAAAAAAAIAAAAFAAEAAAADAAAAAAAAAAAAAAADAAEAAAAAAAEAAAADAAIAAAAFAAEAAAAEAAAAAAABAAAAAAAEAAEAAAABAAEAAAAEAAIAAAAFAAEAAAAFAAAAAAAFAAEAAAAFAAEAAAAFAAEAAAAFAAIAAAAEAAEAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAEAAAAGAAIAAAAFAAEAAAAHAAAAAAABAAAAAAAHAAEAAAABAAEAAAAHAAIAAAAFAAEAAAAIAAAAAAAFAAEAAAAIAAEAAAAFAAEAAAAIAAIAAAAEAAEAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAEAAAAJAAIAAAAFAAEAAAAKAAAAAAABAAAAAAAKAAEAAAABAAEAAAAKAAIAAAAFAAEAAAALAAAAAAAFAAEAAAALAAEAAAAFAAEAAAALAAIAAAAEAAEAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAEAAAAMAAIAAAAFAAEAAAANAAAAAAABAAAAAAANAAEAAAABAAEAAAANAAIAAAAFAAEAAAAOAAAAAAAFAAEAAAAOAAEAAAAFAAEAAAAOAAIAAAAEAAEAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAEAAAAPAAIAAAAFAAEAAAAQAAAAAAABAAAAAAAQAAEAAAABAAEAAAAQAAIAAAAFAAEAAAARAAAAAAAFAAEAAAARAAEAAAAFAAEAAAARAAIAAAAEAAEAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAUAAAAEAAMAAAABAAMAAAABAAAAAAABAAQAAAABAAEAAAABAAUAAAAEAAMAAAACAAMAAAAFAAEAAAACAAQAAAAFAAEAAAACAAUAAAABAAMAAAADAAMAAAAAAAAAAAADAAQAAAAAAAEAAAADAAUAAAAEAAMAAAAEAAMAAAABAAAAAAAEAAQAAAABAAEAAAAEAAUAAAAEAAMAAAAFAAMAAAAFAAEAAAAFAAQAAAAFAAEAAAAFAAUAAAABAAMAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAEAAAAGAAUAAAAEAAMAAAAHAAMAAAABAAAAAAAHAAQAAAABAAEAAAAHAAUAAAAEAAMAAAAIAAMAAAAFAAEAAAAIAAQAAAAFAAEAAAAIAAUAAAABAAMAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAEAAAAJAAUAAAAEAAMAAAAKAAMAAAABAAAAAAAKAAQAAAABAAEAAAAKAAUAAAAEAAMAAAALAAMAAAAFAAEAAAALAAQAAAAFAAEAAAALAAUAAAABAAMAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAEAAAAMAAUAAAAEAAMAAAANAAMAAAABAAAAAAANAAQAAAABAAEAAAANAAUAAAAEAAMAAAAOAAMAAAAFAAEAAAAOAAQAAAAFAAEAAAAOAAUAAAABAAMAAAAPAAMAAAAAAAAAAAAPAAQAAAAAAAEAAAAPAAUAAAAEAAMAAAAQAAMAAAABAAAAAAAQAAQAAAABAAEAAAAQAAUAAAAEAAMAAAARAAMAAAAFAAEAAAARAAQAAAAFAAEAAAARAAUAAAAEAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAEAAAABAAoAAAABAAAAAAABAAsAAAABAAEAAAAAAAwAAAAFAAEAAAABAAwAAAAFAAEAAAACAAoAAAAFAAEAAAACAAsAAAAFAAEAAAACAAwAAAAEAAEAAAADAAoAAAAAAAAAAAADAAsAAAAAAAEAAAADAAwAAAAFAAEAAAAEAAoAAAABAAAAAAAEAAsAAAABAAEAAAAEAAwAAAAFAAEAAAAFAAoAAAAFAAEAAAAFAAsAAAAFAAEAAAAFAAwAAAAEAAEAAAAGAAoAAAAAAAAAAAAGAAsAAAAAAAEAAAAGAAwAAAAFAAEAAAAHAAoAAAABAAAAAAAHAAsAAAABAAEAAAAHAAwAAAAFAAEAAAAIAAoAAAAFAAEAAAAIAAsAAAAFAAEAAAAIAAwAAAAEAAEAAAAJAAoAAAAAAAAAAAAJAAsAAAAAAAEAAAAJAAwAAAAFAAEAAAAKAAoAAAABAAAAAAAKAAsAAAABAAEAAAAKAAwAAAAFAAEAAAALAAoAAAAFAAEAAAALAAsAAAAFAAEAAAALAAwAAAAEAAEAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAEAAAAMAAwAAAAFAAEAAAANAAoAAAABAAAAAAANAAsAAAABAAEAAAANAAwAAAAFAAEAAAAOAAoAAAAFAAEAAAAOAAsAAAAFAAEAAAAOAAwAAAAEAAEAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAEAAAAPAAwAAAAFAAEAAAAQAAoAAAABAAAAAAAQAAsAAAABAAEAAAAQAAwAAAAFAAEAAAARAAoAAAAFAAEAAAARAAsAAAAFAAEAAAARAAwAAAAEAAEAAAAAAAkAAAAEAAIAAAABAAkAAAAEAAIAAAACAAkAAAABAAIAAAADAAkAAAAEAAIAAAAEAAkAAAAEAAIAAAAFAAkAAAABAAIAAAAGAAkAAAAEAAIAAAAHAAkAAAAEAAIAAAAIAAkAAAABAAIAAAAJAAkAAAAEAAIAAAAKAAkAAAAEAAIAAAALAAkAAAABAAIAAAAMAAkAAAAEAAIAAAANAAkAAAAEAAIAAAAOAAkAAAABAAIAAAAPAAkAAAAEAAIAAAAQAAkAAAAEAAIAAAARAAkAAAAEAAEAAAARAAYAAAACAAUAAAARAAcAAAACAAUAAAARAAgAAAACAAUAAAA=")
+
+[node name="Door" parent="." instance=ExtResource("3_oro4g")]
+position = Vector2(192, -67.945)
+
+[node name="Slack" type="CharacterBody2D" parent="." groups=["Enemies"]]
+modulate = Color(1.3, 1.3, 1.3, 1)
+position = Vector2(672, 648)
+collision_layer = 8
+collision_mask = 12
+script = ExtResource("4_2ojm8")
+direction = "Right"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Slack"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yhojs")
+animation = &"Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack"]
+shape = SubResource("CapsuleShape2D_b750k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Slack"]
+libraries = {
+&"": SubResource("AnimationLibrary_b750k")
+}
+
+[node name="SearchArea" type="Area2D" parent="Slack"]
+position = Vector2(200, -408)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("22_qv38u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack/SearchArea"]
+position = Vector2(-224, 0)
+shape = SubResource("CircleShape2D_b750k")
+
+[node name="DeathLight" type="PointLight2D" parent="Slack"]
+position = Vector2(-7, -7)
+scale = Vector2(2.389, 2.372)
+color = Color(0.14902, 0.137255, 0.156863, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_b750k")
+
+[node name="Hitbox" type="Area2D" parent="Slack"]
+z_index = 1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("23_qb61a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack/Hitbox"]
+position = Vector2(0, 8)
+rotation = 0.654498
+shape = SubResource("CircleShape2D_ve43x")
+
+[node name="PointLight2D" type="PointLight2D" parent="Slack"]
+position = Vector2(9.09495e-13, -24)
+scale = Vector2(5.125, 5.125)
+color = Color(0.996078, 0.839216, 0.819608, 1)
+texture = SubResource("GradientTexture2D_nocy6")
+
+[node name="StupidShadow" type="Sprite2D" parent="Slack"]
+z_index = -1
+position = Vector2(18.5, 36)
+scale = Vector2(1.57812, 0.625)
+texture = SubResource("GradientTexture2D_oor3y")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Slack"]
+stream = ExtResource("25_jau7m")
+
+[node name="Slack2" type="CharacterBody2D" parent="." groups=["Enemies"]]
+modulate = Color(1.3, 1.3, 1.3, 1)
+position = Vector2(304, 648)
+collision_layer = 8
+collision_mask = 12
+script = ExtResource("4_2ojm8")
+direction = "Right"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Slack2"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yhojs")
+animation = &"Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack2"]
+shape = SubResource("CapsuleShape2D_b750k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Slack2"]
+libraries = {
+&"": SubResource("AnimationLibrary_b750k")
+}
+
+[node name="SearchArea" type="Area2D" parent="Slack2"]
+position = Vector2(576, -224)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("22_qv38u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack2/SearchArea"]
+position = Vector2(-80, 64)
+shape = SubResource("CircleShape2D_b750k")
+
+[node name="DeathLight" type="PointLight2D" parent="Slack2"]
+position = Vector2(-7, -7)
+scale = Vector2(2.389, 2.372)
+color = Color(0.14902, 0.137255, 0.156863, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_b750k")
+
+[node name="Hitbox" type="Area2D" parent="Slack2"]
+z_index = 1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("23_qb61a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack2/Hitbox"]
+position = Vector2(0, 8)
+rotation = 0.654498
+shape = SubResource("CircleShape2D_ve43x")
+
+[node name="PointLight2D" type="PointLight2D" parent="Slack2"]
+position = Vector2(9.09495e-13, -24)
+scale = Vector2(5.125, 5.125)
+color = Color(0.996078, 0.839216, 0.819608, 1)
+texture = SubResource("GradientTexture2D_nocy6")
+
+[node name="StupidShadow" type="Sprite2D" parent="Slack2"]
+z_index = -1
+position = Vector2(18.5, 36)
+scale = Vector2(1.57812, 0.625)
+texture = SubResource("GradientTexture2D_oor3y")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Slack2"]
+stream = ExtResource("25_jau7m")
+pitch_scale = 2.5
+
+[node name="Crow" parent="." instance=ExtResource("24_n5xgt")]
+position = Vector2(680, 8)

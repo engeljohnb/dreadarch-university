@@ -20,7 +20,7 @@ var attacking = false
 var aggrod = false
 var moving = false
 var _projectile = load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
-var life = 5
+var life = 3
 var in_cutscene = false
 var current_cutscene = null
 var cutscene_timer = 0.0
@@ -53,6 +53,7 @@ func play_death_cutscene(delta = 0.0):
 	current_cutscene = play_death_cutscene
 	var deathlight = $DeathLight
 	if (delta == 0.0):
+		$DeathSound.play()
 		$CollisionShape2D.set_deferred("disabled", true)
 		if (get_node_or_null("AnimationPlayer")):
 			animation_player.queue_free()
@@ -75,14 +76,17 @@ func death():
 
 func on_blinker_flip(state):
 	if state:
-		set_modulate(Color(1.4, 1.4, 1.4))
+		set_modulate(Color(1.6, 1.6, 1.6))
 	else:
 		set_modulate(Color(1,1,1))
 
 func on_hit(_body):
 	if (not blinker.blinking):
-		knockback_direction = (_body.get_parent().global_position - global_position).normalized()
-		knockback_speed = 650
+		if life > 1:
+			$HitSound.play()
+		if _body.get_parent().is_in_group("Player"):
+			knockback_direction = (_body.get_parent().global_position - global_position).normalized()
+			knockback_speed = 650
 		blinker.blink(0.5)
 		life -= 1
 		if life <= 0:
@@ -107,6 +111,7 @@ func _on_player_nearby(_player):
 	if not player:	
 		player = _player
 		play_aggro_cutscene()
+		$AggroSound.play()
 	else:
 		player = _player
 	
@@ -135,7 +140,6 @@ func update_movement(_delta):
 					moving = false
 				else:
 					moving = true
-
 			velocity = new_velocity
 	move_and_slide()
 

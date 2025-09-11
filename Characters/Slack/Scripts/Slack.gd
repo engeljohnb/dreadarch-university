@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var search_area = $SearchArea
 @onready var deathlight = $DeathLight
 @onready var hitbox = $Hitbox
+@onready var death_sound = $DeathSound
 
 var player = null
 var aggrod = false
@@ -16,10 +17,15 @@ var dead = false
 var _weapon = load("res://Characters/Slack/Projectile/SlackProjectile.tscn")
 
 func on_hit(_body):
+	death_sound.play()
+	for weapon in hitbox.ignore:
+		if weapon:
+			weapon.queue_free()
+			weapon.set_deferred("disabled", true)
 	dead = true
 	$AnimatedSprite2D.visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
-	$DeathLight.visible = true
+	deathlight.visible = true
 
 func on_player_nearby(_player):
 	player = _player
@@ -32,10 +38,9 @@ func on_player_went_away():
 	
 func launch_projectile():
 	var projectile = _weapon.instantiate()
-	# Add as sibling instead of child so Crow's movement doesn't
-	# affect the projectile
-	projectile.global_position = position
-	add_sibling(projectile)
+	add_child(projectile)
+	projectile.position = Vector2()
+	projectile.global_position = global_position
 	projectile.launch((player.global_position - global_position).normalized(), player)
 	hitbox.ignore.append(projectile)
 		
@@ -57,7 +62,6 @@ func play_death_cutscene(delta):
 		var cutscene_percent = cutscene_timer/death_cutscene_duration
 		deathlight.energy = 1.0/cutscene_percent
 		if cutscene_timer >= death_cutscene_duration:
-			SceneTransition.win()
 			queue_free()
 
 func _process(_delta):

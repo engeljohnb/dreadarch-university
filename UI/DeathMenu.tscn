@@ -10,7 +10,6 @@
 process_mode = 2
 modulate = Color(0.329412, 0.329412, 0.329412, 1)
 z_index = 4
-z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

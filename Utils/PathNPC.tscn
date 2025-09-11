@@ -5,15 +5,15 @@
 [sub_resource type="Curve2D" id="Curve2D_r6xc6"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1696, 1152, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1688, 1160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 5
+point_count = 3
 
 [node name="PathNPC" type="Path2D"]
+y_sort_enabled = true
 curve = SubResource("Curve2D_r6xc6")
 script = ExtResource("1_rvala")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(1696, 1152)
-rotation = -2.54493
+position = Vector2(1696, 1112)
 rotates = false

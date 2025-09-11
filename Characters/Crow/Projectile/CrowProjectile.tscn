@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ca0orotistvqw"]
+[gd_scene load_steps=43 format=3 uid="uid://ca0orotistvqw"]
 
 [ext_resource type="Script" uid="uid://c7oo7ofgvo6b3" path="res://Characters/Crow/Projectile/CrowProjectile.gd" id="1_c6877"]
 [ext_resource type="Texture2D" uid="uid://b71hrvffjra5u" path="res://Assets/Badguys/Crow/Attack/Projectile/Up/0000.png" id="1_cmyoa"]
@@ -619,6 +619,16 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_txavx"]
+offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
+colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m0ud5"]
+gradient = SubResource("Gradient_txavx")
+fill = 1
+fill_from = Vector2(0.491453, 0.487179)
+fill_to = Vector2(0, 0)
+
 [node name="CrowProjectile" type="RigidBody2D" groups=["Weapons"]]
 collision_layer = 4
 collision_mask = 37
@@ -645,6 +655,7 @@ libraries = {
 }
 
 [node name="Launch Effect" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.41588, 0.387349, 0.498451, 1)
 z_index = 1
 z_as_relative = false
 scale = Vector2(0.220833, 0.220833)
@@ -661,3 +672,13 @@ sprite_frames = SubResource("SpriteFrames_uakoa")
 animation = &"Init"
 frame = 9
 frame_progress = 1.0
+
+[node name="DeathLight" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-7, -7)
+scale = Vector2(2.389, 2.372)
+color = Color(0.14902, 0.137255, 0.156863, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_m0ud5")

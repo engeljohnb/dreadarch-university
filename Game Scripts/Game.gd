@@ -22,10 +22,12 @@ func init_player():
 	player = load("res://Characters/Player/Player.tscn").instantiate()
 	player.lost_life.connect(on_player_lost_life)
 	player.gained_life.connect(on_player_gain_life)
-	player.dead.connect(on_player_dead)
+	player.died.connect(on_player_dead)
 	hud.lifebar.set_life_total(player.total_life, player.life)
 
 func end_gameplay():
+	hud.visible = false
+	$DungeonMusic.stop()
 	player = current_scene.get_node("Player")
 	if (player.get_node_or_null("PlayerAttackFX")):
 		player.get_node("PlayerAttackFX").queue_free()
@@ -52,12 +54,16 @@ func on_scene_changed():
 	current_scene.process_mode = PROCESS_MODE_PAUSABLE
 	if (not player):
 		init_player()
+	player.y_sort_enabled = true
+	player.z_index = 0
 	if player.get_parent():
 		player.reparent(current_scene)
 	else:
 		current_scene.add_child(player)
-	player.global_position = SceneTransition.player_newgame_position
+		$DungeonMusic.play()
+	player.global_position = SceneTransition.player_start_position
 	hud.lifebar.set_life_total(player.total_life, player.life)
+	#add_child.call_deferred(current_scene)
 	add_child(current_scene)
 	get_tree().paused = false
 	pause_menu.visible = false
@@ -72,7 +78,7 @@ func init_wm_settings():
 	var screen_size = DisplayServer.window_get_size()
 	get_window().size = screen_size
 	ProjectSettings.set_setting("display/window/size/mode", DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED)
-	
+
 func _ready():
 	init_wm_settings()
 	ObjectSerializer.register_script("Save", Save)
@@ -112,7 +118,7 @@ func save_game():
 	var game_save_string = DictionarySerializer.serialize_json(_save)
 	var file = FileAccess.open("user://save.da", FileAccess.WRITE)
 	file.store_string(game_save_string)
-
+	
 func load_game():
 	var file = FileAccess.open("user://save.da", FileAccess.READ)
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())

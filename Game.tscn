@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch1hebxpmn75b"]
+[gd_scene load_steps=6 format=3 uid="uid://ch1hebxpmn75b"]
 
 [ext_resource type="Script" uid="uid://5edqqs26rci6" path="res://Game Scripts/Game.gd" id="1_wbfu4"]
 [ext_resource type="PackedScene" uid="uid://bq2lvogek4uis" path="res://UI/Hud.tscn" id="2_xkndl"]
 [ext_resource type="PackedScene" uid="uid://ctcsa2iivywjj" path="res://UI/PauseMenu.tscn" id="3_u44n3"]
 [ext_resource type="AudioStream" uid="uid://cw6stupps6s14" path="res://Assets/Sounds/CloseMenu.mp3" id="4_sb48q"]
+[ext_resource type="AudioStream" uid="uid://d3pins56gufng" path="res://Music/DungeonMusic.ogg" id="5_t88pq"]
 
 [node name="Game" type="Node2D"]
 process_mode = 1
@@ -13,7 +14,6 @@ script = ExtResource("1_wbfu4")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("2_xkndl")]
-z_index = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -24,3 +24,9 @@ grow_vertical = 1
 
 [node name="CloseMenuSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sb48q")
+
+[node name="DungeonMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_t88pq")
+volume_db = -3.0
+parameters/looping = true
