@@ -28,5 +28,5 @@ stream = ExtResource("4_sb48q")
 [node name="DungeonMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_t88pq")
-volume_db = -3.0
+volume_db = -4.0
 parameters/looping = true

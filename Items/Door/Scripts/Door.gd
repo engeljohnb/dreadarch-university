@@ -4,11 +4,14 @@ extends Area2D
 @export var direction : String
 
 var player_entered = false
+var player : CharacterBody2D
 
 func on_body_entered(body):
 	if body.is_in_group("Player"):
-		player_entered = true
-		
+		if not body.in_cutscene:
+			player_entered = true
+			player = body
+			player.play_door_cutscene(0.0, global_position)
 		
 func _ready():
 	match direction:
@@ -21,4 +24,5 @@ func _ready():
 func _process(_delta):
 	if player_entered:
 		# Apparently calling this function right from on_body_entered breaks everything
-		SceneTransition.change_scene(next_scene, next_start_position)
+		if not player.in_cutscene:
+			SceneTransition.change_scene(next_scene, next_start_position, true)

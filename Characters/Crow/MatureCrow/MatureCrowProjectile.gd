@@ -14,6 +14,7 @@ var countdown = 2.5
 var cutscene_timer = 0.0
 var death_cutscene_duration = 0.33
 var dead = false
+var player_position : Vector2
 
 func death():
 	dead = true
@@ -21,9 +22,7 @@ func death():
 	$"Launch Effect".visible = false
 	deathlight.visible = true
 	hitbox.set_deferred("disabled", true)
-	
 func _on_body_entered(_body):
-	$DeathSound.play()
 	death()
 	
 func _ready():
@@ -93,7 +92,9 @@ func launch(direction):
 		position.y -= 20
 		position.x += 10
 		light.position.y += 400
-	launch_velocity = cardinal_direction * 350
+	if (not player_position.is_zero_approx()):
+		light.rotation += cardinal_direction.angle_to(player_position)
+		launch_velocity = global_position.direction_to(player_position) * 350
 
 func _physics_process(_delta):
 	countdown -= _delta

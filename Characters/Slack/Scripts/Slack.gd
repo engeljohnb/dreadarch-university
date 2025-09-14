@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 var player = null
 var aggrod = false
-var time_between_attacks = 1.5
+var time_between_attacks = 1.0
 var attack_timer = 0.0
 var cutscene_timer = 0.0
 var death_cutscene_duration = 0.5

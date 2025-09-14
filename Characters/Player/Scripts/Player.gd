@@ -9,6 +9,7 @@ signal gained_life(life)
 @onready var blinker = $Blinker
 @onready var light = $PointLight2D
 @onready var attack_sound = $AttackSound
+@onready var sprite = $AnimatedSprite2D
 
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
@@ -25,13 +26,14 @@ var life = 3
 var total_life = 3
 var _attack_fx = load("res://Characters/Player/PlayerAttackFX.tscn")
 var attack_fx = null
-var facing = Vector2(0,1)
+var facing : Vector2
 var prev_facing = Vector2(0,1)
 var direction_changed = false
 var moving = false
 var knife_equipped = true
 var attacking = false
 var won = false
+var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "reverse": false, "min_scale": 0.8}
 # For counting frames to know when to play the step sound
 var direction_priority
 
@@ -53,6 +55,47 @@ func direction_held():
 	or Input.is_action_pressed("Up")
 	or Input.is_action_pressed("Down"))
 	
+func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
+	if delta == 0.0:
+		door_cutscene["reverse"] = reverse
+		if reverse:
+			if knife_equipped:
+				sprite.play("Walk Knife Down")
+			else:
+				sprite.play("Walk Down")
+			modulate.a = 0
+		else:
+			sprite.play("Walk Up")
+		door_cutscene["position"] = door_position
+		door_cutscene["player_start_pos"] = global_position
+		in_cutscene = true
+		current_cutscene = play_door_cutscene
+		cutscene_duration = 1.0
+		cutscene_timer = 0.0
+	else:
+		cutscene_timer += delta
+		if door_cutscene["reverse"]:
+			modulate.a = cutscene_timer
+			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y + hitbox.shape.get_rect().size.y+50.0)
+			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
+			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
+		else:
+			scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
+			global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
+			modulate.a = 1.0 - cutscene_timer
+		if cutscene_timer >= cutscene_duration:
+			if door_cutscene["reverse"]:
+				scale = Vector2(1.0,1.0)
+				modulate.a = 1.0
+				if knife_equipped:
+					sprite.play("Idle Knife Down")
+				else:
+					sprite.play("Idle Down")
+				facing = DOWN
+				prev_facing = DOWN
+			in_cutscene = false
+			cutscene_timer = 0.0
+			cutscene_duration = 0.0
 	
 func play_victory_cutscene(delta):
 	won = true
@@ -60,6 +103,7 @@ func play_victory_cutscene(delta):
 	current_cutscene = play_victory_cutscene
 	cutscene_duration = 3.0
 	$AnimatedSprite2D.play("Idle Down")
+	$StepSound.stop()
 	cutscene_timer += delta
 	if cutscene_timer >= cutscene_duration:
 		in_cutscene = false
@@ -108,8 +152,6 @@ func update_direction():
 		else:
 			movement_direction += DOWN
 	movement_direction = movement_direction.normalized()
-
-	
 	if movement_direction.is_zero_approx():
 		moving = false
 		facing = prev_facing

@@ -19,6 +19,7 @@ func _on_body_entered(body):
 	if (body.name != "Slack") and not (body is TileMapLayer):
 		$AnimatedSprite2D.visible = false
 		$CollisionShape2D.set_deferred("disabled", true)
+		$DeathSound.play()
 		deathlight.visible = true
 		dead = true
 	

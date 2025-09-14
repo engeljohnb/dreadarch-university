@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://chv0cq7n5xdoh"]
+[gd_scene load_steps=10 format=3 uid="uid://chv0cq7n5xdoh"]
 
 [ext_resource type="Texture2D" uid="uid://dg2x6mrhrle58" path="res://Assets/Badguys/Slack/Projectile/0000.png" id="1_dexgh"]
 [ext_resource type="Script" uid="uid://iyhanwsy02a2" path="res://Characters/Slack/Projectile/SlackProjectile.gd" id="1_rydyq"]
 [ext_resource type="Texture2D" uid="uid://cf85ldc87jfq5" path="res://Assets/Badguys/Slack/Projectile/0001.png" id="2_rydyq"]
 [ext_resource type="Texture2D" uid="uid://b0m45s1x3p2dm" path="res://Assets/Badguys/Slack/Projectile/0002.png" id="3_0mbej"]
+[ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="5_0mbej"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dexgh"]
 radius = 12.0
@@ -60,3 +61,7 @@ energy = 4.59
 range_layer_min = -3
 range_layer_max = 4
 texture = SubResource("GradientTexture2D_rydyq")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0mbej")
+volume_db = 1.5

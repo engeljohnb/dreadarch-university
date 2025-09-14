@@ -19,11 +19,14 @@ var _save = Save.new()
 var _player = Player.new()
 
 func init_player():
+	if player:
+		player.queue_free()
 	player = load("res://Characters/Player/Player.tscn").instantiate()
 	player.lost_life.connect(on_player_lost_life)
 	player.gained_life.connect(on_player_gain_life)
 	player.died.connect(on_player_dead)
 	hud.lifebar.set_life_total(player.total_life, player.life)
+	hud.visible = true
 
 func end_gameplay():
 	hud.visible = false
@@ -61,12 +64,14 @@ func on_scene_changed():
 	else:
 		current_scene.add_child(player)
 		$DungeonMusic.play()
-	player.global_position = SceneTransition.player_start_position
 	hud.lifebar.set_life_total(player.total_life, player.life)
-	#add_child.call_deferred(current_scene)
 	add_child(current_scene)
 	get_tree().paused = false
 	pause_menu.visible = false
+	player.global_position = SceneTransition.player_start_position
+	if SceneTransition.by_door:
+		player.modulate.a = 0.0
+		player.play_door_cutscene(0.0, SceneTransition.player_start_position, true)
 	
 func open_load_game_menu():
 	load_game()
@@ -103,6 +108,7 @@ func _ready():
 	
 	SceneTransition.scene_changed.connect(on_scene_changed)
 	SceneTransition.won.connect(on_won)
+	
 	get_tree().paused = true
 
 func load_from_file(filename):
@@ -123,8 +129,7 @@ func load_game():
 	var file = FileAccess.open("user://save.da", FileAccess.READ)
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	_player = _save.player
-	if (not player):
-		init_player()
+	init_player()
 	player.life = _player.life
 	player.total_life = _player.total_life
 	player.global_position = _player.position

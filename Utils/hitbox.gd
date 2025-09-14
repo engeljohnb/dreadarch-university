@@ -8,11 +8,12 @@ signal hit(body)
 # creates the weapon.
 var my_weapon = null
 var ignore = []
+@onready var shape = $CollisionShape2D.shape
 
 func on_body_entered(body):
 	if body.is_in_group("Weapons"):
-		if "dead" in body:
-			if body.dead:
+		if "dead" in body.get_parent():
+			if body.get_parent().dead:
 				return
 		if body in ignore:
 			return
