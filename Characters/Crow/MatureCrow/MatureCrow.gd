@@ -6,7 +6,6 @@ extends CharacterBody2D
 @onready var blinker = $Blinker
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
-@onready var nav_agent = $NavigationAgent2D
 const SPEED = 100.0
 
 var entered_scene = true

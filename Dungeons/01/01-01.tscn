@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://chqlh7cudisy4"]
+[gd_scene load_steps=48 format=4 uid="uid://chqlh7cudisy4"]
 
 [ext_resource type="PackedScene" uid="uid://dtdx4k7brygo3" path="res://Tiles/DungeonBuildingTiles.tscn" id="1_fwxwi"]
 [ext_resource type="PackedScene" uid="uid://bbirthebgbru2" path="res://Characters/Crow/Crow.tscn" id="1_h53ss"]
@@ -29,6 +29,8 @@
 [ext_resource type="TileSet" uid="uid://coaprv7phi5iw" path="res://Tiles/DungeonFloorTiles.tres" id="27_q2a5j"]
 [ext_resource type="AudioStream" uid="uid://l6gipho4g8f4" path="res://Assets/Sounds/Slack/AttackSound.ogg" id="28_iew7y"]
 [ext_resource type="PackedScene" uid="uid://cibgspjnabjtf" path="res://Characters/Crow/MatureCrow/MatureCrow.tscn" id="29_ic6wr"]
+[ext_resource type="PackedScene" uid="uid://pnjjhjfeuic8" path="res://Items/Pot/pot.tscn" id="30_iew7y"]
+[ext_resource type="PackedScene" uid="uid://vhduvbq30tpd" path="res://Items/Heart/Heart.tscn" id="31_ttau2"]
 
 [sub_resource type="Curve2D" id="Curve2D_fuk1u"]
 resource_local_to_scene = true
@@ -376,7 +378,7 @@ bus = &"FXNoReverb"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Slack"]
 stream = ExtResource("28_iew7y")
-volume_db = -2.5
+volume_db = 3.5
 bus = &"FXNoReverb"
 
 [node name="Slack2" type="CharacterBody2D" parent="." groups=["Enemies"]]
@@ -447,5 +449,44 @@ bus = &"FXNoReverb"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Slack2"]
 stream = ExtResource("28_iew7y")
-volume_db = -2.5
+volume_db = 3.5
 bus = &"FXNoReverb"
+
+[node name="Pot" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(1312, 520)
+
+[node name="Pot2" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(1376, 520)
+
+[node name="Pot3" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(1440, 520)
+
+[node name="Pot4" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(1504, 520)
+
+[node name="Pot5" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(1824, 528)
+
+[node name="Heart" parent="." instance=ExtResource("31_ttau2")]
+position = Vector2(2272, 736)
+
+[node name="Pot6" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(-1960, -424)
+
+[node name="Pot7" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(-1888, -424)
+
+[node name="Pot8" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(-1816, -424)
+
+[node name="Pot9" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(-1744, -424)
+
+[node name="Pot10" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(-2032, -424)
+
+[node name="Pot11" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(-1696, -304)
+
+[node name="Pot12" parent="." instance=ExtResource("30_iew7y")]
+position = Vector2(-1696, -152)

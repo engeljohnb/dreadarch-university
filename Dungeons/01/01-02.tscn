@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://cb1cgciev2wbo"]
+[gd_scene load_steps=42 format=4 uid="uid://cb1cgciev2wbo"]
 
 [ext_resource type="Script" uid="uid://bph43j7r35hpo" path="res://Dungeons/01/Scripts/01-02.gd" id="1_favaq"]
 [ext_resource type="PackedScene" uid="uid://dtdx4k7brygo3" path="res://Tiles/DungeonBuildingTiles.tscn" id="1_lxfan"]
@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="25_jau7m"]
 [ext_resource type="AudioStream" uid="uid://l6gipho4g8f4" path="res://Assets/Sounds/Slack/AttackSound.ogg" id="26_h2abj"]
 [ext_resource type="PackedScene" uid="uid://cibgspjnabjtf" path="res://Characters/Crow/MatureCrow/MatureCrow.tscn" id="26_jau7m"]
+[ext_resource type="PackedScene" uid="uid://pnjjhjfeuic8" path="res://Items/Pot/pot.tscn" id="28_yno7r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yhojs"]
 animations = [{
@@ -272,11 +273,24 @@ texture = SubResource("GradientTexture2D_oor3y")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Slack2"]
 stream = ExtResource("25_jau7m")
-pitch_scale = 2.5
+volume_db = 2.5
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Slack2"]
 stream = ExtResource("26_h2abj")
+volume_db = 3.5
 bus = &"FXNoReverb"
 
 [node name="Crow" parent="." instance=ExtResource("26_jau7m")]
 position = Vector2(656, 216)
+
+[node name="Pot" parent="." instance=ExtResource("28_yno7r")]
+position = Vector2(48, 776)
+
+[node name="Pot2" parent="." instance=ExtResource("28_yno7r")]
+position = Vector2(120, 776)
+
+[node name="Pot3" parent="." instance=ExtResource("28_yno7r")]
+position = Vector2(192, 776)
+
+[node name="Pot4" parent="." instance=ExtResource("28_yno7r")]
+position = Vector2(264, 776)

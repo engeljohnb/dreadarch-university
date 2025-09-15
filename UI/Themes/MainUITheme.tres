@@ -1,10 +1,11 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bv31ndrorpesn"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bv31ndrorpesn"]
 
 [ext_resource type="Texture2D" uid="uid://cs08el3h671jy" path="res://Assets/UI/LongButton/LongButtonFocused.png" id="1_7yvmn"]
 [ext_resource type="FontFile" uid="uid://bulvrkgvcig85" path="res://Assets/UI/Fonts/days_of_charity/Days of Charity.otf" id="1_oh7n6"]
 [ext_resource type="Texture2D" uid="uid://d1pxm0dknqmre" path="res://Assets/UI/LongButton/SquareButtonHover.png" id="2_jvgvs"]
 [ext_resource type="Texture2D" uid="uid://dfj6n087hm1pb" path="res://Assets/UI/LongButton/ButtonNormal.png" id="3_7yvmn"]
 [ext_resource type="Texture2D" uid="uid://dvj312qe5cnd6" path="res://Assets/UI/Parchment.jpg" id="4_jvgvs"]
+[ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="6_dkc3k"]
 [ext_resource type="FontFile" uid="uid://bbg2g22ht2tgr" path="res://Assets/UI/Fonts/chomsky/Chomsky.otf" id="6_oh7n6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf1sp"]
@@ -32,6 +33,8 @@ texture = ExtResource("4_jvgvs")
 modulate_color = Color(1, 1, 1, 0.5)
 
 [resource]
+default_font = ExtResource("6_dkc3k")
+default_font_size = 10
 Button/colors/font_color = Color(0, 0, 0, 0.5)
 Button/colors/font_focus_color = Color(0, 0, 0, 0.5)
 Button/colors/font_hover_color = Color(0, 0, 0, 0.5)
@@ -44,5 +47,7 @@ Button/styles/normal = SubResource("StyleBoxTexture_pbsus")
 Button/styles/pressed = SubResource("StyleBoxTexture_7w814")
 Panel/styles/panel = SubResource("StyleBoxTexture_7yvmn")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 0.7)
+RichTextLabel/font_sizes/interaction_font_size = 15
 RichTextLabel/font_sizes/normal_font_size = 100
+RichTextLabel/fonts/interaction_font = ExtResource("6_dkc3k")
 RichTextLabel/fonts/normal_font = ExtResource("6_oh7n6")

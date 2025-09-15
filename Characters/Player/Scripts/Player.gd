@@ -158,6 +158,7 @@ func update_direction():
 	else:
 		moving = true
 		facing = movement_direction
+	$InteractionRay.target_position = 45*facing
 		
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)

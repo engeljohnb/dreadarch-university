@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://blyuw6n3krqjj"]
+
+[ext_resource type="Script" uid="uid://xpidvq37sqlv" path="res://UI/Scripts/InteractionMessage.gd" id="1_7q72w"]
+[ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="4_fyktl"]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+light_mask = 8
+visibility_layer = 8
+custom_minimum_size = Vector2(150, 40)
+anchors_preset = -1
+anchor_right = 0.078
+anchor_bottom = 0.037
+offset_right = 0.23999
+offset_bottom = 0.0400009
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("4_fyktl")
+theme_override_font_sizes/normal_font_size = 23
+text = "Z to interact"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_7q72w")

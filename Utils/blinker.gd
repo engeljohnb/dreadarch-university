@@ -11,6 +11,9 @@ var state = false
 func blink(duration):
 	total_duration = duration
 	blinking = true
+	if total_duration == blink_duration:
+		state = (not state)
+		flip.emit(state)
 	
 func _process(delta):
 	if blinking:
