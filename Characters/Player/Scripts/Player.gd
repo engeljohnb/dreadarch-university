@@ -10,12 +10,19 @@ signal gained_life(life)
 @onready var light = $PointLight2D
 @onready var attack_sound = $AttackSound
 @onready var sprite = $AnimatedSprite2D
+@onready var step_sound = $StepSound
+
 
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
 const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 300.0
+
+class Inventory:
+	func new():
+		scroll_fragments = []
+	var scroll_fragments : Array
 
 var dead = false
 var in_cutscene = false
@@ -34,8 +41,10 @@ var knife_equipped = true
 var attacking = false
 var won = false
 var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "reverse": false, "min_scale": 0.8}
+var in_dialogue = false
 # For counting frames to know when to play the step sound
 var direction_priority
+var inventory = Inventory.new()
 
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
@@ -205,6 +214,8 @@ func death():
 	
 func on_hit(_body):
 	# Check for i-frames
+	if in_cutscene:
+		return
 	if not blinker.blinking:
 		life -= 1
 		lost_life.emit(1)
@@ -229,14 +240,15 @@ func gain_life(_life):
 	gained_life.emit(_life)
 	
 func _process(delta):
-	if (not in_cutscene):
-		if Input.is_action_just_pressed("GainLifeCheat"):
-			gain_life(1)
-		update_direction()
-		update_attack_state()
-		update_position(delta)
-		update_animation_blend_positions()
-		prev_facing = facing
-	else:
-		if current_cutscene:
-			current_cutscene.call(delta)
+	if not in_dialogue:
+		if not in_cutscene:
+			if Input.is_action_just_pressed("GainLifeCheat"):
+				gain_life(1)
+			update_direction()
+			update_attack_state()
+			update_position(delta)
+			update_animation_blend_positions()
+			prev_facing = facing
+		else:
+			if current_cutscene:
+				current_cutscene.call(delta)

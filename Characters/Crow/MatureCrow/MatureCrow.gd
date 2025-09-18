@@ -172,7 +172,7 @@ func update_direction():
 	
 func update_attack():
 	if search_ray.is_colliding():
-		if search_ray.get_collider() == player:
+		if (search_ray.get_collider() == player) and (not player.in_dialogue):
 			attacking = true
 
 func _physics_process(_delta):

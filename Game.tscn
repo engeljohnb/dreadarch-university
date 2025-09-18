@@ -1,15 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch1hebxpmn75b"]
+[gd_scene load_steps=7 format=3 uid="uid://ch1hebxpmn75b"]
 
 [ext_resource type="Script" uid="uid://5edqqs26rci6" path="res://Game Scripts/Game.gd" id="1_wbfu4"]
 [ext_resource type="PackedScene" uid="uid://bq2lvogek4uis" path="res://UI/Hud.tscn" id="2_xkndl"]
 [ext_resource type="PackedScene" uid="uid://ctcsa2iivywjj" path="res://UI/PauseMenu.tscn" id="3_u44n3"]
 [ext_resource type="AudioStream" uid="uid://cw6stupps6s14" path="res://Assets/Sounds/CloseMenu.mp3" id="4_sb48q"]
-[ext_resource type="AudioStream" uid="uid://d3pins56gufng" path="res://Music/DungeonMusic.ogg" id="5_t88pq"]
+
+[sub_resource type="Gradient" id="Gradient_t88pq"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r0x5m"]
+gradient = SubResource("Gradient_t88pq")
+width = 100
 
 [node name="Game" type="Node2D"]
 process_mode = 1
 y_sort_enabled = true
 script = ExtResource("1_wbfu4")
+
+[node name="Fade" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 9
+z_as_relative = false
+texture = SubResource("GradientTexture1D_r0x5m")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -22,11 +35,8 @@ grow_vertical = 1
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_u44n3")]
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
 [node name="CloseMenuSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sb48q")
-
-[node name="DungeonMusic" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("5_t88pq")
-volume_db = -4.0
-parameters/looping = true

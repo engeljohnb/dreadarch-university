@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhr21xepcq7b3"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_cppxa"]
+[ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="2_0bqtx"]
+[ext_resource type="Script" uid="uid://6vdlfmuqf2ar" path="res://UI/Scripts/DocumentViewer.gd" id="2_125as"]
+[ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="5_125as"]
+
+[node name="DocumentViewer" type="Control"]
+process_mode = 3
+modulate = Color(0.576471, 0.576471, 0.576471, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cppxa")
+script = ExtResource("2_125as")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.521
+anchor_right = 0.971
+anchor_bottom = 1.021
+offset_left = -0.360001
+offset_top = 0.319946
+offset_right = -1.32019
+offset_bottom = 0.319946
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0bqtx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.072
+anchor_top = 0.128
+anchor_right = 0.947
+anchor_bottom = 0.711
+offset_left = -0.600006
+offset_top = -0.120003
+offset_right = 0.399902
+offset_bottom = 0.0599976
+theme_override_font_sizes/normal_font_size = 78
+
+[node name="Done" type="Button" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.78
+anchor_top = 0.707
+anchor_right = 0.938
+anchor_bottom = 0.857
+offset_top = 0.220001
+offset_right = -0.400024
+offset_bottom = -16.78
+theme_override_font_sizes/font_size = 45
+text = "Done"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_125as")
+autoplay = true

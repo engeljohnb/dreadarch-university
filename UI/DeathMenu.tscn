@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk0pe72fx6mii"]
+[gd_scene load_steps=5 format=3 uid="uid://bk0pe72fx6mii"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_dbqb0"]
 [ext_resource type="Script" uid="uid://b7psfqc2d1p5y" path="res://UI/Scripts/DeathMenu.gd" id="2_1hmi0"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="3_lw4sn"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="4_8ij66"]
-[ext_resource type="AudioStream" uid="uid://bol0dxhtrbn12" path="res://Music/DeathMusic.ogg" id="5_8ij66"]
 
 [node name="DeathMenu" type="Control"]
 process_mode = 2
@@ -101,8 +100,3 @@ color = Color(0.221971, 0.198227, 0.204396, 1)
 [node name="MenuSelectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_8ij66")
 volume_db = 2.0
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_8ij66")
-autoplay = true
-parameters/looping = true

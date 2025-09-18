@@ -69,7 +69,8 @@ func _process(_delta):
 		attack_timer += _delta
 		if attack_timer >= time_between_attacks:
 			attack_timer = 0
-			attack()
+			if (not dead) and (not player.in_dialogue):
+				attack()
 	if dead:
 		play_death_cutscene(_delta)
 		

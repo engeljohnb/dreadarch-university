@@ -2321,7 +2321,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qs3ly"]
-radius = 304.647
+radius = 379.527
 
 [node name="Crow" type="CharacterBody2D" groups=["Enemies"]]
 y_sort_enabled = true

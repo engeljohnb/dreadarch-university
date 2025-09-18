@@ -4,6 +4,7 @@ extends Control
 @onready var loadgame_button = $LoadGame
 @onready var quit_button = $Quit
 @onready var menu_select_sound = $MenuSelectSound
+@export var music = "res://Music/DeathMusic.ogg"
 
 func on_new_game():
 	SceneTransition.change_scene("Dungeons/01/01-01.tscn")

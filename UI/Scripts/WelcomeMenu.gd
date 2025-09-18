@@ -9,6 +9,7 @@ var total_energy = 0.0
 var fade_duration = 0.5
 var fade_timer = 0.0
 var fading = true
+@export var music = "res://Music/IntroMusic.ogg"
 
 func on_new_game():
 	SceneTransition.change_scene("Dungeons/01/01-01.tscn")

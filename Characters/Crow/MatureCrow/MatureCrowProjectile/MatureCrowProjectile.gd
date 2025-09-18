@@ -111,5 +111,5 @@ func _physics_process(_delta):
 		play_death_cutscene(_delta)
 	else:
 		if _player:
-			launch_velocity = 100*global_position.direction_to(_player.global_position)
+			launch_velocity = 140*global_position.direction_to(_player.global_position)
 		global_position += launch_velocity*_delta

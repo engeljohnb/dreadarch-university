@@ -3,7 +3,7 @@ extends Control
 @onready var newgame_button = $NewGame
 @onready var quit_button = $Quit
 @onready var menu_select_sound = $MenuSelectSound
-
+@export var music = "res://Music/DeathMusic.ogg"
 func on_quit():
 	get_tree().quit()
 	
