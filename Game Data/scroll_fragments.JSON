@@ -34,5 +34,20 @@
 		"latin_text" : "Rex senex nunc est, at dum vita eius procedit aetas eius cautionem magis debilit.",
 		"english_text" : "The king is an old man now, and as his life goes on his age further cripples his caution.",
 		"collected" : false
+	},
+	{
+		"latin_text" : "Magister Severus iterum inepte disputavit, confundens animam cum halitu. Heu, miser est verba non idem cogitationem esse, alioqui sit sapientissimus tempi nostri.",
+		"english_text" : "Master Severus again argued ineptly, conflating the spirit with the breath. Alas, it's a pity words are not the same as thoughts, else he would be the wisest of our time.",
+		"collected" : false
+	},
+	{
+		"latin_text" : "Signum chimicae a fabricatione peritorum trahitur, qui purificant et conservant sanctam animam compressam in elementis, et qui solvunt sanctum spiritum ab associendo cum corpore.",
+		"english_text" : "The symbol of chemistry is drawn from the creation by its adepts, who cleanse and save the divine soul bound in the elements, and who free the divine spirit from its mixture with the flesh.",
+		"collected" : false
+	},
+	{
+		"latin_text" : "Aemilia... Relinque stultos labores tuos ad nectar Iovis faciendum. Successum non videbas, et apes exsecratae implent bibliothecam meam ut cogitare non possim. Amabo te.",
+		"english_text" : "Aemilia, abandon your foolish efforts to make the nectar of Juppiter. You have not seen success, and your cursed bees fill my study and make it impossible to think. I am begging you.",
+		"collected" : false
 	}
 ]
