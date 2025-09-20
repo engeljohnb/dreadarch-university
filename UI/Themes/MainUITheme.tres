@@ -1,10 +1,11 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bv31ndrorpesn"]
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://bv31ndrorpesn"]
 
 [ext_resource type="Texture2D" uid="uid://cs08el3h671jy" path="res://Assets/UI/LongButton/LongButtonFocused.png" id="1_7yvmn"]
 [ext_resource type="FontFile" uid="uid://dnifhrv1s7o35" path="res://Assets/UI/Fonts/princess-sofia/PrincessSofia-Regular.ttf" id="1_dkc3k"]
 [ext_resource type="Texture2D" uid="uid://d1pxm0dknqmre" path="res://Assets/UI/LongButton/SquareButtonHover.png" id="2_jvgvs"]
 [ext_resource type="Texture2D" uid="uid://dfj6n087hm1pb" path="res://Assets/UI/LongButton/ButtonNormal.png" id="3_7yvmn"]
 [ext_resource type="Texture2D" uid="uid://dvj312qe5cnd6" path="res://Assets/UI/Parchment.jpg" id="4_jvgvs"]
+[ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="5_iop8y"]
 [ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="6_dkc3k"]
 [ext_resource type="FontFile" uid="uid://bbg2g22ht2tgr" path="res://Assets/UI/Fonts/chomsky/Chomsky.otf" id="6_oh7n6"]
 
@@ -28,6 +29,74 @@ modulate_color = Color(1, 1, 1, 0.7)
 texture = ExtResource("2_jvgvs")
 modulate_color = Color(1, 1, 1, 0.7)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkc3k"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dkc3k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iop8y"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.07)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtxnw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl5ji"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iop8y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dtxnw"]
+texture = ExtResource("5_iop8y")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iop8y"]
+texture = ExtResource("5_iop8y")
+expand_margin_right = 184.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yvmn"]
 texture = ExtResource("4_jvgvs")
 modulate_color = Color(1, 1, 1, 0.5)
@@ -45,9 +114,32 @@ Button/styles/focus = SubResource("StyleBoxTexture_wf1sp")
 Button/styles/hover = SubResource("StyleBoxTexture_f8btd")
 Button/styles/normal = SubResource("StyleBoxTexture_pbsus")
 Button/styles/pressed = SubResource("StyleBoxTexture_7w814")
+ItemList/colors/font_color = Color(0, 0, 0, 0.69)
+ItemList/colors/font_hovered_color = Color(0, 0, 0, 0.937255)
+ItemList/colors/font_hovered_selected_color = Color(1, 1, 1, 1)
+ItemList/colors/font_outline_color = Color(0, 0, 0, 0.939)
+ItemList/colors/font_selected_color = Color(0, 0, 0, 0.937255)
+ItemList/colors/guide_color = Color(0.7, 0.7, 0.7, 0.25)
+ItemList/constants/h_separation = 60
+ItemList/constants/icon_margin = 120
+ItemList/constants/line_separation = 2
+ItemList/constants/outline_size = 0
+ItemList/constants/v_separation = 6
+ItemList/font_sizes/font_size = 55
+ItemList/fonts/font = ExtResource("1_dkc3k")
+ItemList/styles/cursor = SubResource("StyleBoxFlat_dkc3k")
+ItemList/styles/cursor_unfocused = SubResource("StyleBoxFlat_dkc3k")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_dkc3k")
+ItemList/styles/hovered = SubResource("StyleBoxFlat_iop8y")
+ItemList/styles/hovered_selected = SubResource("StyleBoxFlat_dtxnw")
+ItemList/styles/hovered_selected_focus = SubResource("StyleBoxFlat_yl5ji")
+ItemList/styles/panel = SubResource("StyleBoxEmpty_iop8y")
+ItemList/styles/selected = SubResource("StyleBoxTexture_dtxnw")
+ItemList/styles/selected_focus = SubResource("StyleBoxTexture_iop8y")
 Panel/styles/panel = SubResource("StyleBoxTexture_7yvmn")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 0.7)
 RichTextLabel/font_sizes/interaction_font_size = 15
 RichTextLabel/font_sizes/normal_font_size = 100
 RichTextLabel/fonts/interaction_font = ExtResource("6_dkc3k")
 RichTextLabel/fonts/normal_font = ExtResource("6_oh7n6")
+SpinBox/fonts/Font = ExtResource("6_dkc3k")

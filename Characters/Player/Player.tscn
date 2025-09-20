@@ -1553,7 +1553,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(23.7683, 129.712)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-show_behind_parent = true
 y_sort_enabled = true
 texture_filter = 1
 collision_layer = 8

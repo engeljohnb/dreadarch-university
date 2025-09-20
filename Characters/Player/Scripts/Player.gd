@@ -22,7 +22,9 @@ const SPEED = 300.0
 class Inventory:
 	func new():
 		scroll_fragments = []
+		treasure = 0
 	var scroll_fragments : Array
+	var treasure : int
 
 var dead = false
 var in_cutscene = false
@@ -45,6 +47,12 @@ var in_dialogue = false
 # For counting frames to know when to play the step sound
 var direction_priority
 var inventory = Inventory.new()
+
+func on_scroll_fragment_collected():
+	inventory.scroll_fragments.append(Collectible.most_recent_scroll_fragment)
+
+func on_treasure_collected(amount):
+	inventory.treasure += amount
 
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
@@ -209,6 +217,10 @@ func update_position(delta):
 	#print(Input.is_action_pressed("Left"), Input.is_action_pressed("Right"), direction_held())
 	
 func death():
+	if attack_fx:
+		attack_fx.visible = false
+		attack_fx.queue_free()
+	$AnimatedSprite2D.play("Idle Down")
 	dead = true
 	died.emit()
 	
@@ -233,6 +245,11 @@ func _ready():
 	hitbox.hit.connect(on_hit)
 	blinker.flip.connect(on_blinker_flip)
 
+func on_inventory_action_chosen(action, item, count):
+	$InteractionRay.temp_message = "Z to " + action
+	$InteractionRay.using_item = item
+	$InteractionRay.using_item_count = count
+	
 func gain_life(_life):
 	life += 1
 	if life >= total_life:

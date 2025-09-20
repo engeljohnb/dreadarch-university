@@ -165,7 +165,7 @@ func update_direction():
 	
 func update_attack():
 	if search_ray.is_colliding():
-		if (search_ray.get_collider() == player) and (not player.in_dialogue):
+		if (search_ray.get_collider() == player):
 			attacking = true
 
 func _physics_process(_delta):
@@ -180,7 +180,10 @@ func _process(_delta):
 		update_movement(_delta)
 		update_direction()
 		if aggrod:
-			update_attack()
+			if (not player.in_dialogue) and (not player.in_cutscene):
+				update_attack()
+			else:
+				attacking = false
 		animation_player.update_animation(direction_changed, moving, attacking)
 	else:
 		if current_cutscene:

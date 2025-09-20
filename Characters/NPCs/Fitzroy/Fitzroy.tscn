@@ -1,0 +1,104 @@
+[gd_scene load_steps=20 format=3 uid="uid://cuevyjo4k0213"]
+
+[ext_resource type="Script" uid="uid://dqywp2ok28b5u" path="res://Characters/NPCs/Fitzroy/Scripts/Fitzroy.gd" id="1_qr4xf"]
+[ext_resource type="Texture2D" uid="uid://cx4ao61pnoj5q" path="res://Assets/NPCs/PrivateFitzroy/Idle/0000.png" id="2_qmv6x"]
+[ext_resource type="Texture2D" uid="uid://b5dj3w5uuna40" path="res://Assets/NPCs/PrivateFitzroy/Idle/0001.png" id="3_s5drp"]
+[ext_resource type="Texture2D" uid="uid://ejak7xmbrryd" path="res://Assets/NPCs/PrivateFitzroy/Idle/0002.png" id="4_ovtbk"]
+[ext_resource type="Texture2D" uid="uid://vycktfbq3lqh" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0000.png" id="5_8hoto"]
+[ext_resource type="Texture2D" uid="uid://087vrawyd2e8" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0001.png" id="6_xewr6"]
+[ext_resource type="Texture2D" uid="uid://bi5qctoshekek" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0002.png" id="7_bwcb1"]
+[ext_resource type="Texture2D" uid="uid://chgq54cie7ju5" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0003.png" id="8_7kmt3"]
+[ext_resource type="Texture2D" uid="uid://ba4keqfuitiho" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0004.png" id="9_nikt3"]
+[ext_resource type="Texture2D" uid="uid://bl7m8x50e14la" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0005.png" id="10_iwet5"]
+[ext_resource type="Texture2D" uid="uid://dgjgcg7b1uflj" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0006.png" id="11_whlhk"]
+[ext_resource type="Texture2D" uid="uid://dwerrohkb5l50" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0007.png" id="12_iu0of"]
+[ext_resource type="Texture2D" uid="uid://cce4ce6yert6v" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0008.png" id="13_6oo7p"]
+[ext_resource type="Texture2D" uid="uid://bvrwnugnma6i4" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0009.png" id="14_4om34"]
+[ext_resource type="Texture2D" uid="uid://bkpiospr7msgs" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0010.png" id="15_ina1y"]
+[ext_resource type="Texture2D" uid="uid://dhmpy8ge2jrft" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0011.png" id="16_xvf2g"]
+[ext_resource type="AudioStream" uid="uid://eyqour7h8xr1" path="res://Assets/Sounds/Treasure/TreasureCollectedSound.ogg" id="17_xewr6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sh7jb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qmv6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s5drp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ovtbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s5drp")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_8hoto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xewr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bwcb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7kmt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nikt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_iwet5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_whlhk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_iu0of")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_6oo7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4om34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ina1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xvf2g")
+}],
+"loop": true,
+"name": &"Walk Left",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfyqh"]
+size = Vector2(96.7405, 21.25)
+
+[node name="Fitzroy" type="StaticBody2D" groups=["Interactable"]]
+y_sort_enabled = true
+texture_filter = 1
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_qr4xf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_sh7jb")
+animation = &"Walk Left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 31.625)
+scale = Vector2(0.98113, 1)
+shape = SubResource("RectangleShape2D_mfyqh")
+
+[node name="TreasureSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_xewr6")
+volume_db = -22.0

@@ -14,10 +14,12 @@ class Player:
 	var total_life: int
 	# Guess it has to be a dictionary bc for some reason the JSON serializer can do Class.Class, but not Class.Class.Class
 	var inventory: Dictionary
+
 class Save:
 	var current_scene: String
 	var player: Player
-	
+	var rooms : Dictionary
+
 var current_scene = null
 var current_music = null
 var death_cutscene = {"timer":0.0}
@@ -41,11 +43,18 @@ func _open_dialogue(dialogue):
 	var box = load("res://UI/DialogueBox.tscn").instantiate()
 	if "dialogue" in box:
 		box.dialogue = dialogue
-	else:
-		print("Wtf??????")
 	box.dialogue_ended.connect(on_dialogue_ended)
 	$CanvasLayer.add_child(box)
 	player.in_dialogue = true
+	
+func hide_hud():
+	hud.visible = false
+	$CanvasLayer/HUD/Treasure/CanvasLayer.visible = false
+
+func show_hud():
+	hud.visible = true
+	if int($CanvasLayer/HUD/Treasure/CanvasLayer/RichTextLabel.text) > 0:
+		$CanvasLayer/HUD/Treasure/CanvasLayer.visible = true
 	
 func init_player():
 	if player:
@@ -55,11 +64,15 @@ func init_player():
 	player.gained_life.connect(on_player_gain_life)
 	player.died.connect(on_player_dead)
 	player.z_index = 0
+	player.inventory.treasure = 0
+	hud.set_treasure(0)
+	if not Collectible.treasure_collected.is_connected(player.on_treasure_collected):
+		Collectible.treasure_collected.connect(player.on_treasure_collected)
 	hud.lifebar.set_life_total(player.total_life, player.life)
-	hud.visible = true
+	show_hud()
 
 func end_gameplay():
-	hud.visible = false
+	hide_hud()
 	player = current_scene.get_node("Player")
 	if (player.get_node_or_null("PlayerAttackFX")):
 		player.get_node("PlayerAttackFX").queue_free()
@@ -88,7 +101,7 @@ func player_death_cutscene(delta):
 		$Fade.texture.width = viewport_size.x+2
 		$Fade.scale.y = viewport_size.y+2
 		$Fade.global_position = player.global_position
-		hud.visible = false
+		hide_hud()
 	else:
 		if player.sprite.animation != "Death":
 			player.sprite.play("Death")
@@ -121,12 +134,44 @@ func update_music():
 			music.stream = load(current_scene.music)
 			music.play()
 	music.stream.loop = true
-			
+		
+func get_room_save_info(scene):
+	if not ("save_info" in scene):
+		return {scene.name:{}}
+	var interactables = get_tree().get_nodes_in_group("Interactable")
+	for index in range(0, interactables.size()):
+		var i = interactables[index]
+		assert(("type" in i), "ERROR: Interactable object " + i.name + "does not have defined type.")
+		match i.type:
+			Types.POT:
+				if (not i.activated) and (not i.has_override.is_empty()):
+					scene.save_info["pots"].append({"name":i.name,"has":i.has_override,"amount":i.amount})
+			Types.NPC:
+				if "status" in i:
+					scene.save_info["NPCs"].append({"name":i.name, "status":i.status})
+	return scene.save_info
+
+func load_room_save_info(scene):
+	if not ("save_info" in scene):
+		return {scene.name:{}}
+	var scene_path = str(get_path_to(scene))
+	for i in _save.rooms[scene.name]["pots"]:
+		var pot = get_node(NodePath(scene_path + "/" + i["name"]))
+		pot.activated = false
+		pot.has_override = i["has"]
+		pot.amount = i["amount"]
+	for i in _save.rooms[scene.name]["NPCs"]:
+		var npc = get_node(NodePath(scene_path + "/" + i["name"]))
+		npc.status = i["status"]
+		if npc.status["gone"]:
+			npc.queue_free()
+		
 func on_scene_changed():
+	_save.rooms[current_scene.name] = get_room_save_info(current_scene)
 	current_scene.queue_free()
 	current_scene = load(SceneTransition.current_scene_name).instantiate()
 	current_scene.process_mode = PROCESS_MODE_PAUSABLE
-	if (not player):
+	if not player:
 		init_player()
 	player.y_sort_enabled = true
 	player.z_index = 0
@@ -137,6 +182,9 @@ func on_scene_changed():
 		update_music()
 	hud.lifebar.set_life_total(player.total_life, player.life)
 	add_child(current_scene)
+	if _save.rooms.get(current_scene.name):
+		if not _save.rooms[current_scene.name].is_empty():
+			load_room_save_info(current_scene)
 	get_tree().paused = false
 	pause_menu.visible = false
 	player.global_position = SceneTransition.player_start_position
@@ -155,9 +203,6 @@ func init_wm_settings():
 	get_window().size = screen_size
 	ProjectSettings.set_setting("display/window/size/mode", DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED)
 
-func on_scroll_fragment_collected():
-	player.inventory.scroll_fragments.append(Collectible.most_recent_scroll_fragment)
-	
 func _ready():
 	seed(1)
 	init_wm_settings()
@@ -168,7 +213,7 @@ func _ready():
 	_player.total_life = 3
 	_player.life = _player.total_life
 	_player.position = Vector2()
-	_player.inventory = {"scroll_fragments" : []}
+	_player.inventory = {"scroll_fragments" : [], "treasure" : 0}
 	_save.player = _player
 
 	current_scene = load("res://UI/WelcomeMenu.tscn").instantiate()
@@ -181,7 +226,10 @@ func _ready():
 	Dialogue.prompt_player.connect(_prompt_player)
 	Dialogue.open_document.connect(_open_document)
 	Dialogue.open_dialogue.connect(_open_dialogue)
-	Collectible.scroll_fragment_collected.connect(on_scroll_fragment_collected)
+	
+	Collectible.scroll_fragment_collected.connect(player.on_scroll_fragment_collected)
+	Collectible.treasure_collected.connect($CanvasLayer/HUD.on_treasure_collected)
+
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)
 	
@@ -202,6 +250,8 @@ func save_game():
 	_save.player.position = player.global_position
 	_save.current_scene = SceneTransition.current_scene_name
 	_save.player.inventory["scroll_fragments"] = player.inventory.scroll_fragments
+	_save.player.inventory["treasure"] = player.inventory.treasure
+	_save.rooms[current_scene.name] = get_room_save_info(current_scene)
 	var game_save_string = DictionarySerializer.serialize_json(_save)
 	var file = FileAccess.open("user://save.da", FileAccess.WRITE)
 	file.store_string(game_save_string)
@@ -216,14 +266,27 @@ func load_game():
 	player.total_life = _player.total_life
 	player.global_position = _player.position
 	player.inventory.scroll_fragments = _player.inventory["scroll_fragments"]
+	player.inventory.treasure = _player.inventory["treasure"]
 	hud.lifebar.set_life_total(player.total_life, player.life)
+	hud.set_treasure(player.inventory.treasure)
 	Collectible.load_collected_scroll_fragments(_player.inventory.scroll_fragments)
 	SceneTransition.change_scene(_save.current_scene, player.global_position)
 	file.close()
+
+func open_inventory():
+	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()
+	inventory.top_level = true
+	$CanvasLayer.add_child(inventory)
+	inventory.open(player.inventory)
+	inventory.inventory_action_chosen.connect(player.on_inventory_action_chosen)
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("Pause") and not (get_tree().paused):
-		pause_menu.pause_game()
+	if player:
+		if (not player.in_cutscene) and (not player.in_dialogue):
+			if Input.is_action_just_pressed("Pause"):
+				pause_menu.pause_game()
+			if Input.is_action_just_pressed("OpenInventory"):
+				open_inventory()
 	if player.won:
 		# Victory Cutsceene needs to end first
 		if not player.in_cutscene:

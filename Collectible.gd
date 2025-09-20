@@ -1,8 +1,11 @@
 extends Node
 
 signal scroll_fragment_collected()
+@warning_ignore("unused_signal")
+signal treasure_collected(amount)
 const HEART = "Heart"
 const SCROLL_FRAGMENT = "Scroll Fragment"
+const TREASURE = "Treasure"
 
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary
@@ -44,6 +47,7 @@ func get_next_fragment():
 	return fragment
 	
 func add_scroll_fragment():
+	print("exe??")
 	prompt_to_read_scroll_fragment()
 	most_recent_scroll_fragment = get_next_fragment()
 	scroll_fragment_collected.emit()

@@ -21,7 +21,6 @@ script = ExtResource("1_wbfu4")
 [node name="Fade" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = 9
-z_as_relative = false
 texture = SubResource("GradientTexture1D_r0x5m")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

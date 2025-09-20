@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://doijvbye8va0"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_v74qv"]
+[ext_resource type="Script" uid="uid://bhgmt70huwa13" path="res://UI/Scripts/NumberBox.gd" id="2_qa5mc"]
+[ext_resource type="Texture2D" uid="uid://dyta568qynjfx" path="res://Assets/UI/UpArrow.png" id="2_ygq1g"]
+[ext_resource type="Texture2D" uid="uid://biw6owe4roqo1" path="res://Assets/UI/DownArrow.png" id="3_jwy1w"]
+
+[node name="Numberbox" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchor_right = 0.122
+anchor_bottom = 0.217
+offset_right = -5.24002
+offset_bottom = -5.36002
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_v74qv")
+script = ExtResource("2_qa5mc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.196
+anchor_right = 0.872
+anchor_bottom = 0.641
+offset_left = -0.183998
+offset_top = 0.136002
+offset_right = -0.0480042
+offset_bottom = 0.0059967
+theme_override_font_sizes/normal_font_size = 100
+text = "0"
+
+[node name="DownButton" type="TextureRect" parent="RichTextLabel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.726
+anchor_top = 0.5
+anchor_right = 0.921
+anchor_bottom = 0.803
+offset_left = -0.0899963
+offset_top = -0.5
+offset_right = -0.0150146
+offset_bottom = -0.0110016
+texture = ExtResource("3_jwy1w")
+
+[node name="UpButton" type="TextureRect" parent="RichTextLabel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.726
+anchor_top = 0.117
+anchor_right = 0.921
+anchor_bottom = 0.423
+offset_left = -0.0899963
+offset_top = -0.0290012
+offset_right = -0.0150146
+offset_bottom = 0.0489998
+texture = ExtResource("2_ygq1g")

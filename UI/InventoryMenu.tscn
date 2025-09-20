@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://buhojneqdy7na"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_c4t47"]
+[ext_resource type="Script" uid="uid://cch007bao58d" path="res://UI/Scripts/InventoryMenu.gd" id="2_tp6yt"]
+[ext_resource type="Texture2D" uid="uid://c668rdicf2sfk" path="res://Assets/Items/Treasure/0001.png" id="3_c4t47"]
+[ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="3_ke0ha"]
+[ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="3_tp6yt"]
+[ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="6_ke0ha"]
+[ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="6_lcbkp"]
+[ext_resource type="PackedScene" uid="uid://doijvbye8va0" path="res://UI/NumberBox.tscn" id="8_qdknn"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ke0ha"]
+grow_begin = 15.0
+grow_end = 15.0
+thickness = 5
+vertical = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qdknn"]
+texture = ExtResource("6_lcbkp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lcbkp"]
+texture = ExtResource("6_lcbkp")
+
+[node name="InventoryMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c4t47")
+script = ExtResource("2_tp6yt")
+
+[node name="OpenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ke0ha")
+pitch_scale = 0.01
+autoplay = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.868985, 0.868985, 0.868985, 0.73)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.278
+anchor_right = 0.75
+anchor_bottom = 0.833
+offset_top = -0.240021
+offset_right = -0.00012207
+offset_bottom = 0.359924
+texture = ExtResource("3_tp6yt")
+expand_mode = 1
+
+[node name="ItemList" type="ItemList" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.067
+anchor_right = 0.943
+anchor_bottom = 0.837
+offset_left = 0.399998
+offset_top = -0.200001
+offset_right = -0.280029
+offset_bottom = -0.200012
+item_count = 2
+max_columns = 2
+fixed_icon_size = Vector2i(64, 64)
+item_0/text = "12"
+item_0/selectable = false
+item_1/text = "Foobdoob"
+item_1/icon = ExtResource("3_c4t47")
+
+[node name="Submenu" type="ItemList" parent="TextureRect/ItemList"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.702
+anchor_top = 0.004
+anchor_right = 0.954
+anchor_bottom = 0.236
+offset_left = 0.406006
+offset_top = 0.152
+offset_right = -0.0379639
+offset_bottom = -0.0320053
+theme_override_constants/h_separation = 100
+theme_override_styles/panel = SubResource("StyleBoxLine_ke0ha")
+theme_override_styles/selected = SubResource("StyleBoxTexture_qdknn")
+theme_override_styles/selected_focus = SubResource("StyleBoxTexture_lcbkp")
+item_count = 1
+item_0/text = "Use"
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ke0ha")
+
+[node name="Numberbox" parent="." instance=ExtResource("8_qdknn")]
+visible = false
+layout_mode = 1
+anchor_left = 0.591
+anchor_top = 0.316
+anchor_right = 0.713
+anchor_bottom = 0.533
+offset_left = -0.720093
+offset_top = -0.280029
+offset_right = -6.96008
+offset_bottom = -6.64008

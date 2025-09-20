@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxqkcjmpaa7"]
+
+[ext_resource type="Texture2D" uid="uid://gt7i85h0e74q" path="res://Assets/Items/Treasure/0000.png" id="1_2uiaa"]
+[ext_resource type="Script" uid="uid://dg4aisack662u" path="res://UI/Scripts/Treasure.gd" id="1_ml3wv"]
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="2_etjus"]
+[ext_resource type="Texture2D" uid="uid://c668rdicf2sfk" path="res://Assets/Items/Treasure/0001.png" id="2_ml3wv"]
+[ext_resource type="Texture2D" uid="uid://ddxashxyx5nqn" path="res://Assets/Items/Treasure/0002.png" id="3_etjus"]
+[ext_resource type="Texture2D" uid="uid://bkaja7e7jwpao" path="res://Assets/Items/Treasure/0003.png" id="4_c4qo8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tbia4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2uiaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ml3wv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_etjus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c4qo8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Treasure" type="Node2D"]
+script = ExtResource("1_ml3wv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(197.75, 182)
+scale = Vector2(3.96874, 3.96874)
+sprite_frames = SubResource("SpriteFrames_tbia4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.893
+anchor_top = 0.064
+anchor_right = 0.987
+anchor_bottom = 0.129
+offset_left = -1472.81
+offset_top = 67.88
+offset_right = -1472.29
+offset_bottom = 67.68
+theme = ExtResource("2_etjus")
+theme_override_colors/default_color = Color(1, 1, 1, 0.768)
+theme_override_font_sizes/normal_font_size = 65
+text = "0"
