@@ -31,6 +31,15 @@ var streams = {
 	TALONS:load("res://Assets/Sounds/Items/TalonCollectedSound.ogg"),
 	GOLDEN_DAGGER:load("res://Assets/Sounds/Items/SwordCollectedSound.ogg")
 }
+
+var spriteframes = {
+	HEART:load("res://Items/Heart/Heart.tres"),
+	SCROLL_FRAGMENT:null,
+	TREASURE:load("res://Items/Treasure/Treasure.tres"),
+	TALONS:load("res://Characters/Crow/Projectile/CrowProjectileSpriteframes.tres"),
+	GOLDEN_DAGGER:load("res://Items/GoldenDagger/GoldenDagger.tres")
+}
+
 var sounds = {}
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary

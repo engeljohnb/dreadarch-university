@@ -21,4 +21,3 @@ texture_filter = 1
 position = Vector2(1.3750007, 2.1153858)
 scale = Vector2(1.6346154, 1.6346154)
 sprite_frames = ExtResource("2_c4117")
-animation = &"Down"

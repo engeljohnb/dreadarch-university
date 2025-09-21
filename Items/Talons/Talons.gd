@@ -7,6 +7,7 @@ var falling = true
 var wait_for_attack = false
 var attack_finished = false
 var attacking_body : CharacterBody2D
+
 func on_body_entered(body):
 	if body is CharacterBody2D:
 		if ("attacking" in body) and (not attack_finished):

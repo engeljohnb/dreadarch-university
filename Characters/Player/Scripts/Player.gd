@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal died()
 signal lost_life(damage)
 signal gained_life(life)
+signal item_equipped(item, count)
 @onready var anim_tree = $AnimationTree
 @onready var anim_player = $AnimationPlayer
 @onready var hitbox = $Hitbox
@@ -52,6 +53,9 @@ func on_item_collected(item, count, specific = null):
 		inventory[item] = count
 	else:
 		inventory[item] += count
+	if inventory[item] is int:
+		if inventory[item] <= 0:
+			inventory[item] = 0
 		
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
@@ -187,13 +191,19 @@ func update_animation_blend_positions():
 func create_thrown_projectile():
 	if Collectible.projectiles.get(equipped):
 		var item = Collectible.projectiles[equipped].instantiate()
-		inventory[equipped] -= 1
 		item.global_position = global_position
 		hitbox.my_weapons.append(item)
 		match equipped:
 			Collectible.TALONS:
 				add_sibling(item)
 				item.launch(facing, true)
+		var equip_dagger = false
+		if inventory[equipped] == 1:
+			if inventory[Collectible.GOLDEN_DAGGER] > 0:
+				equip_dagger = true
+		Collectible.item_collected.emit(equipped, -1)
+		if equip_dagger:
+			on_inventory_action_chosen("Equip", Collectible.GOLDEN_DAGGER, 1)
 
 func update_attack_state():
 	if equipped == Collectible.GOLDEN_DAGGER:
@@ -210,10 +220,9 @@ func update_attack_state():
 			add_child(attack_fx)
 	else:
 		if Input.is_action_just_pressed("Attack") and (not attacking):
-			if inventory[Collectible.TALONS] > 0:
-				attacking = true
-				on_item_collected(Collectible.TALONS, -1)
-					#on_talons_collected(-1)
+			if not equipped.is_empty():
+				if inventory[equipped] > 0:
+					attacking = true
 
 func reset_attack_state():
 	if attack_fx:
@@ -268,6 +277,9 @@ func on_blinker_flip(state):
 func _ready():
 	hitbox.hit.connect(on_hit)
 	blinker.flip.connect(on_blinker_flip)
+	inventory[Collectible.GOLDEN_DAGGER] = 0
+	Collectible.item_collected.emit(Collectible.GOLDEN_DAGGER, 1)
+	on_inventory_action_chosen("Equip", Collectible.GOLDEN_DAGGER, 1)
 
 func on_inventory_action_chosen(action, item, count):
 	match action:
@@ -283,6 +295,11 @@ func on_inventory_action_chosen(action, item, count):
 				Collectible.GOLDEN_DAGGER:
 					equipped = Collectible.GOLDEN_DAGGER
 					golden_dagger_equipped = true
+			if inventory.get(item):
+				if (inventory[item] is int) or (inventory[item] is float):
+					item_equipped.emit(item, inventory[item])
+			else:
+				item_equipped.emit(item, 1)
 
 func gain_life(_life):
 	life += 1
@@ -291,11 +308,11 @@ func gain_life(_life):
 	gained_life.emit(_life)
 	
 func update_equipment():
-	if inventory.get(equipped) is int:
+	if (inventory.get(equipped) is int) or (inventory[equipped] is float):
 		if inventory[equipped] <= 0:
 			if equipped == Collectible.GOLDEN_DAGGER:
 				golden_dagger_equipped = false
-			equipped = ""
+			inventory[equipped] = 0
 	
 func _process(delta):
 	if not in_dialogue:

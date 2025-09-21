@@ -1,33 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://vhduvbq30tpd"]
+[gd_scene load_steps=5 format=3 uid="uid://vhduvbq30tpd"]
 
 [ext_resource type="Script" uid="uid://fhivtpul7qcb" path="res://Items/Heart/Heart.gd" id="1_c71ca"]
-[ext_resource type="Texture2D" uid="uid://dmienc75ffeka" path="res://Assets/Items/Heart/0000.png" id="2_du43n"]
-[ext_resource type="Texture2D" uid="uid://dovwd4valrc7i" path="res://Assets/Items/Heart/0001.png" id="3_swliu"]
-[ext_resource type="Texture2D" uid="uid://da1gcg6lv7jqy" path="res://Assets/Items/Heart/0002.png" id="4_6yn5e"]
-[ext_resource type="Texture2D" uid="uid://s8kulbfjgjyo" path="res://Assets/Items/Heart/0003.png" id="5_hxqhv"]
+[ext_resource type="SpriteFrames" uid="uid://br4yq3q4dw8sg" path="res://Items/Heart/Heart.tres" id="2_tla6b"]
 [ext_resource type="AudioStream" uid="uid://dfm73b5dqaj2t" path="res://Assets/Sounds/Heart/CollectSound.ogg" id="6_swliu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2bck"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_e06o3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_du43n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_swliu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_6yn5e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_hxqhv")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
 
 [node name="Heart" type="Area2D"]
 collision_layer = 128
@@ -39,7 +16,7 @@ shape = SubResource("CircleShape2D_u2bck")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_e06o3")
+sprite_frames = ExtResource("2_tla6b")
 frame_progress = 0.230266
 
 [node name="CollectedSound" type="AudioStreamPlayer" parent="."]

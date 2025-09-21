@@ -65,6 +65,8 @@ func init_player():
 	player.died.connect(on_player_dead)
 	player.z_index = 0
 	player.inventory = _player.inventory
+	if not player.item_equipped.is_connected(hud.on_item_equipped):
+		player.item_equipped.connect(hud.on_item_equipped)
 	hud.set_treasure(0)
 	if not Collectible.item_collected.is_connected(player.on_item_collected):
 		Collectible.item_collected.connect(player.on_item_collected)
@@ -218,7 +220,7 @@ func _ready():
 		Collectible.SCROLL_FRAGMENT : [], 
 		Collectible.TREASURE : int(0),
 		Collectible.TALONS: int(0), 
-		Collectible.GOLDEN_DAGGER : int(1)
+		Collectible.GOLDEN_DAGGER : int(0)
 		}
 	_save.player = _player
 
@@ -236,6 +238,7 @@ func _ready():
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)
 	
+	Collectible.item_collected.connect(hud.on_item_collected)
 	SceneTransition.scene_changed.connect(on_scene_changed)
 	SceneTransition.won.connect(on_won)
 	

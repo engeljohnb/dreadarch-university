@@ -33,23 +33,23 @@ script = ExtResource("1_ml3wv")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
-texture_filter = 1
-position = Vector2(197.75, 182)
-scale = Vector2(3.96874, 3.96874)
-sprite_frames = SubResource("SpriteFrames_tbia4")
-
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = -1
-anchor_left = 0.893
-anchor_top = 0.064
-anchor_right = 0.987
-anchor_bottom = 0.129
-offset_left = -1472.81
-offset_top = 67.88
-offset_right = -1472.29
-offset_bottom = 67.68
+anchor_right = 0.059000004
+anchor_bottom = 0.044000003
+offset_left = 167.0
+offset_top = 142.0
+offset_right = 167.72
+offset_bottom = 142.48
 theme = ExtResource("2_etjus")
 theme_override_colors/default_color = Color(1, 1, 1, 0.768)
-theme_override_font_sizes/normal_font_size = 65
+theme_override_font_sizes/normal_font_size = 45
 text = "0"
+horizontal_alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/RichTextLabel"]
+texture_filter = 1
+position = Vector2(22.999996, 25)
+scale = Vector2(2.6874971, 2.6874971)
+sprite_frames = SubResource("SpriteFrames_tbia4")
+frame_progress = 0.29619983

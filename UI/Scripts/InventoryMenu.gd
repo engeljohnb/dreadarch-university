@@ -33,8 +33,6 @@ func open_submenu():
 		item_list.set_item_disabled(index, true)
 
 func open(inventory):
-	print(inventory)
-	print("------------------\n")
 	for key in inventory:
 		if key.is_empty():
 			return

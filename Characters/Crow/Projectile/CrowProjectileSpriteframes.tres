@@ -70,4 +70,21 @@ animations = [{
 "loop": true,
 "name": &"Up",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_setpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kqcs4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5a68y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kqcs4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
 }]
