@@ -1,0 +1,73 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://d37cvije2wlux"]
+
+[ext_resource type="Texture2D" uid="uid://y0pt2nquv72c" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png" id="1_setpm"]
+[ext_resource type="Texture2D" uid="uid://cxd8k50rydix" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0001.png" id="2_kqcs4"]
+[ext_resource type="Texture2D" uid="uid://bjpv6ntd01w4y" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0002.png" id="3_5a68y"]
+[ext_resource type="Texture2D" uid="uid://dww7amsi6lxtn" path="res://Assets/Badguys/Crow/Attack/Projectile/Right/0000.png" id="4_6wjqg"]
+[ext_resource type="Texture2D" uid="uid://cwai21x1tteq8" path="res://Assets/Badguys/Crow/Attack/Projectile/Right/0001.png" id="5_krldn"]
+[ext_resource type="Texture2D" uid="uid://cf0xdv8buyxw0" path="res://Assets/Badguys/Crow/Attack/Projectile/Right/0002.png" id="6_xogn5"]
+[ext_resource type="Texture2D" uid="uid://qrqx67aw3x28" path="res://Assets/Badguys/Crow/Attack/Projectile/Left/0000.png" id="7_16681"]
+[ext_resource type="Texture2D" uid="uid://d3y81d1xx1vk4" path="res://Assets/Badguys/Crow/Attack/Projectile/Left/0001.png" id="8_6h7g6"]
+[ext_resource type="Texture2D" uid="uid://ysd7lxqpbfnl" path="res://Assets/Badguys/Crow/Attack/Projectile/Left/0002.png" id="9_vhq5b"]
+[ext_resource type="Texture2D" uid="uid://b71hrvffjra5u" path="res://Assets/Badguys/Crow/Attack/Projectile/Up/0000.png" id="10_ev0su"]
+[ext_resource type="Texture2D" uid="uid://bw6te4goxkepl" path="res://Assets/Badguys/Crow/Attack/Projectile/Up/0001.png" id="11_8o080"]
+[ext_resource type="Texture2D" uid="uid://dyt4c4mao3por" path="res://Assets/Badguys/Crow/Attack/Projectile/Up/0002.png" id="12_p03im"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_setpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kqcs4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5a68y")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6wjqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_krldn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xogn5")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_16681")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6h7g6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vhq5b")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ev0su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8o080")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_p03im")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 8.0
+}]

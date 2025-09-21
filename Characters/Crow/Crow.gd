@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 const SPEED = 100.0
 
+var can_drop = [Collectible.TALONS, Collectible.TREASURE]
 var entered_scene = true
 var player = null
 var knockback_direction = Vector2()
@@ -23,14 +24,30 @@ var life = 3
 var in_cutscene = false
 var current_cutscene = null
 var cutscene_timer = 0.0
-var death_cutscene_duration = 2.66
+var death_cutscene_speed = 2.66
+var death_cutscene_duration = 1.0
 var aggro_cutscene_duration = 0.5
 var attack_range = 300.0
-var dead
+var dead = false
+var dropped = false
 var to_player = Vector2()
 var current_action = ""
 var max_idle_time = 0.33
 var direction_change_counter = 0
+
+func drop():
+	var drop_gen = RandomNumberGenerator.new()
+	var odds = drop_gen.randf()
+	var item = null
+	if odds > 0.0:
+		item = load("res://Items/Talons/Talons.tscn").instantiate()
+	if odds < 0.0:
+		item = load("res://Items/Treasure/Treasure.tscn").instantiate()
+	add_sibling(item)
+	item.global_position = global_position
+	item.reparent(get_parent())
+	item.visible = true
+	item.z_index = 0
 
 func play_aggro_cutscene(delta = 0.0):
 	moving = false
@@ -65,12 +82,13 @@ func play_death_cutscene(delta = 0.0):
 	else:
 		deathlight.modulate = Color(1,0,0,)
 		cutscene_timer += delta
-		var cutscene_percent = cutscene_timer/death_cutscene_duration
+		var cutscene_percent = cutscene_timer/death_cutscene_speed
 		deathlight.energy = 1.0/cutscene_percent
 		if cutscene_timer >= death_cutscene_duration:
 			queue_free()
 	
 func death():
+	dead = true
 	play_death_cutscene(0.0)
 
 func on_blinker_flip(state):
@@ -99,6 +117,7 @@ func _ready():
 func launch_projectile():
 	var projectile = _projectile.instantiate()
 	hitbox.my_weapon = projectile
+	hitbox.my_weapons.append(projectile)
 	# Add as sibling instead of child so Crow's movement doesn't
 	# affect the projectile
 	projectile.global_position = position
@@ -176,6 +195,9 @@ func _physics_process(_delta):
 		knockback_speed = 0.0
 		
 func _process(_delta):
+	if dead and (not dropped):
+		drop()
+		dropped = true
 	if not in_cutscene:
 		update_movement(_delta)
 		update_direction()

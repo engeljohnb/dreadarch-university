@@ -16,3 +16,4 @@ tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAEAAAAAAAAAAAABAAA
 [node name="Door" parent="." instance=ExtResource("3_f8g50")]
 position = Vector2(-256, -68)
 next_start_position = Vector2(2496, 3260)
+next_scene = "res://Dungeons/01/01-02.tscn"

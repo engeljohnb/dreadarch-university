@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cuevyjo4k0213"]
+[gd_scene load_steps=19 format=3 uid="uid://cuevyjo4k0213"]
 
 [ext_resource type="Script" uid="uid://dqywp2ok28b5u" path="res://Characters/NPCs/Fitzroy/Scripts/Fitzroy.gd" id="1_qr4xf"]
 [ext_resource type="Texture2D" uid="uid://cx4ao61pnoj5q" path="res://Assets/NPCs/PrivateFitzroy/Idle/0000.png" id="2_qmv6x"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://bvrwnugnma6i4" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0009.png" id="14_4om34"]
 [ext_resource type="Texture2D" uid="uid://bkpiospr7msgs" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0010.png" id="15_ina1y"]
 [ext_resource type="Texture2D" uid="uid://dhmpy8ge2jrft" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0011.png" id="16_xvf2g"]
-[ext_resource type="AudioStream" uid="uid://eyqour7h8xr1" path="res://Assets/Sounds/Treasure/TreasureCollectedSound.ogg" id="17_xewr6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh7jb"]
 animations = [{
@@ -98,7 +97,3 @@ animation = &"Walk Left"
 position = Vector2(1, 31.625)
 scale = Vector2(0.98113, 1)
 shape = SubResource("RectangleShape2D_mfyqh")
-
-[node name="TreasureSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_xewr6")
-volume_db = -22.0

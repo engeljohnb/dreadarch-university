@@ -11,6 +11,7 @@ var countdown = 2.5
 @onready var deathlight = $DeathLight
 @onready var _light = load("res://Characters/Crow/Projectile/CrowProjectileLight.tscn")
 
+var _by_player = false
 var cutscene_timer = 0.0
 var death_cutscene_duration = 0.33
 var dead = false
@@ -66,7 +67,8 @@ func play_death_cutscene(delta):
 		if cutscene_timer >= death_cutscene_duration:
 			queue_free()
 
-func launch(direction):
+func launch(direction, by_player = false):
+	_by_player = by_player
 	var animation_name = get_animation_name(direction)
 	var cardinal_direction = name_to_vector(animation_name)
 	var light = _light.instantiate()

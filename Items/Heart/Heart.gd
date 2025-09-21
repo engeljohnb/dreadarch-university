@@ -7,7 +7,7 @@ func on_body_entered(body):
 		collected = true
 		$CollisionShape2D.set_deferred("disabled", true)
 		visible = false
-		$CollectedSound.play()
+		Collectible.sounds[Collectible.HEART].play()
 		
 func _ready():
 	$AnimatedSprite2D.play("default")
@@ -16,5 +16,5 @@ func _ready():
 func _process(_delta):
 	if collected:
 		if collected:
-			if not $CollectedSound.playing:
+			if not Collectible.sounds[Collectible.HEART].playing:
 				queue_free()

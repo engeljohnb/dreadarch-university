@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://pnjjhjfeuic8"]
+[gd_scene load_steps=16 format=3 uid="uid://pnjjhjfeuic8"]
 
 [ext_resource type="Script" uid="uid://co6ptm1ll5etr" path="res://Items/Pot/Pot.gd" id="1_ku18y"]
 [ext_resource type="Texture2D" uid="uid://c3532m72qwar0" path="res://Assets/Items/Pot/0000.png" id="2_m1tpy"]
@@ -11,9 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cgan7ghv5mh2i" path="res://Assets/Items/Pot/0007.png" id="9_vahep"]
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="10_m1tpy"]
 [ext_resource type="AudioStream" uid="uid://bp2q00d7h7y2w" path="res://Assets/Sounds/Pot/ActivateSound.ogg" id="11_nws5j"]
-[ext_resource type="AudioStream" uid="uid://dfm73b5dqaj2t" path="res://Assets/Sounds/Heart/CollectSound.ogg" id="12_e0kc6"]
-[ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="13_w7g0e"]
-[ext_resource type="AudioStream" uid="uid://eyqour7h8xr1" path="res://Assets/Sounds/Treasure/TreasureCollectedSound.ogg" id="14_116rw"]
 
 [sub_resource type="Gradient" id="Gradient_e0kc6"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -86,16 +83,5 @@ shape = SubResource("RectangleShape2D_ku18y")
 
 [node name="ActivateSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_nws5j")
-volume_db = -10.0
+volume_db = -20.0
 bus = &"FXNoReverb"
-
-[node name="HeartSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_e0kc6")
-volume_db = -15.0
-
-[node name="ScrollFragmentSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_w7g0e")
-
-[node name="TreasureSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_116rw")
-volume_db = -25.0

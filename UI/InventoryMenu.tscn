@@ -72,16 +72,17 @@ item_1/text = "Foobdoob"
 item_1/icon = ExtResource("3_c4t47")
 
 [node name="Submenu" type="ItemList" parent="TextureRect/ItemList"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.702
 anchor_top = 0.004
-anchor_right = 0.954
-anchor_bottom = 0.236
-offset_left = 0.406006
-offset_top = 0.152
-offset_right = -0.0379639
-offset_bottom = -0.0320053
+anchor_right = 0.95400006
+anchor_bottom = 0.48100004
+offset_left = 0.40600586
+offset_top = 0.15199995
+offset_right = -0.037963867
+offset_bottom = -0.22201538
 theme_override_constants/h_separation = 100
 theme_override_styles/panel = SubResource("StyleBoxLine_ke0ha")
 theme_override_styles/selected = SubResource("StyleBoxTexture_qdknn")

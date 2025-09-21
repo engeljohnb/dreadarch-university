@@ -8,6 +8,7 @@ var chosen_item = ""
 var chosen_item_total = 0
 var chosen_item_count = 0
 var chosen_action = ""
+var equippable = [Collectible.TALONS, Collectible.GOLDEN_DAGGER]
 
 func _ready():
 	get_tree().paused = true
@@ -16,6 +17,8 @@ func _ready():
 	item_list.clear()
 	
 func open_submenu():
+	if chosen_item in equippable:
+		submenu.add_item("Equip")
 	submenu_open = true
 	$OpenSound.play()
 	submenu.visible = true
@@ -30,12 +33,15 @@ func open_submenu():
 		item_list.set_item_disabled(index, true)
 
 func open(inventory):
-	if not inventory.scroll_fragments.is_empty():
-		item_list.add_item(str(inventory.scroll_fragments.size()), null, false)
-		item_list.add_item(Collectible.SCROLL_FRAGMENT, load("res://Assets/Items/ScrollFragment/Scroll.png"))
-	if inventory.treasure > 0:
-		item_list.add_item(str(inventory.treasure), null, false)
-		item_list.add_item(Collectible.TREASURE, load("res://Assets/Items/Treasure/0000.png"))
+	print(inventory)
+	print("------------------\n")
+	for key in inventory:
+		if key.is_empty():
+			return
+		if (inventory[key] is int) or (inventory[key] is float):
+			if inventory[key] > 0:
+				item_list.add_item(str(int(inventory[key])), null, false)
+				item_list.add_item(key, Collectible.textures[key])
 	item_list.grab_focus()
 	item_list.select(1)
 	item_list.item_selected.connect($SelectSound.play)
@@ -70,7 +76,12 @@ func _process(_delta):
 			if chosen_item_total > 1:
 				if submenu.is_anything_selected():
 					chosen_action = submenu.get_item_text(submenu.get_selected_items().get(0))
-					open_number_box(chosen_item_total)
+					match chosen_action:
+						"Use":
+							open_number_box(chosen_item_total)
+						"Equip":
+							inventory_action_chosen.emit(chosen_action, chosen_item, 1)
+							close()
 			else:
 				if submenu.is_anything_selected():
 					inventory_action_chosen.emit(submenu.get_item_text(submenu.get_selected_items().get(0)), chosen_item, 1)

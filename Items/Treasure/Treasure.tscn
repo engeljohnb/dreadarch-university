@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1hy8scwvidei"]
+
+[ext_resource type="Texture2D" uid="uid://gt7i85h0e74q" path="res://Assets/Items/Treasure/0000.png" id="1_ic2ky"]
+[ext_resource type="Script" uid="uid://dw1aytvk13gc1" path="res://Items/Treasure/Treasure.gd" id="1_yvmyw"]
+[ext_resource type="Texture2D" uid="uid://c668rdicf2sfk" path="res://Assets/Items/Treasure/0001.png" id="2_yvmyw"]
+[ext_resource type="Texture2D" uid="uid://ddxashxyx5nqn" path="res://Assets/Items/Treasure/0002.png" id="3_vam6s"]
+[ext_resource type="Texture2D" uid="uid://bkaja7e7jwpao" path="res://Assets/Items/Treasure/0003.png" id="4_gmf6f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ne2o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ic2ky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yvmyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vam6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gmf6f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Treasure" type="Area2D"]
+collision_layer = 128
+collision_mask = 268
+script = ExtResource("1_yvmyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bh5a0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_5ne2o")

@@ -19,13 +19,7 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 300.0
 
-class Inventory:
-	func new():
-		scroll_fragments = []
-		treasure = 0
-	var scroll_fragments : Array
-	var treasure : int
-
+var inventory = {}
 var dead = false
 var in_cutscene = false
 var current_cutscene = null
@@ -39,21 +33,26 @@ var facing : Vector2
 var prev_facing = Vector2(0,1)
 var direction_changed = false
 var moving = false
-var knife_equipped = true
+var equipped = Collectible.GOLDEN_DAGGER
 var attacking = false
 var won = false
 var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "reverse": false, "min_scale": 0.8}
 var in_dialogue = false
 # For counting frames to know when to play the step sound
 var direction_priority
-var inventory = Inventory.new()
-
-func on_scroll_fragment_collected():
-	inventory.scroll_fragments.append(Collectible.most_recent_scroll_fragment)
-
-func on_treasure_collected(amount):
-	inventory.treasure += amount
-
+# Why have golden_dagger_equipped when I can just check equipped == Collectible.GOLDEN_DAGGER?
+# Becaues everything breaks in the AnimationTree state machine when the advance
+# expression is anything more complicated than a boolean.
+var golden_dagger_equipped = true
+	
+func on_item_collected(item, count, specific = null):
+	if specific:
+		inventory[item].append(specific)
+	elif not inventory.get(item):
+		inventory[item] = count
+	else:
+		inventory[item] += count
+		
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
 		or Input.is_action_just_released("Right")
@@ -76,7 +75,7 @@ func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
 	if delta == 0.0:
 		door_cutscene["reverse"] = reverse
 		if reverse:
-			if knife_equipped:
+			if equipped == Collectible.GOLDEN_DAGGER:
 				sprite.play("Walk Knife Down")
 			else:
 				sprite.play("Walk Down")
@@ -104,7 +103,7 @@ func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
 			if door_cutscene["reverse"]:
 				scale = Vector2(1.0,1.0)
 				modulate.a = 1.0
-				if knife_equipped:
+				if equipped == Collectible.GOLDEN_DAGGER:
 					sprite.play("Idle Knife Down")
 				else:
 					sprite.play("Idle Down")
@@ -180,29 +179,55 @@ func update_direction():
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
 	anim_tree.set("parameters/Walk/Walk Knife/blend_position", facing)
-	anim_tree.set("parameters/Attack/blend_position", facing)
+	anim_tree.set("parameters/Attack/Attack/blend_position", facing)
+	anim_tree.set("parameters/Attack/Throw/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle Knife/blend_position", facing)
 	
+func create_thrown_projectile():
+	if Collectible.projectiles.get(equipped):
+		var item = Collectible.projectiles[equipped].instantiate()
+		inventory[equipped] -= 1
+		item.global_position = global_position
+		hitbox.my_weapons.append(item)
+		match equipped:
+			Collectible.TALONS:
+				add_sibling(item)
+				item.launch(facing, true)
+
 func update_attack_state():
-	if !knife_equipped:
-		return
-	if attacking and (not attack_fx):
-		attacking = false
-		return
-	if Input.is_action_just_pressed("Attack") and (not attacking):
-		attack_sound.play()
-		attacking = true
-		attack_fx = _attack_fx.instantiate()
-		attack_fx.change_direction(facing)
-		add_child(attack_fx)
+	if equipped == Collectible.GOLDEN_DAGGER:
+		if attacking and (not attack_fx):
+			attacking = false
+			return
+		if Input.is_action_just_pressed("Attack") and (not attacking):
+			attack_sound.play()
+			attacking = true
+			attack_fx = _attack_fx.instantiate()
+			attack_fx.change_direction(facing)
+			hitbox.my_weapon = attack_fx
+			hitbox.my_weapons.append(attack_fx)
+			add_child(attack_fx)
+	else:
+		if Input.is_action_just_pressed("Attack") and (not attacking):
+			if inventory[Collectible.TALONS] > 0:
+				attacking = true
+				on_item_collected(Collectible.TALONS, -1)
+					#on_talons_collected(-1)
 
 func reset_attack_state():
 	if attack_fx:
 		remove_child(attack_fx)
 		attack_fx = null
 	attacking = false
-	
+	var state_machine = anim_tree["parameters/playback"]
+	state_machine.travel("Idle")
+	if inventory.get(equipped):
+		if inventory[equipped] is int:
+			if inventory[equipped] < 0:
+				inventory[equipped] = 0
+				equipped = ""
+
 func update_position(delta):
 	if attacking:
 		return
@@ -214,8 +239,7 @@ func update_position(delta):
 	if moving:
 		position += SPEED * facing * delta
 	move_and_slide()
-	#print(Input.is_action_pressed("Left"), Input.is_action_pressed("Right"), direction_held())
-	
+
 func death():
 	if attack_fx:
 		attack_fx.visible = false
@@ -246,15 +270,32 @@ func _ready():
 	blinker.flip.connect(on_blinker_flip)
 
 func on_inventory_action_chosen(action, item, count):
-	$InteractionRay.temp_message = "Z to " + action
-	$InteractionRay.using_item = item
-	$InteractionRay.using_item_count = count
-	
+	match action:
+		"Use":
+			$InteractionRay.temp_message = "Z to " + action
+			$InteractionRay.using_item = item
+			$InteractionRay.using_item_count = count
+		"Equip":
+			match item:
+				Collectible.TALONS:
+					equipped = Collectible.TALONS
+					golden_dagger_equipped = false
+				Collectible.GOLDEN_DAGGER:
+					equipped = Collectible.GOLDEN_DAGGER
+					golden_dagger_equipped = true
+
 func gain_life(_life):
 	life += 1
 	if life >= total_life:
 		life = total_life
 	gained_life.emit(_life)
+	
+func update_equipment():
+	if inventory.get(equipped) is int:
+		if inventory[equipped] <= 0:
+			if equipped == Collectible.GOLDEN_DAGGER:
+				golden_dagger_equipped = false
+			equipped = ""
 	
 func _process(delta):
 	if not in_dialogue:
@@ -262,6 +303,7 @@ func _process(delta):
 			if Input.is_action_just_pressed("GainLifeCheat"):
 				gain_life(1)
 			update_direction()
+			update_equipment()
 			update_attack_state()
 			update_position(delta)
 			update_animation_blend_positions()

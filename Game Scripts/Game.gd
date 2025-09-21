@@ -64,10 +64,10 @@ func init_player():
 	player.gained_life.connect(on_player_gain_life)
 	player.died.connect(on_player_dead)
 	player.z_index = 0
-	player.inventory.treasure = 0
+	player.inventory = _player.inventory
 	hud.set_treasure(0)
-	if not Collectible.treasure_collected.is_connected(player.on_treasure_collected):
-		Collectible.treasure_collected.connect(player.on_treasure_collected)
+	if not Collectible.item_collected.is_connected(player.on_item_collected):
+		Collectible.item_collected.connect(player.on_item_collected)
 	hud.lifebar.set_life_total(player.total_life, player.life)
 	show_hud()
 
@@ -144,8 +144,8 @@ func get_room_save_info(scene):
 		assert(("type" in i), "ERROR: Interactable object " + i.name + "does not have defined type.")
 		match i.type:
 			Types.POT:
-				if (not i.activated) and (not i.has_override.is_empty()):
-					scene.save_info["pots"].append({"name":i.name,"has":i.has_override,"amount":i.amount})
+				if (not i.activated) and (not i.has_overrides.is_empty()):
+					scene.save_info["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
 			Types.NPC:
 				if "status" in i:
 					scene.save_info["NPCs"].append({"name":i.name, "status":i.status})
@@ -158,8 +158,8 @@ func load_room_save_info(scene):
 	for i in _save.rooms[scene.name]["pots"]:
 		var pot = get_node(NodePath(scene_path + "/" + i["name"]))
 		pot.activated = false
-		pot.has_override = i["has"]
-		pot.amount = i["amount"]
+		pot.has_overrides = i["has"]
+		pot.amounts = i["amounts"]
 	for i in _save.rooms[scene.name]["NPCs"]:
 		var npc = get_node(NodePath(scene_path + "/" + i["name"]))
 		npc.status = i["status"]
@@ -202,6 +202,7 @@ func init_wm_settings():
 	var screen_size = DisplayServer.window_get_size()
 	get_window().size = screen_size
 	ProjectSettings.set_setting("display/window/size/mode", DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _ready():
 	seed(1)
@@ -213,7 +214,12 @@ func _ready():
 	_player.total_life = 3
 	_player.life = _player.total_life
 	_player.position = Vector2()
-	_player.inventory = {"scroll_fragments" : [], "treasure" : 0}
+	_player.inventory = {
+		Collectible.SCROLL_FRAGMENT : [], 
+		Collectible.TREASURE : int(0),
+		Collectible.TALONS: int(0), 
+		Collectible.GOLDEN_DAGGER : int(1)
+		}
 	_save.player = _player
 
 	current_scene = load("res://UI/WelcomeMenu.tscn").instantiate()
@@ -227,9 +233,6 @@ func _ready():
 	Dialogue.open_document.connect(_open_document)
 	Dialogue.open_dialogue.connect(_open_dialogue)
 	
-	Collectible.scroll_fragment_collected.connect(player.on_scroll_fragment_collected)
-	Collectible.treasure_collected.connect($CanvasLayer/HUD.on_treasure_collected)
-
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)
 	
@@ -249,8 +252,7 @@ func save_game():
 	_save.player.life = player.life
 	_save.player.position = player.global_position
 	_save.current_scene = SceneTransition.current_scene_name
-	_save.player.inventory["scroll_fragments"] = player.inventory.scroll_fragments
-	_save.player.inventory["treasure"] = player.inventory.treasure
+	_save.player.inventory = player.inventory
 	_save.rooms[current_scene.name] = get_room_save_info(current_scene)
 	var game_save_string = DictionarySerializer.serialize_json(_save)
 	var file = FileAccess.open("user://save.da", FileAccess.WRITE)
@@ -265,13 +267,14 @@ func load_game():
 	player.life = _player.life
 	player.total_life = _player.total_life
 	player.global_position = _player.position
-	player.inventory.scroll_fragments = _player.inventory["scroll_fragments"]
-	player.inventory.treasure = _player.inventory["treasure"]
+	player.inventory = _player.inventory
 	hud.lifebar.set_life_total(player.total_life, player.life)
-	hud.set_treasure(player.inventory.treasure)
-	Collectible.load_collected_scroll_fragments(_player.inventory.scroll_fragments)
+	hud.set_treasure(player.inventory[Collectible.TREASURE])
+	Collectible.load_collected_scroll_fragments(_player.inventory[Collectible.SCROLL_FRAGMENT])
 	SceneTransition.change_scene(_save.current_scene, player.global_position)
 	file.close()
+	#print("LOADING\n", player.inventory)
+	#print("\n")
 
 func open_inventory():
 	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()

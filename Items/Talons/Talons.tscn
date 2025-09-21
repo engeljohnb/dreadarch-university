@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://s2r7rsit3r2j"]
+
+[ext_resource type="Script" uid="uid://ctjxwfu5ep55c" path="res://Items/Talons/Talons.gd" id="1_c4117"]
+[ext_resource type="SpriteFrames" uid="uid://d37cvije2wlux" path="res://Characters/Crow/Projectile/CrowProjectileSpriteframes.tres" id="2_c4117"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
+radius = 15.132746
+
+[node name="Talons" type="Area2D"]
+modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
+collision_layer = 128
+collision_mask = 268
+script = ExtResource("1_c4117")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_bh5a0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.3750007, 2.1153858)
+scale = Vector2(1.6346154, 1.6346154)
+sprite_frames = ExtResource("2_c4117")
+animation = &"Down"

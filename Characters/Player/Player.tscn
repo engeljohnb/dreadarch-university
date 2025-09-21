@@ -1,4 +1,4 @@
-[gd_scene load_steps=230 format=3 uid="uid://r8py7ts46u7k"]
+[gd_scene load_steps=260 format=3 uid="uid://r8py7ts46u7k"]
 
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
 [ext_resource type="Texture2D" uid="uid://bkyy4clb40hvk" path="res://Assets/Student/Idle/Down/0000.png" id="1_v8ubu"]
@@ -110,15 +110,31 @@
 [ext_resource type="Texture2D" uid="uid://bbsdsnln1m0wf" path="res://Assets/Student/Walk/Left Dagger/0009.png" id="78_2foit"]
 [ext_resource type="Texture2D" uid="uid://bt1ftuxlfxv00" path="res://Assets/Student/Walk/Left Dagger/0010.png" id="79_y6gv5"]
 [ext_resource type="Texture2D" uid="uid://b2ujespghvyd2" path="res://Assets/Student/Walk/Right Dagger/frame0000.png" id="80_mons2"]
+[ext_resource type="Texture2D" uid="uid://bxoe147poonu4" path="res://Assets/Student/Throw/Down/0004.png" id="80_s0hae"]
+[ext_resource type="Texture2D" uid="uid://ccs54ym7hvq10" path="res://Assets/Student/Throw/Up/0004.png" id="81_fmf53"]
+[ext_resource type="Texture2D" uid="uid://b2y4j07805r1s" path="res://Assets/Student/Throw/Down/0005.png" id="81_jwh1n"]
 [ext_resource type="Texture2D" uid="uid://bf61w3mg7bbub" path="res://Assets/Student/Walk/Right Dagger/frame0001.png" id="81_t8rfw"]
+[ext_resource type="Texture2D" uid="uid://dqbu456oyaswg" path="res://Assets/Student/Throw/Up/0005.png" id="82_8ebqj"]
+[ext_resource type="Texture2D" uid="uid://psn22y3q0lb2" path="res://Assets/Student/Throw/Down/0006.png" id="82_53v3k"]
 [ext_resource type="Texture2D" uid="uid://bnnmcdwms1x6k" path="res://Assets/Student/Walk/Right Dagger/frame0002.png" id="82_kr864"]
+[ext_resource type="Texture2D" uid="uid://b14hbshb287ls" path="res://Assets/Student/Throw/Down/0008.png" id="83_igmf5"]
+[ext_resource type="Texture2D" uid="uid://cibetoabp71tp" path="res://Assets/Student/Throw/Up/0006.png" id="83_jwh1n"]
 [ext_resource type="Texture2D" uid="uid://cpbmj7o45oqbl" path="res://Assets/Student/Walk/Right Dagger/frame0003.png" id="83_yooba"]
 [ext_resource type="Texture2D" uid="uid://danw03f426xqj" path="res://Assets/Student/Walk/Right Dagger/frame0004.png" id="84_2cbao"]
+[ext_resource type="Texture2D" uid="uid://dx2roxbstpat0" path="res://Assets/Student/Throw/Up/0008.png" id="84_53v3k"]
+[ext_resource type="Texture2D" uid="uid://b1an8w3m6ju2s" path="res://Assets/Student/Throw/Left/0004.png" id="84_yyrv6"]
+[ext_resource type="Texture2D" uid="uid://d1jorom30xgni" path="res://Assets/Student/Throw/Left/0005.png" id="85_61d31"]
 [ext_resource type="Texture2D" uid="uid://clg8wnw4onfqf" path="res://Assets/Student/Walk/Right Dagger/frame0006.png" id="86_egl34"]
+[ext_resource type="Texture2D" uid="uid://cl66a6042515b" path="res://Assets/Student/Throw/Left/0006.png" id="86_weeip"]
+[ext_resource type="Texture2D" uid="uid://cwbbo24bpa1kl" path="res://Assets/Student/Throw/Left/0008.png" id="87_8ixlw"]
 [ext_resource type="Texture2D" uid="uid://b0wuf675hcpce" path="res://Assets/Student/Walk/Right Dagger/frame0007.png" id="87_efy5o"]
+[ext_resource type="Texture2D" uid="uid://s3acbfctpw8d" path="res://Assets/Student/Throw/Right/frame0004.png" id="88_p5h52"]
 [ext_resource type="Texture2D" uid="uid://cgeh06pqfrbg6" path="res://Assets/Student/Walk/Right Dagger/frame0008.png" id="88_rscyk"]
 [ext_resource type="Texture2D" uid="uid://bxh4h3uc8v0qb" path="res://Assets/Student/Walk/Right Dagger/frame0009.png" id="89_c0m34"]
+[ext_resource type="Texture2D" uid="uid://bljpevpg688pk" path="res://Assets/Student/Throw/Right/frame0005.png" id="89_hyusb"]
+[ext_resource type="Texture2D" uid="uid://cbtapno14d3em" path="res://Assets/Student/Throw/Right/frame0006.png" id="90_ey64d"]
 [ext_resource type="Texture2D" uid="uid://x8uxquli3coh" path="res://Assets/Student/Walk/Right Dagger/frame0010.png" id="90_t5j7j"]
+[ext_resource type="Texture2D" uid="uid://bilsyouw1j04t" path="res://Assets/Student/Throw/Right/frame0008.png" id="91_agvow"]
 [ext_resource type="Texture2D" uid="uid://y7o5dlcgsejn" path="res://Assets/Student/Walk/Up Dagger/frame0000.png" id="91_dq6ij"]
 [ext_resource type="Texture2D" uid="uid://cox8hidxhl6vy" path="res://Assets/Student/Walk/Up Dagger/frame0001.png" id="92_fjebe"]
 [ext_resource type="Texture2D" uid="uid://b0d8ei71ljqx3" path="res://Assets/Student/Walk/Up Dagger/frame0002.png" id="93_frnst"]
@@ -623,6 +639,74 @@ animations = [{
 "loop": true,
 "name": &"Idle Up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("80_s0hae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_jwh1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_53v3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_igmf5")
+}],
+"loop": false,
+"name": &"Throw Down",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("84_yyrv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_61d31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_weeip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_8ixlw")
+}],
+"loop": false,
+"name": &"Throw Left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("88_p5h52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_hyusb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_ey64d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_agvow")
+}],
+"loop": false,
+"name": &"Throw Right",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("81_fmf53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_8ebqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_jwh1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_53v3k")
+}],
+"loop": false,
+"name": &"Throw Up",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1187,6 +1271,150 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_agvow"]
+resource_name = "Throw Down"
+length = 0.33334154
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Throw Down", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666669, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"create_thrown_projectile"
+}, {
+"args": [],
+"method": &"reset_attack_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_p5h52"]
+resource_name = "Throw Left"
+length = 0.33334154
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Throw Left", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666669, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"create_thrown_projectile"
+}, {
+"args": [],
+"method": &"reset_attack_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hyusb"]
+resource_name = "Throw Right"
+length = 0.33334154
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Throw Right", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666666, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"create_thrown_projectile"
+}, {
+"args": [],
+"method": &"reset_attack_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ey64d"]
+resource_name = "Throw Up"
+length = 0.33334154
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Throw Up", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666666, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"create_thrown_projectile"
+}, {
+"args": [],
+"method": &"reset_attack_state"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_71w3q"]
 resource_name = "Walk Down"
 step = 0.0833333
@@ -1207,6 +1435,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_o34un"]
 resource_name = "Walk Knife Down"
+loop_mode = 1
 step = 0.0833333
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -1345,6 +1574,10 @@ _data = {
 &"Idle Right": SubResource("Animation_dv7ya"),
 &"Idle Up": SubResource("Animation_kauok"),
 &"Switch Direction": SubResource("Animation_h88hr"),
+&"Throw Down": SubResource("Animation_agvow"),
+&"Throw Left": SubResource("Animation_p5h52"),
+&"Throw Right": SubResource("Animation_hyusb"),
+&"Throw Up": SubResource("Animation_ey64d"),
 &"Walk Down": SubResource("Animation_71w3q"),
 &"Walk Knife Down": SubResource("Animation_o34un"),
 &"Walk Knife Left": SubResource("Animation_7sitb"),
@@ -1355,28 +1588,74 @@ _data = {
 &"Walk Up": SubResource("Animation_vau5h")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vau5h"]
-animation = &"Attack Up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71w3q"]
-animation = &"Attack Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3vdys"]
-animation = &"Attack Right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kauok"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p5h52"]
 animation = &"Attack Down"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_dv7ya"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_vau5h")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_71w3q")
-blend_point_1/pos = Vector2(-1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_3vdys")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_kauok")
-blend_point_3/pos = Vector2(0, 1)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hyusb"]
+animation = &"Attack Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ey64d"]
+animation = &"Attack Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_agvow"]
+animation = &"Attack Right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_nahvi"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_p5h52")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_hyusb")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ey64d")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_agvow")
+blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nahvi"]
+animation = &"Throw Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7liqs"]
+animation = &"Throw Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8wckb"]
+animation = &"Throw Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gxn4t"]
+animation = &"Throw Left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7liqs"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_nahvi")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_7liqs")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_8wckb")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_gxn4t")
+blend_point_3/pos = Vector2(-1, 0)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p5h52"]
+priority = 0
+advance_mode = 2
+advance_expression = "golden_dagger_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hyusb"]
+advance_mode = 2
+advance_expression = "not golden_dagger_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7liqs"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8wckb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8wckb"]
+states/Attack/node = SubResource("AnimationNodeBlendSpace2D_nahvi")
+states/Attack/position = Vector2(453, 51)
+states/Throw/node = SubResource("AnimationNodeBlendSpace2D_7liqs")
+states/Throw/position = Vector2(392, 157)
+transitions = ["Start", "Attack", SubResource("AnimationNodeStateMachineTransition_p5h52"), "Start", "Throw", SubResource("AnimationNodeStateMachineTransition_hyusb"), "Attack", "End", SubResource("AnimationNodeStateMachineTransition_7liqs"), "Throw", "End", SubResource("AnimationNodeStateMachineTransition_8wckb")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o34un"]
 animation = &"Idle Up"
@@ -1424,21 +1703,22 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_qmb3r")
 blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oy8ms"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_82ywc"]
 priority = 0
 advance_mode = 2
-advance_expression = "knife_equipped"
+advance_expression = "golden_dagger_equipped == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q3a7n"]
+advance_mode = 2
+advance_expression = "golden_dagger_equipped == false"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hjbl7"]
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_o34un")
-states/Idle/position = Vector2(422, 90)
+states/Idle/position = Vector2(400, 40)
 "states/Idle Knife/node" = SubResource("AnimationNodeBlendSpace2D_hjbl7")
-"states/Idle Knife/position" = Vector2(413, 165)
+"states/Idle Knife/position" = Vector2(413, 163)
 states/Start/position = Vector2(100, 90)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_oy8ms"), "Start", "Idle Knife", SubResource("AnimationNodeStateMachineTransition_82ywc")]
+transitions = ["Start", "Idle Knife", SubResource("AnimationNodeStateMachineTransition_82ywc"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_q3a7n")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ix2ws"]
 animation = &"Switch Direction"
@@ -1493,10 +1773,11 @@ blend_mode = 1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjbl7"]
 priority = 0
 advance_mode = 2
-advance_expression = "knife_equipped"
+advance_expression = "golden_dagger_equipped == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnh12"]
 advance_mode = 2
+advance_expression = "golden_dagger_equipped == false"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_71w3q"]
 reset_ends = true
@@ -1515,33 +1796,36 @@ advance_mode = 2
 advance_expression = "moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33rc2"]
+priority = 0
 advance_mode = 2
 advance_expression = "!moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r0rls"]
-advance_mode = 2
-advance_expression = "attacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vau5h"]
-switch_mode = 2
-advance_mode = 2
-advance_expression = "!attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tj7am"]
 advance_mode = 2
 advance_expression = "direction_changed"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxy43"]
+priority = 0
 advance_mode = 2
 advance_expression = "!direction_changed"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_71w3q"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ey64d"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_agvow"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nahvi"]
 advance_mode = 2
 advance_expression = "attacking"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s7t4j"]
-states/Attack/node = SubResource("AnimationNodeBlendSpace2D_dv7ya")
-states/Attack/position = Vector2(818, 253)
+allow_transition_to_self = true
+reset_ends = true
+states/Attack/node = SubResource("AnimationNodeStateMachine_8wckb")
+states/Attack/position = Vector2(622.7683, 241)
 states/Idle/node = SubResource("AnimationNodeStateMachine_hjbl7")
 states/Idle/position = Vector2(382, 134)
 states/Start/position = Vector2(238, 241)
@@ -1549,8 +1833,8 @@ states/Start/position = Vector2(238, 241)
 "states/Switch Direction/position" = Vector2(382, 340.411)
 states/Walk/node = SubResource("AnimationNodeStateMachine_71w3q")
 states/Walk/position = Vector2(382, 241)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_r0rls"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_vau5h"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_71w3q")]
-graph_offset = Vector2(23.7683, 129.712)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ey64d"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_agvow"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_nahvi")]
+graph_offset = Vector2(23.7683, 82.7943)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
@@ -1579,7 +1863,7 @@ process_priority = 1
 texture_filter = 1
 texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_teq0n")
-animation = &"Idle Up"
+animation = &"Throw Up"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1590,8 +1874,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_s7t4j")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/blend_position = Vector2(-0.00320512, 0.010989)
-parameters/Idle/Idle/blend_position = Vector2(0, 0)
+parameters/Attack/Attack/blend_position = Vector2(0, 0)
+parameters/Attack/Throw/blend_position = Vector2(0, 0)
+parameters/Idle/Idle/blend_position = Vector2(-0.000813663, -0.004484296)
 "parameters/Idle/Idle Knife/blend_position" = Vector2(0, 0)
 parameters/Walk/Walk/blend_position = Vector2(0, 0)
 "parameters/Walk/Walk Knife/blend_position" = Vector2(0, 0)

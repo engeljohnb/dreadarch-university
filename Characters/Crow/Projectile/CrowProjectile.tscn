@@ -1,18 +1,7 @@
-[gd_scene load_steps=46 format=3 uid="uid://ca0orotistvqw"]
+[gd_scene load_steps=34 format=3 uid="uid://ca0orotistvqw"]
 
 [ext_resource type="Script" uid="uid://c7oo7ofgvo6b3" path="res://Characters/Crow/Projectile/CrowProjectile.gd" id="1_c6877"]
-[ext_resource type="Texture2D" uid="uid://b71hrvffjra5u" path="res://Assets/Badguys/Crow/Attack/Projectile/Up/0000.png" id="1_cmyoa"]
-[ext_resource type="Texture2D" uid="uid://y0pt2nquv72c" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png" id="1_faeoo"]
-[ext_resource type="Texture2D" uid="uid://cxd8k50rydix" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0001.png" id="2_b1jo3"]
-[ext_resource type="Texture2D" uid="uid://bw6te4goxkepl" path="res://Assets/Badguys/Crow/Attack/Projectile/Up/0001.png" id="2_uc753"]
-[ext_resource type="Texture2D" uid="uid://dyt4c4mao3por" path="res://Assets/Badguys/Crow/Attack/Projectile/Up/0002.png" id="3_bxik5"]
-[ext_resource type="Texture2D" uid="uid://bjpv6ntd01w4y" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0002.png" id="3_dy6xw"]
-[ext_resource type="Texture2D" uid="uid://dww7amsi6lxtn" path="res://Assets/Badguys/Crow/Attack/Projectile/Right/0000.png" id="4_gs6ry"]
-[ext_resource type="Texture2D" uid="uid://cwai21x1tteq8" path="res://Assets/Badguys/Crow/Attack/Projectile/Right/0001.png" id="5_c6877"]
-[ext_resource type="Texture2D" uid="uid://cf0xdv8buyxw0" path="res://Assets/Badguys/Crow/Attack/Projectile/Right/0002.png" id="6_mphm1"]
-[ext_resource type="Texture2D" uid="uid://qrqx67aw3x28" path="res://Assets/Badguys/Crow/Attack/Projectile/Left/0000.png" id="7_jkaks"]
-[ext_resource type="Texture2D" uid="uid://d3y81d1xx1vk4" path="res://Assets/Badguys/Crow/Attack/Projectile/Left/0001.png" id="8_nl4gd"]
-[ext_resource type="Texture2D" uid="uid://ysd7lxqpbfnl" path="res://Assets/Badguys/Crow/Attack/Projectile/Left/0002.png" id="9_lokkw"]
+[ext_resource type="SpriteFrames" uid="uid://d37cvije2wlux" path="res://Characters/Crow/Projectile/CrowProjectileSpriteframes.tres" id="2_nl4gd"]
 [ext_resource type="Texture2D" uid="uid://r8vup15t3xk1" path="res://Assets/Badguys/Crow/Attack/Projectile/Launch Effect/0010.png" id="14_m0ud5"]
 [ext_resource type="Texture2D" uid="uid://dmoadtn2xyqqb" path="res://Assets/Badguys/Crow/Attack/Projectile/Launch Effect/0011.png" id="15_845w8"]
 [ext_resource type="Texture2D" uid="uid://ud1xai7ymgtc" path="res://Assets/Badguys/Crow/Attack/Projectile/Launch Effect/0012.png" id="16_f2dq8"]
@@ -33,65 +22,6 @@ radius = 6.0
 height = 16.75
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_845w8"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mlitg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_faeoo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_b1jo3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_dy6xw")
-}],
-"loop": true,
-"name": &"Down",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_gs6ry")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_c6877")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_mphm1")
-}],
-"loop": true,
-"name": &"Left",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_jkaks")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_nl4gd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_lokkw")
-}],
-"loop": true,
-"name": &"Right",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_cmyoa")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_uc753")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_bxik5")
-}],
-"loop": true,
-"name": &"Up",
-"speed": 8.0
-}]
 
 [sub_resource type="Animation" id="Animation_f2dq8"]
 resource_name = "Down"
@@ -646,7 +576,7 @@ shape = SubResource("CapsuleShape2D_5175p")
 texture_filter = 1
 material = SubResource("ShaderMaterial_845w8")
 use_parent_material = true
-sprite_frames = SubResource("SpriteFrames_mlitg")
+sprite_frames = ExtResource("2_nl4gd")
 animation = &"Right"
 
 [node name="FXPlayer" type="AnimationPlayer" parent="."]

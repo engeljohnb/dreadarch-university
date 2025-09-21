@@ -3,19 +3,58 @@ extends Node
 signal scroll_fragment_collected()
 @warning_ignore("unused_signal")
 signal treasure_collected(amount)
+@warning_ignore("unused_signal")
+signal talons_collected(amount)
+@warning_ignore("unused_signal")
+signal item_collected(item, count)
 const HEART = "Heart"
 const SCROLL_FRAGMENT = "Scroll Fragment"
 const TREASURE = "Treasure"
+const TALONS = "Talons"
+const GOLDEN_DAGGER = "Golden Dagger"
 
+var textures = {
+	HEART:load("res://Assets/Items/Heart/0000.png"),
+	SCROLL_FRAGMENT:load("res://Assets/Items/ScrollFragment/Scroll.png"),
+	TREASURE:load("res://Assets/Items/Treasure/0000.png"),
+	TALONS:load("res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png"),
+	GOLDEN_DAGGER:load("res://Assets/Items/GoldenDagger/0000.png")
+				}
+var projectiles = {
+	TALONS:load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
+}
+
+var streams = {
+	HEART:load("res://Assets/Sounds/Heart/CollectSound.ogg"),
+	SCROLL_FRAGMENT:load("res://Assets/Sounds/OpenMenu.mp3"),
+	TREASURE:load("res://Assets/Sounds/Items/TreasureCollectedSound.ogg"),
+	TALONS:load("res://Assets/Sounds/Items/TalonCollectedSound.ogg"),
+	GOLDEN_DAGGER:load("res://Assets/Sounds/Items/SwordCollectedSound.ogg")
+}
+var sounds = {}
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary
 var all_scroll_fragments_collected = false
 
 func _ready():
+	for key in streams:
+		sounds[key] = AudioStreamPlayer.new()
+		sounds[key].stream = streams[key]
+		match key:
+			TREASURE:
+				sounds[key].volume_db = -20.0
+			TALONS:
+				sounds[key].volume_db = -20.0
+			HEART:
+				sounds[key].volume_db = -20.0
+			GOLDEN_DAGGER:
+				sounds[key].volume_db = -20.0
+		add_child(sounds[key])
 	var file = FileAccess.open("res://Game Data/scroll_fragments.JSON", FileAccess.READ)
 	scroll_fragments = DictionarySerializer.deserialize_json(file.get_as_text())
+	file.close()
 
-func load_collected_scroll_fragments(collected):
+func load_collected_scroll_fragments(collected : Array):
 	for frag in scroll_fragments:
 		for c in collected:
 			if frag.recursive_equal(c, 1):
@@ -46,8 +85,7 @@ func get_next_fragment():
 			f["collected"] = true
 	return fragment
 	
-func add_scroll_fragment():
-	print("exe??")
+func collect_scroll_fragment():
 	prompt_to_read_scroll_fragment()
 	most_recent_scroll_fragment = get_next_fragment()
 	scroll_fragment_collected.emit()

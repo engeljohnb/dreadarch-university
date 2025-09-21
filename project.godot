@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Dreadarch University"
 run/main_scene="uid://ch1hebxpmn75b"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -124,7 +124,8 @@ OpenInventory={
 2d_physics/layer_5="ActorSearch"
 2d_physics/layer_6="Walls"
 2d_physics/layer_7="FloorObstacles"
-2d_physics/layer_8="Colectibles"
+2d_physics/layer_8="Collectibles"
+2d_physics/layer_9="StopsFallingObjects"
 
 [rendering]
 

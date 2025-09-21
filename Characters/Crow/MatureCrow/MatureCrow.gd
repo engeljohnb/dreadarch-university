@@ -106,6 +106,7 @@ func launch_projectile():
 	# affect the projectile
 	projectile.global_position = position
 	add_sibling(projectile)
+	hitbox.my_weapons.append(projectile)
 	if player:
 		projectile.launch(facing, player)
 	else:

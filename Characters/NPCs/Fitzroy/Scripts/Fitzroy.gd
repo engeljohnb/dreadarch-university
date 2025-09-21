@@ -13,6 +13,13 @@ var retiring_timer = 0.0
 var retiring_duration = 6.0
 var type = Types.NPC
 
+var using_item_default_dialogue = [
+	{
+		"text" : "Go play with that thing somewhere else!",
+		"speaker" : "Fitzroy"
+	}
+]
+
 var intro_dialogue = [
 	{
 		"text" : "!!!",
@@ -51,7 +58,7 @@ var intro_dialogue = [
 		"speaker" : "Fitzroy"
 	},
 	{
-		"text" : "You really should leave. There's monsters down here! This isn't kid stuff.",
+		"text" : "You really should leave. There are monsters down here! This isn't kid stuff.",
 		"speaker" : "Fitzroy"
 	}
 ]
@@ -186,7 +193,10 @@ func activate(using_item = "", item_count = 1):
 		Collectible.treasure_collected.emit(-25)
 		return
 	elif status["introduced"]:
-		Dialogue.open_dialogue.emit(intro_dialogue.slice(-2, intro_dialogue.size()))
+		if (not using_item.is_empty()) and (using_item != Collectible.TREASURE):
+			Dialogue.open_dialogue.emit(using_item_default_dialogue)
+		else:
+			Dialogue.open_dialogue.emit(intro_dialogue.slice(-2, intro_dialogue.size()))
 		
 func _process(_delta):
 	if will_retire:
@@ -195,7 +205,7 @@ func _process(_delta):
 			will_retire = false
 			status["gone"] = true
 			$AnimatedSprite2D.play("Walk Left")
-			$TreasureSound.play()
+			Collectible.sounds[Collectible.TREASURE].play()
 	if retiring:
 		if get_tree().get_nodes_in_group("Player")[0].in_dialogue:
 			$AnimatedSprite2D.play("Idle")

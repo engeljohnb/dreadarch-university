@@ -7,6 +7,7 @@ signal hit(body)
 # best way I could think of -- just set the weapon when the calling node 
 # creates the weapon.
 var my_weapon = null
+var my_weapons = []
 var ignore = []
 @onready var shape = $CollisionShape2D.shape
 
@@ -19,6 +20,9 @@ func on_body_entered(body):
 			return
 		if my_weapon:
 			if (body != my_weapon): 
+				hit.emit(body)
+		if not my_weapons.is_empty():
+			if not (body in my_weapons):
 				hit.emit(body)
 		else:
 			if (body.get_parent() != get_parent()):
