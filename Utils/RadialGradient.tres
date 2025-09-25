@@ -4,9 +4,8 @@
 colors = PackedColorArray(0.775063, 0.775063, 0.775063, 1, 0, 0, 0, 1)
 
 [resource]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_yuaiq")
-width = 1000
-height = 1000
 fill = 1
 fill_from = Vector2(0.522472, 0.505618)
-fill_to = Vector2(0.880342, 0.820513)
+fill_to = Vector2(0.80841124, 0.90654206)

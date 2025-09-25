@@ -10,10 +10,14 @@ func _ready():
 	get_tree().paused = true
 	$TextureRect/Yes.grab_focus()
 	
-func prompt(text, yes_callback : Callable, no_callback : Callable, yes = "yes", no = "no"):
+func prompt(text, yes_callback : Callable, no_callback : Callable, yes = "yes", no = "no", default = "no"):
 	$TextureRect/RichTextLabel.text = text
 	$TextureRect/Yes.text = yes
 	$TextureRect/No.text = no
 	$TextureRect/Yes.pressed.connect(yes_callback)
 	$TextureRect/No.pressed.connect(no_callback)
+	if default == yes:
+		$TextureRect/Yes.grab_focus()
+	else:
+		$TextureRect/No.grab_focus()
 	visible = true

@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal died()
 signal lost_life(damage)
 signal gained_life(life)
+signal gained_temporary_life(life)
 signal item_equipped(item, count)
 @onready var anim_tree = $AnimationTree
 @onready var anim_player = $AnimationPlayer
@@ -18,7 +19,7 @@ const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
 const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
-const SPEED = 300.0
+const SPEED = 400.0
 
 var inventory = {}
 var dead = false
@@ -28,6 +29,7 @@ var cutscene_timer = 0.0
 var cutscene_duration = 0.0
 var life = 3
 var total_life = 3
+var temporary_life = 0
 var _attack_fx = load("res://Characters/Player/PlayerAttackFX.tscn")
 var attack_fx = null
 var facing : Vector2
@@ -42,20 +44,29 @@ var in_dialogue = false
 # For counting frames to know when to play the step sound
 var direction_priority
 # Why have golden_dagger_equipped when I can just check equipped == Collectible.GOLDEN_DAGGER?
-# Becaues everything breaks in the AnimationTree state machine when the advance
-# expression is anything more complicated than a boolean.
+# Becaues everything breaks in the AnimationTree state machine when the advance condition
+# is equipped == Collectible.GOLDEN_DAGGER. I don't know why but having this variable instead makes it work.
 var golden_dagger_equipped = true
 	
 func on_item_collected(item, count, specific = null):
+	if item == Collectible.HEART:
+		gain_life(1)
+		return
 	if specific:
 		inventory[item].append(specific)
 	elif not inventory.get(item):
 		inventory[item] = count
 	else:
 		inventory[item] += count
-	if inventory[item] is int:
+	if (inventory[item] is int) or (inventory[item] is float):
 		if inventory[item] <= 0:
 			inventory[item] = 0
+	if item == Collectible.GOLDEN_DAGGER:
+		on_inventory_action_chosen("Equip", "", 1)
+		if count < 0:
+			inventory[Collectible.GOLDEN_DAGGER] = 0
+		else:
+			inventory[Collectible.GOLDEN_DAGGER] = 1
 		
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
@@ -254,6 +265,7 @@ func death():
 		attack_fx.visible = false
 		attack_fx.queue_free()
 	$AnimatedSprite2D.play("Idle Down")
+	attacking = false
 	dead = true
 	died.emit()
 	
@@ -262,7 +274,10 @@ func on_hit(_body):
 	if in_cutscene:
 		return
 	if not blinker.blinking:
-		life -= 1
+		if temporary_life > 0:
+			temporary_life -= 1
+		else:
+			life -= 1
 		lost_life.emit(1)
 		blinker.blink(0.5)
 	if life <= 0:
@@ -287,6 +302,8 @@ func on_inventory_action_chosen(action, item, count):
 			$InteractionRay.temp_message = "Z to " + action
 			$InteractionRay.using_item = item
 			$InteractionRay.using_item_count = count
+			if $InteractionRay.message_showing:
+				$InteractionRay.message.text = "Z to " + action
 		"Equip":
 			match item:
 				Collectible.TALONS:
@@ -295,19 +312,35 @@ func on_inventory_action_chosen(action, item, count):
 				Collectible.GOLDEN_DAGGER:
 					equipped = Collectible.GOLDEN_DAGGER
 					golden_dagger_equipped = true
+				item:
+					equipped = ""
+					golden_dagger_equipped = false
 			if inventory.get(item):
 				if (inventory[item] is int) or (inventory[item] is float):
 					item_equipped.emit(item, inventory[item])
 			else:
 				item_equipped.emit(item, 1)
-
-func gain_life(_life):
-	life += 1
-	if life >= total_life:
+		"Drink":
+			match item:
+				Collectible.NECTAR:
+					gain_life(1, true)
+			Collectible.item_collected.emit(item, -1)
+					
+func gain_life(_life, temporary = false):
+	if temporary:
 		life = total_life
-	gained_life.emit(_life)
+		gained_life.emit(total_life - life)
+		temporary_life += _life
+		gained_temporary_life.emit(_life)
+	else:
+		life += 1
+		if life >= total_life:
+			life = total_life
+		gained_life.emit(_life)
 	
 func update_equipment():
+	if equipped == "":
+		return
 	if (inventory.get(equipped) is int) or (inventory[equipped] is float):
 		if inventory[equipped] <= 0:
 			if equipped == Collectible.GOLDEN_DAGGER:

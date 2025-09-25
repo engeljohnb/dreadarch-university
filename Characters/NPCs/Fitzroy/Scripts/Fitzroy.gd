@@ -205,7 +205,6 @@ func _process(_delta):
 			will_retire = false
 			status["gone"] = true
 			$AnimatedSprite2D.play("Walk Left")
-			Collectible.sounds[Collectible.TREASURE].play()
 	if retiring:
 		if get_tree().get_nodes_in_group("Player")[0].in_dialogue:
 			$AnimatedSprite2D.play("Idle")

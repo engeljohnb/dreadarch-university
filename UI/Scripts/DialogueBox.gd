@@ -4,7 +4,9 @@ signal dialogue_ended()
 
 var reveal_sounds = ["res://Assets/Sounds/UI/RevealDialogueSound1.ogg", "res://Assets/Sounds/UI/RevealDialogueSound2.ogg", "res://Assets/Sounds/RevealDialogueSound3.ogg"]
 var portraits = {"Player" : load("res://Assets/Student/DialoguePortrait.png"),
-				"Fitzroy" : load("res://Assets/NPCs/PrivateFitzroy/Portrait.png")}
+				"Fitzroy" : load("res://Assets/NPCs/PrivateFitzroy/Portrait.png"),
+				"Aelia" : load("res://Assets/NPCs/Aelia/Portrait.png")
+				}
 var dialogue : Array = []
 var current_index = 0
 var displaying = false
@@ -41,6 +43,7 @@ func display_next():
 	else:
 		$TextureRect/Indicator.play("Proceed")
 	$TextureRect/RichTextLabel.text = dialogue[current_index]["text"]
+	Dialogue.current_box = dialogue[current_index]
 	$TextureRect/Portrait.texture = portraits[dialogue[current_index]["speaker"]]
 	current_index += 1
 	var filename = reveal_sounds[randi()%2]

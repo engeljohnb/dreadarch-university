@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://vhduvbq30tpd"]
+[gd_scene load_steps=4 format=3 uid="uid://vhduvbq30tpd"]
 
 [ext_resource type="Script" uid="uid://fhivtpul7qcb" path="res://Items/Heart/Heart.gd" id="1_c71ca"]
 [ext_resource type="SpriteFrames" uid="uid://br4yq3q4dw8sg" path="res://Items/Heart/Heart.tres" id="2_tla6b"]
-[ext_resource type="AudioStream" uid="uid://dfm73b5dqaj2t" path="res://Assets/Sounds/Heart/CollectSound.ogg" id="6_swliu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2bck"]
 
@@ -18,7 +17,3 @@ shape = SubResource("CircleShape2D_u2bck")
 texture_filter = 1
 sprite_frames = ExtResource("2_tla6b")
 frame_progress = 0.230266
-
-[node name="CollectedSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_swliu")
-volume_db = -15.0

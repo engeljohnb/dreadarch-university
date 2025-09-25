@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://s2r7rsit3r2j"]
+[gd_scene load_steps=5 format=3 uid="uid://s2r7rsit3r2j"]
 
 [ext_resource type="Script" uid="uid://ctjxwfu5ep55c" path="res://Items/Talons/Talons.gd" id="1_c4117"]
 [ext_resource type="SpriteFrames" uid="uid://d37cvije2wlux" path="res://Characters/Crow/Projectile/CrowProjectileSpriteframes.tres" id="2_c4117"]
+[ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="3_o506o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
 radius = 15.132746
@@ -21,3 +22,9 @@ texture_filter = 1
 position = Vector2(1.3750007, 2.1153858)
 scale = Vector2(1.6346154, 1.6346154)
 sprite_frames = ExtResource("2_c4117")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(1.65625, 1.65625)
+color = Color(0.7519318, 0.5577183, 0.9876084, 1)
+texture = ExtResource("3_o506o")

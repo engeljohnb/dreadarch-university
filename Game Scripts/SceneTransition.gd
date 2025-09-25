@@ -2,14 +2,18 @@ extends Node2D
 
 signal scene_changed()
 signal won()
-var current_scene_name = "res://UI/WelcomeMenu.tscn"
+var current_scene_name = "WelcomeMenu"
+var prev_scene_name = ""
+var current_scene_path = "res://UI/WelcomeMenu.tscn"
 var player_start_position : Vector2
 var by_door = false
 
-func change_scene(scene_name, _player_start_pos = null, _by_door = false):
-	current_scene_name = scene_name
+func change_scene(scene_path, _player_start_pos = null, _by_door = false):
+	prev_scene_name = current_scene_name
+	current_scene_path = scene_path
 	by_door = _by_door
-	var instance = load(current_scene_name).instantiate()
+	var instance = load(scene_path).instantiate()
+	current_scene_name = instance.name
 	if _player_start_pos:
 		player_start_position = _player_start_pos
 	elif "player_start_position" in instance:

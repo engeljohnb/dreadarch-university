@@ -6,6 +6,7 @@ var message = null
 var temp_message = ""
 var using_item = ""
 var using_item_count = 1
+
 func show_message(text, _position):
 	message = _message.instantiate()
 	message.text = text
@@ -27,6 +28,10 @@ func _process(_delta):
 				else:
 					show_message("Z to interact", col.position)
 				message_showing = true
+			else:
+				if temp_message.is_empty():
+					if "interaction_message" in col:
+						message.text = col.interaction_message
 		else:
 			if message_showing:
 				hide_message()
@@ -37,10 +42,10 @@ func _process(_delta):
 					if "activate" in col:
 						if not using_item.is_empty():
 							col.activate(using_item, using_item_count)
-							using_item = ""
-							temp_message = ""
 						else:
 							col.activate()
+					temp_message = ""
+					using_item = ""
 	else:
 		if message_showing:
 			hide_message()

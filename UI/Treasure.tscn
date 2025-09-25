@@ -35,12 +35,14 @@ visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = -1
-anchor_right = 0.059000004
-anchor_bottom = 0.044000003
-offset_left = 167.0
-offset_top = 142.0
-offset_right = 167.72
-offset_bottom = 142.48
+anchor_left = 0.83500004
+anchor_top = 0.066
+anchor_right = 0.89500004
+anchor_bottom = 0.11000001
+offset_left = 90.79993
+offset_top = 5.720001
+offset_right = 89.599976
+offset_bottom = 6.1999893
 theme = ExtResource("2_etjus")
 theme_override_colors/default_color = Color(1, 1, 1, 0.768)
 theme_override_font_sizes/normal_font_size = 45

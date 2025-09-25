@@ -9,6 +9,7 @@ var chosen_item_total = 0
 var chosen_item_count = 0
 var chosen_action = ""
 var equippable = [Collectible.TALONS, Collectible.GOLDEN_DAGGER]
+var drinkable = [Collectible.NECTAR]
 
 func _ready():
 	get_tree().paused = true
@@ -19,6 +20,8 @@ func _ready():
 func open_submenu():
 	if chosen_item in equippable:
 		submenu.add_item("Equip")
+	if chosen_item in drinkable:
+		submenu.add_item("Drink")
 	submenu_open = true
 	$OpenSound.play()
 	submenu.visible = true
@@ -77,7 +80,7 @@ func _process(_delta):
 					match chosen_action:
 						"Use":
 							open_number_box(chosen_item_total)
-						"Equip":
+						chosen_action:
 							inventory_action_chosen.emit(chosen_action, chosen_item, 1)
 							close()
 			else:

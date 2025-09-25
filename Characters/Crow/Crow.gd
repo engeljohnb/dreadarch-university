@@ -39,10 +39,12 @@ func drop():
 	var drop_gen = RandomNumberGenerator.new()
 	var odds = drop_gen.randf()
 	var item = null
-	if odds > 0.0:
-		item = load("res://Items/Talons/Talons.tscn").instantiate()
-	if odds < 0.0:
+	if odds > 0.1:
 		item = load("res://Items/Treasure/Treasure.tscn").instantiate()
+	if odds > 0.4:
+		item = load("res://Items/Talons/Talons.tscn").instantiate()
+	if item == null:
+		return
 	add_sibling(item)
 	item.global_position = global_position
 	item.reparent(get_parent())

@@ -1887,8 +1887,8 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 zoom = Vector2(1.5, 1.5)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-5.72205e-06, 3)
-scale = Vector2(0.775, 0.775)
+position = Vector2(-0.99998474, 3.5000153)
+scale = Vector2(12.031249, 11.984375)
 color = Color(0.940371, 0.870002, 0.737402, 1)
 energy = 3.0
 shadow_enabled = true
@@ -1898,8 +1898,8 @@ texture = ExtResource("148_yo137")
 [node name="PointLight2D" type="PointLight2D" parent="PointLight2D"]
 light_mask = 4
 visibility_layer = 4
-position = Vector2(-5.72205e-06, 3)
-scale = Vector2(0.775, 0.775)
+position = Vector2(0.16623259, -0.5423746)
+scale = Vector2(0.92408454, 0.92408454)
 color = Color(0.940371, 0.870002, 0.737402, 1)
 energy = 3.0
 range_item_cull_mask = 4

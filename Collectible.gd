@@ -12,13 +12,16 @@ const SCROLL_FRAGMENT = "Scroll Fragment"
 const TREASURE = "Treasure"
 const TALONS = "Talons"
 const GOLDEN_DAGGER = "Golden Dagger"
+const NECTAR = "Nectar"
 
 var textures = {
 	HEART:load("res://Assets/Items/Heart/0000.png"),
 	SCROLL_FRAGMENT:load("res://Assets/Items/ScrollFragment/Scroll.png"),
 	TREASURE:load("res://Assets/Items/Treasure/0000.png"),
 	TALONS:load("res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png"),
-	GOLDEN_DAGGER:load("res://Assets/Items/GoldenDagger/0000.png")
+	GOLDEN_DAGGER:load("res://Assets/Items/GoldenDagger/0000.png"),
+	NECTAR:load("res://Assets/Items/Nectar/0000.png")
+	
 				}
 var projectiles = {
 	TALONS:load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
@@ -29,7 +32,8 @@ var streams = {
 	SCROLL_FRAGMENT:load("res://Assets/Sounds/OpenMenu.mp3"),
 	TREASURE:load("res://Assets/Sounds/Items/TreasureCollectedSound.ogg"),
 	TALONS:load("res://Assets/Sounds/Items/TalonCollectedSound.ogg"),
-	GOLDEN_DAGGER:load("res://Assets/Sounds/Items/SwordCollectedSound.ogg")
+	GOLDEN_DAGGER:load("res://Assets/Sounds/Items/SwordCollectedSound.ogg"),
+	NECTAR:load("res://Assets/Sounds/Heart/CollectSound.ogg")
 }
 
 var spriteframes = {
@@ -37,7 +41,8 @@ var spriteframes = {
 	SCROLL_FRAGMENT:null,
 	TREASURE:load("res://Items/Treasure/Treasure.tres"),
 	TALONS:load("res://Characters/Crow/Projectile/CrowProjectileSpriteframes.tres"),
-	GOLDEN_DAGGER:load("res://Items/GoldenDagger/GoldenDagger.tres")
+	GOLDEN_DAGGER:load("res://Items/GoldenDagger/GoldenDagger.tres"),
+	NECTAR:null
 }
 
 var sounds = {}
@@ -45,6 +50,10 @@ var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary
 var all_scroll_fragments_collected = false
 
+func on_item_collected(item, _count):
+	if sounds.get(item):
+		sounds[item].call_deferred("play")
+		
 func _ready():
 	for key in streams:
 		sounds[key] = AudioStreamPlayer.new()
@@ -55,6 +64,8 @@ func _ready():
 			TALONS:
 				sounds[key].volume_db = -20.0
 			HEART:
+				sounds[key].volume_db = -20.0
+			NECTAR:
 				sounds[key].volume_db = -20.0
 			GOLDEN_DAGGER:
 				sounds[key].volume_db = -20.0

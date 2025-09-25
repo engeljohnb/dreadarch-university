@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var can_drop = ["", Collectible.HEART, Collectible.SCROLL_FRAGMENT, Collectible.TREASURE]
+var can_drop = [Collectible.HEART, Collectible.SCROLL_FRAGMENT, Collectible.TREASURE]
 var has = []
 var interaction_message = "Z to search"
 var showing_item = false
@@ -29,8 +29,6 @@ func activate(using_item = "", count = 0):
 		$Blinker.blink(0.33)
 		Collectible.item_collected.emit(using_item, -count)
 		activated = false
-		if Collectible.sounds.get(using_item):
-			Collectible.sounds[using_item].play()
 		return
 	if (not has_overrides.is_empty()) and not activated:
 		has = has_overrides
@@ -46,23 +44,21 @@ func activate(using_item = "", count = 0):
 				showing_item = true
 				item_sprites.append(item_sprite)
 				match h:
-					Collectible.HEART:
-						get_tree().get_nodes_in_group("Player")[0].gain_life(1)
 					Collectible.SCROLL_FRAGMENT:
 						if Collectible.all_scroll_fragments_collected:
 							item_sprite.queue_free()
+							has = []
+						else:
+							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
 					h:
 						Collectible.item_collected.emit(h, amount)
 			activated = true
 			amounts = []
-	$Blinker.blink(0.33)
-	if (not has.is_empty()):
-		if not has[-1].is_empty():
-			Collectible.sounds[has[-1]].play()
 		else:
 			$ActivateSound.play()
 	else:
 		$ActivateSound.play()
+	$Blinker.blink(0.33)
 
 func _ready():
 	var drop_generator = RandomNumberGenerator.new()
@@ -72,16 +68,13 @@ func _ready():
 	
 	var odds = drop_generator.randf() 
 	if odds > 0.9:
-		has.append(can_drop[2])
-		amounts.append(1)
-	elif odds > 0.66:
 		has.append(can_drop[1])
 		amounts.append(1)
-	elif odds > 0.33:
-		has.append(can_drop[3])
-		amounts.append(1)
-	else:
+	elif odds > 0.66:
 		has.append(can_drop[0])
+		amounts.append(1)
+	elif odds > 0.33:
+		has.append(can_drop[2])
 		amounts.append(1)
 		
 func _process(_delta):
@@ -93,6 +86,9 @@ func _process(_delta):
 			item_sprites[i].position.x = i*32 - ((item_sprites.size()-1) * 16)
 		if show_timer >= show_duration:
 			if Collectible.SCROLL_FRAGMENT in has:
+				# Doing this here instead of emitting Collectible.item_collected
+				# so the sound plays immediately but the prompt to read
+				# only opens after the scroll icon finishes its animation
 				Collectible.collect_scroll_fragment()
 			show_timer = 0.0
 			showing_item = false

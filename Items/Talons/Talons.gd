@@ -21,7 +21,6 @@ func on_body_entered(body):
 				wait_for_attack = true
 				return
 		Collectible.item_collected.emit(Collectible.TALONS, 1)
-		Collectible.sounds[Collectible.TALONS].play()
 		queue_free()
 	if body is TileMapLayer:
 		if not (body.get_parent() is ParallaxLayer):

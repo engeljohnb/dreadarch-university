@@ -1,6 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://coaprv7phi5iw"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://coaprv7phi5iw"]
 
 [ext_resource type="Texture2D" uid="uid://b52a2jr2qlw2y" path="res://Assets/Tiles/AncientLibrary/ground_tiles.png" id="1_ryvxp"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ryvxp"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 327680, 1, 1, 65536, 0, 65537, 65536, 1, 131073, 327680, 1, 2, 327680, 1, 65538, 327680, 1, 131074, 262144, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guk46"]
 texture = ExtResource("1_ryvxp")
@@ -30,10 +33,10 @@ texture_region_size = Vector2i(64, 64)
 5:1/0 = 0
 5:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -16.9514, -32, -16.5983)
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, 23.425663, 32, 22.296719, -22.01448, -32, -23.143429)
 2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 32, -32, 13.3333, 32, 14, 32, 32)
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, 23.425663, 32, 22.296719, -22.01448, -32, -23.143429)
 2:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 3:3/next_alternative_id = 2
 3:3/0 = 0
@@ -151,3 +154,4 @@ physics_layer_0/collision_mask = 136
 physics_layer_1/collision_layer = 256
 physics_layer_1/collision_mask = 384
 sources/0 = SubResource("TileSetAtlasSource_guk46")
+pattern_0 = SubResource("TileMapPattern_ryvxp")

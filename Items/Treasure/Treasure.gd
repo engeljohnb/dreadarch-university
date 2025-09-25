@@ -23,7 +23,7 @@ func on_body_entered(body):
 				wait_for_attack = true
 				return
 		Collectible.item_collected.emit(Collectible.TREASURE, 1)
-		Collectible.sonds[Collectible.TREASURE].play()
+		Collectible.sounds[Collectible.TREASURE].call_deferred("play")
 		queue_free()
 
 	

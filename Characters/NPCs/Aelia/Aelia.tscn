@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqpa2n6eiq5js"]
+
+[ext_resource type="Script" uid="uid://gp3pdj31gvah" path="res://Characters/NPCs/Aelia/Aelia.gd" id="1_ek1ba"]
+[ext_resource type="Shader" uid="uid://ej1y2kcejyr4" path="res://Characters/NPCs/Aelia/Aelia.gdshader" id="3_muyuv"]
+[ext_resource type="Texture2D" uid="uid://nh8j5dptvywi" path="res://Assets/NPCs/Aelia/01.png" id="3_ofmfj"]
+[ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="5_tf46h"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_muyuv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ofmfj"]
+noise = SubResource("FastNoiseLite_muyuv")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofmfj"]
+shader = ExtResource("3_muyuv")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ofmfj")
+shader_parameter/portrait = ExtResource("3_ofmfj")
+shader_parameter/smoke_color = Color(1, 1, 1, 1)
+shader_parameter/distortion_speed = 4.1750001983125
+shader_parameter/density = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fy6fd"]
+width = 84
+height = 84
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puuy2"]
+size = Vector2(34.5, 82.25)
+
+[node name="Aelia" type="StaticBody2D" groups=["Interactable"]]
+texture_filter = 1
+collision_layer = 8
+collision_mask = 24
+script = ExtResource("1_ek1ba")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ofmfj")
+custom_minimum_size = Vector2(84, 84)
+offset_left = -68.0
+offset_top = -67.0
+offset_right = 52.750008
+offset_bottom = 53.0
+texture = SubResource("NoiseTexture2D_fy6fd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_puuy2")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(591.781, 591.781)
+energy = 4.0
+shadow_enabled = true
+texture = ExtResource("5_tf46h")
+texture_scale = 0.01

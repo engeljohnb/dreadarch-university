@@ -79,7 +79,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfyqh"]
-size = Vector2(96.7405, 21.25)
+size = Vector2(119.99301, 23)
 
 [node name="Fitzroy" type="StaticBody2D" groups=["Interactable"]]
 y_sort_enabled = true
@@ -94,6 +94,6 @@ sprite_frames = SubResource("SpriteFrames_sh7jb")
 animation = &"Walk Left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 31.625)
+position = Vector2(1.0000002, 31)
 scale = Vector2(0.98113, 1)
 shape = SubResource("RectangleShape2D_mfyqh")

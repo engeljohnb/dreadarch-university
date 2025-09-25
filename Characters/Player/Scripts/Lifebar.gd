@@ -3,9 +3,11 @@ extends Node2D
 var _segment = load("res://Characters/Player/LifebarSegment.tscn")
 var total_life = 3
 var life = 3
+var temporary_life = 0
 var rects = []
 var outline_segs = []
 var full_color = Color(0.6, 0.2, 0.15)
+var temporary_life_color = Color(0.9, 0.8, 0.3)
 var empty_color = Color(0.5,0.5,0.5)
 
 func _ready():
@@ -21,8 +23,8 @@ func set_life_total(lt, _life = lt):
 	rects = []
 	
 	total_life = lt
-	life = _life
-	var seg_count = lt+1
+	life = _life - temporary_life
+	var seg_count = lt+temporary_life+1
 	var left_segment = _segment.instantiate()
 	var right_segment = _segment.instantiate()
 	right_segment.position.x += (seg_count - 2) * 40
@@ -36,13 +38,14 @@ func set_life_total(lt, _life = lt):
 		middle_segment.position.x += (i*40)
 		middle_segment.play("Middle")
 		outline_segs.append(middle_segment)
-	
-	for i in range(0, lt):
+	for i in range(0, lt+temporary_life):
 		var rect = ColorRect.new()
 		if i >= life:
 			rect.color = empty_color
 		else:
 			rect.color = full_color
+		if i >= lt:
+			rect.color = temporary_life_color
 		rect.position = Vector2(-20,-20)
 		rect.size = Vector2(40,40)
 		rect.position.x += (i*40)
@@ -54,9 +57,18 @@ func set_life_total(lt, _life = lt):
 		add_child(segment)
 
 func deduct_damage(damage):
-	for i in range(life-damage, total_life):
-		rects[i].color = empty_color
-	life -= damage
+	if temporary_life > 0:
+		temporary_life -= damage
+		set_life_total(total_life, total_life+temporary_life)
+	else:
+		life -= damage
+		for i in range(0, damage):
+			rects[life+i].color = empty_color
+	
+func gain_temporary_life(_life):
+	life = total_life
+	temporary_life += _life
+	set_life_total(total_life, total_life+temporary_life)
 	
 func gain_life(_life):
 	life += _life
