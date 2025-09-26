@@ -14,6 +14,14 @@ const TALONS = "Talons"
 const GOLDEN_DAGGER = "Golden Dagger"
 const NECTAR = "Nectar"
 
+var equippable = [TALONS, GOLDEN_DAGGER]
+
+var drinkable = [NECTAR]
+
+var collected_first = {
+	TALONS:false,
+	NECTAR:false
+}
 var textures = {
 	HEART:load("res://Assets/Items/Heart/0000.png"),
 	SCROLL_FRAGMENT:load("res://Assets/Items/ScrollFragment/Scroll.png"),
@@ -23,6 +31,7 @@ var textures = {
 	NECTAR:load("res://Assets/Items/Nectar/0000.png")
 	
 				}
+
 var projectiles = {
 	TALONS:load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
 }
@@ -45,14 +54,51 @@ var spriteframes = {
 	NECTAR:null
 }
 
+var tutorial_notes = {
+	TALONS:[
+		{
+			"text":"You found talons! ",
+			"image":textures[TALONS],
+			"text2":" You can use these as a weapon."
+		},
+		{
+			"text":"To equip them, press I to open your inventory, or use the shift keys to change your equipped item."
+		}
+	],
+	NECTAR:[
+		{
+			"text":"You found nectar! ",
+			"image":textures[NECTAR],
+			"text2":" Drinking these is good for your health. You can press I to open your inventory."
+		}
+	]
+}
+
 var sounds = {}
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary
 var all_scroll_fragments_collected = false
 
+func load_completed_tutorial_prompts(completed):
+	for c in completed:
+		collected_first[c] = true
+	
+func get_completed_tutorial_prompts():
+	var completed = []
+	for key in collected_first:
+		if collected_first[key]:
+			completed.append(key)
+	return completed
+	
 func on_item_collected(item, _count):
+	if (_count < 1):
+		return
 	if sounds.get(item):
 		sounds[item].call_deferred("play")
+	if collected_first.get(item) != null:
+		if (collected_first[item] == false):
+			Dialogue.notify_player.emit(tutorial_notes[item])
+			collected_first[item] = true
 		
 func _ready():
 	for key in streams:

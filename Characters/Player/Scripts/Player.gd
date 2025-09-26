@@ -338,7 +338,46 @@ func gain_life(_life, temporary = false):
 			life = total_life
 		gained_life.emit(_life)
 	
+func one_or_no_equippable_items():
+	var num_equippables = 0
+	for key in inventory:
+		if (key in Collectible.equippable):
+			if (inventory[key] is float) or (inventory[key] is int):
+				if inventory[key] > 0:
+					num_equippables += 1
+					if num_equippables > 1:
+						return false
+	if num_equippables <= 1:
+		return true
+
+func change_equipment_quick(direction : String):
+	if one_or_no_equippable_items():
+		return
+	var target_index = 0
+	var found_next_item = false
+	var desired_item = ""
+	while (not found_next_item):
+		for i in range(0, Collectible.equippable.size()):
+			if equipped == Collectible.equippable[i]:
+				target_index = i
+		if direction == "Left":
+			target_index -= 1
+		if direction == "Right":
+			target_index += 1
+			if target_index >= Collectible.equippable.size():
+				target_index = 0
+		var item = Collectible.equippable[target_index]
+		if (inventory[item] is float) or (inventory[item] is int):
+			if inventory[item] > 0:
+				found_next_item = true
+				desired_item = item
+	on_inventory_action_chosen("Equip", desired_item, 1)
+				
 func update_equipment():
+	if Input.is_action_just_pressed("ChangeEquipmentLeft"):
+		change_equipment_quick("Left")
+	if Input.is_action_just_pressed("ChangeEquipmentRight"):
+		change_equipment_quick("Right")
 	if equipped == "":
 		return
 	if (inventory.get(equipped) is int) or (inventory[equipped] is float):

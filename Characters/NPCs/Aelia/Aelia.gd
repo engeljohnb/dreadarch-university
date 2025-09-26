@@ -31,11 +31,19 @@ var dialogues = [
 ],
 [
 	{
+		"text":"This is probably a stupid question, but... Are you a ghost?",
+		"speaker":"Player"
+	},
+	{
+		"text":"I wolde tell you if I coulde know myself, but I can say only that som thing binds me to this wrecked bochus.",
+		"speaker":"Aelia"
+	},
+	{
 		"text":"I am Aelia. In life I was a leche of alchymie for the King.",
 		"speaker":"Aelia"
 	},
 	{
-		"text":"The tidings of my work were hyd, but that matters little now.",
+		"text":"The tidings of my work were kept hyd, but that matters little now.",
 		"speaker":"Aelia"
 	},
 	{
@@ -57,11 +65,11 @@ var dialogues = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"Slain? Our king has ruled since I was born, and the one before him died of old age.",
+		"text":"Slain? Our king's ruled since before I was born, and the one before him died of old age.",
 		"speaker":"Player"
 	},
 	{
-		"text":"I'm just a student, but my assessment is this you and this place both must be thousands of years old.",
+		"text":"I'm just a student, but my guess is you and this place both must be thousands of years old.",
 		"speaker":"Player"
 	},
 	{
@@ -85,6 +93,7 @@ var use_dialogue = [
 		"speaker":"Aelia"
 	}
 ]
+
 func activate(_using_item = "", _count = 0):
 	if (status["times_spoken_to"] >= 1) and (not _using_item.is_empty()):
 		Dialogue.open_dialogue.emit(use_dialogue)
@@ -95,8 +104,9 @@ func activate(_using_item = "", _count = 0):
 		return
 	else:
 		Dialogue.open_dialogue.emit(dialogues[-1].slice(-1, dialogues[-1].size()))
+		
 func _process(_delta):
-	if Dialogue.current_box == dialogues[0][-2]:
+	if Dialogue.current_box == dialogues[0][-1]:
 		if not status["paid"]:
 			status["paid"] = true
 			Collectible.item_collected.emit(Collectible.NECTAR, 5)

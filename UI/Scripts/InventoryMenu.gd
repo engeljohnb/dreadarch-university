@@ -1,6 +1,6 @@
 extends Control
 @onready var item_list = $TextureRect/ItemList
-@onready var submenu = $TextureRect/ItemList/Submenu
+var submenu = null
 signal inventory_action_chosen(action, item, count)
 var submenu_open = false
 var number_box_open = false
@@ -8,19 +8,21 @@ var chosen_item = ""
 var chosen_item_total = 0
 var chosen_item_count = 0
 var chosen_action = ""
-var equippable = [Collectible.TALONS, Collectible.GOLDEN_DAGGER]
-var drinkable = [Collectible.NECTAR]
+var _inventory : Dictionary
 
 func _ready():
+	item_list.item_selected.connect($SelectSound.play)
 	get_tree().paused = true
-	submenu.visible = false
+	#submenu.visible = false
 	item_list.grab_focus()
 	item_list.clear()
 	
 func open_submenu():
-	if chosen_item in equippable:
+	submenu = load("res://UI/InventorySubmenu.tscn").instantiate()
+	item_list.add_child(submenu)
+	if chosen_item in Collectible.equippable:
 		submenu.add_item("Equip")
-	if chosen_item in drinkable:
+	if chosen_item in Collectible.drinkable:
 		submenu.add_item("Drink")
 	submenu_open = true
 	$OpenSound.play()
@@ -29,13 +31,15 @@ func open_submenu():
 	if item_list.is_anything_selected():
 		submenu.offset_top = item_list.get_item_rect(item_list.get_selected_items().get(0)).position.y
 		submenu.offset_bottom = submenu.offset_top + offset_distance
+	item_list.deselect_all()
+	submenu.offset_bottom = submenu.offset_top + offset_distance
 	submenu.grab_focus()
 	submenu.select(0)
-	item_list.deselect_all()
 	for index in range(0, item_list.item_count):
 		item_list.set_item_disabled(index, true)
 
 func open(inventory):
+	_inventory = inventory
 	for key in inventory:
 		if key.is_empty():
 			return
@@ -45,7 +49,6 @@ func open(inventory):
 				item_list.add_item(key, Collectible.textures[key])
 	item_list.grab_focus()
 	item_list.select(1)
-	item_list.item_selected.connect($SelectSound.play)
 
 func close():
 	get_tree().paused = false
@@ -64,9 +67,33 @@ func open_number_box(_max):
 	for index in range(0, submenu.item_count):
 		submenu.set_item_disabled(index, true)
 	
+func close_number_box():
+	number_box_open = false
+	$Numberbox.visible = false
+	
+func close_submenu():
+	chosen_action = ""
+	chosen_item = ""
+	chosen_item_count = 0
+	chosen_item_total = 0
+	submenu.queue_free()
+	submenu_open = false
+	item_list.clear()
+		
+
 func _process(_delta):
+	# I have NO IDEA why this needs to be here, but it doesn't work if I remove it
+	if submenu_open:
+		submenu.grab_focus()
 	if Input.is_action_just_pressed("CloseInventory"):
-		close()
+		if number_box_open:
+			close_number_box()
+			open_submenu()
+		elif submenu_open:
+			close_submenu()
+			open(_inventory)
+		else:
+			close()
 	if Input.is_action_just_released("ui_accept"):
 		if not submenu_open and not number_box_open:
 			if item_list.is_anything_selected():

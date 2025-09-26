@@ -39,8 +39,9 @@ func play_falling_animation(delta):
 
 func _process(_delta):
 	if wait_for_attack:
-		if not attacking_body.attacking:
-			wait_for_attack = false
-			attack_finished = true
+		if attacking_body:
+			if not attacking_body.attacking:
+				wait_for_attack = false
+				attack_finished = true
 	if falling:
 		play_falling_animation(_delta)

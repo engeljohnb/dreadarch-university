@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var blinker = $Blinker
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
-const SPEED = 100.0
+const SPEED = 175.0
 
 var entered_scene = true
 var player = null
@@ -25,7 +25,7 @@ var current_cutscene = null
 var cutscene_timer = 0.0
 var death_cutscene_duration = 2.66
 var aggro_cutscene_duration = 0.5
-var attack_range = 300.0
+var attack_range = 200.0
 var dead
 var to_player = Vector2()
 var current_action = ""

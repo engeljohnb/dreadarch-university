@@ -1,0 +1,379 @@
+[gd_scene load_steps=44 format=4 uid="uid://drtlvf6fpyqss"]
+
+[ext_resource type="PackedScene" uid="uid://bod7jgxpa8fed" path="res://Items/Door/Door.tscn" id="1_hccqk"]
+[ext_resource type="Script" uid="uid://b02f7kjjqux04" path="res://Dungeons/01/Scripts/01-02.gd" id="1_lxfan"]
+[ext_resource type="PackedScene" uid="uid://dtdx4k7brygo3" path="res://Tiles/DungeonBuildingTiles.tscn" id="2_o8mvl"]
+[ext_resource type="PackedScene" uid="uid://e0pns0rnrf62" path="res://Tiles/DungeonGroundTiles.tscn" id="4_d44n7"]
+[ext_resource type="Texture2D" uid="uid://b52a2jr2qlw2y" path="res://Assets/Tiles/AncientLibrary/ground_tiles.png" id="5_d44n7"]
+[ext_resource type="Script" uid="uid://lnv0ayrafonh" path="res://Characters/Slack/Scripts/Slack.gd" id="6_h2abj"]
+[ext_resource type="Texture2D" uid="uid://bbjkavlt3tv47" path="res://Assets/Badguys/Slack/0000.png" id="7_yno7r"]
+[ext_resource type="Texture2D" uid="uid://b4480pyuhdsjs" path="res://Assets/Badguys/Slack/0001.png" id="8_6djxx"]
+[ext_resource type="Texture2D" uid="uid://b1f2oknd02ynw" path="res://Assets/Badguys/Slack/0002.png" id="9_q38bf"]
+[ext_resource type="Texture2D" uid="uid://byv2lcya0hwx4" path="res://Assets/Badguys/Slack/0003.png" id="10_m3h0q"]
+[ext_resource type="Texture2D" uid="uid://taadngdjfra" path="res://Assets/Badguys/Slack/0004.png" id="11_3y0ym"]
+[ext_resource type="Texture2D" uid="uid://83k616ojx8p7" path="res://Assets/Badguys/Slack/0005.png" id="12_mpdqh"]
+[ext_resource type="Texture2D" uid="uid://6wmw4uuokqcd" path="res://Assets/Badguys/Slack/0006.png" id="13_rwuyw"]
+[ext_resource type="Texture2D" uid="uid://eya7w0sm5xjh" path="res://Assets/Badguys/Slack/0007.png" id="14_48415"]
+[ext_resource type="Texture2D" uid="uid://cyetxnp15xxtn" path="res://Assets/Badguys/Slack/0008.png" id="15_jrrsf"]
+[ext_resource type="Texture2D" uid="uid://bxyoygff73ocm" path="res://Assets/Badguys/Slack/0009.png" id="16_xf6oa"]
+[ext_resource type="Texture2D" uid="uid://byfsjx6v6rha3" path="res://Assets/Badguys/Slack/0010.png" id="17_bqi03"]
+[ext_resource type="Texture2D" uid="uid://cnfy17knie20j" path="res://Assets/Badguys/Slack/0011.png" id="18_i0qon"]
+[ext_resource type="Texture2D" uid="uid://2xtjdpfv47vq" path="res://Assets/Badguys/Slack/0012.png" id="19_ghj2s"]
+[ext_resource type="Texture2D" uid="uid://dan0ok74ywj0m" path="res://Assets/Badguys/Slack/0013.png" id="20_qv38u"]
+[ext_resource type="Texture2D" uid="uid://bq6sqtsn0y4i" path="res://Assets/Badguys/Slack/0014.png" id="21_qb61a"]
+[ext_resource type="Texture2D" uid="uid://b26qkj6laxx23" path="res://Assets/Badguys/Slack/0015.png" id="22_mqw8u"]
+[ext_resource type="Texture2D" uid="uid://w8w1rsqnu65p" path="res://Assets/Badguys/Slack/0016.png" id="23_1q1r1"]
+[ext_resource type="Script" uid="uid://26xt3lsefn0n" path="res://Characters/Slack/Scripts/SearchArea.gd" id="24_v74a3"]
+[ext_resource type="Script" uid="uid://tobitg2nf2yn" path="res://Utils/hitbox.gd" id="25_rn4yl"]
+[ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="26_rl4bu"]
+[ext_resource type="AudioStream" uid="uid://l6gipho4g8f4" path="res://Assets/Sounds/Slack/AttackSound.ogg" id="27_8jgxe"]
+[ext_resource type="PackedScene" uid="uid://bbirthebgbru2" path="res://Characters/Crow/Crow.tscn" id="28_yno7r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twyrb"]
+texture = ExtResource("5_d44n7")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_anxw1"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_twyrb")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yhojs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_yno7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6djxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q38bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_m3h0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3y0ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mpdqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rwuyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_48415")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jrrsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xf6oa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_bqi03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_i0qon")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_ghj2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_qv38u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qb61a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_mqw8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1q1r1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b750k"]
+radius = 8.0
+height = 80.0
+
+[sub_resource type="Animation" id="Animation_bv7yh"]
+resource_name = "Attack"
+length = 1.00001
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Attack", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"launch_projectile"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_b750k"]
+resource_name = "Idle"
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b750k"]
+_data = {
+&"Attack": SubResource("Animation_bv7yh"),
+&"Idle": SubResource("Animation_b750k")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b750k"]
+radius = 450.02777
+
+[sub_resource type="Gradient" id="Gradient_nocy6"]
+offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
+colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b750k"]
+gradient = SubResource("Gradient_nocy6")
+fill = 1
+fill_from = Vector2(0.491453, 0.487179)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ve43x"]
+radius = 44.75
+
+[sub_resource type="Gradient" id="Gradient_ve43x"]
+colors = PackedColorArray(0.962217, 0.962217, 0.962217, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nocy6"]
+gradient = SubResource("Gradient_ve43x")
+fill = 1
+fill_from = Vector2(0.495726, 0.491453)
+fill_to = Vector2(0.632479, 0.705128)
+
+[sub_resource type="Gradient" id="Gradient_6fv88"]
+offsets = PackedFloat32Array(0.401294, 0.601942)
+colors = PackedColorArray(0, 0, 0, 0.724, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oor3y"]
+gradient = SubResource("Gradient_6fv88")
+fill = 1
+fill_from = Vector2(0.393162, 0.512821)
+fill_to = Vector2(0.965812, 0.034188)
+
+[node name="01-02" type="Node2D"]
+modulate = Color(0.5921569, 0.5921569, 0.5921569, 1)
+script = ExtResource("1_lxfan")
+
+[node name="BuildingTiles" parent="." instance=ExtResource("2_o8mvl")]
+
+[node name="GroundTiles" parent="." instance=ExtResource("4_d44n7")]
+tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wIAAAAAAAEAAAAAAAEAAAABAAAAAAAAAAIAAAABAAEAAAABAAEAAAAFAAEAAAABAAIAAAAFAAEAAAABAAMAAAAEAAEAAAD//wMAAAAFAAEAAAAAAAMAAAAFAAEAAAACAAEAAAAAAAAAAAACAAIAAAAAAAEAAAACAAMAAAAFAAEAAAADAAEAAAABAAAAAAADAAIAAAABAAEAAAADAAMAAAAFAAEAAAAEAAEAAAAFAAEAAAAEAAIAAAAFAAEAAAAEAAMAAAAEAAEAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAEAAAAFAAMAAAAFAAEAAAAGAAEAAAABAAAAAAAGAAIAAAABAAEAAAAGAAMAAAAFAAEAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAEAAAAFAAYAAAAFAAEAAAAGAAQAAAABAAAAAAAGAAUAAAABAAEAAAAGAAYAAAAFAAEAAAACAAQAAAAAAAAAAAACAAUAAAAAAAEAAAACAAYAAAACAAYAAAADAAQAAAABAAAAAAADAAUAAAABAAEAAAADAAYAAAAFAAEAAAAEAAQAAAAFAAEAAAAEAAUAAAAFAAEAAAAEAAYAAAAEAAEAAAD//wQAAAAAAAAAAAD//wUAAAAEAAUAAAAAAAQAAAABAAAAAAAAAAUAAAAFAAUAAAABAAQAAAAFAAEAAAABAAUAAAADAAMAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAEAAAD8/wMAAAAFAAEAAAD9/wEAAAABAAAAAAD9/wIAAAABAAEAAAD9/wMAAAAFAAEAAAD+/wEAAAAFAAEAAAD+/wIAAAAFAAEAAAD+/wMAAAAEAAEAAAD5/wEAAAAAAAAAAAD5/wIAAAAAAAEAAAD5/wMAAAAFAAEAAAD6/wEAAAABAAAAAAD6/wIAAAABAAEAAAD6/wMAAAAFAAEAAAD7/wEAAAAFAAEAAAD7/wIAAAAFAAEAAAD7/wMAAAAEAAEAAAD5/wQAAAAAAAAAAAD5/wUAAAAAAAEAAAD5/wYAAAAFAAEAAAD6/wQAAAABAAAAAAD6/wUAAAABAAEAAAD6/wYAAAAFAAEAAAD7/wQAAAAFAAEAAAD7/wUAAAAFAAEAAAD7/wYAAAAEAAEAAAD8/wQAAAAAAAAAAAD8/wUAAAAAAAEAAAD8/wYAAAAFAAEAAAD9/wQAAAABAAAAAAD9/wUAAAABAAEAAAD9/wYAAAADAAYAAAD+/wQAAAAFAAEAAAD+/wUAAAAFAAMAAAD5/wcAAAAAAAAAAAD5/wgAAAAAAAEAAAD5/wkAAAAFAAEAAAD6/wcAAAABAAAAAAD6/wgAAAABAAEAAAD6/wkAAAAFAAEAAAD7/wcAAAAFAAEAAAD7/wgAAAAFAAEAAAD7/wkAAAAEAAEAAAD8/wcAAAAAAAAAAAD8/wgAAAAAAAEAAAD8/wkAAAAFAAEAAAD9/wcAAAAFAAQAAAD9/wgAAAAFAAUAAAD9/wkAAAADAAUAAAACAAcAAAAEAAQAAAACAAgAAAAEAAUAAAACAAkAAAADAAIAAAADAAcAAAABAAAAAAADAAgAAAABAAEAAAADAAkAAAAFAAEAAAAEAAcAAAAFAAEAAAAEAAgAAAAFAAEAAAAEAAkAAAAEAAEAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAEAAAAFAAkAAAAFAAEAAAAGAAcAAAABAAAAAAAGAAgAAAABAAEAAAAGAAkAAAAFAAEAAAD5/woAAAAAAAAAAAD5/wsAAAAAAAEAAAD5/wwAAAAFAAEAAAD6/woAAAABAAAAAAD6/wsAAAABAAEAAAD6/wwAAAAFAAEAAAD7/woAAAAFAAEAAAD7/wsAAAAFAAEAAAD7/wwAAAAEAAEAAAD8/woAAAAAAAAAAAD8/wsAAAAAAAEAAAD8/wwAAAAFAAEAAAD9/woAAAABAAAAAAD9/wsAAAABAAEAAAD9/wwAAAAFAAEAAAD+/woAAAAEAAIAAAD+/wsAAAAFAAEAAAD+/wwAAAAEAAEAAAD//woAAAAEAAQAAAD//wsAAAAAAAEAAAD//wwAAAAFAAEAAAAAAAoAAAAHAAIAAAAAAAsAAAABAAEAAAAAAAwAAAAFAAEAAAABAAoAAAAEAAIAAAABAAsAAAAFAAEAAAABAAwAAAAEAAEAAAACAAoAAAAAAAAAAAACAAsAAAAAAAEAAAACAAwAAAAFAAEAAAADAAoAAAABAAAAAAADAAsAAAABAAEAAAADAAwAAAAFAAEAAAAEAAoAAAAFAAEAAAAEAAsAAAAFAAEAAAAEAAwAAAAEAAEAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAEAAAAFAAwAAAAFAAEAAAAGAAoAAAABAAAAAAAGAAsAAAABAAEAAAAGAAwAAAAFAAEAAAD//wcAAAAEAAQAAAD//wgAAAAEAAUAAAAAAAcAAAAFAAQAAAAAAAgAAAAFAAUAAAA=")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("1_hccqk")]
+next_start_position = Vector2(-2496, -2436)
+next_scene = "res://Dungeons/01/01-01.tscn"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
+scroll_base_offset = Vector2(-475, -300)
+scroll_base_scale = Vector2(0.02, 0.02)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.3515629, 0.3515629, 0.35156286, 1)
+z_index = -1
+tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wIAAAAAAAEAAAAAAAEAAAABAAAAAAAAAAIAAAABAAEAAAABAAEAAAAFAAEAAAABAAIAAAAFAAEAAAD//wMAAAAFAAEAAAAAAAMAAAAFAAEAAAABAAMAAAAEAAEAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAEAAAD8/wMAAAAFAAEAAAD9/wEAAAABAAAAAAD9/wIAAAABAAEAAAD9/wMAAAAFAAEAAAD+/wEAAAAFAAEAAAD+/wIAAAAFAAEAAAD+/wMAAAAEAAEAAAD5/wEAAAAAAAAAAAD5/wIAAAAAAAEAAAD5/wMAAAAFAAEAAAD6/wEAAAABAAAAAAD6/wIAAAABAAEAAAD6/wMAAAAFAAEAAAD7/wEAAAAFAAEAAAD7/wIAAAAFAAEAAAD7/wMAAAAEAAEAAAD5/wQAAAAAAAAAAAD5/wUAAAAAAAEAAAD5/wYAAAAFAAEAAAD6/wQAAAABAAAAAAD6/wUAAAABAAEAAAD6/wYAAAAFAAEAAAD7/wQAAAAFAAEAAAD7/wUAAAAFAAEAAAD7/wYAAAAEAAEAAAD8/wQAAAAAAAAAAAD8/wUAAAAAAAEAAAD8/wYAAAAFAAEAAAD9/wQAAAABAAAAAAD9/wUAAAABAAEAAAD9/wYAAAAFAAEAAAD+/wQAAAAFAAEAAAD+/wUAAAAFAAEAAAD+/wYAAAAEAAEAAAACAAEAAAAAAAAAAAACAAIAAAAAAAEAAAACAAMAAAAFAAEAAAADAAEAAAABAAAAAAADAAIAAAABAAEAAAADAAMAAAAFAAEAAAAEAAEAAAAFAAEAAAAEAAIAAAAFAAEAAAAEAAMAAAAEAAEAAAACAAQAAAAAAAAAAAACAAUAAAAAAAEAAAACAAYAAAAFAAEAAAADAAQAAAABAAAAAAADAAUAAAABAAEAAAADAAYAAAAFAAEAAAAEAAQAAAAFAAEAAAAEAAUAAAAFAAEAAAAEAAYAAAAEAAEAAAD//wQAAAAAAAAAAAD//wUAAAAAAAEAAAD//wYAAAAFAAEAAAAAAAQAAAABAAAAAAAAAAUAAAABAAEAAAAAAAYAAAAFAAEAAAABAAQAAAAFAAEAAAABAAUAAAAFAAEAAAABAAYAAAAEAAEAAAD//wcAAAAAAAAAAAD//wgAAAAAAAEAAAD//wkAAAAFAAEAAAAAAAcAAAABAAAAAAAAAAgAAAABAAEAAAAAAAkAAAAFAAEAAAABAAcAAAAFAAEAAAABAAgAAAAFAAEAAAABAAkAAAAEAAEAAAD8/wcAAAAAAAAAAAD8/wgAAAAAAAEAAAD8/wkAAAAFAAEAAAD9/wcAAAABAAAAAAD9/wgAAAABAAEAAAD9/wkAAAAFAAEAAAD+/wcAAAAFAAEAAAD+/wgAAAAFAAEAAAD+/wkAAAAEAAEAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAEAAAAFAAMAAAAFAAEAAAAGAAEAAAABAAAAAAAGAAIAAAABAAEAAAAGAAMAAAAFAAEAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAEAAAAFAAYAAAAFAAEAAAAGAAQAAAABAAAAAAAGAAUAAAABAAEAAAAGAAYAAAAFAAEAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAEAAAAFAAkAAAAFAAEAAAAGAAcAAAABAAAAAAAGAAgAAAABAAEAAAAGAAkAAAAFAAEAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAEAAAAFAAwAAAAFAAEAAAAGAAoAAAABAAAAAAAGAAsAAAABAAEAAAAGAAwAAAAFAAEAAAACAAoAAAAAAAAAAAACAAsAAAAAAAEAAAACAAwAAAAFAAEAAAADAAoAAAABAAAAAAADAAsAAAABAAEAAAADAAwAAAAFAAEAAAAEAAoAAAAFAAEAAAAEAAsAAAAFAAEAAAAEAAwAAAAEAAEAAAD//woAAAAAAAAAAAD//wsAAAAAAAEAAAD//wwAAAAFAAEAAAAAAAoAAAABAAAAAAAAAAsAAAABAAEAAAAAAAwAAAAFAAEAAAABAAoAAAAFAAEAAAABAAsAAAAFAAEAAAABAAwAAAAEAAEAAAD5/wcAAAAAAAAAAAD5/wgAAAAAAAEAAAD5/wkAAAAFAAEAAAD6/wcAAAABAAAAAAD6/wgAAAABAAEAAAD6/wkAAAAFAAEAAAD7/wcAAAAFAAEAAAD7/wgAAAAFAAEAAAD7/wkAAAAEAAEAAAD5/woAAAAAAAAAAAD5/wsAAAAAAAEAAAD5/wwAAAAFAAEAAAD6/woAAAABAAAAAAD6/wsAAAABAAEAAAD6/wwAAAAFAAEAAAD7/woAAAAFAAEAAAD7/wsAAAAFAAEAAAD7/wwAAAAEAAEAAAACAAcAAAAAAAAAAAACAAgAAAAAAAEAAAACAAkAAAAFAAEAAAADAAcAAAABAAAAAAADAAgAAAABAAEAAAADAAkAAAAFAAEAAAAEAAcAAAAFAAEAAAAEAAgAAAAFAAEAAAAEAAkAAAAEAAEAAAA=")
+tile_set = SubResource("TileSet_anxw1")
+y_sort_origin = -1
+navigation_enabled = false
+
+[node name="Slacks" type="Node2D" parent="."]
+
+[node name="Crow" type="Node2D" parent="."]
+
+[node name="Slack" type="CharacterBody2D" parent="." groups=["Enemies"]]
+modulate = Color(1.3, 1.3, 1.3, 1)
+position = Vector2(-1, 500)
+collision_layer = 8
+collision_mask = 12
+script = ExtResource("6_h2abj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Slack"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yhojs")
+animation = &"Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack"]
+shape = SubResource("CapsuleShape2D_b750k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Slack"]
+libraries = {
+&"": SubResource("AnimationLibrary_b750k")
+}
+
+[node name="SearchArea" type="Area2D" parent="Slack"]
+position = Vector2(222, -1)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("24_v74a3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack/SearchArea"]
+position = Vector2(-198, 116)
+shape = SubResource("CircleShape2D_b750k")
+
+[node name="DeathLight" type="PointLight2D" parent="Slack"]
+position = Vector2(-7, -7)
+scale = Vector2(2.389, 2.372)
+color = Color(0.14902, 0.137255, 0.156863, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_b750k")
+
+[node name="Hitbox" type="Area2D" parent="Slack"]
+z_index = 1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("25_rn4yl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slack/Hitbox"]
+position = Vector2(0, 8)
+rotation = 0.654498
+shape = SubResource("CircleShape2D_ve43x")
+
+[node name="PointLight2D" type="PointLight2D" parent="Slack"]
+position = Vector2(9.09495e-13, -24)
+scale = Vector2(5.125, 5.125)
+color = Color(0.996078, 0.839216, 0.819608, 1)
+texture = SubResource("GradientTexture2D_nocy6")
+
+[node name="StupidShadow" type="Sprite2D" parent="Slack"]
+z_index = -1
+position = Vector2(18.5, 36)
+scale = Vector2(1.57812, 0.625)
+texture = SubResource("GradientTexture2D_oor3y")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Slack"]
+stream = ExtResource("26_rl4bu")
+volume_db = 1.5
+bus = &"FXNoReverb"
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Slack"]
+stream = ExtResource("27_8jgxe")
+volume_db = 3.5
+bus = &"FXNoReverb"
+
+[node name="Crow2" parent="." instance=ExtResource("28_yno7r")]
+position = Vector2(-392, 516)
+
+[node name="Crow3" parent="." instance=ExtResource("28_yno7r")]
+position = Vector2(402, 511)
+
+[node name="Crow4" parent="." instance=ExtResource("28_yno7r")]
+position = Vector2(-8, 777)

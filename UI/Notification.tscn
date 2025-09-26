@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://kjrix6uux7id"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_5pdn4"]
+[ext_resource type="Script" uid="uid://bxhj6hqpuurhv" path="res://UI/Scripts/Notification.gd" id="2_0rijw"]
+[ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="3_3sdsw"]
+[ext_resource type="FontFile" uid="uid://dnifhrv1s7o35" path="res://Assets/UI/Fonts/princess-sofia/PrincessSofia-Regular.ttf" id="4_kh105"]
+[ext_resource type="SpriteFrames" uid="uid://bot7eb7el17kx" path="res://UI/DialogueBoxIndicator.tres" id="5_0rijw"]
+
+[node name="Notification" type="Control"]
+process_mode = 2
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5pdn4")
+script = ExtResource("2_0rijw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.521
+anchor_right = 0.971
+anchor_bottom = 1.021
+offset_left = -0.360001
+offset_top = 0.319946
+offset_right = -1.32019
+offset_bottom = 0.319946
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3sdsw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+position = Vector2(1633, 391)
+scale = Vector2(3.76, 3.76)
+sprite_frames = ExtResource("5_0rijw")
+animation = &"Proceed"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.072
+anchor_top = 0.128
+anchor_right = 0.952
+anchor_bottom = 0.524
+offset_left = -0.600006
+offset_top = -0.120003
+offset_right = 0.399902
+offset_bottom = 0.039978
+theme_override_fonts/normal_font = ExtResource("4_kh105")
+theme_override_font_sizes/normal_font_size = 75
+text = "This is a test of the emergency broadcasting system"

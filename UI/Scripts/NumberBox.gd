@@ -10,13 +10,13 @@ func on_up():
 	$RichTextLabel.text = str(int($RichTextLabel.text)+1)
 	if _max > 0:
 		if int($RichTextLabel.text) > _max:
-			$RichTextLabel.text = str(_max)
+			$RichTextLabel.text = "0"
 	
 func on_down():
 	$RichTextLabel/DownButton.modulate = mod_color
 	$RichTextLabel.text = str(int($RichTextLabel.text)-1)
 	if int($RichTextLabel.text) < 0:
-		$RichTextLabel.text = "0"
+		$RichTextLabel.text = str(_max)
 
 func _process(_delta):
 	if visible:

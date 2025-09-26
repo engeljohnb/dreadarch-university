@@ -14,7 +14,7 @@ func change_scene(scene_path, _player_start_pos = null, _by_door = false):
 	by_door = _by_door
 	var instance = load(scene_path).instantiate()
 	current_scene_name = instance.name
-	if _player_start_pos:
+	if _player_start_pos != null:
 		player_start_position = _player_start_pos
 	elif "player_start_position" in instance:
 		player_start_position = instance.player_start_position

@@ -21,6 +21,7 @@ class Save:
 	var current_scene_path : String
 	var player: Player
 	var rooms : Dictionary
+	var completed_tutorial_prompts : Array
 
 var current_scene = null
 var current_music = null
@@ -34,6 +35,11 @@ func _prompt_player(text, on_yes, on_no, yes_text = "yes", no_text = "no"):
 	$CanvasLayer.add_child(prompt)
 	prompt.prompt(text, on_yes, on_no, yes_text, no_text)
 
+func _notify_player(note):
+	var _notification = load("res://UI/Notification.tscn").instantiate()
+	$CanvasLayer.add_child(_notification)
+	_notification.notify(note)
+	
 func _open_document():
 	var viewer = load("res://UI/DocumentViewer.tscn").instantiate()
 	$CanvasLayer.add_child(viewer)
@@ -198,7 +204,8 @@ func load_room_save_info(scene):
 				scene_treasure.queue_free()
 			
 func on_scene_changed():
-	_save.rooms[SceneTransition.prev_scene_name] = get_room_save_info(current_scene)
+	if SceneTransition.prev_scene_name != SceneTransition.current_scene_name:
+		_save.rooms[SceneTransition.prev_scene_name] = get_room_save_info(current_scene)
 	current_scene.queue_free()
 	current_scene = load(SceneTransition.current_scene_path).instantiate()
 	current_scene.process_mode = PROCESS_MODE_PAUSABLE
@@ -265,6 +272,7 @@ func _ready():
 	Dialogue.prompt_player.connect(_prompt_player)
 	Dialogue.open_document.connect(_open_document)
 	Dialogue.open_dialogue.connect(_open_dialogue)
+	Dialogue.notify_player.connect(_notify_player)
 	
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)
@@ -290,6 +298,7 @@ func save_game():
 	_save.current_scene_path = SceneTransition.current_scene_path
 	_save.player.inventory = player.inventory
 	_save.rooms[SceneTransition.current_scene_name] = get_room_save_info(current_scene)
+	_save.completed_tutorial_prompts = Collectible.get_completed_tutorial_prompts()
 	var game_save_string = DictionarySerializer.serialize_json(_save)
 	var file = FileAccess.open("user://save.da", FileAccess.WRITE)
 	file.store_string(game_save_string)
@@ -297,6 +306,7 @@ func save_game():
 	
 func load_game():
 	var file = FileAccess.open("user://save.da", FileAccess.READ)
+	_save = null
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	_player = _save.player
 	init_player()
@@ -310,6 +320,7 @@ func load_game():
 	hud.lifebar.set_life_total(player.total_life, player.total_life+player.temporary_life)
 	hud.set_treasure(player.inventory[Collectible.TREASURE])
 	Collectible.load_collected_scroll_fragments(_player.inventory[Collectible.SCROLL_FRAGMENT])
+	Collectible.load_completed_tutorial_prompts(_save.completed_tutorial_prompts)
 	SceneTransition.change_scene(_save.current_scene_path, player.global_position)
 	file.close()
 

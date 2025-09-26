@@ -1,0 +1,47 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bot7eb7el17kx"]
+
+[ext_resource type="Texture2D" uid="uid://drc86y40kn6x3" path="res://Assets/UI/DialogueBox/Indicator/frame0004.png" id="1_3xblw"]
+[ext_resource type="Texture2D" uid="uid://bqufpx4b2l28n" path="res://Assets/UI/DialogueBox/Indicator/frame0005.png" id="2_effmi"]
+[ext_resource type="Texture2D" uid="uid://b8ev7bxg7ni14" path="res://Assets/UI/DialogueBox/Indicator/frame0006.png" id="3_6bot8"]
+[ext_resource type="Texture2D" uid="uid://bafg0cjolb502" path="res://Assets/UI/DialogueBox/Indicator/frame0007.png" id="4_pdl30"]
+[ext_resource type="Texture2D" uid="uid://b5cgv12ynk76w" path="res://Assets/UI/DialogueBox/Indicator/0000.png" id="5_q668o"]
+[ext_resource type="Texture2D" uid="uid://mxoxau5xyld5" path="res://Assets/UI/DialogueBox/Indicator/0001.png" id="6_f7gru"]
+[ext_resource type="Texture2D" uid="uid://ek4ew0f4sfsp" path="res://Assets/UI/DialogueBox/Indicator/0002.png" id="7_jk28k"]
+[ext_resource type="Texture2D" uid="uid://cpoq8cepropey" path="res://Assets/UI/DialogueBox/Indicator/0003.png" id="8_vr8j8"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3xblw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_effmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6bot8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pdl30")
+}],
+"loop": true,
+"name": &"End",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_q668o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f7gru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jk28k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vr8j8")
+}],
+"loop": true,
+"name": &"Proceed",
+"speed": 8.0
+}]

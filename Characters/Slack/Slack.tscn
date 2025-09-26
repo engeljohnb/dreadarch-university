@@ -166,7 +166,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b750k"]
-radius = 456.07
+radius = 450.02777
 
 [sub_resource type="Gradient" id="Gradient_nocy6"]
 offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)

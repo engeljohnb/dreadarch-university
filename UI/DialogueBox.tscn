@@ -1,57 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwovxxsvdrcl6"]
+[gd_scene load_steps=9 format=3 uid="uid://bwovxxsvdrcl6"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_4jsxm"]
 [ext_resource type="Script" uid="uid://b633kvk7ffjq8" path="res://UI/Scripts/DialogueBox.gd" id="2_gumc0"]
 [ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="3_oaxx8"]
 [ext_resource type="Texture2D" uid="uid://dfvy4xm8tj8c8" path="res://Assets/Student/DialoguePortrait.png" id="3_rn55j"]
 [ext_resource type="FontFile" uid="uid://dnifhrv1s7o35" path="res://Assets/UI/Fonts/princess-sofia/PrincessSofia-Regular.ttf" id="4_gsxh0"]
-[ext_resource type="Texture2D" uid="uid://drc86y40kn6x3" path="res://Assets/UI/DialogueBox/Indicator/frame0004.png" id="5_gumc0"]
-[ext_resource type="Texture2D" uid="uid://bqufpx4b2l28n" path="res://Assets/UI/DialogueBox/Indicator/frame0005.png" id="6_rn55j"]
-[ext_resource type="Texture2D" uid="uid://b8ev7bxg7ni14" path="res://Assets/UI/DialogueBox/Indicator/frame0006.png" id="7_67n4p"]
-[ext_resource type="Texture2D" uid="uid://bafg0cjolb502" path="res://Assets/UI/DialogueBox/Indicator/frame0007.png" id="8_d3c26"]
-[ext_resource type="Texture2D" uid="uid://b5cgv12ynk76w" path="res://Assets/UI/DialogueBox/Indicator/0000.png" id="9_ou603"]
-[ext_resource type="Texture2D" uid="uid://mxoxau5xyld5" path="res://Assets/UI/DialogueBox/Indicator/0001.png" id="10_ftpen"]
-[ext_resource type="Texture2D" uid="uid://ek4ew0f4sfsp" path="res://Assets/UI/DialogueBox/Indicator/0002.png" id="11_beu5o"]
-[ext_resource type="Texture2D" uid="uid://cpoq8cepropey" path="res://Assets/UI/DialogueBox/Indicator/0003.png" id="12_gnfp4"]
+[ext_resource type="SpriteFrames" uid="uid://bot7eb7el17kx" path="res://UI/DialogueBoxIndicator.tres" id="5_gsxh0"]
 [ext_resource type="AudioStream" uid="uid://bvecolhrrfqoo" path="res://Assets/Sounds/UI/OpenDialogueBoxSound.ogg" id="14_67n4p"]
 [ext_resource type="AudioStream" uid="uid://pm7kdvn8n5g" path="res://Assets/Sounds/UI/SkipDialogueSound.ogg" id="15_67n4p"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jg75h"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_gumc0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_rn55j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_67n4p")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_d3c26")
-}],
-"loop": true,
-"name": &"End",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_ou603")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_ftpen")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_beu5o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_gnfp4")
-}],
-"loop": true,
-"name": &"Proceed",
-"speed": 8.0
-}]
 
 [node name="DialogueBox" type="Control"]
 process_mode = 1
@@ -99,7 +55,7 @@ theme_override_font_sizes/normal_font_size = 55
 texture_filter = 1
 position = Vector2(1587, 328)
 scale = Vector2(3.76, 3.76)
-sprite_frames = SubResource("SpriteFrames_jg75h")
+sprite_frames = ExtResource("5_gsxh0")
 animation = &"Proceed"
 frame_progress = 0.0689687
 

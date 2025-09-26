@@ -6,5 +6,7 @@ signal prompt_player(text, on_yes, on_no, yes_text, no_text)
 signal open_document()
 @warning_ignore("unused_signal")
 signal open_dialogue(dialogue : Array[Dictionary])
+@warning_ignore("unused_signal")
+signal notify_player(note)
 
 var current_box = {}
