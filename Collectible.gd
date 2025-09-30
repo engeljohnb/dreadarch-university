@@ -2,11 +2,7 @@ extends Node
 
 signal scroll_fragment_collected()
 @warning_ignore("unused_signal")
-signal treasure_collected(amount)
-@warning_ignore("unused_signal")
-signal talons_collected(amount)
-@warning_ignore("unused_signal")
-signal item_collected(item, count)
+signal item_collected(item, count, should_play_sound)
 const HEART = "Heart"
 const SCROLL_FRAGMENT = "Scroll Fragment"
 const TREASURE = "Treasure"
@@ -90,11 +86,12 @@ func get_completed_tutorial_prompts():
 			completed.append(key)
 	return completed
 	
-func on_item_collected(item, _count):
+func on_item_collected(item, _count, should_play_sound):
+	if sounds.get(item):
+		if should_play_sound:
+			sounds[item].call_deferred("play")
 	if (_count < 1):
 		return
-	if sounds.get(item):
-		sounds[item].call_deferred("play")
 	if collected_first.get(item) != null:
 		if (collected_first[item] == false):
 			Dialogue.notify_player.emit(tutorial_notes[item])

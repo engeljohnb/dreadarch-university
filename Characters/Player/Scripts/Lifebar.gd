@@ -72,10 +72,12 @@ func gain_temporary_life(_life):
 	
 func gain_life(_life):
 	life += _life
-	if life >= total_life:
-		life = total_life
+	if life >= total_life+temporary_life:
+		life = total_life+temporary_life
 	for i in rects.size():
-		if i >= life:
+		if i >= total_life:
+			rects[i].color = temporary_life_color
+		elif i >= life:
 			rects[i].color = empty_color
 		else:
 			rects[i].color = full_color

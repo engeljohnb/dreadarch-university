@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://mwe7d43nn1k2"]
+
+[ext_resource type="Script" uid="uid://b1hq8pytudmjh" path="res://Utils/DeathCutscene.gd" id="1_50qyr"]
+
+[sub_resource type="Gradient" id="Gradient_qs3ly"]
+offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
+colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1gvkm"]
+gradient = SubResource("Gradient_qs3ly")
+fill = 1
+fill_from = Vector2(0.491453, 0.487179)
+fill_to = Vector2(0, 0)
+
+[node name="DeathCutscene" type="Node2D"]
+script = ExtResource("1_50qyr")
+
+[node name="DeathLight" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-7, -7)
+scale = Vector2(2.389, 2.372)
+color = Color(0.14902, 0.137255, 0.156863, 1)
+energy = 4.59
+range_layer_min = -3
+range_layer_max = 4
+texture = SubResource("GradientTexture2D_1gvkm")

@@ -37,7 +37,7 @@ func _process(_delta):
 				hide_message()
 				message_showing = false
 		if message_showing:
-			if Input.is_action_just_released("Interact"):
+			if Input.is_action_just_pressed("Interact"):
 				if not get_parent().in_dialogue:
 					if "activate" in col:
 						if not using_item.is_empty():

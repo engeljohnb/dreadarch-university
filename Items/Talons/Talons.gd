@@ -20,7 +20,7 @@ func on_body_entered(body):
 				attacking_body = body.get_parent()
 				wait_for_attack = true
 				return
-		Collectible.item_collected.emit(Collectible.TALONS, 1)
+		Collectible.item_collected.emit(Collectible.TALONS, 1, true)
 		queue_free()
 	if body is TileMapLayer:
 		if not (body.get_parent() is ParallaxLayer):

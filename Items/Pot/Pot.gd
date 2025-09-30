@@ -20,14 +20,13 @@ func on_blinker_flipped(state):
 	else:
 		modulate = Color(1,1,1)
 
-	
 func activate(using_item = "", count = 0):
 	if (not using_item.is_empty()) and (count > 0):
 		has_overrides = has
 		has_overrides.append(using_item)
 		amounts.append(count)
 		$Blinker.blink(0.33)
-		Collectible.item_collected.emit(using_item, -count)
+		Collectible.item_collected.emit(using_item, -count, true)
 		activated = false
 		return
 	if (not has_overrides.is_empty()) and not activated:
@@ -51,7 +50,7 @@ func activate(using_item = "", count = 0):
 						else:
 							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
 					h:
-						Collectible.item_collected.emit(h, amount)
+						Collectible.item_collected.emit(h, amount, true)
 			activated = true
 			amounts = []
 		else:

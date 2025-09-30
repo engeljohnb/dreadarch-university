@@ -65,15 +65,11 @@ var dialogues = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"Slain? Our king's ruled since before I was born, and the one before him died of old age.",
+		"text":"Slain?",
 		"speaker":"Player"
 	},
 	{
-		"text":"I'm just a student, but my guess is you and this place both must be thousands of years old.",
-		"speaker":"Player"
-	},
-	{
-		"text":"I don't think we're even the same kingdom anymore. The histories in our library don't go back that far.",
+		"text":"I don't think we're even the same kingdom anymore.",
 		"speaker":"Player"
 	},
 	{
@@ -89,7 +85,7 @@ var dialogues = [
 
 var use_dialogue = [
 	{
-		"text":"You shoulde keep your things. I have not use for them.",
+		"text":"You shoulde keep your things. I have no use for them.",
 		"speaker":"Aelia"
 	}
 ]
@@ -109,4 +105,4 @@ func _process(_delta):
 	if Dialogue.current_box == dialogues[0][-1]:
 		if not status["paid"]:
 			status["paid"] = true
-			Collectible.item_collected.emit(Collectible.NECTAR, 5)
+			Collectible.item_collected.emit(Collectible.NECTAR, 5, true)

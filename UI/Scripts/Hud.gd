@@ -3,7 +3,7 @@ extends Control
 @onready var lifebar = $Lifebar
 var equipped = ""
 
-func on_item_collected(item, amount):
+func on_item_collected(item, amount, _should_play_sound):
 	match item:
 		Collectible.TREASURE:
 			$Treasure/CanvasLayer/RichTextLabel.text = str(int($Treasure/CanvasLayer/RichTextLabel.text)+int(amount))

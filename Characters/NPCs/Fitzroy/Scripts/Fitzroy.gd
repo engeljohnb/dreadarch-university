@@ -12,6 +12,8 @@ var retiring = false
 var retiring_timer = 0.0
 var retiring_duration = 6.0
 var type = Types.NPC
+var paid = false
+
 
 var using_item_default_dialogue = [
 	{
@@ -190,7 +192,6 @@ func activate(using_item = "", item_count = 1):
 		else:
 			Dialogue.open_dialogue.emit(fresh_adequate_bribe_dialogue)
 		will_retire = true
-		Collectible.treasure_collected.emit(-25)
 		return
 	elif status["introduced"]:
 		if (not using_item.is_empty()) and (using_item != Collectible.TREASURE):
@@ -200,6 +201,10 @@ func activate(using_item = "", item_count = 1):
 		
 func _process(_delta):
 	if will_retire:
+		if Dialogue.current_box["text"] == adequate_bribe_dialogue[-1]["text"]:
+			if not paid:
+				Collectible.item_collected.emit(Collectible.TREASURE, -25, true)
+				paid = true
 		if not get_tree().get_nodes_in_group("Player")[0].in_dialogue:
 			retiring = true
 			will_retire = false

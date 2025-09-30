@@ -543,7 +543,6 @@ bus = &"FXNoReverb"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Slacks/Slack"]
 stream = ExtResource("28_iew7y")
-volume_db = 3.5
 bus = &"FXNoReverb"
 
 [node name="Slack2" type="CharacterBody2D" parent="Slacks" groups=["Enemies"]]
@@ -616,7 +615,6 @@ bus = &"FXNoReverb"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Slacks/Slack2"]
 stream = ExtResource("28_iew7y")
-volume_db = 3.5
 bus = &"FXNoReverb"
 
 [node name="Pots" type="Node2D" parent="."]

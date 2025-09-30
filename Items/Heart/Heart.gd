@@ -3,7 +3,7 @@ var collected = false
 
 func on_body_entered(body):
 	if body.is_in_group("Player"):
-		Collectible.item_collected.emit(Collectible.HEART, 1)
+		Collectible.item_collected.emit(Collectible.HEART, 1, true)
 		collected = true
 		$CollisionShape2D.set_deferred("disabled", true)
 		visible = false

@@ -48,12 +48,10 @@ var direction_priority
 # is equipped == Collectible.GOLDEN_DAGGER. I don't know why but having this variable instead makes it work.
 var golden_dagger_equipped = true
 	
-func on_item_collected(item, count, specific = null):
+func on_item_collected(item, count, _should_play_sound):
 	if item == Collectible.HEART:
 		gain_life(1)
 		return
-	if specific:
-		inventory[item].append(specific)
 	elif not inventory.get(item):
 		inventory[item] = count
 	else:
@@ -212,7 +210,7 @@ func create_thrown_projectile():
 		if inventory[equipped] == 1:
 			if inventory[Collectible.GOLDEN_DAGGER] > 0:
 				equip_dagger = true
-		Collectible.item_collected.emit(equipped, -1)
+		Collectible.item_collected.emit(equipped, -1, false)
 		if equip_dagger:
 			on_inventory_action_chosen("Equip", Collectible.GOLDEN_DAGGER, 1)
 
@@ -293,7 +291,7 @@ func _ready():
 	hitbox.hit.connect(on_hit)
 	blinker.flip.connect(on_blinker_flip)
 	inventory[Collectible.GOLDEN_DAGGER] = 0
-	Collectible.item_collected.emit(Collectible.GOLDEN_DAGGER, 1)
+	Collectible.item_collected.emit(Collectible.GOLDEN_DAGGER, 1, true)
 	on_inventory_action_chosen("Equip", Collectible.GOLDEN_DAGGER, 1)
 
 func on_inventory_action_chosen(action, item, count):
@@ -324,7 +322,7 @@ func on_inventory_action_chosen(action, item, count):
 			match item:
 				Collectible.NECTAR:
 					gain_life(1, true)
-			Collectible.item_collected.emit(item, -1)
+			Collectible.item_collected.emit(item, -1, true)
 					
 func gain_life(_life, temporary = false):
 	if temporary:

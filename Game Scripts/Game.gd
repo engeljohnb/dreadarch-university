@@ -55,6 +55,7 @@ func _open_dialogue(dialogue):
 	$CanvasLayer.add_child(box)
 	player.in_dialogue = true
 	player.sprite.play("Idle " + Utils.nearest_cardinal_direction(player.facing, true))
+	player.step_sound.stop()
 	
 func hide_hud():
 	hud.visible = false
@@ -164,6 +165,8 @@ func get_room_save_info(scene):
 		match i.type:
 			Types.POT:
 				if (not i.activated) and (not i.has_overrides.is_empty()):
+					if Collectible.GOLDEN_DAGGER in i.has_overrides:
+						i.has_overrides.erase(Collectible.GOLDEN_DAGGER)
 					scene.save_info["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
 			Types.NPC:
 				if "status" in i:
@@ -181,7 +184,7 @@ func load_room_save_info(scene):
 	var scene_path = str(get_path_to(scene))
 	if _save.rooms[SceneTransition.current_scene_name].get("pots"):
 		for i in _save.rooms[SceneTransition.current_scene_name]["pots"]:
-			var pot = get_node(NodePath(scene_path + "/" + i["name"]))
+			var pot = get_node(NodePath(scene_path + "/Pots/" + i["name"]))
 			pot.activated = false
 			pot.has_overrides = i["has"]
 			pot.amounts = i["amounts"]

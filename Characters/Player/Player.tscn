@@ -1,4 +1,4 @@
-[gd_scene load_steps=260 format=3 uid="uid://r8py7ts46u7k"]
+[gd_scene load_steps=261 format=3 uid="uid://r8py7ts46u7k"]
 
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
 [ext_resource type="Texture2D" uid="uid://bkyy4clb40hvk" path="res://Assets/Student/Idle/Down/0000.png" id="1_v8ubu"]
@@ -128,23 +128,13 @@
 [ext_resource type="Texture2D" uid="uid://cl66a6042515b" path="res://Assets/Student/Throw/Left/0006.png" id="86_weeip"]
 [ext_resource type="Texture2D" uid="uid://cwbbo24bpa1kl" path="res://Assets/Student/Throw/Left/0008.png" id="87_8ixlw"]
 [ext_resource type="Texture2D" uid="uid://b0wuf675hcpce" path="res://Assets/Student/Walk/Right Dagger/frame0007.png" id="87_efy5o"]
-[ext_resource type="Texture2D" uid="uid://s3acbfctpw8d" path="res://Assets/Student/Throw/Right/frame0004.png" id="88_p5h52"]
+[ext_resource type="Texture2D" uid="uid://dhpjnoccn2cp" path="res://Assets/Student/Throw/Right/0004.png" id="88_p5h52"]
 [ext_resource type="Texture2D" uid="uid://cgeh06pqfrbg6" path="res://Assets/Student/Walk/Right Dagger/frame0008.png" id="88_rscyk"]
 [ext_resource type="Texture2D" uid="uid://bxh4h3uc8v0qb" path="res://Assets/Student/Walk/Right Dagger/frame0009.png" id="89_c0m34"]
-[ext_resource type="Texture2D" uid="uid://bljpevpg688pk" path="res://Assets/Student/Throw/Right/frame0005.png" id="89_hyusb"]
-[ext_resource type="Texture2D" uid="uid://cbtapno14d3em" path="res://Assets/Student/Throw/Right/frame0006.png" id="90_ey64d"]
+[ext_resource type="Texture2D" uid="uid://c23kyqytspkkx" path="res://Assets/Student/Throw/Right/0005.png" id="89_hyusb"]
+[ext_resource type="Texture2D" uid="uid://c2cnm2oistqv1" path="res://Assets/Student/Throw/Right/0006.png" id="90_ey64d"]
 [ext_resource type="Texture2D" uid="uid://x8uxquli3coh" path="res://Assets/Student/Walk/Right Dagger/frame0010.png" id="90_t5j7j"]
-[ext_resource type="Texture2D" uid="uid://bilsyouw1j04t" path="res://Assets/Student/Throw/Right/frame0008.png" id="91_agvow"]
-[ext_resource type="Texture2D" uid="uid://y7o5dlcgsejn" path="res://Assets/Student/Walk/Up Dagger/frame0000.png" id="91_dq6ij"]
-[ext_resource type="Texture2D" uid="uid://cox8hidxhl6vy" path="res://Assets/Student/Walk/Up Dagger/frame0001.png" id="92_fjebe"]
-[ext_resource type="Texture2D" uid="uid://b0d8ei71ljqx3" path="res://Assets/Student/Walk/Up Dagger/frame0002.png" id="93_frnst"]
-[ext_resource type="Texture2D" uid="uid://dmkvelbquklke" path="res://Assets/Student/Walk/Up Dagger/frame0003.png" id="94_2vshi"]
-[ext_resource type="Texture2D" uid="uid://bia1q3ondp4ja" path="res://Assets/Student/Walk/Up Dagger/frame0004.png" id="95_e8bbf"]
-[ext_resource type="Texture2D" uid="uid://dmn25bipsgetm" path="res://Assets/Student/Walk/Up Dagger/frame0006.png" id="97_ebjbr"]
-[ext_resource type="Texture2D" uid="uid://bcnsq6h3fabq3" path="res://Assets/Student/Walk/Up Dagger/frame0007.png" id="98_3vus2"]
-[ext_resource type="Texture2D" uid="uid://c2tdv5g5im33o" path="res://Assets/Student/Walk/Up Dagger/frame0008.png" id="99_8kmww"]
-[ext_resource type="Texture2D" uid="uid://d2agipbcah4or" path="res://Assets/Student/Walk/Up Dagger/frame0009.png" id="100_b0us3"]
-[ext_resource type="Texture2D" uid="uid://ck2aecd57lbpp" path="res://Assets/Student/Walk/Up Dagger/frame0010.png" id="101_l245l"]
+[ext_resource type="Texture2D" uid="uid://ddfq2kvtfxf34" path="res://Assets/Student/Throw/Right/0008.png" id="91_agvow"]
 [ext_resource type="Texture2D" uid="uid://b72j46wh8riq1" path="res://Assets/Student/Walk/Left/0000.png" id="102_cjfd5"]
 [ext_resource type="Texture2D" uid="uid://cujajd2s5asoh" path="res://Assets/Student/Walk/Left/0001.png" id="103_ip23e"]
 [ext_resource type="Texture2D" uid="uid://6qui4akwi7ky" path="res://Assets/Student/Walk/Left/0002.png" id="104_acghe"]
@@ -175,6 +165,17 @@
 [ext_resource type="Texture2D" uid="uid://c7n3e016pp5fx" path="res://Assets/Student/Walk/Up/0008.png" id="132_2veuo"]
 [ext_resource type="Texture2D" uid="uid://bigo7yb3jjxtx" path="res://Assets/Student/Walk/Up/0009.png" id="133_tcnfb"]
 [ext_resource type="Texture2D" uid="uid://crj06mj47acem" path="res://Assets/Student/Walk/Up/0010.png" id="134_heih0"]
+[ext_resource type="Texture2D" uid="uid://dorav5q7djwhe" path="res://Assets/Student/Walk/Up Dagger/0000.png" id="136_hyusb"]
+[ext_resource type="Texture2D" uid="uid://beuac6advt4ro" path="res://Assets/Student/Walk/Up Dagger/0001.png" id="137_ey64d"]
+[ext_resource type="Texture2D" uid="uid://yurcfnko5row" path="res://Assets/Student/Walk/Up Dagger/0002.png" id="138_agvow"]
+[ext_resource type="Texture2D" uid="uid://wuyfvadqkshq" path="res://Assets/Student/Walk/Up Dagger/0003.png" id="139_nahvi"]
+[ext_resource type="Texture2D" uid="uid://dlbgndnpcdrkx" path="res://Assets/Student/Walk/Up Dagger/0004.png" id="140_7liqs"]
+[ext_resource type="Texture2D" uid="uid://bt1kegswy3frt" path="res://Assets/Student/Walk/Up Dagger/0005.png" id="141_8wckb"]
+[ext_resource type="Texture2D" uid="uid://disbogyte1r48" path="res://Assets/Student/Walk/Up Dagger/0006.png" id="142_gxn4t"]
+[ext_resource type="Texture2D" uid="uid://bu1dirohev680" path="res://Assets/Student/Walk/Up Dagger/0007.png" id="143_0ab0d"]
+[ext_resource type="Texture2D" uid="uid://c7gyfjprki7u8" path="res://Assets/Student/Walk/Up Dagger/0008.png" id="144_aukyp"]
+[ext_resource type="Texture2D" uid="uid://mw2yg8fkwx0m" path="res://Assets/Student/Walk/Up Dagger/0009.png" id="145_obakt"]
+[ext_resource type="Texture2D" uid="uid://bdquwdqg2e12d" path="res://Assets/Student/Walk/Up Dagger/0010.png" id="146_ato1c"]
 [ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="148_yo137"]
 [ext_resource type="Script" uid="uid://d1rog44u7yj4h" path="res://Characters/Player/Scripts/InteractionRay.gd" id="150_2va3f"]
 [ext_resource type="AudioStream" uid="uid://dogfe5isrx6u6" path="res://Assets/Sounds/AttackSound.ogg" id="154_4mvhf"]
@@ -850,34 +851,37 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("91_dq6ij")
+"texture": ExtResource("136_hyusb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("92_fjebe")
+"texture": ExtResource("137_ey64d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("93_frnst")
+"texture": ExtResource("138_agvow")
 }, {
 "duration": 1.0,
-"texture": ExtResource("94_2vshi")
+"texture": ExtResource("139_nahvi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("95_e8bbf")
+"texture": ExtResource("140_7liqs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("97_ebjbr")
+"texture": ExtResource("141_8wckb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("98_3vus2")
+"texture": ExtResource("142_gxn4t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("99_8kmww")
+"texture": ExtResource("143_0ab0d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("100_b0us3")
+"texture": ExtResource("144_aukyp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("101_l245l")
+"texture": ExtResource("145_obakt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_ato1c")
 }],
 "loop": true,
 "name": &"Walk Knife Up",
@@ -1838,7 +1842,7 @@ graph_offset = Vector2(23.7683, 82.7943)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
-texture_filter = 1
+texture_filter = 3
 collision_layer = 8
 collision_mask = 248
 motion_mode = 1
@@ -1860,10 +1864,8 @@ shape = SubResource("CapsuleShape2D_wtmhg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_priority = 1
-texture_filter = 1
-texture_repeat = 1
 sprite_frames = SubResource("SpriteFrames_teq0n")
-animation = &"Throw Up"
+animation = &"Walk Knife Up"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

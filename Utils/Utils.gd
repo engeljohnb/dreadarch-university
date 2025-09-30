@@ -1,8 +1,8 @@
 extends Node
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
-const UP = Vector2(0,1)
-const DOWN = Vector2(0,-1)
+const UP = Vector2(0,-1)
+const DOWN = Vector2(0,1)
 
 func nearest_cardinal_direction(direction : Vector2, as_text = false):
 	var x = direction.x
