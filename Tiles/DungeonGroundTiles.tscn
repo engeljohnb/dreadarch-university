@@ -2,6 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://coaprv7phi5iw" path="res://Tiles/DungeonFloorTiles.tres" id="1_3ehoj"]
 
-[node name="GroundTiles" type="TileMapLayer"]
+[node name="GroundTiles" type="TileMapLayer" groups=["FloorLayer"]]
 z_index = -1
 tile_set = ExtResource("1_3ehoj")

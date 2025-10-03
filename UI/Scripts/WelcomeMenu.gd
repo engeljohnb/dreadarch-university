@@ -12,7 +12,7 @@ var fading = true
 @export var music = "res://Music/IntroMusic.ogg"
 
 func on_new_game():
-	SceneTransition.change_scene("Dungeons/01/01-01.tscn")
+	SceneTransition.change_scene("Dungeons/00/00-01.tscn")
 	
 func on_quit():
 	get_tree().quit()

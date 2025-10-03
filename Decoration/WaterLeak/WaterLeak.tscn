@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsldetll3rk11"]
+
+[ext_resource type="Script" uid="uid://bnm6eddniaawg" path="res://Decoration/WaterLeak/Scripts/WaterLeak.gd" id="1_qnjru"]
+[ext_resource type="AudioStream" uid="uid://dcb5do64ovjjw" path="res://Assets/Sounds/Misc/Splash/Splash01.ogg" id="2_8gf00"]
+
+[node name="WaterLeak" type="Node2D"]
+script = ExtResource("1_qnjru")
+
+[node name="Splash01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8gf00")
+volume_db = -25.0

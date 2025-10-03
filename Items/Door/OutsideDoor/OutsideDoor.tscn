@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4bow3ogga7t0"]
+
+[ext_resource type="Script" uid="uid://bnr6phbsdmas1" path="res://Items/Door/OutsideDoor/Scripts/OutsideDoor.gd" id="1_11y5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugnih"]
+size = Vector2(500, 500)
+
+[node name="OutsideDoor" type="Area2D"]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_11y5v")
+next_scene = "res://Dungeons/00"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ugnih")

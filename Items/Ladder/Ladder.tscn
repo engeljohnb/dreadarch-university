@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://d18em4fo02fvn"]
+
+[ext_resource type="Texture2D" uid="uid://dikpalvd8bbdx" path="res://Assets/Items/RopeLadder/RopeLadder.png" id="1_4y7j5"]
+[ext_resource type="Script" uid="uid://4u5yfx5snku5" path="res://Items/Ladder/Scripts/Ladder.gd" id="1_en0wu"]
+[ext_resource type="Texture2D" uid="uid://bqpmcoev4duf7" path="res://Assets/Items/RopeLadder/RopeLadderBottom.png" id="3_odjkq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qs77a"]
+size = Vector2(84, 62)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uooq2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4y7j5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_odjkq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ladder" type="Area2D"]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_en0wu")
+direction = "Up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -33)
+shape = SubResource("RectangleShape2D_qs77a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -44)
+sprite_frames = SubResource("SpriteFrames_uooq2")
+frame_progress = 1.0

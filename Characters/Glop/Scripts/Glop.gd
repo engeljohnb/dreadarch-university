@@ -14,12 +14,15 @@ var _slime = load("res://Characters/Glop/SlimeTrail/SlimeTrail.tscn")
 var played_walk = false
 var prev_facing = Utils.RIGHT
 var direction_changed = false
+var dead = false
+var most_recent_slime_segment = null
 
 @onready var current_ray = $DownRay
 @onready var down_ray = $DownRay
 @onready var up_ray = $UpRay
 @onready var left_ray = $LeftRay
 @onready var right_ray = $RightRay
+
 func get_animation_name(action : String):
 	return action + " " + Utils.nearest_cardinal_direction(facing, true)
 	
@@ -28,8 +31,14 @@ func on_hit(_body):
 	if life <= 0:
 		$AnimatedSprite2D.visible = false
 		$CollisionShape2D.set_deferred("disabled", true)
+		var heart = load("res://Items/Heart/Heart.tscn").instantiate()
+		call_deferred("add_sibling", heart)
+		heart.global_position = global_position
+		if most_recent_slime_segment:
+			most_recent_slime_segment.queue_free()
 		$DeathSound.play()
 		$DeathCutscene.play()
+		dead = true
 	else:
 		$HitSound.play()
 		$Blinker.blink(0.33)
@@ -50,6 +59,8 @@ func facing_down():
 	return (Utils.nearest_cardinal_direction(facing, true) == "Down")
 	
 func drop_slime():
+	if dead:
+		return
 	var slime = _slime.instantiate()
 	$Hitbox.my_weapons.append(slime)
 	slime.position = (start_position + target_position)/2.0
@@ -59,6 +70,7 @@ func drop_slime():
 		slime.position += Vector2(0,25)
 	slime.rotation = Utils.RIGHT.angle_to(facing)
 	add_sibling(slime)
+	most_recent_slime_segment = slime
 	slime.z_index = -1
 	if facing != prev_facing:
 		slime.position += (facing*18.0)
@@ -128,6 +140,8 @@ func update_position(delta):
 		played_walk = false
 	
 func _process(_delta):
+	if dead:
+		return
 	update_direction()
 	if moving:
 		update_position(_delta)

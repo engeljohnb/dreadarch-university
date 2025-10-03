@@ -1,0 +1,124 @@
+[gd_scene load_steps=20 format=3 uid="uid://c4u7w1gypnb20"]
+
+[ext_resource type="Script" uid="uid://b5vc8hrp26v07" path="res://Decoration/WaterLeak/WaterLeakSegment/Scripts/WaterLeakSegment.gd" id="1_hy8cc"]
+[ext_resource type="Texture2D" uid="uid://cwafyokm0st8w" path="res://Assets/Decoration/WaterLeaks/Splash/01/0000.png" id="1_os7xh"]
+[ext_resource type="Texture2D" uid="uid://5yisfbynhkgo" path="res://Assets/Decoration/WaterLeaks/Middle/01/0000.png" id="1_vorv2"]
+[ext_resource type="Texture2D" uid="uid://tjhn8hrctnw" path="res://Assets/Decoration/WaterLeaks/Splash/01/0001.png" id="2_hy8cc"]
+[ext_resource type="Texture2D" uid="uid://cuafwq7tr303k" path="res://Assets/Decoration/WaterLeaks/Middle/01/0001.png" id="2_mddjb"]
+[ext_resource type="Texture2D" uid="uid://cnctvn37ssuep" path="res://Assets/Decoration/WaterLeaks/Finish/01/0000.png" id="2_qbnki"]
+[ext_resource type="Texture2D" uid="uid://cryvxsksphid4" path="res://Assets/Decoration/WaterLeaks/Middle/01/0002.png" id="3_f71hn"]
+[ext_resource type="Texture2D" uid="uid://dptn6fseytilw" path="res://Assets/Decoration/WaterLeaks/Finish/01/0001.png" id="3_kl5r8"]
+[ext_resource type="Texture2D" uid="uid://d05yy8bwch2gn" path="res://Assets/Decoration/WaterLeaks/Splash/01/0002.png" id="3_xeds4"]
+[ext_resource type="Texture2D" uid="uid://bp8prhl22ulyf" path="res://Assets/Decoration/WaterLeaks/Splash/01/0003.png" id="4_h1s1h"]
+[ext_resource type="Texture2D" uid="uid://d28s44rrpyhue" path="res://Assets/Decoration/WaterLeaks/Finish/01/0002.png" id="4_i5jlq"]
+[ext_resource type="Texture2D" uid="uid://l0x0rhoasdx1" path="res://Assets/Decoration/WaterLeaks/Middle/01/0003.png" id="4_vq7q4"]
+[ext_resource type="Texture2D" uid="uid://b43h53euidnsk" path="res://Assets/Decoration/WaterLeaks/Source/01/0000.png" id="5_bdqeu"]
+[ext_resource type="Texture2D" uid="uid://bsnput2rw47fe" path="res://Assets/Decoration/WaterLeaks/Finish/01/0003.png" id="5_xvqfv"]
+[ext_resource type="Texture2D" uid="uid://drrflvblmi2e7" path="res://Assets/Decoration/WaterLeaks/Source/01/0001.png" id="6_jgxtb"]
+[ext_resource type="Texture2D" uid="uid://xxkx15j7x1gt" path="res://Assets/Decoration/WaterLeaks/Source/01/0002.png" id="7_jtnh6"]
+[ext_resource type="Texture2D" uid="uid://ma0goxefs2or" path="res://Assets/Decoration/WaterLeaks/Source/01/0003.png" id="8_fb4ro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laub5"]
+size = Vector2(32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bdqeu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qbnki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kl5r8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i5jlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xvqfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i5jlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kl5r8")
+}],
+"loop": true,
+"name": &"01 Finish",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vorv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mddjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f71hn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vq7q4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f71hn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mddjb")
+}],
+"loop": true,
+"name": &"01 Middle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_bdqeu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jgxtb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jtnh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fb4ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jtnh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jgxtb")
+}],
+"loop": true,
+"name": &"01 Source",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_os7xh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hy8cc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xeds4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h1s1h")
+}],
+"loop": false,
+"name": &"01 Splash",
+"speed": 24.0
+}]
+
+[node name="WaterLeakSegment" type="Area2D"]
+collision_layer = 512
+collision_mask = 4
+script = ExtResource("1_hy8cc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_laub5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bdqeu")
+animation = &"01 Source"
+frame_progress = 0.5498213

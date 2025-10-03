@@ -40,6 +40,7 @@ var equipped = Collectible.GOLDEN_DAGGER
 var attacking = false
 var won = false
 var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "reverse": false, "min_scale": 0.8}
+var climb_cutscene = {"position" : Vector2(), "start_pos" : Vector2(), "arriving" : false, "direction":""}
 var in_dialogue = false
 # For counting frames to know when to play the step sound
 var direction_priority
@@ -47,7 +48,9 @@ var direction_priority
 # Becaues everything breaks in the AnimationTree state machine when the advance condition
 # is equipped == Collectible.GOLDEN_DAGGER. I don't know why but having this variable instead makes it work.
 var golden_dagger_equipped = true
-	
+var hard_step_sound = load("res://Assets/Sounds/Student/StepSound.ogg")
+var soft_step_sound = load("res://Assets/Sounds/Student/SoftStepSound.ogg")
+
 func on_item_collected(item, count, _should_play_sound):
 	if item == Collectible.HEART:
 		gain_life(1)
@@ -84,6 +87,34 @@ func direction_held():
 	or Input.is_action_pressed("Up")
 	or Input.is_action_pressed("Down"))
 	
+func play_outside_door_cutscene(delta):
+	if delta == 0.0:
+		current_cutscene = play_outside_door_cutscene
+		in_cutscene = true
+		cutscene_timer = 0.0
+		cutscene_duration = 1.0
+	else:
+		cutscene_timer += delta
+		var dir = Utils.nearest_cardinal_direction(facing, true)
+		var speed = SPEED*0.5
+		match dir:
+			"Left":
+				position.x -= speed*delta
+			"Right":
+				position.x += speed*delta
+			"Up":
+				position.y -= speed*delta
+			"Down":
+				position.y += speed*delta
+			dir:
+				position.x += speed*delta
+		modulate.a = 1.0 - (cutscene_timer/cutscene_duration)
+		if cutscene_timer >= cutscene_duration:
+			modulate.a = 1.0
+			in_cutscene = false
+			current_cutscene = null
+			cutscene_timer = 0.0
+			
 func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
 	if delta == 0.0:
 		door_cutscene["reverse"] = reverse
@@ -125,6 +156,91 @@ func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
 			in_cutscene = false
 			cutscene_timer = 0.0
 			cutscene_duration = 0.0
+	
+func play_climb_cutscene(delta, _climb_cutscene = {}):
+	if delta == 0.0:
+		cutscene_timer = 0.0
+		var direction = _climb_cutscene["direction"]
+		var arriving = _climb_cutscene["arriving"]
+		climb_cutscene = _climb_cutscene
+		climb_cutscene["played_climb_down"] = false
+		if direction == "Down":
+			if not arriving:
+				sprite.play("Climb Down Transition")
+			else:
+				z_index = 2
+				sprite.play("Climb Down")
+				climb_cutscene["start_pos"].y -= 215.0
+				global_position.y -= 215.0
+		else:
+			sprite.play_backwards("Climb Down")
+			if arriving:
+				climb_cutscene["start_pos"].y += 45.0
+			else:
+				z_index = 2
+		in_cutscene = true
+		current_cutscene = play_climb_cutscene
+		global_position.x = climb_cutscene["position"].x
+		climb_cutscene["start_pos"].x = climb_cutscene["position"].x
+		cutscene_duration = 1.75
+		cutscene_timer = 0.0
+		step_sound.stop()
+		var playback = anim_tree["parameters/playback"]
+		playback.travel("End")
+	else:
+		cutscene_timer += delta
+		if not climb_cutscene["arriving"]:
+			if climb_cutscene["direction"] == "Down":
+				global_position = lerp(climb_cutscene["start_pos"], climb_cutscene["position"], cutscene_timer*1.25)
+				if cutscene_timer >= 0.75:
+					if (sprite.animation != "Climb Down"):
+						sprite.play("Climb Down")
+					sprite.modulate.a = lerp(1.0, 0.0, cutscene_timer-0.75)
+					global_position.y += 25.0*delta
+				if cutscene_timer >= 1.75:
+					z_index = 0
+					in_cutscene = false
+					cutscene_timer = 0.0
+					var playback = anim_tree["parameters/playback"]
+					playback.travel("Idle")
+					return
+			else:
+				global_position.y -= 135.0*delta
+				sprite.modulate.a = 1.0 - (cutscene_timer/1.75)
+				if cutscene_timer > 1.75:
+					z_index = 0
+					in_cutscene = false
+					cutscene_timer = 0.0
+					var playback = anim_tree["parameters/playback"]
+					playback.travel("Idle")
+					return
+		else:
+			if climb_cutscene["direction"] == "Up":
+				global_position = lerp(climb_cutscene["start_pos"], climb_cutscene["position"], cutscene_timer*1.25)
+				if cutscene_timer > 1.0:
+					sprite.play_backwards("Climb Down Transition")
+					global_position.y -= 25 * (cutscene_timer - 1.0)
+					if cutscene_timer > 1.75:
+						z_index = 0
+						in_cutscene = false
+						cutscene_timer = 0.0
+						sprite.play("Idle Up")
+						var playback = anim_tree["parameters/playback"]
+						playback.travel("Idle")
+						return
+			else:
+				sprite.play("Climb Down")
+				z_index = 2
+				global_position.y += 135.0 * delta 
+				sprite.modulate.a = (cutscene_timer/1.75)
+				if cutscene_timer >= 1.75:
+					z_index = 0
+					in_cutscene = false
+					cutscene_timer = 0.0
+					sprite.play("Idle Down")
+					var playback = anim_tree["parameters/playback"]
+					playback.travel("Idle")
+					return
 	
 func play_victory_cutscene(delta):
 	won = true
@@ -384,6 +500,30 @@ func update_equipment():
 				golden_dagger_equipped = false
 			inventory[equipped] = 0
 	
+func get_step_sound(sound_name):
+	match sound_name:
+		"Hard":
+			return hard_step_sound
+		"Soft":
+			return soft_step_sound
+			
+func update_step_sound(tilemap : TileMapLayer):
+	var map = tilemap.local_to_map(tilemap.to_local(global_position))
+	var data = tilemap.get_cell_tile_data(map)
+	if not data:
+		return
+	var sound_name = data.get_custom_data("Sound")
+	var stream = get_step_sound(sound_name)
+	if stream != step_sound.stream:
+		step_sound.stream = stream
+		match sound_name:
+			"Soft":
+				step_sound.volume_db = -13.0
+			"Hard":
+				step_sound.volume_db = -8.0
+		
+			
+		
 func _process(delta):
 	if not in_dialogue:
 		if not in_cutscene:

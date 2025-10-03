@@ -37,6 +37,7 @@ Player=""
 Weapons=""
 Enemies=""
 Interactable=""
+FloorLayer=""
 
 [input]
 

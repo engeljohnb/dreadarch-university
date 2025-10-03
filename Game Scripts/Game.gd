@@ -29,6 +29,7 @@ var death_cutscene = {"timer":0.0, "duration":2.5}
 var player = null
 var _save = Save.new()
 var _player = Player.new()
+var floor_tiles = null
 
 func _prompt_player(text, on_yes, on_no, yes_text = "yes", no_text = "no"):
 	var prompt = load("res://UI/Prompt.tscn").instantiate()	
@@ -228,12 +229,36 @@ func on_scene_changed():
 		if not _save.rooms[scene_name].is_empty():
 			load_room_save_info(current_scene)
 	get_tree().paused = false
+	# If player is above ground, turn down the light
+	if SceneTransition.current_scene_path.contains("00"):
+		player.light.energy = 1.0
+		player.modulate = Color(1.3,1.3,1.3)
+	else:
+		player.light.energy = 3.0
+		player.modulate = Color(1,1,1)
 	pause_menu.visible = false
 	player.global_position = SceneTransition.player_start_position
+	player.in_cutscene = false
 	if SceneTransition.by_door:
 		player.modulate.a = 0.0
 		player.play_door_cutscene(0.0, SceneTransition.player_start_position, true)
+	if SceneTransition.by_ladder:
+		player.sprite.modulate.a = 1.0
+		var direction = SceneTransition.ladder_direction
+		var start_pos = SceneTransition.player_start_position
+		var arriving = true
+		player.play_climb_cutscene(0.0, 
+		{"position":start_pos, "start_pos":start_pos, "direction":direction, "arriving":arriving})
+	var _floor_tiles = get_tree().get_nodes_in_group("FloorLayer")
+	if _floor_tiles.size() > 0:
+		for t in _floor_tiles:
+			if t != floor_tiles:
+				floor_tiles = t
+				break
+	else:
+		floor_tiles = null
 	
+
 func open_load_game_menu():
 	load_game()
 	
@@ -337,6 +362,8 @@ func open_inventory():
 func _process(_delta):
 	if player:
 		if (not player.in_cutscene) and (not player.in_dialogue):
+			if floor_tiles:
+				player.update_step_sound(floor_tiles)
 			if Input.is_action_just_pressed("Pause"):
 				pause_menu.pause_game()
 			if Input.is_action_just_pressed("OpenInventory"):

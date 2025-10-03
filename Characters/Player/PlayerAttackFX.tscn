@@ -43,7 +43,7 @@ fill_to = Vector2(0.847561, 0.835366)
 z_index = 2
 scale = Vector2(0.34, 0.34)
 collision_layer = 4
-collision_mask = 142
+collision_mask = 654
 script = ExtResource("1_cgdpr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

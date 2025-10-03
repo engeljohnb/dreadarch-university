@@ -1,4 +1,4 @@
-[gd_scene load_steps=261 format=3 uid="uid://r8py7ts46u7k"]
+[gd_scene load_steps=279 format=3 uid="uid://r8py7ts46u7k"]
 
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
 [ext_resource type="Texture2D" uid="uid://bkyy4clb40hvk" path="res://Assets/Student/Idle/Down/0000.png" id="1_v8ubu"]
@@ -28,27 +28,45 @@
 [ext_resource type="Texture2D" uid="uid://k13gtg8hxwgf" path="res://Assets/Student/Idle Knife/Left/0002.png" id="17_oyw87"]
 [ext_resource type="Texture2D" uid="uid://dsy744vdh1h1q" path="res://Assets/Student/Idle Knife/Left/0003.png" id="18_c1jxq"]
 [ext_resource type="Texture2D" uid="uid://b8e05ikdysyvk" path="res://Assets/Student/Attack/Left/0008.png" id="18_e8ru6"]
+[ext_resource type="Texture2D" uid="uid://oow1d76gwsf2" path="res://Assets/Student/Climb/0000.png" id="19_ato1c"]
+[ext_resource type="Texture2D" uid="uid://dx248uy64obd4" path="res://Assets/Student/Climb/0010.png" id="19_j7p2t"]
 [ext_resource type="Texture2D" uid="uid://cujsdeo5cjy1u" path="res://Assets/Student/Idle Knife/Left/0004.png" id="19_qb8o2"]
+[ext_resource type="Texture2D" uid="uid://6k8gelbn01b1" path="res://Assets/Student/Climb/0001.png" id="20_2pgw1"]
 [ext_resource type="Texture2D" uid="uid://cx1g47g0uk7gn" path="res://Assets/Student/Idle Knife/Left/0005.png" id="20_4s0vn"]
+[ext_resource type="Texture2D" uid="uid://dubt54qx2nmdk" path="res://Assets/Student/Climb/0011.png" id="20_s3j0o"]
 [ext_resource type="Texture2D" uid="uid://c257iqo3aidg3" path="res://Assets/Student/Idle Knife/Left/0006.png" id="21_52w1j"]
+[ext_resource type="Texture2D" uid="uid://bcsikeksy0h43" path="res://Assets/Student/Climb/0012.png" id="21_aqxpi"]
+[ext_resource type="Texture2D" uid="uid://b2ywyi461wjhq" path="res://Assets/Student/Climb/0002.png" id="21_eqbxn"]
+[ext_resource type="Texture2D" uid="uid://dtdl8khlt5f0w" path="res://Assets/Student/Climb/0013.png" id="22_7t4tm"]
+[ext_resource type="Texture2D" uid="uid://swqe3jf2n0di" path="res://Assets/Student/Climb/0003.png" id="22_dn1ce"]
 [ext_resource type="Texture2D" uid="uid://bv1cbanduer53" path="res://Assets/Student/Idle Knife/Right/0000.png" id="22_isceb"]
 [ext_resource type="Texture2D" uid="uid://6doqv84xhld1" path="res://Assets/Student/Death/0000.png" id="22_q3a7n"]
 [ext_resource type="Texture2D" uid="uid://13b55jwba0sr" path="res://Assets/Student/Death/0001.png" id="23_hdxfm"]
+[ext_resource type="Texture2D" uid="uid://ta807bga58d3" path="res://Assets/Student/Climb/0014.png" id="23_ip3ka"]
+[ext_resource type="Texture2D" uid="uid://6xxobot3pc2h" path="res://Assets/Student/Climb/0004.png" id="23_jcc3k"]
 [ext_resource type="Texture2D" uid="uid://cdc7wfooxdkbu" path="res://Assets/Student/Idle Knife/Right/0001.png" id="23_mesma"]
 [ext_resource type="Texture2D" uid="uid://bx2rtbpbllc" path="res://Assets/Student/Attack/Right/0004.png" id="23_nyw3p"]
 [ext_resource type="Texture2D" uid="uid://0fgw54gxlua5" path="res://Assets/Student/Idle Knife/Right/0002.png" id="24_6p64p"]
+[ext_resource type="Texture2D" uid="uid://uieeouaixk45" path="res://Assets/Student/Climb/0005.png" id="24_bjc10"]
+[ext_resource type="Texture2D" uid="uid://bcq4y8gi3me1l" path="res://Assets/Student/Climb/0015.png" id="24_fm68r"]
 [ext_resource type="Texture2D" uid="uid://bhhcmv0ot73se" path="res://Assets/Student/Attack/Right/0005.png" id="24_phc28"]
 [ext_resource type="Texture2D" uid="uid://vp1ycx5a48oa" path="res://Assets/Student/Death/0002.png" id="24_qqhww"]
 [ext_resource type="Texture2D" uid="uid://dc58xfq60x3i6" path="res://Assets/Student/Attack/Right/0006.png" id="25_2eb37"]
 [ext_resource type="Texture2D" uid="uid://b1k8sej80rmb0" path="res://Assets/Student/Death/0003.png" id="25_3sf4b"]
 [ext_resource type="Texture2D" uid="uid://c33c5yslqmxxo" path="res://Assets/Student/Idle Knife/Right/0003.png" id="25_6iqmj"]
+[ext_resource type="Texture2D" uid="uid://cgbof21incgul" path="res://Assets/Student/Climb/0006.png" id="25_cwmif"]
+[ext_resource type="Texture2D" uid="uid://byn07prdbkwen" path="res://Assets/Student/Climb/0016.png" id="25_iwaog"]
+[ext_resource type="Texture2D" uid="uid://bxf8x86ewefuk" path="res://Assets/Student/Climb/0007.png" id="26_3yiwh"]
 [ext_resource type="Texture2D" uid="uid://bwdik4eyfkauc" path="res://Assets/Student/Idle Knife/Right/0004.png" id="26_adr5n"]
 [ext_resource type="Texture2D" uid="uid://dmebc5dxub58e" path="res://Assets/Student/Death/0004.png" id="26_lx17i"]
+[ext_resource type="Texture2D" uid="uid://3wkn3ojrva53" path="res://Assets/Student/Climb/0017.png" id="26_t6p3r"]
 [ext_resource type="Texture2D" uid="uid://b3siwthc0yc5g" path="res://Assets/Student/Idle Knife/Right/0005.png" id="27_6w2pe"]
+[ext_resource type="Texture2D" uid="uid://dany7vdc0sgir" path="res://Assets/Student/Climb/0008.png" id="27_j7p2t"]
 [ext_resource type="Texture2D" uid="uid://u0ppwowx5ngr" path="res://Assets/Student/Death/0005.png" id="27_s0hae"]
 [ext_resource type="Texture2D" uid="uid://cd3m03n64l0er" path="res://Assets/Student/Attack/Right/0008.png" id="27_yeqwp"]
 [ext_resource type="Texture2D" uid="uid://cignmwj2vkljs" path="res://Assets/Student/Idle Knife/Right/0006.png" id="28_bv5ue"]
 [ext_resource type="Texture2D" uid="uid://n17c6rj2k51k" path="res://Assets/Student/Death/0006.png" id="28_fmf53"]
+[ext_resource type="Texture2D" uid="uid://b6hykj2troed3" path="res://Assets/Student/Climb/0009.png" id="28_s3j0o"]
 [ext_resource type="Texture2D" uid="uid://bonivcvtuf7ja" path="res://Assets/Student/Death/0007.png" id="29_8ebqj"]
 [ext_resource type="Texture2D" uid="uid://0qqr77o8mk61" path="res://Assets/Student/Death/0008.png" id="30_jwh1n"]
 [ext_resource type="Texture2D" uid="uid://dapyuwj7o7a1r" path="res://Assets/Student/Death/0009.png" id="31_53v3k"]
@@ -257,6 +275,70 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack Up",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_j7p2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_s3j0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_aqxpi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7t4tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ip3ka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_fm68r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_iwaog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_t6p3r")
+}],
+"loop": true,
+"name": &"Climb Down",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_ato1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2pgw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_eqbxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_dn1ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_jcc3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_bjc10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_cwmif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_3yiwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_j7p2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_s3j0o")
+}],
+"loop": false,
+"name": &"Climb Down Transition",
 "speed": 12.0
 }, {
 "frames": [{
@@ -1865,7 +1947,7 @@ shape = SubResource("CapsuleShape2D_wtmhg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_priority = 1
 sprite_frames = SubResource("SpriteFrames_teq0n")
-animation = &"Walk Knife Up"
+animation = &"Climb Down Transition"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
