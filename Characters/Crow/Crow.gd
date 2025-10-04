@@ -103,11 +103,13 @@ func on_hit(_body):
 	if (not blinker.blinking):
 		if life > 1:
 			$HitSound.play()
+		var damage = 1
 		if _body.get_parent().is_in_group("Player"):
+			damage = _body.get_parent().attack_damage
 			knockback_direction = (_body.get_parent().global_position - global_position).normalized()
 			knockback_speed = 650
 		blinker.blink(0.5)
-		life -= 1
+		life -= damage
 		if life <= 0:
 			death()
 

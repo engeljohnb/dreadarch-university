@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bannj5r46migt"]
+
+[ext_resource type="Texture2D" uid="uid://chqveep561wyh" path="res://Assets/Tiles/DreadarchInterior/ShelfTiles.png" id="1_ug8w5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_agomq"]
+texture = ExtResource("1_ug8w5")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bjr3h"]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_agomq")
+
+[node name="BookTiles" type="TileMapLayer"]
+tile_set = SubResource("TileSet_bjr3h")

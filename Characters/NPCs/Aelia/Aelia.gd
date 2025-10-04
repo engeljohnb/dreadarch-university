@@ -90,8 +90,45 @@ var use_dialogue = [
 	}
 ]
 
+var translate_dialogue = [
+	{
+		"text":"It is a wonder that you founde this olde scrap.",
+		"speaker":"Aelia"
+	},
+	{
+		"text":"It was writen by Herr Severus. I did not like him then, but now I think back on our time kyndly.",
+		"speaker":"Aelia"
+	},
+	{
+		"text":"This is what it says in the Common Tonge:",
+		"speaker":"Aelia"
+	},
+	{
+		"text":"\"Aelia, let go of your fey work to make the necatr of Juppiter.",
+		"speaker":"Aelia"
+	},
+	{
+		"text":"You have not sped, and your cursed bees fill my work roum and make it so I cannot think. I beg you.\"",
+		"speaker":"Aelia"
+	},
+	{
+		"text":"Wel, I do not think it is what Juppiter drinks, but I wolde hardely call it \"fey.\"",
+		"speaker":"Aelia"
+	},
+	{
+		"text":"And I would hardly call your speech the \"Common Tongue.\"",
+		"speaker":"Player"
+	}
+]
+
 func activate(_using_item = "", _count = 0):
 	if (status["times_spoken_to"] >= 1) and (not _using_item.is_empty()):
+		if _using_item is Dictionary:
+			var text = _using_item.get("latin_text")
+			if text:
+				if text.contains("Aelia"):
+					Dialogue.open_dialogue.emit(translate_dialogue)
+					return
 		Dialogue.open_dialogue.emit(use_dialogue)
 		return
 	if not status["times_spoken_to"] >= dialogues.size():

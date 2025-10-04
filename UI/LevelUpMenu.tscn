@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://s8ctsb5gqm07"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_krf5r"]
+[ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="1_yb062"]
+[ext_resource type="Script" uid="uid://cpqymxsiykdpk" path="res://UI/Scripts/LevelUpMenu.gd" id="2_vvn8s"]
+
+[node name="LevelUpMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_krf5r")
+script = ExtResource("2_vvn8s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.868985, 0.868985, 0.868985, 0.73)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.278
+anchor_right = 0.75
+anchor_bottom = 0.833
+offset_top = -0.240021
+offset_right = -0.00012207
+offset_bottom = 0.359924
+texture = ExtResource("1_yb062")
+expand_mode = 1
+
+[node name="LevelUpLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.404
+anchor_top = 0.32200003
+anchor_right = 0.59800005
+anchor_bottom = 0.423
+offset_left = -0.6800537
+offset_top = 0.23995972
+offset_right = -0.16015625
+offset_bottom = 0.16000366
+text = "Level Up!"
+
+[node name="ChooseOneLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 775.0
+offset_top = 479.0
+offset_right = 1150.0
+offset_bottom = 576.0
+theme_override_font_sizes/normal_font_size = 85
+text = "Choose one:"
+
+[node name="IncreaseAttackDamage" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50200003
+anchor_top = 0.643
+anchor_right = 0.72900003
+anchor_bottom = 0.726
+offset_left = -0.8400879
+offset_top = -92.44
+offset_right = 0.3199463
+offset_bottom = -99.08002
+theme_override_font_sizes/font_size = 40
+text = "Increase Attack Damage"
+
+[node name="IncreaseLifeTotal" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.27400002
+anchor_top = 0.64900005
+anchor_right = 0.5
+anchor_bottom = 0.726
+offset_left = -0.08001709
+offset_top = -98.920044
+offset_right = 3.0
+offset_bottom = -99.08002
+theme_override_font_sizes/font_size = 40
+text = "Increase Life Total"

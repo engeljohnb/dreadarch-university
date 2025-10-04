@@ -21,6 +21,7 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 400.0
 
+var attack_damage = 1
 var inventory = {}
 var dead = false
 var in_cutscene = false
@@ -42,7 +43,6 @@ var won = false
 var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "reverse": false, "min_scale": 0.8}
 var climb_cutscene = {"position" : Vector2(), "start_pos" : Vector2(), "arriving" : false, "direction":""}
 var in_dialogue = false
-# For counting frames to know when to play the step sound
 var direction_priority
 # Why have golden_dagger_equipped when I can just check equipped == Collectible.GOLDEN_DAGGER?
 # Becaues everything breaks in the AnimationTree state machine when the advance condition
@@ -51,7 +51,21 @@ var golden_dagger_equipped = true
 var hard_step_sound = load("res://Assets/Sounds/Student/StepSound.ogg")
 var soft_step_sound = load("res://Assets/Sounds/Student/SoftStepSound.ogg")
 
+func on_scroll_fragment_translated(scroll_fragment):
+	for scroll in inventory[Collectible.SCROLL_FRAGMENT]:
+		if scroll["latin_text"] == scroll_fragment["latin_text"]:
+			scroll["translated"] = true
+	
 func on_item_collected(item, count, _should_play_sound):
+	if item is Dictionary:
+		match item["type"]:
+			Collectible.SCROLL_FRAGMENT:
+				if count > 0:
+					item["collected"] = true
+					inventory[Collectible.SCROLL_FRAGMENT].append(item)
+				elif count < 0:
+					inventory[Collectible.SCROLL_FRAGMENT].erase(item)
+				return
 	if item == Collectible.HEART:
 		gain_life(1)
 		return
@@ -220,14 +234,16 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 				if cutscene_timer > 1.0:
 					sprite.play_backwards("Climb Down Transition")
 					global_position.y -= 25 * (cutscene_timer - 1.0)
-					if cutscene_timer > 1.75:
+					if cutscene_timer >= 1.75:
 						z_index = 0
 						in_cutscene = false
 						cutscene_timer = 0.0
 						sprite.play("Idle Up")
+						#update_direction()
+						#update_animation_blend_positions()
 						var playback = anim_tree["parameters/playback"]
 						playback.travel("Idle")
-						return
+						facing = Utils.UP
 			else:
 				sprite.play("Climb Down")
 				z_index = 2
@@ -235,13 +251,15 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 				sprite.modulate.a = (cutscene_timer/1.75)
 				if cutscene_timer >= 1.75:
 					z_index = 0
+					sprite.play("Idle Down")
+					facing = Utils.DOWN
 					in_cutscene = false
 					cutscene_timer = 0.0
-					sprite.play("Idle Down")
+					#update_direction()
+					#update_animation_blend_positions()
 					var playback = anim_tree["parameters/playback"]
 					playback.travel("Idle")
-					return
-	
+
 func play_victory_cutscene(delta):
 	won = true
 	in_cutscene = true
@@ -404,6 +422,7 @@ func on_blinker_flip(state):
 		set_modulate(Color(1,1,1))
 
 func _ready():
+	get_tree().paused = true
 	hitbox.hit.connect(on_hit)
 	blinker.flip.connect(on_blinker_flip)
 	inventory[Collectible.GOLDEN_DAGGER] = 0
@@ -518,11 +537,9 @@ func update_step_sound(tilemap : TileMapLayer):
 		step_sound.stream = stream
 		match sound_name:
 			"Soft":
-				step_sound.volume_db = -13.0
+				step_sound.volume_db = -17.0
 			"Hard":
 				step_sound.volume_db = -8.0
-		
-			
 		
 func _process(delta):
 	if not in_dialogue:

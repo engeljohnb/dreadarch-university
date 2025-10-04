@@ -14,6 +14,20 @@ var retiring_duration = 6.0
 var type = Types.NPC
 var paid = false
 
+var translation_dialogue = [
+	{
+		"text":"Look at this writing... Can you tell me what it says in Common Speech?",
+		"speaker":"Player"
+	},
+	{
+		"text":"Of course I can!",
+		"speaker":"Fitzroy"
+	},
+	{
+		"text":"It doesn't say anything in Common Speech.",
+		"speaker":"Fitzroy"
+	}
+]
 
 var using_item_default_dialogue = [
 	{
@@ -164,10 +178,14 @@ func _ready():
 	$AnimatedSprite2D.play("Idle")
 
 func offering_inadequate_bribe(using_item, item_count):
+	if (not (using_item is String)) and (not (using_item is StringName)):
+		return false
 	return ((using_item == Collectible.TREASURE) and 
 	(item_count < 25))
 
 func offering_adequate_bribe(using_item, item_count):
+	if (not (using_item is String)) and (not (using_item is StringName)):
+		return false
 	return ((using_item == Collectible.TREASURE) and 
 	(item_count >= 25))
 	
@@ -194,6 +212,9 @@ func activate(using_item = "", item_count = 1):
 		will_retire = true
 		return
 	elif status["introduced"]:
+		if using_item is Dictionary:
+			Dialogue.open_dialogue.emit(translation_dialogue)
+			return
 		if (not using_item.is_empty()) and (using_item != Collectible.TREASURE):
 			Dialogue.open_dialogue.emit(using_item_default_dialogue)
 		else:

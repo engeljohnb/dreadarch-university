@@ -9,6 +9,7 @@ const DEATH_MUSIC = "res://Music/DeathMusic.ogg"
 @onready var music = $Music
 
 class Player:
+	var attack_damage
 	var position: Vector2
 	var life: int
 	var temporary_life : int
@@ -89,6 +90,8 @@ func init_player():
 	hud.set_treasure(0)
 	if not Collectible.item_collected.is_connected(player.on_item_collected):
 		Collectible.item_collected.connect(player.on_item_collected)
+	if not Collectible.scroll_fragment_translated.is_connected(player.on_scroll_fragment_translated):
+		Collectible.scroll_fragment_translated.connect(player.on_scroll_fragment_translated)
 	hud.lifebar.set_life_total(player.total_life, player.life)
 	show_hud()
 
@@ -196,6 +199,9 @@ func load_room_save_info(scene):
 			if npc.status.get("gone"):
 				if npc.status["gone"]:
 					npc.queue_free()
+	var cutscenes = _save.rooms[SceneTransition.current_scene_name].get("cutscenes")
+	if cutscenes:
+		scene.save_info["cutscenes"] = cutscenes
 	var treasure_node = scene.get_node_or_null("Treasure")
 	if treasure_node:
 		var scene_treasures = treasure_node.get_children()
@@ -258,7 +264,6 @@ func on_scene_changed():
 	else:
 		floor_tiles = null
 	
-
 func open_load_game_menu():
 	load_game()
 	
@@ -325,6 +330,7 @@ func save_game():
 	_save.current_scene = SceneTransition.current_scene_name
 	_save.current_scene_path = SceneTransition.current_scene_path
 	_save.player.inventory = player.inventory
+	_save.player.attack_damage = player.attack_damage
 	_save.rooms[SceneTransition.current_scene_name] = get_room_save_info(current_scene)
 	_save.completed_tutorial_prompts = Collectible.get_completed_tutorial_prompts()
 	var game_save_string = DictionarySerializer.serialize_json(_save)
@@ -341,6 +347,7 @@ func load_game():
 	player.life = _player.life
 	player.total_life = _player.total_life
 	player.temporary_life = _player.temporary_life
+	player.attack_damage = _player.attack_damage
 	hud.lifebar.temporary_life = _player.temporary_life
 	hud.lifebar.life = _player.life
 	player.global_position = _player.position

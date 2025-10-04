@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://fbjip0bfyync"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_lhqru"]
+[ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="1_xenej"]
+[ext_resource type="Script" uid="uid://cq6l737fivoah" path="res://UI/Scripts/DocumentSelector.gd" id="2_2hljg"]
+[ext_resource type="Texture2D" uid="uid://dyta568qynjfx" path="res://Assets/UI/UpArrow.png" id="3_c7cgx"]
+[ext_resource type="Texture2D" uid="uid://biw6owe4roqo1" path="res://Assets/UI/DownArrow.png" id="4_2hljg"]
+[ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="6_ge1o1"]
+
+[node name="DocumentSelector" type="Control"]
+process_mode = 2
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lhqru")
+script = ExtResource("2_2hljg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.868985, 0.868985, 0.868985, 0.73)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.278
+anchor_right = 0.75
+anchor_bottom = 0.833
+offset_top = -0.240021
+offset_right = -0.00012207
+offset_bottom = 0.359924
+texture = ExtResource("1_xenej")
+expand_mode = 1
+
+[node name="Use" type="Button" parent="."]
+self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 700.0
+offset_right = 1209.0
+offset_bottom = 765.0
+theme_override_font_sizes/font_size = 35
+text = "Use
+"
+
+[node name="Back" type="Button" parent="."]
+self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
+layout_mode = 0
+offset_left = 1219.0
+offset_top = 700.0
+offset_right = 1326.0
+offset_bottom = 765.0
+theme_override_font_sizes/font_size = 35
+text = "Back"
+
+[node name="UpArrow" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.698
+anchor_top = 0.64000005
+anchor_right = 0.71900004
+anchor_bottom = 0.67700005
+offset_left = -0.16003418
+offset_top = -0.20007324
+offset_right = -0.48010254
+offset_bottom = -0.16003418
+texture = ExtResource("3_c7cgx")
+
+[node name="DownArrow" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.698
+anchor_top = 0.68200004
+anchor_right = 0.71900004
+anchor_bottom = 0.71900004
+offset_left = 0.8399658
+offset_top = 0.4399414
+offset_right = 0.51989746
+offset_bottom = 0.47998047
+texture = ExtResource("4_2hljg")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.296
+anchor_top = 0.33100003
+anchor_right = 0.71000004
+anchor_bottom = 0.628
+offset_left = 0.6799927
+offset_top = 0.5199585
+offset_right = 0.79992676
+offset_bottom = -0.24005127
+theme_override_font_sizes/normal_font_size = 50
+text = "kjnkiuhiu"
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ge1o1")

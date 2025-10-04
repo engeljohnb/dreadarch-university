@@ -1,8 +1,9 @@
 extends Node
 
-signal scroll_fragment_collected()
 @warning_ignore("unused_signal")
 signal item_collected(item, count, should_play_sound)
+@warning_ignore("unused_signal")
+signal scroll_fragment_translated(scroll_fragment)
 const HEART = "Heart"
 const SCROLL_FRAGMENT = "Scroll Fragment"
 const TREASURE = "Treasure"
@@ -74,6 +75,7 @@ var sounds = {}
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary
 var all_scroll_fragments_collected = false
+var fragments_to_level_up = 5
 
 func load_completed_tutorial_prompts(completed):
 	for c in completed:
@@ -134,7 +136,9 @@ func on_scroll_frag_no():
 func prompt_to_read_scroll_fragment():
 	Dialogue.prompt_player.emit("You found a scroll fragment! Read it?", on_scroll_frag_yes, on_scroll_frag_no, "yes", "no")
 
-func get_next_fragment():
+func get_next_fragment(index = null):
+	if index is int:
+		return scroll_fragments[index]
 	var uncollected = []
 	var frag_gen = RandomNumberGenerator.new()
 	for fragment in scroll_fragments:
@@ -148,7 +152,10 @@ func get_next_fragment():
 			f["collected"] = true
 	return fragment
 	
-func collect_scroll_fragment():
+func collect_scroll_fragment(index = null):
 	prompt_to_read_scroll_fragment()
-	most_recent_scroll_fragment = get_next_fragment()
-	scroll_fragment_collected.emit()
+	if index is int:
+		most_recent_scroll_fragment = get_next_fragment(index)
+	else:
+		most_recent_scroll_fragment = get_next_fragment()
+	item_collected.emit(most_recent_scroll_fragment, 1, true)

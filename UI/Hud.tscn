@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dxqkcjmpaa7" path="res://UI/Treasure.tscn" id="2_g2bx8"]
 [ext_resource type="PackedScene" uid="uid://cxnq2lir0c1ap" path="res://UI/Equipped.tscn" id="4_a1x8f"]
 
-[node name="Hud" type="Control"]
+[node name="Hud" type="Control" groups=["HUD"]]
 z_index = 3
 layout_mode = 3
 anchors_preset = 15

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://dqwinn1ahybms"]
+[gd_scene load_steps=10 format=4 uid="uid://dqwinn1ahybms"]
 
+[ext_resource type="PackedScene" uid="uid://bannj5r46migt" path="res://Tiles/BookTiles.tscn" id="1_f8rm5"]
 [ext_resource type="PackedScene" uid="uid://c4bow3ogga7t0" path="res://Items/Door/OutsideDoor/OutsideDoor.tscn" id="1_u0pfy"]
-[ext_resource type="PackedScene" uid="uid://c6ma7jimwq3wd" path="res://Tiles/UniversityInteriorFloorTiles.tscn" id="2_ysi8e"]
+[ext_resource type="PackedScene" uid="uid://c6ma7jimwq3wd" path="res://Dungeons/UniversityInteriorFloorTiles.tscn" id="2_ysi8e"]
+[ext_resource type="PackedScene" uid="uid://b20khridkwk24" path="res://Items/Desk/TranslationDesk.tscn" id="3_ysi8e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysi8e"]
 size = Vector2(114, 1264)
@@ -19,6 +21,9 @@ size = Vector2(953, 117.5)
 size = Vector2(1009, 885)
 
 [node name="00-03" type="Node2D"]
+
+[node name="BookTiles" parent="." instance=ExtResource("1_f8rm5")]
+tile_map_data = PackedByteArray("AAD2/+P/AQAAAAIAAAABAOP/AQACAAIAAAD3/+P/AQABAAIAAAD4/+P/AQAAAAIAAAD5/+P/AQABAAIAAAD6/+P/AQABAAIAAAD7/+P/AQAAAAIAAAD8/+P/AQABAAIAAAD9/+P/AQACAAIAAAD+/+P/AQABAAIAAAD//+P/AQACAAIAAAAAAOP/AQABAAIAAAD2/+L/AQAAAAEAAAD3/+L/AQABAAEAAAD4/+L/AQAAAAEAAAD5/+L/AQABAAEAAAD6/+L/AQABAAEAAAD7/+L/AQAAAAEAAAD8/+L/AQABAAEAAAD9/+L/AQACAAEAAAD+/+L/AQABAAEAAAD//+L/AQACAAEAAAAAAOL/AQABAAEAAAABAOL/AQACAAEAAAABAOH/AQACAAAAAAAAAOH/AQABAAAAAAD//+H/AQACAAAAAAD+/+H/AQABAAAAAAD9/+H/AQACAAAAAAD8/+H/AQABAAAAAAD7/+H/AQAAAAAAAAD6/+H/AQABAAAAAAD5/+H/AQABAAAAAAD4/+H/AQAAAAAAAAD3/+H/AQABAAAAAAD2/+H/AQAAAAAAAAA=")
 
 [node name="OutsideDoor" parent="." instance=ExtResource("1_u0pfy")]
 position = Vector2(0, 282)
@@ -70,3 +75,6 @@ shape = SubResource("RectangleShape2D_ysi8e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(58.5, -581.5)
 shape = SubResource("RectangleShape2D_u0pfy")
+
+[node name="TranslationDesk" parent="." instance=ExtResource("3_ysi8e")]
+position = Vector2(-559, -1802)

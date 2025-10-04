@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://lde4mdi2iq55"]
+
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_17foa"]
+[ext_resource type="Script" uid="uid://cl46roxi8p805" path="res://UI/Scripts/TranslationMenu.gd" id="2_17foa"]
+[ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="3_6gqnc"]
+[ext_resource type="Texture2D" uid="uid://dyta568qynjfx" path="res://Assets/UI/UpArrow.png" id="4_vychx"]
+[ext_resource type="Texture2D" uid="uid://biw6owe4roqo1" path="res://Assets/UI/DownArrow.png" id="5_ug62f"]
+[ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="6_q7uqp"]
+[ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="7_y8j3n"]
+
+[node name="TranslationMenu" type="Control"]
+process_mode = 2
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_17foa")
+script = ExtResource("2_17foa")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.868985, 0.868985, 0.868985, 0.73)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.278
+anchor_right = 0.75
+anchor_bottom = 0.833
+offset_top = -0.240021
+offset_right = -0.00012207
+offset_bottom = 0.359924
+texture = ExtResource("3_6gqnc")
+expand_mode = 1
+
+[node name="Translate" type="Button" parent="."]
+self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.595
+anchor_top = 0.67
+anchor_right = 0.68200004
+anchor_bottom = 0.731
+offset_left = -0.4000244
+offset_top = 9.399963
+offset_right = 0.5599365
+offset_bottom = 8.52002
+theme_override_font_sizes/font_size = 35
+text = "Translate
+"
+
+[node name="Back" type="Button" parent="."]
+self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.29700002
+anchor_top = 0.67
+anchor_right = 0.384
+anchor_bottom = 0.731
+offset_left = -0.24005127
+offset_top = 9.399963
+offset_right = 0.7199707
+offset_bottom = 8.52002
+theme_override_font_sizes/font_size = 35
+text = "Back
+"
+
+[node name="UpArrow" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.68500006
+anchor_top = 0.68
+anchor_right = 0.703
+anchor_bottom = 0.70400006
+offset_left = -0.20007324
+offset_top = -0.4000244
+offset_right = -0.76000977
+offset_bottom = 7.6799316
+texture = ExtResource("4_vychx")
+
+[node name="DownArrow" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.68500006
+anchor_top = 0.70900005
+anchor_right = 0.703
+anchor_bottom = 0.73800004
+offset_left = 0.79992676
+offset_top = 8.279968
+offset_right = 0.23999023
+offset_bottom = 10.959961
+texture = ExtResource("5_ug62f")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28300002
+anchor_top = 0.40500003
+anchor_right = 0.72400004
+anchor_bottom = 0.67700005
+offset_left = 0.6399536
+offset_top = -0.4000244
+offset_right = -0.080078125
+offset_bottom = -0.16003418
+theme_override_font_sizes/normal_font_size = 50
+text = "kjnkiuhiu"
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_q7uqp")
+
+[node name="OpenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_y8j3n")

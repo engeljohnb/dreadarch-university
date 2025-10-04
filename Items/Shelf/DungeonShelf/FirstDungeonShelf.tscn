@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b82bo86fwa18x"]
+
+[ext_resource type="Script" uid="uid://bkknn3iehbcub" path="res://Items/Shelf/DungeonShelf/Scripts/FirstDungeonShelf.gd" id="1_oxy2g"]
+[ext_resource type="Texture2D" uid="uid://collsuuorlc7y" path="res://Assets/Tiles/AncientLibrary/EmptyShelfTiles.png" id="2_u6mcs"]
+[ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="3_ouvxa"]
+[ext_resource type="AudioStream" uid="uid://bp2q00d7h7y2w" path="res://Assets/Sounds/Pot/ActivateSound.ogg" id="4_u6mcs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf4sw"]
+size = Vector2(192, 192)
+
+[node name="FirstShelf" type="StaticBody2D" groups=["Interactable"]]
+collision_layer = 8
+collision_mask = 28
+script = ExtResource("1_oxy2g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -96)
+texture = ExtResource("2_u6mcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -96)
+shape = SubResource("RectangleShape2D_bf4sw")
+
+[node name="Blinker" parent="." instance=ExtResource("3_ouvxa")]
+
+[node name="ActivateSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u6mcs")
+volume_db = -20.0
+bus = &"FXNoReverb"

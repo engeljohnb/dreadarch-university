@@ -27,7 +27,10 @@ func get_animation_name(action : String):
 	return action + " " + Utils.nearest_cardinal_direction(facing, true)
 	
 func on_hit(_body):
-	life -= 1
+	var damage = 1
+	if _body.get_parent().is_in_group("Player"):
+		damage = _body.get_parent().attack_damage
+	life -= damage
 	if life <= 0:
 		$AnimatedSprite2D.visible = false
 		$CollisionShape2D.set_deferred("disabled", true)

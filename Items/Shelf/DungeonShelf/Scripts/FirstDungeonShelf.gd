@@ -1,6 +1,6 @@
 extends StaticBody2D
-
-var can_drop = [Collectible.HEART, Collectible.SCROLL_FRAGMENT, Collectible.TREASURE]
+signal searched()
+var can_drop = [Collectible.SCROLL_FRAGMENT]
 var has = []
 var interaction_message = "Z to search"
 var showing_item = false
@@ -50,34 +50,22 @@ func activate(using_item = "", count = 0):
 						else:
 							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
 							if not has_overrides.is_empty():
-								Collectible.item_collected.emit(h, 1, false)
+								Collectible.item_collected.emit(h, amount, false)
 					h:
 						Collectible.item_collected.emit(h, amount, true)
 			activated = true
 			amounts = []
 		else:
 			$ActivateSound.play()
+		searched.emit()
 	else:
 		$ActivateSound.play()
 	$Blinker.blink(0.33)
-
-func _ready():
-	var drop_generator = RandomNumberGenerator.new()
-	$Blinker.blink_duration = blink_duration
-	$Blinker.flip.connect(on_blinker_flipped)
-	$AnimatedSprite2D.frame = int(abs(global_position.x/3.0)) % 8
 	
-	var odds = drop_generator.randf() 
-	if odds > 0.9:
-		has.append(can_drop[1])
-		amounts.append(1)
-	elif odds > 0.66:
-		has.append(can_drop[0])
-		amounts.append(1)
-	elif odds > 0.33:
-		has.append(can_drop[2])
-		amounts.append(1)
-		
+func _ready():
+	$Blinker.flip.connect(on_blinker_flipped)
+	$Blinker.blink_duration = blink_duration
+	
 func _process(_delta):
 	if showing_item:
 		show_timer += _delta

@@ -12,6 +12,11 @@ func pause_game():
 		continue_button.grab_focus()
 		visible = true
 		open_menu_sound.play()
+		# if player is above ground, turn down the light
+		if SceneTransition.current_scene_name.contains("00"):
+			$LampLight.energy = 4.50
+		else:
+			$LampLight.energy = 10.0
 
 func continue_callback():
 	visible = false
@@ -26,6 +31,7 @@ func on_focus_changed():
 	# when I don't wan it to.
 	if visible:
 		menu_select_sound.play()
+		
 func _ready():
 	visible = false
 	continue_button.grab_focus()

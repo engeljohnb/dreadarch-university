@@ -9,7 +9,8 @@ var chosen_item_total = 0
 var chosen_item_count = 0
 var chosen_action = ""
 var _inventory : Dictionary
-
+var document_selector_open = false
+var document_items = [Collectible.SCROLL_FRAGMENT]
 func _ready():
 	item_list.item_selected.connect($SelectSound.play)
 	get_tree().paused = true
@@ -38,15 +39,42 @@ func open_submenu():
 	for index in range(0, item_list.item_count):
 		item_list.set_item_disabled(index, true)
 
+func on_document_used(document):
+	inventory_action_chosen.emit("Use", document, 1)
+	close()
+	
+func on_document_selector_closed():
+	visible = true
+	item_list.grab_focus()
+	item_list.select(1)
+	document_selector_open = false
+	
+func open_document_selector(documents):
+	var doc_sel = load("res://UI/DocumentSelector.tscn").instantiate()	
+	add_sibling(doc_sel)
+	doc_sel.open(documents)
+	doc_sel.closed.connect(on_document_selector_closed)
+	doc_sel.document_used.connect(on_document_used)
+	visible = false
+	document_selector_open = true
+	
 func open(inventory):
 	_inventory = inventory
 	for key in inventory:
 		if key.is_empty():
-			return
+			continue
 		if (inventory[key] is int) or (inventory[key] is float):
 			if inventory[key] > 0:
 				item_list.add_item(str(int(inventory[key])), null, false)
 				item_list.add_item(key, Collectible.textures[key])
+		elif inventory[key] is Array:
+			if inventory[key].size() > 0:
+				var type = inventory[key][0].get("type")
+				if type:
+					match type:
+						"Scroll Fragment":
+							item_list.add_item(str(inventory[key].size()), null, false)
+							item_list.add_item(key, Collectible.textures[key])
 	item_list.grab_focus()
 	item_list.select(1)
 
@@ -80,8 +108,9 @@ func close_submenu():
 	submenu_open = false
 	item_list.clear()
 		
-
 func _process(_delta):
+	if document_selector_open:
+		return
 	# I have NO IDEA why this needs to be here, but it doesn't work if I remove it
 	if submenu_open:
 		submenu.grab_focus()
@@ -99,7 +128,10 @@ func _process(_delta):
 			if item_list.is_anything_selected():
 				chosen_item = item_list.get_item_text(item_list.get_selected_items().get(0))
 				chosen_item_total = int(item_list.get_item_text(item_list.get_selected_items().get(0)-1))
-				open_submenu()
+				if chosen_item in document_items:
+					open_document_selector(_inventory[chosen_item])
+				else:
+					open_submenu()
 		elif submenu_open and not number_box_open:
 			if chosen_item_total > 1:
 				if submenu.is_anything_selected():

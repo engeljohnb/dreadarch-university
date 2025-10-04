@@ -16,6 +16,9 @@ func on_item_collected(item, amount, _should_play_sound):
 			else:
 				$Equipped/CanvasLayer.visible = false
 			return
+		item:
+			if item is Dictionary:
+				return
 	if (item == equipped) and (not equipped.is_empty()):
 		$Equipped/CanvasLayer/RichTextLabel.text = str(int($Equipped/CanvasLayer/RichTextLabel.text) + int(amount))
 

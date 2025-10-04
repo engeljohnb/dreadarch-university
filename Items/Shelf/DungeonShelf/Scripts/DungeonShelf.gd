@@ -1,6 +1,5 @@
 extends StaticBody2D
-
-var can_drop = [Collectible.HEART, Collectible.SCROLL_FRAGMENT, Collectible.TREASURE]
+var can_drop = [Collectible.SCROLL_FRAGMENT, Collectible.TREASURE]
 var has = []
 var interaction_message = "Z to search"
 var showing_item = false
@@ -49,8 +48,6 @@ func activate(using_item = "", count = 0):
 							has = []
 						else:
 							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
-							if not has_overrides.is_empty():
-								Collectible.item_collected.emit(h, 1, false)
 					h:
 						Collectible.item_collected.emit(h, amount, true)
 			activated = true
@@ -65,18 +62,11 @@ func _ready():
 	var drop_generator = RandomNumberGenerator.new()
 	$Blinker.blink_duration = blink_duration
 	$Blinker.flip.connect(on_blinker_flipped)
-	$AnimatedSprite2D.frame = int(abs(global_position.x/3.0)) % 8
-	
 	var odds = drop_generator.randf() 
 	if odds > 0.9:
-		has.append(can_drop[1])
-		amounts.append(1)
-	elif odds > 0.66:
 		has.append(can_drop[0])
-		amounts.append(1)
-	elif odds > 0.33:
-		has.append(can_drop[2])
-		amounts.append(1)
+	elif odds > 0.25:
+		has.append(can_drop[1])
 		
 func _process(_delta):
 	if showing_item:
@@ -90,8 +80,7 @@ func _process(_delta):
 				# Doing this here instead of emitting Collectible.item_collected
 				# so the sound plays immediately but the prompt to read
 				# only opens after the scroll icon finishes its animation
-				if has_overrides.is_empty():
-					Collectible.collect_scroll_fragment()
+				Collectible.collect_scroll_fragment()
 			show_timer = 0.0
 			showing_item = false
 			for item_sprite in item_sprites:
