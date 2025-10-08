@@ -16,17 +16,22 @@ var prev_facing = Utils.RIGHT
 var direction_changed = false
 var dead = false
 var most_recent_slime_segment = null
+# This is here so the hitbox doesn't register hits by other glops.
+var glop_weapon = true
 
 @onready var current_ray = $DownRay
 @onready var down_ray = $DownRay
 @onready var up_ray = $UpRay
 @onready var left_ray = $LeftRay
 @onready var right_ray = $RightRay
+@onready var sprite = $AnimatedSprite2D
 
 func get_animation_name(action : String):
 	return action + " " + Utils.nearest_cardinal_direction(facing, true)
 	
 func on_hit(_body):
+	if dead:
+		return
 	var damage = 1
 	if _body.get_parent().is_in_group("Player"):
 		damage = _body.get_parent().attack_damage
@@ -55,6 +60,7 @@ func on_flip(state):
 func _ready():
 	$AnimatedSprite2D.play(get_animation_name("Idle"))
 	$Hitbox.my_weapons.append(self)
+	
 	$Hitbox.hit.connect(on_hit)
 	$Blinker.flip.connect(on_flip)
 	

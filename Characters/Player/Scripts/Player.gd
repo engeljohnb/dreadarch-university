@@ -13,6 +13,7 @@ signal item_equipped(item, count)
 @onready var attack_sound = $AttackSound
 @onready var sprite = $AnimatedSprite2D
 @onready var step_sound = $StepSound
+@onready var camera = $Camera2D
 
 
 const LEFT = Vector2(-1, 0)
@@ -42,6 +43,7 @@ var attacking = false
 var won = false
 var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "reverse": false, "min_scale": 0.8}
 var climb_cutscene = {"position" : Vector2(), "start_pos" : Vector2(), "arriving" : false, "direction":""}
+var outside_door_cutscene = {"reverse":false}
 var in_dialogue = false
 var direction_priority
 # Why have golden_dagger_equipped when I can just check equipped == Collectible.GOLDEN_DAGGER?
@@ -101,16 +103,25 @@ func direction_held():
 	or Input.is_action_pressed("Up")
 	or Input.is_action_pressed("Down"))
 	
-func play_outside_door_cutscene(delta):
+func play_outside_door_cutscene(delta, reverse = false):
 	if delta == 0.0:
-		current_cutscene = play_outside_door_cutscene
-		in_cutscene = true
-		cutscene_timer = 0.0
-		cutscene_duration = 1.0
+		init_cutscene(play_outside_door_cutscene, 1.0)
+		var animation_name = "Walk"
+		if equipped == Collectible.GOLDEN_DAGGER:
+			animation_name = animation_name + " Knife"
+		animation_name = animation_name + " " + Utils.nearest_cardinal_direction(facing, true)
+		if reverse:
+			modulate.a = 0.0
+			outside_door_cutscene["reverse"] = true
+		var playback = anim_tree["parameters/playback"]
+		playback.travel("End")
+		$AnimatedSprite2D.play(animation_name)
 	else:
 		cutscene_timer += delta
 		var dir = Utils.nearest_cardinal_direction(facing, true)
 		var speed = SPEED*0.5
+		if reverse:
+			speed = -speed
 		match dir:
 			"Left":
 				position.x -= speed*delta
@@ -122,15 +133,45 @@ func play_outside_door_cutscene(delta):
 				position.y += speed*delta
 			dir:
 				position.x += speed*delta
-		modulate.a = 1.0 - (cutscene_timer/cutscene_duration)
+		if outside_door_cutscene["reverse"]:
+			modulate.a = (cutscene_timer/cutscene_duration)
+		else:
+			modulate.a = 1.0 - (cutscene_timer/cutscene_duration)
 		if cutscene_timer >= cutscene_duration:
-			modulate.a = 1.0
-			in_cutscene = false
-			current_cutscene = null
-			cutscene_timer = 0.0
-			
+			if outside_door_cutscene["reverse"]:
+				modulate.a = 1.0
+			else:
+				modulate.a = 0.0
+			end_cutscene()
+			outside_door_cutscene["reverse"] = false
+
+func init_cutscene(cutscene : Callable, duration : float):
+	var playback = anim_tree["parameters/playback"]
+	playback.travel("End")
+	in_cutscene = true
+	cutscene_timer = 0.0
+	cutscene_duration = duration
+	current_cutscene = cutscene
+	
+func end_cutscene(to_idle = true, direction = facing):
+	in_cutscene = false
+	cutscene_timer = 0.0
+	cutscene_duration = 0.0
+	current_cutscene = null
+	if to_idle:
+		update_direction()
+		if direction != facing:
+			facing = direction
+		update_animation_blend_positions()
+		var playback = anim_tree["parameters/playback"]
+		playback.travel("Idle")
+
+func cutscene_over():
+	return cutscene_timer >= cutscene_duration
+	
 func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
 	if delta == 0.0:
+		init_cutscene(play_door_cutscene, 1.0)
 		door_cutscene["reverse"] = reverse
 		if reverse:
 			if equipped == Collectible.GOLDEN_DAGGER:
@@ -139,41 +180,34 @@ func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
 				sprite.play("Walk Down")
 			modulate.a = 0
 		else:
-			sprite.play("Walk Up")
+			if equipped == Collectible.GOLDEN_DAGGER:
+				sprite.play("Walk Knife Up")
+			else:
+				sprite.play("Walk Up")
 		door_cutscene["position"] = door_position
 		door_cutscene["player_start_pos"] = global_position
-		in_cutscene = true
-		current_cutscene = play_door_cutscene
-		cutscene_duration = 1.0
-		cutscene_timer = 0.0
 	else:
 		cutscene_timer += delta
 		if door_cutscene["reverse"]:
 			modulate.a = cutscene_timer
-			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y + hitbox.shape.get_rect().size.y+50.0)
+			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y + hitbox.shape.get_rect().size.y+60.0)
 			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
 			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
 		else:
 			scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
 			global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
 			modulate.a = 1.0 - cutscene_timer
-		if cutscene_timer >= cutscene_duration:
+		if cutscene_over():
 			if door_cutscene["reverse"]:
 				scale = Vector2(1.0,1.0)
 				modulate.a = 1.0
-				if equipped == Collectible.GOLDEN_DAGGER:
-					sprite.play("Idle Knife Down")
-				else:
-					sprite.play("Idle Down")
-				facing = DOWN
-				prev_facing = DOWN
-			in_cutscene = false
-			cutscene_timer = 0.0
-			cutscene_duration = 0.0
+				end_cutscene(true, -facing)
+			else:
+				end_cutscene(false)
 	
 func play_climb_cutscene(delta, _climb_cutscene = {}):
 	if delta == 0.0:
-		cutscene_timer = 0.0
+		init_cutscene(play_climb_cutscene, 1.75)
 		var direction = _climb_cutscene["direction"]
 		var arriving = _climb_cutscene["arriving"]
 		climb_cutscene = _climb_cutscene
@@ -192,12 +226,9 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 				climb_cutscene["start_pos"].y += 45.0
 			else:
 				z_index = 2
-		in_cutscene = true
 		current_cutscene = play_climb_cutscene
 		global_position.x = climb_cutscene["position"].x
 		climb_cutscene["start_pos"].x = climb_cutscene["position"].x
-		cutscene_duration = 1.75
-		cutscene_timer = 0.0
 		step_sound.stop()
 		var playback = anim_tree["parameters/playback"]
 		playback.travel("End")
@@ -211,22 +242,16 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 						sprite.play("Climb Down")
 					sprite.modulate.a = lerp(1.0, 0.0, cutscene_timer-0.75)
 					global_position.y += 25.0*delta
-				if cutscene_timer >= 1.75:
+				if cutscene_over():
 					z_index = 0
-					in_cutscene = false
-					cutscene_timer = 0.0
-					var playback = anim_tree["parameters/playback"]
-					playback.travel("Idle")
+					end_cutscene()
 					return
 			else:
 				global_position.y -= 135.0*delta
 				sprite.modulate.a = 1.0 - (cutscene_timer/1.75)
 				if cutscene_timer > 1.75:
 					z_index = 0
-					in_cutscene = false
-					cutscene_timer = 0.0
-					var playback = anim_tree["parameters/playback"]
-					playback.travel("Idle")
+					end_cutscene()
 					return
 		else:
 			if climb_cutscene["direction"] == "Up":
@@ -234,44 +259,27 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 				if cutscene_timer > 1.0:
 					sprite.play_backwards("Climb Down Transition")
 					global_position.y -= 25 * (cutscene_timer - 1.0)
-					if cutscene_timer >= 1.75:
+					if cutscene_over():
 						z_index = 0
-						in_cutscene = false
-						cutscene_timer = 0.0
-						sprite.play("Idle Up")
-						#update_direction()
-						#update_animation_blend_positions()
-						var playback = anim_tree["parameters/playback"]
-						playback.travel("Idle")
-						facing = Utils.UP
+						end_cutscene(true, Utils.UP)
 			else:
 				sprite.play("Climb Down")
 				z_index = 2
 				global_position.y += 135.0 * delta 
 				sprite.modulate.a = (cutscene_timer/1.75)
-				if cutscene_timer >= 1.75:
+				if cutscene_over():
 					z_index = 0
-					sprite.play("Idle Down")
-					facing = Utils.DOWN
-					in_cutscene = false
-					cutscene_timer = 0.0
-					#update_direction()
-					#update_animation_blend_positions()
-					var playback = anim_tree["parameters/playback"]
-					playback.travel("Idle")
+					end_cutscene(true, Utils.LEFT)
 
 func play_victory_cutscene(delta):
-	won = true
-	in_cutscene = true
-	current_cutscene = play_victory_cutscene
-	cutscene_duration = 3.0
-	$AnimatedSprite2D.play("Idle Down")
-	$StepSound.stop()
+	if delta == 0.0:
+		won = true
+		init_cutscene(play_victory_cutscene, 3.0)
+		$AnimatedSprite2D.play("Idle Down")
+		$StepSound.stop()
 	cutscene_timer += delta
 	if cutscene_timer >= cutscene_duration:
-		in_cutscene = false
-		current_cutscene = null
-		cutscene_timer = 0.0
+		end_cutscene()
 
 func reset_direction_changed():
 	direction_changed = false

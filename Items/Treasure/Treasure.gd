@@ -7,6 +7,7 @@ var falling = true
 var wait_for_attack = false
 var attack_finished = false
 var attacking_body : CharacterBody2D
+
 func on_body_entered(body):
 	if body is TileMapLayer:
 		if not (body.get_parent() is ParallaxLayer):
@@ -25,8 +26,7 @@ func on_body_entered(body):
 		Collectible.item_collected.emit(Collectible.TREASURE, 1, true)
 		Collectible.sounds[Collectible.TREASURE].call_deferred("play")
 		queue_free()
-
-	
+		
 func _ready():
 	body_entered.connect(on_body_entered)
 	area_entered.connect(on_body_entered)

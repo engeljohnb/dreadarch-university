@@ -1912,6 +1912,7 @@ allow_transition_to_self = true
 reset_ends = true
 states/Attack/node = SubResource("AnimationNodeStateMachine_8wckb")
 states/Attack/position = Vector2(622.7683, 241)
+states/End/position = Vector2(764, 241)
 states/Idle/node = SubResource("AnimationNodeStateMachine_hjbl7")
 states/Idle/position = Vector2(382, 134)
 states/Start/position = Vector2(238, 241)
@@ -1923,6 +1924,8 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(23.7683, 82.7943)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+light_mask = 5
+visibility_layer = 5
 y_sort_enabled = true
 texture_filter = 3
 collision_layer = 8
@@ -1946,6 +1949,8 @@ shape = SubResource("CapsuleShape2D_wtmhg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_priority = 1
+light_mask = 9
+visibility_layer = 4
 sprite_frames = SubResource("SpriteFrames_teq0n")
 animation = &"Climb Down Transition"
 
@@ -1973,10 +1978,10 @@ zoom = Vector2(1.5, 1.5)
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-0.99998474, 3.5000153)
 scale = Vector2(12.031249, 11.984375)
-color = Color(0.940371, 0.870002, 0.737402, 1)
+color = Color(0.93275845, 0.866686, 0.6977151, 1)
 energy = 3.0
 shadow_enabled = true
-shadow_item_cull_mask = 3
+shadow_item_cull_mask = 19
 texture = ExtResource("148_yo137")
 
 [node name="PointLight2D" type="PointLight2D" parent="PointLight2D"]

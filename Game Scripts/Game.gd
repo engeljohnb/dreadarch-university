@@ -126,6 +126,8 @@ func player_death_cutscene(delta):
 		$Fade.scale.y = viewport_size.y+2
 		$Fade.global_position = player.global_position
 		hide_hud()
+		var playback = player.anim_tree["parameters/playback"]
+		playback.travel("End")
 	else:
 		if player.sprite.animation != "Death":
 			player.sprite.play("Death")
@@ -194,11 +196,12 @@ func load_room_save_info(scene):
 			pot.amounts = i["amounts"]
 	if _save.rooms[SceneTransition.current_scene_name].get("NPCs"):
 		for i in _save.rooms[SceneTransition.current_scene_name]["NPCs"]:
-			var npc = get_node(NodePath(scene_path + "/" + i["name"]))
-			npc.status = i["status"]
-			if npc.status.get("gone"):
-				if npc.status["gone"]:
-					npc.queue_free()
+			var npc = get_node(NodePath(scene_path + "/NPCs/" + i["name"]))
+			if npc.get("status"):
+				npc.status = i["status"]
+				if npc.status.get("gone"):
+					if npc.status["gone"]:
+						npc.queue_free()
 	var cutscenes = _save.rooms[SceneTransition.current_scene_name].get("cutscenes")
 	if cutscenes:
 		scene.save_info["cutscenes"] = cutscenes
@@ -248,6 +251,9 @@ func on_scene_changed():
 	if SceneTransition.by_door:
 		player.modulate.a = 0.0
 		player.play_door_cutscene(0.0, SceneTransition.player_start_position, true)
+	if SceneTransition.by_outside_door:
+		player.modulate.a = 0.0
+		player.play_outside_door_cutscene(0.0, true)
 	if SceneTransition.by_ladder:
 		player.sprite.modulate.a = 1.0
 		var direction = SceneTransition.ladder_direction

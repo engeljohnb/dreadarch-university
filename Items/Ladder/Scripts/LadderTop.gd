@@ -21,4 +21,4 @@ func _process(_delta):
 	if player_entered:
 		# Apparently calling this function right from on_body_entered breaks everything
 		if not player.in_cutscene:
-			SceneTransition.change_scene(next_scene, next_start_position, false, true, "Down")
+			SceneTransition.change_scene(next_scene, next_start_position, false, false, true, "Down")

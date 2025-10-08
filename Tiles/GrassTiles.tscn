@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqytyxr0fhn8x"]
+
+[ext_resource type="PackedScene" uid="uid://cif8kqf3x0lv8" path="res://Tiles/GrassTile.tscn" id="1_e8ecg"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_io4vw"]
+scenes/1/scene = ExtResource("1_e8ecg")
+
+[sub_resource type="TileSet" id="TileSet_xd6gh"]
+tile_size = Vector2i(32, 50)
+sources/0 = SubResource("TileSetScenesCollectionSource_io4vw")
+
+[node name="GrassTiles" type="TileMapLayer"]
+modulate = Color(0.8175212, 0.81752133, 0.8175211, 1)
+y_sort_enabled = true
+tile_set = SubResource("TileSet_xd6gh")

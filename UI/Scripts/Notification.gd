@@ -3,6 +3,8 @@ extends Control
 var current_line = 0
 var total_lines = 0
 var _note = []
+var safe_to_advance = false
+var timer = 0.0
 
 	
 func _ready():
@@ -47,5 +49,13 @@ func advance():
 	current_line += 1
 		
 func _process(_delta):
-	if Input.is_action_just_released("ui_accept"):
-		advance()
+	if not safe_to_advance:
+		timer += _delta
+		if timer >= 0.2:
+			get_tree().paused = true
+			timer = 0.0
+			safe_to_advance = true
+		return
+	else:
+		if Input.is_action_just_released("ui_accept"):
+			advance()

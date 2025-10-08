@@ -89,7 +89,7 @@
 [ext_resource type="Texture2D" uid="uid://b6meixqhvs5pk" path="res://Assets/Badguys/Glop/Walk/Right/0012.png" id="71_f3td8"]
 [ext_resource type="Texture2D" uid="uid://dwsk14egqifnm" path="res://Assets/Badguys/Glop/Walk/Right/0013.png" id="72_0dh26"]
 [ext_resource type="Texture2D" uid="uid://c1vnlb8gekgc0" path="res://Assets/Badguys/Glop/Walk/Right/0014.png" id="73_kxhj8"]
-[ext_resource type="Script" uid="uid://tobitg2nf2yn" path="res://Utils/hitbox.gd" id="89_1vspd"]
+[ext_resource type="Script" uid="uid://euucwq6nou6m" path="res://Characters/Glop/Scripts/GlopHitbox.gd" id="90_b2pgw"]
 [ext_resource type="PackedScene" uid="uid://mwe7d43nn1k2" path="res://Utils/DeathCutscene.tscn" id="91_0jxs5"]
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="92_tkcup"]
 [ext_resource type="AudioStream" uid="uid://diglwo075es22" path="res://Assets/Sounds/Glop/HitSound.ogg" id="93_b2pgw"]
@@ -430,7 +430,7 @@ shape = SubResource("CapsuleShape2D_1rp3x")
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 3
 collision_mask = 4
-script = ExtResource("89_1vspd")
+script = ExtResource("90_b2pgw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 23)

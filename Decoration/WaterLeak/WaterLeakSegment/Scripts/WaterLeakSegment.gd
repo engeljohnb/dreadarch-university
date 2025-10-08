@@ -25,3 +25,4 @@ func get_animation_name():
 func _ready():
 	body_entered.connect(on_body_entered)
 	$AnimatedSprite2D.play(get_animation_name())
+	$AnimatedSprite2D.set_frame_and_progress(randi()%4, 0.0)

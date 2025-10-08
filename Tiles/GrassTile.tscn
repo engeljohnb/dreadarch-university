@@ -1,0 +1,77 @@
+[gd_scene load_steps=14 format=3 uid="uid://cif8kqf3x0lv8"]
+
+[ext_resource type="Script" uid="uid://cjfps1olxfprc" path="res://Tiles/Scripts/GrassTile.gd" id="1_083yn"]
+[ext_resource type="Texture2D" uid="uid://rwi515pkwtql" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0000.png" id="6_cgdpx"]
+[ext_resource type="Texture2D" uid="uid://ctfr6p6nci6uo" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0001.png" id="7_44tk5"]
+[ext_resource type="Texture2D" uid="uid://chmw685pbsrav" path="res://Assets/Tiles/Dreadarch/ImageFiles/GrassTiles/01.png" id="8_cgdpx"]
+[ext_resource type="Texture2D" uid="uid://bqfwsu67me7i2" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0002.png" id="8_mgv15"]
+[ext_resource type="Texture2D" uid="uid://bv0v82400tudx" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0003.png" id="9_32nqp"]
+[ext_resource type="Texture2D" uid="uid://bncfbh3rfsp0u" path="res://Assets/Tiles/Dreadarch/ImageFiles/GrassTiles/02.png" id="9_44tk5"]
+[ext_resource type="Texture2D" uid="uid://dbn6kdby5rdsk" path="res://Assets/Tiles/Dreadarch/ImageFiles/GrassTiles/03.png" id="10_mgv15"]
+[ext_resource type="Texture2D" uid="uid://c75gw3ectkkc2" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0004.png" id="10_t47x5"]
+[ext_resource type="Texture2D" uid="uid://by5xex78varih" path="res://Assets/Tiles/Dreadarch/ImageFiles/GrassTiles/04.png" id="11_32nqp"]
+[ext_resource type="Texture2D" uid="uid://b30otaapxuumu" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0005.png" id="11_rdrw1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlr11"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cgdpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_44tk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mgv15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_32nqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_t47x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rdrw1")
+}],
+"loop": false,
+"name": &"Cut",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cgdpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_44tk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mgv15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_32nqp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.25
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgdpx"]
+size = Vector2(24, 24)
+
+[node name="GrassTile" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_083yn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.87717575, 0.8361926, 0.5380844, 0.74600005)
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_tlr11")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -33)
+collision_layer = 512
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_cgdpx")

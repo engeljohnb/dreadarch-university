@@ -1,0 +1,72 @@
+[gd_scene load_steps=16 format=3 uid="uid://bbih13xim6o3o"]
+
+[ext_resource type="Texture2D" uid="uid://bylpclpsu7xps" path="res://Assets/Decoration/Fire/0000.png" id="1_wtkkw"]
+[ext_resource type="Texture2D" uid="uid://danxlas0qm0m6" path="res://Assets/Decoration/Fire/0001.png" id="2_mmdtu"]
+[ext_resource type="Texture2D" uid="uid://duqssf6q6vq0i" path="res://Assets/Decoration/Fire/0002.png" id="3_ypbt0"]
+[ext_resource type="Texture2D" uid="uid://mqxtxblvjmgp" path="res://Assets/Decoration/Fire/0003.png" id="4_4v6fo"]
+[ext_resource type="Texture2D" uid="uid://g4bjchlmfex7" path="res://Assets/Decoration/Fire/0004.png" id="5_awqj2"]
+[ext_resource type="Texture2D" uid="uid://cp0dfofoxpcba" path="res://Assets/Decoration/Fire/0005.png" id="6_cl5fe"]
+[ext_resource type="Texture2D" uid="uid://xtryjtdj8hwl" path="res://Assets/Decoration/Fire/0006.png" id="7_mnesi"]
+[ext_resource type="Texture2D" uid="uid://ieqo27iqyn1p" path="res://Assets/Decoration/Fire/0007.png" id="8_pk5wg"]
+[ext_resource type="Texture2D" uid="uid://ddwskvvvi2qux" path="res://Assets/Decoration/Fire/0008.png" id="9_0ioeb"]
+[ext_resource type="Texture2D" uid="uid://c8pb38c4vmlnb" path="res://Assets/Decoration/Fire/0009.png" id="10_b2dfq"]
+[ext_resource type="Texture2D" uid="uid://buq5undx8nnts" path="res://Assets/Decoration/Fire/0010.png" id="11_ax8nm"]
+[ext_resource type="Texture2D" uid="uid://cdsnawbema2co" path="res://Assets/Decoration/Fire/0011.png" id="12_3jlmf"]
+[ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="13_mmdtu"]
+[ext_resource type="Script" uid="uid://cx4yvvd3flryr" path="res://Decoration/Torch/Scripts/Torch.gd" id="13_ypbt0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wu0uh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wtkkw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mmdtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ypbt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4v6fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_awqj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cl5fe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mnesi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pk5wg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0ioeb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b2dfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ax8nm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3jlmf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Torch" type="AnimatedSprite2D"]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_wu0uh")
+frame_progress = 0.88239807
+script = ExtResource("13_ypbt0")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.9999962, -13.000004)
+scale = Vector2(2.71875, 2.71875)
+color = Color(0.9999997, 0.8506041, 0.5971922, 1)
+texture = ExtResource("13_mmdtu")

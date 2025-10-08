@@ -29,6 +29,7 @@ position = Vector2(0, -33)
 shape = SubResource("RectangleShape2D_qs77a")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 z_index = 1
 z_as_relative = false
 position = Vector2(-2.9999921, 1.5000008)
@@ -44,3 +45,13 @@ texture = ExtResource("1_lqgdu")
 position = Vector2(0, -44)
 sprite_frames = SubResource("SpriteFrames_uooq2")
 frame_progress = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(-1.0000001, 4.0000005)
+scale = Vector2(1.8095237, 2.4315476)
+energy = 10000.0
+blend_mode = 1
+range_item_cull_mask = 8
+texture = ExtResource("2_khw2j")

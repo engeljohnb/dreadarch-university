@@ -13,10 +13,11 @@ var dialogue = [
 
 var level_up_dialogue = [
 	{
-		"text":"I should take these back up to the library. I bet I could translate it if I had some dictionaries.",
+		"text":"I should take these back up to the library. I bet I could translate them if I had some dictionaries.",
 		"speaker":"Player"
 	}
 ]
+
 func on_done():
 	get_tree().paused = false
 	var collected = []

@@ -23,6 +23,11 @@ func on_closed():
 	level_up_open = false
 	
 func on_translate():
+	if selected_document.is_empty():
+		Dialogue.notify_player.emit([{"text":"Nothing to translate."}])
+		closed.emit()
+		queue_free()
+		return
 	if selected_document["translated"]:
 		return
 	selected_document["translated"] = true
@@ -76,6 +81,7 @@ func _ready():
 	$Translate.pressed.connect(on_translate)
 	$Back.pressed.connect(close)
 	$Translate.grab_focus()
+	$RichTextLabel.text = ""
 	
 func _process(_delta):
 	if level_up_open:

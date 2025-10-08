@@ -122,7 +122,7 @@ func _ready():
 func load_collected_scroll_fragments(collected : Array):
 	for frag in scroll_fragments:
 		for c in collected:
-			if frag.recursive_equal(c, 1):
+			if frag["latin_text"] == c["latin_text"]:
 				frag["collected"] = true
 	if collected.size() == scroll_fragments.size():
 		all_scroll_fragments_collected = true

@@ -31,8 +31,13 @@ func _ready():
 func launch(direction, _player):
 	player = _player
 	position += 75*direction
-	facing = (player.global_position - global_position).normalized()
+	facing = -(player.global_position - global_position).normalized()
+	
 	apply_impulse(direction*200.0)
+	if Utils.nearest_cardinal_direction(direction) == Utils.RIGHT:
+		$AnimatedSprite2D.scale.x = -$AnimatedSprite2D.scale.x
+	#else:
+	#	$AnimatedSprite2D.rotate(Utils.RIGHT.angle_to(direction))
 	$AnimatedSprite2D.play("default")
 
 func play_death_cutscene(delta):

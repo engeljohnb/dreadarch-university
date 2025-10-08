@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://swkj0fncneb7"]
+
+[ext_resource type="Texture2D" uid="uid://sni3fhuybs8c" path="res://Assets/Decoration/EmpressStatue/KingStatue.png" id="1_n3il7"]
+[ext_resource type="Script" uid="uid://cjysmoywpl5mk" path="res://Decoration/Statues/Scripts/EmpressStatue.gd" id="1_ptv84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anxw1"]
+size = Vector2(60.25, 79.75)
+
+[node name="EmpressStatue" type="StaticBody2D" groups=["Interactable"]]
+light_mask = 18
+y_sort_enabled = true
+collision_layer = 12
+collision_mask = 32
+script = ExtResource("1_ptv84")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+y_sort_enabled = true
+position = Vector2(0, -41)
+texture = ExtResource("1_n3il7")
+offset = Vector2(0, -128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.125, -53.125)
+shape = SubResource("RectangleShape2D_anxw1")

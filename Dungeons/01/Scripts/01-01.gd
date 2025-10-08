@@ -3,6 +3,7 @@ extends Node2D
 @export var music = "res://Music/DungeonMusic.ogg"
 @onready var shelf = $Pots/FirstShelf
 var searching_shelf = false
+var player_start_position = Vector2(-250.0, 0.0)
 var save_info = {
 	"pots":[],
 	"NPCs":[],

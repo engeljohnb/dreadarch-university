@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c4u7w1gypnb20"]
+[gd_scene load_steps=42 format=3 uid="uid://c4u7w1gypnb20"]
 
 [ext_resource type="Script" uid="uid://b5vc8hrp26v07" path="res://Decoration/WaterLeak/WaterLeakSegment/Scripts/WaterLeakSegment.gd" id="1_hy8cc"]
 [ext_resource type="Texture2D" uid="uid://cwafyokm0st8w" path="res://Assets/Decoration/WaterLeaks/Splash/01/0000.png" id="1_os7xh"]
@@ -17,6 +17,28 @@
 [ext_resource type="Texture2D" uid="uid://drrflvblmi2e7" path="res://Assets/Decoration/WaterLeaks/Source/01/0001.png" id="6_jgxtb"]
 [ext_resource type="Texture2D" uid="uid://xxkx15j7x1gt" path="res://Assets/Decoration/WaterLeaks/Source/01/0002.png" id="7_jtnh6"]
 [ext_resource type="Texture2D" uid="uid://ma0goxefs2or" path="res://Assets/Decoration/WaterLeaks/Source/01/0003.png" id="8_fb4ro"]
+[ext_resource type="Texture2D" uid="uid://bngiu8gua3opf" path="res://Assets/Decoration/WaterLeaks/Source/02/0000.png" id="18_2xe27"]
+[ext_resource type="Texture2D" uid="uid://da6foh5xee5da" path="res://Assets/Decoration/WaterLeaks/Middle/02/0000.png" id="18_eb7am"]
+[ext_resource type="Texture2D" uid="uid://cg6srg0hgpu0q" path="res://Assets/Decoration/WaterLeaks/Finish/02/0000.png" id="18_k2dn0"]
+[ext_resource type="Texture2D" uid="uid://dnft1622jq82v" path="res://Assets/Decoration/WaterLeaks/Middle/02/0001.png" id="19_12yqb"]
+[ext_resource type="Texture2D" uid="uid://upadbcthdxw3" path="res://Assets/Decoration/WaterLeaks/Finish/02/0001.png" id="19_rtnpa"]
+[ext_resource type="Texture2D" uid="uid://cgssymf3jdkyb" path="res://Assets/Decoration/WaterLeaks/Source/02/0001.png" id="19_u88ct"]
+[ext_resource type="Texture2D" uid="uid://c6s6qhu2qc427" path="res://Assets/Decoration/WaterLeaks/Finish/02/0002.png" id="20_54t5s"]
+[ext_resource type="Texture2D" uid="uid://5u3iucukoq0w" path="res://Assets/Decoration/WaterLeaks/Middle/02/0002.png" id="20_hrl78"]
+[ext_resource type="Texture2D" uid="uid://b8nvoc4wlkosd" path="res://Assets/Decoration/WaterLeaks/Source/02/0002.png" id="20_v7mvw"]
+[ext_resource type="Texture2D" uid="uid://dfmcooq536ew7" path="res://Assets/Decoration/WaterLeaks/Middle/02/0003.png" id="21_64jcp"]
+[ext_resource type="Texture2D" uid="uid://d0bhhi32bgtkd" path="res://Assets/Decoration/WaterLeaks/Source/02/0003.png" id="21_aony0"]
+[ext_resource type="Texture2D" uid="uid://868rt4d2q768" path="res://Assets/Decoration/WaterLeaks/Finish/02/0003.png" id="21_irwom"]
+[ext_resource type="Texture2D" uid="uid://dgpfmipbqa3un" path="res://Assets/Decoration/WaterLeaks/Finish/02/0004.png" id="22_3h0hc"]
+[ext_resource type="Texture2D" uid="uid://dyrer621bbtbv" path="res://Assets/Decoration/WaterLeaks/Finish/02/0005.png" id="23_j8oa7"]
+[ext_resource type="Texture2D" uid="uid://p1p4q8a8x3po" path="res://Assets/Decoration/WaterLeaks/Middle/02/0004.png" id="27_8elr7"]
+[ext_resource type="Texture2D" uid="uid://2nyfyql6gkc3" path="res://Assets/Decoration/WaterLeaks/Middle/02/0005.png" id="29_ncgyy"]
+[ext_resource type="Texture2D" uid="uid://dc6fwo7cddyyw" path="res://Assets/Decoration/WaterLeaks/Splash/02/0000.png" id="30_kv4ge"]
+[ext_resource type="Texture2D" uid="uid://c573u1heqlp4a" path="res://Assets/Decoration/WaterLeaks/Splash/02/0001.png" id="31_qhwtr"]
+[ext_resource type="Texture2D" uid="uid://bk6f0u2rrio1g" path="res://Assets/Decoration/WaterLeaks/Splash/02/0002.png" id="32_3h0hc"]
+[ext_resource type="Texture2D" uid="uid://dtf0m5knjapmj" path="res://Assets/Decoration/WaterLeaks/Splash/02/0003.png" id="33_j8oa7"]
+[ext_resource type="Texture2D" uid="uid://dhxg4p7luk654" path="res://Assets/Decoration/WaterLeaks/Source/02/0004.png" id="34_5rh2g"]
+[ext_resource type="Texture2D" uid="uid://bk5ha2m27ue1k" path="res://Assets/Decoration/WaterLeaks/Source/02/0005.png" id="35_duksb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laub5"]
 size = Vector2(32, 64)
@@ -108,6 +130,92 @@ animations = [{
 "loop": false,
 "name": &"01 Splash",
 "speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_k2dn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rtnpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_54t5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_irwom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_3h0hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_j8oa7")
+}],
+"loop": true,
+"name": &"02 Finish",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_eb7am")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_12yqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_hrl78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_8elr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_64jcp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ncgyy")
+}],
+"loop": true,
+"name": &"02 Middle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_2xe27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_u88ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_v7mvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_aony0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_5rh2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_duksb")
+}],
+"loop": true,
+"name": &"02 Source",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_kv4ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_qhwtr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_3h0hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_j8oa7")
+}],
+"loop": false,
+"name": &"02 Splash",
+"speed": 24.0
 }]
 
 [node name="WaterLeakSegment" type="Area2D"]
@@ -120,5 +228,4 @@ shape = SubResource("RectangleShape2D_laub5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bdqeu")
-animation = &"01 Source"
-frame_progress = 0.5498213
+animation = &"02 Splash"

@@ -21,6 +21,10 @@ func hide_message():
 func _process(_delta):
 	if is_colliding():
 		var col = get_collider()
+		# IDk it randomly crashed once bc col was null. I think it's because it intersects with
+		# ONe of the enemy's projectiles right as the enemy's killed -- freeing all the projectiles.
+		if col == null:
+			return
 		if col.is_in_group("Interactable"):
 			if not message_showing:
 				if "interaction_message" in col:

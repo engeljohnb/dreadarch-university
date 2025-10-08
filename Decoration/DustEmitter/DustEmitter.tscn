@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b42cqop27xms3"]
+
+[ext_resource type="Texture2D" uid="uid://boaa86qp1d8c5" path="res://Assets/Particles/Dust/DustParticle.png" id="1_0vnf3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0vnf3"]
+light_mode = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0vnf3"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(320, 64, 1)
+gravity = Vector3(0, 0.1, 0)
+
+[node name="DustEmitter" type="GPUParticles2D"]
+modulate = Color(1, 1, 1, 0.28627452)
+light_mask = 16
+z_index = 5
+material = SubResource("CanvasItemMaterial_0vnf3")
+amount = 350
+texture = ExtResource("1_0vnf3")
+lifetime = 15.0
+preprocess = 30.0
+process_material = SubResource("ParticleProcessMaterial_0vnf3")

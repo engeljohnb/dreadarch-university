@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dcb5do64ovjjw" path="res://Assets/Sounds/Misc/Splash/Splash01.ogg" id="2_8gf00"]
 
 [node name="WaterLeak" type="Node2D"]
+modulate = Color(0.8346143, 0.8346143, 0.8346143, 1)
 script = ExtResource("1_qnjru")
 
 [node name="Splash01" type="AudioStreamPlayer" parent="."]

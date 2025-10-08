@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cqpa2n6eiq5js"]
 
-[ext_resource type="Script" uid="uid://gp3pdj31gvah" path="res://Characters/NPCs/Aelia/Aelia.gd" id="1_ek1ba"]
+[ext_resource type="Script" uid="uid://gp3pdj31gvah" path="res://Characters/NPCs/Aelia.gd" id="1_ek1ba"]
 [ext_resource type="Shader" uid="uid://ej1y2kcejyr4" path="res://Characters/NPCs/Aelia/Aelia.gdshader" id="3_muyuv"]
 [ext_resource type="Texture2D" uid="uid://nh8j5dptvywi" path="res://Assets/NPCs/Aelia/01.png" id="3_ofmfj"]
 [ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="5_tf46h"]

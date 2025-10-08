@@ -65,9 +65,10 @@ func _ready():
 	var odds = drop_generator.randf() 
 	if odds > 0.9:
 		has.append(can_drop[0])
+		amounts.append(1)
 	elif odds > 0.25:
 		has.append(can_drop[1])
-		
+		amounts.append(1)
 func _process(_delta):
 	if showing_item:
 		show_timer += _delta

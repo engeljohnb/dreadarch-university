@@ -203,5 +203,6 @@ custom_data_layer_0/type = 21
 sources/0 = SubResource("TileSetAtlasSource_q24t0")
 
 [node name="GroundTiles" type="TileMapLayer" groups=["FloorLayer"]]
+z_index = -2
 y_sort_enabled = true
 tile_set = SubResource("TileSet_0015k")
