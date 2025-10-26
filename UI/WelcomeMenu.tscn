@@ -17,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_sh2gw")
 script = ExtResource("2_dj11p")
+music = "res://Music/DungeonMusic.ogg"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 z_index = 1

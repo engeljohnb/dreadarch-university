@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var music = "res://Music/DungeonMusic.ogg"
+@export var music_volume = -12.5
 @onready var shelf = $Pots/FirstShelf
 var searching_shelf = false
 var player_start_position = Vector2(-250.0, 0.0)
@@ -30,8 +31,12 @@ func on_shelf_searched():
 	
 func _ready():
 	shelf.searched.connect(on_shelf_searched)
+	get_parent().music.volume_db = -7.3
 	
 func _process(_delta):
+	var parent = get_parent()
+	parent.music.volume_db = music_volume
+
 	if searching_shelf:
 		if not get_tree().get_nodes_in_group("Player")[0].in_dialogue:
 			Collectible.collect_scroll_fragment(-1)

@@ -117,6 +117,8 @@ func _ready():
 		add_child(sounds[key])
 	var file = FileAccess.open("res://Game Data/scroll_fragments.JSON", FileAccess.READ)
 	scroll_fragments = DictionarySerializer.deserialize_json(file.get_as_text())
+	for frag in scroll_fragments:
+		frag["document_type"] = SCROLL_FRAGMENT
 	file.close()
 
 func load_collected_scroll_fragments(collected : Array):
@@ -153,7 +155,6 @@ func get_next_fragment(index = null):
 	return fragment
 	
 func collect_scroll_fragment(index = null):
-	prompt_to_read_scroll_fragment()
 	if index is int:
 		most_recent_scroll_fragment = get_next_fragment(index)
 	else:

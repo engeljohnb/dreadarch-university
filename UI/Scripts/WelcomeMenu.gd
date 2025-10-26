@@ -6,9 +6,10 @@ extends Control
 @onready var lamplight = $LampLight
 @onready var menu_select_sound = $MenuSelectSound
 var total_energy = 0.0
-var fade_duration = 0.5
+var fade_duration = 1.0
 var fade_timer = 0.0
 var fading = true
+@export var music_volume = 0.0
 @export var music = "res://Music/IntroMusic.ogg"
 
 func on_new_game():
@@ -18,7 +19,6 @@ func on_quit():
 	get_tree().quit()
 
 func _ready():
-	newgame_button.grab_focus()
 	newgame_button.pressed.connect(on_new_game)
 	quit_button.pressed.connect(on_quit)
 	total_energy = lamplight.energy
@@ -31,11 +31,9 @@ func _process(_delta):
 		fade_timer += _delta
 		var fade_percent = fade_timer/fade_duration
 		lamplight.energy = total_energy*fade_percent
+		newgame_button.grab_focus()
 		if (fade_timer >= fade_duration) or Input.is_action_just_pressed("ui_accept")  or Input.is_action_just_pressed("Pause"):
-			fading = false
-			fade_timer = 0.0
-			fade_duration = 0.0
-			lamplight.energy = total_energy
-		
-
-	
+				fading = false
+				fade_timer = 0.0
+				fade_duration = 0.0
+				lamplight.energy = total_energy

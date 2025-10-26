@@ -6,7 +6,7 @@ room_size = 0.5
 wet = 0.2
 
 [resource]
-bus/1/name = &"FXNoReverb"
+bus/1/name = &"FXReverb"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false

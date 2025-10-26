@@ -39,7 +39,7 @@ var dialogues = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"I am Aelia. In life I was a leche of alchymie for the King.",
+		"text":"I am Aelia. In life I was a leche of alchymie for the Queen.",
 		"speaker":"Aelia"
 	},
 	{
@@ -61,7 +61,7 @@ var dialogues = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"Tell me, has the kingdom thriven since the king was slayn?",
+		"text":"Tell me, has the kingdom thriven since the Queen was slayn?",
 		"speaker":"Aelia"
 	},
 	{

@@ -648,6 +648,7 @@ light_mode = 2
 modulate = Color(0.5436838, 0.5714066, 0.7541822, 1)
 y_sort_enabled = true
 script = ExtResource("1_5gthu")
+music = "res://Music/AlchemyLabMusic.ogg"
 
 [node name="Door" parent="." instance=ExtResource("2_w5tvi")]
 next_start_position = Vector2(-7552, -128)
@@ -788,11 +789,9 @@ texture = SubResource("GradientTexture2D_oor3y")
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Enemies/Slack"]
 stream = ExtResource("29_045gd")
 volume_db = 1.5
-bus = &"FXNoReverb"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Enemies/Slack"]
 stream = ExtResource("30_143by")
-bus = &"FXNoReverb"
 
 [node name="Crow" parent="Enemies" instance=ExtResource("31_gpsw1")]
 position = Vector2(-943, 2144)

@@ -38,6 +38,8 @@ func activate(using_item = "", count = 0):
 				var item_sprite = Sprite2D.new()
 				if (Collectible.textures.get(h)):
 					item_sprite.texture = Collectible.textures[h]
+				if Utils.is_scroll_fragment(h):
+					item_sprite.texture = Collectible.textures[Collectible.SCROLL_FRAGMENT]
 				add_child(item_sprite)
 				showing_item = true
 				item_sprites.append(item_sprite)
@@ -49,6 +51,8 @@ func activate(using_item = "", count = 0):
 						else:
 							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
 					h:
+						if Utils.is_scroll_fragment(h):
+							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
 						Collectible.item_collected.emit(h, amount, true)
 			activated = true
 			amounts = []

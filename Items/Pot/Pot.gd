@@ -52,6 +52,9 @@ func activate(using_item = "", count = 0):
 							if not has_overrides.is_empty():
 								Collectible.item_collected.emit(h, 1, false)
 					h:
+						if Utils.is_scroll_fragment(h):
+							item_sprite.texture  = Collectible.textures[Collectible.SCROLL_FRAGMENT]
+							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
 						Collectible.item_collected.emit(h, amount, true)
 			activated = true
 			amounts = []

@@ -1923,7 +1923,7 @@ states/Walk/position = Vector2(382, 241)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ey64d"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_agvow"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_nahvi")]
 graph_offset = Vector2(23.7683, 82.7943)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player", "Vertical"]]
 light_mask = 5
 visibility_layer = 5
 y_sort_enabled = true
@@ -1980,7 +1980,6 @@ position = Vector2(-0.99998474, 3.5000153)
 scale = Vector2(12.031249, 11.984375)
 color = Color(0.93275845, 0.866686, 0.6977151, 1)
 energy = 3.0
-shadow_enabled = true
 shadow_item_cull_mask = 19
 texture = ExtResource("148_yo137")
 
@@ -1998,12 +1997,11 @@ texture = ExtResource("148_yo137")
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("154_4mvhf")
 volume_db = -10.0
-bus = &"FXNoReverb"
 
 [node name="StepSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("155_j8ien")
 volume_db = -8.0
-bus = &"FXNoReverb"
+bus = &"FXReverb"
 parameters/looping = true
 
 [node name="InteractionRay" type="RayCast2D" parent="."]

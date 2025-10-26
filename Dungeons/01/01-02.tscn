@@ -979,11 +979,9 @@ texture = SubResource("GradientTexture2D_oor3y")
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Enemies/Slack"]
 stream = ExtResource("31_w2yci")
 volume_db = 1.5
-bus = &"FXNoReverb"
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Enemies/Slack"]
 stream = ExtResource("32_ucbjh")
-bus = &"FXNoReverb"
 
 [node name="PathNPC" parent="Enemies" instance=ExtResource("11_2bbq2")]
 position = Vector2(-2322, 1193)

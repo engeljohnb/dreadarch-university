@@ -5,16 +5,12 @@ extends Control
 @onready var quit_button = $Quit
 @onready var menu_select_sound = $MenuSelectSound
 @export var music = "res://Music/DeathMusic.ogg"
-
-func on_new_game():
-	SceneTransition.change_scene("Dungeons/01/01-01.tscn")
 	
 func on_quit():
 	get_tree().quit()
 
 func _ready():
 	newgame_button.grab_focus()
-	newgame_button.pressed.connect(on_new_game)
 	quit_button.pressed.connect(on_quit)
 	newgame_button.focus_exited.connect(menu_select_sound.play)
 	loadgame_button.focus_exited.connect(menu_select_sound.play)

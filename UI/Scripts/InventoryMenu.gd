@@ -123,7 +123,7 @@ func _process(_delta):
 			open(_inventory)
 		else:
 			close()
-	if Input.is_action_just_released("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept"):
 		if not submenu_open and not number_box_open:
 			if item_list.is_anything_selected():
 				chosen_item = item_list.get_item_text(item_list.get_selected_items().get(0))

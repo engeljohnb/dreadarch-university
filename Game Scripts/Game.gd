@@ -8,6 +8,9 @@ const DEATH_MUSIC = "res://Music/DeathMusic.ogg"
 @onready var close_menu_sound = $CloseMenuSound
 @onready var music = $Music
 
+# For some reason, defining a "new" function on these classes
+#  breaks the JSON serializer used for game saves.
+#  So they have init. use it like save.init(), not save = Save.new()
 class Player:
 	var attack_damage
 	var position: Vector2
@@ -16,6 +19,18 @@ class Player:
 	var total_life: int
 	# Guess it has to be a dictionary bc for some reason the JSON serializer can do Class.Class, but not Class.Class.Class
 	var inventory: Dictionary
+	func init():
+		attack_damage = 1
+		position = Vector2()
+		life = 3
+		temporary_life = 0
+		total_life = 0
+		inventory = {
+			Collectible.SCROLL_FRAGMENT : [], 
+			Collectible.TREASURE : int(0),
+			Collectible.TALONS: int(0), 
+			Collectible.GOLDEN_DAGGER : int(0)
+		}
 
 class Save:
 	var current_scene: String
@@ -23,7 +38,13 @@ class Save:
 	var player: Player
 	var rooms : Dictionary
 	var completed_tutorial_prompts : Array
-
+	func init():
+		current_scene = "01-01"
+		current_scene_path = "res://Dungeons/01/01-01.tscn"
+		player = null
+		rooms = {}
+		completed_tutorial_prompts = []
+		
 var current_scene = null
 var current_music = null
 var death_cutscene = {"timer":0.0, "duration":2.5}
@@ -31,6 +52,30 @@ var player = null
 var _save = Save.new()
 var _player = Player.new()
 var floor_tiles = null
+
+
+func update_footstep_sounds():
+	#if the player's going up
+	var volume_diff = 4.0
+	if SceneTransition.prev_scene_name.contains("01-") and SceneTransition.current_scene_name.contains("00-"):
+		player.step_sound.volume_db -= volume_diff
+		var bus_id = AudioServer.get_bus_index("FXReverb")
+		AudioServer.set_bus_effect_enabled(bus_id, 0, false)
+	#if the player's going down
+	if SceneTransition.prev_scene_name.contains("00-") and SceneTransition.current_scene_name.contains("01-"):
+		player.step_sound.volume_db += volume_diff
+		var bus_id = AudioServer.get_bus_index("FXReverb")
+		AudioServer.set_bus_effect_enabled(bus_id, 0, true)
+		
+		
+func new_game():
+	_save.init()
+	_player.init()
+	Collectible.load_collected_scroll_fragments([])
+	_save.player = _player
+	init_player()
+	player.init_for_newgame()
+	SceneTransition.change_scene("Dungeons/01/01-01.tscn")
 
 func _prompt_player(text, on_yes, on_no, yes_text = "yes", no_text = "no"):
 	var prompt = load("res://UI/Prompt.tscn").instantiate()	
@@ -144,26 +189,17 @@ func player_death_cutscene(delta):
 			current_scene.z_index = 3
 			canvas.add_child(current_scene)
 			current_scene.loadgame_button.pressed.connect(open_load_game_menu)
+			current_scene.newgame_button.pressed.connect(new_game)
 			get_tree().paused = true
 		death_cutscene["timer"] += delta
 			
 func on_player_dead():
 	player_death_cutscene(0.0)
-
-func update_music():
-	if "music" in current_scene:
-		if music.stream:
-			if not music.stream.resource_path == current_scene.music:
-				music.stream = load(current_scene.music)
-				music.play()
-		else:
-			music.stream = load(current_scene.music)
-			music.play()
-	music.stream.loop = true
 		
 func get_room_save_info(scene):
 	if not ("save_info" in scene):
-		return {SceneTransition.current_scene_name:{}}
+		#return {SceneTransition.current_scene_name:{}}
+		return {}
 	var interactables = get_tree().get_nodes_in_group("Interactable")
 	for index in range(0, interactables.size()):
 		var i = interactables[index]
@@ -230,9 +266,12 @@ func on_scene_changed():
 		player.reparent(current_scene)
 	else:
 		current_scene.add_child(player)
-		update_music()
 	hud.lifebar.set_life_total(player.total_life, player.life+player.temporary_life)
 	add_child(current_scene)
+	if SceneTransition.current_scene_name == "WelcomeMenu" or SceneTransition.prev_scene_name == "WelcomeMenu":
+		music.update(current_scene, false, true)
+	else:
+		music.update(current_scene)
 	var scene_name = SceneTransition.current_scene_name
 	if _save.rooms.get(scene_name):
 		if not _save.rooms[scene_name].is_empty():
@@ -269,6 +308,7 @@ func on_scene_changed():
 				break
 	else:
 		floor_tiles = null
+	update_footstep_sounds()
 	
 func open_load_game_menu():
 	load_game()
@@ -285,23 +325,16 @@ func init_wm_settings():
 func _ready():
 	seed(1)
 	init_wm_settings()
+	music.stream = load("res://Music/DungeonMusic.ogg")
+	music.play()
 	ObjectSerializer.register_script("Save", Save)
 	ObjectSerializer.register_script("Player", Player)
-	
-	_save.current_scene = "01-01"
-	_save.current_scene_path = "res://Dungeons/01/01-01.tscn"
-	_player.total_life = 3
-	_player.life = _player.total_life
-	_player.position = Vector2()
-	_player.inventory = {
-		Collectible.SCROLL_FRAGMENT : [], 
-		Collectible.TREASURE : int(0),
-		Collectible.TALONS: int(0), 
-		Collectible.GOLDEN_DAGGER : int(0)
-		}
+	_save.init()
+	_player.init()
 	_save.player = _player
 
 	current_scene = load("res://UI/WelcomeMenu.tscn").instantiate()
+	music.update(current_scene)
 	init_player()
 	
 	pause_menu.save_button.pressed.connect(save_game)
@@ -321,7 +354,7 @@ func _ready():
 	SceneTransition.scene_changed.connect(on_scene_changed)
 	SceneTransition.won.connect(on_won)
 	get_tree().paused = true
-	update_music()
+	
 
 func load_from_file(filename):
 	var file = FileAccess.open(filename, FileAccess.READ)

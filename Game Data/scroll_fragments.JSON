@@ -1,8 +1,8 @@
 [
 	{
 		"type" : "Scroll Fragment",
-		"latin_text" : "Rex demens imperavit nos procdere. Iuberet mare immotum esse ut unam fluctum servaret.",
-		"english_text" : "The demented king has ordered us to proceed. He would command the sea to be still to save one wave.",
+		"latin_text" : "Regina demens imperavit nos procdere. Iuberet mare immotum esse ut unam fluctum servaret.",
+		"english_text" : "The demented queen has ordered us to proceed. He would command the sea to be still to save one wave.",
 		"collected" : false,
 		"translated" : false
 	},
@@ -41,13 +41,6 @@
 		"collected" : false,
 		"translated" : false
 		
-	},
-	{
-		"type" : "Scroll Fragment",
-		"latin_text" : "Rex senex nunc est, at dum vita eius procedit aetas eius cautionem magis debilit.",
-		"english_text" : "The king is an old man now, and as his life goes on his age further cripples his caution.",
-		"collected" : false,
-		"translated" : false
 	},
 	{
 		"type" : "Scroll Fragment",

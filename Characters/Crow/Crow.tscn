@@ -2324,6 +2324,7 @@ _data = {
 radius = 379.527
 
 [node name="Crow" type="CharacterBody2D" groups=["Enemies"]]
+modulate = Color(1.0883753, 1.3000832, 1.0827419, 1)
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 56
@@ -2341,6 +2342,7 @@ range_layer_max = 4
 texture = SubResource("GradientTexture2D_yxqvu")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_kobm1")]
+visible = false
 z_index = 1
 position = Vector2(7.215, 3.975)
 rotation = 1.07338
@@ -2348,6 +2350,7 @@ scale = Vector2(1.24, 1.24)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(2, -2)
 shape = SubResource("CapsuleShape2D_h2hex")
@@ -2368,6 +2371,7 @@ collision_mask = 11
 collide_with_areas = true
 
 [node name="SearchArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 11
 script = ExtResource("202_syxla")
@@ -2379,14 +2383,11 @@ shape = SubResource("CircleShape2D_qs3ly")
 
 [node name="AggroSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("202_kobm1")
-bus = &"FXNoReverb"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("202_f372u")
 volume_db = 2.5
-bus = &"FXNoReverb"
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 y_sort_enabled = true
 stream = ExtResource("204_kobm1")
-bus = &"FXNoReverb"

@@ -129,6 +129,7 @@ class _ScriptRegistryEntry:
 			instance = script_type.new()
 
 		var excluded_properties: Array[String] = []
+
 		if instance.has_method("_get_excluded_properties"):
 			excluded_properties = instance._get_excluded_properties()
 

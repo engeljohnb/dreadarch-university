@@ -21,8 +21,8 @@ size = Vector2(953, 117.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0pfy"]
 size = Vector2(1009, 885)
 
-[node name="00-03" type="Node2D"]
-process_priority = 1
+[node name="00-03" type="Node2D" groups=["Horizontal"]]
+process_priority = 5
 script = ExtResource("1_x1c8a")
 
 [node name="BookTiles" parent="." instance=ExtResource("1_f8rm5")]
@@ -32,7 +32,7 @@ tile_map_data = PackedByteArray("AAD2/+P/AQAAAAIAAAABAOP/AQACAAIAAAD3/+P/AQABAAI
 [node name="OutsideDoor" parent="." instance=ExtResource("1_u0pfy")]
 position = Vector2(0, 282)
 next_scene = "res://Dungeons/00/00-02.tscn"
-next_start_position = Vector2(-2896, -160)
+next_start_position = Vector2(-2976, -141)
 should_open_next_door = true
 
 [node name="TileMapLayer" parent="." instance=ExtResource("2_ysi8e")]

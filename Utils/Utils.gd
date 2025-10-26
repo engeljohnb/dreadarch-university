@@ -29,3 +29,8 @@ func nearest_cardinal_direction(direction : Vector2, as_text = false):
 				return "Down"
 			else:
 				return DOWN
+
+func is_scroll_fragment(document):
+	if not (document is Dictionary):
+		return false
+	return document.get("document_type") == Collectible.SCROLL_FRAGMENT

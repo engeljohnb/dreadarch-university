@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var blinker = $Blinker
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
+@onready var default_color = get_modulate()
 const SPEED = 100.0
 
 var can_drop = [Collectible.TALONS, Collectible.TREASURE]
@@ -95,9 +96,9 @@ func death():
 
 func on_blinker_flip(state):
 	if state:
-		set_modulate(Color(1.6, 1.6, 1.6))
+		set_modulate(default_color*1.6)
 	else:
-		set_modulate(Color(1,1,1))
+		set_modulate(default_color)
 
 func on_hit(_body):
 	if (not blinker.blinking):

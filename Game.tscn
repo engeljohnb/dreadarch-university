@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch1hebxpmn75b"]
+[gd_scene load_steps=8 format=3 uid="uid://ch1hebxpmn75b"]
 
 [ext_resource type="Script" uid="uid://5edqqs26rci6" path="res://Game Scripts/Game.gd" id="1_wbfu4"]
 [ext_resource type="PackedScene" uid="uid://bq2lvogek4uis" path="res://UI/Hud.tscn" id="2_xkndl"]
 [ext_resource type="PackedScene" uid="uid://ctcsa2iivywjj" path="res://UI/PauseMenu.tscn" id="3_u44n3"]
 [ext_resource type="AudioStream" uid="uid://cw6stupps6s14" path="res://Assets/Sounds/CloseMenu.mp3" id="4_sb48q"]
+[ext_resource type="Script" uid="uid://dbuo31ijjr74k" path="res://Game Scripts/Music.gd" id="4_t88pq"]
 
 [sub_resource type="Gradient" id="Gradient_t88pq"]
 offsets = PackedFloat32Array(0)
@@ -36,6 +37,7 @@ grow_vertical = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+script = ExtResource("4_t88pq")
 
 [node name="CloseMenuSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sb48q")

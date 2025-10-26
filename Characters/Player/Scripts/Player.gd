@@ -23,7 +23,7 @@ const DOWN = Vector2(0, 1)
 const SPEED = 400.0
 
 var attack_damage = 1
-var inventory = {}
+var inventory = {"Scroll Fragment" = []}
 var dead = false
 var in_cutscene = false
 var current_cutscene = null
@@ -53,6 +53,20 @@ var golden_dagger_equipped = true
 var hard_step_sound = load("res://Assets/Sounds/Student/StepSound.ogg")
 var soft_step_sound = load("res://Assets/Sounds/Student/SoftStepSound.ogg")
 
+func zero_inventory():
+	inventory = {
+		Collectible.SCROLL_FRAGMENT : [], 
+		Collectible.TREASURE : int(0),
+		Collectible.TALONS: int(0), 
+		Collectible.GOLDEN_DAGGER : int(0)
+		}
+
+func init_for_newgame():
+	zero_inventory()
+	life = 3
+	total_life = 3
+	position = Vector2()
+	
 func on_scroll_fragment_translated(scroll_fragment):
 	for scroll in inventory[Collectible.SCROLL_FRAGMENT]:
 		if scroll["latin_text"] == scroll_fragment["latin_text"]:
@@ -64,6 +78,8 @@ func on_item_collected(item, count, _should_play_sound):
 			Collectible.SCROLL_FRAGMENT:
 				if count > 0:
 					item["collected"] = true
+					if inventory[Collectible.SCROLL_FRAGMENT].is_empty():
+						Collectible.prompt_to_read_scroll_fragment()
 					inventory[Collectible.SCROLL_FRAGMENT].append(item)
 				elif count < 0:
 					inventory[Collectible.SCROLL_FRAGMENT].erase(item)

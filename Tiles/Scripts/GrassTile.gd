@@ -39,6 +39,8 @@ func skew_for_player():
 	skew = (0.25 - (player.global_position.angle_to(global_position)*0.25))
 	
 func in_viewport():
+	if not camera:
+		return
 	var viewport = camera.get_viewport()
 	var pos = camera.get_target_position() - (viewport.size/2.0)
 	var rect = Rect2(pos, viewport.size)
