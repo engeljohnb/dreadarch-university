@@ -67,7 +67,6 @@ func update_footstep_sounds():
 		var bus_id = AudioServer.get_bus_index("FXReverb")
 		AudioServer.set_bus_effect_enabled(bus_id, 0, true)
 		
-		
 func new_game():
 	_save.init()
 	_player.init()
@@ -255,7 +254,8 @@ func load_room_save_info(scene):
 func on_scene_changed():
 	if SceneTransition.prev_scene_name != SceneTransition.current_scene_name:
 		_save.rooms[SceneTransition.prev_scene_name] = get_room_save_info(current_scene)
-	current_scene.queue_free()
+	if current_scene:
+		current_scene.queue_free()
 	current_scene = load(SceneTransition.current_scene_path).instantiate()
 	current_scene.process_mode = PROCESS_MODE_PAUSABLE
 	if not player:
@@ -355,7 +355,6 @@ func _ready():
 	SceneTransition.won.connect(on_won)
 	get_tree().paused = true
 	
-
 func load_from_file(filename):
 	var file = FileAccess.open(filename, FileAccess.READ)
 	var content = file.get_as_text()

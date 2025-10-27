@@ -35,45 +35,60 @@ text = "Dreadarch University"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NewGame" type="Button" parent="."]
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 634.0
+offset_top = 323.0
+offset_right = -1246.0
+offset_bottom = -717.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadGame" type="Button" parent="Buttons"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.33
-anchor_top = 0.3
-anchor_right = 0.66
-anchor_bottom = 0.45
-offset_left = 0.399963
-offset_top = -1.0
-offset_right = 358.8
-offset_bottom = -1.0
+anchor_left = 1.825
+anchor_top = 3.9250002
+anchor_right = 14.250001
+anchor_bottom = 7.2000003
+offset_left = -2.0
+offset_right = -6.1035156e-05
+text = "Load Game"
+
+[node name="NewGame" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.9000001
+anchor_right = 14.150001
+anchor_bottom = 3.2250001
+offset_right = 275.625
 scale = Vector2(0.64, 1)
 text = "New Game"
 
-[node name="LoadGame" type="Button" parent="."]
+[node name="Quit" type="Button" parent="Buttons"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.33
-anchor_top = 0.5
-anchor_right = 0.66
-anchor_bottom = 0.65
-offset_left = 0.399994
-offset_top = 0.311981
-offset_right = 0.25592
-offset_bottom = 0.127991
-text = "Load Game"
-
-[node name="Quit" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.33
-anchor_top = 0.7
-anchor_right = 0.66
-anchor_bottom = 0.85
-offset_left = 0.399994
-offset_top = 0.0639648
-offset_right = -0.200012
-offset_bottom = -0.288025
+anchor_left = 1.7
+anchor_top = 11.450001
+anchor_right = 14.425001
+anchor_bottom = 14.625001
+offset_top = -3.0517578e-05
+offset_right = -6.1035156e-05
+offset_bottom = -6.1035156e-05
 text = "Quit"
+
+[node name="Feedback" type="Button" parent="Buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.7750001
+anchor_top = 7.7000003
+anchor_right = 14.275001
+anchor_bottom = 10.8
+offset_right = 1.0
+text = "Feedback"
 
 [node name="Panel" type="Panel" parent="."]
 z_index = -1
@@ -98,7 +113,7 @@ grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
 [node name="LampLight" parent="." instance=ExtResource("4_yxqvu")]
-position = Vector2(1179.5, 569.5)
+position = Vector2(1191, 575)
 scale = Vector2(37.7031, 22.8594)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

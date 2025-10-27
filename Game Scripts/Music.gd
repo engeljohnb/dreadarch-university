@@ -32,7 +32,6 @@ func update(current_scene, fade = true, starting_game = false):
 					volume_db = current_scene.music_volume
 				stream = load(current_scene.music)
 				play()
-
 	if starting_game:
 			if current_scene.music.contains("DungeonMusic.ogg"):
 				if "music_volume" in current_scene:
