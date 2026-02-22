@@ -1,4 +1,4 @@
-[gd_scene load_steps=239 format=3 uid="uid://bbirthebgbru2"]
+[gd_scene format=3 uid="uid://bbirthebgbru2"]
 
 [ext_resource type="Texture2D" uid="uid://8m7v6ht7rfgg" path="res://Assets/Badguys/Crow/Idle/Down/0000.png" id="1_1hy2b"]
 [ext_resource type="Texture2D" uid="uid://d3t1tpisjdws6" path="res://Assets/Badguys/Crow/Idle/Up/0000.png" id="1_d2frl"]
@@ -2323,15 +2323,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_qs3ly"]
 radius = 379.527
 
-[node name="Crow" type="CharacterBody2D" groups=["Enemies"]]
-modulate = Color(1.0883753, 1.3000832, 1.0827419, 1)
+[node name="Crow" type="CharacterBody2D" unique_id=1062883555 groups=["Enemies"]]
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 56
 motion_mode = 1
 script = ExtResource("1_qs3ly")
 
-[node name="DeathLight" type="PointLight2D" parent="."]
+[node name="DeathLight" type="PointLight2D" parent="." unique_id=904347331]
 visible = false
 position = Vector2(-7, -7)
 scale = Vector2(2.389, 2.372)
@@ -2341,7 +2340,7 @@ range_layer_min = -3
 range_layer_max = 4
 texture = SubResource("GradientTexture2D_yxqvu")
 
-[node name="Hitbox" parent="." instance=ExtResource("2_kobm1")]
+[node name="Hitbox" parent="." unique_id=541540726 instance=ExtResource("2_kobm1")]
 visible = false
 z_index = 1
 position = Vector2(7.215, 3.975)
@@ -2349,45 +2348,43 @@ rotation = 1.07338
 scale = Vector2(1.24, 1.24)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=623182903]
 visible = false
 y_sort_enabled = true
 position = Vector2(2, -2)
 shape = SubResource("CapsuleShape2D_h2hex")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1221393125]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h653l")
 animation = &"Prepare Attack Down"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_qs3ly")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=745486011]
+libraries/ = SubResource("AnimationLibrary_qs3ly")
 script = ExtResource("203_1knxt")
 
-[node name="SearchRay" type="RayCast2D" parent="."]
+[node name="SearchRay" type="RayCast2D" parent="." unique_id=1558992913]
 collision_mask = 11
 collide_with_areas = true
 
-[node name="SearchArea" type="Area2D" parent="."]
+[node name="SearchArea" type="Area2D" parent="." unique_id=232873180]
 visible = false
 collision_layer = 16
 collision_mask = 11
 script = ExtResource("202_syxla")
 
-[node name="CollsionShape2D" type="CollisionShape2D" parent="SearchArea"]
+[node name="CollsionShape2D" type="CollisionShape2D" parent="SearchArea" unique_id=1621614144]
 shape = SubResource("CircleShape2D_qs3ly")
 
-[node name="Blinker" parent="." instance=ExtResource("205_1knxt")]
+[node name="Blinker" parent="." unique_id=1954128108 instance=ExtResource("205_1knxt")]
 
-[node name="AggroSound" type="AudioStreamPlayer2D" parent="."]
+[node name="AggroSound" type="AudioStreamPlayer2D" parent="." unique_id=94199109]
 stream = ExtResource("202_kobm1")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=431143643]
 stream = ExtResource("202_f372u")
 volume_db = 2.5
 
-[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1556202545]
 y_sort_enabled = true
 stream = ExtResource("204_kobm1")

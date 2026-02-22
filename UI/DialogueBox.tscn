@@ -78,7 +78,7 @@ texture = ExtResource("3_rn55j")
 stretch_mode = 2
 
 [node name="DialogueRevealSound" type="AudioStreamPlayer" parent="."]
-volume_db = -8.0
+volume_db = -13.0
 
 [node name="OpenMenuSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_67n4p")
@@ -87,4 +87,4 @@ autoplay = true
 
 [node name="DialogueSkipSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_67n4p")
-volume_db = -7.0
+volume_db = -13.0

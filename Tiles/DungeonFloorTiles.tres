@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://coaprv7phi5iw"]
+[gd_resource type="TileSet" format=3 uid="uid://coaprv7phi5iw"]
 
 [ext_resource type="Texture2D" uid="uid://b52a2jr2qlw2y" path="res://Assets/Tiles/AncientLibrary/ground_tiles.png" id="1_ryvxp"]
 
@@ -45,11 +45,11 @@ texture_region_size = Vector2i(64, 64)
 5:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 5:1/0/custom_data_0 = &"Hard"
 2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, 23.425663, 32, 22.296719, -22.01448, -32, -23.143429)
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, 23.4257, 32, 22.2967, -22.0145, -32, -23.1434)
 2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:2/0/custom_data_0 = &"Hard"
 2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(23.990139, 22.578957, 23.425663, -32, 32, -32, 32, 32, -32, 32, -32, 22.01448)
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(23.9901, 22.579, 23.4257, -32, 32, -32, 32, 32, -32, 32, -32, 22.0145)
 2:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:3/0/custom_data_0 = &"Hard"
 3:3/next_alternative_id = 2

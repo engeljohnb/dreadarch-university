@@ -52,7 +52,13 @@ var direction_priority
 var golden_dagger_equipped = true
 var hard_step_sound = load("res://Assets/Sounds/Student/StepSound.ogg")
 var soft_step_sound = load("res://Assets/Sounds/Student/SoftStepSound.ogg")
-
+var grass_step_sound = load("res://Assets/Sounds/Student/GrassSteps.ogg")
+var level_up_dialogue = [
+	{
+		"text":"I should take these back up to the library. I bet I could translate them if I had some dictionaries.",
+		"speaker":"Player"
+	}
+]
 func zero_inventory():
 	inventory = {
 		Collectible.SCROLL_FRAGMENT : [], 
@@ -80,7 +86,9 @@ func on_item_collected(item, count, _should_play_sound):
 					item["collected"] = true
 					if inventory[Collectible.SCROLL_FRAGMENT].is_empty():
 						Collectible.prompt_to_read_scroll_fragment()
-					inventory[Collectible.SCROLL_FRAGMENT].append(item)
+					elif inventory[Collectible.SCROLL_FRAGMENT].size() == Collectible.fragments_to_level_up-1:
+						Dialogue.open_dialogue.emit(level_up_dialogue)
+					inventory[Collectible.SCROLL_FRAGMENT].append(item)				
 				elif count < 0:
 					inventory[Collectible.SCROLL_FRAGMENT].erase(item)
 				return
@@ -106,7 +114,7 @@ func direction_just_released():
 		or Input.is_action_just_released("Right")
 		or Input.is_action_just_released("Up")
 		or Input.is_action_just_released("Down"))
-		
+	
 func direction_just_pressed():
 	return (Input.is_action_just_pressed("Left")
 		or Input.is_action_just_pressed("Right")
@@ -542,7 +550,7 @@ func update_equipment():
 			if equipped == Collectible.GOLDEN_DAGGER:
 				golden_dagger_equipped = false
 			inventory[equipped] = 0
-	
+
 func get_step_sound(sound_name):
 	match sound_name:
 		"Hard":
@@ -550,21 +558,30 @@ func get_step_sound(sound_name):
 		"Soft":
 			return soft_step_sound
 			
-func update_step_sound(tilemap : TileMapLayer):
-	var map = tilemap.local_to_map(tilemap.to_local(global_position))
-	var data = tilemap.get_cell_tile_data(map)
-	if not data:
-		return
-	var sound_name = data.get_custom_data("Sound")
-	var stream = get_step_sound(sound_name)
-	if stream != step_sound.stream:
-		step_sound.stream = stream
+func update_step_sound(sound_source):
+	if sound_source is TileMapLayer:
+		var tilemap = sound_source
+		var map = tilemap.local_to_map(tilemap.to_local(global_position))
+		var data = tilemap.get_cell_tile_data(map)
+		if not data:
+			return
+		var sound_name = data.get_custom_data("Sound")
+		var stream = get_step_sound(sound_name)
+		if stream != step_sound.stream:
+			step_sound.stream = stream
+			match sound_name:
+				"Soft":
+					step_sound.volume_db = -17.0
+				"Hard":
+					step_sound.volume_db = -8.0
+	elif (sound_source is String) or (sound_source is StringName):
+		var sound_name = sound_source
 		match sound_name:
-			"Soft":
-				step_sound.volume_db = -17.0
-			"Hard":
-				step_sound.volume_db = -8.0
-		
+			"Grass":
+				if not (step_sound.stream == grass_step_sound):
+					step_sound.stream = grass_step_sound
+					step_sound.volume_db = -24.0
+			
 func _process(delta):
 	if not in_dialogue:
 		if not in_cutscene:

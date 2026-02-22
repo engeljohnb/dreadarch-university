@@ -16,7 +16,7 @@ shader = ExtResource("3_muyuv")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_ofmfj")
 shader_parameter/portrait = ExtResource("3_ofmfj")
 shader_parameter/smoke_color = Color(1, 1, 1, 1)
-shader_parameter/distortion_speed = 4.1750001983125
+shader_parameter/distortion_speed = 4.175
 shader_parameter/density = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fy6fd"]
@@ -37,7 +37,7 @@ material = SubResource("ShaderMaterial_ofmfj")
 custom_minimum_size = Vector2(84, 84)
 offset_left = -68.0
 offset_top = -67.0
-offset_right = 52.750008
+offset_right = 52.75
 offset_bottom = 53.0
 texture = SubResource("NoiseTexture2D_fy6fd")
 

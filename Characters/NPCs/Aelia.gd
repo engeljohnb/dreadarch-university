@@ -2,6 +2,7 @@ extends StaticBody2D
 var interaction_message = "Z to talk"
 var type = Types.NPC
 var status = {"times_spoken_to":0,"paid":false}
+var scroll_fragment = {}
 var dialogues = [
 [
 	{
@@ -35,7 +36,7 @@ var dialogues = [
 		"speaker":"Player"
 	},
 	{
-		"text":"I wolde tell you if I coulde know myself, but I can say only that som thing binds me to this wrecked bochus.",
+		"text":"I wolde tell you if I coulde know myself, but I can say only that som thing binds me to this crumbled bochus.",
 		"speaker":"Aelia"
 	},
 	{
@@ -43,7 +44,7 @@ var dialogues = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"The tidings of my work were kept hyd, but that matters little now.",
+		"text":"The lore of my work was kept hyd, but that matters little now.",
 		"speaker":"Aelia"
 	},
 	{
@@ -57,7 +58,7 @@ var dialogues = [
 ],
 [
 	{
-		"text":"Drede not that I will ask of your bisynes in this place, but I own there are som things I wonder on.",
+		"text":"Drede not that I will ask of your bisynes in this place, but I own there are som things I wonder.",
 		"speaker":"Aelia"
 	},
 	{
@@ -128,6 +129,7 @@ func activate(_using_item = "", _count = 0):
 			if text:
 				if text.contains("Aelia"):
 					Dialogue.open_dialogue.emit(translate_dialogue)
+					scroll_fragment = _using_item
 					return
 		Dialogue.open_dialogue.emit(use_dialogue)
 		return
@@ -143,3 +145,5 @@ func _process(_delta):
 		if not status["paid"]:
 			status["paid"] = true
 			Collectible.item_collected.emit(Collectible.NECTAR, 5, true)
+	if Dialogue.current_box == translate_dialogue[-1]:
+		Collectible.scroll_fragment_translated.emit(scroll_fragment)

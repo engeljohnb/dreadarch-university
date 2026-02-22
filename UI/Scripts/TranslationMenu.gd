@@ -67,6 +67,10 @@ func open(_documents):
 	documents = _documents
 	visible = true
 	next_document()
+	var num_translated = 0
+	for document in documents:
+		if document.get("translated"):
+			num_translated += 1
 	var width = (Collectible.fragments_to_level_up)*84
 	for i in range(0, Collectible.fragments_to_level_up):
 		var icon = _trans_prog.instantiate()
@@ -75,6 +79,11 @@ func open(_documents):
 		$TextureRect.add_sibling(icon)
 		icon.position.y = starting_scroll_position.y
 		icon.position.x = starting_scroll_position.x + (width/2.0) + (i*84)
+		if i < (num_translated%Collectible.fragments_to_level_up):
+			progress_index += 1
+			icon.set_full()
+		
+		
 	$Translate.grab_focus()
 
 func _ready():

@@ -26,9 +26,9 @@ class Player:
 		temporary_life = 0
 		total_life = 0
 		inventory = {
-			Collectible.SCROLL_FRAGMENT : [], 
+			Collectible.SCROLL_FRAGMENT : [],
 			Collectible.TREASURE : int(0),
-			Collectible.TALONS: int(0), 
+			Collectible.TALONS: int(0),
 			Collectible.GOLDEN_DAGGER : int(0)
 		}
 
@@ -52,9 +52,10 @@ var player = null
 var _save = Save.new()
 var _player = Player.new()
 var floor_tiles = null
+var step_sound_source = null
 
 
-func update_footstep_sounds():
+func apply_or_remove_footstep_reverb():
 	#if the player's going up
 	var volume_diff = 4.0
 	if SceneTransition.prev_scene_name.contains("01-") and SceneTransition.current_scene_name.contains("00-"):
@@ -77,7 +78,7 @@ func new_game():
 	SceneTransition.change_scene("Dungeons/01/01-01.tscn")
 
 func _prompt_player(text, on_yes, on_no, yes_text = "yes", no_text = "no"):
-	var prompt = load("res://UI/Prompt.tscn").instantiate()	
+	var prompt = load("res://UI/Prompt.tscn").instantiate()
 	$CanvasLayer.add_child(prompt)
 	prompt.prompt(text, on_yes, on_no, yes_text, no_text)
 
@@ -250,7 +251,31 @@ func load_room_save_info(scene):
 		for scene_treasure in scene_treasures:
 			if not (scene_treasure.name in uncollected_treasures):
 				scene_treasure.queue_free()
-			
+
+# Don't ask me how it ended up like this 
+func on_player_entered_grass():
+	step_sound_source = "Grass"
+func on_player_exited_grass():
+	step_sound_source = floor_tiles
+
+func update_footstep_sound_source():
+	var _floor_tiles = get_tree().get_nodes_in_group("FloorLayer")
+	if _floor_tiles.size() > 0:
+		for t in _floor_tiles:
+			if t != floor_tiles:
+				floor_tiles = t
+				break
+	else:
+		floor_tiles = null
+	# Scene collection TileMapLayers can't use custom data layers the way other TileMapLayers can,
+	#   So I use signals to tell if the player's on grass or not.
+	var grass_tileset = current_scene.get_node("GrassTiles")
+	if grass_tileset:
+		grass_tileset.player_entered_grass.connect(on_player_entered_grass)
+		grass_tileset.player_exited_grass.connect(on_player_exited_grass)
+	step_sound_source = floor_tiles
+	apply_or_remove_footstep_reverb()
+	
 func on_scene_changed():
 	if SceneTransition.prev_scene_name != SceneTransition.current_scene_name:
 		_save.rooms[SceneTransition.prev_scene_name] = get_room_save_info(current_scene)
@@ -298,17 +323,9 @@ func on_scene_changed():
 		var direction = SceneTransition.ladder_direction
 		var start_pos = SceneTransition.player_start_position
 		var arriving = true
-		player.play_climb_cutscene(0.0, 
+		player.play_climb_cutscene(0.0,
 		{"position":start_pos, "start_pos":start_pos, "direction":direction, "arriving":arriving})
-	var _floor_tiles = get_tree().get_nodes_in_group("FloorLayer")
-	if _floor_tiles.size() > 0:
-		for t in _floor_tiles:
-			if t != floor_tiles:
-				floor_tiles = t
-				break
-	else:
-		floor_tiles = null
-	update_footstep_sounds()
+	update_footstep_sound_source()
 	
 func open_load_game_menu():
 	load_game()
@@ -407,8 +424,7 @@ func open_inventory():
 func _process(_delta):
 	if player:
 		if (not player.in_cutscene) and (not player.in_dialogue):
-			if floor_tiles:
-				player.update_step_sound(floor_tiles)
+			player.update_step_sound(step_sound_source)
 			if Input.is_action_just_pressed("Pause"):
 				pause_menu.pause_game()
 			if Input.is_action_just_pressed("OpenInventory"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch1hebxpmn75b"]
+[gd_scene format=3 uid="uid://ch1hebxpmn75b"]
 
 [ext_resource type="Script" uid="uid://5edqqs26rci6" path="res://Game Scripts/Game.gd" id="1_wbfu4"]
 [ext_resource type="PackedScene" uid="uid://bq2lvogek4uis" path="res://UI/Hud.tscn" id="2_xkndl"]
@@ -14,30 +14,30 @@ colors = PackedColorArray(0, 0, 0, 1)
 gradient = SubResource("Gradient_t88pq")
 width = 100
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1819838587]
 process_mode = 1
 y_sort_enabled = true
 script = ExtResource("1_wbfu4")
 
-[node name="Fade" type="Sprite2D" parent="."]
+[node name="Fade" type="Sprite2D" parent="." unique_id=1315942772]
 modulate = Color(1, 1, 1, 0)
 z_index = 9
 texture = SubResource("GradientTexture1D_r0x5m")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1947700564]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_xkndl")]
+[node name="HUD" parent="CanvasLayer" unique_id=1696318474 instance=ExtResource("2_xkndl")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_u44n3")]
+[node name="PauseMenu" parent="CanvasLayer" unique_id=792860072 instance=ExtResource("3_u44n3")]
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=556544341]
 process_mode = 3
 script = ExtResource("4_t88pq")
 
-[node name="CloseMenuSound" type="AudioStreamPlayer" parent="."]
+[node name="CloseMenuSound" type="AudioStreamPlayer" parent="." unique_id=1943615444]
 stream = ExtResource("4_sb48q")

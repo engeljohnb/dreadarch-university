@@ -11,13 +11,6 @@ var dialogue = [
 	}
 ]
 
-var level_up_dialogue = [
-	{
-		"text":"I should take these back up to the library. I bet I could translate them if I had some dictionaries.",
-		"speaker":"Player"
-	}
-]
-
 func on_done():
 	get_tree().paused = false
 	var collected = []
@@ -26,8 +19,6 @@ func on_done():
 			collected.append(frag)
 	if collected.size() == 1:
 		Dialogue.open_dialogue.emit(dialogue)
-	if collected.size() == Collectible.fragments_to_level_up:
-		Dialogue.open_dialogue.emit(level_up_dialogue)
 	queue_free()
 
 func _ready():

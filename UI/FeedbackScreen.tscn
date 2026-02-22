@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_fchvq"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="2_ancc7"]
-[ext_resource type="Script" uid="uid://bb6c5iop0kfmg" path="res://UI/FeedbackScreen.gd" id="2_kabjm"]
+[ext_resource type="Script" uid="uid://bb6c5iop0kfmg" path="res://UI/Scripts/FeedbackScreen.gd" id="2_kabjm"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="4_kabjm"]
 [ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="5_kabjm"]
 
@@ -81,7 +81,7 @@ offset_right = 0.4798584
 offset_bottom = 0.35998535
 theme_override_fonts/normal_font = ExtResource("5_kabjm")
 theme_override_font_sizes/normal_font_size = 75
-text = "The game is pre-alpha, and many of the art and sounds are placeholders. Even so, feedback is appreciated at any stage.
+text = "The game is pre-alpha, and much of the art and sounds are placeholders. Even so, feedback is appreciated at any stage.
 
 Send your thoughts to:
 engeljohnb@gmail.com"

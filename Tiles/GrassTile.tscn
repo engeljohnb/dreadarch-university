@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cif8kqf3x0lv8"]
+[gd_scene format=3 uid="uid://cif8kqf3x0lv8"]
 
 [ext_resource type="Script" uid="uid://cjfps1olxfprc" path="res://Tiles/Scripts/GrassTile.gd" id="1_083yn"]
 [ext_resource type="Texture2D" uid="uid://rwi515pkwtql" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0000.png" id="6_cgdpx"]
@@ -58,20 +58,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgdpx"]
 size = Vector2(24, 24)
 
-[node name="GrassTile" type="Node2D"]
+[node name="GrassTile" type="Node2D" unique_id=595121345]
 y_sort_enabled = true
 script = ExtResource("1_083yn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1191617854]
 modulate = Color(0.87717575, 0.8361926, 0.5380844, 0.74600005)
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_tlr11")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1843908037]
 position = Vector2(0, -33)
 collision_layer = 512
-collision_mask = 4
+collision_mask = 12
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2049100141]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_cgdpx")

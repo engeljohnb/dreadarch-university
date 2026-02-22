@@ -4,7 +4,7 @@ signal closed()
 
 var documents = []
 var selected_document = {}
-var selected_document_index = -1
+var selected_document_index = -2
 
 func close():
 	closed.emit()
@@ -21,8 +21,6 @@ func next_document(index_addend = 1):
 	selected_document_index += index_addend
 	if selected_document_index >= documents.size():
 		selected_document_index = 0
-	if selected_document_index < 0:
-		selected_document_index = documents.size()-1
 	selected_document = documents[selected_document_index]
 	if selected_document["translated"]:
 		$RichTextLabel.text = selected_document["english_text"]

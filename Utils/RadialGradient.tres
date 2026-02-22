@@ -1,4 +1,4 @@
-[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://b7v0h5tvciv0f"]
+[gd_resource type="GradientTexture2D" format=3 uid="uid://b7v0h5tvciv0f"]
 
 [sub_resource type="Gradient" id="Gradient_yuaiq"]
 colors = PackedColorArray(0.775063, 0.775063, 0.775063, 1, 0, 0, 0, 1)
@@ -8,4 +8,4 @@ resource_local_to_scene = true
 gradient = SubResource("Gradient_yuaiq")
 fill = 1
 fill_from = Vector2(0.522472, 0.505618)
-fill_to = Vector2(0.80841124, 0.90654206)
+fill_to = Vector2(0.808411, 0.906542)

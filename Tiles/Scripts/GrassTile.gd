@@ -1,4 +1,6 @@
 extends Node2D
+signal has_player()
+
 var frame_timer = 0.0
 var timer = 0.0
 var frame_rate = 1.0/12.0
@@ -14,7 +16,7 @@ func on_body_entered(body):
 		$AnimatedSprite2D.play("Cut")
 		$AnimatedSprite2D.animation_finished.connect(queue_free)
 		cut = true
-	
+		
 func _ready():
 	camera = get_tree().get_nodes_in_group("Player")[0].camera
 	$AnimatedSprite2D.animation = "default"
@@ -32,6 +34,7 @@ func player_in_grass():
 	if not player:
 		player = get_tree().get_nodes_in_group("Player")[0]
 	if abs(player.global_position.distance_to(global_position) - 16.0) < 16.0:
+		has_player.emit()
 		return true
 	return false
 	

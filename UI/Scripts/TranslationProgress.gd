@@ -15,6 +15,8 @@ func fill():
 	$Sprite2D.texture = fill_texture
 	$Blinker.blink(1.0)
 	
+func set_full():
+	$Sprite2D.texture = fill_texture
 func reset():
 	$Sprite2D.texture = blank_texture
 	
