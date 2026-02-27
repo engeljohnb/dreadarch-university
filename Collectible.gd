@@ -71,6 +71,11 @@ var tutorial_notes = {
 	]
 }
 
+var descriptions = {TREASURE : "Not standard currency anymore, but may still be valuable.",
+					TALONS : "Claws from those cursed crows. Throwing them could be hazardous.",
+					GOLDEN_DAGGER : "The creatures in the ruins seem to be afraid of it.",
+					NECTAR : "Very refreshing.",
+					SCROLL_FRAGMENT : "Scraps of writing I found in the ruins."}
 var sounds = {}
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary

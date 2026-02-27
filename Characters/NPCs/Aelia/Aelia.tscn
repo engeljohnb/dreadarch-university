@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqpa2n6eiq5js"]
+[gd_scene format=3 uid="uid://cqpa2n6eiq5js"]
 
 [ext_resource type="Script" uid="uid://gp3pdj31gvah" path="res://Characters/NPCs/Aelia.gd" id="1_ek1ba"]
 [ext_resource type="Shader" uid="uid://ej1y2kcejyr4" path="res://Characters/NPCs/Aelia/Aelia.gdshader" id="3_muyuv"]
@@ -26,13 +26,13 @@ height = 84
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puuy2"]
 size = Vector2(34.5, 82.25)
 
-[node name="Aelia" type="StaticBody2D" groups=["Interactable"]]
+[node name="Aelia" type="StaticBody2D" unique_id=1147445232 groups=["Interactable"]]
 texture_filter = 1
 collision_layer = 8
 collision_mask = 24
 script = ExtResource("1_ek1ba")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1597945239]
 material = SubResource("ShaderMaterial_ofmfj")
 custom_minimum_size = Vector2(84, 84)
 offset_left = -68.0
@@ -41,15 +41,15 @@ offset_right = 52.75
 offset_bottom = 53.0
 texture = SubResource("NoiseTexture2D_fy6fd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=234365888]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_puuy2")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=140360742]
 light_mask = 2
 visibility_layer = 2
 scale = Vector2(591.781, 591.781)
-energy = 4.0
+energy = 5.0
 shadow_enabled = true
 texture = ExtResource("5_tf46h")
 texture_scale = 0.01

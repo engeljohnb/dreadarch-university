@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c75gw3ectkkc2" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0004.png" id="10_t47x5"]
 [ext_resource type="Texture2D" uid="uid://by5xex78varih" path="res://Assets/Tiles/Dreadarch/ImageFiles/GrassTiles/04.png" id="11_32nqp"]
 [ext_resource type="Texture2D" uid="uid://b30otaapxuumu" path="res://Assets/Tiles/Dreadarch/ImageFiles/_GrassTiles/CutAnimation/0005.png" id="11_rdrw1"]
+[ext_resource type="AudioStream" uid="uid://b1v2plwaoqm3s" path="res://Assets/Sounds/Student/GrassSteps.ogg" id="12_44tk5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tlr11"]
 animations = [{
@@ -75,3 +76,7 @@ collision_mask = 12
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2049100141]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_cgdpx")
+
+[node name="StepSound" type="AudioStreamPlayer2D" parent="." unique_id=18298852]
+stream = ExtResource("12_44tk5")
+volume_db = -15.0

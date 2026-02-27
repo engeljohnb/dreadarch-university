@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://fbjip0bfyync"]
+[gd_scene format=3 uid="uid://fbjip0bfyync"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_lhqru"]
 [ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="1_xenej"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://biw6owe4roqo1" path="res://Assets/UI/DownArrow.png" id="4_2hljg"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="6_ge1o1"]
 
-[node name="DocumentSelector" type="Control"]
+[node name="DocumentSelector" type="Control" unique_id=124707441]
 process_mode = 2
 z_index = 10
 layout_mode = 3
@@ -19,7 +19,8 @@ grow_vertical = 2
 theme = ExtResource("1_lhqru")
 script = ExtResource("2_2hljg")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2096352895]
+visible = false
 self_modulate = Color(0.868985, 0.868985, 0.868985, 0.73)
 layout_mode = 1
 anchors_preset = -1
@@ -33,7 +34,7 @@ offset_bottom = 0.359924
 texture = ExtResource("1_xenej")
 expand_mode = 1
 
-[node name="Use" type="Button" parent="."]
+[node name="Use" type="Button" parent="." unique_id=633838862]
 self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
 layout_mode = 0
 offset_left = 1102.0
@@ -44,7 +45,7 @@ theme_override_font_sizes/font_size = 35
 text = "Use
 "
 
-[node name="Back" type="Button" parent="."]
+[node name="Back" type="Button" parent="." unique_id=1219546964]
 self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
 layout_mode = 0
 offset_left = 1219.0
@@ -54,7 +55,7 @@ offset_bottom = 765.0
 theme_override_font_sizes/font_size = 35
 text = "Back"
 
-[node name="UpArrow" type="TextureRect" parent="."]
+[node name="UpArrow" type="TextureRect" parent="." unique_id=942497642]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = -1
@@ -68,7 +69,7 @@ offset_right = -0.48010254
 offset_bottom = -0.16003418
 texture = ExtResource("3_c7cgx")
 
-[node name="DownArrow" type="TextureRect" parent="."]
+[node name="DownArrow" type="TextureRect" parent="." unique_id=1440975103]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.698
@@ -81,7 +82,7 @@ offset_right = 0.51989746
 offset_bottom = 0.47998047
 texture = ExtResource("4_2hljg")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2025291720]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.296
@@ -95,5 +96,5 @@ offset_bottom = -0.24005127
 theme_override_font_sizes/normal_font_size = 50
 text = "kjnkiuhiu"
 
-[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+[node name="SelectSound" type="AudioStreamPlayer" parent="." unique_id=234951252]
 stream = ExtResource("6_ge1o1")

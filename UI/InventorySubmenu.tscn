@@ -1,21 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dauke3fsmk60o"]
+[gd_scene format=3 uid="uid://dauke3fsmk60o"]
 
-[ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="1_p5pos"]
+[ext_resource type="Script" uid="uid://dysl0262w3udt" path="res://UI/Scripts/InventorySubmenu.gd" id="1_p5pos"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_ke0ha"]
-grow_begin = 15.0
-grow_end = 15.0
-thickness = 5
-vertical = true
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qdknn"]
-texture = ExtResource("1_p5pos")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lcbkp"]
-texture = ExtResource("1_p5pos")
-
-[node name="Submenu" type="ItemList"]
-anchors_preset = -1
+[node name="Submenu" type="Control" unique_id=1100190646]
+layout_mode = 3
 anchor_left = 0.702
 anchor_top = 0.004
 anchor_right = 0.95400006
@@ -23,11 +11,13 @@ anchor_bottom = 0.48100004
 offset_left = 0.40600586
 offset_top = 0.15199995
 offset_right = -0.037963867
-offset_bottom = -0.22201538
-theme_override_constants/h_separation = 100
-theme_override_styles/panel = SubResource("StyleBoxLine_ke0ha")
-theme_override_styles/selected = SubResource("StyleBoxTexture_qdknn")
-theme_override_styles/selected_focus = SubResource("StyleBoxTexture_lcbkp")
-allow_reselect = true
-item_count = 1
-item_0/text = "Use"
+offset_bottom = -0.22198486
+script = ExtResource("1_p5pos")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=276357634]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.065
+anchor_bottom = 1.192
+offset_right = -0.06286621
+offset_bottom = -0.09698486

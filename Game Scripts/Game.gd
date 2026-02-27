@@ -269,7 +269,7 @@ func update_footstep_sound_source():
 		floor_tiles = null
 	# Scene collection TileMapLayers can't use custom data layers the way other TileMapLayers can,
 	#   So I use signals to tell if the player's on grass or not.
-	var grass_tileset = current_scene.get_node("GrassTiles")
+	var grass_tileset = current_scene.get_node_or_null("GrassTiles")
 	if grass_tileset:
 		grass_tileset.player_entered_grass.connect(on_player_entered_grass)
 		grass_tileset.player_exited_grass.connect(on_player_exited_grass)
@@ -424,6 +424,10 @@ func open_inventory():
 func _process(_delta):
 	if player:
 		if (not player.in_cutscene) and (not player.in_dialogue):
+			# Sometimes step_sound_source is "previously freed"
+			#  for the first loop after changing rooms
+			if not step_sound_source:
+				update_footstep_sound_source()
 			player.update_step_sound(step_sound_source)
 			if Input.is_action_just_pressed("Pause"):
 				pause_menu.pause_game()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwovxxsvdrcl6"]
+[gd_scene format=3 uid="uid://bwovxxsvdrcl6"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_4jsxm"]
 [ext_resource type="Script" uid="uid://b633kvk7ffjq8" path="res://UI/Scripts/DialogueBox.gd" id="2_gumc0"]
@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bvecolhrrfqoo" path="res://Assets/Sounds/UI/OpenDialogueBoxSound.ogg" id="14_67n4p"]
 [ext_resource type="AudioStream" uid="uid://pm7kdvn8n5g" path="res://Assets/Sounds/UI/SkipDialogueSound.ogg" id="15_67n4p"]
 
-[node name="DialogueBox" type="Control"]
+[node name="DialogueBox" type="Control" unique_id=1417717253]
 process_mode = 1
 layout_mode = 3
 anchors_preset = 15
@@ -20,7 +20,7 @@ grow_vertical = 2
 theme = ExtResource("1_4jsxm")
 script = ExtResource("2_gumc0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1868211340]
 self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -37,7 +37,7 @@ grow_vertical = 2
 texture = ExtResource("3_oaxx8")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=809218180]
 clip_contents = false
 layout_mode = 1
 anchors_preset = -1
@@ -52,7 +52,7 @@ offset_bottom = 0.059967
 theme_override_fonts/normal_font = ExtResource("4_gsxh0")
 theme_override_font_sizes/normal_font_size = 55
 
-[node name="Indicator" type="AnimatedSprite2D" parent="TextureRect"]
+[node name="Indicator" type="AnimatedSprite2D" parent="TextureRect" unique_id=572517986]
 texture_filter = 1
 position = Vector2(1587, 328)
 scale = Vector2(3.76, 3.76)
@@ -60,7 +60,7 @@ sprite_frames = ExtResource("5_gsxh0")
 animation = &"Proceed"
 frame_progress = 0.0689687
 
-[node name="Portrait" type="TextureRect" parent="TextureRect"]
+[node name="Portrait" type="TextureRect" parent="TextureRect" unique_id=1999796299]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
@@ -77,14 +77,14 @@ scale = Vector2(7.09536, 7.09536)
 texture = ExtResource("3_rn55j")
 stretch_mode = 2
 
-[node name="DialogueRevealSound" type="AudioStreamPlayer" parent="."]
+[node name="DialogueRevealSound" type="AudioStreamPlayer" parent="." unique_id=742667260]
 volume_db = -13.0
 
-[node name="OpenMenuSound" type="AudioStreamPlayer" parent="."]
+[node name="OpenMenuSound" type="AudioStreamPlayer" parent="." unique_id=1984481321]
 stream = ExtResource("14_67n4p")
 volume_db = -16.0
 autoplay = true
 
-[node name="DialogueSkipSound" type="AudioStreamPlayer" parent="."]
+[node name="DialogueSkipSound" type="AudioStreamPlayer" parent="." unique_id=1403387720]
 stream = ExtResource("15_67n4p")
 volume_db = -13.0

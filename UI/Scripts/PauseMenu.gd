@@ -12,7 +12,7 @@ func pause_game():
 		continue_button.grab_focus()
 		visible = true
 		open_menu_sound.play()
-		# if player is above ground, turn down the light
+		# if player is above ground, turn down the light0.486
 		if SceneTransition.current_scene_name.contains("00"):
 			$LampLight.energy = 4.50
 		else:
