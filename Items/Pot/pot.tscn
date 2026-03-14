@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://pnjjhjfeuic8"]
+[gd_scene format=3 uid="uid://pnjjhjfeuic8"]
 
 [ext_resource type="Script" uid="uid://co6ptm1ll5etr" path="res://Items/Pot/Pot.gd" id="1_ku18y"]
 [ext_resource type="Texture2D" uid="uid://c3532m72qwar0" path="res://Assets/Items/Pot/0000.png" id="2_m1tpy"]
@@ -56,19 +56,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ku18y"]
 size = Vector2(64, 64)
 
-[node name="Pot" type="StaticBody2D" groups=["Interactable"]]
+[node name="Pot" type="StaticBody2D" unique_id=1532273113 groups=["Interactable"]]
 light_mask = 4
 visibility_layer = 4
 collision_layer = 8
 collision_mask = 24
 script = ExtResource("1_ku18y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=182171106]
 position = Vector2(0, 17)
 scale = Vector2(1.56641, 1.56641)
 texture = SubResource("GradientTexture2D_w7g0e")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1453248912]
 light_mask = 4
 visibility_layer = 4
 texture_filter = 2
@@ -76,12 +76,11 @@ sprite_frames = SubResource("SpriteFrames_231h6")
 frame = 7
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1938046418]
 shape = SubResource("RectangleShape2D_ku18y")
 
-[node name="Blinker" parent="." instance=ExtResource("10_m1tpy")]
+[node name="Blinker" parent="." unique_id=435504930 instance=ExtResource("10_m1tpy")]
 
-[node name="ActivateSound" type="AudioStreamPlayer" parent="."]
+[node name="ActivateSound" type="AudioStreamPlayer" parent="." unique_id=786557814]
 stream = ExtResource("11_nws5j")
 volume_db = -20.0
-bus = &"FXNoReverb"

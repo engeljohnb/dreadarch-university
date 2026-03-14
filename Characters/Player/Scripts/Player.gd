@@ -193,28 +193,43 @@ func end_cutscene(to_idle = true, direction = facing):
 func cutscene_over():
 	return cutscene_timer >= cutscene_duration
 	
-func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
+func play_door_cutscene(delta, door_position = Vector2(), dir = "North", reverse = false):
 	if delta == 0.0:
 		init_cutscene(play_door_cutscene, 1.0)
 		door_cutscene["reverse"] = reverse
 		if reverse:
-			if equipped == Collectible.GOLDEN_DAGGER:
-				sprite.play("Walk Knife Down")
-			else:
-				sprite.play("Walk Down")
+			match dir:
+				"North":
+					if equipped == Collectible.GOLDEN_DAGGER:
+						sprite.play("Walk Knife Up")
+					else:
+						sprite.play("Walk Up")
+				"South":
+					if equipped == Collectible.GOLDEN_DAGGER:
+						sprite.play("Walk Knife Down")
+					else:
+						sprite.play("Walk Down")
 			modulate.a = 0
 		else:
-			if equipped == Collectible.GOLDEN_DAGGER:
-				sprite.play("Walk Knife Up")
-			else:
-				sprite.play("Walk Up")
+			match dir:
+				"North":
+					if equipped == Collectible.GOLDEN_DAGGER:
+						sprite.play("Walk Knife Up")
+					else:
+						sprite.play("Walk Up")
+				"South":
+					if equipped == Collectible.GOLDEN_DAGGER:
+						sprite.play("Walk Knife Down")
+					else:
+						sprite.play("Walk Down")
 		door_cutscene["position"] = door_position
 		door_cutscene["player_start_pos"] = global_position
+		door_cutscene["direction"] = dir
 	else:
 		cutscene_timer += delta
 		if door_cutscene["reverse"]:
 			modulate.a = cutscene_timer
-			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y + hitbox.shape.get_rect().size.y+60.0)
+			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.shape.get_rect().size.y+60.0)
 			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
 			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
 		else:
@@ -225,7 +240,7 @@ func play_door_cutscene(delta, door_position = Vector2(), reverse = false):
 			if door_cutscene["reverse"]:
 				scale = Vector2(1.0,1.0)
 				modulate.a = 1.0
-				end_cutscene(true, -facing)
+				end_cutscene(true, facing)
 			else:
 				end_cutscene(false)
 	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtdx4k7brygo3"]
+[gd_scene format=3 uid="uid://dtdx4k7brygo3"]
 
 [ext_resource type="TileSet" uid="uid://dvegixpicq28i" path="res://Tiles/DungeonBuildingTiles.tres" id="1_yhij0"]
 
-[node name="BuildingTiles" type="TileMapLayer"]
+[node name="BuildingTiles" type="TileMapLayer" unique_id=1593192024]
+visibility_layer = 2
 y_sort_enabled = true
 texture_filter = 2
 tile_set = ExtResource("1_yhij0")

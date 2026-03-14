@@ -314,7 +314,15 @@ func on_scene_changed():
 	player.in_cutscene = false
 	if SceneTransition.by_door:
 		player.modulate.a = 0.0
-		player.play_door_cutscene(0.0, SceneTransition.player_start_position, true)
+		match player.door_cutscene["direction"]:
+			"North":
+				var pos = SceneTransition.player_start_position
+				pos.y -= 200.0
+				player.play_door_cutscene(0.0, pos, player.door_cutscene["direction"], true)
+			"South":
+				var pos = SceneTransition.player_start_position
+				pos.y += 120.0
+				player.play_door_cutscene(0.0, pos, player.door_cutscene["direction"], true)
 	if SceneTransition.by_outside_door:
 		player.modulate.a = 0.0
 		player.play_outside_door_cutscene(0.0, true)

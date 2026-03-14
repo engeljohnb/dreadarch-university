@@ -2,6 +2,8 @@ extends Area2D
 @export var next_start_position : Vector2
 @export var next_scene : String
 @export var direction : String
+@onready var north_sprite = $North
+@onready var south_sprite = $South
 
 var player_entered = false
 var player : CharacterBody2D
@@ -11,18 +13,31 @@ func on_body_entered(body):
 		if not body.in_cutscene:
 			player_entered = true
 			player = body
-			player.play_door_cutscene(0.0, global_position)
+			match direction:
+				"North":
+					var pos = Vector2(global_position.x, global_position.y + north_sprite.position.y)
+					player.play_door_cutscene(0.0, pos, direction)
+				"South":
+					var pos = Vector2(global_position.x, global_position.y)
+					player.play_door_cutscene(0.0, pos, direction)
 		
 func _ready():
-	match direction:
-		"Up":
-			$AnimatedSprite2D.frame = 1
-		"":
-			$AnimatedSprite2D.frame = 0
 	body_entered.connect(on_body_entered)
+	match direction:
+		"North":
+			north_sprite.visible = true
+		"South":
+			north_sprite.visible = false
 
 func _process(_delta):
 	if player_entered:
 		# Apparently calling this function right from on_body_entered breaks everything
 		if not player.in_cutscene:
-			SceneTransition.change_scene(next_scene, next_start_position, true)
+			var pos : Vector2
+			match direction:
+				"North":
+					pos = Vector2(next_start_position.x, next_start_position.y + north_sprite.position.y + 100.0)
+				"South":
+					pos = Vector2(next_start_position.x, next_start_position.y - north_sprite.position.y - 240.0)
+			SceneTransition.change_scene(next_scene, pos, true)
+	

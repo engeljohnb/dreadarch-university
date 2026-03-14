@@ -1,7 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://e0pns0rnrf62"]
+[gd_scene format=3 uid="uid://e0pns0rnrf62"]
 
 [ext_resource type="TileSet" uid="uid://coaprv7phi5iw" path="res://Tiles/DungeonFloorTiles.tres" id="1_3ehoj"]
 
-[node name="GroundTiles" type="TileMapLayer" groups=["FloorLayer"]]
+[node name="GroundTiles" type="TileMapLayer" unique_id=869289843 groups=["FloorLayer"]]
+visibility_layer = 3
 z_index = -1
 tile_set = ExtResource("1_3ehoj")

@@ -40,6 +40,7 @@ func activate(using_item = "", count = 0):
 				if (Collectible.textures.get(h)):
 					item_sprite.texture = Collectible.textures[h]
 				add_child(item_sprite)
+				item_sprite.z_index = 10
 				showing_item = true
 				item_sprites.append(item_sprite)
 				match h:
