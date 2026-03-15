@@ -134,6 +134,7 @@ func play_outside_door_cutscene(delta, reverse = false):
 		if equipped == Collectible.GOLDEN_DAGGER:
 			animation_name = animation_name + " Knife"
 		animation_name = animation_name + " " + Utils.nearest_cardinal_direction(facing, true)
+		print(animation_name)
 		if reverse:
 			modulate.a = 0.0
 			outside_door_cutscene["reverse"] = true
@@ -144,8 +145,8 @@ func play_outside_door_cutscene(delta, reverse = false):
 		cutscene_timer += delta
 		var dir = Utils.nearest_cardinal_direction(facing, true)
 		var speed = SPEED*0.5
-		if reverse:
-			speed = -speed
+		if outside_door_cutscene["reverse"]:
+			speed = speed
 		match dir:
 			"Left":
 				position.x -= speed*delta
@@ -197,31 +198,18 @@ func play_door_cutscene(delta, door_position = Vector2(), dir = "North", reverse
 	if delta == 0.0:
 		init_cutscene(play_door_cutscene, 1.0)
 		door_cutscene["reverse"] = reverse
-		if reverse:
-			match dir:
-				"North":
-					if equipped == Collectible.GOLDEN_DAGGER:
-						sprite.play("Walk Knife Up")
-					else:
-						sprite.play("Walk Up")
-				"South":
-					if equipped == Collectible.GOLDEN_DAGGER:
-						sprite.play("Walk Knife Down")
-					else:
-						sprite.play("Walk Down")
-			modulate.a = 0
-		else:
-			match dir:
-				"North":
-					if equipped == Collectible.GOLDEN_DAGGER:
-						sprite.play("Walk Knife Up")
-					else:
-						sprite.play("Walk Up")
-				"South":
-					if equipped == Collectible.GOLDEN_DAGGER:
-						sprite.play("Walk Knife Down")
-					else:
-						sprite.play("Walk Down")
+		match dir:
+			"North":
+				if equipped == Collectible.GOLDEN_DAGGER:
+					sprite.play("Walk Knife Up")
+				else:
+					sprite.play("Walk Up")
+			"South":
+				if equipped == Collectible.GOLDEN_DAGGER:
+					sprite.play("Walk Knife Down")
+				else:
+					sprite.play("Walk Down")
+		modulate.a = 0
 		door_cutscene["position"] = door_position
 		door_cutscene["player_start_pos"] = global_position
 		door_cutscene["direction"] = dir
