@@ -12,7 +12,8 @@ const DEATH_MUSIC = "res://Music/DeathMusic.ogg"
 #  breaks the JSON serializer used for game saves.
 #  So they have init. use it like save.init(), not save = Save.new()
 class Player:
-	var attack_damage
+	var level : int
+	var attack_damage : int
 	var position: Vector2
 	var life: int
 	var temporary_life : int
@@ -20,6 +21,7 @@ class Player:
 	# Guess it has to be a dictionary bc for some reason the JSON serializer can do Class.Class, but not Class.Class.Class
 	var inventory: Dictionary
 	func init():
+		level = 1
 		attack_damage = 1
 		position = Vector2()
 		life = 3
@@ -477,6 +479,7 @@ func save_game(filename = "user://SaveFiles/save.da"):
 	_save.player.attack_damage = player.attack_damage
 	_save.rooms[SceneTransition.current_scene_name] = get_room_save_info(current_scene)
 	_save.completed_tutorial_prompts = Collectible.get_completed_tutorial_prompts()
+	_save.player.level = player.level
 	var game_save_string = DictionarySerializer.serialize_json(_save)
 	if Utils.is_valid_save_filename(filename):
 		if save_slot_has_data(filename):
@@ -502,6 +505,7 @@ func load_game(filename = "user://SaveFiles/save.da"):
 	hud.lifebar.life = _player.life
 	player.global_position = _player.position
 	player.inventory = _player.inventory
+	player.level = _player.level
 	hud.lifebar.set_life_total(player.total_life, player.total_life+player.temporary_life)
 	hud.set_treasure(player.inventory[Collectible.TREASURE])
 	Collectible.load_collected_scroll_fragments(_player.inventory[Collectible.SCROLL_FRAGMENT])

@@ -69,7 +69,7 @@ func _ready():
 	var drop_generator = RandomNumberGenerator.new()
 	$Blinker.blink_duration = blink_duration
 	$Blinker.flip.connect(on_blinker_flipped)
-	$AnimatedSprite2D.frame = int(abs(global_position.x/3.0)) % 8
+	$AnimatedSprite2D.frame = int(abs(global_position.x/3.0)) % 3
 	
 	var odds = drop_generator.randf()
 	if odds > 0.9:

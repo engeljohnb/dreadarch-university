@@ -1,6 +1,6 @@
 extends Node2D
 @onready var label = $CanvasLayer/RichTextLabel
-@onready var sprite = $CanvasLayer/RichTextLabel/AnimatedSprite2Ds
+@onready var sprite = $CanvasLayer/RichTextLabel/AnimatedSprite2D
 
 func set_num_scroll_fragments(num : int):
 	$CanvasLayer/RichTextLabel.text = str(num)

@@ -64,11 +64,12 @@ collision_mask = 24
 script = ExtResource("1_ku18y")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=182171106]
-position = Vector2(0, 17)
+position = Vector2(0.99999994, -5.999996)
 scale = Vector2(1.56641, 1.56641)
 texture = SubResource("GradientTexture2D_w7g0e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1453248912]
+modulate = Color(0.8819366, 0.8819366, 0.88193655, 1)
 light_mask = 4
 visibility_layer = 4
 texture_filter = 2

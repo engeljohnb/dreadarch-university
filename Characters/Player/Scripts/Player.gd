@@ -22,6 +22,7 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 400.0
 
+var level = 1
 var attack_damage = 1
 var inventory = {"Scroll Fragment" = []}
 var dead = false

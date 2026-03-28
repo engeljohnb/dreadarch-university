@@ -59,12 +59,12 @@ func _ready():
 func get_button_name(filename : String):
 	return filename.replace(Utils.SAVE_FILE_DIRECTORY, "").replace(".da", "")
 	
-func get_save_filename(index):
+func get_save_filename(location_name, slot_num):
 	# index+1 because save slot numbering starts at 1
-	return Utils.SAVE_FILE_DIRECTORY + str(index) + " - " + get_location_name() + ".da"
+	return Utils.SAVE_FILE_DIRECTORY + str(slot_num) + " - " + location_name + ".da"
 	
-func get_location_name():
-	if "00-" in SceneTransition.current_scene_name:
+func get_location_name(room_name):
+	if "00-" in room_name:
 		return "University Campus"
 	else:
 		return "Shallow Ruins"
@@ -121,8 +121,15 @@ func make_button(save_filename, pos, slot_num):
 	button.z_index = 100
 	button.z_as_relative = false
 	button.add_theme_font_size_override("font_size", 75)
-	var button_filename : String
-	button_filename = get_save_filename(slot_num)
+	var scene_name = ""
+	if Utils.is_valid_save_filename(save_filename):
+		var save_data = Utils.read_save_data_from_file(save_filename)
+		scene_name = save_data.current_scene
+	elif save_filename == EMPTY_SLOT_NAME:
+		scene_name = SceneTransition.current_scene_name
+	var location_name = get_location_name(scene_name)
+	var button_filename : String = get_save_filename(location_name, slot_num)
+	print(button_filename)
 	if not save_filename == EMPTY_SLOT_NAME:
 		make_save_slot_mini_gui(button, pos)
 	button.pressed.connect(save_file_chosen.emit.bind(button_filename))
@@ -140,18 +147,20 @@ func make_empty_save_slot(slot_num):
 	return button
 
 func open(all_save_filenames : Array[String], mode = OpenModes.SAVE, pos = Vector2(), max_save_files : int = 5):
-	var non_empty_save_slots = []
-	for i in range(0, max_save_files):
-		if i < all_save_filenames.size():
-			var filename = all_save_filenames[i]
-			if Utils.is_valid_save_filename(filename):
-				var slot_num = int(get_button_name(filename)[0])
-				all_buttons.append(make_button(all_save_filenames[i], pos, slot_num))
-				non_empty_save_slots.append(slot_num)
+	var occupied_save_slots = []
+	for filename in all_save_filenames:
+		if Utils.is_valid_save_filename(filename):
+			print(filename)
+			var slot_num = int(get_button_name(filename)[0])
+			all_buttons.append(make_button(filename, pos, slot_num))
+			occupied_save_slots.append(slot_num)
+		else:
+			print("ERROR: invalid save filename: ", filename)
+	print(occupied_save_slots)
 	# Iterating twice is necessary to make the slots appear in the right order
 	for i in range(0, max_save_files):
 		var slot_num = i+1
-		if slot_num not in non_empty_save_slots:
+		if slot_num not in occupied_save_slots:
 			if mode == OpenModes.SAVE:
 				all_buttons.append(make_button(EMPTY_SLOT_NAME, pos, slot_num))
 			else:

@@ -526,7 +526,7 @@ tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAD//wAAAAAAAAEAAAAAAP//AAABAAA
 
 [node name="Door" parent="." unique_id=677887159 groups=["Vertical"] instance=ExtResource("2_puiu4")]
 position = Vector2(-1278, -1047)
-next_start_position = Vector2(0, 1961)
+next_start_position = Vector2(0, 2537)
 next_scene = "res://Dungeons/01/01-02.tscn"
 
 [node name="Ladder" type="Node2D" parent="." unique_id=2081911860 groups=["Vertical"]]

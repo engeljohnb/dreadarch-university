@@ -93,6 +93,24 @@ offset_right = 0.23999023
 offset_bottom = 10.959961
 texture = ExtResource("5_ug62f")
 
+[node name="LevelUp" type="Button" parent="." unique_id=1360558370]
+visible = false
+self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.455
+anchor_top = 0.679
+anchor_right = 0.54200006
+anchor_bottom = 0.731
+offset_left = -0.6000366
+offset_top = -0.32000732
+offset_right = 40.797974
+offset_bottom = 39.39203
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+disabled = true
+text = "Level Up"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=576258452]
 layout_mode = 1
 anchors_preset = -1

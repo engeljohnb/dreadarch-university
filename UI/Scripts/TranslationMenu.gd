@@ -11,17 +11,46 @@ var progress_icons = []
 var starting_scroll_position = Vector2(570, 400)
 var progress_index = 0
 var level_up_open = false
-
+@onready var translate_button = $Translate
+@onready var level_up_button = $LevelUp
+@onready var back_button = $Back
 func close():
 	get_tree().paused = false
 	closed.emit()
 	queue_free()
-	
-func on_closed():
+
+func reset_level_up_progress():
+	progress_index = 0
+	for icon in progress_icons:
+		icon.reset()
+		
+func on_level_up_menu_closed():
 	$Back.grab_focus()
 	visible = true
 	level_up_open = false
+	toggle_level_up_mode()
+	reset_level_up_progress()
+	open(documents)
 	
+func enable_button(button):
+	button.disabled = false
+	button.visible = true
+	button.focus_mode = FocusMode.FOCUS_ALL
+func disable_button(button):
+	button.disabled = true
+	button.visible = false
+	button.focus_mode = FocusMode.FOCUS_NONE
+	
+func toggle_level_up_mode():
+	if level_up_button.disabled:
+		enable_button(level_up_button)
+		disable_button(translate_button)
+		level_up_button.grab_focus()
+	else:
+		enable_button(translate_button)
+		disable_button(level_up_button)
+		back_button.grab_focus()
+		
 func on_translate():
 	if selected_document.is_empty():
 		Dialogue.notify_player.emit([{"text":"Nothing to translate."}])
@@ -36,15 +65,20 @@ func on_translate():
 	progress_index += 1
 	Collectible.scroll_fragment_translated.emit(selected_document)
 	if progress_index == Collectible.fragments_to_level_up:
-		level_up_menu = _level_up_menu.instantiate()
-		visible = false
-		add_sibling(level_up_menu)
-		level_up_open = true
-		level_up_menu.closed.connect(on_closed)
+		toggle_level_up_mode()
+
 	if progress_index > Collectible.fragments_to_level_up:
 		progress_index = 0
 		for icon in progress_icons:
 			icon.reset()
+
+func open_level_up_menu():
+	level_up_menu = _level_up_menu.instantiate()
+	visible = false
+	add_sibling(level_up_menu)
+	level_up_open = true
+	level_up_menu.closed.connect(on_level_up_menu_closed)
+	
 	
 func next_document(index_addend = 1):
 	$SelectSound.play()
@@ -72,20 +106,28 @@ func open(_documents : Array):
 		if document.get("translated"):
 			num_translated += 1
 	if num_translated >= level_up_total:
-		var translated_remainder = num_translated % level_up_total
-		# Removing scrolls that have already been translated
-		var num_scrolls_not_displayed = num_translated - translated_remainder
-		var counter = 0
-		var documents_to_erase = []
-		for document in documents:
-			if document.get("translated"):
-				counter += 1
-				documents_to_erase.append(document)
-				if counter > num_scrolls_not_displayed:
-					break
-		for doc in documents_to_erase:
-			documents.erase(doc)
-		num_translated = translated_remainder
+		var level = get_tree().get_nodes_in_group("Player")[0].level
+		var translated_remainder : int = num_translated % level_up_total
+		@warning_ignore("integer_division")
+		var should_be_level : int = num_translated / level_up_total
+		if level < should_be_level:
+			num_translated = level_up_total
+			if level_up_button.disabled:
+				toggle_level_up_mode()
+		else:
+			# Removing scrolls that have already been translated
+			var num_scrolls_not_displayed = num_translated - translated_remainder
+			var counter = 0
+			var documents_to_erase = []
+			for document in documents:
+				if document.get("translated"):
+					counter += 1
+					documents_to_erase.append(document)
+					if counter > num_scrolls_not_displayed:
+						break
+			for doc in documents_to_erase:
+				documents.erase(doc)
+			num_translated = translated_remainder
 	next_document()
 	var width = level_up_total*84
 	for i in range(0, level_up_total):
@@ -98,12 +140,16 @@ func open(_documents : Array):
 		if i < num_translated:
 			progress_index += 1
 			icon.set_full()
-	$Translate.grab_focus()
+	if level_up_button.disabled:
+		translate_button.grab_focus()
+	else:
+		level_up_button.grab_focus()
 
 func _ready():
-	$Translate.pressed.connect(on_translate)
-	$Back.pressed.connect(close)
-	$Translate.grab_focus()
+	translate_button.pressed.connect(on_translate)
+	back_button.pressed.connect(close)
+	translate_button.grab_focus()
+	level_up_button.pressed.connect(open_level_up_menu)
 	$RichTextLabel.text = ""
 	
 func _process(_delta):

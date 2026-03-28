@@ -158,7 +158,7 @@ var retiring_dialogue = [
 		"speaker" : "Fitzroy"
 	},
 	{
-		"text" : "If they ever find me I could get court martialed.",
+		"text" : "If they ever find me I could be court martialed.",
 		"speaker" : "Fitzroy"
 	},
 	{

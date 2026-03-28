@@ -32,7 +32,7 @@ func on_shelf_searched():
 func _ready():
 	shelf.searched.connect(on_shelf_searched)
 	get_parent().music.volume_db = -7.3
-	
+
 func _process(_delta):
 	var parent = get_parent()
 	parent.music.volume_db = music_volume

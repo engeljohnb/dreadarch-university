@@ -86,6 +86,9 @@ func is_valid_save_filename(filename):
 		
 func read_save_data_from_file(filename = "user://SaveFiles/save.da"):
 	var file = FileAccess.open(filename, FileAccess.READ)
+	if file == null:
+		print(FileAccess.get_open_error())
+		print(filename)
 	var _save = Save.new()
 	_save.init()
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
