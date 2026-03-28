@@ -43,7 +43,8 @@ enum OpenModes {
 }
 
 var all_buttons : Array[Button]
-
+var lifebars = []
+var icons = []
 func on_save_file_chosen(_filename):
 	close()
 
@@ -78,9 +79,11 @@ func make_save_slot_mini_gui(button, pos):
 		total_life = 3
 	lifebar.for_save_slot = true
 	button.add_child(lifebar)
+	lifebar.name = "Lifebar"
 	lifebar.set_life_total(total_life, life)
 	if temp_life > 0:
 		lifebar.gain_temporary_life(temp_life)
+	lifebars.append(lifebar)
 	
 	var treasure_icon = load("res://UI/Treasure.tscn").instantiate()
 	var treasure = save_data.player.inventory[Collectible.TREASURE]
@@ -90,12 +93,23 @@ func make_save_slot_mini_gui(button, pos):
 	treasure_icon.for_save_slot = true
 	treasure_icon.save_slot_position = pos + button.position
 	button.add_child(treasure_icon)
+	icons.append(treasure_icon)
 	
 	var scroll_icon = load("res://UI/NumScrollFragments.tscn").instantiate()
 	var num_scroll_fragments = save_data.player.inventory[Collectible.SCROLL_FRAGMENT].size()
 	scroll_icon.set_num_scroll_fragments(num_scroll_fragments)
 	scroll_icon.set_position_for_mini_gui(pos.y + button.position.y - 10)
 	button.add_child(scroll_icon)
+	icons.append(scroll_icon)
+	
+func set_mini_gui_lifebar_brightness(brightness : float):
+	for lifebar in lifebars:
+		lifebar.modulate *= brightness
+		lifebar.modulate.a = 1.0
+
+func set_mini_gui_icon_brightness(brightness: float):
+	for icon in icons:
+		icon.set_brightness(brightness)
 	
 func make_button(save_filename, pos, slot_num):
 	var button = Button.new()

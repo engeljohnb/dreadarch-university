@@ -10,7 +10,7 @@ func on_back():
 	welcome.newgame_button.grab_focus()
 	var game_node = get_parent().get_parent()
 	game_node.current_scene = welcome
-	welcome.loadgame_button.pressed.connect(game_node.load_game)
+	welcome.loadgame_button.pressed.connect(game_node.open_load_game_menu)
 	queue_free()
 	
 func _ready():

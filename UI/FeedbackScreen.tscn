@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://belqmld51vy5m"]
+[gd_scene format=3 uid="uid://belqmld51vy5m"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_fchvq"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="2_ancc7"]
@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="4_kabjm"]
 [ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="5_kabjm"]
 
-[node name="FeedbackScreen" type="Control"]
+[node name="FeedbackScreen" type="Control" unique_id=2847442]
 process_mode = 2
 modulate = Color(0.329412, 0.329412, 0.329412, 1)
 z_index = 4
@@ -19,7 +19,7 @@ grow_vertical = 2
 theme = ExtResource("1_fchvq")
 script = ExtResource("2_kabjm")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1178229880]
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -36,7 +36,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=786559387]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -45,7 +45,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1096970828]
 z_index = -2
 custom_minimum_size = Vector2(1920, 0)
 layout_mode = 1
@@ -58,17 +58,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
-[node name="LampLight" parent="." instance=ExtResource("2_ancc7")]
+[node name="LampLight" parent="." unique_id=2071469742 instance=ExtResource("2_ancc7")]
 position = Vector2(1191, 575)
 scale = Vector2(37.7031, 22.8594)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=687309942]
 
-[node name="MenuSelectSound" type="AudioStreamPlayer" parent="."]
+[node name="MenuSelectSound" type="AudioStreamPlayer" parent="." unique_id=1008166314]
 stream = ExtResource("4_kabjm")
 volume_db = 2.0
 
-[node name="Smaller label" type="RichTextLabel" parent="."]
+[node name="Smaller label" type="RichTextLabel" parent="." unique_id=548200471]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.067
@@ -86,7 +86,7 @@ text = "The game is pre-alpha, and much of the art and sounds are placeholders. 
 Send your thoughts to:
 engeljohnb@gmail.com"
 
-[node name="Back" type="Button" parent="."]
+[node name="Back" type="Button" parent="." unique_id=464216141]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07300001

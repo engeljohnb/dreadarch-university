@@ -25,3 +25,9 @@ func _ready():
 func set_treasure(treasure : int):
 	var treasure_string = str(treasure)
 	$CanvasLayer/RichTextLabel.text = treasure_string
+	
+func set_brightness(brightness : float):
+	$CanvasLayer/RichTextLabel.modulate *= brightness
+	$CanvasLayer/RichTextLabel/AnimatedSprite2D.modulate *= brightness
+	$CanvasLayer/RichTextLabel.modulate.a = 1.0
+	$CanvasLayer/RichTextLabel/AnimatedSprite2D.modulate.a = 1.0

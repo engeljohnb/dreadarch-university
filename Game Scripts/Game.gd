@@ -363,10 +363,15 @@ func open_load_game_menu(pos = null):
 	menu.open(saves, menu.OpenModes.LOAD, menu_pos, max_save_files)
 	var from_gameplay = not ((current_scene.name == "WelcomeMenu") or (current_scene.name == "DeathMenu"))
 	if not from_gameplay:
+		# Because in the welcome and death menus, the lifebar looks really dark
+		# compared to the bright bg
+		menu.set_mini_gui_lifebar_brightness(3.0)
+		menu.set_mini_gui_icon_brightness(0.66)
 		current_scene.add_child(menu)
 		current_scene.hide_all()
 		menu.closed.connect(current_scene.show_all)
 	else:
+		menu.set_mini_gui_icon_brightness(0.8)
 		if pause_menu.visible:
 			pause_menu.hide_all()
 			menu.closed.connect(pause_menu.show_all)
@@ -397,6 +402,7 @@ func open_save_game_menu(pos = null):
 		menu_pos = pos
 	
 	menu.open(all_saves, menu.OpenModes.SAVE, menu_pos, max_save_files)
+	menu.set_mini_gui_icon_brightness(0.8)
 	if pause_menu.visible:
 		pause_menu.hide_all()
 		menu.closed.connect(pause_menu.show_all)
@@ -484,6 +490,7 @@ func save_game(filename = "user://SaveFiles/save.da"):
 func load_game(filename = "user://SaveFiles/save.da"):
 	var file = FileAccess.open(filename, FileAccess.READ)
 	_save = null
+	print(filename)
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	_player = _save.player
 	init_player()

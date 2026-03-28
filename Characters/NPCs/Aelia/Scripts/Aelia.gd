@@ -40,7 +40,7 @@ var dialogues = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"I am Aelia. In life I was a leche of alchymie for the Queen.",
+		"text":"I am Aelia. In life I was a scolere of alchymie for the Queen.",
 		"speaker":"Aelia"
 	},
 	{
