@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c1b6vswgbku5p"]
+
+[ext_resource type="Script" uid="uid://bsr1sgya2vc0d" path="res://UI/Scripts/NumScrollFragments.gd" id="1_0lwf4"]
+[ext_resource type="Texture2D" uid="uid://bqsk2ymg6f8er" path="res://Assets/Items/ScrollFragment/Scroll.png" id="1_eo1qy"]
+[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="2_5vag4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifbw7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eo1qy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.5
+}]
+
+[node name="NumScrollFragments" type="Node2D" unique_id=1135087315]
+z_index = 1001
+z_as_relative = false
+script = ExtResource("1_0lwf4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1165737692]
+layer = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=2008351127]
+anchors_preset = -1
+anchor_left = 0.882
+anchor_top = 0.071
+anchor_right = 0.94200003
+anchor_bottom = 0.116000004
+offset_left = -1693.4401
+offset_top = -76.68
+offset_right = -1694.64
+offset_bottom = -77.28001
+theme = ExtResource("2_5vag4")
+theme_override_colors/default_color = Color(1, 1, 1, 0.768)
+theme_override_font_sizes/normal_font_size = 45
+text = "0"
+horizontal_alignment = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/RichTextLabel" unique_id=1796828628]
+texture_filter = 1
+position = Vector2(57, 25)
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_ifbw7")

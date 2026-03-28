@@ -75,6 +75,7 @@ metadata/_edit_group_ = true
 position = Vector2(-2060, -878)
 next_scene = "res://Dungeons/00/00-02.tscn"
 next_start_position = Vector2(1900, 68)
+direction = "West"
 
 [node name="UniversityPlantTiles2" parent="." unique_id=157956904 instance=ExtResource("5_1wk3a")]
 z_index = -1

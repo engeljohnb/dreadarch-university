@@ -9,10 +9,15 @@ var outline_segs = []
 var full_color = Color(0.6, 0.2, 0.15)
 var temporary_life_color = Color(0.9, 0.8, 0.3)
 var empty_color = Color(0.5,0.5,0.5)
+var for_save_slot = false
 
 func _ready():
-	var viewport_size = get_viewport_rect().size
-	position = viewport_size/10.0
+	if for_save_slot:
+		position = Vector2(-90, 30)
+		scale = Vector2(0.5, 0.5)
+	else:
+		var viewport_size = get_viewport_rect().size
+		position = viewport_size/10.0
 
 func set_life_total(lt, _life = lt):
 	for rect in rects:

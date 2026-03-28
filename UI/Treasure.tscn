@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxqkcjmpaa7"]
+[gd_scene format=3 uid="uid://dxqkcjmpaa7"]
 
 [ext_resource type="Texture2D" uid="uid://gt7i85h0e74q" path="res://Assets/Items/Treasure/0000.png" id="1_2uiaa"]
 [ext_resource type="Script" uid="uid://dg4aisack662u" path="res://UI/Scripts/Treasure.gd" id="1_ml3wv"]
@@ -27,29 +27,30 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Treasure" type="Node2D"]
+[node name="Treasure" type="Node2D" unique_id=289583915]
+z_index = 6
+z_as_relative = false
 script = ExtResource("1_ml3wv")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=927442899]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1074403184]
 anchors_preset = -1
-anchor_left = 0.83500004
-anchor_top = 0.066
-anchor_right = 0.89500004
-anchor_bottom = 0.11000001
-offset_left = 90.79993
-offset_top = 5.720001
-offset_right = 89.599976
-offset_bottom = 6.1999893
+anchor_left = 0.882
+anchor_top = 0.071
+anchor_right = 0.94200003
+anchor_bottom = 0.116000004
+offset_left = 0.5599365
+offset_top = 0.3199997
+offset_right = -0.64001465
+offset_bottom = -0.2800064
 theme = ExtResource("2_etjus")
 theme_override_colors/default_color = Color(1, 1, 1, 0.768)
 theme_override_font_sizes/normal_font_size = 45
 text = "0"
 horizontal_alignment = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/RichTextLabel"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/RichTextLabel" unique_id=1569689070]
 texture_filter = 1
 position = Vector2(22.999996, 25)
 scale = Vector2(2.6874971, 2.6874971)

@@ -71,7 +71,7 @@ func _ready():
 	$Blinker.flip.connect(on_blinker_flipped)
 	$AnimatedSprite2D.frame = int(abs(global_position.x/3.0)) % 8
 	
-	var odds = drop_generator.randf() 
+	var odds = drop_generator.randf()
 	if odds > 0.9:
 		has.append(can_drop[1])
 		amounts.append(1)

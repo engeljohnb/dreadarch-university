@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://d17i0mnfuqw6m"]
+
+[ext_resource type="FontFile" uid="uid://bulvrkgvcig85" path="res://Assets/UI/Fonts/days_of_charity/Days of Charity.otf" id="1_3jf6a"]
+[ext_resource type="Texture2D" uid="uid://cs08el3h671jy" path="res://Assets/UI/LongButton/LongButtonFocused.png" id="2_7dm7m"]
+[ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="3_ur42t"]
+[ext_resource type="Texture2D" uid="uid://by0g62qxl6xvi" path="res://Assets/UI/BookBorder.png" id="4_7uaom"]
+[ext_resource type="FontFile" uid="uid://bbg2g22ht2tgr" path="res://Assets/UI/Fonts/chomsky/Chomsky.otf" id="5_wm63o"]
+[ext_resource type="Script" uid="uid://kyqpwgbj6ber" path="res://UI/Scripts/SaveGameMenu.gd" id="6_3jf6a"]
+[ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="7_f5nn5"]
+[ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="8_n6r0m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nilmd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf1sp"]
+texture = ExtResource("2_7dm7m")
+modulate_color = Color(1, 1, 1, 0.813)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxt2n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jsuq4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cvf32"]
+content_margin_left = 35.0
+content_margin_top = 35.0
+content_margin_right = 29.0
+content_margin_bottom = 29.0
+texture = ExtResource("3_ur42t")
+modulate_color = Color(1, 1, 1, 0.4)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3jf6a"]
+color = Color(0, 0, 0, 0.4627451)
+thickness = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ba4l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yvmn"]
+texture = ExtResource("4_7uaom")
+
+[sub_resource type="Theme" id="Theme_wi1q8"]
+Button/colors/font_color = Color(0, 0, 0, 0.8)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.21568628)
+Button/colors/font_focus_color = Color(0, 0, 0, 0.8)
+Button/colors/font_hover_color = Color(0, 0, 0, 0.8)
+Button/colors/font_pressed_color = Color(0, 0, 0, 0.4)
+Button/colors/icon_disabled_color = Color(0, 0, 0, 0.4)
+Button/font_sizes/font_size = 115
+Button/fonts/font = ExtResource("1_3jf6a")
+Button/styles/disabled = SubResource("StyleBoxEmpty_nilmd")
+Button/styles/focus = SubResource("StyleBoxTexture_wf1sp")
+Button/styles/hover = SubResource("StyleBoxEmpty_qxt2n")
+Button/styles/normal = SubResource("StyleBoxEmpty_jsuq4")
+Button/styles/pressed = SubResource("StyleBoxTexture_cvf32")
+HSeparator/styles/separator = SubResource("StyleBoxLine_3jf6a")
+ItemList/styles/panel = SubResource("StyleBoxEmpty_3ba4l")
+Panel/styles/panel = SubResource("StyleBoxTexture_7yvmn")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/font_sizes/normal_font_size = 100
+RichTextLabel/fonts/normal_font = ExtResource("5_wm63o")
+
+[node name="SaveGameMenu" type="Control" unique_id=212202607]
+process_mode = 2
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
+z_index = 9
+z_as_relative = false
+texture_filter = 1
+layout_mode = 3
+anchor_right = 0.59400004
+anchor_bottom = 1.0
+offset_right = 0.51989746
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wi1q8")
+script = ExtResource("6_3jf6a")
+
+[node name="OpenMenuSound" type="AudioStreamPlayer" parent="." unique_id=735718205]
+stream = ExtResource("7_f5nn5")
+pitch_scale = 2.0
+
+[node name="MenuSelectSound" type="AudioStreamPlayer" parent="." unique_id=1752201524]
+stream = ExtResource("8_n6r0m")
+volume_db = 2.0

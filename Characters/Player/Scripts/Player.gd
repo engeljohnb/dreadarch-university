@@ -41,7 +41,7 @@ var moving = false
 var equipped = Collectible.GOLDEN_DAGGER
 var attacking = false
 var won = false
-var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "reverse": false, "min_scale": 0.8}
+var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "arriving": false, "min_scale": 0.8}
 var climb_cutscene = {"position" : Vector2(), "start_pos" : Vector2(), "arriving" : false, "direction":""}
 var outside_door_cutscene = {"reverse":false}
 var in_dialogue = false
@@ -134,7 +134,6 @@ func play_outside_door_cutscene(delta, reverse = false):
 		if equipped == Collectible.GOLDEN_DAGGER:
 			animation_name = animation_name + " Knife"
 		animation_name = animation_name + " " + Utils.nearest_cardinal_direction(facing, true)
-		print(animation_name)
 		if reverse:
 			modulate.a = 0.0
 			outside_door_cutscene["reverse"] = true
@@ -194,38 +193,67 @@ func end_cutscene(to_idle = true, direction = facing):
 func cutscene_over():
 	return cutscene_timer >= cutscene_duration
 	
-func play_door_cutscene(delta, door_position = Vector2(), dir = "North", reverse = false):
+func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arriving = false):
 	if delta == 0.0:
 		init_cutscene(play_door_cutscene, 1.0)
-		door_cutscene["reverse"] = reverse
+		door_cutscene["arriving"] = arriving
+		door_cutscene["min_scale"] = 0.8
 		match dir:
 			"North":
 				if equipped == Collectible.GOLDEN_DAGGER:
 					sprite.play("Walk Knife Up")
 				else:
 					sprite.play("Walk Up")
+				if arriving:
+					door_cutscene["min_scale"] = 1.2
 			"South":
 				if equipped == Collectible.GOLDEN_DAGGER:
 					sprite.play("Walk Knife Down")
 				else:
 					sprite.play("Walk Down")
+				if not arriving:
+					door_cutscene["min_scale"] = 1.2
+			"West":
+				if equipped == Collectible.GOLDEN_DAGGER:
+					sprite.play("Walk Knife Left")
+				else:
+					sprite.play("Walk Left")
+			"East":
+				if equipped == Collectible.GOLDEN_DAGGER:
+					sprite.play("Walk Knife Right")
+				else:
+					sprite.play("Walk Right")
 		modulate.a = 0
 		door_cutscene["position"] = door_position
 		door_cutscene["player_start_pos"] = global_position
 		door_cutscene["direction"] = dir
 	else:
 		cutscene_timer += delta
-		if door_cutscene["reverse"]:
+		if door_cutscene["arriving"]:
 			modulate.a = cutscene_timer
-			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.shape.get_rect().size.y+60.0)
-			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
-			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
 		else:
-			scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
-			global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
 			modulate.a = 1.0 - cutscene_timer
+		if (door_cutscene["direction"] == "West") or (door_cutscene["direction"] == "East"):
+			if door_cutscene["arriving"]:
+				var target_position = Vector2(door_cutscene["position"].x - hitbox.shape.get_rect().size.x+60.0, door_cutscene["position"].y)
+				global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
+				scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
+			else:
+				var x_difference = (door_cutscene["position"].x - door_cutscene["player_start_pos"].x)
+				var x_total = door_cutscene["player_start_pos"].x + x_difference
+				var target_pos = Vector2(x_total, door_cutscene["player_start_pos"].y)
+				#scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
+				global_position = lerp(door_cutscene["player_start_pos"], target_pos, cutscene_timer)
+		elif (door_cutscene["direction"] == "North") or (door_cutscene["direction"] == "South"):
+			if door_cutscene["arriving"]:
+				var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.shape.get_rect().size.y+60.0)
+				global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
+				scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
+			else:
+				scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
+				global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
 		if cutscene_over():
-			if door_cutscene["reverse"]:
+			if door_cutscene["arriving"]:
 				scale = Vector2(1.0,1.0)
 				modulate.a = 1.0
 				end_cutscene(true, facing)

@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dibqpvs8847mq"]
+[gd_scene format=3 uid="uid://dibqpvs8847mq"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_sh2gw"]
 [ext_resource type="Script" uid="uid://i0fseqrk78fi" path="res://UI/Scripts/WelcomeMenu.gd" id="2_dj11p"]
 [ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="4_yxqvu"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="5_7of3o"]
 
-[node name="WelcomeMenu" type="Control"]
+[node name="WelcomeMenu" type="Control" unique_id=613233811]
 process_mode = 2
 modulate = Color(0.329412, 0.329412, 0.329412, 1)
 z_index = 4
@@ -19,7 +19,7 @@ theme = ExtResource("1_sh2gw")
 script = ExtResource("2_dj11p")
 music = "res://Music/DungeonMusic.ogg"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1904528437]
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -35,7 +35,7 @@ text = "Dreadarch University"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="." unique_id=1571004189]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +47,7 @@ offset_bottom = -717.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LoadGame" type="Button" parent="Buttons"]
+[node name="LoadGame" type="Button" parent="Buttons" unique_id=2042330187]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.825
@@ -58,7 +58,7 @@ offset_left = -2.0
 offset_right = -6.1035156e-05
 text = "Load Game"
 
-[node name="NewGame" type="Button" parent="Buttons"]
+[node name="NewGame" type="Button" parent="Buttons" unique_id=2100294284]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.9000001
@@ -68,7 +68,7 @@ offset_right = 275.625
 scale = Vector2(0.64, 1)
 text = "New Game"
 
-[node name="Quit" type="Button" parent="Buttons"]
+[node name="Quit" type="Button" parent="Buttons" unique_id=1753300176]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.7
@@ -80,7 +80,7 @@ offset_right = -6.1035156e-05
 offset_bottom = -6.1035156e-05
 text = "Quit"
 
-[node name="Feedback" type="Button" parent="Buttons"]
+[node name="Feedback" type="Button" parent="Buttons" unique_id=1503570130]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.7750001
@@ -90,7 +90,7 @@ anchor_bottom = 10.8
 offset_right = 1.0
 text = "Feedback"
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1909986445]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -99,7 +99,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=755679943]
 z_index = -2
 custom_minimum_size = Vector2(1920, 0)
 layout_mode = 1
@@ -112,12 +112,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
-[node name="LampLight" parent="." instance=ExtResource("4_yxqvu")]
+[node name="LampLight" parent="." unique_id=1929235277 instance=ExtResource("4_yxqvu")]
 position = Vector2(1191, 575)
 scale = Vector2(37.7031, 22.8594)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=956884093]
 
-[node name="MenuSelectSound" type="AudioStreamPlayer" parent="."]
+[node name="MenuSelectSound" type="AudioStreamPlayer" parent="." unique_id=203391043]
 stream = ExtResource("5_7of3o")
 volume_db = 2.0

@@ -27,6 +27,7 @@ texture = SubResource("GradientTexture1D_r0x5m")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1947700564]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1696318474 instance=ExtResource("2_xkndl")]
+z_as_relative = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

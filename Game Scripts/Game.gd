@@ -53,6 +53,8 @@ var _save = Save.new()
 var _player = Player.new()
 var floor_tiles = null
 var step_sound_source = null
+var max_save_files = 5
+#var all_save_filenames : Array[String]
 
 
 func apply_or_remove_footstep_reverb():
@@ -138,10 +140,10 @@ func init_player():
 	if not Collectible.scroll_fragment_translated.is_connected(player.on_scroll_fragment_translated):
 		Collectible.scroll_fragment_translated.connect(player.on_scroll_fragment_translated)
 	hud.lifebar.set_life_total(player.total_life, player.life)
-	show_hud()
+	hud._show()
 
 func end_gameplay():
-	hide_hud()
+	hud._hide()
 	player = current_scene.get_node("Player")
 	if (player.get_node_or_null("PlayerAttackFX")):
 		player.get_node("PlayerAttackFX").queue_free()
@@ -170,7 +172,7 @@ func player_death_cutscene(delta):
 		$Fade.texture.width = viewport_size.x+2
 		$Fade.scale.y = viewport_size.y+2
 		$Fade.global_position = player.global_position
-		hide_hud()
+		hud._hide()
 		var playback = player.anim_tree["parameters/playback"]
 		playback.travel("End")
 	else:
@@ -293,6 +295,9 @@ func on_scene_changed():
 		current_scene.add_child(player)
 	hud.lifebar.set_life_total(player.total_life, player.life+player.temporary_life)
 	add_child(current_scene)
+	var world_level = SceneTransition.current_scene_name.substr(0, 2)
+	if world_level == "00":
+		player.step_sound.bus = "Master"
 	if SceneTransition.current_scene_name == "WelcomeMenu" or SceneTransition.prev_scene_name == "WelcomeMenu":
 		music.update(current_scene, false, true)
 	else:
@@ -318,11 +323,19 @@ func on_scene_changed():
 			"North":
 				var pos = SceneTransition.player_start_position
 				pos.y -= 200.0
-				player.play_door_cutscene(0.0, pos, player.door_cutscene["direction"], true)
+				player.play_door_cutscene(0.0, pos, "North", true)
 			"South":
 				var pos = SceneTransition.player_start_position
 				pos.y += 120.0
-				player.play_door_cutscene(0.0, pos, player.door_cutscene["direction"], true)
+				player.play_door_cutscene(0.0, pos, "South", true)
+			"East":
+				var pos = SceneTransition.player_start_position
+				pos.x += 250.0
+				player.play_door_cutscene(0.0, pos, "East", true)
+			"West":
+				var pos = SceneTransition.player_start_position
+				pos.x -= 250.0
+				player.play_door_cutscene(0.0, pos, "West", true)
 	if SceneTransition.by_outside_door:
 		player.modulate.a = 0.0
 		player.play_outside_door_cutscene(0.0, true)
@@ -335,9 +348,60 @@ func on_scene_changed():
 		{"position":start_pos, "start_pos":start_pos, "direction":direction, "arriving":arriving})
 	update_footstep_sound_source()
 	
-func open_load_game_menu():
-	load_game()
+func open_load_game_menu(pos = null):
+	var menu = load("res://UI/SaveGameMenu.tscn").instantiate()
+	menu.save_file_chosen.connect(load_game)
 	
+	var menu_pos : Vector2
+	if not pos:
+		var menu_pos_y = 250+menu.size.y+10
+		var menu_pos_x = (get_window().size.x/2.0) - (250)
+		menu_pos = Vector2(menu_pos_x, menu_pos_y)
+	else:
+		menu_pos = pos
+	var saves = get_all_save_filenames()
+	menu.open(saves, menu.OpenModes.LOAD, menu_pos, max_save_files)
+	var from_gameplay = not ((current_scene.name == "WelcomeMenu") or (current_scene.name == "DeathMenu"))
+	if not from_gameplay:
+		current_scene.add_child(menu)
+		current_scene.hide_all()
+		menu.closed.connect(current_scene.show_all)
+	else:
+		if pause_menu.visible:
+			pause_menu.hide_all()
+			menu.closed.connect(pause_menu.show_all)
+		hud.add_child(menu)
+	#load_game()
+	
+func get_all_save_filenames():
+	var saves : Array[String]
+	var dir = DirAccess.open("user://SaveFiles/")
+	for filename in dir.get_files():
+		saves.append(dir.get_current_dir() + "/" + filename)
+		if saves.size() > max_save_files:
+			break
+	return saves
+
+func open_save_game_menu(pos = null):
+	var menu = load("res://UI/SaveGameMenu.tscn").instantiate()
+	menu.save_file_chosen.connect(save_game)
+	menu.save_file_chosen.connect(pause_menu.on_save_file_chosen)
+	var all_saves = get_all_save_filenames()
+
+	var menu_pos : Vector2
+	if not pos:
+		var menu_pos_y = 250+menu.size.y+10
+		var menu_pos_x = (get_window().size.x/2.0) - (250)
+		menu_pos = Vector2(menu_pos_x, menu_pos_y)
+	else:
+		menu_pos = pos
+	
+	menu.open(all_saves, menu.OpenModes.SAVE, menu_pos, max_save_files)
+	if pause_menu.visible:
+		pause_menu.hide_all()
+		menu.closed.connect(pause_menu.show_all)
+	hud.add_child(menu)
+		
 func on_won():
 	player.play_victory_cutscene(0.0)
 
@@ -362,8 +426,8 @@ func _ready():
 	music.update(current_scene)
 	init_player()
 	
-	pause_menu.save_button.pressed.connect(save_game)
-	pause_menu.load_button.pressed.connect(load_game)
+	pause_menu.save_button.pressed.connect(open_save_game_menu.bind(Vector2(720,200)))
+	pause_menu.load_button.pressed.connect(open_load_game_menu.bind(Vector2(720,200)))
 	pause_menu.continue_button.pressed.connect(close_menu_sound.play)
 	
 	Dialogue.prompt_player.connect(_prompt_player)
@@ -379,13 +443,24 @@ func _ready():
 	SceneTransition.scene_changed.connect(on_scene_changed)
 	SceneTransition.won.connect(on_won)
 	get_tree().paused = true
-	
-func load_from_file(filename):
-	var file = FileAccess.open(filename, FileAccess.READ)
-	var content = file.get_as_text()
-	return content
 
-func save_game():
+func save_slot_has_data(filename):
+	var slot_name = filename.replace(Utils.SAVE_FILE_DIRECTORY, "")
+	var index = slot_name[0]
+	var dir = DirAccess.get_files_at(Utils.SAVE_FILE_DIRECTORY)
+	for f in dir:
+		if f[0] == index:
+			return true
+	return false
+	
+func delete_save_slot(filename):
+	var dir = DirAccess.open(Utils.SAVE_FILE_DIRECTORY)
+	var files = dir.get_files()
+	for file in files:
+		var slot_name = filename.replace(Utils.SAVE_FILE_DIRECTORY, "")
+		if file[0] == slot_name[0]:
+			dir.remove(file)
+func save_game(filename = "user://SaveFiles/save.da"):
 	_save.player.total_life = player.total_life
 	_save.player.life = player.life
 	_save.player.temporary_life = player.temporary_life
@@ -397,12 +472,17 @@ func save_game():
 	_save.rooms[SceneTransition.current_scene_name] = get_room_save_info(current_scene)
 	_save.completed_tutorial_prompts = Collectible.get_completed_tutorial_prompts()
 	var game_save_string = DictionarySerializer.serialize_json(_save)
-	var file = FileAccess.open("user://save.da", FileAccess.WRITE)
-	file.store_string(game_save_string)
-	file.close()
+	if Utils.is_valid_save_filename(filename):
+		if save_slot_has_data(filename):
+			delete_save_slot(filename)
+		var file = FileAccess.open(filename, FileAccess.WRITE)
+		file.store_string(game_save_string)
+		file.close()
+	else:
+		print("Error: invalid filename (game was not : ", filename)
 	
-func load_game():
-	var file = FileAccess.open("user://save.da", FileAccess.READ)
+func load_game(filename = "user://SaveFiles/save.da"):
+	var file = FileAccess.open(filename, FileAccess.READ)
 	_save = null
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	_player = _save.player
@@ -428,7 +508,7 @@ func open_inventory():
 	$CanvasLayer.add_child(inventory)
 	inventory.open(player.inventory)
 	inventory.inventory_action_chosen.connect(player.on_inventory_action_chosen)
-	
+
 func _process(_delta):
 	if player:
 		if (not player.in_cutscene) and (not player.in_dialogue):

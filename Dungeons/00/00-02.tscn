@@ -37,6 +37,7 @@ position = Vector2(2180, 68)
 next_scene = "res://Dungeons/00/00-01.tscn"
 next_start_position = Vector2(-1800, -878)
 should_open_next_door = null
+direction = "East"
 
 [node name="UniversityPlantTiles2" parent="." unique_id=500638212 instance=ExtResource("3_lskhw")]
 position = Vector2(9, 0)

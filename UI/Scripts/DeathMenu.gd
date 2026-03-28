@@ -15,3 +15,24 @@ func _ready():
 	newgame_button.focus_exited.connect(menu_select_sound.play)
 	loadgame_button.focus_exited.connect(menu_select_sound.play)
 	quit_button.focus_exited.connect(menu_select_sound.play)
+
+func hide_button(button):
+	button.visible = false
+	button.disabled = true
+	button.focus_mode = FocusMode.FOCUS_NONE
+	
+func show_button(button):
+	button.visible = true
+	button.disabled = false
+	button.focus_mode = FocusMode.FOCUS_ALL
+	
+func hide_all():
+	hide_button(newgame_button)
+	hide_button(loadgame_button)
+	hide_button(quit_button)
+	
+func show_all():
+	show_button(newgame_button)
+	show_button(loadgame_button)
+	hide_button(quit_button)
+	newgame_button.grab_focus()

@@ -13,6 +13,44 @@ var fading = true
 @export var music_volume = 0.0
 @export var music = "res://Music/IntroMusic.ogg"
 
+func show_all():
+	newgame_button.disabled = false
+	newgame_button.visible = true
+	newgame_button.focus_mode = FOCUS_ALL
+	
+	loadgame_button.disabled = false
+	loadgame_button.visible = true
+	loadgame_button.focus_mode = FOCUS_ALL
+	
+	feedback_button.disabled = false
+	feedback_button.visible = true
+	feedback_button.focus_mode = FOCUS_ALL
+	
+	quit_button.disabled = false
+	quit_button.visible = true
+	quit_button.focus_mode = FOCUS_ALL
+	
+	newgame_button.grab_focus()
+	
+func hide_all():
+	if not is_inside_tree():
+		return
+	newgame_button.disabled = true
+	newgame_button.visible = false
+	newgame_button.focus_mode = FocusMode.FOCUS_NONE
+	
+	loadgame_button.disabled = true
+	loadgame_button.visible = false
+	loadgame_button.focus_mode = FocusMode.FOCUS_NONE
+	
+	feedback_button.disabled = true
+	feedback_button.visible = false
+	feedback_button.focus_mode = FocusMode.FOCUS_NONE
+	
+	quit_button.disabled = true
+	quit_button.visible = false
+	quit_button.focus_mode = FocusMode.FOCUS_NONE
+
 func on_new_game():
 	SceneTransition.change_scene("Dungeons/01/01-01.tscn")
 	
@@ -37,7 +75,7 @@ func _ready():
 	newgame_button.grab_focus()
 	init_sounds()
 
-func _process(_delta):		
+func _process(_delta):
 	if fading:
 		fade_timer += _delta
 		var fade_percent = fade_timer/fade_duration

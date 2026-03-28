@@ -61,29 +61,43 @@ func next_document(index_addend = 1):
 	else:
 		$RichTextLabel.text = selected_document["latin_text"]
 	
-func open(_documents):
+func open(_documents : Array):
+	var level_up_total = Collectible.fragments_to_level_up
 	$OpenSound.play()
 	get_tree().paused = true
-	documents = _documents
+	documents = _documents.duplicate()
 	visible = true
-	next_document()
 	var num_translated = 0
 	for document in documents:
 		if document.get("translated"):
 			num_translated += 1
-	var width = (Collectible.fragments_to_level_up)*84
-	for i in range(0, Collectible.fragments_to_level_up):
+	if num_translated >= level_up_total:
+		var translated_remainder = num_translated % level_up_total
+		# Removing scrolls that have already been translated
+		var num_scrolls_not_displayed = num_translated - translated_remainder
+		var counter = 0
+		var documents_to_erase = []
+		for document in documents:
+			if document.get("translated"):
+				counter += 1
+				documents_to_erase.append(document)
+				if counter > num_scrolls_not_displayed:
+					break
+		for doc in documents_to_erase:
+			documents.erase(doc)
+		num_translated = translated_remainder
+	next_document()
+	var width = level_up_total*84
+	for i in range(0, level_up_total):
 		var icon = _trans_prog.instantiate()
 		icon.z_index = 11
 		progress_icons.append(icon)
 		$TextureRect.add_sibling(icon)
 		icon.position.y = starting_scroll_position.y
 		icon.position.x = starting_scroll_position.x + (width/2.0) + (i*84)
-		if i < (num_translated%Collectible.fragments_to_level_up):
+		if i < num_translated:
 			progress_index += 1
 			icon.set_full()
-		
-		
 	$Translate.grab_focus()
 
 func _ready():
