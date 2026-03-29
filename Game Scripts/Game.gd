@@ -485,30 +485,34 @@ func save_game(filename = "user://SaveFiles/save.da"):
 	update_save_data()
 	Utils.write_save_data_to_file(_save, filename)
 	
-func load_game(filename = "user://SaveFiles/save.da"):
-	var file = FileAccess.open(filename, FileAccess.READ)
-	if file == null:
-		print("load_game, file is null: ", filename)
-	_save = null
-	_save = DictionarySerializer.deserialize_json(file.get_as_text())
-
-	_player = _save.player
+func load_player(player_data):
 	init_player()
-	player.life = _player.life
-	player.total_life = _player.total_life
-	player.temporary_life = _player.temporary_life
-	player.attack_damage = _player.attack_damage
-	hud.lifebar.temporary_life = _player.temporary_life
-	hud.lifebar.life = _player.life
-	player.global_position = _player.position
-	player.inventory = _player.inventory
-	player.level = _player.level
+	player.life = player_data.life
+	player.total_life = player_data.total_life
+	player.temporary_life = player_data.temporary_life
+	player.attack_damage = player_data.attack_damage
+	
+	player.global_position = player_data.position
+	player.inventory = player_data.inventory
+	player.level = player_data.level
+
+	Collectible.load_collected_scroll_fragments(player_data.inventory[Collectible.SCROLL_FRAGMENT])
+	
+func load_hud(player_data):
+	hud.lifebar.temporary_life = player_data.temporary_life
+	hud.lifebar.life = player_data.life
 	hud.lifebar.set_life_total(player.total_life, player.total_life+player.temporary_life)
 	hud.set_treasure(player.inventory[Collectible.TREASURE])
-	Collectible.load_collected_scroll_fragments(_player.inventory[Collectible.SCROLL_FRAGMENT])
+	
+func load_game(filename = "user://SaveFiles/save.da"):
+	_save = null
+	_save = Utils.read_save_data_from_file(filename)
+
+	load_player(_save.player)
+	load_hud(_save.player)
+	
 	Collectible.load_completed_tutorial_prompts(_save.completed_tutorial_prompts)
 	SceneTransition.change_scene(_save.current_scene_path, player.global_position)
-	file.close()
 
 func open_inventory():
 	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()
