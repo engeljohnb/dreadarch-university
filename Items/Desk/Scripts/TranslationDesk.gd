@@ -3,6 +3,7 @@ extends StaticBody2D
 var interaction_message = "Z to Translate"
 var _trans_menu = load("res://UI/TranslationMenu.tscn")
 var canvas = null
+var type = Types.OTHER
 
 func on_closed():
 	canvas.queue_free()

@@ -266,7 +266,7 @@ func load_room_interactables_save_data(scene_node : Node2D):
 					npc.queue_free()
 func load_room_cutscene_save_data(scene_node : Node2D):
 	var cutscenes = _save.rooms[SceneTransition.current_scene_name].get("cutscenes")
-	if cutscenes:
+	if cutscenes != null:
 		scene_node.save_data["cutscenes"] = cutscenes
 		
 func load_room_treasure_save_data(scene_node : Node2D):
@@ -319,7 +319,7 @@ func update_footstep_sound_source():
 	apply_or_remove_footstep_reverb()
 
 func init_player_for_new_scene():
-	# Initialization that has to be done before the player enters the scene
+	# Initialization that has to be done before the scene enters the tree
 	if not player:
 		init_player()
 	player.y_sort_enabled = true
@@ -386,9 +386,10 @@ func on_new_scene():
 	if _save.rooms.get(scene_name):
 		if not _save.rooms[scene_name].is_empty():
 			load_room_save_data(current_scene)
-	# If player is above ground, turn down the light
-	if SceneTransition.entering_or_leaving_underground():
-		player.toggle_light()
+	if SceneTransition.player_is_above_ground():
+		player.turn_down_light()
+	else:
+		player.turn_up_light()
 	pause_menu.visible = false
 	load_player_for_new_scene()
 	play_scene_entrance_cutscene()

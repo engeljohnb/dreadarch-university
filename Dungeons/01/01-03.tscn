@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bkfxtt6yj3sa"]
 
-[ext_resource type="Script" uid="uid://d36rfq4kjsvx2" path="res://Dungeons/01/Scripts/01-03.gd" id="1_5gthu"]
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_beukq"]
 [ext_resource type="PackedScene" uid="uid://bod7jgxpa8fed" path="res://Items/Door/Door.tscn" id="2_w5tvi"]
 [ext_resource type="PackedScene" uid="uid://e0pns0rnrf62" path="res://Tiles/DungeonGroundTiles.tscn" id="3_f8g50"]
 [ext_resource type="PackedScene" uid="uid://dtdx4k7brygo3" path="res://Tiles/DungeonBuildingTiles.tscn" id="4_xq20d"]
@@ -644,8 +644,7 @@ fill_to = Vector2(0.965812, 0.034188)
 [node name="01-03" type="Node2D" unique_id=1633266176]
 modulate = Color(0.5436838, 0.5714066, 0.7541822, 1)
 y_sort_enabled = true
-script = ExtResource("1_5gthu")
-music = "res://Music/AlchemyLabMusic.ogg"
+script = ExtResource("1_beukq")
 
 [node name="Door" parent="." unique_id=1190206067 instance=ExtResource("2_w5tvi")]
 position = Vector2(0, 3817)

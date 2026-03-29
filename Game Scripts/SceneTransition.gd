@@ -16,8 +16,9 @@ var outdoor_light_progress = 0.0
 func player_is_above_ground():
 	return current_scene_name.contains("00-")
 func entering_or_leaving_underground():
+	var exiting_menu = prev_scene_name.contains("WelcomeMenu") or prev_scene_name.contains("DeathMenu")
 	var entering_underground = current_scene_name.contains("01-") and prev_scene_name.contains("00-")
-	var leaving_undergound = current_scene_name.contains("00-") and prev_scene_name.contains("01-")
+	var leaving_undergound = current_scene_name.contains("00-") and (prev_scene_name.contains("01-") or exiting_menu)
 	return entering_underground or leaving_undergound
 func scene_changed():
 	return current_scene_name != prev_scene_name

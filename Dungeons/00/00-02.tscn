@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://7qn8o21hql17"]
 
-[ext_resource type="Script" uid="uid://d0phar626iuur" path="res://Dungeons/00/Scripts/00-02.gd" id="1_1xwj2"]
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_1xwj2"]
 [ext_resource type="PackedScene" uid="uid://bvj1eys178e34" path="res://Tiles/UniversityGroundTiles.tscn" id="1_8dl3p"]
 [ext_resource type="PackedScene" uid="uid://cseik3k8vj5ew" path="res://Tiles/UniversityPlantTiles.tscn" id="3_lskhw"]
 [ext_resource type="PackedScene" uid="uid://cq71s2kvlohhx" path="res://Items/Door/UniversityDoor/UniversityDoor.tscn" id="4_7nr06"]

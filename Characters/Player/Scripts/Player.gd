@@ -577,6 +577,12 @@ func toggle_light():
 	else:
 		light.energy = 3.0
 		modulate = Color(1,1,1)
+func turn_down_light():
+	light.energy = 1.0
+	modulate = Color(1.3,1.3,1.3)
+func turn_up_light():
+	light.energy = 3.0
+	modulate = Color(1,1,1)
 func update_equipment():
 	if Input.is_action_just_pressed("ChangeEquipmentLeft"):
 		change_equipment_quick("Left")

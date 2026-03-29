@@ -1,17 +1,13 @@
-extends Node2D
+extends Types.Room
 
-@export var music = "res://Music/DungeonMusic.ogg"
-@export var music_volume = -12.5
 @onready var shelf = $Pots/FirstShelf
 var searching_shelf = false
 var player_start_position = Vector2(-250.0, 0.0)
-var save_data = {
-	"pots":[],
-	"NPCs":[],
-	"items":{Collectible.TREASURE:[]},
-	"cutscenes":{"collected_first_scroll_fragment":false}
-	}
-	
+enum 
+{
+	SHELF_SEARCH_CUTSCENE
+}
+
 var search_shelf_dialogue = [
 	{
 		"text":"Looks like the military picked it clean.",
@@ -24,14 +20,17 @@ var search_shelf_dialogue = [
 ]
 
 func on_shelf_searched():
-	if not save_data["cutscenes"]["collected_first_scroll_fragment"]:
-		save_data["cutscenes"]["collected_first_scroll_fragment"] = true
-		Dialogue.open_dialogue.emit(search_shelf_dialogue)
-		searching_shelf = true
+	var cutscenes = save_data.get("cutscenes")
+	if cutscenes != null:
+		if save_data["cutscenes"][SHELF_SEARCH_CUTSCENE].get("collected_first_scroll_fragment") == false:
+			save_data["cutscenes"][SHELF_SEARCH_CUTSCENE]["collected_first_scroll_fragment"] = true
+			Dialogue.open_dialogue.emit(search_shelf_dialogue)
+			searching_shelf = true
 	
 func _ready():
 	shelf.searched.connect(on_shelf_searched)
 	get_parent().music.volume_db = -7.3
+	save_data["cutscenes"] = [ {"collected_first_scroll_fragment":false} ]
 
 func _process(_delta):
 	var parent = get_parent()

@@ -30,6 +30,7 @@ Collectible="*res://Collectible.gd"
 Dialogue="*res://UI/Dialogue.tscn"
 Types="*res://Types.gd"
 Utils="*res://Utils/Utils.gd"
+Music="*uid://fc1unxq6nnbn"
 
 [display]
 

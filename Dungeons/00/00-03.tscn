@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bannj5r46migt" path="res://Tiles/BookTiles.tscn" id="1_f8rm5"]
 [ext_resource type="PackedScene" uid="uid://c4bow3ogga7t0" path="res://Items/Door/OutsideDoor/OutsideDoor.tscn" id="1_u0pfy"]
-[ext_resource type="Script" uid="uid://ckwekyb02rih4" path="res://Dungeons/00/Scripts/00-03.gd" id="1_x1c8a"]
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_x1c8a"]
 [ext_resource type="PackedScene" uid="uid://c6ma7jimwq3wd" path="res://Dungeons/UniversityInteriorFloorTiles.tscn" id="2_ysi8e"]
 [ext_resource type="PackedScene" uid="uid://b20khridkwk24" path="res://Items/Desk/TranslationDesk.tscn" id="3_ysi8e"]
 

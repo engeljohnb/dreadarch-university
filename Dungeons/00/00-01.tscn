@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cf2jofuxajhdx"]
 
 [ext_resource type="PackedScene" uid="uid://bvj1eys178e34" path="res://Tiles/UniversityGroundTiles.tscn" id="1_1pvwg"]
-[ext_resource type="Script" uid="uid://cku2xf76l1ayn" path="res://Dungeons/00/Scripts/00-01.gd" id="1_7gx5l"]
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_03ab6"]
 [ext_resource type="PackedScene" uid="uid://bqytyxr0fhn8x" path="res://Tiles/GrassTiles.tscn" id="1_kcf2m"]
 [ext_resource type="PackedScene" uid="uid://be4j2wwmoqaud" path="res://Tiles/ExcavationTiles.tscn" id="2_1wk3a"]
 [ext_resource type="PackedScene" uid="uid://nlaq2sn8ajfl" path="res://Tiles/ExcavationRubbleTiles.tscn" id="3_jymue"]
@@ -28,7 +28,7 @@ size = Vector2(433, 2756)
 [node name="00-01" type="Node2D" unique_id=1810423913]
 modulate = Color(0.8089983, 0.8089983, 0.8089982, 1)
 y_sort_enabled = true
-script = ExtResource("1_7gx5l")
+script = ExtResource("1_03ab6")
 
 [node name="GroundTiles" parent="." unique_id=1851787181 instance=ExtResource("1_1pvwg")]
 z_index = -3

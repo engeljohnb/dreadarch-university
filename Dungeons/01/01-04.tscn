@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://hvcwii4ea8id"]
 
 [ext_resource type="PackedScene" uid="uid://bod7jgxpa8fed" path="res://Items/Door/Door.tscn" id="1_5d4lq"]
-[ext_resource type="Script" uid="uid://q8hoceup16j8" path="res://Dungeons/01/Scripts/01-04.gd" id="1_16qd3"]
 
 [node name="01-04" type="Node2D" unique_id=1517317833]
-script = ExtResource("1_16qd3")
 
 [node name="Door" parent="." unique_id=386765253 instance=ExtResource("1_5d4lq")]
 z_index = 2
