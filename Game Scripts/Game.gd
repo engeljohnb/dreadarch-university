@@ -203,11 +203,8 @@ func player_death_cutscene(delta):
 func on_player_dead():
 	player_death_cutscene(0.0)
 	
-func get_room_save_data(scene):
-	if not ("save_data" in scene):
-		return {}
-	var interactables = get_tree().get_nodes_in_group("Interactable")
-	var npcs_collected = []
+func update_room_interactables_save_data(scene_node : Node2D, interactables : Array):
+	var updated_npcs = []
 	for i in interactables:
 		assert(("type" in i), "ERROR: Interactable object " + i.name + "does not have defined type.")
 		match i.type:
@@ -215,37 +212,45 @@ func get_room_save_data(scene):
 				if (not i.activated) and (not i.has_overrides.is_empty()):
 					if Collectible.GOLDEN_DAGGER in i.has_overrides:
 						i.has_overrides.erase(Collectible.GOLDEN_DAGGER)
-					scene.save_data["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
+					scene_node.save_data["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
 			Types.NPC:
 				if "status" in i:
 					var npc = {"name":i.name, "status":i.status}
-					if npc not in scene.save_data["NPCs"]:
-						scene.save_data["NPCs"].append(npc)
-						npcs_collected.append(npc)
+					if npc not in scene_node.save_data["NPCs"]:
+						scene_node.save_data["NPCs"].append(npc)
+						updated_npcs.append(npc)
+	return updated_npcs
+	
+func update_room_gone_npcs(scene_node : Node2D, updated_npcs):
 	var npcs_saved = []
-	if _save.rooms.get(scene.name):
-		if _save.rooms[scene.name].get("NPCs"):
-			npcs_saved = _save.rooms[scene.name]["NPCs"]
+	if _save.rooms.get(scene_node.name):
+		if _save.rooms[scene_node.name].get("NPCs"):
+			npcs_saved = _save.rooms[scene_node.name]["NPCs"]
 	for npc in npcs_saved:
 		var collected = false
-		for c_npc in npcs_collected:
+		for c_npc in updated_npcs:
 			if Utils.interactables_equal(c_npc, npc):
 				collected = true
 				break
 		if not collected:
-			if npc not in scene.save_data["NPCs"]:
-				scene.save_data["NPCs"].append(npc)
-	var treasures = scene.get_node_or_null("Treasure")
+			if npc not in scene_node.save_data["NPCs"]:
+				scene_node.save_data["NPCs"].append(npc)
+	var treasures = scene_node.get_node_or_null("Treasure")
 	if treasures:
-		scene.save_data["items"][Collectible.TREASURE] = []
+		scene_node.save_data["items"][Collectible.TREASURE] = []
 		for treasure in treasures.get_children():
-			scene.save_data["items"][Collectible.TREASURE].append(treasure.name)
-	return scene.save_data
+			scene_node.save_data["items"][Collectible.TREASURE].append(treasure.name)
+			
+func update_room_save_data(scene_node : Node2D, scene_name : String):
+	if not ("save_data" in scene_node):
+		return {}
+	var interactables = get_tree().get_nodes_in_group("Interactable")
+	var updated_npcs = update_room_interactables_save_data(scene_node, interactables)
+	update_room_gone_npcs(scene_node, updated_npcs)
+	_save.rooms[scene_name] = scene_node.save_data
 
-func load_room_save_data(scene):
-	if not ("save_data" in scene):
-		return
-	var scene_path = str(get_path_to(scene))
+func load_room_interactables_save_data(scene_node : Node2D):
+	var scene_path = str(get_path_to(scene_node))
 	if _save.rooms[SceneTransition.current_scene_name].get("pots"):
 		for i in _save.rooms[SceneTransition.current_scene_name]["pots"]:
 			var pot = get_node(NodePath(scene_path + "/Pots/" + i["name"]))
@@ -258,12 +263,14 @@ func load_room_save_data(scene):
 			if npc.get("status"):
 				npc.status = i["status"]
 				if npc.status.get("gone"):
-					if npc.status["gone"]:
-						npc.queue_free()
+					npc.queue_free()
+func load_room_cutscene_save_data(scene_node : Node2D):
 	var cutscenes = _save.rooms[SceneTransition.current_scene_name].get("cutscenes")
 	if cutscenes:
-		scene.save_data["cutscenes"] = cutscenes
-	var treasure_node = scene.get_node_or_null("Treasure")
+		scene_node.save_data["cutscenes"] = cutscenes
+		
+func load_room_treasure_save_data(scene_node : Node2D):
+	var treasure_node = scene_node.get_node_or_null("Treasure")
 	if treasure_node:
 		var scene_treasures = treasure_node.get_children()
 		var items = _save.rooms[SceneTransition.current_scene_name].get("items")
@@ -273,8 +280,16 @@ func load_room_save_data(scene):
 		for scene_treasure in scene_treasures:
 			if not (scene_treasure.name in uncollected_treasures):
 				scene_treasure.queue_free()
+	
+func load_room_save_data(scene_node : Node2D):
+	if not ("save_data" in scene_node):
+		return
+	load_room_interactables_save_data(scene_node)
+	load_room_cutscene_save_data(scene_node)
+	load_room_treasure_save_data(scene_node)
+	
 				
-func load_current_scene():
+func load_current_scene_node():
 	if current_scene:
 		current_scene.queue_free()
 	current_scene = load(SceneTransition.current_scene_path).instantiate()
@@ -357,15 +372,14 @@ func play_scene_entrance_cutscene():
 		player.sprite.modulate.a = 1.0
 		var direction = SceneTransition.ladder_direction
 		var start_pos = SceneTransition.player_start_position
-		var arriving = true
 		player.play_climb_cutscene(0.0,
-		{"position":start_pos, "start_pos":start_pos, "direction":direction, "arriving":arriving})
+		{"position":start_pos, "start_pos":start_pos, "direction":direction, "arriving":true})
 		
 func on_new_scene():
 	if SceneTransition.scene_changed():
 		if not (current_scene is Control):
-			update_room_save_data(current_scene)
-	load_current_scene()
+			update_room_save_data(current_scene, SceneTransition.prev_scene_name)
+	load_current_scene_node()
 	init_player_for_new_scene()
 	init_current_scene()
 	var scene_name = SceneTransition.current_scene_name
@@ -376,6 +390,7 @@ func on_new_scene():
 	if SceneTransition.entering_or_leaving_underground():
 		player.toggle_light()
 	pause_menu.visible = false
+	load_player_for_new_scene()
 	play_scene_entrance_cutscene()
 	update_footstep_sound_source()
 	
@@ -480,9 +495,6 @@ func _ready():
 	SceneTransition.won.connect(on_won)
 	get_tree().paused = true
 
-func update_room_save_data(room_node : Node2D):
-	_save.rooms[SceneTransition.prev_scene_name] = get_room_save_data(room_node)
-	
 func update_current_scene():
 	_save.current_scene = SceneTransition.current_scene_name
 	_save.current_scene_path = SceneTransition.current_scene_path
@@ -494,7 +506,7 @@ func update_save_data():
 	_save.player.inventory = player.inventory
 	_save.player.attack_damage = player.attack_damage
 	update_current_scene()
-	_save.rooms[SceneTransition.current_scene_name] = get_room_save_data(current_scene)
+	update_room_save_data(current_scene, SceneTransition.current_scene_name)
 	_save.completed_tutorial_prompts = Collectible.get_completed_tutorial_prompts()
 	_save.player.level = player.level
 	
