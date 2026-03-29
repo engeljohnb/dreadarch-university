@@ -5,7 +5,7 @@ extends Node2D
 @onready var shelf = $Pots/FirstShelf
 var searching_shelf = false
 var player_start_position = Vector2(-250.0, 0.0)
-var save_info = {
+var save_data = {
 	"pots":[],
 	"NPCs":[],
 	"items":{Collectible.TREASURE:[]},
@@ -24,8 +24,8 @@ var search_shelf_dialogue = [
 ]
 
 func on_shelf_searched():
-	if not save_info["cutscenes"]["collected_first_scroll_fragment"]:
-		save_info["cutscenes"]["collected_first_scroll_fragment"] = true
+	if not save_data["cutscenes"]["collected_first_scroll_fragment"]:
+		save_data["cutscenes"]["collected_first_scroll_fragment"] = true
 		Dialogue.open_dialogue.emit(search_shelf_dialogue)
 		searching_shelf = true
 	

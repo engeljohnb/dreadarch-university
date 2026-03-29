@@ -19,4 +19,4 @@ func _ready():
 func _process(_delta):
 	if player_entered:
 		if not player.in_cutscene:
-			SceneTransition.change_scene(next_scene, next_start_position, true)
+			SceneTransition.enter_scene(next_scene, next_start_position, true)

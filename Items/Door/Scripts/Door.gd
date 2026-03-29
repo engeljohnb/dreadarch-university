@@ -39,5 +39,5 @@ func _process(_delta):
 					pos = Vector2(next_start_position.x, next_start_position.y + north_sprite.position.y + 100.0)
 				"South":
 					pos = Vector2(next_start_position.x, next_start_position.y - north_sprite.position.y - 240.0)
-			SceneTransition.change_scene(next_scene, pos, true)
+			SceneTransition.enter_scene(next_scene, pos, true)
 	

@@ -569,7 +569,14 @@ func change_equipment_quick(direction : String):
 				found_next_item = true
 				desired_item = item
 	on_inventory_action_chosen("Equip", desired_item, 1)
-				
+
+func toggle_light():
+	if light.energy == 3.0:
+		light.energy = 1.0
+		modulate = Color(1.3,1.3,1.3)
+	else:
+		light.energy = 3.0
+		modulate = Color(1,1,1)
 func update_equipment():
 	if Input.is_action_just_pressed("ChangeEquipmentLeft"):
 		change_equipment_quick("Left")

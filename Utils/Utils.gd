@@ -93,7 +93,6 @@ func read_save_data_from_file(filename = "user://SaveFiles/save.da"):
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	file.close()
 	return _save
-	
 func read_save_data_from_slot(slot):
 	var files = DirAccess.get_files_at(SAVE_FILE_DIRECTORY)
 	slot = str(slot)

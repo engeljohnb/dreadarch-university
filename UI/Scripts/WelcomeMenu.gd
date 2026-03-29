@@ -52,7 +52,7 @@ func hide_all():
 	quit_button.focus_mode = FocusMode.FOCUS_NONE
 
 func on_new_game():
-	SceneTransition.change_scene("Dungeons/01/01-01.tscn")
+	SceneTransition.enter_scene("Dungeons/01/01-01.tscn")
 	
 func on_quit():
 	get_tree().quit()
