@@ -824,6 +824,7 @@ source = true
 
 [node name="FitzroyDoor" parent="." unique_id=388462855 instance=ExtResource("1_hccqk")]
 position = Vector2(607, 1065)
+next_scene = "res://Dungeons/01/01-04.tscn"
 
 [node name="NPCs" type="Node2D" parent="." unique_id=236149433]
 y_sort_enabled = true

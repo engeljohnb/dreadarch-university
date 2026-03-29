@@ -1,3 +1,5 @@
+#TODO: The save files are quickly growing to kilobytes. Find out what's going on.
+
 extends Node2D
 
 const DUNGEON_MUSIC = "res://Music/DungeonMusic.ogg"
@@ -199,14 +201,13 @@ func player_death_cutscene(delta):
 			
 func on_player_dead():
 	player_death_cutscene(0.0)
-		
+	
 func get_room_save_info(scene):
 	if not ("save_info" in scene):
-		#return {SceneTransition.current_scene_name:{}}
 		return {}
 	var interactables = get_tree().get_nodes_in_group("Interactable")
-	for index in range(0, interactables.size()):
-		var i = interactables[index]
+	var npcs_collected = []
+	for i in interactables:
 		assert(("type" in i), "ERROR: Interactable object " + i.name + "does not have defined type.")
 		match i.type:
 			Types.POT:
@@ -216,7 +217,23 @@ func get_room_save_info(scene):
 					scene.save_info["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
 			Types.NPC:
 				if "status" in i:
-					scene.save_info["NPCs"].append({"name":i.name, "status":i.status})
+					var npc = {"name":i.name, "status":i.status}
+					if npc not in scene.save_info["NPCs"]:
+						scene.save_info["NPCs"].append(npc)
+						npcs_collected.append(npc)
+	var npcs_saved = []
+	if _save.rooms.get(scene.name):
+		if _save.rooms[scene.name].get("NPCs"):
+			npcs_saved = _save.rooms[scene.name]["NPCs"]
+	for npc in npcs_saved:
+		var collected = false
+		for c_npc in npcs_collected:
+			if Utils.interactables_equal(c_npc, npc):
+				collected = true
+				break
+		if not collected:
+			if npc not in scene.save_info["NPCs"]:
+				scene.save_info["NPCs"].append(npc)
 	var treasures = scene.get_node_or_null("Treasure")
 	if treasures:
 		scene.save_info["items"][Collectible.TREASURE] = []
@@ -402,7 +419,6 @@ func open_save_game_menu(pos = null):
 		menu_pos = Vector2(menu_pos_x, menu_pos_y)
 	else:
 		menu_pos = pos
-	
 	menu.open(all_saves, menu.OpenModes.SAVE, menu_pos, max_save_files)
 	menu.set_mini_gui_icon_brightness(0.8)
 	if pause_menu.visible:
@@ -492,9 +508,11 @@ func save_game(filename = "user://SaveFiles/save.da"):
 	
 func load_game(filename = "user://SaveFiles/save.da"):
 	var file = FileAccess.open(filename, FileAccess.READ)
+	if file == null:
+		print("load_game, file is null: ", filename)
 	_save = null
-	print(filename)
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
+
 	_player = _save.player
 	init_player()
 	player.life = _player.life

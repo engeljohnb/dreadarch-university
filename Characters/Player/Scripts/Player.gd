@@ -593,7 +593,7 @@ func get_step_sound(sound_name):
 func update_step_sound(sound_source):
 	# In case the player processes after the scene has been freed.
 	if (not sound_source):
-		print("Null step sound") 
+		#print("Null step sound") 
 		return
 	if sound_source is TileMapLayer:
 		var tilemap = sound_source

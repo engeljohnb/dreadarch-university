@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://hvcwii4ea8id"]
+
+[ext_resource type="PackedScene" uid="uid://bod7jgxpa8fed" path="res://Items/Door/Door.tscn" id="1_5d4lq"]
+[ext_resource type="Script" uid="uid://q8hoceup16j8" path="res://Dungeons/01/Scripts/01-04.gd" id="1_16qd3"]
+
+[node name="01-04" type="Node2D" unique_id=1517317833]
+script = ExtResource("1_16qd3")
+
+[node name="Door" parent="." unique_id=386765253 instance=ExtResource("1_5d4lq")]
+z_index = 2
+next_start_position = Vector2(607, 1065)
+next_scene = "res://Dungeons/01/01-02.tscn"
+direction = "South"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1840879980]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node2D" unique_id=307328061]
+follow_viewport_enabled = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D/CanvasLayer" unique_id=910273651]
+anchors_preset = -1
+anchor_left = -0.040000003
+anchor_top = -0.342
+anchor_right = 0.119
+anchor_bottom = -0.28
+offset_left = 0.80000305
+offset_top = 0.36001587
+offset_right = 0.519989
+offset_bottom = 0.3999939
+text = "Hiya. Thanks for playing my game.
+<----------------"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Node2D/CanvasLayer" unique_id=504335030]
+anchors_preset = -1
+anchor_left = -1.154
+anchor_top = -0.356
+anchor_right = -0.99500006
+anchor_bottom = -0.294
+offset_left = -0.31982422
+offset_top = 0.480011
+offset_right = -0.5998535
+offset_bottom = 0.519989
+text = "Obviously it's not finished yet.
+<---------------"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Node2D/CanvasLayer" unique_id=268956840]
+anchors_preset = -1
+anchor_left = -2.137
+anchor_top = -0.356
+anchor_right = -1.9790001
+anchor_bottom = -0.294
+offset_left = -0.95996094
+offset_top = 0.480011
+offset_right = 0.6801758
+offset_bottom = 0.519989
+text = "If you made it this far, text John to claim your prize."

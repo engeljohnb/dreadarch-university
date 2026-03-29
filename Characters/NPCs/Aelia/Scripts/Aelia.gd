@@ -3,7 +3,9 @@ var interaction_message = "Z to talk"
 var type = Types.NPC
 var status = {"times_spoken_to":0,"paid":false}
 var scroll_fragment = {}
+var retired = false
 var dialogues = [
+
 [
 	{
 		"text":"Why, hallo.",

@@ -1,5 +1,4 @@
 extends StaticBody2D
-
 # Gotta be a dictionary for game saves
 var status = {
 	"gone" : false,
@@ -224,7 +223,7 @@ func activate(using_item = "", item_count = 1):
 		
 func _process(_delta):
 	if will_retire:
-		if Dialogue.current_box["text"] == adequate_bribe_dialogue[-1]["text"]:
+		if Dialogue.current_box.get("text") == adequate_bribe_dialogue[-1]["text"]:
 			if not paid:
 				Collectible.item_collected.emit(Collectible.TREASURE, -bribe_amount, true)
 				paid = true

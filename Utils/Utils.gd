@@ -87,8 +87,7 @@ func is_valid_save_filename(filename):
 func read_save_data_from_file(filename = "user://SaveFiles/save.da"):
 	var file = FileAccess.open(filename, FileAccess.READ)
 	if file == null:
-		print(FileAccess.get_open_error())
-		print(filename)
+		print("Error reading save data for file" + filename + ":", FileAccess.get_open_error())
 	var _save = Save.new()
 	_save.init()
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
@@ -115,3 +114,14 @@ func read_file(filename):
 	var file = FileAccess.open(filename, FileAccess.READ)
 	var content = file.get_as_text()
 	return content
+
+func interactables_equal(i1 : Dictionary, i2 : Dictionary) -> bool:
+	var name1 = i1.get("name")
+	var name2 = i2.get("name")
+	if (name1 == null):
+		print("ERROR: invalid interactable object: ", i1)
+		return false
+	elif (name2 == null):
+		print("ERROR: invalid interactable object: ", i2)
+		return false
+	return name1 == name2

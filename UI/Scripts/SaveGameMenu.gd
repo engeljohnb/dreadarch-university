@@ -2,6 +2,7 @@ extends Control
 signal save_file_chosen(filename)
 signal closed()
 
+var _mode = null
 class Player:
 	var attack_damage
 	var position: Vector2
@@ -51,10 +52,12 @@ func on_save_file_chosen(_filename):
 func _ready():
 	if not DirAccess.dir_exists_absolute(Utils.SAVE_FILE_DIRECTORY):
 		DirAccess.make_dir_recursive_absolute(Utils.SAVE_FILE_DIRECTORY)
-
 	save_file_chosen.connect(on_save_file_chosen)
 	if all_buttons.size() > 0:
-		all_buttons[0].grab_focus()
+		for button in all_buttons:
+			if button.disabled == false:
+				button.grab_focus()
+				break
 
 func get_button_name(filename : String):
 	return filename.replace(Utils.SAVE_FILE_DIRECTORY, "").replace(".da", "")
@@ -71,6 +74,9 @@ func get_location_name(room_name):
 	
 func make_save_slot_mini_gui(button, pos):
 	var save_data = Utils.read_save_data_from_slot(button.text[0])
+	if save_data == null:
+		print("ERROR: Can't open save slot ", button.text[0])
+		return
 	var lifebar = load("res://Characters/Player/Lifebar.tscn").instantiate()
 	var life = save_data.player.life
 	var total_life = save_data.player.total_life
@@ -114,7 +120,6 @@ func set_mini_gui_icon_brightness(brightness: float):
 func make_button(save_filename, pos, slot_num):
 	var button = Button.new()
 	var index = slot_num-1
-	button.text = get_button_name(save_filename)
 	button.size.x = 499
 	button.size.y = 131
 	button.position.y = 150*(int(index))
@@ -123,13 +128,20 @@ func make_button(save_filename, pos, slot_num):
 	button.add_theme_font_size_override("font_size", 75)
 	var scene_name = ""
 	if Utils.is_valid_save_filename(save_filename):
-		var save_data = Utils.read_save_data_from_file(save_filename)
-		scene_name = save_data.current_scene
+		if _mode == OpenModes.LOAD:
+			var save_data = Utils.read_save_data_from_file(save_filename)
+			if save_data == null:
+				print("ERROR: Can't open file: ", save_filename)
+				return make_empty_save_slot(slot_num)
+			scene_name = save_data.current_scene
+		else:
+			scene_name = SceneTransition.current_scene_name
+		button.text = get_button_name(save_filename)
 	elif save_filename == EMPTY_SLOT_NAME:
 		scene_name = SceneTransition.current_scene_name
+		button.text = EMPTY_SLOT_NAME
 	var location_name = get_location_name(scene_name)
 	var button_filename : String = get_save_filename(location_name, slot_num)
-	print(button_filename)
 	if not save_filename == EMPTY_SLOT_NAME:
 		make_save_slot_mini_gui(button, pos)
 	button.pressed.connect(save_file_chosen.emit.bind(button_filename))
@@ -147,16 +159,15 @@ func make_empty_save_slot(slot_num):
 	return button
 
 func open(all_save_filenames : Array[String], mode = OpenModes.SAVE, pos = Vector2(), max_save_files : int = 5):
+	_mode = mode
 	var occupied_save_slots = []
 	for filename in all_save_filenames:
 		if Utils.is_valid_save_filename(filename):
-			print(filename)
 			var slot_num = int(get_button_name(filename)[0])
 			all_buttons.append(make_button(filename, pos, slot_num))
 			occupied_save_slots.append(slot_num)
 		else:
 			print("ERROR: invalid save filename: ", filename)
-	print(occupied_save_slots)
 	# Iterating twice is necessary to make the slots appear in the right order
 	for i in range(0, max_save_files):
 		var slot_num = i+1
@@ -181,4 +192,4 @@ func close():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		close()
+			close()
