@@ -109,7 +109,34 @@ func read_save_data_from_slot(slot):
 	f.close()
 	return _save
 	
+func save_slot_has_data(filename):
+	var slot_name = filename.replace(Utils.SAVE_FILE_DIRECTORY, "")
+	var index = slot_name[0]
+	var dir = DirAccess.get_files_at(Utils.SAVE_FILE_DIRECTORY)
+	for f in dir:
+		if f[0] == index:
+			return true
+	return false
 	
+func delete_save_slot(filename):
+	var dir = DirAccess.open(Utils.SAVE_FILE_DIRECTORY)
+	var files = dir.get_files()
+	for file in files:
+		var slot_name = filename.replace(Utils.SAVE_FILE_DIRECTORY, "")
+		if file[0] == slot_name[0]:
+			dir.remove(file)
+			
+func write_save_data_to_file(save_data, filename):
+	var game_save_string = DictionarySerializer.serialize_json(save_data)
+	if is_valid_save_filename(filename):
+		if save_slot_has_data(filename):
+			delete_save_slot(filename)
+		var file = FileAccess.open(filename, FileAccess.WRITE)
+		file.store_string(game_save_string)
+		file.close() 
+	else:
+		print("Error: invalid filename (game was not : ", filename)
+
 func read_file(filename):
 	var file = FileAccess.open(filename, FileAccess.READ)
 	var content = file.get_as_text()

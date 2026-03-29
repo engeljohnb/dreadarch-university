@@ -468,23 +468,7 @@ func _ready():
 	SceneTransition.won.connect(on_won)
 	get_tree().paused = true
 
-func save_slot_has_data(filename):
-	var slot_name = filename.replace(Utils.SAVE_FILE_DIRECTORY, "")
-	var index = slot_name[0]
-	var dir = DirAccess.get_files_at(Utils.SAVE_FILE_DIRECTORY)
-	for f in dir:
-		if f[0] == index:
-			return true
-	return false
-	
-func delete_save_slot(filename):
-	var dir = DirAccess.open(Utils.SAVE_FILE_DIRECTORY)
-	var files = dir.get_files()
-	for file in files:
-		var slot_name = filename.replace(Utils.SAVE_FILE_DIRECTORY, "")
-		if file[0] == slot_name[0]:
-			dir.remove(file)
-func save_game(filename = "user://SaveFiles/save.da"):
+func update_save_data():
 	_save.player.total_life = player.total_life
 	_save.player.life = player.life
 	_save.player.temporary_life = player.temporary_life
@@ -496,15 +480,10 @@ func save_game(filename = "user://SaveFiles/save.da"):
 	_save.rooms[SceneTransition.current_scene_name] = get_room_save_info(current_scene)
 	_save.completed_tutorial_prompts = Collectible.get_completed_tutorial_prompts()
 	_save.player.level = player.level
-	var game_save_string = DictionarySerializer.serialize_json(_save)
-	if Utils.is_valid_save_filename(filename):
-		if save_slot_has_data(filename):
-			delete_save_slot(filename)
-		var file = FileAccess.open(filename, FileAccess.WRITE)
-		file.store_string(game_save_string)
-		file.close()
-	else:
-		print("Error: invalid filename (game was not : ", filename)
+	
+func save_game(filename = "user://SaveFiles/save.da"):
+	update_save_data()
+	Utils.write_save_data_to_file(_save, filename)
 	
 func load_game(filename = "user://SaveFiles/save.da"):
 	var file = FileAccess.open(filename, FileAccess.READ)
