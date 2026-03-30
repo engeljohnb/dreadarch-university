@@ -8,7 +8,7 @@ func close():
 func increase_life_total():
 	var player = get_tree().get_nodes_in_group("Player")[0]
 	player.total_life += 1
-	player.life = player.total_life
+	player.life = player.total_life + player.temporary_life
 	player.level += 1
 	var hud = get_tree().get_nodes_in_group("HUD")[0]
 	hud.lifebar.set_life_total(player.total_life)

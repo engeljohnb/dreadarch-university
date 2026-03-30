@@ -19,7 +19,7 @@ func _ready():
 		var viewport_size = get_viewport_rect().size
 		position = viewport_size/10.0
 
-func set_life_total(lt, _life = lt):
+func reset_segments():
 	for rect in rects:
 		rect.queue_free()
 	for seg in outline_segs:
@@ -27,25 +27,10 @@ func set_life_total(lt, _life = lt):
 	outline_segs = []
 	rects = []
 	
-	total_life = lt
-	life = _life - temporary_life
-	var seg_count = lt+temporary_life+1
-	var left_segment = _segment.instantiate()
-	var right_segment = _segment.instantiate()
-	right_segment.position.x += (seg_count - 2) * 40
-	outline_segs.append(left_segment)
-	left_segment.play("Left")
-	right_segment.play("Right")
-	seg_count -= 2
-	
-	for i in range(0, seg_count):
-		var middle_segment = _segment.instantiate()
-		middle_segment.position.x += (i*40)
-		middle_segment.play("Middle")
-		outline_segs.append(middle_segment)
+func set_segment_colors(lt):
 	for i in range(0, lt+temporary_life):
 		var rect = ColorRect.new()
-		if i >= life:
+		if i >= life+temporary_life:
 			rect.color = empty_color
 		else:
 			rect.color = full_color
@@ -57,6 +42,29 @@ func set_life_total(lt, _life = lt):
 		rect.z_index = -1
 		add_child(rect)
 		rects.append(rect)
+		
+func create_middle_segments(seg_count):
+	for i in range(0, seg_count):
+		var middle_segment = _segment.instantiate()
+		middle_segment.position.x += (i*40)
+		middle_segment.play("Middle")
+		outline_segs.append(middle_segment)
+
+		
+func set_life_total(lt, _life = lt):
+	reset_segments()
+	total_life = lt
+	life = _life - temporary_life
+	var seg_count = lt+temporary_life+1
+	var left_segment = _segment.instantiate()
+	var right_segment = _segment.instantiate()
+	right_segment.position.x += (seg_count - 2) * 40
+	outline_segs.append(left_segment)
+	left_segment.play("Left")
+	right_segment.play("Right")
+	seg_count -= 2
+	create_middle_segments(seg_count)
+	set_segment_colors(lt)
 	outline_segs.append(right_segment)
 	for segment in outline_segs:
 		add_child(segment)

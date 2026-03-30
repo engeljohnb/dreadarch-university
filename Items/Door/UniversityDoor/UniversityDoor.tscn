@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq71s2kvlohhx"]
+[gd_scene format=3 uid="uid://cq71s2kvlohhx"]
 
 [ext_resource type="Script" uid="uid://hiqsidwlcd4m" path="res://Items/Door/UniversityDoor/Scripts/UniversityDoor.gd" id="1_ayr08"]
 [ext_resource type="Texture2D" uid="uid://dbm6ywe2uk6su" path="res://Assets/Items/Stairs/UniversityDoor.png" id="2_ayr08"]
@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
 size = Vector2(61, 148)
 
-[node name="Door" type="Area2D"]
+[node name="Door" type="Area2D" unique_id=1433235993]
 process_priority = 1
 process_physics_priority = 1
 z_index = -1
@@ -30,12 +30,12 @@ collision_layer = 32
 collision_mask = 12
 script = ExtResource("1_ayr08")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2014644803]
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_imfhx")
 offset = Vector2(0, -94)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=962786832]
 visible = false
 position = Vector2(0, -75)
 shape = SubResource("RectangleShape2D_fnujl")

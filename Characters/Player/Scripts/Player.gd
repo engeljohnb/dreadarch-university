@@ -54,6 +54,7 @@ var golden_dagger_equipped = true
 var hard_step_sound = load("res://Assets/Sounds/Student/StepSound.ogg")
 var soft_step_sound = load("res://Assets/Sounds/Student/SoftStepSound.ogg")
 var grass_step_sound = load("res://Assets/Sounds/Student/GrassSteps.ogg")
+var cutscene_just_ended = false
 var level_up_dialogue = [
 	{
 		"text":"I should take these back up to the library. I bet I could translate them if I had some dictionaries.",
@@ -129,6 +130,7 @@ func direction_held():
 	or Input.is_action_pressed("Down"))
 	
 func play_outside_door_cutscene(delta, reverse = false):
+	print("EX outside?? ", SceneTransition.current_scene_name)
 	if delta == 0.0:
 		init_cutscene(play_outside_door_cutscene, 1.0)
 		var animation_name = "Walk"
@@ -177,29 +179,47 @@ func init_cutscene(cutscene : Callable, duration : float):
 	cutscene_timer = 0.0
 	cutscene_duration = duration
 	current_cutscene = cutscene
+
+func get_held_direction_name():
+	if Input.is_action_pressed("Left"):
+		return "Left"
+	if Input.is_action_pressed("Right"):
+		return "Right"
+	if Input.is_action_pressed("Up"):
+		return "Up"
+	if Input.is_action_pressed("Down"):
+		return "Down"
+	else:
+		return "None"
+		
+func has_knife_equipped():
+	return (equipped == Collectible.GOLDEN_DAGGER)
 	
+func on_animation_changed():
+	print("Animation_changed") 
 func end_cutscene(to_idle = true, direction = facing):
 	in_cutscene = false
 	cutscene_timer = 0.0
 	cutscene_duration = 0.0
 	current_cutscene = null
+	sprite.stop()
+	update_direction()
+	update_direction()
+	if direction != facing:
+		facing = direction
+	update_animation_blend_positions()
+	var playback = anim_tree["parameters/playback"]
 	if to_idle:
-		update_direction()
-		if direction != facing:
-			facing = direction
-		update_animation_blend_positions()
-		var playback = anim_tree["parameters/playback"]
 		playback.travel("Idle")
+	#print("VERY END: ", sprite.animation + "\n\n")
+	if door_cutscene["arriving"]:
+		cutscene_just_ended = true
 
-func cutscene_over():
+func is_cutscene_over():
 	return cutscene_timer >= cutscene_duration
 	
-func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arriving = false):
-	if delta == 0.0:
-		init_cutscene(play_door_cutscene, 1.0)
-		door_cutscene["arriving"] = arriving
-		door_cutscene["min_scale"] = 0.8
-		match dir:
+func play_door_cutscene_walk_animation(dir, arriving):
+	match dir:
 			"North":
 				if equipped == Collectible.GOLDEN_DAGGER:
 					sprite.play("Walk Knife Up")
@@ -224,39 +244,60 @@ func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arrivin
 					sprite.play("Walk Knife Right")
 				else:
 					sprite.play("Walk Right")
+					
+func door_cutscene_update(delta):
+	cutscene_timer += delta
+	if door_cutscene["arriving"]:
+		modulate.a = cutscene_timer
+	else:
+		modulate.a = 1.0 - cutscene_timer
+	if (door_cutscene["direction"] == "West") or (door_cutscene["direction"] == "East"):
+		if door_cutscene["arriving"]:
+			var target_position = Vector2(door_cutscene["position"].x - hitbox.shape.get_rect().size.x+60.0, door_cutscene["position"].y)
+			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
+			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
+		else:
+			var x_difference = (door_cutscene["position"].x - door_cutscene["player_start_pos"].x)
+			var x_total = door_cutscene["player_start_pos"].x + x_difference
+			var target_pos = Vector2(x_total, door_cutscene["player_start_pos"].y)
+			#scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
+			global_position = lerp(door_cutscene["player_start_pos"], target_pos, cutscene_timer)
+	elif (door_cutscene["direction"] == "North") or (door_cutscene["direction"] == "South"):
+		if door_cutscene["arriving"]:
+			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.shape.get_rect().size.y+60.0)
+			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
+			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
+		else:
+			scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
+			global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
+	if door_cutscene["arriving"]:
+		print("UPDATE: ", sprite.animation)
+			
+func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arriving = false):
+	if delta == 0.0:
+		init_cutscene(play_door_cutscene, 1.0)
+		door_cutscene["arriving"] = arriving
+		door_cutscene["min_scale"] = 0.8
 		modulate.a = 0
 		door_cutscene["position"] = door_position
 		door_cutscene["player_start_pos"] = global_position
 		door_cutscene["direction"] = dir
+		play_door_cutscene_walk_animation(dir, arriving)
+		if arriving:
+			print("START CUTSCENE: ", sprite.animation)
 	else:
-		cutscene_timer += delta
-		if door_cutscene["arriving"]:
-			modulate.a = cutscene_timer
-		else:
-			modulate.a = 1.0 - cutscene_timer
-		if (door_cutscene["direction"] == "West") or (door_cutscene["direction"] == "East"):
-			if door_cutscene["arriving"]:
-				var target_position = Vector2(door_cutscene["position"].x - hitbox.shape.get_rect().size.x+60.0, door_cutscene["position"].y)
-				global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
-				scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
-			else:
-				var x_difference = (door_cutscene["position"].x - door_cutscene["player_start_pos"].x)
-				var x_total = door_cutscene["player_start_pos"].x + x_difference
-				var target_pos = Vector2(x_total, door_cutscene["player_start_pos"].y)
-				#scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
-				global_position = lerp(door_cutscene["player_start_pos"], target_pos, cutscene_timer)
-		elif (door_cutscene["direction"] == "North") or (door_cutscene["direction"] == "South"):
-			if door_cutscene["arriving"]:
-				var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.shape.get_rect().size.y+60.0)
-				global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
-				scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
-			else:
-				scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
-				global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
-		if cutscene_over():
+		door_cutscene_update(delta)
+		if is_cutscene_over():
 			if door_cutscene["arriving"]:
 				scale = Vector2(1.0,1.0)
 				modulate.a = 1.0
+				var held_direction = get_held_direction_name()
+				if held_direction != "None":
+					if has_knife_equipped():
+						sprite.play("Walk Knife " + get_held_direction_name())
+					else:
+						sprite.play("Walk " + get_held_direction_name())
+				print("ABOUT TO END: ", sprite.animation)
 				end_cutscene(true, facing)
 			else:
 				end_cutscene(false)
@@ -298,7 +339,7 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 						sprite.play("Climb Down")
 					sprite.modulate.a = lerp(1.0, 0.0, cutscene_timer-0.75)
 					global_position.y += 25.0*delta
-				if cutscene_over():
+				if is_cutscene_over():
 					z_index = 0
 					end_cutscene()
 					return
@@ -315,7 +356,7 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 				if cutscene_timer > 1.0:
 					sprite.play_backwards("Climb Down Transition")
 					global_position.y -= 25 * (cutscene_timer - 1.0)
-					if cutscene_over():
+					if is_cutscene_over():
 						z_index = 0
 						end_cutscene(true, Utils.UP)
 			else:
@@ -323,7 +364,7 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 				z_index = 2
 				global_position.y += 135.0 * delta 
 				sprite.modulate.a = (cutscene_timer/1.75)
-				if cutscene_over():
+				if is_cutscene_over():
 					z_index = 0
 					end_cutscene(true, Utils.LEFT)
 
@@ -386,7 +427,7 @@ func update_direction():
 		moving = true
 		facing = movement_direction
 	$InteractionRay.target_position = 45*facing
-		
+
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
 	anim_tree.set("parameters/Walk/Walk Knife/blend_position", facing)
@@ -394,7 +435,7 @@ func update_animation_blend_positions():
 	anim_tree.set("parameters/Attack/Throw/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle Knife/blend_position", facing)
-	
+
 func create_thrown_projectile():
 	if Collectible.projectiles.get(equipped):
 		var item = Collectible.projectiles[equipped].instantiate()
@@ -630,7 +671,33 @@ func update_step_sound(sound_source):
 				if not (step_sound.stream == grass_step_sound):
 					step_sound.stream = grass_step_sound
 					step_sound.volume_db = -24.0
-			
+
+# These are here because of a bug every time the player goes through a door,
+#  when they press and hold a direction key after the scene switches
+#  but before the cutscene finishes 
+#
+# At the end of the cutscene, instead of the walk animation updating to the player's new direction,
+#  something somewhere is changing the sprite's animation back to whatever
+#  was needed for the door cutscene. And whatever it is keeps trying for several
+#  frames, so just putting it right at the end of the cutscene doesn't work.
+# 
+# I've tried so hard to figure out what's messing up the animation. I give up.
+#  I'm doing this cludge and I'll think about actually fixing it if it
+#  causes other problems.
+var stupid_counter = 0
+func stupid_post_door_cutscene_correction():
+	if stupid_counter < 4:
+		stupid_counter += 1
+	else:
+		var held_direction = get_held_direction_name()
+		if held_direction != "None":
+			if has_knife_equipped():
+				sprite.play("Walk Knife " + held_direction)
+			else:
+				sprite.play("Walk " + held_direction)
+		stupid_counter = 0
+		cutscene_just_ended = false
+		
 func _process(delta):
 	if not in_dialogue:
 		if not in_cutscene:
@@ -645,3 +712,5 @@ func _process(delta):
 		else:
 			if current_cutscene:
 				current_cutscene.call(delta)
+		if cutscene_just_ended:
+			stupid_post_door_cutscene_correction()

@@ -11,51 +11,13 @@ const DEATH_MUSIC = "res://Music/DeathMusic.ogg"
 @onready var close_menu_sound = $CloseMenuSound
 @onready var music = $Music
 
-# For some reason, defining a "new" function on these classes
-#  breaks the JSON serializer used for game saves.
-#  So they have init. use it like save.init(), not save = Save.new()
-class Player:
-	var level : int
-	var attack_damage : int
-	var position: Vector2
-	var life: int
-	var temporary_life : int
-	var total_life: int
-	# Guess it has to be a dictionary bc for some reason the JSON serializer can do Class.Class, but not Class.Class.Class
-	var inventory: Dictionary
-	func init():
-		level = 1
-		attack_damage = 1
-		position = Vector2()
-		life = 3
-		temporary_life = 0
-		total_life = 0
-		inventory = {
-			Collectible.SCROLL_FRAGMENT : [],
-			Collectible.TREASURE : int(0),
-			Collectible.TALONS: int(0),
-			Collectible.GOLDEN_DAGGER : int(0)
-		}
-
-class Save:
-	var current_scene: String
-	var current_scene_path : String
-	var player: Player
-	var rooms : Dictionary
-	var completed_tutorial_prompts : Array
-	func init():
-		current_scene = "01-01"
-		current_scene_path = "res://Dungeons/01/01-01.tscn"
-		player = null
-		rooms = {}
-		completed_tutorial_prompts = []
 		
 var current_scene = null
 var current_music = null
 var death_cutscene = {"timer":0.0, "duration":2.5}
 var player = null
-var _save = Save.new()
-var _player = Player.new()
+var _save = Types.Save.new()
+var _player = Types.Player.new()
 var floor_tiles = null
 var step_sound_source = null
 var max_save_files = 5
@@ -110,16 +72,6 @@ func _open_dialogue(dialogue):
 	player.in_dialogue = true
 	player.sprite.play("Idle " + Utils.nearest_cardinal_direction(player.facing, true))
 	player.step_sound.stop()
-	
-func hide_hud():
-	hud.visible = false
-	$CanvasLayer/HUD/Treasure/CanvasLayer.visible = false
-	$CanvasLayer/HUD/Equipped/CanvasLayer.visible = false
-
-func show_hud():
-	hud.visible = true
-	if int($CanvasLayer/HUD/Treasure/CanvasLayer/RichTextLabel.text) > 0:
-		$CanvasLayer/HUD/Treasure/CanvasLayer.visible = true
 	
 func on_player_lost_dagger():
 	$CanvasLayer/HUD/Equipped/CanvasLayer.visible = false
@@ -267,8 +219,7 @@ func load_room_interactables_save_data(scene_node : Node2D):
 func load_room_cutscene_save_data(scene_node : Node2D):
 	var cutscenes = _save.rooms[SceneTransition.current_scene_name].get("cutscenes")
 	if cutscenes != null:
-		scene_node.save_data["cutscenes"] = cutscenes
-		
+		scene_node.save_data["cutscenes"] = cutscenes	
 func load_room_treasure_save_data(scene_node : Node2D):
 	var treasure_node = scene_node.get_node_or_null("Treasure")
 	if treasure_node:
@@ -280,7 +231,6 @@ func load_room_treasure_save_data(scene_node : Node2D):
 		for scene_treasure in scene_treasures:
 			if not (scene_treasure.name in uncollected_treasures):
 				scene_treasure.queue_free()
-	
 func load_room_save_data(scene_node : Node2D):
 	if not ("save_data" in scene_node):
 		return
@@ -335,6 +285,7 @@ func init_current_scene():
 	var world_level = SceneTransition.current_scene_name.substr(0, 2)
 	if world_level == "00":
 		player.step_sound.bus = "Master"
+	current_scene.init_music()
 	if SceneTransition.current_scene_name == "WelcomeMenu" or SceneTransition.prev_scene_name == "WelcomeMenu":
 		music.update(current_scene, false, true)
 	else:
@@ -342,9 +293,9 @@ func init_current_scene():
 	get_tree().paused = false
 		
 func load_player_for_new_scene():
+	# initialization after the scene enters the tree
 	player.global_position = SceneTransition.player_start_position
 	player.in_cutscene = false
-
 func play_scene_entrance_cutscene():
 	if SceneTransition.by_door:
 		player.modulate.a = 0.0
@@ -365,10 +316,10 @@ func play_scene_entrance_cutscene():
 				var pos = SceneTransition.player_start_position
 				pos.x -= 250.0
 				player.play_door_cutscene(0.0, pos, "West", true)
-	if SceneTransition.by_outside_door:
+	elif SceneTransition.by_outside_door:
 		player.modulate.a = 0.0
 		player.play_outside_door_cutscene(0.0, true)
-	if SceneTransition.by_ladder:
+	elif SceneTransition.by_ladder:
 		player.sprite.modulate.a = 1.0
 		var direction = SceneTransition.ladder_direction
 		var start_pos = SceneTransition.player_start_position
@@ -468,8 +419,8 @@ func _ready():
 	init_wm_settings()
 	music.stream = load("res://Music/DungeonMusic.ogg")
 	music.play()
-	ObjectSerializer.register_script("Save", Save)
-	ObjectSerializer.register_script("Player", Player)
+	ObjectSerializer.register_script("Save", Types.Save)
+	ObjectSerializer.register_script("Player", Types.Player)
 	_save.init()
 	_player.init()
 	_save.player = _player

@@ -3,39 +3,6 @@ signal save_file_chosen(filename)
 signal closed()
 
 var _mode = null
-class Player:
-	var attack_damage
-	var position: Vector2
-	var life: int
-	var temporary_life : int
-	var total_life: int
-	# Guess it has to be a dictionary bc for some reason the JSON serializer can do Class.Class, but not Class.Class.Class
-	var inventory: Dictionary
-	func init():
-		attack_damage = 1
-		position = Vector2()
-		life = 3
-		temporary_life = 0
-		total_life = 0
-		inventory = {
-			Collectible.SCROLL_FRAGMENT : [],
-			Collectible.TREASURE : int(0),
-			Collectible.TALONS: int(0),
-			Collectible.GOLDEN_DAGGER : int(0)
-		}
-
-class Save:
-	var current_scene: String
-	var current_scene_path : String
-	var player: Player
-	var rooms : Dictionary
-	var completed_tutorial_prompts : Array
-	func init():
-		current_scene = "01-01"
-		current_scene_path = "res://Dungeons/01/01-01.tscn"
-		player = null
-		rooms = {}
-		completed_tutorial_prompts = []
 
 const EMPTY_SLOT_NAME = "empty"
 enum OpenModes {

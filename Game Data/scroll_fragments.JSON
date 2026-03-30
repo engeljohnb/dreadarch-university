@@ -2,7 +2,7 @@
 	{
 		"type" : "Scroll Fragment",
 		"latin_text" : "Regina demens imperavit nos procdere. Iuberet mare immotum esse ut unam fluctum servaret.",
-		"english_text" : "The demented queen has ordered us to proceed. He would command the sea to be still to save one wave.",
+		"english_text" : "The demented queen has ordered us to proceed. She would command the sea to be still to save one wave.",
 		"collected" : false,
 		"translated" : false
 	},
@@ -59,7 +59,7 @@
 	{
 		"type" : "Scroll Fragment",
 		"latin_text" : "Aelia... Relinque stultos labores tuos ad nectar Iovis faciendum. Successum non videbas, et apes exsecratae implent bibliothecam meam ut cogitare non possim. Amabo te.",
-		"english_text" : "Aemilia, abandon your foolish efforts to make the nectar of Jupiter. You have not seen success, and your cursed bees fill my study and make it impossible to think. I am begging you.",
+		"english_text" : "Aelia, abandon your foolish efforts to make the nectar of Jupiter. You have not seen success, and your cursed bees fill my study and make it impossible to think. I am begging you.",
 		"collected" : false,
 		"translated" : false
 	}

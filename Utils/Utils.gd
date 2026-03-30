@@ -4,39 +4,6 @@ const RIGHT = Vector2(1, 0)
 const UP = Vector2(0,-1)
 const DOWN = Vector2(0,1)
 const SAVE_FILE_DIRECTORY = "user://SaveFiles/"
-class Player:
-	var attack_damage
-	var position: Vector2
-	var life: int
-	var temporary_life : int
-	var total_life: int
-	# Guess it has to be a dictionary bc for some reason the JSON serializer can do Class.Class, but not Class.Class.Class
-	var inventory: Dictionary
-	func init():
-		attack_damage = 1
-		position = Vector2()
-		life = 3
-		temporary_life = 0
-		total_life = 0
-		inventory = {
-			Collectible.SCROLL_FRAGMENT : [],
-			Collectible.TREASURE : int(0),
-			Collectible.TALONS: int(0),
-			Collectible.GOLDEN_DAGGER : int(0)
-		}
-
-class Save:
-	var current_scene: String
-	var current_scene_path : String
-	var player: Player
-	var rooms : Dictionary
-	var completed_tutorial_prompts : Array
-	func init():
-		current_scene = "01-01"
-		current_scene_path = "res://Dungeons/01/01-01.tscn"
-		player = null
-		rooms = {}
-		completed_tutorial_prompts = []
 		
 func nearest_cardinal_direction(direction : Vector2, as_text = false):
 	var x = direction.x
@@ -88,7 +55,7 @@ func read_save_data_from_file(filename = "user://SaveFiles/save.da"):
 	var file = FileAccess.open(filename, FileAccess.READ)
 	if file == null:
 		print("Error reading save data for file" + filename + ":", FileAccess.get_open_error())
-	var _save = Save.new()
+	var _save = Types.Save.new()
 	_save.init()
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	file.close()
@@ -102,7 +69,7 @@ func read_save_data_from_slot(slot):
 			filename = file
 			break
 	var f = FileAccess.open(SAVE_FILE_DIRECTORY + filename, FileAccess.READ)
-	var _save = Save.new()
+	var _save = Types.Save.new()
 	_save.init()
 	_save = DictionarySerializer.deserialize_json(f.get_as_text())
 	f.close()
@@ -125,7 +92,7 @@ func delete_save_slot(filename):
 		if file[0] == slot_name[0]:
 			dir.remove(file)
 			
-func write_save_data_to_file(save_data, filename):
+func write_save_data_to_file(save_data : Types.Save, filename):
 	var game_save_string = DictionarySerializer.serialize_json(save_data)
 	if is_valid_save_filename(filename):
 		if save_slot_has_data(filename):
