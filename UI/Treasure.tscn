@@ -3,24 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://gt7i85h0e74q" path="res://Assets/Items/Treasure/0000.png" id="1_2uiaa"]
 [ext_resource type="Script" uid="uid://dg4aisack662u" path="res://UI/Scripts/Treasure.gd" id="1_ml3wv"]
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="2_etjus"]
-[ext_resource type="Texture2D" uid="uid://c668rdicf2sfk" path="res://Assets/Items/Treasure/0001.png" id="2_ml3wv"]
-[ext_resource type="Texture2D" uid="uid://ddxashxyx5nqn" path="res://Assets/Items/Treasure/0002.png" id="3_etjus"]
-[ext_resource type="Texture2D" uid="uid://bkaja7e7jwpao" path="res://Assets/Items/Treasure/0003.png" id="4_c4qo8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tbia4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_2uiaa")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_ml3wv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_etjus")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_c4qo8")
 }],
 "loop": true,
 "name": &"default",

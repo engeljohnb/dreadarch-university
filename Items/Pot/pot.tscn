@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="10_m1tpy"]
 [ext_resource type="AudioStream" uid="uid://bp2q00d7h7y2w" path="res://Assets/Sounds/Pot/ActivateSound.ogg" id="11_nws5j"]
 
-[sub_resource type="Gradient" id="Gradient_e0kc6"]
+[sub_resource type="Gradient" id="Gradient_nws5j"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w7g0e"]
-gradient = SubResource("Gradient_e0kc6")
+gradient = SubResource("Gradient_nws5j")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.820513, 0.123932)

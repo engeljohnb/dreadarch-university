@@ -130,7 +130,6 @@ func direction_held():
 	or Input.is_action_pressed("Down"))
 	
 func play_outside_door_cutscene(delta, reverse = false):
-	print("EX outside?? ", SceneTransition.current_scene_name)
 	if delta == 0.0:
 		init_cutscene(play_outside_door_cutscene, 1.0)
 		var animation_name = "Walk"
@@ -195,8 +194,6 @@ func get_held_direction_name():
 func has_knife_equipped():
 	return (equipped == Collectible.GOLDEN_DAGGER)
 	
-func on_animation_changed():
-	print("Animation_changed") 
 func end_cutscene(to_idle = true, direction = facing):
 	in_cutscene = false
 	cutscene_timer = 0.0
@@ -211,7 +208,6 @@ func end_cutscene(to_idle = true, direction = facing):
 	var playback = anim_tree["parameters/playback"]
 	if to_idle:
 		playback.travel("Idle")
-	#print("VERY END: ", sprite.animation + "\n\n")
 	if door_cutscene["arriving"]:
 		cutscene_just_ended = true
 
@@ -270,9 +266,7 @@ func door_cutscene_update(delta):
 		else:
 			scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
 			global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
-	if door_cutscene["arriving"]:
-		print("UPDATE: ", sprite.animation)
-			
+
 func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arriving = false):
 	if delta == 0.0:
 		init_cutscene(play_door_cutscene, 1.0)
@@ -283,8 +277,6 @@ func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arrivin
 		door_cutscene["player_start_pos"] = global_position
 		door_cutscene["direction"] = dir
 		play_door_cutscene_walk_animation(dir, arriving)
-		if arriving:
-			print("START CUTSCENE: ", sprite.animation)
 	else:
 		door_cutscene_update(delta)
 		if is_cutscene_over():
@@ -297,7 +289,6 @@ func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arrivin
 						sprite.play("Walk Knife " + get_held_direction_name())
 					else:
 						sprite.play("Walk " + get_held_direction_name())
-				print("ABOUT TO END: ", sprite.animation)
 				end_cutscene(true, facing)
 			else:
 				end_cutscene(false)
@@ -647,7 +638,6 @@ func get_step_sound(sound_name):
 func update_step_sound(sound_source):
 	# In case the player processes after the scene has been freed.
 	if (not sound_source):
-		#print("Null step sound") 
 		return
 	if sound_source is TileMapLayer:
 		var tilemap = sound_source

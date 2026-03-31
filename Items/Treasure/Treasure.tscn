@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1hy8scwvidei"]
+[gd_scene format=3 uid="uid://b1hy8scwvidei"]
 
 [ext_resource type="Script" uid="uid://dw1aytvk13gc1" path="res://Items/Treasure/Treasure.gd" id="1_yvmyw"]
 [ext_resource type="SpriteFrames" uid="uid://5up4pg0nuiey" path="res://Items/Treasure/Treasure.tres" id="2_ov2dm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
 
-[node name="Treasure" type="Area2D"]
+[node name="Treasure" type="Area2D" unique_id=352333607]
 collision_layer = 128
 collision_mask = 268
 script = ExtResource("1_yvmyw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1650660688]
 shape = SubResource("CircleShape2D_bh5a0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=265070128]
 texture_filter = 1
 sprite_frames = ExtResource("2_ov2dm")
