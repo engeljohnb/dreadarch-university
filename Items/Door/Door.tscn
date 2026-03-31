@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bx1tgyr30gnj4" path="res://Assets/Items/Stairs/door_north.png" id="2_sl0wq"]
 [ext_resource type="Texture2D" uid="uid://bh31kaugthgup" path="res://Assets/Items/Stairs/door_south.png" id="3_1065n"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1065n"]
+size = Vector2(56.75, 49)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
 size = Vector2(79, 66.5)
 
@@ -15,6 +18,18 @@ collision_layer = 32
 collision_mask = 12
 script = ExtResource("1_sl0wq")
 direction = "North"
+
+[node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=86857958]
+collision_layer = 32
+collision_mask = 268
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" unique_id=746618906]
+position = Vector2(-67.625, -67)
+shape = SubResource("RectangleShape2D_1065n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=415919912]
+position = Vector2(68.25, -66)
+shape = SubResource("RectangleShape2D_1065n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1741278523]
 y_sort_enabled = true

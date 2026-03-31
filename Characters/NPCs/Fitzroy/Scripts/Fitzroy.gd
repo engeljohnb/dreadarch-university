@@ -1,16 +1,9 @@
-extends StaticBody2D
-# Gotta be a dictionary for game saves
-var status = {
-	"gone" : false,
-	"introduced" : false,
-	"offered_failed_bribe" : false
-}
-var interaction_message = "Z to Talk"
+extends Types.NPC
+
 var will_retire = false
 var retiring = false
 var retiring_timer = 0.0
 var retiring_duration = 6.0
-var type = Types.NPC
 var paid = false
 var bribe_amount = 25
 
@@ -175,6 +168,12 @@ var retiring_dialogue = [
 ]
 
 func _ready():
+	interaction_message = "Z to Talk"
+	status = {
+		"gone" : false,
+		"introduced" : false,
+		"offered_failed_bribe" : false
+	}
 	$AnimatedSprite2D.play("Idle")
 
 func offering_inadequate_bribe(using_item, item_count):

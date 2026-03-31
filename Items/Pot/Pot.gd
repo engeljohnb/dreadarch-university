@@ -1,8 +1,7 @@
-extends StaticBody2D
+class_name Pot extends Types.Interactable
 
 var can_drop = [Collectible.HEART, Collectible.SCROLL_FRAGMENT, Collectible.TREASURE]
 var has = []
-var interaction_message = "Z to search"
 var showing_item = false
 var show_duration = 0.5
 var show_timer = 0.0
@@ -12,7 +11,6 @@ var blink_duration = 0.33
 var frame_counter = 0
 var has_overrides = []
 var amounts = []
-var type = Types.POT
 
 func on_blinker_flipped(state):
 	if state:
@@ -67,6 +65,7 @@ func activate(using_item = "", count = 0):
 
 func _ready():
 	var drop_generator = RandomNumberGenerator.new()
+	interaction_message = "Z to search"
 	$Blinker.blink_duration = blink_duration
 	$Blinker.flip.connect(on_blinker_flipped)
 	$AnimatedSprite2D.frame = int(abs(global_position.x/3.0)) % 8

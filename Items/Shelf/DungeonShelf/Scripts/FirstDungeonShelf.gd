@@ -1,18 +1,6 @@
-extends StaticBody2D
+extends Pot
 signal searched()
-var can_drop = [Collectible.SCROLL_FRAGMENT]
-var has = []
-var interaction_message = "Z to search"
-var showing_item = false
-var show_duration = 0.5
-var show_timer = 0.0
-var item_sprites : Array[Sprite2D]
-var activated = false
-var blink_duration = 0.33
-var frame_counter = 0
-var has_overrides = []
-var amounts = []
-var type = Types.POT
+
 
 func on_blinker_flipped(state):
 	if state:
@@ -69,6 +57,17 @@ func activate(using_item = "", count = 0):
 func _ready():
 	$Blinker.flip.connect(on_blinker_flipped)
 	$Blinker.blink_duration = blink_duration
+	can_drop = [Collectible.SCROLL_FRAGMENT]
+	has = []
+	showing_item = false
+	show_duration = 0.5
+	show_timer = 0.0
+	#item_sprites : Array[Sprite2D]
+	activated = false
+	blink_duration = 0.33
+	frame_counter = 0
+	has_overrides = []
+	amounts = []
 	
 func _process(_delta):
 	if showing_item:

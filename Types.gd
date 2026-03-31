@@ -1,7 +1,4 @@
 extends Node
-const POT = "Pot"
-const NPC = "NPC"
-const OTHER = "Other"
 
 # For some reason, defining a "new" function on these classes
 #  breaks the JSON serializer used for game saves.
@@ -45,6 +42,7 @@ class Save:
 		player = null
 		rooms = {}
 		completed_tutorial_prompts = []
+
 class Room:
 	extends Node2D
 	@export var music : String = "res://Music/DungeonMusic.ogg"
@@ -59,3 +57,12 @@ class Room:
 		if not music_track.is_empty():
 			music = music_track["path"]
 			music_volume = music_track["volume"]
+
+class Interactable:
+	extends StaticBody2D
+	var interaction_message = "Z to interact"
+	func activate():
+		print("Activated: ", self.name)
+class NPC:
+	extends Interactable
+	var status = {"gone":false}

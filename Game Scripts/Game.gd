@@ -1,6 +1,7 @@
 # Note on conventions:
-	# "update" is reading from game state and writing it to the save data
+	# "save" is reading from game state and writing it to the save data
 	# "load" is reading from the save data and writing it to the game state
+	# "update" is progressing the simulation based on input
 extends Node2D
 
 const DUNGEON_MUSIC = "res://Music/DungeonMusic.ogg"
@@ -21,7 +22,6 @@ var _player = Types.Player.new()
 var floor_tiles = null
 var step_sound_source = null
 var max_save_files = 5
-#var all_save_filenames : Array[String]
 
 
 func apply_or_remove_footstep_reverb():
@@ -155,12 +155,11 @@ func player_death_cutscene(delta):
 func on_player_dead():
 	player_death_cutscene(0.0)
 	
-func update_room_interactables_save_data(scene_node : Node2D, interactables : Array):
-	var updated_npcs = []
+func save_room_interactables(scene_node : Node2D, interactables : Array):
+	var saved_npcs = []
 	for i in interactables:
-		assert(("type" in i), "ERROR: Interactable object " + i.name + "does not have defined type.")
-		match i.type:
-			Types.POT:
+		match typeof(i):
+			Pot:
 				if (not i.activated) and (not i.has_overrides.is_empty()):
 					if Collectible.GOLDEN_DAGGER in i.has_overrides:
 						i.has_overrides.erase(Collectible.GOLDEN_DAGGER)
@@ -170,10 +169,10 @@ func update_room_interactables_save_data(scene_node : Node2D, interactables : Ar
 					var npc = {"name":i.name, "status":i.status}
 					if npc not in scene_node.save_data["NPCs"]:
 						scene_node.save_data["NPCs"].append(npc)
-						updated_npcs.append(npc)
-	return updated_npcs
+						saved_npcs.append(npc)
+	return saved_npcs
 	
-func update_room_gone_npcs(scene_node : Node2D, updated_npcs):
+func save_room_gone_npcs(scene_node : Node2D, updated_npcs):
 	var npcs_saved = []
 	if _save.rooms.get(scene_node.name):
 		if _save.rooms[scene_node.name].get("NPCs"):
@@ -193,12 +192,12 @@ func update_room_gone_npcs(scene_node : Node2D, updated_npcs):
 		for treasure in treasures.get_children():
 			scene_node.save_data["items"][Collectible.TREASURE].append(treasure.name)
 			
-func update_room_save_data(scene_node : Node2D, scene_name : String):
+func save_room_node(scene_node : Node2D, scene_name : String):
 	if not ("save_data" in scene_node):
 		return {}
 	var interactables = get_tree().get_nodes_in_group("Interactable")
-	var updated_npcs = update_room_interactables_save_data(scene_node, interactables)
-	update_room_gone_npcs(scene_node, updated_npcs)
+	var updated_npcs = save_room_interactables(scene_node, interactables)
+	save_room_gone_npcs(scene_node, updated_npcs)
 	_save.rooms[scene_name] = scene_node.save_data
 
 func load_room_interactables_save_data(scene_node : Node2D):
@@ -329,7 +328,7 @@ func play_scene_entrance_cutscene():
 func on_new_scene():
 	if SceneTransition.scene_changed():
 		if not (current_scene is Control):
-			update_room_save_data(current_scene, SceneTransition.prev_scene_name)
+			save_room_node(current_scene, SceneTransition.prev_scene_name)
 	load_current_scene_node()
 	init_player_for_new_scene()
 	init_current_scene()
@@ -447,7 +446,7 @@ func _ready():
 	SceneTransition.won.connect(on_won)
 	get_tree().paused = true
 
-func update_current_scene():
+func save_current_scene():
 	_save.current_scene = SceneTransition.current_scene_name
 	_save.current_scene_path = SceneTransition.current_scene_path
 func update_save_data():
@@ -457,8 +456,8 @@ func update_save_data():
 	_save.player.position = player.global_position
 	_save.player.inventory = player.inventory
 	_save.player.attack_damage = player.attack_damage
-	update_current_scene()
-	update_room_save_data(current_scene, SceneTransition.current_scene_name)
+	save_current_scene()
+	save_room_node(current_scene, SceneTransition.current_scene_name)
 	_save.completed_tutorial_prompts = Collectible.get_completed_tutorial_prompts()
 	_save.player.level = player.level
 	

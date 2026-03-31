@@ -1,11 +1,8 @@
-extends StaticBody2D
-var interaction_message = "Z to talk"
-var type = Types.NPC
-var status = {"times_spoken_to":0,"paid":false}
+extends Types.NPC
 var scroll_fragment = {}
 var retired = false
-var dialogues = [
 
+var dialogues = [
 [
 	{
 		"text":"Why, hallo.",
@@ -123,7 +120,10 @@ var translate_dialogue = [
 		"speaker":"Player"
 	}
 ]
-
+func _ready():
+	interaction_message = "Z to talk"
+	status = {"times_spoken_to":0,"paid":false}
+	
 func activate(_using_item = "", _count = 0):
 	if (status["times_spoken_to"] >= 1) and (not _using_item.is_empty()):
 		if _using_item is Dictionary:
