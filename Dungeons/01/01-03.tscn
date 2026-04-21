@@ -30,11 +30,11 @@
 [ext_resource type="Script" uid="uid://tobitg2nf2yn" path="res://Utils/hitbox.gd" id="28_ujdgm"]
 [ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="29_045gd"]
 [ext_resource type="AudioStream" uid="uid://l6gipho4g8f4" path="res://Assets/Sounds/Slack/AttackSound.ogg" id="30_143by"]
-[ext_resource type="PackedScene" uid="uid://bbirthebgbru2" path="res://Characters/Crow/Crow.tscn" id="31_gpsw1"]
 [ext_resource type="PackedScene" uid="uid://cqpa2n6eiq5js" path="res://Characters/NPCs/Aelia/Aelia.tscn" id="32_d3e13"]
 [ext_resource type="PackedScene" uid="uid://8t68yc1jpnle" path="res://Characters/Glop/Glop.tscn" id="32_sns0i"]
 [ext_resource type="PackedScene" uid="uid://b1hy8scwvidei" path="res://Items/Treasure/Treasure.tscn" id="33_611f7"]
 [ext_resource type="PackedScene" uid="uid://s2r7rsit3r2j" path="res://Items/Talons/Talons.tscn" id="33_beukq"]
+[ext_resource type="PackedScene" uid="uid://xofedx7635yx" path="res://Enemies/Crow/Crow.tscn" id="35_beukq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1ada"]
 size = Vector2(964, 40)
@@ -722,6 +722,15 @@ position = Vector2(2463, 1924)
 [node name="Enemies" type="Node2D" parent="." unique_id=797862508]
 y_sort_enabled = true
 
+[node name="Crow" parent="Enemies" unique_id=863658450 instance=ExtResource("35_beukq")]
+position = Vector2(-1107, 2091)
+
+[node name="Crow2" parent="Enemies" unique_id=1348081232 instance=ExtResource("35_beukq")]
+position = Vector2(-475, 2576)
+
+[node name="Crow3" parent="Enemies" unique_id=844473231 instance=ExtResource("35_beukq")]
+position = Vector2(195, 2045)
+
 [node name="Slack" type="CharacterBody2D" parent="Enemies" unique_id=1444892258 groups=["Enemies"]]
 modulate = Color(1.3, 1.3, 1.3, 1)
 position = Vector2(-439, 2219)
@@ -788,15 +797,6 @@ volume_db = 1.5
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Enemies/Slack" unique_id=900358844]
 stream = ExtResource("30_143by")
-
-[node name="Crow" parent="Enemies" unique_id=1774697235 instance=ExtResource("31_gpsw1")]
-position = Vector2(-943, 2144)
-
-[node name="Crow2" parent="Enemies" unique_id=847232798 instance=ExtResource("31_gpsw1")]
-position = Vector2(-477, 2481)
-
-[node name="Crow3" parent="Enemies" unique_id=1894042408 instance=ExtResource("31_gpsw1")]
-position = Vector2(37, 2200)
 
 [node name="Glop" parent="Enemies" unique_id=1680994833 instance=ExtResource("32_sns0i")]
 position = Vector2(2443, 1996)

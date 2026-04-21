@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://chlctx8x4qub0"]
+
+[ext_resource type="Script" uid="uid://dposrh55326ml" path="res://Enemies/EnemyHitbox/Scripts/EnemyHitbox.gd" id="1_3nidq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qepe3"]
+radius = 17.0
+height = 48.0
+
+[node name="EnemyHitbox" type="Area2D" unique_id=1828239180]
+script = ExtResource("1_3nidq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=287862717]
+position = Vector2(3, -4)
+shape = SubResource("CapsuleShape2D_qepe3")

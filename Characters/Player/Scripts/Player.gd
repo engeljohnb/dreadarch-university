@@ -337,6 +337,7 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 			else:
 				global_position.y -= 135.0*delta
 				sprite.modulate.a = 1.0 - (cutscene_timer/1.75)
+				sprite.modulate.a = lerp(1.0, 0.0, cutscene_timer/2.0)
 				if cutscene_timer > 1.75:
 					z_index = 0
 					end_cutscene()
@@ -344,6 +345,7 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 		else:
 			if climb_cutscene["direction"] == "Up":
 				global_position = lerp(climb_cutscene["start_pos"], climb_cutscene["position"], cutscene_timer*1.25)
+				sprite.modulate.a = lerp(0.0, 1.0, cutscene_timer/2.0)
 				if cutscene_timer > 1.0:
 					sprite.play_backwards("Climb Down Transition")
 					global_position.y -= 25 * (cutscene_timer - 1.0)

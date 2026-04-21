@@ -1,5 +1,6 @@
 extends Types.NPC
 
+@onready var sprite = $AnimatedSprite2D
 var will_retire = false
 var retiring = false
 var retiring_timer = 0.0
@@ -9,7 +10,7 @@ var bribe_amount = 25
 
 var translation_dialogue = [
 	{
-		"text":"Look at this writing... Can you tell me what it says in Common Speech?",
+		"text":"Look at this writing... Can you tell me what it says in English??",
 		"speaker":"Player"
 	},
 	{
@@ -17,7 +18,7 @@ var translation_dialogue = [
 		"speaker":"Fitzroy"
 	},
 	{
-		"text":"It doesn't say anything in Common Speech.",
+		"text":"It doesn't say anything in English.",
 		"speaker":"Fitzroy"
 	}
 ]
@@ -43,7 +44,7 @@ var intro_dialogue = [
 		"speaker" : "Player"
 	},
 	{
-		"text" : "Nope! Not happening! No one goes in by orders of Captain Geralt.",
+		"text" : "No one goes in by orders of Captain Geralt.",
 		"speaker" : "Fitzroy"
 	},
 	{
@@ -59,11 +60,7 @@ var intro_dialogue = [
 		"speaker" : "Fitzroy"
 	},
 	{
-		"text" : "Can't you make an exception? I won't tell Captain Whoever.",
-		"speaker" : "Player"
-	},
-	{
-		"text" : "When you're the one paying my salary, I'll do what you say. Until then, what the Captain says goes.",
+		"text" : "When you pay my salary you can give the orders. Until then, what the Captain says goes.",
 		"speaker" : "Fitzroy"
 	},
 	{
@@ -167,14 +164,14 @@ var retiring_dialogue = [
 	}
 ]
 
-func _ready():
-	interaction_message = "Z to Talk"
+
+func init():
 	status = {
 		"gone" : false,
 		"introduced" : false,
 		"offered_failed_bribe" : false
 	}
-	$AnimatedSprite2D.play("Idle")
+	sprite.play("Idle")
 
 func offering_inadequate_bribe(using_item, item_count):
 	if (not (using_item is String)) and (not (using_item is StringName)):

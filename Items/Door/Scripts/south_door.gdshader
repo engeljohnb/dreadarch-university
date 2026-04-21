@@ -1,4 +1,4 @@
-hader_type canvas_item;
+shader_type canvas_item;
 uniform sampler2D mask;
 
 void vertex() {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m13guvu1fxgg"]
+[gd_scene format=3 uid="uid://m13guvu1fxgg"]
 
 [ext_resource type="Script" uid="uid://x8dtria5sylj" path="res://Items/Ladder/Scripts/LadderTop.gd" id="1_7p8m3"]
 [ext_resource type="Texture2D" uid="uid://sgehloi3hr4" path="res://Assets/Items/RopeLadder/Hole.png" id="1_lqgdu"]
@@ -19,34 +19,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="LadderTop" type="Area2D"]
+[node name="LadderTop" type="Area2D" unique_id=2081510321]
 collision_layer = 32
 collision_mask = 8
 script = ExtResource("1_7p8m3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1069574637]
 position = Vector2(0, -33)
 shape = SubResource("RectangleShape2D_qs77a")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=255258877]
 visible = false
+self_modulate = Color(0.84747404, 0.8474746, 0.8474743, 1)
 z_index = 1
 z_as_relative = false
 position = Vector2(-2.9999921, 1.5000008)
 scale = Vector2(1.547619, 1.6071429)
 texture = ExtResource("2_khw2j")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=141451615]
 position = Vector2(-1.4999975, 0)
 scale = Vector2(1.6071428, 1.6428572)
 texture = ExtResource("1_lqgdu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1147709588]
 position = Vector2(0, -44)
 sprite_frames = SubResource("SpriteFrames_uooq2")
 frame_progress = 1.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=317307278]
 light_mask = 5
 visibility_layer = 5
 position = Vector2(-1.0000001, 4.0000005)

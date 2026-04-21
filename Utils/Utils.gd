@@ -4,7 +4,11 @@ const RIGHT = Vector2(1, 0)
 const UP = Vector2(0,-1)
 const DOWN = Vector2(0,1)
 const SAVE_FILE_DIRECTORY = "user://SaveFiles/"
+var player_position : Vector2
 		
+func update_player_position(pos : Vector2):
+	player_position = pos
+	
 func nearest_cardinal_direction(direction : Vector2, as_text = false):
 	var x = direction.x
 	var y = direction.y

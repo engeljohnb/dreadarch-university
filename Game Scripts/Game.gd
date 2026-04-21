@@ -24,6 +24,7 @@ var step_sound_source = null
 var max_save_files = 5
 
 
+
 func apply_or_remove_footstep_reverb():
 	#if the player's going up
 	var volume_diff = 4.0
@@ -243,7 +244,9 @@ func load_current_scene_node():
 		current_scene.queue_free()
 	current_scene = load(SceneTransition.current_scene_path).instantiate()
 	current_scene.process_mode = PROCESS_MODE_PAUSABLE
-# Don't ask me how it ended up like this 
+
+# Grass tiles are scene collections, so they can't use custom data layers
+#   like normal tiles. So I have to update the player's step sound differently for them.
 func on_player_entered_grass():
 	step_sound_source = "Grass"
 func on_player_exited_grass():
@@ -295,6 +298,8 @@ func load_player_for_new_scene():
 	# initialization after the scene enters the tree
 	player.global_position = SceneTransition.player_start_position
 	player.in_cutscene = false
+	Utils.update_player_position(player.global_position)
+	
 func play_scene_entrance_cutscene():
 	if SceneTransition.by_door:
 		player.modulate.a = 0.0
@@ -524,6 +529,7 @@ func _process(_delta):
 	if player.dead:
 		if player.in_cutscene:
 			player_death_cutscene(_delta)
+	Utils.update_player_position(player.global_position)
 
 		
 	

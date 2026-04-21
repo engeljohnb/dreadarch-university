@@ -66,3 +66,9 @@ class Interactable:
 class NPC:
 	extends Interactable
 	var status = {"gone":false}
+	# Implemented by subclasses
+	func _init():
+		pass
+	func _ready():
+		interaction_message = "Z to talk"
+		call_deferred("init")

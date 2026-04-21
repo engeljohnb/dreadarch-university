@@ -100,7 +100,7 @@ var translate_dialogue = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"This is what it says in the Common Tonge:",
+		"text":"This is what it says in Englisch:",
 		"speaker":"Aelia"
 	},
 	{
@@ -116,12 +116,11 @@ var translate_dialogue = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"And I would hardly call your speech the \"Common Tongue.\"",
+		"text":"It smells really good!",
 		"speaker":"Player"
 	}
 ]
-func _ready():
-	interaction_message = "Z to talk"
+func init():
 	status = {"times_spoken_to":0,"paid":false}
 	
 func activate(_using_item = "", _count = 0):

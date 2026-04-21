@@ -30,7 +30,7 @@ var textures = {
 				}
 
 var projectiles = {
-	TALONS:load("res://Characters/Crow/Projectile/CrowProjectile.tscn")
+	TALONS:load("res://Enemies/Crow/Projectile/CrowProjectile.tscn")
 }
 
 var streams = {
@@ -46,7 +46,7 @@ var spriteframes = {
 	HEART:load("res://Items/Heart/Heart.tres"),
 	SCROLL_FRAGMENT:null,
 	TREASURE:load("res://Items/Treasure/Treasure.tres"),
-	TALONS:load("res://Characters/Crow/Projectile/CrowProjectileSpriteframes.tres"),
+	TALONS:load("res://Enemies/Crow/Projectile/CrowProjectileSpriteframes.tres"),
 	GOLDEN_DAGGER:load("res://Items/GoldenDagger/GoldenDagger.tres"),
 	NECTAR:null
 }
