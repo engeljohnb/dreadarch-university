@@ -1,4 +1,4 @@
-Dreadarch University is a short 2D dark fantasy action game.
+Dreadarch University is a short 2D fantasy action adventure game.
 
 Explore the buried ruins of an ancient university, fight evil spirits & botched experiments, and avenge the queen.
 
