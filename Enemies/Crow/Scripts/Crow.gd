@@ -3,10 +3,7 @@ extends Enemy
 var timer = 0.0
 @export var path : Path
 
-func get_hitbox():
-	return $EnemyHitbox
-
-func create_crow_sound_component() -> EnemySoundComponent:
+func create_sound_component() -> EnemySoundComponent:
 	var sound = load("res://Enemies/EnemySoundComponent.tscn").instantiate()
 	
 	var aggro_warning_sound = ActorSound.new()
@@ -42,7 +39,7 @@ func init():
 		path.starting_position = global_position
 		path.magnitudes[0] = 150.0
 		launch_projectile_delay = 0.33
-	sound_component = create_crow_sound_component()
+	sound_component = create_sound_component()
 	add_child(path)
 	
 func _process(_delta):

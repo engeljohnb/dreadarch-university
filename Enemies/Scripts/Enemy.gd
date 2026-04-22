@@ -1,7 +1,23 @@
 extends CharacterBody2D
 class_name Enemy
 
-#i dont understand why the transition from prepare_attack to attack is broken
+# This class is (supposed to be) a subclass sandbox: https://gameprogrammingpatterns.com/subclass-sandbox.html
+
+# It also uses a state machine: https://gameprogrammingpatterns.com/state.html
+
+# Subclasses can reprogram the state machine's behavior by reimplementing any of
+#   the process_action_xyz functions. Or keep them and just write _process.
+#	Crow is the basic vanilla enemy. Start there for examples.
+#   
+# Chores the subclasses need to do:
+#	Creating the sound_component
+#	Adding the names to any actions with a transition animation to can_transition
+#		NOTE: action names don't perfectly correspond to their IDs in the Actions enum,
+#			  because "attack" ID can have multiple action names ("Projectile", "Slice", etc)
+
+# State machine state can be set with set_action
+#  
+# I know the underscore conventions aren't consistent. I'll fix it soon. If i forget, sorry
 
 class ProjectileAttack:
 	var num_projectiles : int = 1
@@ -63,9 +79,6 @@ func turn_off_physics():
 	process_mode = Node.PROCESS_MODE_DISABLED
 	
 func _update():
-	if (current_action != Actions.ATTACK) and (not aggrod):
-		if _aggro_triggered():
-			_set_action(Actions.AGGRO_WARNING)
 	_update_facing()
 	move_and_slide()
 	_update_animation()
@@ -110,6 +123,7 @@ func _set_action(action : int):
 func _ready():
 	_prev_position = global_position
 	add_child(blinker)
+	_set_action(Actions.IDLE)
 	init()
 	add_child(sound_component)
 	
@@ -150,17 +164,23 @@ func _update_animation():
 	sprite.play(_get_animation_name())
 
 func _process_action_walk():
+	if (current_action != Actions.ATTACK) and (not aggrod):
+		if _aggro_triggered():
+			_set_action(Actions.AGGRO_WARNING)
 	_update()
 	
 func _process_action_idle():
+	if (current_action != Actions.ATTACK) and (not aggrod):
+		if _aggro_triggered():
+			_set_action(Actions.AGGRO_WARNING)
 	_update()
 
 func _process_action(delta : float):
 	match current_action:
 		Actions.IDLE:
-			_process_action_walk()
-		Actions.WALK:
 			_process_action_idle()
+		Actions.WALK:
+			_process_action_walk()
 		Actions.ATTACK:
 			_process_action_attack()
 		Actions.AGGRO_WARNING:
@@ -194,8 +214,7 @@ func _create_talons_attack(num_projectiles = 1) -> ProjectileAttack:
 func _create_projectile(type : int) -> ProjectileAttack:
 	return _create_talons_attack()
 		
-func _launch_projectile():
-	var projectile = _create_projectile(0)
+func _launch_projectile(projectile : ProjectileAttack):
 	call_deferred("add_sibling", projectile.node)
 	projectile.node.position = position
 	projectile.node.call_deferred("launch", Utils.nearest_cardinal_direction(facing))
@@ -209,7 +228,7 @@ func process_action_death():
 			add_sibling(death_cutscene)
 			death_cutscene.position = position
 			death_cutscene.play(0.0, self)
-			# The sound needs to keep laying after node is disabled
+			# The sound needs to keep playing after node is disabled
 			sound_component.reparent(death_cutscene)
 			turn_off_physics()
 			
@@ -267,7 +286,7 @@ func _process_action_attack():
 	var action_length : float = _get_action_length()
 	if action_timer >= launch_projectile_delay:
 		if not projectile_launched:
-			_launch_projectile()
+			_launch_projectile(_create_projectile(0))
 			projectile_launched = true
 	if action_timer >= action_length:
 		if not _transitioning:

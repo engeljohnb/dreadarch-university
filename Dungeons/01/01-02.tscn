@@ -11,10 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://swkj0fncneb7" path="res://Decoration/Statues/EmpressStatue.tscn" id="9_bqi03"]
 [ext_resource type="PackedScene" uid="uid://pnjjhjfeuic8" path="res://Items/Pot/pot.tscn" id="9_eyswd"]
 [ext_resource type="PackedScene" uid="uid://b1hy8scwvidei" path="res://Items/Treasure/Treasure.tscn" id="10_hpfwf"]
-[ext_resource type="Script" uid="uid://lnv0ayrafonh" path="res://Characters/Slack/Scripts/Slack.gd" id="11_rwuyw"]
 [ext_resource type="Texture2D" uid="uid://bbjkavlt3tv47" path="res://Assets/Badguys/Slack/0000.png" id="12_48415"]
+[ext_resource type="Script" uid="uid://blvk1oqmr857s" path="res://Enemies/Slack/Scripts/Slack.gd" id="13_48415"]
 [ext_resource type="Texture2D" uid="uid://b4480pyuhdsjs" path="res://Assets/Badguys/Slack/0001.png" id="13_jrrsf"]
 [ext_resource type="PackedScene" uid="uid://xofedx7635yx" path="res://Enemies/Crow/Crow.tscn" id="13_xf6oa"]
+[ext_resource type="PackedScene" uid="uid://chlctx8x4qub0" path="res://Enemies/EnemyHitbox/EnemyHitbox.tscn" id="14_jrrsf"]
 [ext_resource type="Texture2D" uid="uid://b1f2oknd02ynw" path="res://Assets/Badguys/Slack/0002.png" id="14_xf6oa"]
 [ext_resource type="Texture2D" uid="uid://byv2lcya0hwx4" path="res://Assets/Badguys/Slack/0003.png" id="15_bqi03"]
 [ext_resource type="Texture2D" uid="uid://taadngdjfra" path="res://Assets/Badguys/Slack/0004.png" id="16_i0qon"]
@@ -30,10 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bq6sqtsn0y4i" path="res://Assets/Badguys/Slack/0014.png" id="26_r2f18"]
 [ext_resource type="Texture2D" uid="uid://b26qkj6laxx23" path="res://Assets/Badguys/Slack/0015.png" id="27_82ju3"]
 [ext_resource type="Texture2D" uid="uid://w8w1rsqnu65p" path="res://Assets/Badguys/Slack/0016.png" id="28_eh538"]
-[ext_resource type="Script" uid="uid://26xt3lsefn0n" path="res://Characters/Slack/Scripts/SearchArea.gd" id="29_5gac6"]
-[ext_resource type="Script" uid="uid://tobitg2nf2yn" path="res://Utils/hitbox.gd" id="30_fn5lo"]
-[ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="31_w2yci"]
-[ext_resource type="AudioStream" uid="uid://l6gipho4g8f4" path="res://Assets/Sounds/Slack/AttackSound.ogg" id="32_ucbjh"]
+[ext_resource type="Script" uid="uid://dkdycuae880i1" path="res://Enemies/Slack/Scripts/SearchArea.gd" id="32_48415"]
 [ext_resource type="PackedScene" uid="uid://bsldetll3rk11" path="res://Decoration/WaterLeak/WaterLeak.tscn" id="35_48415"]
 [ext_resource type="PackedScene" uid="uid://kip8t316lm6g" path="res://Tiles/RuinTiles.tscn" id="36_jrrsf"]
 [ext_resource type="Texture2D" uid="uid://b52a2jr2qlw2y" path="res://Assets/Tiles/AncientLibrary/ground_tiles.png" id="37_xf6oa"]
@@ -463,8 +461,28 @@ fill = 2
 fill_from = Vector2(0.521739, 0.482609)
 fill_to = Vector2(0, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yhojs"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_j16na"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_rl4bu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_8jgxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_r2f18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_82ju3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_eh538")
+}],
+"loop": true,
+"name": &"Idle Left",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("12_48415")
@@ -503,142 +521,14 @@ animations = [{
 "texture": ExtResource("23_rn4yl")
 }],
 "loop": false,
-"name": &"Attack",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("24_rl4bu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_8jgxe")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_r2f18")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_82ju3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_eh538")
-}],
-"loop": true,
-"name": &"Idle",
+"name": &"Projectile Left",
 "speed": 12.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b750k"]
-radius = 8.0
-height = 80.0
-
-[sub_resource type="Animation" id="Animation_bv7yh"]
-resource_name = "Attack"
-length = 1.00001
-step = 0.0833333
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"Attack", 1.0, false],
-"method": &"play"
-}, {
-"args": [&"Idle", 1.0, false],
-"method": &"play"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.75),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"launch_projectile"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AttackSound")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.75),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_b750k"]
-resource_name = "Idle"
-step = 0.0833333
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Idle", 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_b750k"]
-_data = {
-&"Attack": SubResource("Animation_bv7yh"),
-&"Idle": SubResource("Animation_b750k")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_b750k"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq8l4"]
 radius = 450.028
 
-[sub_resource type="Gradient" id="Gradient_nocy6"]
-offsets = PackedFloat32Array(0, 0.380353, 0.38539, 0.483627, 0.735516)
-colors = PackedColorArray(1, 1, 1, 1, 0.392947, 0.392947, 0.392947, 1, 0.392947, 0.392947, 0.392947, 1, 0.380064, 0.380064, 0.380064, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_b750k"]
-gradient = SubResource("Gradient_nocy6")
-fill = 1
-fill_from = Vector2(0.491453, 0.487179)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ve43x"]
-radius = 44.75
-
-[sub_resource type="Gradient" id="Gradient_ve43x"]
-colors = PackedColorArray(0.962217, 0.962217, 0.962217, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nocy6"]
-gradient = SubResource("Gradient_ve43x")
-fill = 1
-fill_from = Vector2(0.495726, 0.491453)
-fill_to = Vector2(0.632479, 0.705128)
-
-[sub_resource type="Gradient" id="Gradient_6fv88"]
-offsets = PackedFloat32Array(0.401294, 0.601942)
-colors = PackedColorArray(0, 0, 0, 0.724, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_oor3y"]
-gradient = SubResource("Gradient_6fv88")
-fill = 1
-fill_from = Vector2(0.393162, 0.512821)
-fill_to = Vector2(0.965812, 0.034188)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aq8l4"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_jlp2k"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 327680, 1, 1, 65536, 0, 65537, 65536, 1, 131073, 327680, 1, 2, 327680, 1, 65538, 327680, 1, 131074, 262144, 1)
@@ -897,6 +787,34 @@ position = Vector2(-6561, 385)
 [node name="Enemies" type="Node2D" parent="." unique_id=892315826]
 y_sort_enabled = true
 
+[node name="Slack" type="CharacterBody2D" parent="Enemies" unique_id=1330011682]
+position = Vector2(-7144, 372)
+collision_layer = 8
+collision_mask = 20
+script = ExtResource("13_48415")
+mirrored = true
+
+[node name="EnemyHitbox" parent="Enemies/Slack" unique_id=1828239180 instance=ExtResource("14_jrrsf")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/Slack" unique_id=413050665]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_j16na")
+animation = &"Projectile Left"
+
+[node name="SearchArea" type="Area2D" parent="Enemies/Slack" unique_id=1594172444]
+position = Vector2(272, 42)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("32_48415")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Slack/SearchArea" unique_id=505288334]
+position = Vector2(-149, -42)
+scale = Vector2(1.16, 1)
+shape = SubResource("CircleShape2D_aq8l4")
+
+[node name="PhysicsShape" type="CollisionShape2D" parent="Enemies/Slack" unique_id=454298957]
+shape = SubResource("CapsuleShape2D_aq8l4")
+
 [node name="Crow3" parent="Enemies" unique_id=1604862997 instance=ExtResource("13_xf6oa")]
 position = Vector2(-2209, 1239)
 
@@ -905,75 +823,6 @@ position = Vector2(-3245, 1184)
 
 [node name="Crow2" parent="Enemies" unique_id=944831151 instance=ExtResource("13_xf6oa")]
 position = Vector2(-3622, 1175)
-
-[node name="Slack" type="CharacterBody2D" parent="Enemies" unique_id=1553444598 groups=["Enemies"]]
-modulate = Color(1.3, 1.3, 1.3, 1)
-position = Vector2(-7144, 378)
-collision_layer = 8
-collision_mask = 12
-script = ExtResource("11_rwuyw")
-direction = "Right"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/Slack" unique_id=187892402]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_yhojs")
-animation = &"Attack"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Slack" unique_id=1666681294]
-shape = SubResource("CapsuleShape2D_b750k")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Slack" unique_id=1432604494]
-libraries/ = SubResource("AnimationLibrary_b750k")
-
-[node name="SearchArea" type="Area2D" parent="Enemies/Slack" unique_id=1541943791]
-position = Vector2(333, 0)
-collision_layer = 16
-collision_mask = 8
-script = ExtResource("29_5gac6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Slack/SearchArea" unique_id=1911505554]
-position = Vector2(-149, -42)
-scale = Vector2(1.16, 1)
-shape = SubResource("CircleShape2D_b750k")
-
-[node name="DeathLight" type="PointLight2D" parent="Enemies/Slack" unique_id=1781537745]
-position = Vector2(-7, -7)
-scale = Vector2(2.389, 2.372)
-color = Color(0.14902, 0.137255, 0.156863, 1)
-energy = 4.59
-range_layer_min = -3
-range_layer_max = 4
-texture = SubResource("GradientTexture2D_b750k")
-
-[node name="Hitbox" type="Area2D" parent="Enemies/Slack" unique_id=2108630605]
-z_index = 1
-collision_layer = 2
-collision_mask = 4
-script = ExtResource("30_fn5lo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Slack/Hitbox" unique_id=1648868409]
-position = Vector2(0, 8)
-rotation = 0.654498
-shape = SubResource("CircleShape2D_ve43x")
-
-[node name="PointLight2D" type="PointLight2D" parent="Enemies/Slack" unique_id=2093016850]
-position = Vector2(9.09495e-13, -24)
-scale = Vector2(5.125, 5.125)
-color = Color(0.996078, 0.839216, 0.819608, 1)
-texture = SubResource("GradientTexture2D_nocy6")
-
-[node name="StupidShadow" type="Sprite2D" parent="Enemies/Slack" unique_id=195446959]
-z_index = -1
-position = Vector2(18.5, 36)
-scale = Vector2(1.57812, 0.625)
-texture = SubResource("GradientTexture2D_oor3y")
-
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="Enemies/Slack" unique_id=1800379424]
-stream = ExtResource("31_w2yci")
-volume_db = 1.5
-
-[node name="AttackSound" type="AudioStreamPlayer2D" parent="Enemies/Slack" unique_id=334090575]
-stream = ExtResource("32_ucbjh")
 
 [node name="RuinTiles" parent="." unique_id=1092312887 instance=ExtResource("36_jrrsf")]
 tile_map_data = PackedByteArray("AACx/wIAAAADAAAAAACw/wIAAAADAAAAAACy/wMAAAAAAAQAAACv/wIAAAABAAQAAACz/wQAAAAAAAQAAAA=")

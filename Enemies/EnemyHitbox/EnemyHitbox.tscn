@@ -7,6 +7,8 @@ radius = 17.0
 height = 48.0
 
 [node name="EnemyHitbox" type="Area2D" unique_id=1828239180]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_3nidq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=287862717]

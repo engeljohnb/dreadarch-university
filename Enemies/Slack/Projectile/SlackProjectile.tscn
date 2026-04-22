@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://chv0cq7n5xdoh"]
+[gd_scene format=3 uid="uid://c13v6sthgcbgx"]
 
-[ext_resource type="Texture2D" uid="uid://dg2x6mrhrle58" path="res://Assets/Badguys/Slack/Projectile/0000.png" id="1_dexgh"]
-[ext_resource type="Script" uid="uid://iyhanwsy02a2" path="res://Characters/Slack/Projectile/SlackProjectile.gd" id="1_rydyq"]
-[ext_resource type="Texture2D" uid="uid://cf85ldc87jfq5" path="res://Assets/Badguys/Slack/Projectile/0001.png" id="2_rydyq"]
-[ext_resource type="Texture2D" uid="uid://b0m45s1x3p2dm" path="res://Assets/Badguys/Slack/Projectile/0002.png" id="3_0mbej"]
-[ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="5_0mbej"]
+[ext_resource type="Script" uid="uid://c0gn1b1reuj6d" path="res://Enemies/Slack/Projectile/SlackProjectile.gd" id="1_tute0"]
+[ext_resource type="Texture2D" uid="uid://dg2x6mrhrle58" path="res://Assets/Badguys/Slack/Projectile/0000.png" id="2_5r2do"]
+[ext_resource type="Texture2D" uid="uid://cf85ldc87jfq5" path="res://Assets/Badguys/Slack/Projectile/0001.png" id="3_1s0hp"]
+[ext_resource type="Texture2D" uid="uid://b0m45s1x3p2dm" path="res://Assets/Badguys/Slack/Projectile/0002.png" id="4_pb3kj"]
+[ext_resource type="AudioStream" uid="uid://cpr5val28nnq5" path="res://Assets/Sounds/EnemyDeath.ogg" id="5_d0epm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dexgh"]
 radius = 11.045361
@@ -13,13 +13,13 @@ radius = 11.045361
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_dexgh")
+"texture": ExtResource("2_5r2do")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rydyq")
+"texture": ExtResource("3_1s0hp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_0mbej")
+"texture": ExtResource("4_pb3kj")
 }],
 "loop": true,
 "name": &"default",
@@ -42,7 +42,7 @@ collision_layer = 12
 collision_mask = 39
 mass = 0.2
 gravity_scale = 0.0
-script = ExtResource("1_rydyq")
+script = ExtResource("1_tute0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
@@ -63,5 +63,5 @@ range_layer_max = 4
 texture = SubResource("GradientTexture2D_rydyq")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_0mbej")
+stream = ExtResource("5_d0epm")
 volume_db = 1.5

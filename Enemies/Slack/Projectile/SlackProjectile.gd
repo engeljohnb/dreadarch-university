@@ -11,25 +11,31 @@ var direction_change_counter = 0.0
 var dead = false
 var cutscene_timer = 0
 var death_cutscene_duration = 0.5
+var parent_hitbox : EnemyHitbox 
+var ignore = []
 @onready var hitbox = $CollisionShape2D
 @onready var deathlight = $DeathLight
 
 
 func _on_body_entered(body):
-	if (body.name != "Slack") and not (body is TileMapLayer):
+	if not (body is TileMapLayer):
 		$AnimatedSprite2D.visible = false
 		$CollisionShape2D.set_deferred("disabled", true)
 		$DeathSound.play()
 		deathlight.visible = true
 		dead = true
+
+func set_parent_hitbox(_hitbox : EnemyHitbox):
+	parent_hitbox = _hitbox
+	parent_hitbox.ignore.append(self)
 	
 func _ready():
 	contact_monitor = true
 	max_contacts_reported = 1
 	body_entered.connect(_on_body_entered)
 
-func launch(direction, _player):
-	player = _player
+func launch(direction):
+	player = get_tree().get_nodes_in_group("Player")[0]
 	position += 75*direction
 	facing = -(player.global_position - global_position).normalized()
 	
@@ -49,6 +55,8 @@ func play_death_cutscene(delta):
 			queue_free()
 			
 func _physics_process(_delta):
+	if player == null:
+		player = get_tree().get_nodes_in_group("Player")[0]
 	if dead:
 		position = prev_position
 		play_death_cutscene(_delta)

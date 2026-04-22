@@ -3,6 +3,10 @@ class_name EnemySoundComponent
 # sounds should be int : AudioStream, but for some reason
 #  When I load the .ogg files, godot loads them as "Object" not "AudioStream"
 #  So just be careful to use the right types.
+
+# A dict for which ActorSounds correspond to each action. Enemy state machine 
+#  just passes the current state (action) to update
+#  Use Enemy.Actions enum
 @export var sounds : Dictionary[int, ActorSound]
 
 var _delayed_sounds : Array[ActorSound]
@@ -21,6 +25,7 @@ func should_play_sound(sound) -> bool:
 	
 func play_sound(sound : ActorSound):
 	$AudioStreamPlayer2D.stream = sound.stream
+	$AudioStreamPlayer2D.volume_db = sound.volume
 	$AudioStreamPlayer2D.play()
 	sound.played = true
 	

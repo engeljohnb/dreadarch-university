@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://dygeh7ihnucf0"]
+
+[ext_resource type="Script" uid="uid://blvk1oqmr857s" path="res://Enemies/Slack/Scripts/Slack.gd" id="1_l63p6"]
+[ext_resource type="Texture2D" uid="uid://bbjkavlt3tv47" path="res://Assets/Badguys/Slack/0000.png" id="2_6rbxy"]
+[ext_resource type="PackedScene" uid="uid://chlctx8x4qub0" path="res://Enemies/EnemyHitbox/EnemyHitbox.tscn" id="2_aq8l4"]
+[ext_resource type="Texture2D" uid="uid://b4480pyuhdsjs" path="res://Assets/Badguys/Slack/0001.png" id="3_wq8rr"]
+[ext_resource type="Texture2D" uid="uid://b1f2oknd02ynw" path="res://Assets/Badguys/Slack/0002.png" id="4_aq8l4"]
+[ext_resource type="Texture2D" uid="uid://byv2lcya0hwx4" path="res://Assets/Badguys/Slack/0003.png" id="5_u4d2o"]
+[ext_resource type="Texture2D" uid="uid://taadngdjfra" path="res://Assets/Badguys/Slack/0004.png" id="6_8scmv"]
+[ext_resource type="Texture2D" uid="uid://83k616ojx8p7" path="res://Assets/Badguys/Slack/0005.png" id="7_q46x4"]
+[ext_resource type="Texture2D" uid="uid://6wmw4uuokqcd" path="res://Assets/Badguys/Slack/0006.png" id="8_wxla0"]
+[ext_resource type="Texture2D" uid="uid://eya7w0sm5xjh" path="res://Assets/Badguys/Slack/0007.png" id="9_gtyye"]
+[ext_resource type="Texture2D" uid="uid://cyetxnp15xxtn" path="res://Assets/Badguys/Slack/0008.png" id="10_sbvdc"]
+[ext_resource type="Texture2D" uid="uid://bxyoygff73ocm" path="res://Assets/Badguys/Slack/0009.png" id="11_d8bd6"]
+[ext_resource type="Texture2D" uid="uid://byfsjx6v6rha3" path="res://Assets/Badguys/Slack/0010.png" id="12_des8v"]
+[ext_resource type="Texture2D" uid="uid://cnfy17knie20j" path="res://Assets/Badguys/Slack/0011.png" id="13_xj30l"]
+[ext_resource type="Texture2D" uid="uid://2xtjdpfv47vq" path="res://Assets/Badguys/Slack/0012.png" id="14_63nsn"]
+[ext_resource type="Texture2D" uid="uid://dan0ok74ywj0m" path="res://Assets/Badguys/Slack/0013.png" id="15_3ejf6"]
+[ext_resource type="Texture2D" uid="uid://bq6sqtsn0y4i" path="res://Assets/Badguys/Slack/0014.png" id="16_kh6vu"]
+[ext_resource type="Texture2D" uid="uid://b26qkj6laxx23" path="res://Assets/Badguys/Slack/0015.png" id="17_w23nu"]
+[ext_resource type="Texture2D" uid="uid://w8w1rsqnu65p" path="res://Assets/Badguys/Slack/0016.png" id="18_eq15d"]
+[ext_resource type="Script" uid="uid://dkdycuae880i1" path="res://Enemies/Slack/Scripts/SearchArea.gd" id="20_aq8l4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j16na"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_63nsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_3ejf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_kh6vu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_w23nu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_eq15d")
+}],
+"loop": true,
+"name": &"Idle Left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6rbxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wq8rr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aq8l4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u4d2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8scmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_q46x4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wxla0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gtyye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sbvdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_d8bd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_des8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xj30l")
+}],
+"loop": false,
+"name": &"Projectile Left",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq8l4"]
+radius = 450.028
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aq8l4"]
+
+[node name="Slack" type="CharacterBody2D" unique_id=1710579108]
+collision_layer = 8
+collision_mask = 20
+script = ExtResource("1_l63p6")
+
+[node name="EnemyHitbox" parent="." unique_id=1828239180 instance=ExtResource("2_aq8l4")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=413050665]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_j16na")
+animation = &"Projectile Left"
+
+[node name="SearchArea" type="Area2D" parent="." unique_id=1594172444]
+position = Vector2(143, 42)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("20_aq8l4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SearchArea" unique_id=505288334]
+position = Vector2(-149, -42)
+scale = Vector2(1.16, 1)
+shape = SubResource("CircleShape2D_aq8l4")
+
+[node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=454298957]
+shape = SubResource("CapsuleShape2D_aq8l4")
