@@ -1,5 +1,5 @@
 extends Area2D
-class_name EnemyHitbox
+class_name Hitbox
 
 var ignore = []
 func _on_body_entered(body):

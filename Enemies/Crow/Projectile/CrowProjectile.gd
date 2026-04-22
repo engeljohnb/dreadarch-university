@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Weapon
 
 var facing = Vector2(0,-1)
 var launch_velocity = facing
@@ -8,27 +8,9 @@ var countdown = 2.5
 @onready var hitbox = $CollisionShape2D
 @onready var launch_sprite = $"Launch Effect"
 @onready var outline_sprite = $"Launch Effect/Launch Effect Outline"
-@onready var deathlight = $DeathLight
 @onready var _light = load("res://Enemies/Crow/Projectile/CrowProjectileLight.tscn")
 var _by_player = false
-var cutscene_timer = 0.0
-var death_cutscene_duration = 0.33
 var dead = false
-var parent_hitbox : EnemyHitbox
-
-# This projectile shouldn't trigger the hitbox of the actor that created it, 
-#   but since projectiles are usually siblings instead of children,
-#   it's not easy to tell who created it. It needs to be
-#   set manually by the creator. It's the best I could think of
-func set_parent_hitbox(_parent_hitbox : EnemyHitbox):
-	parent_hitbox = _parent_hitbox
-
-func death():
-	dead = true
-	$AnimatedSprite2D.visible = false
-	$"Launch Effect".visible = false
-	deathlight.visible = true
-	hitbox.set_deferred("disabled", true)
 	
 func _on_body_entered(_body):
 	if _body != get_parent():
@@ -43,8 +25,6 @@ func _ready():
 	contact_monitor = true
 	max_contacts_reported = 1
 	body_entered.connect(_on_body_entered)
-	if parent_hitbox != null:
-		parent_hitbox.ignore.append(self)
 
 func name_to_vector(_name):
 	match _name:
@@ -72,16 +52,8 @@ func get_animation_name(direction):
 		else:
 			return "Down"
 
-func play_death_cutscene(delta):
-		deathlight.modulate = Color(1,0,0,)
-		cutscene_timer += delta
-		var cutscene_percent = cutscene_timer/death_cutscene_duration
-		deathlight.energy = 1.0/cutscene_percent
-		if cutscene_timer >= death_cutscene_duration:
-			queue_free()
 
 func launch(direction, by_player = false):
-	#print("Now Launching: " + name)
 	_by_player = by_player
 	var animation_name = get_animation_name(direction)
 	var cardinal_direction = name_to_vector(animation_name)
@@ -111,13 +83,12 @@ func launch(direction, by_player = false):
 		light.position.y += 400
 	launch_velocity = cardinal_direction * 350
 
-
 func _physics_process(_delta):
 	countdown -= _delta
 	if countdown <= 0.0:
 		death()
 	if dead:
-		play_death_cutscene(_delta)
+		death()
 	else:
 		global_position += launch_velocity*_delta
 	if not visible:

@@ -1,9 +1,9 @@
 extends Node2D
 class_name EnemyDeathCutscene
 
-var cutscene_timer = 0.0
-var cutscene_duration = 1.0
-var cutscene_speed = 2.66
+var timer = 0.0
+var duration = 1.0
+var speed = 2.66
 var playing = false
 var _actor : Variant = self
 func play(delta = 0.0, actor = self):
@@ -16,17 +16,14 @@ func play(delta = 0.0, actor = self):
 		if actor != self:
 			actor.visible = false
 			_actor = actor
+		$AudioStreamPlayer2D.play()
 	else:
 		deathlight.modulate = Color(1,0,0,)
-		cutscene_timer += delta
-		var cutscene_percent = cutscene_timer/cutscene_speed
-		deathlight.energy = 1.0/cutscene_percent
-		if cutscene_timer >= cutscene_duration:
-			if _actor == self:
-				get_parent().call_deferred("queue_free")
-			else:
-				actor.queue_free()
-			call_deferred("queue_free")
+		timer += delta
+		var percent = timer/speed
+		deathlight.energy = 1.0/percent
+		if timer >= duration:
+			queue_free()
 
 func _process(_delta):
 	if playing:

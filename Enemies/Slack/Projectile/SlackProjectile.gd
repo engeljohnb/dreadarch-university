@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Weapon
 
 var facing = Vector2(0,-1)
 var launch_velocity = facing
@@ -9,25 +9,13 @@ var prev_position : Vector2
 var prev_facing : Vector2
 var direction_change_counter = 0.0
 var dead = false
-var cutscene_timer = 0
-var death_cutscene_duration = 0.5
-var parent_hitbox : EnemyHitbox 
 var ignore = []
 @onready var hitbox = $CollisionShape2D
-@onready var deathlight = $DeathLight
-
 
 func _on_body_entered(body):
 	if not (body is TileMapLayer):
-		$AnimatedSprite2D.visible = false
-		$CollisionShape2D.set_deferred("disabled", true)
-		$DeathSound.play()
-		deathlight.visible = true
 		dead = true
 
-func set_parent_hitbox(_hitbox : EnemyHitbox):
-	parent_hitbox = _hitbox
-	parent_hitbox.ignore.append(self)
 	
 func _ready():
 	contact_monitor = true
@@ -42,24 +30,15 @@ func launch(direction):
 	apply_impulse(direction*200.0)
 	if Utils.nearest_cardinal_direction(direction) == Utils.RIGHT:
 		$AnimatedSprite2D.scale.x = -$AnimatedSprite2D.scale.x
-	#else:
-	#	$AnimatedSprite2D.rotate(Utils.RIGHT.angle_to(direction))
 	$AnimatedSprite2D.play("default")
 
-func play_death_cutscene(delta):
-		deathlight.modulate = Color(1,0,0,)
-		cutscene_timer += delta
-		var cutscene_percent = cutscene_timer/death_cutscene_duration
-		deathlight.energy = 1.0/cutscene_percent
-		if cutscene_timer >= death_cutscene_duration:
-			queue_free()
 			
 func _physics_process(_delta):
 	if player == null:
 		player = get_tree().get_nodes_in_group("Player")[0]
 	if dead:
 		position = prev_position
-		play_death_cutscene(_delta)
+		death()
 	else:
 		facing = (player.global_position - global_position).normalized()
 		impulse_timer += _delta
