@@ -77,7 +77,7 @@ func drop_items():
 		var drop = Collectible.create(best_items[i])
 		var x_offset : float = (64 * i)
 		drop.position = Vector2(position.x + x_offset, position.y)
-		drop.get_sprite().play("default")
+		#drop.get_sprite().play("default")
 		add_sibling(drop)
 
 func init():

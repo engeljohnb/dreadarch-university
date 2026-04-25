@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://s2r7rsit3r2j"]
 
 [ext_resource type="Script" uid="uid://bkfhxclrr666e" path="res://Items/Talons/Scripts/Talons.gd" id="1_o506o"]
-[ext_resource type="SpriteFrames" uid="uid://d37cvije2wlux" path="res://Weapons/Projectiles/Talons/CrowProjectileSpriteframes.tres" id="2_o506o"]
 [ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="3_o506o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
@@ -16,12 +15,6 @@ script = ExtResource("1_o506o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=573378392]
 position = Vector2(3, 0)
 shape = SubResource("CircleShape2D_bh5a0")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1292647262]
-texture_filter = 1
-position = Vector2(1.3750007, 2.1153858)
-scale = Vector2(1.6346154, 1.6346154)
-sprite_frames = ExtResource("2_o506o")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1169753094]
 position = Vector2(2, 1)

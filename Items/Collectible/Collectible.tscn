@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dpa55uqmg7q8g" path="res://Assets/DefaultSpriteFrames.tres" id="2_fh8dk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
-radius = 15.132746
+radius = 15.297058
 
 [node name="Collectible" type="Area2D" unique_id=1836059589]
 texture_filter = 1
@@ -13,11 +13,9 @@ collision_mask = 268
 script = ExtResource("1_iq24x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=573378392]
-position = Vector2(3, 0)
 shape = SubResource("CircleShape2D_bh5a0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1292647262]
 texture_filter = 1
-position = Vector2(1.3750007, 2.1153858)
 scale = Vector2(1.6346154, 1.6346154)
 sprite_frames = ExtResource("2_fh8dk")

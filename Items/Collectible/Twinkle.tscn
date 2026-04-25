@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cpnp5bqrcu6mi"]
+
+[ext_resource type="Shader" uid="uid://wox55vhfk1wm" path="res://Items/Collectible/Twinkle.gdshader" id="1_6h1h2"]
+[ext_resource type="Script" uid="uid://cxdc1dqt1v844" path="res://Items/Collectible/Twinkle.gd" id="2_n5nwa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6h1h2"]
+shader = ExtResource("1_6h1h2")
+shader_parameter/time = 0.0
+
+[sub_resource type="Gradient" id="Gradient_h85lg"]
+colors = PackedColorArray(1, 0.24313726, 0.24313726, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2unnm"]
+gradient = SubResource("Gradient_h85lg")
+width = 32
+height = 32
+fill = 2
+fill_from = Vector2(0.50427353, 0.491453)
+fill_to = Vector2(0.32478634, 1)
+
+[node name="Twinkle" type="Node2D" unique_id=2012087131]
+material = SubResource("ShaderMaterial_6h1h2")
+script = ExtResource("2_n5nwa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1482752480]
+use_parent_material = true
+texture = SubResource("GradientTexture2D_2unnm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1669318101]
+use_parent_material = true
+position = Vector2(0, 1)
+rotation = 0.7853982
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_2unnm")

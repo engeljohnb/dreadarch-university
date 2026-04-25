@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://vhduvbq30tpd"]
 
 [ext_resource type="Script" uid="uid://fhivtpul7qcb" path="res://Items/Heart/Heart.gd" id="1_c71ca"]
-[ext_resource type="SpriteFrames" uid="uid://br4yq3q4dw8sg" path="res://Items/Heart/Heart.tres" id="2_tla6b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2bck"]
 
@@ -12,8 +11,3 @@ script = ExtResource("1_c71ca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2054453685]
 shape = SubResource("CircleShape2D_u2bck")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2054811038]
-texture_filter = 1
-sprite_frames = ExtResource("2_tla6b")
-frame_progress = 0.230266
