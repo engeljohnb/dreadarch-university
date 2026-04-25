@@ -145,6 +145,6 @@ func _process(_delta):
 	if Dialogue.current_box == dialogues[0][-1]:
 		if not status["paid"]:
 			status["paid"] = true
-			Collectible.item_collected.emit(Collectible.NECTAR, 5, true)
+			ItemCollection.item_collected.emit(ItemCollection.NECTAR, 5, true)
 	if Dialogue.current_box == translate_dialogue[-1]:
-		Collectible.scroll_fragment_translated.emit(scroll_fragment)
+		ItemCollection.scroll_fragment_translated.emit(scroll_fragment)

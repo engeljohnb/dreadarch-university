@@ -176,13 +176,13 @@ func init():
 func offering_inadequate_bribe(using_item, item_count):
 	if (not (using_item is String)) and (not (using_item is StringName)):
 		return false
-	return ((using_item == Collectible.TREASURE) and 
+	return ((using_item == ItemCollection.TREASURE) and 
 	(item_count < 25))
 
 func offering_adequate_bribe(using_item, item_count):
 	if (not (using_item is String)) and (not (using_item is StringName)):
 		return false
-	return ((using_item == Collectible.TREASURE) and 
+	return ((using_item == ItemCollection.TREASURE) and 
 	(item_count >= 25))
 	
 func activate(using_item = "", item_count = 1):
@@ -212,7 +212,7 @@ func activate(using_item = "", item_count = 1):
 		if using_item is Dictionary:
 			Dialogue.open_dialogue.emit(translation_dialogue)
 			return
-		if (not using_item.is_empty()) and (using_item != Collectible.TREASURE):
+		if (not using_item.is_empty()) and (using_item != ItemCollection.TREASURE):
 			Dialogue.open_dialogue.emit(using_item_default_dialogue)
 		else:
 			Dialogue.open_dialogue.emit(intro_dialogue.slice(-2, intro_dialogue.size()))
@@ -221,7 +221,7 @@ func _process(_delta):
 	if will_retire:
 		if Dialogue.current_box.get("text") == adequate_bribe_dialogue[-1]["text"]:
 			if not paid:
-				Collectible.item_collected.emit(Collectible.TREASURE, -bribe_amount, true)
+				ItemCollection.item_collected.emit(ItemCollection.TREASURE, -bribe_amount, true)
 				paid = true
 		if not get_tree().get_nodes_in_group("Player")[0].in_dialogue:
 			retiring = true

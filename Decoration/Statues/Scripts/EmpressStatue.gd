@@ -1,4 +1,4 @@
-extends Types.Interactable
+extends Interactable
 
 var inscription = [
 	{

@@ -9,6 +9,8 @@ var attack_finished = false
 var attacking_body : CharacterBody2D
 
 func on_body_entered(body):
+	if body is Enemy:
+		return
 	if body is CharacterBody2D:
 		if ("attacking" in body) and (not attack_finished):
 			if body.attacking:
@@ -20,7 +22,7 @@ func on_body_entered(body):
 				attacking_body = body.get_parent()
 				wait_for_attack = true
 				return
-		Collectible.item_collected.emit(Collectible.TALONS, 1, true)
+		ItemCollection.item_collected.emit(ItemCollection.TALONS, 1, true)
 		queue_free()
 	if body is TileMapLayer:
 		if not (body.get_parent() is ParallaxLayer):

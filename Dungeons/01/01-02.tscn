@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://blvk1oqmr857s" path="res://Enemies/Slack/Scripts/Slack.gd" id="13_48415"]
 [ext_resource type="Texture2D" uid="uid://b4480pyuhdsjs" path="res://Assets/Badguys/Slack/0001.png" id="13_jrrsf"]
 [ext_resource type="PackedScene" uid="uid://xofedx7635yx" path="res://Enemies/Crow/Crow.tscn" id="13_xf6oa"]
-[ext_resource type="PackedScene" uid="uid://chlctx8x4qub0" path="res://Enemies/EnemyHitbox/EnemyHitbox.tscn" id="14_jrrsf"]
+[ext_resource type="PackedScene" uid="uid://chlctx8x4qub0" path="res://Enemies/EnemyHitbox/Hitbox.tscn" id="14_jrrsf"]
 [ext_resource type="Texture2D" uid="uid://b1f2oknd02ynw" path="res://Assets/Badguys/Slack/0002.png" id="14_xf6oa"]
 [ext_resource type="Texture2D" uid="uid://byv2lcya0hwx4" path="res://Assets/Badguys/Slack/0003.png" id="15_bqi03"]
 [ext_resource type="Texture2D" uid="uid://taadngdjfra" path="res://Assets/Badguys/Slack/0004.png" id="16_i0qon"]

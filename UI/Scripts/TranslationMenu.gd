@@ -63,11 +63,11 @@ func on_translate():
 	$RichTextLabel.text = selected_document["english_text"]
 	progress_icons[progress_index].fill()
 	progress_index += 1
-	Collectible.scroll_fragment_translated.emit(selected_document)
-	if progress_index == Collectible.fragments_to_level_up:
+	ItemCollection.scroll_fragment_translated.emit(selected_document)
+	if progress_index == ItemCollection.fragments_to_level_up:
 		toggle_level_up_mode()
 
-	if progress_index > Collectible.fragments_to_level_up:
+	if progress_index > ItemCollection.fragments_to_level_up:
 		progress_index = 0
 		for icon in progress_icons:
 			icon.reset()
@@ -96,7 +96,7 @@ func next_document(index_addend = 1):
 		$RichTextLabel.text = selected_document["latin_text"]
 	
 func open(_documents : Array):
-	var level_up_total = Collectible.fragments_to_level_up
+	var level_up_total = ItemCollection.fragments_to_level_up
 	$OpenSound.play()
 	get_tree().paused = true
 	documents = _documents.duplicate()

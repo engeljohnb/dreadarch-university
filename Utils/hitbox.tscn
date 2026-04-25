@@ -1,14 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://vsiymdsiad1f"]
+[gd_scene format=3 uid="uid://ok6k5hqhywpy"]
 
-[ext_resource type="Script" uid="uid://tobitg2nf2yn" path="res://Utils/hitbox.gd" id="1_w818u"]
+[sub_resource type="GDScript" id="GDScript_3ax78"]
+script/source = "extends Hitbox
+signal hit(body)
+# For some nodes it's easiest to have the weapon as a sibling, others it's
+# beter as a child. So checking if the weapon and this hitbox share a parent
+# isn't a good way to keep actors from hitting themselves. This is the
+# best way I could think of -- just set the weapon when the calling node 
+# creates the weapon.
+var my_weapon = null
+var my_weapons = []
+@onready var shape = $CollisionShape2D.shape
+
+func on_body_entered(body):
+	if body.is_in_group(\"Weapons\") or (body is Weapon):
+		if \"dead\" in body.get_parent():
+			if body.get_parent().dead:
+				return
+		if body in ignore:
+			return
+		if my_weapon:
+			if (body != my_weapon): 
+				hit.emit(body)
+		if not my_weapons.is_empty():
+			if not (body in my_weapons):
+				hit.emit(body)
+		else:
+			if (body.get_parent() != get_parent()):
+				hit.emit(body)
+
+func _ready():
+	body_entered.connect(on_body_entered)
+	area_entered.connect(on_body_entered)
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmhg"]
 height = 46.0
 
-[node name="Hitbox" type="Area2D"]
+[node name="Hitbox" type="Area2D" unique_id=652334402]
 collision_layer = 3
 collision_mask = 4
-script = ExtResource("1_w818u")
+script = SubResource("GDScript_3ax78")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768879240]
 shape = SubResource("CapsuleShape2D_wtmhg")

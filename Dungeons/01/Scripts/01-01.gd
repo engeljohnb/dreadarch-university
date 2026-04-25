@@ -28,6 +28,7 @@ func on_shelf_searched():
 			searching_shelf = true
 	
 func _ready():
+	shelf.interaction_message = "Z to Search"
 	shelf.searched.connect(on_shelf_searched)
 	get_parent().music.volume_db = -7.3
 	save_data["cutscenes"] = [ {"collected_first_scroll_fragment":false} ]
@@ -38,5 +39,5 @@ func _process(_delta):
 
 	if searching_shelf:
 		if not get_tree().get_nodes_in_group("Player")[0].in_dialogue:
-			Collectible.collect_scroll_fragment(-1)
+			ItemCollection.collect_scroll_fragment(-1)
 			searching_shelf = false

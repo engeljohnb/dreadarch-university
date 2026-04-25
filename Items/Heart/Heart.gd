@@ -25,7 +25,7 @@ func on_body_entered(body):
 				return
 		var player = get_tree().get_nodes_in_group("Player")[0]
 		player.gain_life(1)
-		Collectible.sounds[Collectible.HEART].call_deferred("play")
+		ItemCollection.sounds[ItemCollection.HEART].call_deferred("play")
 		queue_free()
 		
 func _ready():

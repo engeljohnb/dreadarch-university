@@ -20,7 +20,7 @@ var chosen_item_count = 0
 var chosen_action = ""
 var _inventory : Dictionary
 var document_selector_open = false
-var document_items = [Collectible.SCROLL_FRAGMENT]
+var document_items = [ItemCollection.SCROLL_FRAGMENT]
 var last_selected_item_index = -1
 var just_opened = false
 @onready var stupid_submenu = submenu
@@ -48,9 +48,9 @@ func open_submenu():
 	
 	submenu.clear()
 	submenu.add_button("Use")
-	if chosen_item_name in Collectible.equippable:
+	if chosen_item_name in ItemCollection.equippable:
 		submenu.add_button("Equip")
-	if chosen_item_name in Collectible.drinkable:
+	if chosen_item_name in ItemCollection.drinkable:
 		submenu.add_button("Drink")
 	submenu.add_button("Cancel")
 	submenu_open = true
@@ -120,10 +120,10 @@ func open(inventory):
 			if inventory[key] > 0:
 				var item = InventoryItem.new()
 				item.name = key
-				item.icon = Collectible.textures[key]
+				item.icon = ItemCollection.textures[key]
 				item.count = int(inventory[key])
 				inventory_items.append(item)
-				item_list.add_icon_item(Collectible.textures[key])
+				item_list.add_icon_item(ItemCollection.textures[key])
 				var count_label = create_count_label(item)
 				item_list.add_child(count_label)
 		elif inventory[key] is Array:
@@ -134,10 +134,10 @@ func open(inventory):
 						"Scroll Fragment":
 							var item = InventoryItem.new()
 							item.name = "Scroll Fragment"
-							item.icon = Collectible.textures[key]
+							item.icon = ItemCollection.textures[key]
 							item.count = inventory[key].size()
 							inventory_items.append(item)
-							item_list.add_icon_item(Collectible.textures[key])
+							item_list.add_icon_item(ItemCollection.textures[key])
 							var count_label = create_count_label(item)
 							item_list.add_child(count_label)
 							
@@ -220,8 +220,8 @@ func _process(_delta):
 			var icon = inventory_items[chosen_index].icon
 			item_closeup.texture = icon
 			name_label.text = "[center]" + _name + "[/center]"
-			if Collectible.descriptions.has(_name):
-				description_label.text = Collectible.descriptions[_name]
+			if ItemCollection.descriptions.has(_name):
+				description_label.text = ItemCollection.descriptions[_name]
 			else:
 				description_label.text = "No description available."
 	if Input.is_action_just_released("CloseInventory"):

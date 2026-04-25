@@ -38,7 +38,7 @@ func nearest_cardinal_direction(direction : Vector2, as_text = false):
 func is_scroll_fragment(document):
 	if not (document is Dictionary):
 		return false
-	return document.get("document_type") == Collectible.SCROLL_FRAGMENT
+	return document.get("document_type") == ItemCollection.SCROLL_FRAGMENT
 
 func is_valid_save_filename(filename):
 	var valid = true
@@ -122,3 +122,8 @@ func interactables_equal(i1 : Dictionary, i2 : Dictionary) -> bool:
 		print("ERROR: invalid interactable object: ", i2)
 		return false
 	return name1 == name2
+
+func padink(timer : float, pa : float = 0.25, dink : float = 0.75) -> float:
+	if timer > pa:
+		return timer
+	return (pa+dink) - timer

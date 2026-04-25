@@ -24,10 +24,10 @@ class Player:
 		temporary_life = 0
 		total_life = 0
 		inventory = {
-			Collectible.SCROLL_FRAGMENT : [],
-			Collectible.TREASURE : int(0),
-			Collectible.TALONS: int(0),
-			Collectible.GOLDEN_DAGGER : int(0)
+			ItemCollection.SCROLL_FRAGMENT : [],
+			ItemCollection.TREASURE : int(0),
+			ItemCollection.TALONS: int(0),
+			ItemCollection.GOLDEN_DAGGER : int(0)
 		}
 
 class Save:
@@ -50,7 +50,7 @@ class Room:
 	var save_data : Dictionary = {
 		"pots":[],
 		"NPCs":[],
-		"items":{Collectible.TREASURE:[]}
+		"items":{ItemCollection.TREASURE:[]}
 	}
 	func init_music():
 		var music_track = Music.get_music_track_from_room_name(SceneTransition.current_scene_name)
@@ -58,11 +58,8 @@ class Room:
 			music = music_track["path"]
 			music_volume = music_track["volume"]
 
-class Interactable:
-	extends StaticBody2D
-	var interaction_message = "Z to interact"
-	func activate():
-		print("Activated: ", self.name)
+
+
 class NPC:
 	extends Interactable
 	var status = {"gone":false}

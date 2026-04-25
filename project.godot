@@ -26,11 +26,12 @@ buses/default_bus_layout="uid://d05ihcoim7q1"
 [autoload]
 
 SceneTransition="*res://SceneTransition.tscn"
-Collectible="*res://Collectible.gd"
 Dialogue="*res://UI/Dialogue.tscn"
 Types="*res://Types.gd"
 Utils="*res://Utils/Utils.gd"
 Music="*uid://fc1unxq6nnbn"
+ItemCollection="*uid://rsiy2khhv1ak"
+Tutorial="*uid://b0xnp20r6wh3u"
 
 [display]
 

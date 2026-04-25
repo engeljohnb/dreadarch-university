@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ce4aeql8kclix" path="res://Enemies/Crow/Scripts/Crow.gd" id="1_qepe3"]
 [ext_resource type="SpriteFrames" uid="uid://bgdb5enqo5b8d" path="res://Enemies/Crow/crow_sprite_frames.tres" id="2_if58j"]
-[ext_resource type="PackedScene" uid="uid://chlctx8x4qub0" path="res://Enemies/EnemyHitbox/EnemyHitbox.tscn" id="3_if58j"]
+[ext_resource type="PackedScene" uid="uid://chlctx8x4qub0" path="res://Enemies/EnemyHitbox/Hitbox.tscn" id="3_if58j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_frsu6"]
 radius = 15.0

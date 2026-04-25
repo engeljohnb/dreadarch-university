@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+# This node is just a huge mess. Several other systems were overhauled
+#   and refactored to make them cleaner, but the player is
+#   far too coupled to too many systems. Sorry, it just ended up this way.
+
 signal died()
 signal lost_life(damage)
 signal gained_life(life)
@@ -39,7 +43,7 @@ var facing : Vector2
 var prev_facing = Vector2(0,1)
 var direction_changed = false
 var moving = false
-var equipped = Collectible.GOLDEN_DAGGER
+var equipped = ItemCollection.GOLDEN_DAGGER
 var attacking = false
 var won = false
 var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "arriving": false, "min_scale": 0.8}
@@ -47,9 +51,9 @@ var climb_cutscene = {"position" : Vector2(), "start_pos" : Vector2(), "arriving
 var outside_door_cutscene = {"reverse":false}
 var in_dialogue = false
 var direction_priority
-# Why have golden_dagger_equipped when I can just check equipped == Collectible.GOLDEN_DAGGER?
+# Why have golden_dagger_equipped when I can just check equipped == ItemCollection.GOLDEN_DAGGER?
 # Becaues everything breaks in the AnimationTree state machine when the advance condition
-# is equipped == Collectible.GOLDEN_DAGGER. I don't know why but having this variable instead makes it work.
+# is equipped == ItemCollection.GOLDEN_DAGGER. I don't know why but having this variable instead makes it work.
 var golden_dagger_equipped = true
 var hard_step_sound = load("res://Assets/Sounds/Student/StepSound.ogg")
 var soft_step_sound = load("res://Assets/Sounds/Student/SoftStepSound.ogg")
@@ -63,10 +67,10 @@ var level_up_dialogue = [
 ]
 func zero_inventory():
 	inventory = {
-		Collectible.SCROLL_FRAGMENT : [], 
-		Collectible.TREASURE : int(0),
-		Collectible.TALONS: int(0), 
-		Collectible.GOLDEN_DAGGER : int(0)
+		ItemCollection.SCROLL_FRAGMENT : [], 
+		ItemCollection.TREASURE : int(0),
+		ItemCollection.TALONS: int(0), 
+		ItemCollection.GOLDEN_DAGGER : int(0)
 		}
 
 func init_for_newgame():
@@ -76,25 +80,25 @@ func init_for_newgame():
 	position = Vector2()
 	
 func on_scroll_fragment_translated(scroll_fragment):
-	for scroll in inventory[Collectible.SCROLL_FRAGMENT]:
+	for scroll in inventory[ItemCollection.SCROLL_FRAGMENT]:
 		if scroll["latin_text"] == scroll_fragment["latin_text"]:
 			scroll["translated"] = true
 	
 func on_item_collected(item, count, _should_play_sound):
 	if item is Dictionary:
 		match item["type"]:
-			Collectible.SCROLL_FRAGMENT:
+			ItemCollection.SCROLL_FRAGMENT:
 				if count > 0:
 					item["collected"] = true
-					if inventory[Collectible.SCROLL_FRAGMENT].is_empty():
-						Collectible.prompt_to_read_scroll_fragment()
-					elif inventory[Collectible.SCROLL_FRAGMENT].size() == Collectible.fragments_to_level_up-1:
+					if inventory[ItemCollection.SCROLL_FRAGMENT].is_empty():
+						ItemCollection.prompt_to_read_scroll_fragment()
+					elif inventory[ItemCollection.SCROLL_FRAGMENT].size() == ItemCollection.fragments_to_level_up-1:
 						Dialogue.open_dialogue.emit(level_up_dialogue)
-					inventory[Collectible.SCROLL_FRAGMENT].append(item)				
+					inventory[ItemCollection.SCROLL_FRAGMENT].append(item)				
 				elif count < 0:
-					inventory[Collectible.SCROLL_FRAGMENT].erase(item)
+					inventory[ItemCollection.SCROLL_FRAGMENT].erase(item)
 				return
-	if item == Collectible.HEART:
+	if item == ItemCollection.HEART:
 		gain_life(1)
 		return
 	elif not inventory.get(item):
@@ -104,12 +108,12 @@ func on_item_collected(item, count, _should_play_sound):
 	if (inventory[item] is int) or (inventory[item] is float):
 		if inventory[item] <= 0:
 			inventory[item] = 0
-	if item == Collectible.GOLDEN_DAGGER:
+	if item == ItemCollection.GOLDEN_DAGGER:
 		on_inventory_action_chosen("Equip", "", 1)
 		if count < 0:
-			inventory[Collectible.GOLDEN_DAGGER] = 0
+			inventory[ItemCollection.GOLDEN_DAGGER] = 0
 		else:
-			inventory[Collectible.GOLDEN_DAGGER] = 1
+			inventory[ItemCollection.GOLDEN_DAGGER] = 1
 		
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
@@ -133,7 +137,7 @@ func play_outside_door_cutscene(delta, reverse = false):
 	if delta == 0.0:
 		init_cutscene(play_outside_door_cutscene, 1.0)
 		var animation_name = "Walk"
-		if equipped == Collectible.GOLDEN_DAGGER:
+		if equipped == ItemCollection.GOLDEN_DAGGER:
 			animation_name = animation_name + " Knife"
 		animation_name = animation_name + " " + Utils.nearest_cardinal_direction(facing, true)
 		if reverse:
@@ -192,7 +196,7 @@ func get_held_direction_name():
 		return "None"
 		
 func has_knife_equipped():
-	return (equipped == Collectible.GOLDEN_DAGGER)
+	return (equipped == ItemCollection.GOLDEN_DAGGER)
 	
 func end_cutscene(to_idle = true, direction = facing):
 	in_cutscene = false
@@ -217,26 +221,26 @@ func is_cutscene_over():
 func play_door_cutscene_walk_animation(dir, arriving):
 	match dir:
 			"North":
-				if equipped == Collectible.GOLDEN_DAGGER:
+				if equipped == ItemCollection.GOLDEN_DAGGER:
 					sprite.play("Walk Knife Up")
 				else:
 					sprite.play("Walk Up")
 				if arriving:
 					door_cutscene["min_scale"] = 1.2
 			"South":
-				if equipped == Collectible.GOLDEN_DAGGER:
+				if equipped == ItemCollection.GOLDEN_DAGGER:
 					sprite.play("Walk Knife Down")
 				else:
 					sprite.play("Walk Down")
 				if not arriving:
 					door_cutscene["min_scale"] = 1.2
 			"West":
-				if equipped == Collectible.GOLDEN_DAGGER:
+				if equipped == ItemCollection.GOLDEN_DAGGER:
 					sprite.play("Walk Knife Left")
 				else:
 					sprite.play("Walk Left")
 			"East":
-				if equipped == Collectible.GOLDEN_DAGGER:
+				if equipped == ItemCollection.GOLDEN_DAGGER:
 					sprite.play("Walk Knife Right")
 				else:
 					sprite.play("Walk Right")
@@ -260,7 +264,7 @@ func door_cutscene_update(delta):
 			global_position = lerp(door_cutscene["player_start_pos"], target_pos, cutscene_timer)
 	elif (door_cutscene["direction"] == "North") or (door_cutscene["direction"] == "South"):
 		if door_cutscene["arriving"]:
-			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.shape.get_rect().size.y+60.0)
+			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.get_shape().get_rect().size.y+60.0)
 			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
 			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
 		else:
@@ -429,25 +433,25 @@ func update_animation_blend_positions():
 	anim_tree.set("parameters/Idle/Idle/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle Knife/blend_position", facing)
 
-func create_thrown_projectile():
-	if Collectible.projectiles.get(equipped):
-		var item = Collectible.projectiles[equipped].instantiate()
-		item.global_position = global_position
-		hitbox.my_weapons.append(item)
-		match equipped:
-			Collectible.TALONS:
-				add_sibling(item)
-				item.launch(facing, true)
-		var equip_dagger = false
-		if inventory[equipped] == 1:
-			if inventory[Collectible.GOLDEN_DAGGER] > 0:
-				equip_dagger = true
-		Collectible.item_collected.emit(equipped, -1, false)
-		if equip_dagger:
-			on_inventory_action_chosen("Equip", Collectible.GOLDEN_DAGGER, 1)
+func get_hitbox():
+	return $Hitbox
+	
+func throw_projectile():
+	match equipped:
+		ItemCollection.TALONS:
+			Attack.new().transform_into_talons_attack().activate(self)
+		ItemCollection.ORBITER:
+			Attack.new().transform_into_orbiter_attack().activate(self)
+	var equip_dagger = false
+	if inventory[equipped] == 1:
+		if inventory[ItemCollection.GOLDEN_DAGGER] > 0:
+			equip_dagger = true
+	ItemCollection.item_collected.emit(equipped, -1, false)
+	if equip_dagger:
+		on_inventory_action_chosen("Equip", ItemCollection.GOLDEN_DAGGER, 1)
 
 func update_attack_state():
-	if equipped == Collectible.GOLDEN_DAGGER:
+	if equipped == ItemCollection.GOLDEN_DAGGER:
 		if attacking and (not attack_fx):
 			attacking = false
 			return
@@ -456,8 +460,7 @@ func update_attack_state():
 			attacking = true
 			attack_fx = _attack_fx.instantiate()
 			attack_fx.change_direction(facing)
-			hitbox.my_weapon = attack_fx
-			hitbox.my_weapons.append(attack_fx)
+			hitbox.ignore.append(attack_fx)
 			add_child(attack_fx)
 	else:
 		if Input.is_action_just_pressed("Attack") and (not attacking):
@@ -499,7 +502,7 @@ func death():
 	dead = true
 	died.emit()
 	
-func on_hit(_body):
+func hit(_body):
 	# Check for i-frames
 	if in_cutscene:
 		return
@@ -521,11 +524,10 @@ func on_blinker_flip(state):
 
 func _ready():
 	get_tree().paused = true
-	hitbox.hit.connect(on_hit)
 	blinker.flip.connect(on_blinker_flip)
-	inventory[Collectible.GOLDEN_DAGGER] = 0
-	Collectible.item_collected.emit(Collectible.GOLDEN_DAGGER, 1, true)
-	on_inventory_action_chosen("Equip", Collectible.GOLDEN_DAGGER, 1)
+	inventory[ItemCollection.GOLDEN_DAGGER] = 0
+	ItemCollection.item_collected.emit(ItemCollection.GOLDEN_DAGGER, 1, true)
+	on_inventory_action_chosen("Equip", ItemCollection.GOLDEN_DAGGER, 1)
 
 func on_inventory_action_chosen(action, item, count):
 	match action:
@@ -537,11 +539,11 @@ func on_inventory_action_chosen(action, item, count):
 				$InteractionRay.message.text = "Z to " + action
 		"Equip":
 			match item:
-				Collectible.TALONS:
-					equipped = Collectible.TALONS
+				ItemCollection.TALONS:
+					equipped = ItemCollection.TALONS
 					golden_dagger_equipped = false
-				Collectible.GOLDEN_DAGGER:
-					equipped = Collectible.GOLDEN_DAGGER
+				ItemCollection.GOLDEN_DAGGER:
+					equipped = ItemCollection.GOLDEN_DAGGER
 					golden_dagger_equipped = true
 				item:
 					equipped = ""
@@ -553,9 +555,9 @@ func on_inventory_action_chosen(action, item, count):
 				item_equipped.emit(item, 1)
 		"Drink":
 			match item:
-				Collectible.NECTAR:
+				ItemCollection.NECTAR:
 					gain_life(1, true)
-			Collectible.item_collected.emit(item, -1, true)
+			ItemCollection.item_collected.emit(item, -1, true)
 					
 func gain_life(_life, temporary = false):
 	if temporary:
@@ -572,7 +574,7 @@ func gain_life(_life, temporary = false):
 func one_or_no_equippable_items():
 	var num_equippables = 0
 	for key in inventory:
-		if (key in Collectible.equippable):
+		if (key in ItemCollection.equippable):
 			if (inventory[key] is float) or (inventory[key] is int):
 				if inventory[key] > 0:
 					num_equippables += 1
@@ -588,16 +590,16 @@ func change_equipment_quick(direction : String):
 	var found_next_item = false
 	var desired_item = ""
 	while (not found_next_item):
-		for i in range(0, Collectible.equippable.size()):
-			if equipped == Collectible.equippable[i]:
+		for i in range(0, ItemCollection.equippable.size()):
+			if equipped == ItemCollection.equippable[i]:
 				target_index = i
 		if direction == "Left":
 			target_index -= 1
 		if direction == "Right":
 			target_index += 1
-			if target_index >= Collectible.equippable.size():
+			if target_index >= ItemCollection.equippable.size():
 				target_index = 0
-		var item = Collectible.equippable[target_index]
+		var item = ItemCollection.equippable[target_index]
 		if (inventory[item] is float) or (inventory[item] is int):
 			if inventory[item] > 0:
 				found_next_item = true
@@ -626,7 +628,7 @@ func update_equipment():
 		return
 	if (inventory.get(equipped) is int) or (inventory[equipped] is float):
 		if inventory[equipped] <= 0:
-			if equipped == Collectible.GOLDEN_DAGGER:
+			if equipped == ItemCollection.GOLDEN_DAGGER:
 				golden_dagger_equipped = false
 			inventory[equipped] = 0
 

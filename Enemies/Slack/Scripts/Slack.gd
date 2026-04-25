@@ -2,23 +2,20 @@ extends Enemy
 @export var mirrored : bool = false
 var player_nearby = false
 
-func _player_in_attack_range() -> bool:
+func player_in_attack_range() -> bool:
 	return player_nearby
 	
-func make_projectile() -> ProjectileAttack:
-	var projectile : ProjectileAttack = ProjectileAttack.new()
-	projectile.num_projectiles = 1
-	projectile.node = load("res://Enemies/Slack/Projectile/SlackProjectile.tscn").instantiate()
-	return projectile
+func make_projectile_attack() -> Attack:
+	return Attack.new().transform_into_orbiter_attack()
 	
-func _launch_projectile(projectile : ProjectileAttack):
-	call_deferred("add_sibling", projectile.node)
-	projectile.node.position = position
+func activate_attack(projectile_attack : Attack):
+	call_deferred("add_sibling", projectile_attack.node)
+	projectile_attack.node.position = position
 	if mirrored:
-		projectile.node.call_deferred("launch", Utils.nearest_cardinal_direction(-facing))
+		projectile_attack.node.call_deferred("activate", Utils.nearest_cardinal_direction(-facing))
 	else:
-		projectile.node.call_deferred("launch", Utils.nearest_cardinal_direction(facing))
-	projectile.node.set_parent_hitbox($EnemyHitbox)
+		projectile_attack.node.call_deferred("activate", Utils.nearest_cardinal_direction(facing))
+	projectile_attack.node.set_parent_hitbox($EnemyHitbox)
 	
 func create_sound_component() -> EnemySoundComponent:
 	var attack_sound : ActorSound = ActorSound.new()
@@ -29,11 +26,11 @@ func create_sound_component() -> EnemySoundComponent:
 		Actions.ATTACK : attack_sound
 	}
 	
-	var sc = load("res://Enemies/EnemySoundComponent.tscn").instantiate()
+	var sc = EnemySoundComponent.create()
 	sc.sounds = sounds
 	return sc
 	
-func _update_facing():
+func update_facing():
 	pass
 	
 func init():
@@ -44,27 +41,27 @@ func init():
 	sound_component = create_sound_component()
 	$SearchArea.player_nearby.connect(func (_body): player_nearby = true)
 	$SearchArea.player_went_away.connect(func (): player_nearby = false)
-	launch_projectile_delay = 0.5
+	attack_delay = 0.5
 	life = 1
 	
 func hit(_actor : Variant):
-	_set_action(Actions.DEATH)
+	set_action(Actions.DEATH)
 	
-func _process_action_idle():
+func process_action_idle():
 	if action_timer > 1.0:
-		if _player_in_attack_range():
-			_set_action(Actions.ATTACK)
-	_update()
+		if player_in_attack_range():
+			set_action(Actions.ATTACK)
+	update()
 	
-func _process_action_attack():
-	if action_timer >= launch_projectile_delay:
-		if not projectile_launched:
-			_launch_projectile(make_projectile())
-			projectile_launched = true
-	_update()
-	if action_timer >= _get_action_length():
-		_set_action(Actions.IDLE)
-		projectile_launched = false
+func process_action_attack():
+	if action_timer >= attack_delay:
+		if not attacked:
+			make_projectile_attack().activate(self, -facing)
+			attacked = true
+	update()
+	if action_timer >= get_action_length():
+		set_action(Actions.IDLE)
+		attacked = false
 	
 func _process(_delta):
-	_process_action(_delta)
+	process_action(_delta)

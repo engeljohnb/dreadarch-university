@@ -6,11 +6,11 @@ var equipped = ""
 
 func on_item_collected(item, amount, _should_play_sound):
 	match item:
-		Collectible.TREASURE:
+		ItemCollection.TREASURE:
 			$Treasure/CanvasLayer/RichTextLabel.text = str(int($Treasure/CanvasLayer/RichTextLabel.text)+int(amount))
 			if int($Treasure/CanvasLayer/RichTextLabel.text) > 0:
 				$Treasure/CanvasLayer.visible = true
-		Collectible.GOLDEN_DAGGER:
+		ItemCollection.GOLDEN_DAGGER:
 			if amount > 0:
 				$Equipped/CanvasLayer.visible = true
 				$Equipped/CanvasLayer/RichTextLabel.text = ""
@@ -29,8 +29,8 @@ func on_item_equipped(item, count):
 		$Equipped/CanvasLayer.visible = false
 		return
 	$Equipped/CanvasLayer.visible = true
-	$Equipped/CanvasLayer/RichTextLabel/AnimatedSprite2D.sprite_frames = Collectible.spriteframes[equipped]
-	if equipped == Collectible.GOLDEN_DAGGER:
+	$Equipped/CanvasLayer/RichTextLabel/AnimatedSprite2D.sprite_frames = ItemCollection.spriteframes[equipped]
+	if equipped == ItemCollection.GOLDEN_DAGGER:
 		$Equipped/CanvasLayer/RichTextLabel.text = ""
 	else:
 		$Equipped/CanvasLayer/RichTextLabel.text = str(int(count))

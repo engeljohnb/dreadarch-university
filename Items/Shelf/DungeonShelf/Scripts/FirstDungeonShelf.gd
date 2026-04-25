@@ -14,7 +14,7 @@ func activate(using_item = "", count = 0):
 		has_overrides.append(using_item)
 		amounts.append(count)
 		$Blinker.blink(0.33)
-		Collectible.item_collected.emit(using_item, -count, true)
+		ItemCollection.item_collected.emit(using_item, -count, true)
 		activated = false
 		return
 	if (not has_overrides.is_empty()) and not activated:
@@ -25,26 +25,26 @@ func activate(using_item = "", count = 0):
 				var amount = amounts[i]
 				var h = has[i]
 				var item_sprite = Sprite2D.new()
-				if (Collectible.textures.get(h)):
-					item_sprite.texture = Collectible.textures[h]
+				if (ItemCollection.textures.get(h)):
+					item_sprite.texture = ItemCollection.textures[h]
 				if Utils.is_scroll_fragment(h):
-					item_sprite.texture = Collectible.textures[Collectible.SCROLL_FRAGMENT]
+					item_sprite.texture = ItemCollection.textures[ItemCollection.SCROLL_FRAGMENT]
 				add_child(item_sprite)
 				showing_item = true
 				item_sprites.append(item_sprite)
 				match h:
-					Collectible.SCROLL_FRAGMENT:
-						if Collectible.all_scroll_fragments_collected:
+					ItemCollection.SCROLL_FRAGMENT:
+						if ItemCollection.all_scroll_fragments_collected:
 							item_sprite.queue_free()
 							has = []
 						else:
-							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
+							ItemCollection.sounds[ItemCollection.SCROLL_FRAGMENT].call_deferred("play")
 							if not has_overrides.is_empty():
-								Collectible.item_collected.emit(h, amount, false)
+								ItemCollection.item_collected.emit(h, amount, false)
 					h:
-						Collectible.item_collected.emit(h, amount, true)
+						ItemCollection.item_collected.emit(h, amount, true)
 						if Utils.is_scroll_fragment(h):
-							Collectible.sounds[Collectible.SCROLL_FRAGMENT].call_deferred("play")
+							ItemCollection.sounds[ItemCollection.SCROLL_FRAGMENT].call_deferred("play")
 			activated = true
 			amounts = []
 		else:
@@ -57,7 +57,7 @@ func activate(using_item = "", count = 0):
 func _ready():
 	$Blinker.flip.connect(on_blinker_flipped)
 	$Blinker.blink_duration = blink_duration
-	can_drop = [Collectible.SCROLL_FRAGMENT]
+	can_drop = [ItemCollection.SCROLL_FRAGMENT]
 	has = []
 	showing_item = false
 	show_duration = 0.5
@@ -68,6 +68,7 @@ func _ready():
 	frame_counter = 0
 	has_overrides = []
 	amounts = []
+	interaction_message = "Z to search"
 	
 func _process(_delta):
 	if showing_item:
@@ -77,12 +78,12 @@ func _process(_delta):
 			item_sprite.position.y -= _delta*100
 			item_sprites[i].position.x = i*32 - ((item_sprites.size()-1) * 16)
 		if show_timer >= show_duration:
-			if Collectible.SCROLL_FRAGMENT in has:
-				# Doing this here instead of emitting Collectible.item_collected
+			if ItemCollection.SCROLL_FRAGMENT in has:
+				# Doing this here instead of emitting ItemCollection.item_collected
 				# so the sound plays immediately but the prompt to read
 				# only opens after the scroll icon finishes its animation
 				if has_overrides.is_empty():
-					Collectible.collect_scroll_fragment()
+					ItemCollection.collect_scroll_fragment()
 			show_timer = 0.0
 			showing_item = false
 			for item_sprite in item_sprites:

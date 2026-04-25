@@ -14,7 +14,7 @@ var dialogue = [
 func on_done():
 	get_tree().paused = false
 	var collected = []
-	for frag in Collectible.scroll_fragments:
+	for frag in ItemCollection.scroll_fragments:
 		if frag["collected"]:
 			collected.append(frag)
 	if collected.size() == 1:
@@ -24,7 +24,7 @@ func on_done():
 func _ready():
 	$TextureRect/Done.pressed.connect(on_done)
 	$TextureRect/Done.grab_focus()
-	$TextureRect/RichTextLabel.text = Collectible.most_recent_scroll_fragment["latin_text"]
+	$TextureRect/RichTextLabel.text = ItemCollection.most_recent_scroll_fragment["latin_text"]
 	get_tree().paused = true
 
 # Check in _process instead of _ready because when this opens other dialgues
