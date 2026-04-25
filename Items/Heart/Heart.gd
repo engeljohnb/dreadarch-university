@@ -1,37 +1,11 @@
-extends Area2D
+extends Collectible
 
-@onready var sprite = $AnimatedSprite2D
-var timer = 0.0
-var falling_animation_duration = 1.0
-var falling = true
-var wait_for_attack = false
-var attack_finished = false
-var attacking_body : CharacterBody2D
-
-func on_body_entered(body):
-	if body is TileMapLayer:
-		if not (body.get_parent() is ParallaxLayer):
-			falling = false
-	if body is CharacterBody2D:
-		if ("attacking" in body) and (not attack_finished):
-			if body.attacking:
-				attacking_body = body
-				wait_for_attack = true
-				return
-		elif ("attacking" in body.get_parent()) and (not attack_finished):
-			if body.get_parent().attacking:
-				attacking_body = body.get_parent()
-				wait_for_attack = true
-				return
-		var player = get_tree().get_nodes_in_group("Player")[0]
-		player.gain_life(1)
-		ItemCollection.sounds[ItemCollection.HEART].call_deferred("play")
-		queue_free()
-		
-func _ready():
-	body_entered.connect(on_body_entered)
-	area_entered.connect(on_body_entered)
-	$AnimatedSprite2D.play("default")
+func on_collected(_body : Variant):
+	var player = get_tree().get_nodes_in_group("Player")[0]
+	player.gain_life()
+	
+func init():
+	is_inventory_item = false
 	
 func play_falling_animation(delta):
 	timer += delta

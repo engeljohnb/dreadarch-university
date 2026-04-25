@@ -1,7 +1,7 @@
 extends Area2D
 class_name Collectible
 
-@onready var sprite = $AnimatedSprite2D
+var sprite : AnimatedSprite2D
 var type : String = ""
 var timer = 0.0
 var falling_animation_duration = 1.0
@@ -9,7 +9,30 @@ var falling = true
 var wait_for_attack = false
 var attack_finished = false
 var attacking_body : CharacterBody2D
+static var _my_node = load("res://Items/Collectible/Collectible.tscn")
+var is_inventory_item : bool = true
 
+func on_collected(_collector : Variant):
+	pass
+	
+func get_sprite() -> AnimatedSprite2D:
+	if sprite == null:
+		return $AnimatedSprite2D
+	return sprite
+	
+func set_sprite(_sprite : AnimatedSprite2D):
+	sprite = _sprite
+	$AnimatedSprite2D.queue_free()
+	add_child(sprite)
+	
+static func create(_type : String) -> Collectible:
+	var node = _my_node.instantiate()
+	node.type = _type
+	var _sprite = AnimatedSprite2D.new()
+	_sprite.sprite_frames = ItemCollection.spriteframes[_type]
+	node.set_sprite(_sprite)
+	return node
+	
 func on_body_entered(body):
 	if body is Enemy:
 		return
@@ -33,10 +56,12 @@ func on_body_entered(body):
 func init():
 	# Called at the end of _ready(). To be implemented by subclasses.
 	pass
+
 func _ready():
 	body_entered.connect(on_body_entered)
 	area_entered.connect(on_body_entered)
-	#$AnimatedSprite2D.play("Down")
+	if sprite == null:
+		sprite = $AnimatedSprite2D
 	init()
 	
 func play_falling_animation(delta):

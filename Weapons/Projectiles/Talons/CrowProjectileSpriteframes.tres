@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://d37cvije2wlux"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://d37cvije2wlux"]
 
 [ext_resource type="Texture2D" uid="uid://y0pt2nquv72c" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png" id="1_setpm"]
 [ext_resource type="Texture2D" uid="uid://cxd8k50rydix" path="res://Assets/Badguys/Crow/Attack/Projectile/Down/0001.png" id="2_kqcs4"]
@@ -74,15 +74,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_setpm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_kqcs4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_5a68y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_kqcs4")
 }],
 "loop": true,
 "name": &"default",

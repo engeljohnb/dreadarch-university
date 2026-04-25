@@ -50,10 +50,35 @@ var knockback_speed : float = 600.0
 var knockback_direction : Vector2
 var blinker : Blinker = Blinker.new()
 var death_cutscene : EnemyDeathCutscene = ResourceLoader.load("res://Utils/DeathCutscene.tscn").instantiate()
+# type : odds out of 1.0
+#  1.0 means always drop (unless a lower probability item was rolled), 0.0 means never
+var can_drop : Dictionary[String, float]
 
 var talons_node = load("res://Weapons/Projectiles/Talons/CrowProjectile.tscn")
 @export var sprite : AnimatedSprite2D
 @export var sound_component : EnemySoundComponent
+
+func drop_items():
+	var roll = randf()
+	var lowest_probability = 1.0
+	var best_items = []
+	for item in can_drop:
+		var odds = can_drop[item]
+		if roll < odds:
+			if odds < lowest_probability:
+				lowest_probability = odds
+				best_items.clear()
+				best_items.append(item)
+			elif odds == lowest_probability:
+				best_items.append(item)
+	if best_items.is_empty():
+		return
+	for i in range(0, best_items.size()):
+		var drop = Collectible.create(best_items[i])
+		var x_offset : float = (64 * i)
+		drop.position = Vector2(position.x + x_offset, position.y)
+		drop.get_sprite().play("default")
+		add_sibling(drop)
 
 func init():
 	# Implemented by subclasses, called at the end of _ready.
@@ -152,7 +177,6 @@ func set_transitioning(value : bool):
 	transitioning = value
 	#breakpoint
 	
-		
 func update_animation():
 	sprite.play(get_animation_name())
 
@@ -208,6 +232,7 @@ func process_action_death():
 	#  I don't think it's worth investigating rn.
 	if death_cutscene != null:
 		if not death_cutscene.is_inside_tree():
+			drop_items()
 			add_sibling(death_cutscene)
 			death_cutscene.position = position
 			death_cutscene.play(0.0, self)
@@ -235,7 +260,6 @@ func process_action_knockback():
 			set_action(Actions.WALK)
 		knockback_applied = false
 
-
 func hit(body : Variant):
 	if not blinker.blinking:
 		knockback_direction = -(body.get_parent().global_position - global_position).normalized()
@@ -244,8 +268,6 @@ func hit(body : Variant):
 		damage(self)
 		blinker.blink(0.5, self)
 		attacked = false
-	
-
 	
 func get_action_length() -> float:
 	var animation_name = get_animation_name()

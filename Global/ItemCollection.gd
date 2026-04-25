@@ -1,4 +1,8 @@
 extends Node
+# Handles the parts of item collection that are shared by many systems (UI, inventory, Interactable).
+#  This is distinct from the Collectible class, which only handles the game objects on the ground 
+#  the player can pick up.
+
 @warning_ignore("unused_signal")
 signal item_collected(item, count, should_play_sound)
 @warning_ignore("unused_signal")

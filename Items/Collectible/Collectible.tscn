@@ -7,7 +7,7 @@
 radius = 15.132746
 
 [node name="Collectible" type="Area2D" unique_id=1836059589]
-modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
+texture_filter = 1
 collision_layer = 128
 collision_mask = 268
 script = ExtResource("1_iq24x")
@@ -21,4 +21,3 @@ texture_filter = 1
 position = Vector2(1.3750007, 2.1153858)
 scale = Vector2(1.6346154, 1.6346154)
 sprite_frames = ExtResource("2_fh8dk")
-animation = &"Idle Down"

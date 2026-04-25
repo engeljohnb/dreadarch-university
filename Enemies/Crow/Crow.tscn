@@ -24,5 +24,3 @@ position = Vector2(3, -4)
 shape = SubResource("CapsuleShape2D_frsu6")
 
 [node name="EnemyHitbox" parent="." unique_id=1828239180 instance=ExtResource("3_if58j")]
-collision_layer = 2
-collision_mask = 4

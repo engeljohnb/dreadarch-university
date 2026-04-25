@@ -29,11 +29,17 @@ func create_sound_component() -> EnemySoundComponent:
 	sound.sounds = _sounds
 	return sound
 
+func set_drops():
+	can_drop[ItemCollection.TALONS] = 1.0
+	can_drop[ItemCollection.TREASURE] = 0.5
+	can_drop[ItemCollection.HEART] = 0.33
+	
 func init():
 	sprite = $AnimatedSprite2D
 	can_transition.append("Walk")
 	can_transition.append("Projectile")
 	set_action(Actions.WALK)
+	set_drops()
 	if not is_instance_valid(path):
 		path = Path.new()
 		path.starting_position = global_position
