@@ -1,6 +1,8 @@
 extends Area2D
+class_name Collectible
 
 @onready var sprite = $AnimatedSprite2D
+var type : String = ""
 var timer = 0.0
 var falling_animation_duration = 1.0
 var falling = true
@@ -22,16 +24,20 @@ func on_body_entered(body):
 				attacking_body = body.get_parent()
 				wait_for_attack = true
 				return
-		ItemCollection.item_collected.emit(ItemCollection.TALONS, 1, true)
+		ItemCollection.item_collected.emit(type, 1, true)
 		queue_free()
 	if body is TileMapLayer:
 		if not (body.get_parent() is ParallaxLayer):
 			falling = false
 	
+func init():
+	# Called at the end of _ready(). To be implemented by subclasses.
+	pass
 func _ready():
 	body_entered.connect(on_body_entered)
 	area_entered.connect(on_body_entered)
-	$AnimatedSprite2D.play("Down")
+	#$AnimatedSprite2D.play("Down")
+	init()
 	
 func play_falling_animation(delta):
 	timer += delta

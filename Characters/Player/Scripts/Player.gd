@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-# This node is just a huge mess. Several other systems were overhauled
+# This node is just a huge, sticky mess. Several other systems were overhauled
 #   and refactored to make them cleaner, but the player is
-#   far too coupled to too many systems. Sorry, it just ended up this way.
+#   far too coupled to too many systems. 
 
 signal died()
 signal lost_life(damage)

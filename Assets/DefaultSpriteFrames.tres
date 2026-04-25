@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dpa55uqmg7q8g"]
+
+[ext_resource type="Texture2D" uid="uid://d3kfvb3oh802h" path="res://Assets/placeholder.png" id="1_xwtos"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xwtos")
+}],
+"loop": true,
+"name": &"Idle Down",
+"speed": 12.0
+}]

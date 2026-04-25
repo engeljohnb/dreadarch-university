@@ -1,21 +1,10 @@
 [gd_scene format=3 uid="uid://bnw2pb2jgbn6w"]
 
 [ext_resource type="Script" uid="uid://dupx1wuk0lc4m" path="res://Enemies/Scripts/Enemy.gd" id="1_bkvnc"]
-[ext_resource type="Texture2D" uid="uid://d3kfvb3oh802h" path="res://Assets/placeholder.png" id="2_4isyn"]
+[ext_resource type="SpriteFrames" uid="uid://dpa55uqmg7q8g" path="res://Assets/DefaultSpriteFrames.tres" id="2_wdetw"]
 [ext_resource type="Script" uid="uid://dposrh55326ml" path="res://Enemies/EnemyHitbox/Scripts/Hitbox.gd" id="3_wdetw"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_bkvnc"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4isyn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_4isyn")
-}],
-"loop": true,
-"name": &"Idle Down",
-"speed": 12.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jcwuj"]
 
@@ -26,7 +15,7 @@ script = ExtResource("1_bkvnc")
 shape = SubResource("SeparationRayShape2D_bkvnc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=581638098]
-sprite_frames = SubResource("SpriteFrames_4isyn")
+sprite_frames = ExtResource("2_wdetw")
 animation = &"Idle Down"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1174447638]

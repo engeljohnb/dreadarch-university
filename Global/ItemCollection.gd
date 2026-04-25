@@ -4,7 +4,9 @@ signal item_collected(item, count, should_play_sound)
 @warning_ignore("unused_signal")
 signal scroll_fragment_translated(scroll_fragment)
 
-# TODO: Change this to an enum, consider using ints instead of strings.
+# Why not an enum? I use the string names enough that I like the convenience of the type ID 
+#   being the same as the string name. Plus, I started with the consts and I don't think the 
+#   refactor is worth it.
 const HEART = "Heart"
 const SCROLL_FRAGMENT = "Scroll Fragment"
 const TREASURE = "Treasure"
@@ -12,6 +14,7 @@ const TALONS = "Talons"
 const GOLDEN_DAGGER = "Golden Dagger"
 const NECTAR = "Nectar"
 const ORBITER = "Orbiter"
+
 
 var equippable = [TALONS, GOLDEN_DAGGER]
 
@@ -56,6 +59,8 @@ var most_recent_scroll_fragment : Dictionary
 var all_scroll_fragments_collected = false
 var fragments_to_level_up = 5
 
+# Why isn't this stuff implemented in Collectible? Because I made 
+#  this first and it still works. 
 func on_item_collected(item, _count, should_play_sound):
 	if sounds.get(item):
 		if should_play_sound:

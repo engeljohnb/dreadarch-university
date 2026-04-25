@@ -9,6 +9,7 @@
 size = Vector2(192, 192)
 
 [node name="Shelf" type="StaticBody2D" unique_id=213379707 groups=["Interactable"]]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 28
 script = ExtResource("1_sqdw6")
