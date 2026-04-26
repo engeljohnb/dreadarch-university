@@ -1,7 +1,6 @@
 extends Enemy
 
 var timer = 0.0
-@export var path : Path
 
 func create_sound_component() -> EnemySoundComponent:
 	var sound = EnemySoundComponent.create()
@@ -40,17 +39,8 @@ func init():
 	can_transition.append("Projectile")
 	set_action(Actions.WALK)
 	set_drops()
-	if not is_instance_valid(path):
-		path = Path.new()
-		path.starting_position = global_position
-		path.magnitudes[0] = 150.0
-		attack_delay = 0.33
+	attack_delay = 0.33
 	sound_component = create_sound_component()
-	add_child(path)
 	
 func _process(_delta):
-	if aggrod:
-		path.stop()
-	else:
-		path.follow(self)
 	process_action(_delta)

@@ -23,9 +23,9 @@ func show_item(_position : Vector2 = Vector2()):
 	
 func _process(_delta):
 	if _showing:
-		var duration = 0.75
+		var duration = 0.66
 		var pa = duration*0.2
-		var padink = Utils.padink(timer, pa, duration, 20.0)
+		var padink = Utils.padink(timer, pa, duration, 30.0)
 		#print(padink)
 		position.y = start_position.y - padink
 		timer += _delta

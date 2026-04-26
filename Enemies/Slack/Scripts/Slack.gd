@@ -43,6 +43,8 @@ func init():
 	$SearchArea.player_went_away.connect(func (): player_nearby = false)
 	attack_delay = 0.5
 	life = 1
+	can_drop[ItemCollection.ORBITER] = 1.0
+
 	
 func hit(_actor : Variant):
 	set_action(Actions.DEATH)

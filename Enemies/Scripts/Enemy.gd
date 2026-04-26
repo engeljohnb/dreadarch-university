@@ -50,6 +50,7 @@ var knockback_speed : float = 600.0
 var knockback_direction : Vector2
 var blinker : Blinker = Blinker.new()
 var death_cutscene : EnemyDeathCutscene = ResourceLoader.load("res://Utils/DeathCutscene.tscn").instantiate()
+var pathfinder : PathFinder
 # type : odds out of 1.0
 #  1.0 means always drop (unless a lower probability item was rolled), 0.0 means never
 var can_drop : Dictionary[String, float]
@@ -77,7 +78,6 @@ func drop_items():
 		var drop = Collectible.create(best_items[i])
 		var x_offset : float = (64 * i)
 		drop.position = Vector2(position.x + x_offset, position.y)
-		#drop.get_sprite().play("default")
 		add_sibling(drop)
 
 func init():
@@ -148,23 +148,25 @@ func _ready():
 	prev_position = global_position
 	if ($AnimatedSprite2D != null) and (sprite == null):
 		sprite = $AnimatedSprite2D
+	pathfinder = PathFinder.create()
+	add_child(pathfinder)
 	add_child(blinker)
 	set_action(Actions.IDLE)
 	init()
 	add_child(sound_component)
 	
-func standing_still():
-	return (not prev_position.is_equal_approx(global_position))
+func moving():
+	var _moving := global_position.distance_to(prev_position) > 0.0
+	return _moving
 	
 func update_facing():
-	if standing_still():
+	if moving():
 		facing = (global_position - prev_position).normalized()
 	# NOTE TO SELF: If you find yourself adding a bunch more of these ifs
 	#  find a way to do it without redundant checking of what action
 	#  is set.
 	if current_action == Actions.KNOCKBACK:
 		facing = -facing
-	prev_position = global_position
 	
 func action_has_transition(action : int = current_action) -> bool:
 	var action_name = get_action_name(action)
@@ -181,10 +183,7 @@ func update_animation():
 	sprite.play(get_animation_name())
 
 func process_action_walk():
-	if (current_action != Actions.ATTACK) and (not aggrod):
-		if aggro_triggered():
-			set_action(Actions.AGGRO_WARNING)
-	update()
+	patrol()
 	
 func process_action_idle():
 	if (current_action != Actions.ATTACK) and (not aggrod):
@@ -217,11 +216,23 @@ func process_action(delta : float):
 		if action_timer >= action_length:
 			set_transitioning(false)
 			action_timer = 0.0
+	prev_position = global_position
 
 func start_action_attack():
 	current_attack_type = Attack.Types.PROJECTILE
 	
-
+func patrol():
+	pathfinder.set_orders_patrol(self)
+	velocity = facing * walk_speed
+	if (current_action != Actions.ATTACK) and (not aggrod):
+		if aggro_triggered():
+			set_action(Actions.AGGRO_WARNING)
+	update_animation()
+	move_and_slide()
+	facing = pathfinder.get_direction()
+	prev_action = current_action
+	
+	
 @warning_ignore("unused_parameter")
 func create_projectile(type : int) -> Attack:
 	return Attack.new().transform_into_talons_attack()
@@ -329,14 +340,13 @@ func update_velocity(max_speed, delta):
 		velocity.x -= (10.0 * delta)
 	if velocity.y > max_speed:
 		velocity.y -= (10.0 * delta)
-	
+
 func chase_player(speed : float):
-	prev_position = global_position
-	facing = (Utils.player_position - global_position).normalized()
 	velocity = facing * speed
 	if attack_triggered():
 		set_action(Actions.ATTACK)
-	update_facing()
+	pathfinder.set_orders_chase(null)
+	facing = pathfinder.get_direction()
 	move_and_slide()
 	update_animation()
 	prev_action = current_action

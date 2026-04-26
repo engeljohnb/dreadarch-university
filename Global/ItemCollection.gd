@@ -1,3 +1,5 @@
+#TODO: New icons for everything from scatch to resolve inconsistent sizes.
+
 extends Node
 # Handles the parts of item collection that are shared by many systems (UI, inventory, Interactable).
 #  This is distinct from the Collectible class, which only handles the game objects on the ground 
@@ -17,47 +19,49 @@ const TREASURE = "Treasure"
 const TALONS = "Talons"
 const GOLDEN_DAGGER = "Golden Dagger"
 const NECTAR = "Nectar"
-const ORBITER = "Orbiter"
+const ORBITER = "Little Sprite"
 
 var item_reveal = preload("res://Items/Collectible/ItemReveal.tscn")
 
-var equippable = [TALONS, GOLDEN_DAGGER]
+var equippable = [TALONS, GOLDEN_DAGGER, ORBITER]
 
 var drinkable = [NECTAR]
 
 var textures = {
-	HEART:load("res://Assets/Items/Heart/0000.png"),
-	SCROLL_FRAGMENT:load("res://Assets/Items/ScrollFragment/Scroll.png"),
-	TREASURE:load("res://Assets/Items/Treasure/0000.png"),
-	TALONS:load("res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png"),
-	GOLDEN_DAGGER:load("res://Assets/Items/GoldenDagger/0000.png"),
-	NECTAR:load("res://Assets/Items/Nectar/0000.png")
-	
-				}
+	HEART:preload("res://Assets/Items/Heart/0000.png"),
+	SCROLL_FRAGMENT:preload("res://Assets/Items/ScrollFragment/Scroll.png"),
+	TREASURE:preload("res://Assets/Items/Treasure/0000.png"),
+	TALONS:preload("res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png"),
+	GOLDEN_DAGGER:preload("res://Assets/Items/GoldenDagger/0000.png"),
+	NECTAR:preload("res://Assets/Items/Nectar/0000.png"),
+	ORBITER:preload("res://Assets/Badguys/Slack/Projectile/0000.png")
+}
 
 var streams = {
-	HEART:load("res://Assets/Sounds/Heart/CollectSound.ogg"),
-	SCROLL_FRAGMENT:load("res://Assets/Sounds/OpenMenu.mp3"),
-	TREASURE:load("res://Assets/Sounds/Items/TreasureCollectedSound.ogg"),
-	TALONS:load("res://Assets/Sounds/Items/TalonCollectedSound.ogg"),
-	GOLDEN_DAGGER:load("res://Assets/Sounds/Items/SwordCollectedSound.ogg"),
-	NECTAR:load("res://Assets/Sounds/Heart/CollectSound.ogg")
+	HEART:preload("res://Assets/Sounds/Heart/CollectSound.ogg"),
+	SCROLL_FRAGMENT:preload("res://Assets/Sounds/OpenMenu.mp3"),
+	TREASURE:preload("res://Assets/Sounds/Items/TreasureCollectedSound.ogg"),
+	TALONS:preload("res://Assets/Sounds/Items/TalonCollectedSound.ogg"),
+	GOLDEN_DAGGER:preload("res://Assets/Sounds/Items/SwordCollectedSound.ogg"),
+	NECTAR:preload("res://Assets/Sounds/Heart/CollectSound.ogg"),
+	ORBITER:preload("res://Assets/Sounds/EnemyDeath.ogg")
 }
 
 var spriteframes = {
-	HEART:load("res://Items/Heart/Heart.tres"),
+	HEART:preload("res://Items/Heart/Heart.tres"),
 	SCROLL_FRAGMENT:null,
-	TREASURE:load("res://Items/Treasure/Treasure.tres"),
-	TALONS:load("res://Weapons/Projectiles/Talons/CrowProjectileSpriteframes.tres"),
-	GOLDEN_DAGGER:load("res://Items/GoldenDagger/GoldenDagger.tres"),
-	NECTAR:null
+	TREASURE:preload("res://Items/Treasure/Treasure.tres"),
+	TALONS:preload("res://Weapons/Projectiles/Talons/CrowProjectileSpriteframes.tres"),
+	GOLDEN_DAGGER:preload("res://Items/GoldenDagger/GoldenDagger.tres"),
+	ORBITER:preload("res://Items/Orbiter/orbiter_spriteframes.tres")
 }
 
 var descriptions = {TREASURE : "Not standard currency anymore, but may still be valuable.",
 					TALONS : "Claws from those cursed crows. Throwing them could be hazardous.",
 					GOLDEN_DAGGER : "The creatures in the ruins seem to be afraid of it.",
 					NECTAR : "Very refreshing.",
-					SCROLL_FRAGMENT : "Scraps of writing I found in the ruins."}
+					SCROLL_FRAGMENT : "Scraps of writing I found in the ruins.",
+					ORBITER : "Looks like a cute little ghost. Hurts when one flies into you."}
 var sounds = {}
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary

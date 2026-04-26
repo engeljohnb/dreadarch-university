@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://hoj3ya5j8ehp"]
+
+[ext_resource type="Script" uid="uid://b406dkf8h452p" path="res://AI/Scripts/PathFinder.gd" id="1_mglo8"]
+
+[node name="PathFinder" type="Node2D" unique_id=395195779]
+script = ExtResource("1_mglo8")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=661781933]
+collision_mask = 8

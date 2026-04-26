@@ -55,9 +55,9 @@ var direction_priority
 # Becaues everything breaks in the AnimationTree state machine when the advance condition
 # is equipped == ItemCollection.GOLDEN_DAGGER. I don't know why but having this variable instead makes it work.
 var golden_dagger_equipped = true
-var hard_step_sound = load("res://Assets/Sounds/Student/StepSound.ogg")
-var soft_step_sound = load("res://Assets/Sounds/Student/SoftStepSound.ogg")
-var grass_step_sound = load("res://Assets/Sounds/Student/GrassSteps.ogg")
+var hard_step_sound = preload("res://Assets/Sounds/Student/StepSound.ogg")
+var soft_step_sound = preload("res://Assets/Sounds/Student/SoftStepSound.ogg")
+var grass_step_sound = preload("res://Assets/Sounds/Student/GrassSteps.ogg")
 var cutscene_just_ended = false
 var level_up_dialogue = [
 	{
@@ -539,14 +539,11 @@ func on_inventory_action_chosen(action, item, count):
 				$InteractionRay.message.text = "Z to " + action
 		"Equip":
 			match item:
-				ItemCollection.TALONS:
-					equipped = ItemCollection.TALONS
-					golden_dagger_equipped = false
 				ItemCollection.GOLDEN_DAGGER:
 					equipped = ItemCollection.GOLDEN_DAGGER
 					golden_dagger_equipped = true
 				item:
-					equipped = ""
+					equipped = item
 					golden_dagger_equipped = false
 			if inventory.get(item):
 				if (inventory[item] is int) or (inventory[item] is float):
