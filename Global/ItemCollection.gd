@@ -19,6 +19,7 @@ const GOLDEN_DAGGER = "Golden Dagger"
 const NECTAR = "Nectar"
 const ORBITER = "Orbiter"
 
+var item_reveal = preload("res://Items/Collectible/ItemReveal.tscn")
 
 var equippable = [TALONS, GOLDEN_DAGGER]
 
@@ -136,3 +137,12 @@ func collect_scroll_fragment(index = null):
 	else:
 		most_recent_scroll_fragment = get_next_fragment()
 	item_collected.emit(most_recent_scroll_fragment, 1, true)
+
+func show_collected_item(item: String, collector : Variant = null, offset : Vector2 = Vector2()):
+	# The item icon will follow the collector. If not specified, defaults to player.
+	var node : ItemReveal = item_reveal.instantiate()
+	node.transform_into(item)
+	if collector == null:
+		collector = get_tree().get_nodes_in_group("Player")[0]
+	collector.add_child(node)
+	node.show_item(offset)

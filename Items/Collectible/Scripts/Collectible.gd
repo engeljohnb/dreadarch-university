@@ -13,7 +13,7 @@ static var _twinkle = preload("res://Items/Collectible/Twinkle.tscn")
 var is_inventory_item : bool = true
 
 func on_collected(_collector : Variant):
-	pass
+	ItemCollection.show(type)
 	
 static func create(_type : String) -> Collectible:
 	var node = _my_node.instantiate()
@@ -35,6 +35,7 @@ func on_body_entered(body):
 				wait_for_attack = true
 				return
 		ItemCollection.item_collected.emit(type, 1, true)
+		ItemCollection.show_collected_item(type, null, Vector2(0.0,-64.0))
 		queue_free()
 	if body is TileMapLayer:
 		if not (body.get_parent() is ParallaxLayer):

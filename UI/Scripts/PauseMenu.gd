@@ -88,7 +88,8 @@ func on_focus_changed():
 	# another menu opening will grab the focus and play the sound
 	# when I don't wan it to.
 	if visible:
-		menu_select_sound.play()
+		if menu_select_sound.is_inside_tree():
+			menu_select_sound.play()
 		
 func _ready():
 	visible = false

@@ -1,7 +1,7 @@
 extends Node
 
 var messages_shown = {
-		ItemCollection.TALONS : false,
+		ItemCollection.TALONS : true,
 		ItemCollection.NECTAR : false
 }
 var messages = {

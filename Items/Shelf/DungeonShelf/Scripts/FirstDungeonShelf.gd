@@ -24,18 +24,9 @@ func activate(using_item = "", count = 0):
 			for i in range(0, has.size()):
 				var amount = amounts[i]
 				var h = has[i]
-				var item_sprite = Sprite2D.new()
-				if (ItemCollection.textures.get(h)):
-					item_sprite.texture = ItemCollection.textures[h]
-				if Utils.is_scroll_fragment(h):
-					item_sprite.texture = ItemCollection.textures[ItemCollection.SCROLL_FRAGMENT]
-				add_child(item_sprite)
-				showing_item = true
-				item_sprites.append(item_sprite)
 				match h:
 					ItemCollection.SCROLL_FRAGMENT:
 						if ItemCollection.all_scroll_fragments_collected:
-							item_sprite.queue_free()
 							has = []
 						else:
 							ItemCollection.sounds[ItemCollection.SCROLL_FRAGMENT].call_deferred("play")
@@ -59,34 +50,9 @@ func _ready():
 	$Blinker.blink_duration = blink_duration
 	can_drop = [ItemCollection.SCROLL_FRAGMENT]
 	has = []
-	showing_item = false
-	show_duration = 0.5
-	show_timer = 0.0
-	#item_sprites : Array[Sprite2D]
 	activated = false
 	blink_duration = 0.33
 	frame_counter = 0
 	has_overrides = []
 	amounts = []
 	interaction_message = "Z to search"
-	
-func _process(_delta):
-	if showing_item:
-		show_timer += _delta
-		for i in range(0, item_sprites.size()):
-			var item_sprite = item_sprites[i]
-			item_sprite.position.y -= _delta*100
-			item_sprites[i].position.x = i*32 - ((item_sprites.size()-1) * 16)
-		if show_timer >= show_duration:
-			if ItemCollection.SCROLL_FRAGMENT in has:
-				# Doing this here instead of emitting ItemCollection.item_collected
-				# so the sound plays immediately but the prompt to read
-				# only opens after the scroll icon finishes its animation
-				if has_overrides.is_empty():
-					ItemCollection.collect_scroll_fragment()
-			show_timer = 0.0
-			showing_item = false
-			for item_sprite in item_sprites:
-				item_sprite.queue_free()
-			item_sprites = []
-			has = []

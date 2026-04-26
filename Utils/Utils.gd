@@ -123,7 +123,9 @@ func interactables_equal(i1 : Dictionary, i2 : Dictionary) -> bool:
 		return false
 	return name1 == name2
 
-func padink(timer : float, pa : float = 0.25, dink : float = 0.75) -> float:
-	if timer > pa:
-		return timer
-	return (pa+dink) - timer
+var prev_timer = 0.0
+func padink(timer : float, pa := 0.25, duration := 1.0, scale := 1.0) -> float:
+	if timer < pa:
+		prev_timer = timer
+		return timer*scale*1.5
+	return min(duration-pa, prev_timer - (timer - prev_timer)) * scale

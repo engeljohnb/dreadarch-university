@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://h7ufaedo2njm"]
+
+[ext_resource type="Script" uid="uid://7480umu1hhm8" path="res://Items/Collectible/Scripts/ItemReveal.gd" id="1_w601y"]
+
+[node name="ItemReveal" type="Node2D" unique_id=1828867242]
+script = ExtResource("1_w601y")

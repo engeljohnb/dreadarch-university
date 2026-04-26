@@ -65,6 +65,7 @@ var level_up_dialogue = [
 		"speaker":"Player"
 	}
 ]
+	
 func zero_inventory():
 	inventory = {
 		ItemCollection.SCROLL_FRAGMENT : [], 
