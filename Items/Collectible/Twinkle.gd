@@ -6,26 +6,28 @@ extends Node2D
 #  but for some reason it doesn't process.
 
 var time = 0.0
-# This is so each instance twinkles differently
 var _player : Variant = null
-
+var _prev_player_position : Vector2
 
 func player_moving() -> bool:
 	if _player == null:
 		_player = get_tree().get_nodes_in_group("Player")[0]
+		_prev_player_position = _player.global_position
 	var camera = _player.camera
 	var viewport = camera.get_viewport()
 	var pos = camera.get_target_position() - (viewport.size/2.0)
 	var rect = Rect2(pos, viewport.size)
 	var in_viewport = (rect.has_point(global_position))
 	
-	return _player.moving and in_viewport
+	var _player_moving = (_player.global_position != _prev_player_position)
+	_prev_player_position = _player.global_position
+	return _player_moving and in_viewport
+	
+func _ready():
+	time += abs(global_position.x*0.0007)
+	material.set_shader_parameter("time", time)
 
 func _process(_delta):
 	if player_moving():
-		var fn = FastNoiseLite.new()
-		fn.domain_warp_amplitude = 15.0
-		fn.frequency = 0.01
-		var noise = FastNoiseLite.new().get_noise_1d(time)
-		material.set_shader_parameter("time", noise*350.0)
+		material.set_shader_parameter("time", time*2.5)
 		time += _delta

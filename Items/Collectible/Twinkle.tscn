@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cxdc1dqt1v844" path="res://Items/Collectible/Twinkle.gd" id="2_n5nwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6h1h2"]
+resource_local_to_scene = true
 shader = ExtResource("1_6h1h2")
 shader_parameter/time = 0.0
 

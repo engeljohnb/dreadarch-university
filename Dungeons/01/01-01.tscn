@@ -702,13 +702,22 @@ position = Vector2(-1568, -1087)
 [node name="Items" type="Node2D" parent="." unique_id=896996799]
 
 [node name="Talons" parent="Items" unique_id=1836059589 instance=ExtResource("13_2la7i")]
-position = Vector2(-269, 27)
+position = Vector2(-601, -37)
 
-[node name="Talons2" parent="Items" unique_id=1085327140 instance=ExtResource("13_2la7i")]
-position = Vector2(-419, 48)
+[node name="Talons2" parent="Items" unique_id=1844386602 instance=ExtResource("13_2la7i")]
+position = Vector2(-562, -38)
 
-[node name="Talons3" parent="Items" unique_id=2009137226 instance=ExtResource("13_2la7i")]
-position = Vector2(-767, 14)
+[node name="Talons3" parent="Items" unique_id=316655699 instance=ExtResource("13_2la7i")]
+position = Vector2(-521, -38)
+
+[node name="Talons4" parent="Items" unique_id=1867425225 instance=ExtResource("13_2la7i")]
+position = Vector2(-481, -37)
+
+[node name="Talons5" parent="Items" unique_id=1429454206 instance=ExtResource("13_2la7i")]
+position = Vector2(-443, -38)
+
+[node name="Talons6" parent="Items" unique_id=1065133681 instance=ExtResource("13_2la7i")]
+position = Vector2(-406, -35)
 
 [node name="DustEmitters" type="Node2D" parent="." unique_id=1836767058 groups=["Vertical"]]
 

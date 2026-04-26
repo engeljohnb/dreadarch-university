@@ -253,14 +253,13 @@ func door_cutscene_update(delta):
 		modulate.a = 1.0 - cutscene_timer
 	if (door_cutscene["direction"] == "West") or (door_cutscene["direction"] == "East"):
 		if door_cutscene["arriving"]:
-			var target_position = Vector2(door_cutscene["position"].x - hitbox.shape.get_rect().size.x+60.0, door_cutscene["position"].y)
+			var target_position = Vector2(door_cutscene["position"].x - hitbox.get_shape().get_rect().size.x+60.0, door_cutscene["position"].y)
 			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
 			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
 		else:
 			var x_difference = (door_cutscene["position"].x - door_cutscene["player_start_pos"].x)
 			var x_total = door_cutscene["player_start_pos"].x + x_difference
 			var target_pos = Vector2(x_total, door_cutscene["player_start_pos"].y)
-			#scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
 			global_position = lerp(door_cutscene["player_start_pos"], target_pos, cutscene_timer)
 	elif (door_cutscene["direction"] == "North") or (door_cutscene["direction"] == "South"):
 		if door_cutscene["arriving"]:
