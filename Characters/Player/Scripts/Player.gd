@@ -71,7 +71,8 @@ func zero_inventory():
 		ItemCollection.SCROLL_FRAGMENT : [], 
 		ItemCollection.TREASURE : int(0),
 		ItemCollection.TALONS: int(0), 
-		ItemCollection.GOLDEN_DAGGER : int(0)
+		ItemCollection.GOLDEN_DAGGER : int(0),
+		ItemCollection.ORBITER : int(0)
 		}
 
 func init_for_newgame():
@@ -86,6 +87,7 @@ func on_scroll_fragment_translated(scroll_fragment):
 			scroll["translated"] = true
 	
 func on_item_collected(item, count, _should_play_sound):
+	# TODO: Rewrite this. I don't even know what's going on here.
 	if item is Dictionary:
 		match item["type"]:
 			ItemCollection.SCROLL_FRAGMENT:
@@ -102,7 +104,7 @@ func on_item_collected(item, count, _should_play_sound):
 	if item == ItemCollection.HEART:
 		gain_life(1)
 		return
-	elif not inventory.get(item):
+	if inventory.get(item) == null:
 		inventory[item] = count
 	else:
 		inventory[item] += count
@@ -110,7 +112,7 @@ func on_item_collected(item, count, _should_play_sound):
 		if inventory[item] <= 0:
 			inventory[item] = 0
 	if item == ItemCollection.GOLDEN_DAGGER:
-		on_inventory_action_chosen("Equip", "", 1)
+		set_equipped(item)
 		if count < 0:
 			inventory[ItemCollection.GOLDEN_DAGGER] = 0
 		else:
@@ -529,6 +531,25 @@ func _ready():
 	ItemCollection.item_collected.emit(ItemCollection.GOLDEN_DAGGER, 1, true)
 	on_inventory_action_chosen("Equip", ItemCollection.GOLDEN_DAGGER, 1)
 
+func set_equipped(item : String):
+	if not item_equippable(item):
+		push_error("item is not equippable: " + item)
+		breakpoint
+		return
+	match item:
+		ItemCollection.GOLDEN_DAGGER:
+			equipped = ItemCollection.GOLDEN_DAGGER
+			golden_dagger_equipped = true
+		item:
+			equipped = item
+			golden_dagger_equipped = false
+	if item_available(item):
+		if (inventory[item] is int) or (inventory[item] is float):
+			item_equipped.emit(item, inventory[item])
+	else:
+		push_error("item is equippable but not available: " + item)
+		return
+				
 func on_inventory_action_chosen(action, item, count):
 	match action:
 		"Use":
@@ -538,24 +559,13 @@ func on_inventory_action_chosen(action, item, count):
 			if $InteractionRay.message_showing:
 				$InteractionRay.message.text = "Z to " + action
 		"Equip":
-			match item:
-				ItemCollection.GOLDEN_DAGGER:
-					equipped = ItemCollection.GOLDEN_DAGGER
-					golden_dagger_equipped = true
-				item:
-					equipped = item
-					golden_dagger_equipped = false
-			if inventory.get(item):
-				if (inventory[item] is int) or (inventory[item] is float):
-					item_equipped.emit(item, inventory[item])
-			else:
-				item_equipped.emit(item, 1)
+			set_equipped(item)
 		"Drink":
 			match item:
 				ItemCollection.NECTAR:
 					gain_life(1, true)
 			ItemCollection.item_collected.emit(item, -1, true)
-					
+
 func gain_life(_life, temporary = false):
 	if temporary:
 		life = total_life
@@ -580,28 +590,77 @@ func one_or_no_equippable_items():
 	if num_equippables <= 1:
 		return true
 
+func item_available(item) -> bool:
+	if inventory.get(item) == null:
+		return false
+	if inventory.get(item) is Dictionary:
+		return true
+	return inventory[item] > 0
+	
+func item_equippable(item) -> bool:
+	return (ItemCollection.equippable.find(item) >= 0)
+	
+func _increment_inventory_index(index : int, direction : String) -> int:
+	var next_index = index
+	match direction:
+		"Left":
+			next_index += 1
+		"Right":
+			next_index -= 1
+		direction:
+			push_error("Invalid direction given: " + direction)
+	if next_index >= ItemCollection.equippable.size():
+		next_index = 0
+	return next_index
+	
 func change_equipment_quick(direction : String):
 	if one_or_no_equippable_items():
 		return
-	var target_index = 0
-	var found_next_item = false
-	var desired_item = ""
-	while (not found_next_item):
-		for i in range(0, ItemCollection.equippable.size()):
-			if equipped == ItemCollection.equippable[i]:
-				target_index = i
-		if direction == "Left":
-			target_index -= 1
-		if direction == "Right":
-			target_index += 1
-			if target_index >= ItemCollection.equippable.size():
-				target_index = 0
-		var item = ItemCollection.equippable[target_index]
-		if (inventory[item] is float) or (inventory[item] is int):
-			if inventory[item] > 0:
-				found_next_item = true
-				desired_item = item
-	on_inventory_action_chosen("Equip", desired_item, 1)
+	var start_index = ItemCollection.equippable.find(equipped)
+	if start_index < 0:
+		push_error("Equipped item " + equipped + " not found in equippable items array.")
+		return
+	var next_index = _increment_inventory_index(start_index, direction)
+	var item = ItemCollection.equippable[next_index]
+	var max_loops = 50
+	var c = 0
+	while (not item_available(item)):
+		next_index = _increment_inventory_index(next_index, direction)
+		item = ItemCollection.equippable[next_index]
+		c += 1
+		if c > max_loops:
+			push_error("while loop is out of control, cannot find next equippable item.")
+			break
+	set_equipped(item)
+		
+
+	
+			
+#func change_equipment_quick(direction : String):
+#	if one_or_no_equippable_items():
+#		return
+#	var target_index = 0
+#	var desired_item = ""
+#	for i in range(0, ItemCollection.equippable.size()):
+#		if equipped == ItemCollection.equippable[i]:
+#			target_index = _inc_ti(target_index, direction)
+#			var item = ItemCollection.equippable[target_index]
+#			var max_loops = 50
+#			var j = 0
+#			while (inventory.get(item) == null) or (item == equipped):
+#				target_index = _inc_ti(target_index, direction)
+#				item = ItemCollection.equippable[target_index]
+#				j += 1
+#				if j >= max_loops:
+#					desired_item = ""
+#					break
+#			if (inventory[item] is float) or (inventory[item] is int):
+#				if inventory[item] > 0:
+#					desired_item = item
+#					break
+#	if desired_item == "":
+#		desired_item = ItemCollection.GOLDEN_DAGGER
+#	on_inventory_action_chosen("Equip", desired_item, 1)
 
 func toggle_light():
 	if light.energy == 3.0:

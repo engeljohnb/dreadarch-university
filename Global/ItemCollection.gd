@@ -6,13 +6,18 @@ extends Node
 #  the player can pick up.
 
 @warning_ignore("unused_signal")
-signal item_collected(item, count, should_play_sound)
+signal item_collected(item : Variant, count : int, should_play_sound : bool)
 @warning_ignore("unused_signal")
 signal scroll_fragment_translated(scroll_fragment)
 
 # Why not an enum? I use the string names enough that I like the convenience of the type ID 
 #   being the same as the string name. Plus, I started with the consts and I don't think the 
 #   refactor is worth it.
+
+#TODO: Okay, yeah actually this needs to change to an enum.
+#  I need a way to get a list of all possible items, and there's no way
+#  outide hardcoding with a pile of consts. Make ItemCollection.get_string(item)
+#  And enough with the "inventory slots are sometimes dicts sometimes ints" stuff.
 const HEART = "Heart"
 const SCROLL_FRAGMENT = "Scroll Fragment"
 const TREASURE = "Treasure"
@@ -23,7 +28,7 @@ const ORBITER = "Little Sprite"
 
 var item_reveal = preload("res://Items/Collectible/ItemReveal.tscn")
 
-var equippable = [TALONS, GOLDEN_DAGGER, ORBITER]
+var equippable : Array[String] = [TALONS, GOLDEN_DAGGER, ORBITER]
 
 var drinkable = [NECTAR]
 
@@ -70,6 +75,7 @@ var fragments_to_level_up = 5
 
 # Why isn't this stuff implemented in Collectible? Because I made 
 #  this first and it still works. 
+	
 func on_item_collected(item, _count, should_play_sound):
 	if sounds.get(item):
 		if should_play_sound:

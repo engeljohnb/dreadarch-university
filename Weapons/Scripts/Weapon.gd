@@ -4,7 +4,7 @@ class_name Weapon
 
 var parent_hitbox : Hitbox
 const _my_scene = "res://Weapons/Weapon.tscn"
-var death_cutscene = load("res://Utils/DeathCutscene.tscn")
+var death_cutscene = preload("res://Utils/DeathCutscene.tscn")
 var type : int = 0
 
 enum Types
@@ -15,6 +15,9 @@ enum Types
 	SLIME_TRAIL
 }
 func death():
+	if death_cutscene == null:
+		queue_free()
+		return
 	death_cutscene = death_cutscene.instantiate()
 	add_sibling(death_cutscene)
 	death_cutscene.position = position
