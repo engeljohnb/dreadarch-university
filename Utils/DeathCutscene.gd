@@ -6,6 +6,7 @@ var duration = 1.0
 var speed = 2.66
 var playing = false
 var _actor : Variant = self
+
 func play(delta = 0.0, actor = self):
 	playing = true
 	var deathlight = $DeathLight
@@ -24,6 +25,10 @@ func play(delta = 0.0, actor = self):
 		deathlight.energy = 1.0/percent
 		if timer >= duration:
 			queue_free()
+#			breakpoint
+			if is_instance_valid(_actor):
+				_actor.queue_free()
+
 
 func _process(_delta):
 	if playing:

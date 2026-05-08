@@ -1,6 +1,18 @@
 extends Pot
-signal searched()
 
+var _waiting_for_dialogue := false
+var _ui : Variant = null
+var _c : int = 0
+var search_shelf_dialogue = [
+	{
+		"text":"Looks like the military picked it clean.",
+		"speaker":"Player"
+	},
+	{
+		"text":"Hey, wait... Seems they didn't get everything.",
+		"speaker":"Player"
+	}
+]
 
 func on_blinker_flipped(state):
 	if state:
@@ -8,51 +20,35 @@ func on_blinker_flipped(state):
 	else:
 		modulate = Color(1,1,1)
 
-func activate(using_item = "", count = 0):
-	if (not using_item.is_empty()) and (count > 0):
-		has_overrides = has
-		has_overrides.append(using_item)
-		amounts.append(count)
-		$Blinker.blink(0.33)
-		ItemCollection.item_collected.emit(using_item, -count, true)
-		activated = false
-		return
-	if (not has_overrides.is_empty()) and not activated:
-		has = has_overrides
-	if not activated:
-		if not has.is_empty():
-			for i in range(0, has.size()):
-				var amount = amounts[i]
-				var h = has[i]
-				match h:
-					ItemCollection.SCROLL_FRAGMENT:
-						if ItemCollection.all_scroll_fragments_collected:
-							has = []
-						else:
-							ItemCollection.sounds[ItemCollection.SCROLL_FRAGMENT].call_deferred("play")
-							if not has_overrides.is_empty():
-								ItemCollection.item_collected.emit(h, amount, false)
-					h:
-						ItemCollection.item_collected.emit(h, amount, true)
-						if Utils.is_scroll_fragment(h):
-							ItemCollection.sounds[ItemCollection.SCROLL_FRAGMENT].call_deferred("play")
-			activated = true
-			amounts = []
-		else:
-			$ActivateSound.play()
-		searched.emit()
+func is_first_search():
+	return not Tutorial.message_shown(ItemCollection.SCROLL_FRAGMENT)
+		
+func activate(using_item : Variant = null, count : int = 1):
+	var first_search = is_first_search()
+	if first_search:
+		Dialogue.open_dialogue.emit(search_shelf_dialogue)
+		_waiting_for_dialogue = true
+		_ui = using_item
+		_c = count
 	else:
-		$ActivateSound.play()
-	$Blinker.blink(0.33)
-	
+		has.clear()
+		search(using_item, count)
+		
+func _process(_delta):
+	if _waiting_for_dialogue:
+		if not Dialogue.dialogue_open():
+			_waiting_for_dialogue = false
+			search(_ui, _c)
+
 func _ready():
 	$Blinker.flip.connect(on_blinker_flipped)
 	$Blinker.blink_duration = blink_duration
 	can_drop = [ItemCollection.SCROLL_FRAGMENT]
-	has = []
+	has = [can_drop[0]]
 	activated = false
 	blink_duration = 0.33
 	frame_counter = 0
 	has_overrides = []
-	amounts = []
+	amounts = [1]
 	interaction_message = "Z to search"
+	_waiting_for_dialogue = false

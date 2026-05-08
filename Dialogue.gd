@@ -10,3 +10,6 @@ signal open_dialogue(dialogue : Array[Dictionary])
 signal notify_player(note)
 
 var current_box = {}
+
+func dialogue_open() -> bool:
+	return get_tree().get_nodes_in_group("Player")[0].in_dialogue

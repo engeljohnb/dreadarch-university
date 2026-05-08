@@ -42,6 +42,7 @@ func new_game():
 	_save.init()
 	_player.init()
 	ItemCollection.load_collected_scroll_fragments([])
+	Tutorial.messages_shown[ItemCollection.SCROLL_FRAGMENT] = false
 	_save.player = _player
 	init_player()
 	player.init_for_newgame()
@@ -63,6 +64,7 @@ func _open_document():
 
 func on_dialogue_ended():
 	player.in_dialogue = false
+	player.anim_tree["parameters/playback"].travel("Start")
 	
 func _open_dialogue(dialogue):
 	var box = load("res://UI/DialogueBox.tscn").instantiate()
@@ -159,18 +161,17 @@ func on_player_dead():
 func save_room_interactables(scene_node : Node2D, interactables : Array):
 	var saved_npcs = []
 	for i in interactables:
-		match typeof(i):
-			Pot:
-				if (not i.activated) and (not i.has_overrides.is_empty()):
-					if ItemCollection.GOLDEN_DAGGER in i.has_overrides:
-						i.has_overrides.erase(ItemCollection.GOLDEN_DAGGER)
-					scene_node.save_data["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
-			Types.NPC:
-				if "status" in i:
-					var npc = {"name":i.name, "status":i.status}
-					if npc not in scene_node.save_data["NPCs"]:
-						scene_node.save_data["NPCs"].append(npc)
-						saved_npcs.append(npc)
+		if i is Pot:
+			if (not i.activated) and (not i.has_overrides.is_empty()):
+				if ItemCollection.GOLDEN_DAGGER in i.has_overrides:
+					i.has_overrides.erase(ItemCollection.GOLDEN_DAGGER)
+				scene_node.save_data["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
+		elif i is NPC:
+			if "status" in i:
+				var npc = {"name":i.name, "status":i.status}
+				if npc not in scene_node.save_data["NPCs"]:
+					scene_node.save_data["NPCs"].append(npc)
+					saved_npcs.append(npc)
 	return saved_npcs
 	
 func save_room_gone_npcs(scene_node : Node2D, updated_npcs):
@@ -187,11 +188,15 @@ func save_room_gone_npcs(scene_node : Node2D, updated_npcs):
 		if not collected:
 			if npc not in scene_node.save_data["NPCs"]:
 				scene_node.save_data["NPCs"].append(npc)
+				
+func save_room_treasures(scene_node : Node2D):
 	var treasures = scene_node.get_node_or_null("Treasure")
 	if treasures:
-		scene_node.save_data["items"][ItemCollection.TREASURE] = []
+		# Change the key to a string because the JSON serializer eventually
+		#  will anyway, and we don't want inconsistent behavior until then.
+		scene_node.save_data["items"][str(ItemCollection.TREASURE)] = []
 		for treasure in treasures.get_children():
-			scene_node.save_data["items"][ItemCollection.TREASURE].append(treasure.name)
+			scene_node.save_data["items"][str(ItemCollection.TREASURE)].append(treasure.name)
 			
 func save_room_node(scene_node : Node2D, scene_name : String):
 	if not ("save_data" in scene_node):
@@ -199,7 +204,10 @@ func save_room_node(scene_node : Node2D, scene_name : String):
 	var interactables = get_tree().get_nodes_in_group("Interactable")
 	var updated_npcs = save_room_interactables(scene_node, interactables)
 	save_room_gone_npcs(scene_node, updated_npcs)
+	save_room_treasures(scene_node)
 	_save.rooms[scene_name] = scene_node.save_data
+
+
 
 func load_room_interactables_save_data(scene_node : Node2D):
 	var scene_path = str(get_path_to(scene_node))
@@ -216,18 +224,21 @@ func load_room_interactables_save_data(scene_node : Node2D):
 				npc.status = i["status"]
 				if npc.status.get("gone"):
 					npc.queue_free()
+					
 func load_room_cutscene_save_data(scene_node : Node2D):
 	var cutscenes = _save.rooms[SceneTransition.current_scene_name].get("cutscenes")
 	if cutscenes != null:
 		scene_node.save_data["cutscenes"] = cutscenes	
 func load_room_treasure_save_data(scene_node : Node2D):
+	# NOTE: If something breaks around here, check if it's because
+	#  the JSON library turns int dicitonary keys in to strings
 	var treasure_node = scene_node.get_node_or_null("Treasure")
 	if treasure_node:
 		var scene_treasures = treasure_node.get_children()
-		var items = _save.rooms[SceneTransition.current_scene_name].get("items")
-		var uncollected_treasures = []
+		var items : Dictionary = _save.rooms[SceneTransition.current_scene_name].get("items")
+		var uncollected_treasures : Array = []
 		if items:
-			uncollected_treasures = items[ItemCollection.TREASURE]
+			uncollected_treasures = items[str(ItemCollection.TREASURE)]
 		for scene_treasure in scene_treasures:
 			if not (scene_treasure.name in uncollected_treasures):
 				scene_treasure.queue_free()
@@ -481,7 +492,7 @@ func load_player(player_data):
 	player.inventory = player_data.inventory
 	player.level = player_data.level
 
-	ItemCollection.load_collected_scroll_fragments(player_data.inventory[ItemCollection.SCROLL_FRAGMENT])
+	ItemCollection.load_collected_scroll_fragments(player_data.documents)
 	
 func load_hud(player_data):
 	hud.lifebar.temporary_life = player_data.temporary_life
@@ -503,7 +514,7 @@ func open_inventory():
 	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()
 	inventory.top_level = true
 	$CanvasLayer.add_child(inventory)
-	inventory.open(player.inventory)
+	inventory.open(player.inventory, player.documents)
 	inventory.inventory_action_chosen.connect(player.on_inventory_action_chosen)
 
 func _process(_delta):
@@ -518,6 +529,8 @@ func _process(_delta):
 				pause_menu.pause_game()
 			if Input.is_action_just_pressed("OpenInventory"):
 				open_inventory()
+	if not is_instance_valid(player):
+		breakpoint
 	if player.won:
 		# Victory Cutsceene needs to end first
 		if not player.in_cutscene:

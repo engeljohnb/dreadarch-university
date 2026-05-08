@@ -32,6 +32,7 @@ Utils="*res://Utils/Utils.gd"
 Music="*uid://fc1unxq6nnbn"
 ItemCollection="*uid://rsiy2khhv1ak"
 Tutorial="*uid://b0xnp20r6wh3u"
+Error="*uid://d3o37sy3jltu"
 
 [display]
 
@@ -49,11 +50,11 @@ project/assembly_name="Dreadarch University"
 [global_group]
 
 Player=""
-Weapons=""
 Enemies=""
 Interactable=""
 FloorLayer=""
 HUD=""
+Damaging=""
 
 [input]
 

@@ -55,6 +55,9 @@ var delay_timer = 0.0
 func _process(delta : float):
 	$AudioStreamPlayer2D.global_position = get_parent().global_position
 	for sound in _delayed_sounds:
+		if not is_instance_valid(sound):
+			breakpoint
+			return
 		if delay_timer >= sound.delay:
 			play_sound(sound)
 			_delayed_sounds.erase(sound)

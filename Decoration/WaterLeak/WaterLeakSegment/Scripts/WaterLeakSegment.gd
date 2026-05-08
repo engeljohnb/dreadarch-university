@@ -15,7 +15,7 @@ func splash():
 	splashed.emit(self)
 	
 func on_body_entered(body):
-	if body.is_in_group("Weapons"):
+	if body.is_in_group("Damaging"):
 		splash()
 		splashed.emit(self)
 	

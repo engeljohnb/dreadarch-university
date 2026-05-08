@@ -2,32 +2,6 @@ extends Enemy
 
 var timer = 0.0
 
-func create_sound_component() -> EnemySoundComponent:
-	var sound = EnemySoundComponent.create()
-	
-	var aggro_warning_sound = ActorSound.new()
-	aggro_warning_sound.stream = ResourceLoader.load("res://Assets/Sounds/Crow/AggroSound.ogg", "AudioStream")
-	aggro_warning_sound.play_only_once = true
-	
-	var attack_sound = ActorSound.new()
-	attack_sound.stream = ResourceLoader.load("res://Assets/Sounds/Crow/LauncProjectileSound.ogg", "AudioStream")
-	attack_sound.delay = 0.33
-	
-	var hit_sound = ActorSound.new()
-	hit_sound.stream = ResourceLoader.load("res://Assets/Sounds/Crow/HitSound.ogg", "AudioStream")
-	
-	var death_sound = ActorSound.new()
-	death_sound.stream = ResourceLoader.load("res://Assets/Sounds/Crow/DeathSound.ogg", "AudioStream")
-	
-	var _sounds : Dictionary[int,ActorSound] = {
-		Actions.AGGRO_WARNING : aggro_warning_sound,
-		Actions.ATTACK : attack_sound,
-		Actions.KNOCKBACK : hit_sound,
-		Actions.DEATH : death_sound
-	}
-	sound.sounds = _sounds
-	return sound
-
 func set_drops():
 	can_drop[ItemCollection.TALONS] = 1.0
 	can_drop[ItemCollection.TREASURE] = 0.5
@@ -40,7 +14,9 @@ func init():
 	set_action(Actions.WALK)
 	set_drops()
 	attack_delay = 0.33
-	sound_component = create_sound_component()
+	aggro_range = 400.0
+	attack_range = 600.0
+	time_between_attacks = 0.33#get_action_length("Idle Down")
 	
 func _process(_delta):
 	process_action(_delta)

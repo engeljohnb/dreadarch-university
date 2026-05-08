@@ -1,4 +1,4 @@
 extends SubViewport
 
-func _ready():
+#func _ready():
 	

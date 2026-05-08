@@ -12,7 +12,7 @@ var wind_speed = 0.0
 func on_body_entered(body):
 	if cut:
 		return
-	if body.is_in_group("Weapons"):
+	if body.is_in_group("Damaging"):
 		$AnimatedSprite2D.play("Cut")
 		$AnimatedSprite2D.animation_finished.connect(queue_free)
 		cut = true

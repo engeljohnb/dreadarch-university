@@ -1,8 +1,9 @@
 extends CharacterBody2D
-
 # This node is just a huge, sticky mess. Several other systems were overhauled
 #   and refactored to make them cleaner, but the player is
 #   far too coupled to too many systems. 
+
+const GOD_MODE = false
 
 signal died()
 signal lost_life(damage)
@@ -28,7 +29,12 @@ const SPEED = 400.0
 
 var level = 1
 var attack_damage = 1
-var inventory = {"Scroll Fragment" = []}
+# Inventory already has a lot of systems in place
+#  that assume the number of items is all that matters.
+#  Items where the specific instance is important (like documents)
+#  get their own separate Array
+var inventory : Dictionary[int, int] = {}
+var documents: Array[Dictionary] = []
 var dead = false
 var in_cutscene = false
 var current_cutscene = null
@@ -37,7 +43,7 @@ var cutscene_duration = 0.0
 var life = 3
 var total_life = 3
 var temporary_life = 0
-var _attack_fx = load("res://Characters/Player/PlayerAttackFX.tscn")
+var _attack_fx = preload("res://Characters/Player/PlayerAttackFX.tscn")
 var attack_fx = null
 var facing : Vector2
 var prev_facing = Vector2(0,1)
@@ -67,14 +73,17 @@ var level_up_dialogue = [
 ]
 	
 func zero_inventory():
-	inventory = {
-		ItemCollection.SCROLL_FRAGMENT : [], 
-		ItemCollection.TREASURE : int(0),
-		ItemCollection.TALONS: int(0), 
-		ItemCollection.GOLDEN_DAGGER : int(0),
-		ItemCollection.ORBITER : int(0)
-		}
-
+	for i in range(0, ItemCollection.MAX_TYPES):
+		if ItemCollection.is_valid_counted_item(i):
+			inventory[i] = 0
+			
+func reset_inventory():
+	for i in range(0, ItemCollection.MAX_TYPES):
+		if ItemCollection.is_valid_counted_item(i):
+			if inventory.get(i) == null:
+				inventory[i] = 0
+				
+	
 func init_for_newgame():
 	zero_inventory()
 	life = 3
@@ -82,25 +91,22 @@ func init_for_newgame():
 	position = Vector2()
 	
 func on_scroll_fragment_translated(scroll_fragment):
-	for scroll in inventory[ItemCollection.SCROLL_FRAGMENT]:
+	for scroll in documents:
 		if scroll["latin_text"] == scroll_fragment["latin_text"]:
 			scroll["translated"] = true
 	
 func on_item_collected(item, count, _should_play_sound):
-	# TODO: Rewrite this. I don't even know what's going on here.
 	if item is Dictionary:
-		match item["type"]:
-			ItemCollection.SCROLL_FRAGMENT:
-				if count > 0:
-					item["collected"] = true
-					if inventory[ItemCollection.SCROLL_FRAGMENT].is_empty():
-						ItemCollection.prompt_to_read_scroll_fragment()
-					elif inventory[ItemCollection.SCROLL_FRAGMENT].size() == ItemCollection.fragments_to_level_up-1:
-						Dialogue.open_dialogue.emit(level_up_dialogue)
-					inventory[ItemCollection.SCROLL_FRAGMENT].append(item)				
-				elif count < 0:
-					inventory[ItemCollection.SCROLL_FRAGMENT].erase(item)
-				return
+		if count > 0:
+			item["collected"] = true
+			if documents.is_empty():
+				ItemCollection.prompt_to_read_scroll_fragment()
+			elif documents.size() == ItemCollection.fragments_to_level_up-1:
+				Dialogue.open_dialogue.emit(level_up_dialogue)
+			documents.append(item)
+		elif count < 0:
+			documents.erase(item)
+		return
 	if item == ItemCollection.HEART:
 		gain_life(1)
 		return
@@ -108,15 +114,14 @@ func on_item_collected(item, count, _should_play_sound):
 		inventory[item] = count
 	else:
 		inventory[item] += count
-	if (inventory[item] is int) or (inventory[item] is float):
-		if inventory[item] <= 0:
-			inventory[item] = 0
+	if not item_available(item):
+		inventory[item] = 0
 	if item == ItemCollection.GOLDEN_DAGGER:
-		set_equipped(item)
 		if count < 0:
 			inventory[ItemCollection.GOLDEN_DAGGER] = 0
 		else:
 			inventory[ItemCollection.GOLDEN_DAGGER] = 1
+			set_equipped(item)
 		
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
@@ -146,8 +151,7 @@ func play_outside_door_cutscene(delta, reverse = false):
 		if reverse:
 			modulate.a = 0.0
 			outside_door_cutscene["reverse"] = true
-		var playback = anim_tree["parameters/playback"]
-		playback.travel("End")
+		set_state_machine_state("End")
 		$AnimatedSprite2D.play(animation_name)
 	else:
 		cutscene_timer += delta
@@ -179,8 +183,7 @@ func play_outside_door_cutscene(delta, reverse = false):
 			outside_door_cutscene["reverse"] = false
 
 func init_cutscene(cutscene : Callable, duration : float):
-	var playback = anim_tree["parameters/playback"]
-	playback.travel("End")
+	set_state_machine_state("End")
 	in_cutscene = true
 	cutscene_timer = 0.0
 	cutscene_duration = duration
@@ -324,8 +327,7 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 		global_position.x = climb_cutscene["position"].x
 		climb_cutscene["start_pos"].x = climb_cutscene["position"].x
 		step_sound.stop()
-		var playback = anim_tree["parameters/playback"]
-		playback.travel("End")
+		set_state_machine_state("End")
 	else:
 		cutscene_timer += delta
 		if not climb_cutscene["arriving"]:
@@ -425,7 +427,7 @@ func update_direction():
 	else:
 		moving = true
 		facing = movement_direction
-	$InteractionRay.target_position = 45*facing
+	$InteractionRay.target_position = 75*facing
 
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
@@ -441,9 +443,9 @@ func get_hitbox():
 func throw_projectile():
 	match equipped:
 		ItemCollection.TALONS:
-			Attack.new().transform_into_talons_attack().activate(self)
+			Attack.new().transform_into_talons_attack().activate(self, facing)
 		ItemCollection.ORBITER:
-			Attack.new().transform_into_orbiter_attack().activate(self)
+			Attack.new().transform_into_orbiter_attack().activate(self, facing)
 	var equip_dagger = false
 	if inventory[equipped] == 1:
 		if inventory[ItemCollection.GOLDEN_DAGGER] > 0:
@@ -466,17 +468,15 @@ func update_attack_state():
 			add_child(attack_fx)
 	else:
 		if Input.is_action_just_pressed("Attack") and (not attacking):
-			if not equipped.is_empty():
-				if inventory[equipped] > 0:
-					attacking = true
+			if inventory[equipped] > 0:
+				attacking = true
 
 func reset_attack_state():
 	if attack_fx:
-		remove_child(attack_fx)
+		attack_fx.queue_free()
 		attack_fx = null
 	attacking = false
-	var state_machine = anim_tree["parameters/playback"]
-	state_machine.travel("Idle")
+	set_state_machine_state("Idle")
 	if inventory.get(equipped):
 		if inventory[equipped] is int:
 			if inventory[equipped] < 0:
@@ -505,6 +505,8 @@ func death():
 	died.emit()
 	
 func hit(_body):
+	if GOD_MODE:
+		return
 	# Check for i-frames
 	if in_cutscene:
 		return
@@ -523,18 +525,22 @@ func on_blinker_flip(state):
 		set_modulate(Color(1.6, 1.6, 1.6))
 	else:
 		set_modulate(Color(1,1,1))
-
+func on_dialogue_opened(_dialogue):
+	$AnimatedSprite2D.play("Idle " + Utils.nearest_cardinal_direction(facing, true))
+	set_state_machine_state("Idle")
+	
 func _ready():
 	get_tree().paused = true
 	blinker.flip.connect(on_blinker_flip)
+	reset_inventory()
 	inventory[ItemCollection.GOLDEN_DAGGER] = 0
 	ItemCollection.item_collected.emit(ItemCollection.GOLDEN_DAGGER, 1, true)
 	on_inventory_action_chosen("Equip", ItemCollection.GOLDEN_DAGGER, 1)
+	Dialogue.open_dialogue.connect(on_dialogue_opened)
 
-func set_equipped(item : String):
+func set_equipped(item : int):
 	if not item_equippable(item):
-		push_error("item is not equippable: " + item)
-		breakpoint
+		Error.error("item is not equippable")
 		return
 	match item:
 		ItemCollection.GOLDEN_DAGGER:
@@ -544,10 +550,11 @@ func set_equipped(item : String):
 			equipped = item
 			golden_dagger_equipped = false
 	if item_available(item):
-		if (inventory[item] is int) or (inventory[item] is float):
-			item_equipped.emit(item, inventory[item])
+		item_equipped.emit(item, inventory[item])
 	else:
-		push_error("item is equippable but not available: " + item)
+		# when the last one is spent...
+		equipped = ItemCollection.GOLDEN_DAGGER
+		golden_dagger_equipped = true
 		return
 				
 func on_inventory_action_chosen(action, item, count):
@@ -580,13 +587,12 @@ func gain_life(_life, temporary = false):
 	
 func one_or_no_equippable_items():
 	var num_equippables = 0
-	for key in inventory:
-		if (key in ItemCollection.equippable):
-			if (inventory[key] is float) or (inventory[key] is int):
-				if inventory[key] > 0:
-					num_equippables += 1
-					if num_equippables > 1:
-						return false
+	for item in inventory:
+		if (item in ItemCollection.equippable):
+			if item_available(item):
+				num_equippables += 1
+				if num_equippables > 1:
+					return false
 	if num_equippables <= 1:
 		return true
 
@@ -608,7 +614,7 @@ func _increment_inventory_index(index : int, direction : String) -> int:
 		"Right":
 			next_index -= 1
 		direction:
-			push_error("Invalid direction given: " + direction)
+			Error.error("Invalid direction given: " + direction)
 	if next_index >= ItemCollection.equippable.size():
 		next_index = 0
 	return next_index
@@ -618,7 +624,7 @@ func change_equipment_quick(direction : String):
 		return
 	var start_index = ItemCollection.equippable.find(equipped)
 	if start_index < 0:
-		push_error("Equipped item " + equipped + " not found in equippable items array.")
+		Error.error("Equipped item " + equipped + " not found in equippable items array.")
 		return
 	var next_index = _increment_inventory_index(start_index, direction)
 	var item = ItemCollection.equippable[next_index]
@@ -629,39 +635,10 @@ func change_equipment_quick(direction : String):
 		item = ItemCollection.equippable[next_index]
 		c += 1
 		if c > max_loops:
-			push_error("while loop is out of control, cannot find next equippable item.")
+			Error.error("while loop is out of control, cannot find next equippable item.")
 			break
 	set_equipped(item)
 		
-
-	
-			
-#func change_equipment_quick(direction : String):
-#	if one_or_no_equippable_items():
-#		return
-#	var target_index = 0
-#	var desired_item = ""
-#	for i in range(0, ItemCollection.equippable.size()):
-#		if equipped == ItemCollection.equippable[i]:
-#			target_index = _inc_ti(target_index, direction)
-#			var item = ItemCollection.equippable[target_index]
-#			var max_loops = 50
-#			var j = 0
-#			while (inventory.get(item) == null) or (item == equipped):
-#				target_index = _inc_ti(target_index, direction)
-#				item = ItemCollection.equippable[target_index]
-#				j += 1
-#				if j >= max_loops:
-#					desired_item = ""
-#					break
-#			if (inventory[item] is float) or (inventory[item] is int):
-#				if inventory[item] > 0:
-#					desired_item = item
-#					break
-#	if desired_item == "":
-#		desired_item = ItemCollection.GOLDEN_DAGGER
-#	on_inventory_action_chosen("Equip", desired_item, 1)
-
 func toggle_light():
 	if light.energy == 3.0:
 		light.energy = 1.0
@@ -675,14 +652,15 @@ func turn_down_light():
 func turn_up_light():
 	light.energy = 3.0
 	modulate = Color(1,1,1)
+	
 func update_equipment():
 	if Input.is_action_just_pressed("ChangeEquipmentLeft"):
 		change_equipment_quick("Left")
 	if Input.is_action_just_pressed("ChangeEquipmentRight"):
 		change_equipment_quick("Right")
-	if equipped == "":
-		return
-	if (inventory.get(equipped) is int) or (inventory[equipped] is float):
+	if equipped < 0:
+		Error.error("equipped is < 0")
+	if item_available(equipped):
 		if inventory[equipped] <= 0:
 			if equipped == ItemCollection.GOLDEN_DAGGER:
 				golden_dagger_equipped = false
@@ -748,6 +726,12 @@ func stupid_post_door_cutscene_correction():
 		stupid_counter = 0
 		cutscene_just_ended = false
 		
+		
+func set_state_machine_state(state : String):
+	var playback = anim_tree["parameters/playback"]
+	playback.travel(state)
+	#breakpoint
+	
 func _process(delta):
 	if not in_dialogue:
 		if not in_cutscene:
@@ -764,3 +748,5 @@ func _process(delta):
 				current_cutscene.call(delta)
 		if cutscene_just_ended:
 			stupid_post_door_cutscene_correction()
+	else:
+		set_state_machine_state("End")

@@ -8,8 +8,8 @@ func _ready():
 func on_closed():
 	canvas.queue_free()
 	
-func activate(_using_item = "", _count = 0):
-	var scroll_frags = get_tree().get_nodes_in_group("Player")[0].inventory[ItemCollection.SCROLL_FRAGMENT]
+func activate(_using_item : Variant = null, _count = 0):
+	var scroll_frags = get_tree().get_nodes_in_group("Player")[0].documents
 	var trans_menu = _trans_menu.instantiate()
 	canvas = CanvasLayer.new()
 	add_child(canvas)

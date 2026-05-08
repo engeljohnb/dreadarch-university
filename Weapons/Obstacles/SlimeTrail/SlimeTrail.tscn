@@ -21,10 +21,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f00q6"]
 size = Vector2(64, 32)
 
-[node name="SlimeTrail" type="StaticBody2D" unique_id=88786704 groups=["Weapons"]]
+[node name="SlimeTrail" type="StaticBody2D" unique_id=88786704]
 z_index = -1
 collision_layer = 4
-collision_mask = 5
+collision_mask = 3
 script = ExtResource("1_r6i1f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1114804793]
@@ -33,7 +33,7 @@ sprite_frames = SubResource("SpriteFrames_fquvn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1658764484]
 shape = SubResource("RectangleShape2D_f00q6")
 
-[node name="LeftCast" type="RayCast2D" parent="." unique_id=595795675]
+[node name="LeftCast" type="RayCast2D" parent="." unique_id=595795675 groups=["Damaging"]]
 target_position = Vector2(-50, 0)
 collision_mask = 4
 collide_with_areas = true

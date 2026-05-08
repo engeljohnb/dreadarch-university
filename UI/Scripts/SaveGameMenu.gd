@@ -69,7 +69,7 @@ func make_save_slot_mini_gui(button, pos):
 	icons.append(treasure_icon)
 	
 	var scroll_icon = load("res://UI/NumScrollFragments.tscn").instantiate()
-	var num_scroll_fragments = save_data.player.inventory[ItemCollection.SCROLL_FRAGMENT].size()
+	var num_scroll_fragments = save_data.player.documents.size()
 	scroll_icon.set_num_scroll_fragments(num_scroll_fragments)
 	scroll_icon.set_position_for_mini_gui(pos.y + button.position.y - 10)
 	button.add_child(scroll_icon)

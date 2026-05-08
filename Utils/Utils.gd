@@ -35,11 +35,6 @@ func nearest_cardinal_direction(direction : Vector2, as_text = false):
 			else:
 				return DOWN
 
-func is_scroll_fragment(document):
-	if not (document is Dictionary):
-		return false
-	return document.get("document_type") == ItemCollection.SCROLL_FRAGMENT
-
 func is_valid_save_filename(filename):
 	var valid = true
 	if not filename.containsn("user://"):
@@ -64,6 +59,7 @@ func read_save_data_from_file(filename = "user://SaveFiles/save.da"):
 	_save = DictionarySerializer.deserialize_json(file.get_as_text())
 	file.close()
 	return _save
+	
 func read_save_data_from_slot(slot):
 	var files = DirAccess.get_files_at(SAVE_FILE_DIRECTORY)
 	slot = str(slot)
@@ -128,4 +124,6 @@ func padink(timer : float, pa := 0.25, duration := 1.0, scale := 1.0) -> float:
 	if timer < pa:
 		prev_timer = timer
 		return timer*scale*1.5
-	return min(duration-pa, prev_timer - (timer - prev_timer)) * scale
+	if timer >= duration:
+		return 0.0
+	return (duration - timer) * scale

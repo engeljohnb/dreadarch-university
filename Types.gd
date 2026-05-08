@@ -1,5 +1,10 @@
 extends Node
 
+# Why on earth do I have this file here? Why is it just called "Types?"
+#  Because I made this while I was still learning how inheritance and OOP abstractions
+#  work in Godot (and in general) and everything here is only used in a small part
+#  of the game, so I don't think cleaning it up is worth the trouble.
+
 # For some reason, defining a "new" function on these classes
 #  breaks the JSON serializer used for game saves.
 #  So they have init. use it like:
@@ -15,7 +20,8 @@ class Player:
 	var temporary_life : int
 	var total_life: int
 	# Guess it has to be a dictionary bc for some reason the JSON serializer can do Class.Class, but not Class.Class.Class
-	var inventory: Dictionary
+	var inventory : Dictionary[int,int]
+	var documents : Array[Dictionary]
 	func init():
 		level = 1
 		attack_damage = 1
@@ -23,12 +29,7 @@ class Player:
 		life = 3
 		temporary_life = 0
 		total_life = 0
-		inventory = {
-			ItemCollection.SCROLL_FRAGMENT : [],
-			ItemCollection.TREASURE : int(0),
-			ItemCollection.TALONS: int(0),
-			ItemCollection.GOLDEN_DAGGER : int(0)
-		}
+		inventory = {}
 
 class Save:
 	var current_scene: String
@@ -42,30 +43,3 @@ class Save:
 		player = null
 		rooms = {}
 		completed_tutorial_prompts = []
-
-class Room:
-	extends Node2D
-	@export var music : String = "res://Music/DungeonMusic.ogg"
-	@export var music_volume : float = -7.3
-	var save_data : Dictionary = {
-		"pots":[],
-		"NPCs":[],
-		"items":{ItemCollection.TREASURE:[]}
-	}
-	func init_music():
-		var music_track = Music.get_music_track_from_room_name(SceneTransition.current_scene_name)
-		if not music_track.is_empty():
-			music = music_track["path"]
-			music_volume = music_track["volume"]
-
-
-
-class NPC:
-	extends Interactable
-	var status = {"gone":false}
-	# Implemented by subclasses
-	func _init():
-		pass
-	func _ready():
-		interaction_message = "Z to talk"
-		call_deferred("init")

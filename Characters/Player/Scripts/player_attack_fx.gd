@@ -5,6 +5,10 @@ extends CharacterBody2D
 @onready var outline_sprite = $OutlineSprite
 
 func _ready():
+	var _scale = Vector2(0.34, 0.34)
+	$AnimatedSprite2D.scale = _scale
+	$OutlineSprite.scale = _scale
+	$CollisionPolygon2D.scale = _scale
 	$AnimatedSprite2D.animation_finished.connect(queue_free)
 	set_modulate(Color(0.7,0.4,0.3,0.8))
 	$OutlineSprite.set_modulate(Color(0,0,0))
@@ -26,20 +30,23 @@ func vec_to_name(direction):
 			return "Down"
 
 func change_direction(facing):
+	position = Vector2()
 	var direction_name = vec_to_name(facing)
 	match direction_name:
 		"Left":
 			position.x -= 40
+			position.y -= 30
 			scale.x = -scale.x
 		"Up":
 			rotate(-PI/2.0)
-			position.y -= 40
+			position.y -= 55
 		"Down":
 			rotate(PI/2.0)
+			position.y += 15
 			scale.y = -scale.y
-			position.y += 40
 		"Right":
 			position.x += 40
+			position.y -= 30
 	if direction_name == "Down":
 		$AnimatedSprite2D.play_backwards("default")
 		$OutlineSprite.play_backwards("default")

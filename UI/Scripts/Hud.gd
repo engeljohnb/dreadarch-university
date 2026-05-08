@@ -20,12 +20,13 @@ func on_item_collected(item, amount, _should_play_sound):
 		item:
 			if item is Dictionary:
 				return
-	if (item == equipped) and (not equipped.is_empty()):
+	if (item == equipped):
 		$Equipped/CanvasLayer/RichTextLabel.text = str(int($Equipped/CanvasLayer/RichTextLabel.text) + int(amount))
 
 func on_item_equipped(item, count):
 	equipped = item
-	if equipped.is_empty():
+	if not ItemCollection.is_item_id_valid(item):
+		Error.error("Attempting to equip invalid item")
 		$Equipped/CanvasLayer.visible = false
 		return
 	$Equipped/CanvasLayer.visible = true

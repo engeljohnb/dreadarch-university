@@ -5,15 +5,16 @@ enum Orders
 	CHASE,
 	PATROL
 }
-static var _my_node = preload("res://AI/PathFinder.tscn")
 var order : int = Orders.CHASE
 var chase_target : Variant
 var facing : Vector2
 @onready var raycast = $RayCast2D
 var sight_range := 70.0
 var parent : Variant
+var _standstill_timeout : float = 0.66
 
 static func create() -> PathFinder:
+	var _my_node = load("res://AI/PathFinder.tscn")
 	var node : PathFinder = _my_node.instantiate()
 	return node
 	
@@ -38,7 +39,7 @@ func standing_still() -> bool:
 		if not _counting:
 			_counting = true
 			_timer = 0.0
-		if _counting and (_timer >= 0.66):
+		if _counting and (_timer >= _standstill_timeout):
 			_counting = false
 			_timer = 0.0
 			return true
@@ -62,7 +63,7 @@ func get_direction() -> Vector2:
 		Orders.PATROL:
 			dir = process_orders_patrol()
 		order:
-			push_warning("Invalid Pathfinder order ID: ", order)
+			Error.error("Invalid Pathfinder order ID: " + str(order))
 			dir = Vector2(1,0)
 	return dir
 

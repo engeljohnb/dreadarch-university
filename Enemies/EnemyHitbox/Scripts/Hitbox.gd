@@ -6,7 +6,7 @@ func get_shape():
 
 var ignore = []
 func _on_body_entered(body):
-	if body.is_in_group("Weapons"):
+	if body.is_in_group("Damaging"):
 		if body not in ignore:
 			get_parent().hit(body)
 			

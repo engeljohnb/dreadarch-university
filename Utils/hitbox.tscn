@@ -13,7 +13,7 @@ var my_weapons = []
 @onready var shape = $CollisionShape2D.shape
 
 func on_body_entered(body):
-	if body.is_in_group(\"Weapons\") or (body is Weapon):
+	if body.is_in_group(\"Damaging\"):
 		if \"dead\" in body.get_parent():
 			if body.get_parent().dead:
 				return

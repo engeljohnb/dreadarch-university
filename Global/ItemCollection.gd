@@ -10,25 +10,21 @@ signal item_collected(item : Variant, count : int, should_play_sound : bool)
 @warning_ignore("unused_signal")
 signal scroll_fragment_translated(scroll_fragment)
 
-# Why not an enum? I use the string names enough that I like the convenience of the type ID 
-#   being the same as the string name. Plus, I started with the consts and I don't think the 
-#   refactor is worth it.
-
-#TODO: Okay, yeah actually this needs to change to an enum.
-#  I need a way to get a list of all possible items, and there's no way
-#  outide hardcoding with a pile of consts. Make ItemCollection.get_string(item)
-#  And enough with the "inventory slots are sometimes dicts sometimes ints" stuff.
-const HEART = "Heart"
-const SCROLL_FRAGMENT = "Scroll Fragment"
-const TREASURE = "Treasure"
-const TALONS = "Talons"
-const GOLDEN_DAGGER = "Golden Dagger"
-const NECTAR = "Nectar"
-const ORBITER = "Little Sprite"
+enum
+{
+	HEART = 0,
+	SCROLL_FRAGMENT,
+	TREASURE,
+	TALONS,
+	GOLDEN_DAGGER,
+	NECTAR,
+	ORBITER,
+	MAX_TYPES
+}
 
 var item_reveal = preload("res://Items/Collectible/ItemReveal.tscn")
 
-var equippable : Array[String] = [TALONS, GOLDEN_DAGGER, ORBITER]
+var equippable : Array[int] = [TALONS, GOLDEN_DAGGER, ORBITER]
 
 var drinkable = [NECTAR]
 
@@ -61,31 +57,69 @@ var spriteframes = {
 	ORBITER:preload("res://Items/Orbiter/orbiter_spriteframes.tres")
 }
 
-var descriptions = {TREASURE : "Not standard currency anymore, but may still be valuable.",
-					TALONS : "Claws from those cursed crows. Throwing them could be hazardous.",
-					GOLDEN_DAGGER : "The creatures in the ruins seem to be afraid of it.",
-					NECTAR : "Very refreshing.",
-					SCROLL_FRAGMENT : "Scraps of writing I found in the ruins.",
-					ORBITER : "Looks like a cute little ghost. Hurts when one flies into you."}
+var descriptions = {
+	TREASURE : "Not standard currency anymore, but may still be valuable.",
+	TALONS : "Claws from those cursed crows. Throwing them could be hazardous.",
+	GOLDEN_DAGGER : "The creatures in the ruins seem to be afraid of it.",
+	NECTAR : "Very refreshing.",
+	SCROLL_FRAGMENT : "Scraps of writing I found in the ruins.",
+	ORBITER : "Looks like a cute little ghost. Hurts when one flies into you."
+}
+					
 var sounds = {}
 var scroll_fragments : Array
 var most_recent_scroll_fragment : Dictionary
 var all_scroll_fragments_collected = false
 var fragments_to_level_up = 5
 
+func is_scroll_fragment(document):
+	if not (document is Dictionary):
+		return false
+	return document.get("document_type") == ItemCollection.SCROLL_FRAGMENT
+
 # Why isn't this stuff implemented in Collectible? Because I made 
 #  this first and it still works. 
+	
+func get_string(item : int):
+	match item:
+		HEART: return "Heart"
+		SCROLL_FRAGMENT: return "Scroll Fragment"
+		TREASURE: return "Treasure"
+		TALONS: return "Talons"
+		GOLDEN_DAGGER: return "Golden Dagger"
+		NECTAR: return "Nectar"
+		ORBITER: return "Little Sprite"
+		item: return "Invalid Item ID"
+		
+func is_item_id_valid(item : int):
+	return (item >= 0) and (item < MAX_TYPES)
 	
 func on_item_collected(item, _count, should_play_sound):
 	if sounds.get(item):
 		if should_play_sound:
 			sounds[item].call_deferred("play")
+	elif item is Dictionary:
+		sounds[SCROLL_FRAGMENT].call_deferred("play")
 	if (_count < 1):
 		return
 	if Tutorial.has_message(item):
 		if not Tutorial.message_shown(item):
 			Tutorial.show_message(item)
-		
+
+func is_valid_special_item(item : Variant) -> bool:
+	if item is Dictionary:
+		return true
+	return false
+	
+func is_valid_counted_item(item : Variant) -> bool:
+	if item is int:
+		return is_item_id_valid(item)
+	else:
+		return false
+func is_valid_item(item: Variant) -> bool:
+	var valid = (is_valid_special_item(item) or is_valid_counted_item(item))
+	return valid
+	
 func _ready():
 	for key in streams:
 		sounds[key] = AudioStreamPlayer.new()
@@ -148,7 +182,7 @@ func collect_scroll_fragment(index = null):
 		most_recent_scroll_fragment = get_next_fragment()
 	item_collected.emit(most_recent_scroll_fragment, 1, true)
 
-func show_collected_item(item: String, collector : Variant = null, offset : Vector2 = Vector2()):
+func show_collected_item(item: int, collector : Variant = null, offset : Vector2 = Vector2()):
 	# The item icon will follow the collector. If not specified, defaults to player.
 	var node : ItemReveal = item_reveal.instantiate()
 	node.transform_into(item)
@@ -156,3 +190,5 @@ func show_collected_item(item: String, collector : Variant = null, offset : Vect
 		collector = get_tree().get_nodes_in_group("Player")[0]
 	collector.add_child(node)
 	node.show_item(offset)
+
+	

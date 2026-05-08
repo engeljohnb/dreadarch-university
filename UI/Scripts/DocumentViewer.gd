@@ -1,15 +1,5 @@
 extends Control
 
-var dialogue = [
-	{
-		"text":"It's in the Old Tongue.",
-		"speaker":"Player"
-	},
-	{
-		"text":"I should've paid more attention in class.",
-		"speaker":"Player"
-	}
-]
 
 func on_done():
 	get_tree().paused = false
@@ -17,8 +7,8 @@ func on_done():
 	for frag in ItemCollection.scroll_fragments:
 		if frag["collected"]:
 			collected.append(frag)
-	if collected.size() == 1:
-		Dialogue.open_dialogue.emit(dialogue)
+	#if collected.size() == 1:
+	#	Dialogue.open_dialogue.emit(dialogue)
 	queue_free()
 
 func _ready():

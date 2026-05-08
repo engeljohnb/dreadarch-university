@@ -1,4 +1,4 @@
-extends Types.NPC
+extends NPC
 
 @onready var sprite = $AnimatedSprite2D
 var will_retire = false
@@ -173,19 +173,19 @@ func init():
 	}
 	sprite.play("Idle")
 
-func offering_inadequate_bribe(using_item, item_count):
-	if (not (using_item is String)) and (not (using_item is StringName)):
+func offering_inadequate_bribe(using_item : Variant, item_count):
+	if not (using_item is int):
 		return false
 	return ((using_item == ItemCollection.TREASURE) and 
 	(item_count < 25))
 
 func offering_adequate_bribe(using_item, item_count):
-	if (not (using_item is String)) and (not (using_item is StringName)):
+	if not (using_item is int):
 		return false
 	return ((using_item == ItemCollection.TREASURE) and 
 	(item_count >= 25))
 	
-func activate(using_item = "", item_count = 1):
+func activate(using_item : Variant = null, item_count = 1):
 	if retiring:
 		Dialogue.open_dialogue.emit(retiring_dialogue)
 		return
@@ -212,7 +212,7 @@ func activate(using_item = "", item_count = 1):
 		if using_item is Dictionary:
 			Dialogue.open_dialogue.emit(translation_dialogue)
 			return
-		if (not using_item.is_empty()) and (using_item != ItemCollection.TREASURE):
+		if (using_item != ItemCollection.TREASURE):
 			Dialogue.open_dialogue.emit(using_item_default_dialogue)
 		else:
 			Dialogue.open_dialogue.emit(intro_dialogue.slice(-2, intro_dialogue.size()))

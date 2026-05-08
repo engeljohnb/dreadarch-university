@@ -10,7 +10,7 @@ class_name Obstacle
 # Why not just make it a Weapon? Bc Weapons are RigidBodies, and Obstacles need to be StaticBodies
 var parent_hitbox : Hitbox
 var type : int = 0
-
+var parent : Variant
 
 func activate(_direction : Vector2):
 	push_warning("activate function not implemented by Obstacle subclass")
@@ -18,3 +18,6 @@ func activate(_direction : Vector2):
 func set_parent_hitbox(_hitbox : Hitbox):
 	parent_hitbox = _hitbox
 	_hitbox.ignore.append(self)
+
+func set_parent(_parent : Variant):
+	parent = _parent

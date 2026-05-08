@@ -8,6 +8,7 @@ signal inventory_action_chosen(action, item, count)
 
 class InventoryItem:
 	var name : String
+	var type : int
 	var description : String
 	var count : int
 	var icon : CompressedTexture2D
@@ -15,10 +16,12 @@ var inventory_items = []
 var submenu_open = false
 var number_box_open = false
 var chosen_item_name = ""
+var chosen_item_type = -1
 var chosen_item_total = 0
 var chosen_item_count = 0
 var chosen_action = ""
 var _inventory : Dictionary
+var _documents : Array
 var document_selector_open = false
 var document_items = [ItemCollection.SCROLL_FRAGMENT]
 var last_selected_item_index = -1
@@ -38,19 +41,11 @@ func _ready():
 	item_list.clear()
 	
 func open_submenu():
-	#Doing this weird little dance fixes a bug where the arrow keys sometimes
-		# Don't change which button is selected in the submenu.
-	#stupid_submenu.queue_free()
-	#stupid_submenu = submenu.duplicate()
-	#submenu.queue_free()
-	#submenu = stupid_submenu.duplicate()
-	#$BookBorder.add_child(submenu)
-	
 	submenu.clear()
 	submenu.add_button("Use")
-	if chosen_item_name in ItemCollection.equippable:
+	if chosen_item_type in ItemCollection.equippable:
 		submenu.add_button("Equip")
-	if chosen_item_name in ItemCollection.drinkable:
+	if chosen_item_type in ItemCollection.drinkable:
 		submenu.add_button("Drink")
 	submenu.add_button("Cancel")
 	submenu_open = true
@@ -81,10 +76,7 @@ func on_document_selector_closed():
 func open_document_selector(documents):
 	$BookBorder/DocumentSelector.process_mode = Node.PROCESS_MODE_INHERIT
 	$BookBorder/DocumentSelector.visible = true
-	#var doc_sel = load("res://UI/DocumentSelector.tscn").instantiate()	
-	#add_sibling(doc_sel)
 	$BookBorder/DocumentSelector.open(documents)
-	#visible = false
 	document_selector_open = true
 	item_list.visible = false
 	box_icons_list.visible = false
@@ -107,40 +99,37 @@ func create_count_label(item:InventoryItem):
 	label.bbcode_enabled = true
 	return label
 	
-func open(inventory):
+func open(inventory, documents):
 	just_opened = true
 	inventory_items = []
 	for child in item_list.get_children():
 		child.queue_free()
 	_inventory = inventory
+	_documents = documents
 	for key in inventory:
-		if key.is_empty():
-			continue
-		if (inventory[key] is int) or (inventory[key] is float):
-			if inventory[key] > 0:
-				var item = InventoryItem.new()
-				item.name = key
-				item.icon = ItemCollection.textures[key]
-				item.count = int(inventory[key])
-				inventory_items.append(item)
-				item_list.add_icon_item(ItemCollection.textures[key])
-				var count_label = create_count_label(item)
-				item_list.add_child(count_label)
-		elif inventory[key] is Array:
-			if inventory[key].size() > 0:
-				var type = inventory[key][0].get("type")
-				if type:
-					match type:
-						"Scroll Fragment":
-							var item = InventoryItem.new()
-							item.name = "Scroll Fragment"
-							item.icon = ItemCollection.textures[key]
-							item.count = inventory[key].size()
-							inventory_items.append(item)
-							item_list.add_icon_item(ItemCollection.textures[key])
-							var count_label = create_count_label(item)
-							item_list.add_child(count_label)
-							
+		if not ItemCollection.is_item_id_valid(key):
+			Error.error("Inventory contains invalid item")
+			return
+		if inventory[key] > 0:
+			var item = InventoryItem.new()
+			item.name = ItemCollection.get_string(key)
+			item.type = key
+			item.icon = ItemCollection.textures[key]
+			item.count = inventory[key]
+			inventory_items.append(item)
+			item_list.add_icon_item(ItemCollection.textures[key])
+			var count_label = create_count_label(item)
+			item_list.add_child(count_label)
+	if _documents.size() > 0:
+		var item = InventoryItem.new()
+		item.type = ItemCollection.SCROLL_FRAGMENT
+		item.name = "Documents"
+		item.icon = ItemCollection.textures[ItemCollection.SCROLL_FRAGMENT]
+		item.count = _documents.size()
+		inventory_items.append(item)
+		item_list.add_icon_item(ItemCollection.textures[ItemCollection.SCROLL_FRAGMENT])
+		var count_label = create_count_label(item)
+		item_list.add_child(count_label)				
 	box_icons_list.clear()
 	for i in range(0, inventory_items.size()):
 		box_icons_list.add_icon_item(box_icon, false)
@@ -164,15 +153,9 @@ func close():
 func open_number_box(_max):
 	number_box_open = true
 	$Numberbox._max = _max
-	#var offset_distance = $Numberbox.offset_top - $Numberbox.offset_bottom
-	#if submenu.is_anything_selected():
-	#	$Numberbox.offset_top = submenu.get_item_rect(submenu.get_selected_items().get(0)).position.y
-	#	$Numberbox.offset_bottom = $Numberbox.offset_top + offset_distance
 	$Numberbox.visible = true
 	submenu.visible = false
 	submenu.clear()
-	#for index in range(0, submenu.item_count):
-	#	submenu.set_item_disabled(index, true)
 	
 func close_number_box():
 	number_box_open = false
@@ -183,6 +166,7 @@ func close_submenu():
 	chosen_item_name = ""
 	chosen_item_count = 0
 	chosen_item_total = 0
+	chosen_item_type = -1
 	submenu_open = false
 	submenu.clear()
 	item_list.clear()
@@ -197,31 +181,29 @@ func on_submenu_action_chosen(action_name):
 				open_number_box(chosen_item_total)
 				just_opened = true
 			else:
-				inventory_action_chosen.emit(chosen_action, chosen_item_name, 1)
+				inventory_action_chosen.emit(chosen_action, chosen_item_type, 1)
 				close()
 		"Cancel":
 			close_submenu()
-			open(_inventory)
+			open(_inventory, _documents)
 		chosen_action:
-			inventory_action_chosen.emit(chosen_action, chosen_item_name, 1)
+			inventory_action_chosen.emit(chosen_action, chosen_item_type, 1)
 			close()
 
 func _process(_delta):
 	if document_selector_open:
 		return
-	# I have NO IDEA why this needs to be here, but it doesn't work if I remove it
-	#if submenu_open:
-	#	submenu.grab_focus()
 	if not submenu_open and not number_box_open:
 		if item_list.is_anything_selected():
 			var chosen_index = item_list.get_selected_items().get(0)
 			last_selected_item_index = chosen_index
+			var type = inventory_items[chosen_index].type
 			var _name = inventory_items[chosen_index].name
 			var icon = inventory_items[chosen_index].icon
 			item_closeup.texture = icon
 			name_label.text = "[center]" + _name + "[/center]"
-			if ItemCollection.descriptions.has(_name):
-				description_label.text = ItemCollection.descriptions[_name]
+			if ItemCollection.descriptions.has(type):
+				description_label.text = ItemCollection.descriptions[type]
 			else:
 				description_label.text = "No description available."
 	if Input.is_action_just_released("CloseInventory"):
@@ -230,7 +212,7 @@ func _process(_delta):
 			open_submenu()
 		elif submenu_open:
 			close_submenu()
-			open(_inventory)
+			open(_inventory, _documents)
 		else:
 			if not (just_opened):
 				close()
@@ -248,8 +230,9 @@ func _process(_delta):
 				var chosen_index = item_list.get_selected_items().get(0)
 				chosen_item_name = inventory_items[chosen_index].name
 				chosen_item_total = inventory_items[chosen_index].count
-				if chosen_item_name in document_items:
-					open_document_selector(_inventory[chosen_item_name])
+				chosen_item_type = inventory_items[chosen_index].type
+				if chosen_item_type in document_items:
+					open_document_selector(_documents)
 				else:
 					open_submenu()
 			return
@@ -259,5 +242,5 @@ func _process(_delta):
 				return
 			chosen_item_count = int($Numberbox/RichTextLabel.text)
 			if chosen_item_count > 0:
-				inventory_action_chosen.emit(chosen_action, chosen_item_name, chosen_item_count)
+				inventory_action_chosen.emit(chosen_action, chosen_item_type, chosen_item_count)
 			close()

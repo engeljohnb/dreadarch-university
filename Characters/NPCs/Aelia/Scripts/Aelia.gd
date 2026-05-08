@@ -1,4 +1,4 @@
-extends Types.NPC
+extends NPC
 var scroll_fragment = {}
 var retired = false
 
@@ -121,10 +121,11 @@ var translate_dialogue = [
 	}
 ]
 func init():
-	status = {"times_spoken_to":0,"paid":false}
+	if status.get("times_spoken_to") == null:
+		status = {"times_spoken_to":0,"paid":false}
 	
-func activate(_using_item = "", _count = 0):
-	if (status["times_spoken_to"] >= 1) and (not _using_item.is_empty()):
+func activate(_using_item : Variant = null, _count = 0):
+	if (status["times_spoken_to"] >= 1):
 		if _using_item is Dictionary:
 			var text = _using_item.get("latin_text")
 			if text:
@@ -132,9 +133,10 @@ func activate(_using_item = "", _count = 0):
 					Dialogue.open_dialogue.emit(translate_dialogue)
 					scroll_fragment = _using_item
 					return
-		Dialogue.open_dialogue.emit(use_dialogue)
-		return
-	if not status["times_spoken_to"] >= dialogues.size():
+		if _using_item != null:
+			Dialogue.open_dialogue.emit(use_dialogue)
+			return
+	if status["times_spoken_to"] < dialogues.size():
 		Dialogue.open_dialogue.emit(dialogues[status["times_spoken_to"]])
 		status["times_spoken_to"] += 1
 		return

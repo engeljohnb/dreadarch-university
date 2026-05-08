@@ -1,8 +1,9 @@
 extends Node
 
 var messages_shown = {
-		ItemCollection.TALONS : true,
-		ItemCollection.NECTAR : false
+		ItemCollection.TALONS : false,
+		ItemCollection.NECTAR : false,
+		ItemCollection.SCROLL_FRAGMENT : false
 }
 var messages = {
 	ItemCollection.TALONS:[
@@ -21,23 +22,39 @@ var messages = {
 			"image":ItemCollection.textures[ItemCollection.NECTAR],
 			"text2":" Drinking these is good for your health. You can press I to open your inventory."
 		}
+	],
+	ItemCollection.SCROLL_FRAGMENT: [
+		{
+			"text":"It's in the Old Tongue.",
+			"speaker":"Player"
+		},
+		{
+			"text":"I should've paid more attention in class.",
+			"speaker":"Player"
+		}
 	]
 }
 
 func has_message(item : Variant) -> bool:
+	if ItemCollection.is_scroll_fragment(item):
+		return true
 	return (messages_shown.get(item) != null)
 
 func message_shown(item : Variant) -> bool:
+	if ItemCollection.is_scroll_fragment(item):
+		item = ItemCollection.SCROLL_FRAGMENT
 	var shown = messages_shown.get(item)
 	if shown != null:
 		return shown
 	return true
 	
 func show_message(item):
-	if not has_message(item):
-		return
-	Dialogue.notify_player.emit(Tutorial.messages[item])
-	messages_shown[item] = true
+	if ItemCollection.is_scroll_fragment(item):
+		Dialogue.open_dialogue.emit(messages[ItemCollection.SCROLL_FRAGMENT])
+		messages_shown[ItemCollection.SCROLL_FRAGMENT] = true
+	else:
+		Dialogue.notify_player.emit(messages[item])
+		messages_shown[item] = true
 			
 func load_completed_tutorial_prompts(completed):
 	for c in completed:

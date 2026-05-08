@@ -7,7 +7,7 @@ radius = 17.0
 height = 48.0
 
 [node name="Hitbox" type="Area2D" unique_id=1828239180]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 4
 script = ExtResource("1_dyh86")
 

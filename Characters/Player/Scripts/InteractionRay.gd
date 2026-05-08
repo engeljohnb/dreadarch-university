@@ -4,7 +4,7 @@ var message_showing = false
 var _message = load("res://UI/InteractionMessage.tscn")
 var message = null
 var temp_message = ""
-var using_item = ""
+var using_item : Variant = null
 var using_item_count = 1
 
 func show_message(text, _position):
@@ -44,12 +44,12 @@ func _process(_delta):
 			if Input.is_action_just_pressed("Interact"):
 				if not get_parent().in_dialogue:
 					if "activate" in col:
-						if not using_item.is_empty():
+						if not using_item == null:
 							col.activate(using_item, using_item_count)
 						else:
 							col.activate()
 					temp_message = ""
-					using_item = ""
+					using_item = null
 	else:
 		if message_showing:
 			hide_message()

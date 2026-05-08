@@ -21,7 +21,7 @@ void fragment() {
     vec3 color = vec3(0.0);
 	float offset = time;
 	
-	vec2 _uv = (UV - 0.5) * rotate2(sin(time*0.33));
+	vec2 _uv = (UV - 0.5) * rotate2((time*0.33));
 	vec2 second_square_coords = _uv * rotate2(time);
 	second_square_coords += 0.5;
 

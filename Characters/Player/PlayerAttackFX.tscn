@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca20ol0nw11s6"]
+[gd_scene format=3 uid="uid://ca20ol0nw11s6"]
 
 [ext_resource type="Script" uid="uid://cvjinndq56d62" path="res://Characters/Player/Scripts/player_attack_fx.gd" id="1_cgdpr"]
 [ext_resource type="Texture2D" uid="uid://bw36dh2n1qh5a" path="res://Assets/Student/Attack/FX/0000.png" id="2_leuhs"]
@@ -39,31 +39,30 @@ fill = 1
 fill_from = Vector2(0.512195, 0.47561)
 fill_to = Vector2(0.847561, 0.835366)
 
-[node name="PlayerAttackFX" type="CharacterBody2D" groups=["Weapons"]]
+[node name="PlayerAttackFX" type="CharacterBody2D" unique_id=1941805007 groups=["Damaging"]]
 z_index = 2
-scale = Vector2(0.34, 0.34)
 collision_layer = 4
 collision_mask = 654
 script = ExtResource("1_cgdpr")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1016115790]
 position = Vector2(0, -2)
 polygon = PackedVector2Array(-77, -95, -88.2353, -30.3529, -85.2941, 40.2353, -73.5294, 107.882, -61.7647, 128.471, 32.3529, 87.2941, 61.7647, 34.3529, 70.5882, -9.7647, 38.2353, -74.4706, -26, -90)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1499561086]
 sprite_frames = SubResource("SpriteFrames_l75vj")
 frame = 4
 frame_progress = 1.0
 
-[node name="OutlineSprite" type="AnimatedSprite2D" parent="."]
+[node name="OutlineSprite" type="AnimatedSprite2D" parent="." unique_id=950238460]
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_l75vj")
 frame = 4
 frame_progress = 1.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(38.2353, 0)
-scale = Vector2(22.0832, 22.0832)
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=193698224]
+position = Vector2(-21.844772, -22.624235)
+scale = Vector2(8.684267, 7.3463383)
 color = Color(0.7, 0.3, 0.15, 1)
 energy = 0.25
 texture = SubResource("GradientTexture2D_q3mst")

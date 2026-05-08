@@ -8,7 +8,6 @@ class_name Enemy
 #	Crow is the basic vanilla enemy. Start there for examples.
 #   
 # Chores the subclasses need to do:
-#	Creating the sound_component
 #	Adding the names to any actions with a transition animation to can_transition
 #		NOTE: action names don't perfectly correspond to their IDs in the Actions enum,
 #			  because "attack" ID can have multiple action names ("Projectile", "Slice", etc)
@@ -35,7 +34,9 @@ var prev_position = Vector2()
 var attack_types : Array[int]
 var prev_action : int = Actions.IDLE
 var action_timer = 0.0
+# attack_delay is what time within the attack animation should the weapon be created.
 var attack_delay : float =  0.0
+var time_between_attacks : float = 0.0
 var projectile_type: int = 0
 var skip_transition: bool = false
 var attacked : bool = false
@@ -45,19 +46,18 @@ var aggrod : bool = false
 var walk_speed : float = 100.0
 var aggro_speed : float = 100.0
 var transitioning : bool = false
-var can_transition : Array[String] 
+var can_transition : Array[String]
 var knockback_speed : float = 600.0
 var knockback_direction : Vector2
-var blinker : Blinker = Blinker.new()
-var death_cutscene : EnemyDeathCutscene = ResourceLoader.load("res://Utils/DeathCutscene.tscn").instantiate()
+var blinker : Blinker
+var death_cutscene : EnemyDeathCutscene #= ResourceLoader.load("res://Utils/DeathCutscene.tscn").instantiate()
 var pathfinder : PathFinder
 # type : odds out of 1.0
 #  1.0 means always drop (unless a lower probability item was rolled), 0.0 means never
-var can_drop : Dictionary[String, float]
+var can_drop : Dictionary[int, float]
 
 var talons_node = load("res://Weapons/Projectiles/Talons/CrowProjectile.tscn")
 @export var sprite : AnimatedSprite2D
-@export var sound_component : EnemySoundComponent
 
 func drop_items():
 	var roll = randf()
@@ -78,7 +78,8 @@ func drop_items():
 		var drop = Collectible.create(best_items[i])
 		var x_offset : float = (64 * i)
 		drop.position = Vector2(position.x + x_offset, position.y)
-		add_sibling(drop)
+		# So the drop doesn't get counted as an enemy by being a child of the Enemies node.
+		get_parent().add_sibling(drop)
 
 func init():
 	# Implemented by subclasses, called at the end of _ready.
@@ -101,42 +102,43 @@ func aggro_triggered() -> bool:
 
 func get_action_name(action : int = current_action) -> String:
 	match action:
-			Actions.IDLE:
-				return "Idle"
-			Actions.WALK:
-				return "Walk"
-			Actions.ATTACK:
-				match current_attack_type:
-					Attack.Types.PROJECTILE:
-						return "Projectile"
-					Attack.Types.DROP_OBSTACLE:
-						return "Drop"
-			Actions.AGGRO_WARNING:
-				return "Aggro"
-			Actions.AGGRO:
-				return "Walk"
-			Actions.KNOCKBACK:
-				return "Aggro"
-			action:
-				return "Idle"
+		Actions.IDLE:
+			return "Idle"
+		Actions.WALK:
+			return "Walk"
+		Actions.ATTACK:
+			match current_attack_type:
+				Attack.Types.PROJECTILE:
+					return "Projectile"
+				Attack.Types.DROP_OBSTACLE:
+					return "Drop"
+		Actions.AGGRO_WARNING:
+			return "Aggro"
+		Actions.AGGRO:
+			return "Walk"
+		Actions.KNOCKBACK:
+			return "Aggro"
+		action:
+			return "Idle"
 	return "Idle"
 
-func get_animation_name() -> String:
+func get_animation_name(action_name : String = "") -> String:
 	var animation_name = ""
-	var action_name = get_action_name()
+	var _action_name = ""
+	if action_name.is_empty():
+		_action_name = get_action_name()
+	else:
+		_action_name = action_name
 	var direction = Utils.nearest_cardinal_direction(facing, true)
 	if skip_transition:
-		animation_name = action_name + " " + direction
+		animation_name = _action_name + " " + direction
 	if transitioning:
-		animation_name = "Prepare " + action_name + " " + direction
+		animation_name = "Prepare " + _action_name + " " + direction
 	else:
-		animation_name = action_name + " " + direction
+		animation_name = _action_name + " " + direction
 	return animation_name
 	
 func set_action(action : int):
-	if self.name == "Slack":
-		if action == Actions.WALK or action == Actions.AGGRO:
-			breakpoint
 	current_action = action
 	if action_has_transition(action):
 		set_transitioning(true)
@@ -149,11 +151,11 @@ func _ready():
 	if ($AnimatedSprite2D != null) and (sprite == null):
 		sprite = $AnimatedSprite2D
 	pathfinder = PathFinder.create()
+	blinker = preload("res://Utils/blinker.tscn").instantiate()
 	add_child(pathfinder)
 	add_child(blinker)
 	set_action(Actions.IDLE)
 	init()
-	add_child(sound_component)
 	
 func moving():
 	var _moving := global_position.distance_to(prev_position) > 0.0
@@ -179,9 +181,12 @@ func set_transitioning(value : bool):
 	transitioning = value
 	#breakpoint
 	
-func update_animation():
-	sprite.play(get_animation_name())
-
+func update_animation(animation_name : String = ""):
+	if animation_name.is_empty():
+		sprite.play(get_animation_name())
+	else:
+		sprite.play(animation_name)
+		
 func process_action_walk():
 	patrol()
 	
@@ -209,9 +214,8 @@ func process_action(delta : float):
 			process_action_death()
 		current_action:
 			process_action_idle()
-	sound_component.update(current_action)
 	action_timer += delta
-	if transitioning:	
+	if transitioning:
 		var action_length = get_action_length()
 		if action_timer >= action_length:
 			set_transitioning(false)
@@ -227,34 +231,39 @@ func patrol():
 	if (current_action != Actions.ATTACK) and (not aggrod):
 		if aggro_triggered():
 			set_action(Actions.AGGRO_WARNING)
-	update_animation()
-	move_and_slide()
 	facing = pathfinder.get_direction()
+	move_and_slide()
+	update_animation()
 	prev_action = current_action
 	
 	
 @warning_ignore("unused_parameter")
 func create_projectile(type : int) -> Attack:
-	return Attack.new().transform_into_talons_attack()
+	return Attack.new().transform_into(type)
 		
 	
 func process_action_death():
-	# For some reason the death_cutscene node will free before this one.
-	#  I don't think it's worth investigating rn.
-	if death_cutscene != null:
-		if not death_cutscene.is_inside_tree():
-			drop_items()
-			add_sibling(death_cutscene)
-			death_cutscene.position = position
-			death_cutscene.play(0.0, self)
-			# The sound needs to keep playing after node is disabled
-			sound_component.reparent(death_cutscene)
-			turn_off_physics()
+	death_cutscene = preload("res://Utils/DeathCutscene.tscn").instantiate()
+	drop_items()
+	get_parent().add_sibling(death_cutscene)
+	death_cutscene.position = position
+	death_cutscene.play(0.0, self)
+	turn_off_physics()
+	queue_free()
+	# This was here at first to track down a weird bug where projectiles would 
+	#  become orphans instead of being freed after calling queue_free. It's
+	#  still here because hey, you never know.
+	if not get_orphan_node_ids().is_empty():
+		Error.error("Unhandled orphan nodes. Or, it's doing that thing again.")
+		for id in get_orphan_node_ids():
+			instance_from_id(id).free()
 			
 	
 func damage(actor : Variant):
 	actor.life -= 1
 	if actor.life <= 0:
+		if actor.life < 0:
+			breakpoint
 		actor.set_action(Actions.DEATH)
 		
 var knockback_applied : bool = false
@@ -280,15 +289,20 @@ func hit(body : Variant):
 		blinker.blink(0.5, self)
 		attacked = false
 	
-func get_action_length() -> float:
-	var animation_name = get_animation_name()
+func get_action_length(action_name : String = "") -> float:
+	var animation_name = ""
+	if action_name.is_empty():
+		animation_name = get_animation_name()
+	else:
+		animation_name = action_name
 	var frame_count = sprite.sprite_frames.get_frame_count(animation_name)
 	var rel_frame_duration = sprite.sprite_frames.get_frame_duration(animation_name, 0)
 	var frame_duration = rel_frame_duration / sprite.sprite_frames.get_animation_speed(animation_name)
 	#NOTE: I found animations loops were going one frame too long, causing jittering. 
 	#  So I subtracted one frame's length from the final duration and it seems to be fixed.
 	#  If animations are ever a frame too short, I know where to check first.
-	return (frame_count * frame_duration) - (1.0 / float(frame_count))
+	var animation_length = (frame_count * frame_duration) - (1.0 / float(frame_count))
+	return animation_length
 	
 func get_hitbox() -> Hitbox:
 	for child in get_children():
@@ -302,7 +316,28 @@ func end_action_attack(_animation_name = ""):
 	else:
 		set_action(Actions.WALK)
 	attacked = false
-
+	
+func activate_attack():
+	var projectile : Weapon = preload("res://Weapons/Projectiles/Talons/CrowProjectile.tscn").instantiate()
+	projectile.set_parent(self)
+	projectile.set_parent_hitbox(get_hitbox())
+	get_parent().add_sibling(projectile)
+	projectile.position = position
+	projectile.activate(facing)
+	
+func get_attack_type_name(attack_type : int):
+	match attack_type:
+		Attack.Types.PROJECTILE:
+			return "Projectile"
+		Attack.Types.DROP_OBSTACLE:
+			return "Drop Obstacle"
+			
+func wait():
+	velocity = Vector2()
+	var idle_animation = "Idle " + Utils.nearest_cardinal_direction(facing, true)
+	update_animation(idle_animation)
+	move_and_slide()
+	
 func process_action_attack():
 	if action_timer == 0.0:
 		start_action_attack()
@@ -312,11 +347,15 @@ func process_action_attack():
 		Attack.Types.PROJECTILE:
 			if action_timer >= attack_delay:
 				if not attacked:
-					create_projectile(0).activate(self)
+					var projectile_attack : Attack = create_projectile(0)
+					projectile_attack.num_weapons = 1
+					get_parent().add_sibling(projectile_attack)
+					projectile_attack.activate(self, facing)
+					projectile_attack.free()
 					attacked = true
 		Attack.Types.DROP_OBSTACLE:
 			pass
-	if action_finished():
+	if action_timer >= get_action_length():
 		if not transitioning:
 			end_action_attack()
 	
@@ -341,21 +380,22 @@ func update_velocity(max_speed, delta):
 	if velocity.y > max_speed:
 		velocity.y -= (10.0 * delta)
 
+func get_player():
+	return get_tree().get_nodes_in_group("Player")[0]
+
 func chase_player(speed : float):
 	velocity = facing * speed
 	if attack_triggered():
-		set_action(Actions.ATTACK)
+		if action_timer >= time_between_attacks:
+			set_action(Actions.ATTACK)
+		else:
+			wait()
+			return
 	pathfinder.set_orders_chase(null)
 	facing = pathfinder.get_direction()
 	move_and_slide()
 	update_animation()
 	prev_action = current_action
-	
-func physics_process(delta):
-	if velocity.x > max(walk_speed, aggro_speed):
-		velocity.x -= (0.5*delta)
-	if velocity.y > max(walk_speed, aggro_speed):
-		velocity.y -= (0.5*delta)
 	
 func process_action_aggro():
 	chase_player(aggro_speed)

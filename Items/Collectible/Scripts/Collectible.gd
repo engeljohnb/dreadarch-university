@@ -1,21 +1,21 @@
 extends Area2D
 class_name Collectible
 
-var type : String = ""
+var type : int = ItemCollection.MAX_TYPES
 var timer = 0.0
 var falling_animation_duration = 1.0
 var falling = true
 var wait_for_attack = false
 var attack_finished = false
 var attacking_body : CharacterBody2D
-static var _my_node = preload("res://Items/Collectible/Collectible.tscn")
 static var _twinkle = preload("res://Items/Collectible/Twinkle.tscn")
 var is_inventory_item : bool = true
 
 func on_collected(_collector : Variant):
 	ItemCollection.show(type)
 	
-static func create(_type : String) -> Collectible:
+static func create(_type : int) -> Collectible:
+	var _my_node = load("res://Items/Collectible/Collectible.tscn")
 	var node = _my_node.instantiate()
 	node.type = _type
 	return node

@@ -5,12 +5,12 @@ var start_position : Vector2
 var timer : float = 0.0
 var _showing : bool = false
 
-func transform_into(type : String) -> Node2D:
+func transform_into(type : int) -> Node2D:
 	z_index = 1
 	var sprite : Sprite2D = Sprite2D.new()
 	sprite.texture = ItemCollection.textures.get(type)
 	if sprite.texture == null:
-		push_warning("item " + type + " has no texture.")
+		push_warning("item has no texture.")
 		return self
 	add_child(sprite)
 	return self

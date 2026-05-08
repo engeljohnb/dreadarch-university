@@ -2,17 +2,20 @@ extends Weapon
 
 var facing = Vector2(0,-1)
 var launch_velocity = facing
-var countdown = 2.5
+var countdown = 20.0
 @onready var anim_player = $AnimationPlayer
 @onready var fx_player = $FXPlayer
 @onready var hitbox = $CollisionShape2D
 @onready var launch_sprite = $"Launch Effect"
 @onready var outline_sprite = $"Launch Effect/Launch Effect Outline"
-@onready var _light = load("res://Weapons/Projectiles/Talons/CrowProjectileLight.tscn")
+@onready var _light = preload("res://Weapons/Projectiles/Talons/CrowProjectileLight.tscn")
 var dead = false
 	
 func _on_body_entered(_body):
-	if _body != get_parent():
+	if _body is Weapon:
+		if _body.type == type:
+			return
+	if _body != parent:
 		$DeathSound.play()
 		death()
 	
@@ -35,7 +38,8 @@ func name_to_vector(_name):
 			return Vector2(0,-1)
 		"Down":
 			return Vector2(0,1)
-	push_error("name_to_vector error: name doesn't correspond with a direction", _name)
+		_name:
+			Error.error("name_to_vector error: name doesn't correspond with a direction" + _name)
 
 func get_animation_name(direction):
 	var x = direction.x
@@ -63,11 +67,9 @@ func activate(direction):
 	if animation_name == "Down":
 		position.x -= 15
 		light.rotation -= PI/2.0
-		#light.position.x -= 25
 		light.position.y -= 400
 	if (animation_name == "Left"):
 		position += 15*cardinal_direction
-		#light.rotation += 2.0*PI
 		light.position -= 400*cardinal_direction
 	if (animation_name == "Right"):
 		position += 15*cardinal_direction
@@ -78,14 +80,17 @@ func activate(direction):
 		position.y -= 20
 		position.x += 10
 		light.position.y += 400
-	launch_velocity = cardinal_direction * 350
+	rotation += cardinal_direction.angle_to(direction)
+	launch_velocity = direction * 450.0
 
-func _physics_process(_delta):
+func _process(_delta):
 	countdown -= _delta
 	if countdown <= 0.0:
 		death()
+		return
 	if dead:
 		death()
+		return
 	else:
 		global_position += launch_velocity*_delta
 	if not visible:

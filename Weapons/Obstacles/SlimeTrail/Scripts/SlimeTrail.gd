@@ -5,7 +5,6 @@ var fade_in_timer = 0.0
 var fading_in = true
 
 func _ready():
-	#velocity = Vector2()
 	modulate.a = 0
 	
 func _process(_delta):
