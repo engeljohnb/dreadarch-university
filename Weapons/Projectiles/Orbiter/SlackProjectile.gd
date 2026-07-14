@@ -16,7 +16,6 @@ func _on_body_entered(body):
 	if not (body is TileMapLayer):
 		dead = true
 
-	
 func _ready():
 	contact_monitor = true
 	max_contacts_reported = 1
@@ -31,6 +30,7 @@ func activate(direction):
 	if Utils.nearest_cardinal_direction(direction) == Utils.RIGHT:
 		$AnimatedSprite2D.scale.x = -$AnimatedSprite2D.scale.x
 	$AnimatedSprite2D.play("default")
+	$Launch.play()
 
 			
 func _physics_process(_delta):

@@ -25,7 +25,6 @@ func init():
 	facing = Vector2(-1,0)
 	if mirrored:
 		sprite.scale.x = -sprite.scale.x
-	#sound_component = create_sound_component()
 	$SearchArea.player_nearby.connect(func (_body): player_nearby = true)
 	$SearchArea.player_went_away.connect(func (): player_nearby = false)
 	attack_delay = 0.5

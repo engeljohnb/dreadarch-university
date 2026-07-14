@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://b26qkj6laxx23" path="res://Assets/Badguys/Slack/0015.png" id="17_w23nu"]
 [ext_resource type="Texture2D" uid="uid://w8w1rsqnu65p" path="res://Assets/Badguys/Slack/0016.png" id="18_eq15d"]
 [ext_resource type="Script" uid="uid://dkdycuae880i1" path="res://Enemies/Slack/Scripts/SearchArea.gd" id="20_aq8l4"]
+[ext_resource type="PackedScene" uid="uid://c5ktgkhr3ncko" path="res://_Components/SoundComponent.tscn" id="21_8scmv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j16na"]
 animations = [{
@@ -115,3 +116,5 @@ shape = SubResource("CircleShape2D_aq8l4")
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=454298957]
 shape = SubResource("CapsuleShape2D_aq8l4")
+
+[node name="SoundComponent" parent="." unique_id=1104324711 instance=ExtResource("21_8scmv")]

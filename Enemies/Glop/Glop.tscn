@@ -90,6 +90,10 @@
 [ext_resource type="Texture2D" uid="uid://dpgmeovq2esqq" path="res://Assets/Badguys/Glop/Walk/Up/0012.png" id="88_hinub"]
 [ext_resource type="Texture2D" uid="uid://5lxv46dpu2d0" path="res://Assets/Badguys/Glop/Walk/Up/0013.png" id="89_vxbjg"]
 [ext_resource type="Texture2D" uid="uid://ca2pnvyueep8h" path="res://Assets/Badguys/Glop/Walk/Up/0014.png" id="90_0mg0r"]
+[ext_resource type="PackedScene" uid="uid://c5ktgkhr3ncko" path="res://_Components/SoundComponent.tscn" id="91_qqq10"]
+[ext_resource type="AudioStream" uid="uid://c3nbfh01ccwjq" path="res://Assets/Sounds/Glop/DeathSound.ogg" id="92_t5a6a"]
+[ext_resource type="AudioStream" uid="uid://diglwo075es22" path="res://Assets/Sounds/Glop/HitSound.ogg" id="93_o7cmu"]
+[ext_resource type="AudioStream" uid="uid://clkjvlt1y2dqu" path="res://Assets/Sounds/Glop/StepSound.ogg" id="94_bbjof"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lx50r"]
 radius = 15.0
@@ -437,3 +441,17 @@ shape = SubResource("CapsuleShape2D_lx50r")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1687955]
 sprite_frames = SubResource("SpriteFrames_vb1pp")
 animation = &"Prepare Walk Left"
+
+[node name="SoundComponent" parent="." unique_id=1104324711 instance=ExtResource("91_qqq10")]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=1920239480]
+stream = ExtResource("92_t5a6a")
+volume_db = -10.0
+
+[node name="Knockback" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=1328129675]
+stream = ExtResource("93_o7cmu")
+volume_db = -10.0
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=456228941]
+stream = ExtResource("94_bbjof")
+volume_db = -15.0

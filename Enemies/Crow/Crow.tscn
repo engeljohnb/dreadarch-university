@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://ce4aeql8kclix" path="res://Enemies/Crow/Scripts/Crow.gd" id="1_qepe3"]
 [ext_resource type="SpriteFrames" uid="uid://bgdb5enqo5b8d" path="res://Enemies/Crow/crow_sprite_frames.tres" id="2_if58j"]
 [ext_resource type="Script" uid="uid://dposrh55326ml" path="res://Enemies/EnemyHitbox/Scripts/Hitbox.gd" id="3_if58j"]
+[ext_resource type="PackedScene" uid="uid://c5ktgkhr3ncko" path="res://_Components/SoundComponent.tscn" id="4_t0spy"]
+[ext_resource type="AudioStream" uid="uid://bsil6b1ege4ey" path="res://Assets/Sounds/Crow/HitSound.ogg" id="5_bxdm8"]
+[ext_resource type="AudioStream" uid="uid://ccebogped7sfp" path="res://Assets/Sounds/Crow/AggroSound.ogg" id="5_sc15c"]
+[ext_resource type="AudioStream" uid="uid://dqtfvvpc0gi7w" path="res://Assets/Sounds/Crow/DeathSound.ogg" id="6_sc15c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_frsu6"]
 radius = 15.0
@@ -21,7 +25,7 @@ script = ExtResource("1_qepe3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1253336344]
 texture_filter = 1
 sprite_frames = ExtResource("2_if58j")
-animation = &"Projectile Left"
+animation = &"Prepare Projectile Right"
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=1061759157]
 position = Vector2(3, -4)
@@ -35,3 +39,17 @@ script = ExtResource("3_if58j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox" unique_id=287862717]
 position = Vector2(3, -2)
 shape = SubResource("CapsuleShape2D_qepe3")
+
+[node name="SoundComponent" parent="." unique_id=1104324711 instance=ExtResource("4_t0spy")]
+
+[node name="Aggro" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=946351958]
+stream = ExtResource("5_sc15c")
+volume_db = -3.0
+
+[node name="Knockback" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=614381726]
+stream = ExtResource("5_bxdm8")
+volume_db = -3.0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=1590557087]
+stream = ExtResource("6_sc15c")
+volume_db = -3.0

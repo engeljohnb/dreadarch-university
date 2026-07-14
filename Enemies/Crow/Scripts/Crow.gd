@@ -16,7 +16,7 @@ func init():
 	attack_delay = 0.33
 	aggro_range = 400.0
 	attack_range = 600.0
-	time_between_attacks = 0.33#get_action_length("Idle Down")
+	time_between_attacks = 0.33
 	
 func _process(_delta):
 	process_action(_delta)

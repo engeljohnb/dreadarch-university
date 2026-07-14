@@ -23,6 +23,8 @@ func get_num_enemies() -> int:
 	var children = get_node("Enemies").get_children()
 	var c = children.size()
 	for child in children:
+		if child is not Enemy:
+			continue
 		if child.life <= 0:
 			c -= 1
 	return c
@@ -37,7 +39,8 @@ func update_exorcism():
 	if num_enemies == 0:
 		if not exorcised:
 			exorcised = true
-			Dialogue.notify_player.emit([{"text":"Room exorcised."}])
+			if not SceneTransition.player_is_above_ground():
+				Dialogue.notify_player.emit([{"text":"Room exorcised."}])
 	
 func _process(_delta):
 	update_exorcism()

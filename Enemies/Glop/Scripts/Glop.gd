@@ -1,5 +1,4 @@
 extends Enemy
-# UP NEXT: Why isn't the Glop moving???
 var no_collide : Array[Weapon.Types]
 var _moving : bool = true
 var _last_position : Vector2

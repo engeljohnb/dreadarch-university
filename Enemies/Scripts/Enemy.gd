@@ -116,12 +116,37 @@ func get_action_name(action : int = current_action) -> String:
 			return "Aggro"
 		Actions.AGGRO:
 			return "Walk"
+		# Changing this breaks things
 		Actions.KNOCKBACK:
 			return "Aggro"
 		action:
 			return "Idle"
 	return "Idle"
-
+	
+# Because for some reason when using get_action_name
+#  the ID for KNOCKBACK needs to return "Aggro" or things break
+func get_sound_name(action : int = current_action) -> String:
+	match action:
+		Actions.IDLE:
+			return "Idle"
+		Actions.WALK:
+			return "Walk"
+		Actions.ATTACK:
+			match current_attack_type:
+				Attack.Types.PROJECTILE:
+					return "Projectile"
+				Attack.Types.DROP_OBSTACLE:
+					return "Drop"
+		Actions.AGGRO_WARNING:
+			return "Aggro"
+		Actions.AGGRO:
+			return "Walk"
+		# Changing this breaks things
+		Actions.KNOCKBACK:
+			return "Knockback"
+		action:
+			return "Idle"
+	return "Idle"
 func get_animation_name(action_name : String = "") -> String:
 	var animation_name = ""
 	var _action_name = ""
@@ -138,12 +163,18 @@ func get_animation_name(action_name : String = "") -> String:
 		animation_name = _action_name + " " + direction
 	return animation_name
 	
+func get_sound_component() -> SoundComponent:
+	return get_node("SoundComponent")
+	
 func set_action(action : int):
 	current_action = action
 	if action_has_transition(action):
 		set_transitioning(true)
 	else:
 		set_transitioning(false)
+	var sc : SoundComponent = get_sound_component()
+	if sc != null:
+		sc.play_sound(get_sound_name(action)) 
 	action_timer = 0.0
 
 func _ready():
@@ -248,7 +279,13 @@ func process_action_death():
 	get_parent().add_sibling(death_cutscene)
 	death_cutscene.position = position
 	death_cutscene.play(0.0, self)
-	turn_off_physics()
+	# Cludge because the death sound can't play if the enemy is freed right away,
+	#   and for some reason passing the sound to the DeathCutscene doesn't work.
+	var sc : SoundComponent = $SoundComponent
+	if sc != null:
+		sc.reparent(get_parent())
+		sc.play_sound("Death")
+		turn_off_physics()
 	queue_free()
 	# This was here at first to track down a weird bug where projectiles would 
 	#  become orphans instead of being freed after calling queue_free. It's

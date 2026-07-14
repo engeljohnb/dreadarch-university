@@ -17,7 +17,7 @@ func play(delta = 0.0, actor = self):
 		if actor != self:
 			actor.visible = false
 			_actor = actor
-		$AudioStreamPlayer2D.play()
+		$SoundComponent.play_sound("Default")
 	else:
 		deathlight.modulate = Color(1,0,0,)
 		timer += delta
@@ -25,7 +25,6 @@ func play(delta = 0.0, actor = self):
 		deathlight.energy = 1.0/percent
 		if timer >= duration:
 			queue_free()
-#			breakpoint
 			if is_instance_valid(_actor):
 				_actor.queue_free()
 

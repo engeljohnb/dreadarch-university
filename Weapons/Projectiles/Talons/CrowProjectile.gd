@@ -16,7 +16,6 @@ func _on_body_entered(_body):
 		if _body.type == type:
 			return
 	if _body != parent:
-		$DeathSound.play()
 		death()
 	
 func _ready():
@@ -82,6 +81,7 @@ func activate(direction):
 		light.position.y += 400
 	rotation += cardinal_direction.angle_to(direction)
 	launch_velocity = direction * 450.0
+	$SoundComponent.play_sound("Fire")
 
 func _process(_delta):
 	countdown -= _delta
