@@ -164,7 +164,7 @@ func get_animation_name(action_name : String = "") -> String:
 	return animation_name
 	
 func get_sound_component() -> SoundComponent:
-	return get_node("SoundComponent")
+	return get_node_or_null("SoundComponent")
 	
 func set_action(action : int):
 	current_action = action

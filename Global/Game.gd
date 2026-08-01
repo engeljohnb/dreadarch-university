@@ -352,10 +352,10 @@ func on_new_scene():
 	if _save.rooms.get(scene_name):
 		if not _save.rooms[scene_name].is_empty():
 			load_room_save_data(current_scene)
-	if SceneTransition.player_is_above_ground():
-		player.turn_down_light()
-	else:
+	if current_scene.player_light_on:
 		player.turn_up_light()
+	else:
+		player.turn_down_light()
 	pause_menu.visible = false
 	load_player_for_new_scene()
 	play_scene_entrance_cutscene()

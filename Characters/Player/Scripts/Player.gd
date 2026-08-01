@@ -303,7 +303,8 @@ func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arrivin
 				end_cutscene(false)
 	
 func play_climb_cutscene(delta, _climb_cutscene = {}):
-	if delta == 0.0:
+	var cutscene_beginning = (delta == 0.0)
+	if cutscene_beginning:
 		init_cutscene(play_climb_cutscene, 1.75)
 		var direction = _climb_cutscene["direction"]
 		var arriving = _climb_cutscene["arriving"]
@@ -317,9 +318,12 @@ func play_climb_cutscene(delta, _climb_cutscene = {}):
 				sprite.play("Climb Down")
 				climb_cutscene["start_pos"].y -= 215.0
 				global_position.y -= 215.0
+				sprite.modulate.a = 0.0
 		else:
 			sprite.play_backwards("Climb Down")
 			if arriving:
+				sprite.modulate.a = 0.0
+				
 				climb_cutscene["start_pos"].y += 45.0
 			else:
 				z_index = 2
@@ -676,6 +680,7 @@ func get_step_sound(sound_name):
 func update_step_sound(sound_source):
 	# In case the player processes after the scene has been freed.
 	if (not sound_source):
+		breakpoint
 		return
 	if sound_source is TileMapLayer:
 		var tilemap = sound_source
@@ -725,7 +730,6 @@ func stupid_post_door_cutscene_correction():
 				sprite.play("Walk " + held_direction)
 		stupid_counter = 0
 		cutscene_just_ended = false
-		
 		
 func set_state_machine_state(state : String):
 	var playback = anim_tree["parameters/playback"]

@@ -5,6 +5,7 @@ extends Area2D
 @onready var north_sprite = $North
 @onready var south_sprite = $South
 
+
 var player_entered = false
 var player : CharacterBody2D
 

@@ -1,0 +1,208 @@
+[gd_scene format=4 uid="uid://bu32iocxka6e0"]
+
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_4snip"]
+[ext_resource type="Texture2D" uid="uid://cw33n8jchl7f1" path="res://Assets/Tiles/HomeInterior/HomeGroundFloor.png" id="2_vh348"]
+[ext_resource type="PackedScene" uid="uid://bod7jgxpa8fed" path="res://Items/Door/Door.tscn" id="3_0uwcm"]
+[ext_resource type="PackedScene" uid="uid://d18em4fo02fvn" path="res://Items/Ladder/Ladder.tscn" id="4_acyvh"]
+[ext_resource type="Texture2D" uid="uid://c2yp31132uqn4" path="res://Assets/Decoration/HomeInterior/Fireplace.png" id="5_7f26i"]
+[ext_resource type="PackedScene" uid="uid://bin8ag8pucnhe" path="res://Decoration/BigFire/BigFire.tscn" id="6_ijy2q"]
+[ext_resource type="Texture2D" uid="uid://du7fbq5wmwtjo" path="res://Assets/Decoration/HomeInterior/HomeChair.png" id="7_yxlk7"]
+[ext_resource type="Texture2D" uid="uid://cbkqoy8gc1vmp" path="res://Assets/Decoration/HomeInterior/HomeTable.png" id="8_hkp35"]
+[ext_resource type="Texture2D" uid="uid://c2pqknn7hbl1c" path="res://Assets/Decoration/HomeInterior/HomeBucket.png" id="9_kf7s3"]
+[ext_resource type="Texture2D" uid="uid://bxv0cv2grx0nx" path="res://Assets/Decoration/HomeInterior/HomeShelf.png" id="11_3ybje"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uwcm"]
+texture = ExtResource("2_vh348")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+0:2/0/custom_data_0 = &"Hard"
+1:2/0 = 0
+1:2/0/custom_data_0 = &"Hard"
+2:2/0 = 0
+2:2/0/custom_data_0 = &"Hard"
+3:2/0 = 0
+3:2/0/custom_data_0 = &"Hard"
+0:3/0 = 0
+0:3/0/custom_data_0 = &"Hard"
+1:3/0 = 0
+1:3/0/custom_data_0 = &"Hard"
+2:3/0 = 0
+2:3/0/custom_data_0 = &"Hard"
+3:3/0 = 0
+3:3/0/custom_data_0 = &"Hard"
+4:0/0 = 0
+4:1/0 = 0
+4:2/0 = 0
+4:2/0/custom_data_0 = &"Hard"
+
+[sub_resource type="TileSet" id="TileSet_acyvh"]
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "Sound"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_0uwcm")
+
+[sub_resource type="Gradient" id="Gradient_0uwcm"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_acyvh"]
+gradient = SubResource("Gradient_0uwcm")
+fill = 1
+fill_from = Vector2(0.517094, 0.4871795)
+fill_to = Vector2(0.8504273, 0.20940171)
+
+[sub_resource type="Gradient" id="Gradient_acyvh"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7f26i"]
+gradient = SubResource("Gradient_acyvh")
+fill = 1
+fill_from = Vector2(0.4957265, 0.491453)
+fill_to = Vector2(0.9102564, 0.15384616)
+
+[sub_resource type="Gradient" id="Gradient_7f26i"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ijy2q"]
+gradient = SubResource("Gradient_7f26i")
+fill = 1
+fill_from = Vector2(0.50427353, 0.50427353)
+fill_to = Vector2(0.85897434, 0.13247864)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0uwcm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acyvh"]
+size = Vector2(435.65598, 17.483673)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f26i"]
+size = Vector2(467.53943, 7.603119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijy2q"]
+size = Vector2(388.64282, 14.945473)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxlk7"]
+size = Vector2(8458.763, 0.6787896)
+
+[node name="00-04" type="Node2D" unique_id=766342440]
+script = ExtResource("1_4snip")
+music = "res://Music/HomeInteriorMusic.ogg"
+music_volume = 2.0
+player_light_on = false
+metadata/_custom_type_script = "uid://dmvh37l51y7ei"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1447676216 groups=["FloorLayer"]]
+tile_map_data = PackedByteArray("AAAHAAgAAAABAAIAAAAGAAgAAAABAAIAAAAGAAcAAAABAAIAAAAFAAcAAAABAAIAAAAFAAgAAAABAAIAAAAJAAgAAAABAAIAAAAIAAgAAAABAAIAAAAHAAcAAAABAAIAAAAJAAcAAAABAAIAAAAIAAcAAAABAAIAAAAFAAYAAAAAAAEAAAAGAAYAAAACAAEAAAAHAAYAAAADAAEAAAAIAAYAAAAAAAEAAAAJAAYAAAACAAEAAAAGAAUAAAABAAAAAAAEAAYAAAADAAEAAAAEAAcAAAACAAIAAAAEAAgAAAACAAIAAAAEAAUAAAADAAAAAAAFAAUAAAAAAAAAAAAHAAUAAAADAAAAAAAIAAUAAAAAAAAAAAAJAAUAAAACAAAAAAAMAAUAAAAEAAAAAAAMAAYAAAAEAAEAAAAMAAcAAAAEAAIAAAAMAAgAAAADAAIAAAALAAUAAAAAAAAAAAALAAYAAAAAAAEAAAALAAcAAAABAAIAAAALAAgAAAABAAIAAAAKAAUAAAADAAAAAAAKAAYAAAADAAEAAAAKAAcAAAABAAIAAAAKAAgAAAABAAIAAAADAAUAAAAAAAAAAAADAAYAAAAAAAEAAAADAAcAAAAAAAIAAAADAAgAAAAAAAIAAAADAAoAAAAAAAMAAAAEAAoAAAACAAMAAAAFAAoAAAABAAMAAAAGAAoAAAABAAMAAAAHAAoAAAABAAIAAAAIAAoAAAABAAMAAAAJAAoAAAABAAMAAAAKAAoAAAABAAMAAAALAAoAAAABAAMAAAAMAAoAAAADAAMAAAADAAkAAAAAAAIAAAAEAAkAAAACAAIAAAAFAAkAAAABAAIAAAAGAAkAAAABAAIAAAAHAAkAAAABAAIAAAAIAAkAAAABAAIAAAAJAAkAAAABAAIAAAAKAAkAAAABAAIAAAALAAkAAAABAAIAAAAMAAkAAAADAAIAAAAHAAsAAAABAAIAAAA=")
+tile_set = SubResource("TileSet_acyvh")
+
+[node name="Door" parent="." unique_id=386765253 instance=ExtResource("3_0uwcm")]
+visible = false
+position = Vector2(478, 820)
+next_start_position = Vector2(-323, 420)
+next_scene = "res://Dungeons/00/00-06.tscn"
+direction = "South"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=809317086]
+position = Vector2(419.00006, 356)
+rotation = -1.5707964
+scale = Vector2(-14.741208, 18.780611)
+color = Color(1, 0.9608298, 0.756731, 1)
+energy = 0.26
+texture = SubResource("GradientTexture2D_acyvh")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=84553391]
+position = Vector2(480, 790.00006)
+scale = Vector2(2.5624995, 5.4218745)
+energy = 0.5
+texture = SubResource("GradientTexture2D_7f26i")
+
+[node name="PointLight2D3" type="PointLight2D" parent="." unique_id=946783209]
+position = Vector2(796, 326.00003)
+scale = Vector2(3.3131702, -3.276587)
+color = Color(0.86981654, 0.67631733, 0.012920001, 1)
+energy = 1.13
+texture = SubResource("GradientTexture2D_ijy2q")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1354173522]
+collision_layer = 12
+collision_mask = 32
+physics_material_override = SubResource("PhysicsMaterial_0uwcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=92314683]
+position = Vector2(488.5001, 434.00003)
+scale = Vector2(1.2877138, 2.2224324)
+shape = SubResource("RectangleShape2D_acyvh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=996478009]
+position = Vector2(825.99994, 545)
+rotation = -1.5707964
+scale = Vector2(0.9517916, 2.2751427)
+shape = SubResource("RectangleShape2D_7f26i")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" unique_id=802854204]
+position = Vector2(201.00003, 535)
+scale = Vector2(0.038421694, 30.937393)
+shape = SubResource("RectangleShape2D_ijy2q")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" unique_id=1420736870]
+position = Vector2(679.00006, 712)
+scale = Vector2(0.038421694, 30.937393)
+shape = SubResource("RectangleShape2D_yxlk7")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls" unique_id=2080462938]
+position = Vector2(283.00003, 710)
+scale = Vector2(0.038421694, 30.937393)
+shape = SubResource("RectangleShape2D_yxlk7")
+
+[node name="Ladder" parent="." unique_id=2087545314 instance=ExtResource("4_acyvh")]
+visible = false
+position = Vector2(794, 492)
+scale = Vector2(0.516484, 0.5564828)
+next_start_position = Vector2(542, 168)
+next_scene = "res://Dungeons/00/00-05.tscn"
+
+[node name="Decorations" type="Node2D" parent="." unique_id=265920384]
+position = Vector2(794, 492)
+scale = Vector2(0.516484, 0.5564828)
+
+[node name="Fireplace" type="Sprite2D" parent="Decorations" unique_id=374174430]
+position = Vector2(-349.3573, -175.21759)
+scale = Vector2(1.3132014, 1.2116476)
+texture = ExtResource("5_7f26i")
+
+[node name="BigFire" parent="Decorations" unique_id=212832800 instance=ExtResource("6_ijy2q")]
+position = Vector2(-348.51025, -96.1496)
+scale = Vector2(1.9476155, 1.7970008)
+
+[node name="HomeChair" type="Sprite2D" parent="Decorations" unique_id=1966255842]
+position = Vector2(-30.978638, 259.09125)
+scale = Vector2(1.638958, 1.5122126)
+texture = ExtResource("7_yxlk7")
+
+[node name="HomeChair2" type="Sprite2D" parent="Decorations" unique_id=231972845]
+position = Vector2(-453.06335, 261.78668)
+rotation = -3.1415925
+scale = Vector2(1.638958, -1.5122126)
+texture = ExtResource("7_yxlk7")
+
+[node name="HomeTable" type="Sprite2D" parent="Decorations" unique_id=661238109]
+position = Vector2(-245.89331, 278.53516)
+scale = Vector2(1.9476155, 1.7970008)
+texture = ExtResource("8_hkp35")
+
+[node name="HomeBucket" type="Sprite2D" parent="Decorations" unique_id=1218161666]
+position = Vector2(-840.29706, -71.88003)
+rotation = -3.1415925
+scale = Vector2(1.9476155, -1.7970008)
+texture = ExtResource("9_kf7s3")
+
+[node name="HomeShelf" type="Sprite2D" parent="Decorations" unique_id=101746540]
+position = Vector2(-1061.0203, -147.35406)
+scale = Vector2(1.9361683, 1.7970008)
+texture = ExtResource("11_3ybje")

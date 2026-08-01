@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://bod7jgxpa8fed"]
 
 [ext_resource type="Script" uid="uid://uk4afpexxsvc" path="res://Items/Door/Scripts/Door.gd" id="1_sl0wq"]
-[ext_resource type="Texture2D" uid="uid://bx1tgyr30gnj4" path="res://Assets/Items/Stairs/door_north.png" id="2_sl0wq"]
-[ext_resource type="Texture2D" uid="uid://bh31kaugthgup" path="res://Assets/Items/Stairs/door_south.png" id="3_1065n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1065n"]
 size = Vector2(56.75, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
 size = Vector2(79, 66.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fnujl"]
+load_path = "res://.godot/imported/door_north.png-2adc2d8e7275d2121cc7a5bc355ddb58.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sl0wq"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/door_south.png-a63f68e7285fc6fdc1a4780bd2f59070.ctex"
 
 [node name="Door" type="Area2D" unique_id=386765253]
 process_priority = 1
@@ -40,9 +45,9 @@ shape = SubResource("RectangleShape2D_fnujl")
 visible = false
 y_sort_enabled = true
 position = Vector2(-1, -111)
-texture = ExtResource("2_sl0wq")
+texture = SubResource("CompressedTexture2D_fnujl")
 
 [node name="South" type="Sprite2D" parent="." unique_id=1409924729]
 y_sort_enabled = true
 position = Vector2(1, -137)
-texture = ExtResource("3_1065n")
+texture = SubResource("CompressedTexture2D_sl0wq")

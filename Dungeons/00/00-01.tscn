@@ -30,6 +30,7 @@ size = Vector2(433, 2756)
 modulate = Color(0.8089983, 0.8089983, 0.8089982, 1)
 y_sort_enabled = true
 script = ExtResource("1_03ab6")
+player_light_on = false
 
 [node name="GroundTiles" parent="." unique_id=1851787181 instance=ExtResource("1_1pvwg")]
 z_index = -3

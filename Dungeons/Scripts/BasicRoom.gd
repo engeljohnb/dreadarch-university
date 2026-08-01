@@ -2,6 +2,7 @@ extends Node2D
 class_name Room
 @export var music : String = "res://Music/DungeonMusic.ogg"
 @export var music_volume : float = -7.3
+@export var player_light_on = true
 const TARGET_COLOR = Color(0.258, 0.287, 0.527)
 var save_data : Dictionary = {
 	"pots":[],
@@ -34,7 +35,7 @@ func _ready():
 	
 func update_exorcism():
 	var num_enemies = get_num_enemies()
-	var ratio = float(num_enemies)/float(total_enemies)
+	#var ratio = float(num_enemies)/float(total_enemies)
 	#modulate = lerp(Color(1,1,1), TARGET_COLOR, ratio)
 	if num_enemies == 0:
 		if not exorcised:

@@ -1,0 +1,137 @@
+[gd_scene format=4 uid="uid://cna0s7f0ivopl"]
+
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_0cupr"]
+[ext_resource type="Texture2D" uid="uid://b27m84lv4cl57" path="res://Assets/Tiles/HomeInterior/HomeAttic.png" id="2_05q5l"]
+[ext_resource type="PackedScene" uid="uid://m13guvu1fxgg" path="res://Items/Ladder/LadderTop.tscn" id="3_wbhm8"]
+[ext_resource type="Texture2D" uid="uid://byjvsilmuj462" path="res://Assets/Decoration/HomeInterior/ChimneySegments.png" id="4_7hjbj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wbhm8"]
+texture = ExtResource("2_05q5l")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+0:2/0/custom_data_0 = &"Hard"
+1:2/0 = 0
+1:2/0/custom_data_0 = &"Hard"
+2:2/0 = 0
+2:2/0/custom_data_0 = &"Hard"
+3:2/0 = 0
+3:2/0/custom_data_0 = &"Hard"
+0:3/0 = 0
+0:3/0/custom_data_0 = &"Hard"
+1:3/0 = 0
+1:3/0/custom_data_0 = &"Hard"
+2:3/0 = 0
+2:3/0/custom_data_0 = &"Hard"
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0lbud"]
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "Sound"
+custom_data_layer_0/type = 21
+sources/1 = SubResource("TileSetAtlasSource_wbhm8")
+
+[sub_resource type="Gradient" id="Gradient_05q5l"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wbhm8"]
+gradient = SubResource("Gradient_05q5l")
+fill = 1
+fill_from = Vector2(0.517094, 0.4957265)
+fill_to = Vector2(0.8803419, 0.13675214)
+
+[sub_resource type="Gradient" id="Gradient_wbhm8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7hjbj"]
+gradient = SubResource("Gradient_wbhm8")
+fill_from = Vector2(0.25213677, 0.115384616)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wbhm8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hjbj"]
+size = Vector2(479.14374, 17.483673)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43ff0"]
+size = Vector2(188.59174, 7.603119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r30ie"]
+size = Vector2(312.32355, 5.888892)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k7fg"]
+size = Vector2(14783.315, 0.61414385)
+
+[node name="00-05" type="Node2D" unique_id=1912938039]
+script = ExtResource("1_0cupr")
+music = "res://Music/HomeInteriorMusic.ogg"
+music_volume = 2.0
+metadata/_custom_type_script = "uid://dmvh37l51y7ei"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2066130451 groups=["FloorLayer"]]
+modulate = Color(0.29586658, 0.29586646, 0.29586652, 1)
+tile_map_data = PackedByteArray("AAABAP7/AQABAAAAAAABAP//AQABAAEAAAABAAAAAQABAAIAAAABAAEAAQABAAMAAAACAP7/AQABAAAAAAACAP//AQABAAEAAAACAAAAAQABAAIAAAACAAEAAQABAAMAAAADAP7/AQABAAAAAAADAP//AQABAAEAAAADAAAAAQABAAIAAAADAAEAAQABAAMAAAAEAP7/AQABAAAAAAAEAP//AQABAAEAAAAEAAAAAQABAAIAAAAEAAEAAQABAAMAAAAFAP7/AQABAAAAAAAFAP//AQABAAEAAAAFAAAAAQABAAIAAAAFAAEAAQABAAMAAAAGAP7/AQABAAAAAAAGAP//AQABAAEAAAAGAAAAAQABAAIAAAAGAAEAAQABAAMAAAAHAP7/AQABAAAAAAAHAP//AQABAAEAAAAHAAAAAQABAAIAAAAHAAEAAQABAAMAAAAIAP7/AQACAAAAAAAIAP//AQACAAEAAAAIAAAAAQACAAIAAAAIAAEAAQADAAIAAAAIAAIAAQADAAMAAAD///7/AQAAAAAAAAD/////AQAAAAEAAAD//wAAAQAAAAIAAAD//wEAAQAAAAMAAAAAAP7/AQABAAAAAAAAAP//AQABAAEAAAAAAAAAAQABAAIAAAAAAAEAAQABAAMAAAA=")
+tile_set = SubResource("TileSet_0lbud")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1615297304]
+position = Vector2(286, -123)
+scale = Vector2(8.3515625, 8.3515625)
+color = Color(0.92519504, 0.7396855, 1.540184e-06, 1)
+texture = SubResource("GradientTexture2D_wbhm8")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=312202022]
+position = Vector2(527.0921, 120.09867)
+rotation = 1.5707964
+scale = Vector2(2.4656668, 1.5596223)
+texture = SubResource("GradientTexture2D_7hjbj")
+
+[node name="LadderTop" parent="." unique_id=2081510321 instance=ExtResource("3_wbhm8")]
+visible = false
+position = Vector2(542, 168)
+next_start_position = Vector2(798, 483)
+next_scene = "res://Dungeons/00/00-04.tscn"
+direction = "Down"
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=733601515]
+position = Vector2(-255, -629)
+collision_layer = 12
+collision_mask = 32
+physics_material_override = SubResource("PhysicsMaterial_wbhm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=917727065]
+position = Vector2(510.5, 609)
+scale = Vector2(1.2877138, 2.2224324)
+shape = SubResource("RectangleShape2D_7hjbj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" unique_id=1199275847]
+position = Vector2(828.9999, 675.75)
+rotation = -1.5707964
+scale = Vector2(0.9517916, 2.2751427)
+shape = SubResource("RectangleShape2D_43ff0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" unique_id=1551319136]
+position = Vector2(198, 675.0935)
+scale = Vector2(0.038421694, 30.937393)
+shape = SubResource("RectangleShape2D_r30ie")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" unique_id=1876877449]
+position = Vector2(485, 750.5)
+scale = Vector2(0.038421694, 30.937393)
+shape = SubResource("RectangleShape2D_7k7fg")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1103527307]
+modulate = Color(0.5168811, 0.5168811, 0.5168811, 0.518)
+z_index = 2
+
+[node name="ChimneySegments" type="Sprite2D" parent="Node2D" unique_id=180081981]
+position = Vector2(355, 78)
+scale = Vector2(0.72567725, 0.7256773)
+texture = ExtResource("4_7hjbj")
+
+[node name="ChimneySegments2" type="Sprite2D" parent="Node2D" unique_id=1076189270]
+position = Vector2(355, -81)
+scale = Vector2(0.73583746, 0.73583746)
+texture = ExtResource("4_7hjbj")

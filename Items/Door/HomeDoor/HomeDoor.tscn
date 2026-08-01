@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cmos5pg74hsi5"]
+
+[ext_resource type="Script" uid="uid://hiqsidwlcd4m" path="res://Items/Door/UniversityDoor/Scripts/UniversityDoor.gd" id="1_g46gh"]
+[ext_resource type="Texture2D" uid="uid://bn3ylmqjlpcrm" path="res://Assets/Tiles/Village/HomeDoorClosed.png" id="2_g46gh"]
+[ext_resource type="Texture2D" uid="uid://c41lfqulg2saa" path="res://Assets/Tiles/Village/HomeDoorOpen.png" id="3_g7dmy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_imfhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g46gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g7dmy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
+size = Vector2(61, 148)
+
+[node name="HomeDoor" type="Area2D" unique_id=1433235993]
+process_priority = 1
+process_physics_priority = 1
+z_index = -1
+y_sort_enabled = true
+collision_layer = 32
+collision_mask = 12
+script = ExtResource("1_g46gh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2014644803]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_imfhx")
+offset = Vector2(0, -94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=962786832]
+visible = false
+position = Vector2(0, -75)
+shape = SubResource("RectangleShape2D_fnujl")
