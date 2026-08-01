@@ -39,9 +39,7 @@ func process_action_walk():
 		velocity = Vector2()
 	else:
 		var al = get_action_length()
-		var pa : float = 0.25 * al
-		var dink : float = 0.75 * al
-		walk_speed = Utils.padink(action_timer, pa, dink) * 1300.0
+		walk_speed = Utils.padink(action_timer, al, 0.25) * 130.0
 		velocity = facing*walk_speed
 	if action_finished():
 		set_action(Actions.IDLE)

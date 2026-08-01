@@ -119,11 +119,13 @@ func interactables_equal(i1 : Dictionary, i2 : Dictionary) -> bool:
 		return false
 	return name1 == name2
 
-var prev_timer = 0.0
-func padink(timer : float, pa := 0.25, duration := 1.0, scale := 1.0) -> float:
-	if timer < pa:
-		prev_timer = timer
-		return timer*scale*1.5
-	if timer >= duration:
-		return 0.0
-	return (duration - timer) * scale
+
+func padink(time : float, duration : float, pa := 0.2, pa_scale := 1.2, dink_scale := 1.3, start := 0.0, end := 1.0,) -> float:
+	var percent = (time/duration)
+	if percent < pa:
+		return lerp(start, end*pa_scale, percent*(1.0/pa))
+	elif time < duration:
+		var dink = (1.0 - pa)
+		return lerp(end*dink_scale, end, (percent-pa)*(1.0/dink))
+	else:
+		return end
