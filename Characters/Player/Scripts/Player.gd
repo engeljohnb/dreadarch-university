@@ -504,6 +504,7 @@ func death():
 		attack_fx.visible = false
 		attack_fx.queue_free()
 	$AnimatedSprite2D.play("Idle Down")
+	$DeathSound.play()
 	attacking = false
 	dead = true
 	died.emit()
@@ -523,6 +524,8 @@ func hit(_body):
 		blinker.blink(0.5)
 	if life <= 0:
 		death()
+	else:
+		$HitSound.play()
 	
 func on_blinker_flip(state):
 	if state:
