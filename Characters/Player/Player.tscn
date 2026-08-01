@@ -975,3 +975,4 @@ stream = ExtResource("9_1niqm")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="." unique_id=1697292767]
 stream = ExtResource("10_6fff4")
+volume_db = -3.0

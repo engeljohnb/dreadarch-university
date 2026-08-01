@@ -9,6 +9,7 @@ enum {
 	OVERWORLD_MUSIC,
 	UNIVERSITY_MUSIC,
 	HOME_INTERIOR_MUSIC,
+	SHALLOW_RUINS_MUSIC
 }
 	
 var all_tracks = [
@@ -18,12 +19,13 @@ var all_tracks = [
 	{"name":"DeathMusic", "path":MUSIC_DIRECTORY + "DeathMusic.ogg", "volume":0.0},
 	{"name":"OverworldMusic", "path":MUSIC_DIRECTORY + "OverworldMusic.ogg", "volume":10.0},
 	{"name":"UniversityMusic", "path":MUSIC_DIRECTORY + "UniversityMusic.ogg", "volume":-25.0},
-	{"name":"HomeInteriorMusic", "path":MUSIC_DIRECTORY + "HomeInteriorMusic.ogg", "volume":2.0}
+	{"name":"HomeInteriorMusic", "path":MUSIC_DIRECTORY + "HomeInteriorMusic.ogg", "volume":2.0},
+	{"name":"ShallowRuinsMusic", "path":MUSIC_DIRECTORY + "ShallowRuinsMusic.ogg", "volume":2.5}
 ]
 
 var tracks_by_room = [
-	{"01-01" : DUNGEON_MUSIC},
-	{"01-02" : DUNGEON_MUSIC},
+	{"01-01" : SHALLOW_RUINS_MUSIC},
+	{"01-02" : SHALLOW_RUINS_MUSIC},
 	{"01-03" : ALCHEMY_LAB_MUSIC},
 	{"01-04" : UNIVERSITY_MUSIC},
 	{"00-01" : OVERWORLD_MUSIC},
