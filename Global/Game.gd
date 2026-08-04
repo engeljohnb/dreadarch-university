@@ -394,6 +394,9 @@ func open_load_game_menu(pos = null):
 func get_all_save_filenames():
 	var saves : Array[String]
 	var dir = DirAccess.open("user://SaveFiles/")
+	if dir == null:
+		var da = DirAccess.open("user://")
+		dir = da.make_dir("user://SaveFiles")
 	for filename in dir.get_files():
 		saves.append(dir.get_current_dir() + "/" + filename)
 		if saves.size() > max_save_files:

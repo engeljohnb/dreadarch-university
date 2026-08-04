@@ -212,7 +212,7 @@ func activate(using_item : Variant = null, item_count = 1):
 		if using_item is Dictionary:
 			Dialogue.open_dialogue.emit(translation_dialogue)
 			return
-		if (using_item != ItemCollection.TREASURE):
+		if (using_item != ItemCollection.TREASURE) and (using_item != null):
 			Dialogue.open_dialogue.emit(using_item_default_dialogue)
 		else:
 			Dialogue.open_dialogue.emit(intro_dialogue.slice(-2, intro_dialogue.size()))

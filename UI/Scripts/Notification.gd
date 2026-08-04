@@ -49,15 +49,5 @@ func advance():
 	current_line += 1
 		
 func _process(_delta):
-#	if not safe_to_advance:
-#		timer += _delta
-#		if timer >= 0.2:
-#			get_tree().paused = true
-#			timer = 0.0
-#			safe_to_advance = true
-#		return
-#	else:
-#		if Input.is_action_just_released("ui_accept"):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_released("ui_accept"):
 		advance()
-	#breakpoint
