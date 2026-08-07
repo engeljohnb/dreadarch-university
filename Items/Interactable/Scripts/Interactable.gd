@@ -46,7 +46,7 @@ func search(using_item : Variant = null, count = 1):
 							ItemCollection.collect_scroll_fragment(-1)
 							if not has_overrides.is_empty():
 								# I don't know why this if is here, so I'm putthing a break here until I do
-								breakpoint
+								Error.error("search error: has_overrides is empty")
 								ItemCollection.item_collected.emit(h, 1, false)
 					h:
 						if ItemCollection.is_scroll_fragment(h):

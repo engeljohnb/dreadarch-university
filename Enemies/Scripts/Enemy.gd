@@ -281,7 +281,7 @@ func process_action_death():
 	death_cutscene.play(0.0, self)
 	# Cludge because the death sound can't play if the enemy is freed right away,
 	#   and for some reason passing the sound to the DeathCutscene doesn't work.
-	var sc : SoundComponent = $SoundComponent
+	var sc : SoundComponent = get_node_or_null("SoundComponent")
 	if sc != null:
 		sc.reparent(get_parent())
 		sc.play_sound("Death")

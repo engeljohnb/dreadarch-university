@@ -1,6 +1,6 @@
 extends Interactable
 
-var _trans_menu = load("res://UI/TranslationMenu.tscn")
+var _trans_menu = preload("res://UI/TranslationMenu.tscn")
 var canvas = null
 
 func _ready():

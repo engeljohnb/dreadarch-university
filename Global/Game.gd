@@ -474,6 +474,7 @@ func update_save_data():
 	_save.player.temporary_life = player.temporary_life
 	_save.player.position = player.global_position
 	_save.player.inventory = player.inventory
+	_save.player.documents = player.documents
 	_save.player.attack_damage = player.attack_damage
 	save_current_scene()
 	save_room_node(current_scene, SceneTransition.current_scene_name)
@@ -493,6 +494,7 @@ func load_player(player_data):
 	
 	player.global_position = player_data.position
 	player.inventory = player_data.inventory
+	player.documents = player_data.documents
 	player.level = player_data.level
 
 	ItemCollection.load_collected_scroll_fragments(player_data.documents)
@@ -532,8 +534,6 @@ func _process(_delta):
 				pause_menu.pause_game()
 			if Input.is_action_just_pressed("OpenInventory"):
 				open_inventory()
-	if not is_instance_valid(player):
-		breakpoint
 	if player.won:
 		# Victory Cutsceene needs to end first
 		if not player.in_cutscene:

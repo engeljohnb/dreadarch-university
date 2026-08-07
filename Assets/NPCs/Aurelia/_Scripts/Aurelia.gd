@@ -4,7 +4,7 @@ extends NPC
 @onready var sprite : AnimatedSprite2D = $Visual/AnimatedSprite2D
 var is_open = false
 var _opening : bool = false
-var _open_duration : float = 1.33
+var _open_duration : float = 0.75 
 var _timer : float = 0.0
 
 var intro_dialogue : Array[Dictionary] = [
@@ -30,8 +30,7 @@ func _process(delta):
 			interaction_message = "Z to talk"
 			start_dialogue(intro_dialogue)
 		else:
-			#var spotlight_size = lerp(0.0, 0.7, (_timer/_open_duration))
-			var spotlight_size = Utils.padink(_timer, _open_duration, 0.75, 1.2, 1.3, 0.0, 0.7)
+			var spotlight_size = Utils.padink(_timer, _open_duration, 0.75, 1.1, 1.2, 0.0, 0.63)
 			fx.material.set_shader_parameter("spotlight_size", spotlight_size)
 			_timer += delta
 	if Dialogue.dialogue_open():

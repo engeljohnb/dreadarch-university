@@ -49,5 +49,7 @@ func advance():
 	current_line += 1
 		
 func _process(_delta):
-	if Input.is_action_just_released("ui_accept"):
-		advance()
+	timer += _delta
+	if timer >= 0.2:
+		if Input.is_action_just_released("ui_accept"):
+			advance()

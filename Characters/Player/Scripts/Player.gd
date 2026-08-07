@@ -683,7 +683,6 @@ func get_step_sound(sound_name):
 func update_step_sound(sound_source):
 	# In case the player processes after the scene has been freed.
 	if (not sound_source):
-		breakpoint
 		return
 	if sound_source is TileMapLayer:
 		var tilemap = sound_source
@@ -737,7 +736,6 @@ func stupid_post_door_cutscene_correction():
 func set_state_machine_state(state : String):
 	var playback = anim_tree["parameters/playback"]
 	playback.travel(state)
-	#breakpoint
 	
 func _process(delta):
 	if not in_dialogue:
