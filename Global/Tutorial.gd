@@ -50,7 +50,6 @@ func message_shown(item : Variant) -> bool:
 	
 func show_message(item):
 	if ItemCollection.is_scroll_fragment(item):
-		#breakpoint
 		Dialogue.open_dialogue.emit(messages[ItemCollection.SCROLL_FRAGMENT])
 		messages_shown[ItemCollection.SCROLL_FRAGMENT] = true
 	else:
@@ -60,8 +59,6 @@ func show_message(item):
 func load_completed_tutorial_prompts(completed):
 	for c in completed:
 		messages_shown[int(c)] = true
-		#if c == ItemCollection.SCROLL_FRAGMENT:
-			#breakpoint
 	
 func get_completed_tutorial_prompts():
 	var completed = []

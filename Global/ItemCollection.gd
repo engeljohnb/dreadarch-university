@@ -67,7 +67,7 @@ var descriptions = {
 }
 					
 var sounds = {}
-var scroll_fragments : Array
+var scroll_fragments : Array[Dictionary]
 var most_recent_scroll_fragment : Dictionary
 var all_scroll_fragments_collected = false
 var fragments_to_level_up = 5
@@ -137,7 +137,9 @@ func _ready():
 				sounds[key].volume_db = -20.0
 		add_child(sounds[key])
 	var file = FileAccess.open("res://Game Data/scroll_fragments.JSON", FileAccess.READ)
-	scroll_fragments = DictionarySerializer.deserialize_json(file.get_as_text())
+	var sf = DictionarySerializer.deserialize_json(file.get_as_text())
+	for scroll_fragment in sf:
+		scroll_fragments.append(scroll_fragment)
 	for frag in scroll_fragments:
 		frag["document_type"] = SCROLL_FRAGMENT
 	file.close()
@@ -176,7 +178,28 @@ func get_next_fragment(index = null):
 			
 	return fragment
 	
+func is_quote_in_scroll_fragment(scroll_fragment : Dictionary, document_quote : String) -> bool:
+	for key in scroll_fragment:
+		if scroll_fragment[key] is String:
+			if scroll_fragment[key].containsn(document_quote):
+				return true
+	return false
+		
+func search_for_scroll_fragment(document_quote : String) -> Dictionary:
+	for scroll_fragment in scroll_fragments:
+		if is_quote_in_scroll_fragment(scroll_fragment, document_quote):
+			return scroll_fragment
+	return {}
+	
 func collect_scroll_fragment(index = null):
+	if index is String:
+		var document_quote : String = index
+		var scroll_fragment : Dictionary = search_for_scroll_fragment(document_quote)
+		if scroll_fragment.is_empty():
+			Error.error("No scroll fragment contains quote: '" + document_quote + "'")
+		most_recent_scroll_fragment = scroll_fragment
+		item_collected.emit(scroll_fragment, 1, true)
+		return
 	if index is int:
 		most_recent_scroll_fragment = get_next_fragment(index)
 	else:

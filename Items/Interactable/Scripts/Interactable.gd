@@ -20,7 +20,8 @@ func show_item(item : Variant, index : int = 0):
 	else:
 		ItemCollection.show_collected_item(item, self, icon_offset)
 	
-func search(using_item : Variant = null, count = 1):
+#TODO: Break up this function
+func search(using_item : Variant = null, count := 1, document_quote := ""):
 	if ItemCollection.is_valid_item(using_item):
 		has_overrides = has
 		has_overrides.append(using_item)
@@ -43,7 +44,10 @@ func search(using_item : Variant = null, count = 1):
 							has = []
 						else:
 							ItemCollection.sounds[ItemCollection.SCROLL_FRAGMENT].call_deferred("play")
-							ItemCollection.collect_scroll_fragment()
+							if not document_quote.is_empty():
+								ItemCollection.collect_scroll_fragment(document_quote)
+							else:
+								ItemCollection.collect_scroll_fragment()
 							if not has_overrides.is_empty():
 								# I don't know why this if is here, so I'm putthing a break here until I do
 								Error.error("search error: has_overrides is empty")

@@ -38,7 +38,10 @@ func _process(_delta):
 	if _waiting_for_dialogue:
 		if not Dialogue.dialogue_open():
 			_waiting_for_dialogue = false
-			search(_ui, _c)
+			if _ui == null:
+				search(null, 1, "Aelia...")
+			else:
+				search(_ui, _c)
 
 func _ready():
 	$Blinker.flip.connect(on_blinker_flipped)

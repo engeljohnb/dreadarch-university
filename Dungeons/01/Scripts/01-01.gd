@@ -10,7 +10,7 @@ enum
 
 	
 func _ready():
-	get_parent().music.volume_db = -7.3
+	#get_parent().music.volume_db = -7.3
 	save_data["cutscenes"] = [ {"collected_first_scroll_fragment":false} ]
 
 func _process(_delta):
