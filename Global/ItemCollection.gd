@@ -173,6 +173,7 @@ func get_next_fragment(index = null):
 	for f in scroll_fragments:
 		if f == fragment:
 			f["collected"] = true
+			
 	return fragment
 	
 func collect_scroll_fragment(index = null):
