@@ -25,7 +25,7 @@ var messages = {
 	],
 	ItemCollection.SCROLL_FRAGMENT: [
 		{
-			"text":"It's in the Old Tongue.",
+			"text":"It's in Latin.",
 			"speaker":"Player"
 		},
 		{
