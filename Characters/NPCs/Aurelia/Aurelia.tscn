@@ -3,16 +3,131 @@
 [ext_resource type="Script" uid="uid://dn0m1j4sjaorw" path="res://Assets/NPCs/Aurelia/_Scripts/Aurelia.gd" id="1_lrul2"]
 [ext_resource type="Shader" uid="uid://dvbi4tshamwfw" path="res://Characters/NPCs/Aurelia/AureliaFX.gdshader" id="1_uop6p"]
 [ext_resource type="PackedScene" uid="uid://dtdx4k7brygo3" path="res://Tiles/DungeonBuildingTiles.tscn" id="1_w2e43"]
+[ext_resource type="Texture2D" uid="uid://wyr6ddqtrj50" path="res://Assets/Tiles/AncientLibrary/building_tiles.png" id="3_3wyfb"]
 [ext_resource type="Texture2D" uid="uid://bcd8giua0npf3" path="res://Assets/NPCs/Aurelia/0000.png" id="3_cge0c"]
 [ext_resource type="Texture2D" uid="uid://pu3ignei5qxr" path="res://Assets/NPCs/Aurelia/0001.png" id="4_lrul2"]
 [ext_resource type="Texture2D" uid="uid://bktdqwqq24iqr" path="res://Assets/NPCs/Aurelia/0002.png" id="5_3wyfb"]
+[ext_resource type="Shader" uid="uid://d3yisoagc84e4" path="res://Characters/NPCs/Aurelia/AureliSprite.gdshader" id="6_jbwu4"]
+[ext_resource type="Texture2D" uid="uid://uab5k23rfg3w" path="res://Assets/NPCs/Aurelia/AureliaNoiseTexture.tres" id="7_lrul2"]
 
-[sub_resource type="TileSet" id="TileSet_8afk6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3wyfb"]
+texture = ExtResource("3_3wyfb")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jbwu4"]
 resource_local_to_scene = true
 tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 40
 physics_layer_0/collision_mask = 12
+sources/0 = SubResource("TileSetAtlasSource_3wyfb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wyfb"]
+shader = ExtResource("1_uop6p")
+shader_parameter/spotlight_size = 1.155
+shader_parameter/spotlight_2_scale = 51.27
+shader_parameter/distance_from_center_xp = 3
+shader_parameter/max_distance_from_center = 1.0
+shader_parameter/inverted = true
+shader_parameter/noise = ExtResource("7_lrul2")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3wyfb"]
+size = Vector2(256, 256)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjuxf"]
+shader = ExtResource("6_jbwu4")
+shader_parameter/max_distance_from_center = 0.49
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nhtrj"]
 animations = [{
@@ -42,26 +157,14 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_q6osq"]
-offsets = PackedFloat32Array(0, 0.5540541)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
-metadata/_snap_count = 100
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_uop6p"]
-noise_type = 0
-frequency = 0.0112
-fractal_type = 3
-metadata/_preview_in_3d_space_ = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w2e43"]
-noise = SubResource("FastNoiseLite_uop6p")
-color_ramp = SubResource("Gradient_q6osq")
-invert = true
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2e43"]
 shader = ExtResource("1_uop6p")
-shader_parameter/noise = SubResource("NoiseTexture2D_w2e43")
 shader_parameter/spotlight_size = 0.0
+shader_parameter/spotlight_2_scale = 1.5
+shader_parameter/distance_from_center_xp = 0
+shader_parameter/max_distance_from_center = 0.5
+shader_parameter/inverted = false
+shader_parameter/noise = ExtResource("7_lrul2")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nhtrj"]
 size = Vector2(256, 256)
@@ -76,24 +179,37 @@ collision_mask = 8
 script = ExtResource("1_lrul2")
 
 [node name="BuildingTiles" parent="." unique_id=1593192024 instance=ExtResource("1_w2e43")]
-tile_map_data = PackedByteArray("AAD+//7/AAAHAAYAAAD///7/AAAHAAYAAAAAAP7/AAAHAAYAAAABAP7/AAAHAAYAAAD+////AAAHAAcAAAD/////AAAHAAcAAAAAAP//AAAHAAcAAAABAP//AAAHAAcAAAD+/wEAAAAHAAgAAAD//wEAAAAHAAgAAAD//wAAAAAHAAcAAAAAAAAAAAAHAAcAAAAAAAEAAAAHAAgAAAABAAEAAAAHAAgAAAABAAAAAAAHAAcAAAD+/wAAAAAHAAcAAAA=")
-tile_set = SubResource("TileSet_8afk6")
+visible = false
+tile_map_data = PackedByteArray("AAD9////AAAHAAgAAAD+////AAAHAAgAAAD/////AAAHAAgAAAAAAP//AAAHAAgAAAABAP//AAAHAAgAAAACAP//AAAHAAgAAAD9/wAAAAAEAAkAAAD+/wAAAAAEAAkAAAD//wAAAAAEAAkAAAAAAAAAAAAEAAkAAAABAAAAAAAEAAkAAAACAAAAAAAEAAkAAAD9//3/AAAHAAcAAAD9//7/AAAHAAcAAAD+//7/AAAHAAcAAAD///7/AAAHAAcAAAAAAP7/AAAHAAcAAAABAP7/AAAHAAcAAAACAP7/AAAHAAcAAAACAP3/AAAHAAcAAAABAP3/AAAHAAcAAAD9//z/AAAFAAgAAAD+//z/AAAFAAgAAAD///z/AAAFAAgAAAAAAPz/AAAFAAgAAAABAPz/AAAFAAgAAAACAPz/AAAFAAgAAAADAPz/AAAFAAgAAAD9//v/AAAFAAgAAAD+//v/AAAFAAgAAAD///v/AAAFAAgAAAAAAPv/AAAFAAgAAAABAPv/AAAFAAgAAAACAPv/AAAFAAgAAAADAPv/AAAFAAgAAAA=")
+tile_set = SubResource("TileSet_jbwu4")
 
 [node name="Visual" type="Node2D" parent="." unique_id=185963821]
 y_sort_enabled = true
+position = Vector2(0, -237)
+
+[node name="FXBorder" type="Sprite2D" parent="Visual" unique_id=1924957076]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_3wyfb")
+position = Vector2(-0.625, 218.58264)
+scale = Vector2(1.3779297, 1.3215106)
+texture = SubResource("PlaceholderTexture2D_3wyfb")
+offset = Vector2(0, -80)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=615034590]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_wjuxf")
+position = Vector2(-0.625, 219)
 sprite_frames = SubResource("SpriteFrames_nhtrj")
 animation = &"Idle"
-offset = Vector2(0, -100)
+offset = Vector2(0, -105)
 
 [node name="FX" type="Sprite2D" parent="Visual" unique_id=632663694]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_w2e43")
+position = Vector2(-0.625, 219)
 texture = SubResource("PlaceholderTexture2D_nhtrj")
-offset = Vector2(0, -100)
+offset = Vector2(0, -105)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1231271903]
-position = Vector2(1.25, -94.5)
+position = Vector2(-2, -96)
 shape = SubResource("RectangleShape2D_lrul2")
