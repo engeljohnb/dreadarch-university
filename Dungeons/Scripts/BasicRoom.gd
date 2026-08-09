@@ -33,6 +33,10 @@ func get_num_enemies() -> int:
 func _ready():
 	total_enemies = get_num_enemies()
 	
+func notify_room_exorcised():
+	print("Room Exorcised")
+	
+	
 func update_exorcism():
 	var num_enemies = get_num_enemies()
 	#var ratio = float(num_enemies)/float(total_enemies)
@@ -41,7 +45,6 @@ func update_exorcism():
 		if not exorcised:
 			exorcised = true
 			if not SceneTransition.player_is_above_ground():
-				Dialogue.notify_player.emit([{"text":"Room exorcised."}])
-	
+				notify_room_exorcised()
 func _process(_delta):
 	update_exorcism()

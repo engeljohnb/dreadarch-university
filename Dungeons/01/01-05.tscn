@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cua40fvktxl3i"]
+
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_04fhy"]
+[ext_resource type="PackedScene" uid="uid://d3qxn6n8d8bn1" path="res://Items/Door/ReliefDoor/ReliefDoor.tscn" id="2_vboep"]
+
+[node name="01-05" type="Node2D" unique_id=1195241801]
+script = ExtResource("1_04fhy")
+metadata/_custom_type_script = "uid://dmvh37l51y7ei"
+
+[node name="ReliefDoor" parent="." unique_id=386765253 instance=ExtResource("2_vboep")]
+next_start_position = Vector2(-2721, -23)
+next_scene = "res://Dungeons/01/01-01.tscn"
+direction = "South"

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://d3qxn6n8d8bn1"]
+
+[ext_resource type="Script" uid="uid://uk4afpexxsvc" path="res://Items/Door/Scripts/Door.gd" id="1_bntcl"]
+[ext_resource type="Texture2D" uid="uid://mtj0qp27anr5" path="res://Assets/Items/Stairs/ReliefDoorNorth.png" id="2_uul3g"]
+[ext_resource type="Texture2D" uid="uid://drbd2uecf4513" path="res://Assets/Items/Stairs/ReliefDoorSouth.png" id="3_hum1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1065n"]
+size = Vector2(56.75, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
+size = Vector2(79, 66.5)
+
+[node name="ReliefDoor" type="Area2D" unique_id=386765253]
+process_priority = 1
+process_physics_priority = 1
+y_sort_enabled = true
+collision_layer = 32
+collision_mask = 12
+script = ExtResource("1_bntcl")
+direction = "North"
+
+[node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=86857958]
+collision_layer = 32
+collision_mask = 268
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" unique_id=746618906]
+position = Vector2(-67.625, -67)
+shape = SubResource("RectangleShape2D_1065n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=415919912]
+position = Vector2(68.25, -66)
+shape = SubResource("RectangleShape2D_1065n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1741278523]
+y_sort_enabled = true
+position = Vector2(0, -76.75)
+shape = SubResource("RectangleShape2D_fnujl")
+
+[node name="North" type="Sprite2D" parent="." unique_id=1658847753]
+visible = false
+y_sort_enabled = true
+position = Vector2(-1, -136)
+texture = ExtResource("2_uul3g")
+
+[node name="South" type="Sprite2D" parent="." unique_id=1409924729]
+y_sort_enabled = true
+position = Vector2(1, -137)
+texture = ExtResource("3_hum1d")
