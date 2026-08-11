@@ -1,4 +1,4 @@
 extends Collectible
 
 func init():
-	type = ItemCollection.TREASURE
+	type = ItemCollection.IDs.TREASURE

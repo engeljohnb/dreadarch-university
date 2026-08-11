@@ -10,7 +10,22 @@ signal item_collected(item : Variant, count : int, should_play_sound : bool)
 @warning_ignore("unused_signal")
 signal scroll_fragment_translated(scroll_fragment)
 
+#Why double up the enum? Because sometimes I want to just do ItemCollection.TALONS for brevity,
+#  but other times I want to set it as a type 
+#   @export var item_type : ItemCollection.IDs
 enum
+{
+	HEART = 0,
+	SCROLL_FRAGMENT,
+	TREASURE,
+	TALONS,
+	GOLDEN_DAGGER,
+	NECTAR,
+	ORBITER,
+	MAX_TYPES
+}
+
+enum IDs
 {
 	HEART = 0,
 	SCROLL_FRAGMENT,

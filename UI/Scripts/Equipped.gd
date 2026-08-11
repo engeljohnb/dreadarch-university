@@ -23,7 +23,7 @@ func _ready():
 	else:
 		sprite.play("default")
 		
-func set_treasure(treasure : int):
+func set_counter(treasure : int):
 	var treasure_string = str(treasure)
 	$CanvasLayer/RichTextLabel.text = treasure_string
 	

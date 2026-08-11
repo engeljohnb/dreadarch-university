@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dvel6048p5nlw"]
+
+[ext_resource type="Script" uid="uid://ctjxwfu5ep55c" path="res://Items/Collectible/Scripts/Collectible.gd" id="1_avkp8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_avkp8"]
+
+[node name="GoldenDagger" type="Area2D" unique_id=1290035662]
+collision_layer = 128
+collision_mask = 9
+script = ExtResource("1_avkp8")
+type = 4
+metadata/_custom_type_script = "uid://ctjxwfu5ep55c"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=73124875]
+shape = SubResource("CircleShape2D_avkp8")

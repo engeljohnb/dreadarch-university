@@ -28,11 +28,9 @@ func _ready():
 	interaction_message = "Z to examine"
 	visual_travel.travel_ended.connect(_on_travel_ended)
 	player = get_tree().get_nodes_in_group("Player")[0]
+	global_position = player.global_position
+	ItemCollection.item_collected.connect(_on_item_collected)
 	
-func _on_travel_ended():
-	visual_stationary.visible = true
-	open()
-
 func _process(delta):
 	if not stationary:
 		if Input.is_action_just_released("ui_text_delete"):
@@ -40,7 +38,7 @@ func _process(delta):
 		if following_player:
 			follow_player(delta)
 		else:
-			go_to(Vector2(478.0, 174.0), 1.5)
+			go_to(Vector2(478.0, -93.0), 1.5)
 	if _opening:
 		if _timer >= _open_duration:
 			_opening = false
@@ -55,6 +53,14 @@ func _process(delta):
 		sprite.play("Speak")
 	else:
 		sprite.play("Idle")
+		
+func _on_item_collected(item, _count, _should_play_sound):
+	if item == ItemCollection.GOLDEN_DAGGER:
+		following_player = false
+	
+func _on_travel_ended():
+	visual_stationary.visible = true
+	open()
 		
 func start_dialogue(dialogue : Array[Dictionary]):
 	Dialogue.open_dialogue.emit(dialogue)
@@ -77,6 +83,7 @@ var _starting_goto_position := Vector2()
 func go_to(pos : Vector2, duration : float):
 	if _go_to_timer >= duration:
 		set_stationary(true)
+		visual_travel.begin_transition()
 		return
 	if _go_to_timer == 0.0:
 		_starting_goto_position = global_position

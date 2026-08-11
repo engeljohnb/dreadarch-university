@@ -1,7 +1,7 @@
 extends Area2D
 class_name Collectible
 
-var type : int = ItemCollection.MAX_TYPES
+@export var type : ItemCollection.IDs = ItemCollection.IDs.HEART
 var timer = 0.0
 var falling_animation_duration = 1.0
 var falling = true

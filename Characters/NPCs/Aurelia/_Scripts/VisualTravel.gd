@@ -22,6 +22,9 @@ func _process(delta):
 func transition_triggered() -> bool:
 	return false
 
+func begin_transition():
+	transitioning = true
+
 func transition_to_stationary(delta : float):
 	_current_spotlight_size -= (delta)
 	_current_spotlight_2_scale += (delta*100.0)

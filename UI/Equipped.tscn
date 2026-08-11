@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxnq2lir0c1ap"]
+[gd_scene format=3 uid="uid://cxnq2lir0c1ap"]
 
-[ext_resource type="Script" uid="uid://dg4aisack662u" path="res://UI/Scripts/Treasure.gd" id="1_j650q"]
+[ext_resource type="Script" uid="uid://cuk3awjab3wu" path="res://UI/Scripts/Equipped.gd" id="1_sndno"]
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="2_cltik"]
 [ext_resource type="SpriteFrames" uid="uid://b35xryjpvtrvu" path="res://Items/GoldenDagger/GoldenDagger.tres" id="3_sndno"]
 
-[node name="Equipped" type="Node2D"]
-script = ExtResource("1_j650q")
+[node name="Equipped" type="Node2D" unique_id=1565446921]
+script = ExtResource("1_sndno")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2031782668]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=973342554]
 anchors_preset = -1
 anchor_left = 0.08400001
 anchor_top = 0.15
@@ -24,7 +24,7 @@ theme_override_font_sizes/normal_font_size = 45
 text = "0"
 horizontal_alignment = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/RichTextLabel"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/RichTextLabel" unique_id=67284655]
 texture_filter = 1
 position = Vector2(35.500008, 31)
 scale = Vector2(2.343748, 2.343748)

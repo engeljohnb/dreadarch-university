@@ -50,6 +50,10 @@ var prev_facing = Vector2(0,1)
 var direction_changed = false
 var moving = false
 var equipped = ItemCollection.GOLDEN_DAGGER
+# Why have golden_dagger_equipped when I can just check equipped == ItemCollection.GOLDEN_DAGGER?
+# Becaues everything breaks in the AnimationTree state machine when the advance condition
+# is (equipped == ItemCollection.GOLDEN_DAGGER). I don't know why but having this variable instead makes it work.
+var golden_dagger_equipped = false
 var attacking = false
 var won = false
 var door_cutscene = {"position": Vector2(), "player_start_pos": Vector2(), "arriving": false, "min_scale": 0.8}
@@ -57,10 +61,6 @@ var climb_cutscene = {"position" : Vector2(), "start_pos" : Vector2(), "arriving
 var outside_door_cutscene = {"reverse":false}
 var in_dialogue = false
 var direction_priority
-# Why have golden_dagger_equipped when I can just check equipped == ItemCollection.GOLDEN_DAGGER?
-# Becaues everything breaks in the AnimationTree state machine when the advance condition
-# is (equipped == ItemCollection.GOLDEN_DAGGER). I don't know why but having this variable instead makes it work.
-var golden_dagger_equipped = true
 var hard_step_sound = preload("res://Assets/Sounds/Student/StepSound.ogg")
 var soft_step_sound = preload("res://Assets/Sounds/Student/SoftStepSound.ogg")
 var grass_step_sound = preload("res://Assets/Sounds/Student/GrassSteps.ogg")
@@ -460,6 +460,8 @@ func throw_projectile():
 
 func update_attack_state():
 	if equipped == ItemCollection.GOLDEN_DAGGER:
+		if inventory[equipped] == 0:
+			return
 		if attacking and (not attack_fx):
 			attacking = false
 			return
@@ -541,8 +543,7 @@ func _ready():
 	blinker.flip.connect(on_blinker_flip)
 	reset_inventory()
 	inventory[ItemCollection.GOLDEN_DAGGER] = 0
-	ItemCollection.item_collected.emit(ItemCollection.GOLDEN_DAGGER, 1, true)
-	on_inventory_action_chosen("Equip", ItemCollection.GOLDEN_DAGGER, 1)
+	item_equipped.emit(equipped, 0)
 	Dialogue.open_dialogue.connect(on_dialogue_opened)
 
 func set_equipped(item : int):
@@ -624,11 +625,11 @@ func _increment_inventory_index(index : int, direction : String) -> int:
 			Error.error("Invalid direction given: " + direction)
 	if next_index >= ItemCollection.equippable.size():
 		next_index = 0
+	if next_index <= -ItemCollection.equippable.size():
+		next_index = 0
 	return next_index
 	
 func change_equipment_quick(direction : String):
-	if one_or_no_equippable_items():
-		return
 	var start_index = ItemCollection.equippable.find(equipped)
 	if start_index < 0:
 		Error.error("Equipped item " + equipped + " not found in equippable items array.")
