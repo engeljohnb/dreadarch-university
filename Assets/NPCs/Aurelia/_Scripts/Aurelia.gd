@@ -8,6 +8,9 @@ var is_open = false
 var _opening : bool = false
 var _open_duration : float = 0.75 
 var _timer : float = 0.0
+var player : CharacterBody2D
+var stationary = false
+@export var following_player : bool = true
 
 var intro_dialogue : Array[Dictionary] = [
 	{
@@ -24,12 +27,20 @@ func _ready():
 	sprite.play("Idle")
 	interaction_message = "Z to examine"
 	visual_travel.travel_ended.connect(_on_travel_ended)
+	player = get_tree().get_nodes_in_group("Player")[0]
 	
 func _on_travel_ended():
 	visual_stationary.visible = true
 	open()
-	
+
 func _process(delta):
+	if not stationary:
+		if Input.is_action_just_released("ui_text_delete"):
+			following_player = false
+		if following_player:
+			follow_player(delta)
+		else:
+			go_to(Vector2(478.0, 174.0), 1.5)
 	if _opening:
 		if _timer >= _open_duration:
 			_opening = false
@@ -47,9 +58,36 @@ func _process(delta):
 		
 func start_dialogue(dialogue : Array[Dictionary]):
 	Dialogue.open_dialogue.emit(dialogue)
+	status["gone"] = true
 	
 func open():
 	_opening = true
 
 func activate(_using_item : Variant = null, _count = 1):
 	open()
+
+var _position_weight := 0.01
+func follow_player(delta : float):
+	var target_position = player.global_position - Vector2(0.0, -100.0) - (player.facing * 100.0)
+	var weight = max(0.01, _position_weight + delta)
+	global_position = lerp(global_position, target_position, weight)
+
+var _go_to_timer := 0.0
+var _starting_goto_position := Vector2()
+func go_to(pos : Vector2, duration : float):
+	if _go_to_timer >= duration:
+		set_stationary(true)
+		return
+	if _go_to_timer == 0.0:
+		_starting_goto_position = global_position
+	var delta = get_process_delta_time()
+	global_position = lerp(_starting_goto_position, pos, (_go_to_timer/duration))
+	_go_to_timer += delta
+	
+func set_stationary(state : bool):
+	if state:
+		stationary = true
+		$CollisionShape2D.disabled = false
+	else:
+		stationary = false
+		$CollisionShape2D.disabled = true

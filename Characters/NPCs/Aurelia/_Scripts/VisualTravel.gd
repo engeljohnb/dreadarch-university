@@ -14,11 +14,13 @@ func _process(delta):
 	
 	noise.offset.y += delta
 	noise.offset.x += delta
-	if Input.is_action_just_released("ui_text_delete"):
+	if transition_triggered():
 		transitioning = true
 	if transitioning:
 		transition_to_stationary(delta)
 
+func transition_triggered() -> bool:
+	return false
 
 func transition_to_stationary(delta : float):
 	_current_spotlight_size -= (delta)
