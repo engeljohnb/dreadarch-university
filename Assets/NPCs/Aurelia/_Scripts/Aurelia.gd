@@ -1,7 +1,9 @@
 extends NPC
 
-@onready var fx : Sprite2D = $Visual/FX
-@onready var sprite : AnimatedSprite2D = $Visual/AnimatedSprite2D
+@onready var fx : Sprite2D = $VisualStationary/FX
+@onready var sprite : AnimatedSprite2D = $VisualStationary/AnimatedSprite2D
+@onready var visual_travel : Node2D = $VisualTravel
+@onready var visual_stationary : Node2D = $VisualStationary
 var is_open = false
 var _opening : bool = false
 var _open_duration : float = 0.75 
@@ -21,6 +23,11 @@ var intro_dialogue : Array[Dictionary] = [
 func _ready():
 	sprite.play("Idle")
 	interaction_message = "Z to examine"
+	visual_travel.travel_ended.connect(_on_travel_ended)
+	
+func _on_travel_ended():
+	visual_stationary.visible = true
+	open()
 	
 func _process(delta):
 	if _opening:
@@ -39,7 +46,7 @@ func _process(delta):
 		sprite.play("Idle")
 		
 func start_dialogue(dialogue : Array[Dictionary]):
-	Dialogue.open_dialogue.emit(intro_dialogue)
+	Dialogue.open_dialogue.emit(dialogue)
 	
 func open():
 	_opening = true

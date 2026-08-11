@@ -59,7 +59,7 @@ var in_dialogue = false
 var direction_priority
 # Why have golden_dagger_equipped when I can just check equipped == ItemCollection.GOLDEN_DAGGER?
 # Becaues everything breaks in the AnimationTree state machine when the advance condition
-# is equipped == ItemCollection.GOLDEN_DAGGER. I don't know why but having this variable instead makes it work.
+# is (equipped == ItemCollection.GOLDEN_DAGGER). I don't know why but having this variable instead makes it work.
 var golden_dagger_equipped = true
 var hard_step_sound = preload("res://Assets/Sounds/Student/StepSound.ogg")
 var soft_step_sound = preload("res://Assets/Sounds/Student/SoftStepSound.ogg")
