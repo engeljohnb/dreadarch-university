@@ -39,7 +39,7 @@ func _process(delta):
 		if following_player:
 			follow_player(delta)
 		else:
-			go_to(Vector2(478.0, -93.0), 1.5)
+			go_to(Vector2(478.0, -28.0), 1.5)
 	if _opening:
 		if _timer >= _open_duration:
 			_opening = false
@@ -79,7 +79,11 @@ func activate(_using_item : Variant = null, _count = 1):
 
 var _position_weight := 0.01
 func follow_player(delta : float):
-	var target_position = player.global_position - Vector2(0.0, -100.0) - (player.facing * 100.0)
+	# This is here because if you load_game while in the room, the player may not 
+	#  be initialized for some reason.
+	if player == null:
+		player = get_tree().get_nodes_in_group("Player")[0]
+	var target_position = player.global_position - Vector2(0.0, -160.0) - (player.facing * 100.0)
 	var weight = max(0.01, _position_weight + delta)
 	global_position = lerp(global_position, target_position, weight)
 

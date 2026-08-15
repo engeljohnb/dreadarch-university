@@ -21,18 +21,6 @@ shader_parameter/noise = ExtResource("7_lrul2")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wjuxf"]
 size = Vector2(255, 256)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wyfb"]
-shader = ExtResource("1_uop6p")
-shader_parameter/spotlight_size = 1.155
-shader_parameter/spotlight_2_scale = 51.27
-shader_parameter/distance_from_center_xp = 3
-shader_parameter/max_distance_from_center = 1.0
-shader_parameter/inverted = true
-shader_parameter/noise = ExtResource("7_lrul2")
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3wyfb"]
-size = Vector2(256, 256)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjuxf"]
 shader = ExtResource("6_jbwu4")
 shader_parameter/max_distance_from_center = 0.49
@@ -43,7 +31,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_cge0c")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -60,10 +48,22 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_lrul2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Speak",
 "speed": 6.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wyfb"]
+shader = ExtResource("1_uop6p")
+shader_parameter/spotlight_size = 1.155
+shader_parameter/spotlight_2_scale = 51.27
+shader_parameter/distance_from_center_xp = 3
+shader_parameter/max_distance_from_center = 1.0
+shader_parameter/inverted = true
+shader_parameter/noise = ExtResource("7_lrul2")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3wyfb"]
+size = Vector2(256, 256)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w2e43"]
 shader = ExtResource("1_uop6p")
@@ -87,43 +87,46 @@ collision_mask = 8
 script = ExtResource("1_lrul2")
 
 [node name="VisualTravel" type="Node2D" parent="." unique_id=1976511712]
+y_sort_enabled = true
+position = Vector2(0, 49)
 script = ExtResource("2_jbwu4")
 
 [node name="FX" type="Sprite2D" parent="VisualTravel" unique_id=1279034184]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_jbwu4")
 position = Vector2(0, -97)
 texture = SubResource("PlaceholderTexture2D_wjuxf")
-offset = Vector2(0, -23.755)
+offset = Vector2(0, -138.595)
 
 [node name="VisualStationary" type="Node2D" parent="." unique_id=185963821]
 visible = false
 y_sort_enabled = true
-position = Vector2(0, -237)
-
-[node name="FXBorder" type="Sprite2D" parent="VisualStationary" unique_id=1924957076]
-y_sort_enabled = true
-material = SubResource("ShaderMaterial_3wyfb")
-position = Vector2(-0.625, 218.58264)
-scale = Vector2(1.3779297, 1.3215106)
-texture = SubResource("PlaceholderTexture2D_3wyfb")
-offset = Vector2(0, -80)
+position = Vector2(0, 49)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VisualStationary" unique_id=615034590]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_wjuxf")
-position = Vector2(-0.625, 219)
+position = Vector2(-0.625, -109.708435)
 sprite_frames = SubResource("SpriteFrames_nhtrj")
 animation = &"Idle"
-offset = Vector2(0, -105)
+offset = Vector2(0, -132.875)
+
+[node name="FXBorder" type="Sprite2D" parent="VisualStationary" unique_id=1924957076]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_3wyfb")
+position = Vector2(0, -115)
+scale = Vector2(1.3779297, 1.3215106)
+texture = SubResource("PlaceholderTexture2D_3wyfb")
+offset = Vector2(0, -97.125)
 
 [node name="FX" type="Sprite2D" parent="VisualStationary" unique_id=632663694]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_w2e43")
-position = Vector2(-0.625, 219)
+position = Vector2(0, -109.708435)
 texture = SubResource("PlaceholderTexture2D_nhtrj")
-offset = Vector2(0, -105)
+offset = Vector2(0, -131.3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1231271903]
-position = Vector2(-2, -96)
+position = Vector2(-1, -186)
 shape = SubResource("RectangleShape2D_lrul2")
 disabled = true

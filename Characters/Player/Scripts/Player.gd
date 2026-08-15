@@ -630,6 +630,8 @@ func _increment_inventory_index(index : int, direction : String) -> int:
 	return next_index
 	
 func change_equipment_quick(direction : String):
+	if one_or_no_equippable_items():
+		return
 	var start_index = ItemCollection.equippable.find(equipped)
 	if start_index < 0:
 		Error.error("Equipped item " + equipped + " not found in equippable items array.")
