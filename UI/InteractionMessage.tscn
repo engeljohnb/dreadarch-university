@@ -1,7 +1,18 @@
-[gd_scene format=3 uid="uid://blyuw6n3krqjj"]
+[gd_scene format=3 uid="uid://8uwiiucb6qk0"]
 
-[ext_resource type="Script" uid="uid://xpidvq37sqlv" path="res://UI/Scripts/InteractionMessage.gd" id="1_7q72w"]
 [ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="4_fyktl"]
+
+[sub_resource type="GDScript" id="GDScript_hxpf8"]
+script/source = "extends RichTextLabel
+
+const SIZE = Vector2(150, 40)
+
+func _ready():
+	text = text
+	custom_minimum_size = SIZE
+	position = -SIZE/2.0
+	position.y -= (SIZE.y/2.0)+50
+"
 
 [node name="RichTextLabel" type="RichTextLabel" unique_id=1446069663]
 modulate = Color(1.5, 1.5, 1.5, 1)
@@ -9,7 +20,6 @@ light_mask = 8
 visibility_layer = 8
 z_index = 4
 custom_minimum_size = Vector2(150, 40)
-anchors_preset = -1
 anchor_right = 0.11800001
 anchor_bottom = 0.037
 offset_right = -0.5600128
@@ -22,4 +32,4 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_7q72w")
+script = SubResource("GDScript_hxpf8")
