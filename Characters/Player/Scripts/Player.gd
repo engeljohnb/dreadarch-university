@@ -759,7 +759,7 @@ func _process(delta):
 	else:
 		set_state_machine_state("End")
 
-var _waiting_to_stand
+var _waiting_to_stand := false
 func play_surprised_cutscene(delta : float):
 	if delta == 0.0:
 		init_cutscene(play_surprised_cutscene, 1.0)
@@ -768,10 +768,10 @@ func play_surprised_cutscene(delta : float):
 	else:
 		if cutscene_timer >= 1.0:
 			sprite.play("Sitting")
-		if direction_just_pressed() and not _waiting_to_stand:
-			sprite.play("Stand Up")
-			_waiting_to_stand = true
-			cutscene_timer = 0.0
+			if direction_just_pressed() and not _waiting_to_stand:
+				sprite.play("Stand Up")
+				_waiting_to_stand = true
+				cutscene_timer = 0.0
 		if _waiting_to_stand:
 			cutscene_timer += delta
 			if cutscene_timer >= (1.0/8.0)*4.0:

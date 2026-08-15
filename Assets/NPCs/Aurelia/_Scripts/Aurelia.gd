@@ -39,7 +39,8 @@ func _process(delta):
 		if following_player:
 			follow_player(delta)
 		else:
-			go_to(Vector2(478.0, -28.0), 1.5)
+			go_to(Vector2(478.0, -474.0), 7.0)
+			visual_travel.pulsate(delta)
 	if _opening:
 		if _timer >= _open_duration:
 			_opening = false
@@ -51,14 +52,18 @@ func _process(delta):
 			fx.material.set_shader_parameter("spotlight_size", spotlight_size)
 			_timer += delta
 	if waiting_for_player:
-		if player.facing == Vector2.UP:
+		if should_surprise_player():
 			player.play_surprised_cutscene(0.0)
 			waiting_for_player = false
 	if Dialogue.dialogue_open():
 		sprite.play("Speak")
 	else:
 		sprite.play("Idle")
-		
+	
+func should_surprise_player():
+	var distance_to_player = abs(global_position.y - player.global_position.y)
+	return (player.facing == Vector2.UP) and (distance_to_player < 125.0) and is_open
+	
 func _on_item_collected(item, _count, _should_play_sound):
 	if item == ItemCollection.GOLDEN_DAGGER:
 		following_player = false
