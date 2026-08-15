@@ -627,15 +627,19 @@ animation = &"Attack Left"
 animation = &"Attack Right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_nahvi"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_p5h52")
 blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_hyusb")
 blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_ey64d")
 blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_agvow")
 blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nahvi"]
 animation = &"Throw Down"
@@ -652,12 +656,16 @@ animation = &"Throw Left"
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7liqs"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_nahvi")
 blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_7liqs")
 blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_8wckb")
 blend_point_2/pos = Vector2(1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_gxn4t")
 blend_point_3/pos = Vector2(-1, 0)
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p5h52"]
 priority = 0
@@ -696,15 +704,19 @@ animation = &"Idle Knife Left"
 animation = &"Idle Knife Right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hjbl7"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_o34un")
 blend_point_0/pos = Vector2(0, -1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_vht3x")
 blend_point_1/pos = Vector2(0, 1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_7sitb")
 blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_qfir1")
 blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s7t4j"]
 animation = &"Idle Up"
@@ -719,15 +731,19 @@ animation = &"Idle Left"
 animation = &"Idle Right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_o34un"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_s7t4j")
 blend_point_0/pos = Vector2(0, -1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_3qxlu")
 blend_point_1/pos = Vector2(0, 1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_7hpic")
 blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_qmb3r")
 blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_82ywc"]
 priority = 0
@@ -774,23 +790,31 @@ animation = &"Walk Knife Down"
 animation = &"Walk Knife Up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gnh12"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_hjbl7")
 blend_point_0/pos = Vector2(0, -1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_gnh12")
 blend_point_1/pos = Vector2(-1, 0)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_dv7ya")
 blend_point_2/pos = Vector2(1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_xr4ud")
 blend_point_3/pos = Vector2(0, 1)
+blend_point_3/name = &"3"
 blend_point_4/node = SubResource("AnimationNodeAnimation_j7p2t")
 blend_point_4/pos = Vector2(1, 1)
+blend_point_4/name = &"4"
 blend_point_5/node = SubResource("AnimationNodeAnimation_s3j0o")
 blend_point_5/pos = Vector2(1, -1)
+blend_point_5/name = &"5"
 blend_point_6/node = SubResource("AnimationNodeAnimation_aqxpi")
 blend_point_6/pos = Vector2(-1, -1)
+blend_point_6/name = &"6"
 blend_point_7/node = SubResource("AnimationNodeAnimation_7t4tm")
 blend_point_7/pos = Vector2(-1, 1)
-blend_mode = 1
+blend_point_7/name = &"7"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_33rc2"]
 animation = &"Walk Up"
@@ -805,15 +829,19 @@ animation = &"Walk Left"
 animation = &"Walk Right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vau5h"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_33rc2")
 blend_point_0/pos = Vector2(0, -1)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_r0rls")
 blend_point_1/pos = Vector2(0, 1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_oy8ms")
 blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_82ywc")
 blend_point_3/pos = Vector2(1, 0)
-blend_mode = 1
+blend_point_3/name = &"3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjbl7"]
 priority = 0

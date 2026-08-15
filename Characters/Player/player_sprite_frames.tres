@@ -223,7 +223,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_vo75a")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Attack Down",
 "speed": 12.0
 }, {
@@ -240,7 +240,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_bdt0l")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Attack Left",
 "speed": 12.0
 }, {
@@ -257,7 +257,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_31qbx")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Attack Right",
 "speed": 12.0
 }, {
@@ -274,7 +274,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_uhc2s")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Attack Up",
 "speed": 12.0
 }, {
@@ -303,7 +303,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("24_7t7ga")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Climb Down",
 "speed": 12.0
 }, {
@@ -338,7 +338,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("34_1dmlq")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Climb Down Transition",
 "speed": 12.0
 }, {
@@ -433,7 +433,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("49_7mxgu")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Death",
 "speed": 12.0
 }, {
@@ -474,7 +474,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("51_6cpfp")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Down",
 "speed": 5.0
 }, {
@@ -515,7 +515,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("58_erdi5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Knife Down",
 "speed": 5.0
 }, {
@@ -556,7 +556,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("65_71ysr")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Knife Left",
 "speed": 5.0
 }, {
@@ -597,7 +597,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("72_n3dtn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Knife Right",
 "speed": 5.0
 }, {
@@ -638,7 +638,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("79_ewiom")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Left",
 "speed": 5.0
 }, {
@@ -679,7 +679,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("85_5qi4j")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Right",
 "speed": 5.0
 }, {
@@ -720,7 +720,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("92_2swmo")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Up",
 "speed": 5.0
 }, {
@@ -737,7 +737,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("97_ite4w")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Sitting",
 "speed": 12.0
 }, {
@@ -746,7 +746,7 @@ animations = [{
 "texture": ExtResource("28_8v4b3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("27_we5df")
+"texture": ExtResource("29_gefdb")
 }, {
 "duration": 1.0,
 "texture": ExtResource("26_n02vv")
@@ -754,7 +754,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25_h0tij")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Stand Up",
 "speed": 8.0
 }, {
@@ -795,7 +795,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("107_7t7ga")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Surprised",
 "speed": 12.0
 }, {
@@ -812,7 +812,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("99_4ivqo")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Throw Down",
 "speed": 12.0
 }, {
@@ -829,7 +829,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("103_5p8j1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Throw Left",
 "speed": 12.0
 }, {
@@ -846,7 +846,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("107_klagu")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Throw Right",
 "speed": 12.0
 }, {
@@ -863,7 +863,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("111_mx6fr")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Throw Up",
 "speed": 12.0
 }, {
@@ -898,7 +898,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("121_rsbys")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Down",
 "speed": 12.0
 }, {
@@ -933,7 +933,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("131_kpnqs")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Knife Down",
 "speed": 12.0
 }, {
@@ -968,7 +968,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("141_vo87q")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Knife Left",
 "speed": 12.0
 }, {
@@ -1003,7 +1003,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("151_fr3sg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Knife Right",
 "speed": 12.0
 }, {
@@ -1041,7 +1041,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("162_kubwd")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Knife Up",
 "speed": 12.0
 }, {
@@ -1076,7 +1076,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("172_lcwnw")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Left",
 "speed": 12.0
 }, {
@@ -1111,7 +1111,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("182_g7c58")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Right",
 "speed": 12.0
 }, {
@@ -1146,7 +1146,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("192_o5u20")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Up",
 "speed": 12.0
 }]
