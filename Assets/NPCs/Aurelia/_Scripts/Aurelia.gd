@@ -10,6 +10,7 @@ var _open_duration : float = 0.75
 var _timer : float = 0.0
 var player : CharacterBody2D
 var stationary = false
+var waiting_for_player = false
 @export var following_player : bool = true
 
 var intro_dialogue : Array[Dictionary] = [
@@ -44,11 +45,15 @@ func _process(delta):
 			_opening = false
 			is_open = true
 			interaction_message = "Z to talk"
-			start_dialogue(intro_dialogue)
+			waiting_for_player = true
 		else:
 			var spotlight_size = Utils.padink(_timer, _open_duration, 0.75, 1.1, 1.2, 0.0, 0.63)
 			fx.material.set_shader_parameter("spotlight_size", spotlight_size)
 			_timer += delta
+	if waiting_for_player:
+		if player.facing == Vector2.UP:
+			player.play_surprised_cutscene(0.0)
+			waiting_for_player = false
 	if Dialogue.dialogue_open():
 		sprite.play("Speak")
 	else:
@@ -70,7 +75,7 @@ func open():
 	_opening = true
 
 func activate(_using_item : Variant = null, _count = 1):
-	open()
+	Dialogue.open_dialogue.emit(intro_dialogue)
 
 var _position_weight := 0.01
 func follow_player(delta : float):

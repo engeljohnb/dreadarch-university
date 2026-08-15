@@ -906,7 +906,9 @@ light_mask = 9
 visibility_layer = 4
 position = Vector2(0, -24)
 sprite_frames = ExtResource("2_14m2a")
-animation = &"Climb Down Transition"
+animation = &"Stand Up"
+frame = 3
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=311652048]
 libraries/ = SubResource("AnimationLibrary_oy8ms")

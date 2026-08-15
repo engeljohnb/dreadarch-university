@@ -36,7 +36,6 @@ func _ready():
 func notify_room_exorcised():
 	print("Room Exorcised")
 	
-	
 func update_exorcism():
 	var num_enemies = get_num_enemies()
 	#var ratio = float(num_enemies)/float(total_enemies)

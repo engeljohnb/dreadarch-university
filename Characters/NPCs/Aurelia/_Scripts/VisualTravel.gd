@@ -4,7 +4,6 @@ signal travel_ended
 
 var transitioning : bool = false
 var _original_spotlight_size = 1.935
-var _original_spotlight_2_scale = _original_spotlight_size
 var _current_spotlight_size = _original_spotlight_size
 var _current_spotlight_2_scale = _original_spotlight_size
 

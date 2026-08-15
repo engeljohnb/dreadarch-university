@@ -756,3 +756,34 @@ func _process(delta):
 			stupid_post_door_cutscene_correction()
 	else:
 		set_state_machine_state("End")
+
+var _waiting_to_stand
+func play_surprised_cutscene(delta : float):
+	if delta == 0.0:
+		init_cutscene(play_surprised_cutscene, 1.0)
+		sprite.play("Surprised")
+		_waiting_to_stand = false
+	else:
+		if cutscene_timer >= 1.0:
+			sprite.play("Sitting")
+		if direction_just_pressed() and not _waiting_to_stand:
+			sprite.play_backwards("Climb Down Transition")
+			_waiting_to_stand = true
+			cutscene_timer = 0.0
+		if _waiting_to_stand:
+			cutscene_timer += delta
+			if cutscene_timer >= (1.0/8.0)*4.0:
+				end_cutscene()
+		else:
+			cutscene_timer += delta
+
+func play_standing_up_cutscene(delta: float):
+	if delta == 0.0:
+		init_cutscene(play_standing_up_cutscene, 1.0)
+		sprite.play_backwards("Climb Down Transition")
+	else:
+		if cutscene_timer >= (1.0/12.0)*8.0:
+			end_cutscene()
+	cutscene_timer += delta
+		
+	
