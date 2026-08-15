@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhr21xepcq7b3"]
+[gd_scene format=3 uid="uid://dhr21xepcq7b3"]
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_cppxa"]
 [ext_resource type="Texture2D" uid="uid://1hn4fc0rdmpi" path="res://Assets/UI/Prompt/Prompt_BG.png" id="2_0bqtx"]
 [ext_resource type="Script" uid="uid://6vdlfmuqf2ar" path="res://UI/Scripts/DocumentViewer.gd" id="2_125as"]
 [ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="5_125as"]
 
-[node name="DocumentViewer" type="Control"]
+[node name="DocumentViewer" type="Control" unique_id=1572760746]
 process_mode = 3
 modulate = Color(0.576471, 0.576471, 0.576471, 1)
 layout_mode = 3
@@ -17,7 +17,7 @@ grow_vertical = 2
 theme = ExtResource("1_cppxa")
 script = ExtResource("2_125as")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1320229645]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.033
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_0bqtx")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=1200671769]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.072
@@ -45,7 +45,7 @@ offset_right = 0.399902
 offset_bottom = 0.0599976
 theme_override_font_sizes/normal_font_size = 78
 
-[node name="Done" type="Button" parent="TextureRect"]
+[node name="Done" type="Button" parent="TextureRect" unique_id=586773865]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.78
@@ -58,6 +58,6 @@ offset_bottom = -16.78
 theme_override_font_sizes/font_size = 45
 text = "Done"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=36265392]
 stream = ExtResource("5_125as")
 autoplay = true

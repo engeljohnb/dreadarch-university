@@ -1,14 +1,27 @@
 extends Control
 
 
+var dialogue = [
+		{
+			"text":"It's in Latin.",
+			"speaker":"Player"
+		},
+		{
+			"text":"I should've paid more attention in class.",
+			"speaker":"Player"
+		}
+]
 func on_done():
 	get_tree().paused = false
 	var collected = []
 	for frag in ItemCollection.scroll_fragments:
 		if frag["collected"]:
 			collected.append(frag)
-	#if collected.size() == 1:
-	#	Dialogue.open_dialogue.emit(dialogue)
+	#TODO: Change the prompt_player system and the dialogue system and the document viewer until 
+	#  this bit of code doesn't need to be in the most random place ever to work.
+	if collected.size() == 1:
+		if not Tutorial.message_shown(ItemCollection.SCROLL_FRAGMENT):
+			Dialogue.open_dialogue.emit(dialogue)
 	queue_free()
 
 func _ready():

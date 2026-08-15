@@ -21,11 +21,12 @@ func on_blinker_flipped(state):
 		modulate = Color(1,1,1)
 
 func is_first_search():
-	return not Tutorial.message_shown(ItemCollection.SCROLL_FRAGMENT)
+	return not Tutorial.message_shown("stupid_first_shelf_thing")
 		
 func activate(using_item : Variant = null, count : int = 1):
 	var first_search = is_first_search()
 	if first_search:
+		Tutorial.messages_shown["stupid_first_shelf_thing"] = true
 		Dialogue.open_dialogue.emit(search_shelf_dialogue)
 		_waiting_for_dialogue = true
 		_ui = using_item
