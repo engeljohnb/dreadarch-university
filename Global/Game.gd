@@ -368,7 +368,7 @@ func open_load_game_menu(pos = null):
 	var menu_pos : Vector2
 	if not pos:
 		var menu_pos_y = 250+menu.size.y+10
-		var menu_pos_x = (get_window().size.x/2.0) - (250)
+		var menu_pos_x = (1920.0/2.0) - (250)
 		menu_pos = Vector2(menu_pos_x, menu_pos_y)
 	else:
 		menu_pos = pos
