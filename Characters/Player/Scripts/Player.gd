@@ -223,6 +223,8 @@ func get_held_direction_name():
 		
 func has_knife_equipped() -> bool:
 	var is_equipped : bool = (equipped == ItemCollection.GOLDEN_DAGGER)
+	if inventory.get(ItemCollection.GOLDEN_DAGGER) == null:
+		return false
 	var has : bool = (inventory[ItemCollection.GOLDEN_DAGGER] > 0)
 	return (is_equipped and has)
 	
@@ -568,8 +570,7 @@ func on_dialogue_opened(_dialogue):
 func _ready():
 	get_tree().paused = true
 	blinker.flip.connect(on_blinker_flip)
-	#reset_inventory()
-	#inventory[ItemCollection.GOLDEN_DAGGER] = 0
+	reset_inventory()
 	item_equipped.emit(equipped, 0)
 	Dialogue.open_dialogue.connect(on_dialogue_opened)
 
@@ -787,8 +788,8 @@ func _process(delta):
 				current_cutscene.call(delta)
 		if cutscene_just_ended:
 			stupid_post_door_cutscene_correction()
-#	else:
-#		set_state_machine_state("End")
+	#else:
+	#	set_state_machine_state("End")
 
 	
 # I can't figure out another way to solve the moonwalking bugs.
