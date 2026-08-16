@@ -37,6 +37,7 @@ custom_data_layer_0/type = 21
 sources/1 = SubResource("TileSetAtlasSource_wbhm8")
 
 [sub_resource type="Gradient" id="Gradient_05q5l"]
+offsets = PackedFloat32Array(0, 0.6333333)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wbhm8"]

@@ -189,7 +189,7 @@ func save_room_gone_npcs(scene_node : Node2D, updated_npcs):
 			if npc not in scene_node.save_data["NPCs"]:
 				scene_node.save_data["NPCs"].append(npc)
 				
-func save_room_treasures(scene_node : Node2D):
+func save_room_treasures(scene_node : Node2D): 
 	var treasures = scene_node.get_node_or_null("Treasure")
 	if treasures:
 		# Change the key to a string because the JSON serializer eventually

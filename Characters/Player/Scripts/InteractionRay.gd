@@ -46,7 +46,11 @@ func _process(_delta):
 		icon.position = target_position
 		check_for_interactable()
 		check_for_collectible()
-		if not get_parent().in_cutscene:
+		# Here because there's one part when meeting Aurelia
+		#  when the player sits, and I don't want them to be able 
+		#  to click while sitting, and this is the only way to check
+		#  without breaking the cursor in other situations.
+		if not get_parent()._waiting_to_stand:
 			_blinking = true
 	if _blinking:
 		if _timer >= _blink_duration:

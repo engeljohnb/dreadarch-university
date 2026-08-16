@@ -484,8 +484,11 @@ func throw_projectile():
 
 func update_attack_state():
 	if equipped == ItemCollection.GOLDEN_DAGGER:
-		if inventory[equipped] == 0:
-			return
+		if inventory.get(equipped) != null:
+			if inventory[equipped] == 0:
+				return
+			else:
+				set_equipped(equipped)
 		if attacking and (not attack_fx):
 			attacking = false
 			return
@@ -565,8 +568,8 @@ func on_dialogue_opened(_dialogue):
 func _ready():
 	get_tree().paused = true
 	blinker.flip.connect(on_blinker_flip)
-	reset_inventory()
-	inventory[ItemCollection.GOLDEN_DAGGER] = 0
+	#reset_inventory()
+	#inventory[ItemCollection.GOLDEN_DAGGER] = 0
 	item_equipped.emit(equipped, 0)
 	Dialogue.open_dialogue.connect(on_dialogue_opened)
 
@@ -825,6 +828,7 @@ func play_surprised_cutscene(delta : float):
 			cutscene_timer += delta
 			if cutscene_timer >= (1.0/8.0)*4.0:
 				end_cutscene()
+				_waiting_to_stand = false
 		else:
 			cutscene_timer += delta
 		
