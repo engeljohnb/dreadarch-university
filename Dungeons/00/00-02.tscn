@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://blb5wl3mxq55b" path="res://Tiles/UniversityBuildingTiles.tscn" id="7_1xwj2"]
 [ext_resource type="PackedScene" uid="uid://d7tu6rt6cqca" path="res://Decoration/LeafEmitter/LeafEmitter.tscn" id="7_d8ldh"]
 [ext_resource type="Texture2D" uid="uid://c07wbulhirjv" path="res://Assets/Decoration/University/SmallRelief01.png" id="7_thpib"]
+[ext_resource type="Script" uid="uid://dk8r88sncv36u" path="res://Decoration/_Scripts/Decoration.gd" id="10_icukm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nb5rd"]
 size = Vector2(10466.875, 197)
@@ -21,6 +22,9 @@ size = Vector2(9341, 237)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thpib"]
 size = Vector2(4432, 250.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbko3"]
+size = Vector2(77, 156)
 
 [node name="00-02" type="Node2D" unique_id=1029984848]
 y_sort_enabled = true
@@ -115,6 +119,15 @@ y_sort_enabled = true
 position = Vector2(-1856, -90)
 scale = Vector2(0.6622141, 0.66221416)
 texture = ExtResource("7_thpib")
+
+[node name="Decoration" type="Area2D" parent="BuildingTiles/Node2D" unique_id=1069997506]
+script = ExtResource("10_icukm")
+interaction_message = Array[String](["In memory of Sofia Vienta."])
+metadata/_custom_type_script = "uid://dk8r88sncv36u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingTiles/Node2D/Decoration" unique_id=560772411]
+position = Vector2(-1854.5, -90)
+shape = SubResource("RectangleShape2D_jbko3")
 
 [node name="OutsideDoor2" parent="." unique_id=255079650 instance=ExtResource("5_lskhw")]
 position = Vector2(-1411, 1864)

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cu2iscjlepnmf"]
+
+[ext_resource type="Script" uid="uid://dk8r88sncv36u" path="res://Decoration/_Scripts/Decoration.gd" id="1_c72lo"]
+
+[node name="Decoration" type="Area2D" unique_id=947528530 groups=["Interactable"]]
+collision_layer = 40
+collision_mask = 8
+script = ExtResource("1_c72lo")
