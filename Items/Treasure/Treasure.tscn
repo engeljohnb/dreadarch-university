@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dw1aytvk13gc1" path="res://Items/Treasure/Treasure.gd" id="1_yvmyw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
+radius = 42.0119
 
 [node name="Treasure" type="Area2D" unique_id=352333607]
 z_index = -1

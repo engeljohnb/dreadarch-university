@@ -20,6 +20,11 @@ static func create(_type : int) -> Collectible:
 	node.type = _type
 	return node
 	
+func collect():
+	ItemCollection.item_collected.emit(type, 1, true)
+	ItemCollection.show_collected_item(type, null, Vector2(0.0,-64.0))
+	queue_free()
+	
 func on_body_entered(body):
 	if body is Enemy:
 		return
@@ -34,9 +39,8 @@ func on_body_entered(body):
 				attacking_body = body.get_parent()
 				wait_for_attack = true
 				return
-		ItemCollection.item_collected.emit(type, 1, true)
-		ItemCollection.show_collected_item(type, null, Vector2(0.0,-64.0))
-		queue_free()
+		collect()
+		
 	if body is TileMapLayer:
 		if not (body.get_parent() is ParallaxLayer):
 			falling = false

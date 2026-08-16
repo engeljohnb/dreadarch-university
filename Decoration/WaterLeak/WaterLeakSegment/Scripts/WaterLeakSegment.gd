@@ -5,6 +5,12 @@ signal splashed(me)
 var style = "01"
 var segment_type = "Middle"
 
+func activate(_using_item = null, _count = 0):
+	var player = get_tree().get_nodes_in_group("Player")[0]
+	player.play_water_splash_cutscene(0.0)
+	splash()
+	splashed.emit(self)
+	
 func on_animation_finished():
 	$AnimatedSprite2D.play(get_animation_name())
 	$AnimatedSprite2D.animation_finished.disconnect(on_animation_finished)

@@ -518,7 +518,7 @@ script = ExtResource("1_h53ss")
 
 [node name="ReliefDoor" parent="." unique_id=386765253 instance=ExtResource("2_2la7i")]
 position = Vector2(-2721, -23)
-next_start_position = Vector2(479, 1385)
+next_start_position = Vector2(479, 1449)
 next_scene = "res://Dungeons/01/01-05.tscn"
 
 [node name="BuildingTiles2" parent="." unique_id=1593192024 instance=ExtResource("1_fwxwi")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c4u7w1gypnb20"]
+[gd_scene format=3 uid="uid://c4u7w1gypnb20"]
 
 [ext_resource type="Script" uid="uid://b5vc8hrp26v07" path="res://Decoration/WaterLeak/WaterLeakSegment/Scripts/WaterLeakSegment.gd" id="1_hy8cc"]
 [ext_resource type="Texture2D" uid="uid://cwafyokm0st8w" path="res://Assets/Decoration/WaterLeaks/Splash/01/0000.png" id="1_os7xh"]
@@ -218,14 +218,14 @@ animations = [{
 "speed": 24.0
 }]
 
-[node name="WaterLeakSegment" type="Area2D"]
-collision_layer = 512
+[node name="WaterLeakSegment" type="Area2D" unique_id=1903384311 groups=["Interactable"]]
+collision_layer = 520
 collision_mask = 4
 script = ExtResource("1_hy8cc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=671698217]
 shape = SubResource("RectangleShape2D_laub5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=61686389]
 sprite_frames = SubResource("SpriteFrames_bdqeu")
 animation = &"02 Splash"

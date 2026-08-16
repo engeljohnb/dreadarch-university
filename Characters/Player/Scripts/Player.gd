@@ -183,34 +183,56 @@ func play_outside_door_cutscene(delta, reverse = false):
 			outside_door_cutscene["reverse"] = false
 
 func init_cutscene(cutscene : Callable, duration : float):
+	$InteractionRay.enabled = false
 	set_state_machine_state("End")
 	in_cutscene = true
 	cutscene_timer = 0.0
 	cutscene_duration = duration
 	current_cutscene = cutscene
 
+var held_directions : Array[String]
+# Why do this all this instead of just checking 
+#  which direction are held? Because the moonwalking bugs
+#  have been plaguing me for ages and this is a 
+#  once and for all solution.
 func get_held_direction_name():
 	if Input.is_action_pressed("Left"):
-		return "Left"
-	if Input.is_action_pressed("Right"):
-		return "Right"
-	if Input.is_action_pressed("Up"):
-		return "Up"
-	if Input.is_action_pressed("Down"):
-		return "Down"
+		if "Left" not in held_directions:
+			held_directions.append("Left")
 	else:
+		held_directions.erase("Left")
+	if Input.is_action_pressed("Right"):
+		if "Right" not in held_directions:
+			held_directions.append("Right")
+	else:
+		held_directions.erase("Right")
+	if Input.is_action_pressed("Up"):
+		if "Up" not in held_directions:
+			held_directions.append("Up")
+	else:
+		held_directions.erase("Up")
+	if Input.is_action_pressed("Down"):
+		if "Down" not in held_directions:
+			held_directions.append("Down")
+	else:
+		held_directions.erase("Down")
+	if held_directions.is_empty():
 		return "None"
+	else:
+		return held_directions[-1]
 		
-func has_knife_equipped():
-	return (equipped == ItemCollection.GOLDEN_DAGGER)
+func has_knife_equipped() -> bool:
+	var is_equipped : bool = (equipped == ItemCollection.GOLDEN_DAGGER)
+	var has : bool = (inventory[ItemCollection.GOLDEN_DAGGER] > 0)
+	return (is_equipped and has)
 	
 func end_cutscene(to_idle = true, direction = facing):
+	$InteractionRay.enabled = true
 	in_cutscene = false
 	cutscene_timer = 0.0
 	cutscene_duration = 0.0
 	current_cutscene = null
 	sprite.stop()
-	update_direction()
 	update_direction()
 	if direction != facing:
 		facing = direction
@@ -431,7 +453,9 @@ func update_direction():
 	else:
 		moving = true
 		facing = movement_direction
-	$InteractionRay.target_position = 75*facing
+		
+func update_interaction_ray():
+	$InteractionRay.target_position = 75.0*facing
 
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
@@ -739,25 +763,50 @@ func stupid_post_door_cutscene_correction():
 func set_state_machine_state(state : String):
 	var playback = anim_tree["parameters/playback"]
 	playback.travel(state)
+
 	
 func _process(delta):
 	if not in_dialogue:
 		if not in_cutscene:
 			if Input.is_action_just_pressed("GainLifeCheat"):
 				gain_life(1)
+			update_interaction_ray()
 			update_direction()
 			update_equipment()
 			update_attack_state()
 			update_position(delta)
 			update_animation_blend_positions()
+			if not attacking:
+				correct_sprite_direction()
 			prev_facing = facing
 		else:
 			if current_cutscene:
 				current_cutscene.call(delta)
 		if cutscene_just_ended:
 			stupid_post_door_cutscene_correction()
-	else:
-		set_state_machine_state("End")
+#	else:
+#		set_state_machine_state("End")
+
+	
+# I can't figure out another way to solve the moonwalking bugs.
+var _c = 0
+func correct_sprite_direction():
+	_c += 1
+	if _c == 24:
+		_c = 0
+		if (not in_cutscene) and (not attacking):
+			var held_direction = get_held_direction_name()
+			if held_direction != "None":
+				if has_knife_equipped():
+					sprite.play("Walk Knife " + held_direction)
+				else:
+					sprite.play("Walk " + held_direction)
+			else:
+				var dir : String= Utils.nearest_cardinal_direction(facing, true)
+				if has_knife_equipped() and (dir != "Up"):
+					sprite.play("Idle Knife " + dir)
+				else:
+					sprite.play("Idle " + dir)
 
 var _waiting_to_stand := false
 func play_surprised_cutscene(delta : float):
@@ -779,4 +828,12 @@ func play_surprised_cutscene(delta : float):
 		else:
 			cutscene_timer += delta
 		
-	
+func play_water_splash_cutscene(delta : float):
+	if delta == 0.0:
+		cutscene_duration = (1.0/12.0)*4.0
+		init_cutscene(play_water_splash_cutscene, cutscene_duration)
+		sprite.play("Throw " + Utils.nearest_cardinal_direction(facing, true))
+	else:
+		if cutscene_timer >= cutscene_duration:
+			end_cutscene()
+		cutscene_timer += delta

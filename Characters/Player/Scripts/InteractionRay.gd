@@ -32,11 +32,22 @@ func check_for_interactable():
 	else:
 		_icon_state = false
 				
+func check_for_collectible():
+	if is_colliding():
+		var col = get_collider()
+		if col is Collectible:
+			col.collect()
+			_icon_state = true
+			
 func _process(_delta):
+	place_icon()
+	icon.modulate = Color.WHITE
 	if Input.is_action_just_pressed("Interact"):
 		icon.position = target_position
 		check_for_interactable()
-		_blinking = true
+		check_for_collectible()
+		if not get_parent().in_cutscene:
+			_blinking = true
 	if _blinking:
 		if _timer >= _blink_duration:
 			_timer = 0.0
@@ -44,9 +55,10 @@ func _process(_delta):
 		blink_icon(_icon_state)
 		_timer += _delta
 	else:
-		icon.modulate.a = 0.0
+		icon.modulate.a = 0.15
 		
-
+func place_icon():
+	icon.position = lerp(Vector2(0,-55), target_position, 0.66)
 	
 func blink_icon(state : bool):
 	if state:

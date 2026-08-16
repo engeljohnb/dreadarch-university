@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dpa55uqmg7q8g" path="res://Assets/DefaultSpriteFrames.tres" id="2_fh8dk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
-radius = 15.297058
+radius = 42.0119
 
 [node name="Collectible" type="Area2D" unique_id=1836059589]
 z_index = -1

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="3_o506o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh5a0"]
-radius = 15.132746
+radius = 42.0119
 
 [node name="Talons" type="Area2D" unique_id=1836059589]
 modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
