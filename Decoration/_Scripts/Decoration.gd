@@ -14,7 +14,8 @@ func _ready():
 			_int_msg.append({"text" : interaction_message[i]})
 		else:
 			_int_msg.append({"text " + str(i) : interaction_message[i]})
-	add_child(sprite)
+	if sprite != null:
+		add_child(sprite)
 
 	
 func activate(_using_item = null, _count = 0):
