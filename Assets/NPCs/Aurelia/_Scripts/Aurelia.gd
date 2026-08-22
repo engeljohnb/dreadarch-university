@@ -16,11 +16,66 @@ var waiting_for_player = false
 var intro_dialogue : Array[Dictionary] = [
 	{
 		"speaker":"Aurelia",
-		"text":"Quid mandatum ducit te hac?"
+		"text":"Qui es? Quid agis? Noli timere."
+	},
+	{
+		"speaker":"Player",
+		"text":"D-Discipulum... sum..."
+	},
+	{
+		"speaker":"Player",
+		"text":"If only P-Professor were here..."
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"Discede statim."
+		"text":"Let it be as fortune would have it. Do not be afraid."
+	},
+	{
+		"speaker":"Aurelia",
+		"text":"Who are you? And what is it you do?"
+	},
+	{
+		"speaker":"Player",
+		"text":"I'm a student of archaeology, and what I'm doing is dreaming or becoming ill."
+	},
+	{
+		"speaker":"Aurelia",
+		"text":"This place is dangerous, but I am not. An abominable figure, but a human heart."
+	},
+	{
+		"speaker":"Player",
+		"text":"If you're nothing to fear, you could show it with a favor. Have you seen my Professor?"
+	},
+	{
+		"speaker":"Player",
+		"text":"She's tall and old, with light hair. She's been here for some weeks."
+	},
+	{
+		"speaker":"Aurelia",
+		"text":"Leave this room and go North."
+	},
+	{
+		"speaker":"Aurelia",
+		"text":"Please, take that weapon with you. You will not go far without it."
+	}
+]
+
+var second_dialogue : Array[Dictionary] = [
+	{
+		"speaker":"Player",
+		"text":"What are you?",
+	},
+	{
+		"speaker":"Aurelia",
+		"text":"I am old. I am cursed. I am betrayed."
+	},
+	{
+		"speaker":"Aurelia",
+		"text":"Most grievous of all, I am the Queen. But I will not hold you to courtly manners. You may call me Aurelia."
+	},
+	{
+		"speaker":"Aurelia",
+		"text":"When you have found whom you seek, come talk with me again. It has been long since I have talked with anyone."
 	}
 ]
 
@@ -30,6 +85,9 @@ func _ready():
 	player = get_tree().get_nodes_in_group("Player")[0]
 	global_position = player.global_position
 	ItemCollection.item_collected.connect(_on_item_collected)
+	
+func _is_speaking():
+	return Dialogue.dialogue_open() and Dialogue.current_box.get("speaker") == "Aurelia"
 	
 func _process(delta):
 	if not stationary:
@@ -53,7 +111,7 @@ func _process(delta):
 		if should_surprise_player():
 			player.play_surprised_cutscene(0.0)
 			waiting_for_player = false
-	if Dialogue.dialogue_open():
+	if _is_speaking():
 		sprite.play("Speak")
 	else:
 		sprite.play("Idle")
@@ -78,7 +136,15 @@ func open():
 	_opening = true
 
 func activate(_using_item : Variant = null, _count = 1):
-	Dialogue.open_dialogue.emit(intro_dialogue)
+	if check_status("introduced"):
+		if check_status("invited_return"):
+			start_dialogue([second_dialogue[-1]])
+		else:
+			start_dialogue(second_dialogue)
+			status["invited_return"] = true
+	else:
+		start_dialogue(intro_dialogue)
+		status["introduced"] = true
 
 var _position_weight := 0.01
 func follow_player(delta : float):
