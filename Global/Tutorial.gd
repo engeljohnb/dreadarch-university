@@ -3,6 +3,7 @@ extends Node
 signal message_ended
 
 var messages_shown = {
+		"letter_from_professor" : false,
 		ItemCollection.TALONS : false,
 		ItemCollection.NECTAR : false,
 		ItemCollection.SCROLL_FRAGMENT : false
@@ -55,5 +56,8 @@ func get_completed_tutorial_prompts():
 	var completed = []
 	for key in messages_shown:
 		if messages_shown[key]:
-			completed.append(int(key))
+			if key is int or key is float:
+				completed.append(int(key))
+			else:
+				completed.append(key)
 	return completed

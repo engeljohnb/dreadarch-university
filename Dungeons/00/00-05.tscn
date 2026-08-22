@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cna0s7f0ivopl"]
 
-[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_0cupr"]
+[ext_resource type="Script" uid="uid://d4ma8v84gib1s" path="res://Dungeons/00/_Scripts/00-05.gd" id="1_7k7fg"]
 [ext_resource type="Texture2D" uid="uid://b27m84lv4cl57" path="res://Assets/Tiles/HomeInterior/HomeAttic.png" id="2_05q5l"]
 [ext_resource type="PackedScene" uid="uid://m13guvu1fxgg" path="res://Items/Ladder/LadderTop.tscn" id="3_wbhm8"]
 [ext_resource type="Texture2D" uid="uid://byjvsilmuj462" path="res://Assets/Decoration/HomeInterior/ChimneySegments.png" id="4_7hjbj"]
@@ -89,10 +89,10 @@ script/source = "extends Decoration
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwf0t"]
-size = Vector2(97, 142)
+size = Vector2(49, 141)
 
 [node name="00-05" type="Node2D" unique_id=1912938039]
-script = ExtResource("1_0cupr")
+script = ExtResource("1_7k7fg")
 music = "res://Music/HomeInteriorMusic.ogg"
 music_volume = 2.0
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
@@ -191,5 +191,5 @@ interaction_message = Array[String](["Press Z to search things, interact with th
 metadata/_custom_type_script = "uid://dk8r88sncv36u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Decoration" unique_id=119357525]
-position = Vector2(4, 0)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_cwf0t")

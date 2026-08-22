@@ -46,6 +46,7 @@ func new_game():
 	init_player()
 	player.init_for_newgame()
 	SceneTransition.enter_scene("Dungeons/00/00-05.tscn", Vector2(-100,-10))
+	
 
 func _prompt_player(text, on_yes, on_no, yes_text = "yes", no_text = "no"):
 	var prompt = load("res://UI/Prompt.tscn").instantiate()
@@ -60,7 +61,11 @@ func _notify_player(note):
 func _open_document():
 	var viewer = load("res://UI/DocumentViewer.tscn").instantiate()
 	$CanvasLayer.add_child(viewer)
-
+	
+func _open_letter():
+	var viewer = load("res://UI/LetterFromProfessor.tscn").instantiate()
+	$CanvasLayer.add_child(viewer)
+	
 func on_dialogue_ended():
 	player.in_dialogue = false
 	player.anim_tree["parameters/playback"].travel("Start")
@@ -452,6 +457,7 @@ func _ready():
 	
 	Dialogue.prompt_player.connect(_prompt_player)
 	Dialogue.open_document.connect(_open_document)
+	Dialogue.open_letter.connect(_open_letter)
 	Dialogue.open_dialogue.connect(_open_dialogue)
 	Dialogue.notify_player.connect(_notify_player)
 	Dialogue.dialogue_ended.connect(on_dialogue_ended)

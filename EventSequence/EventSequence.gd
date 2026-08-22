@@ -21,7 +21,7 @@ class Event:
 		
 class NotificationEvent:
 	extends Event
-	var tutorial_key : int = ItemCollection.IDs.MAX_TYPES
+	var tutorial_key : Variant = ItemCollection.IDs.MAX_TYPES
 	var message : Array
 	func start():
 		Dialogue.dialogue_ended.connect(_set_finished.bind(true))
@@ -97,7 +97,7 @@ func add_dialogue_event(dialogue : Array) -> DialogueEvent:
 	add_event(event)
 	return event
 	
-func add_notification_event(message : Array = [], tutorial_key : int = ItemCollection.IDs.MAX_TYPES) -> NotificationEvent:
+func add_notification_event(message : Array = [], tutorial_key : Variant = ItemCollection.IDs.MAX_TYPES) -> NotificationEvent:
 	var event = NotificationEvent.new()
 	event.message = message
 	event.tutorial_key = tutorial_key

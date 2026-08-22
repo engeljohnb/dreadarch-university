@@ -1,7 +1,9 @@
 extends Control
 
+signal viewer_closed
 
 func on_done():
+	viewer_closed.emit()
 	get_tree().paused = false
 	var collected = []
 	for frag in ItemCollection.scroll_fragments:
