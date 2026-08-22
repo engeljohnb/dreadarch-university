@@ -16,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_k1dq0")
 
 [node name="Treasure" parent="." unique_id=1874360411 instance=ExtResource("2_g2bx8")]
+visible = false
 z_index = 1
 
 [node name="Lifebar" parent="." unique_id=1894478706 instance=ExtResource("1_36717")]
