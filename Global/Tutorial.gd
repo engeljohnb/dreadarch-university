@@ -1,4 +1,6 @@
 extends Node
+@warning_ignore("unused_signal")
+signal message_ended
 
 var messages_shown = {
 		ItemCollection.TALONS : false,
@@ -48,7 +50,7 @@ func show_message(item):
 		if not messages_shown[item]:
 			Dialogue.notify_player.emit(messages[item])
 			messages_shown[item] = true
-			
+	
 func load_completed_tutorial_prompts(completed):
 	for c in completed:
 		messages_shown[int(c)] = true

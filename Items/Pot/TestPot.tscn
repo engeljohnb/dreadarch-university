@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://llh587xsy8ga"]
+
+[ext_resource type="Script" uid="uid://d02qmvc0dcvnb" path="res://Items/Pot/TestPot.gd" id="1_qhl1k"]
+[ext_resource type="Texture2D" uid="uid://c3532m72qwar0" path="res://Assets/Items/Pot/0000.png" id="2_tce4w"]
+[ext_resource type="Texture2D" uid="uid://bgc1kijqy7kb8" path="res://Assets/Items/Pot/0001.png" id="3_6on0q"]
+[ext_resource type="Texture2D" uid="uid://bfftn52q1bgup" path="res://Assets/Items/Pot/0002.png" id="4_cnvsd"]
+[ext_resource type="Texture2D" uid="uid://so551cyylx1b" path="res://Assets/Items/Pot/0003.png" id="5_6hrvw"]
+[ext_resource type="Texture2D" uid="uid://r174rie7cr70" path="res://Assets/Items/Pot/0004.png" id="6_a2ffh"]
+[ext_resource type="Texture2D" uid="uid://cocqx8soxq4v2" path="res://Assets/Items/Pot/0005.png" id="7_hsgo4"]
+[ext_resource type="Texture2D" uid="uid://btlrjgqjjj6ie" path="res://Assets/Items/Pot/0006.png" id="8_kx3ef"]
+[ext_resource type="Texture2D" uid="uid://cgan7ghv5mh2i" path="res://Assets/Items/Pot/0007.png" id="9_c4wa0"]
+[ext_resource type="PackedScene" uid="uid://wao4sse2oke3" path="res://Utils/blinker.tscn" id="10_cojqb"]
+[ext_resource type="AudioStream" uid="uid://bp2q00d7h7y2w" path="res://Assets/Sounds/Pot/ActivateSound.ogg" id="11_dy6ay"]
+
+[sub_resource type="Gradient" id="Gradient_nws5j"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w7g0e"]
+gradient = SubResource("Gradient_nws5j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.820513, 0.123932)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_231h6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tce4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6on0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cnvsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6hrvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_a2ffh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hsgo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kx3ef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c4wa0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ku18y"]
+size = Vector2(64, 64)
+
+[node name="TestPot" type="StaticBody2D" unique_id=1532273113 groups=["Interactable"]]
+light_mask = 4
+visibility_layer = 4
+collision_layer = 8
+collision_mask = 24
+script = ExtResource("1_qhl1k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=182171106]
+position = Vector2(0.99999994, -5.999996)
+scale = Vector2(1.56641, 1.56641)
+texture = SubResource("GradientTexture2D_w7g0e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1453248912]
+modulate = Color(0.8819366, 0.8819366, 0.88193655, 1)
+light_mask = 4
+visibility_layer = 4
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_231h6")
+frame = 7
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1938046418]
+shape = SubResource("RectangleShape2D_ku18y")
+
+[node name="Blinker" parent="." unique_id=435504930 instance=ExtResource("10_cojqb")]
+
+[node name="ActivateSound" type="AudioStreamPlayer" parent="." unique_id=786557814]
+stream = ExtResource("11_dy6ay")
+volume_db = -20.0

@@ -35,6 +35,7 @@ func adjust_texture(texture : Texture2D):
 func advance():
 	$TextureRect/RichTextLabel.clear()
 	if current_line > (total_lines-1):
+		Dialogue.dialogue_ended.emit()
 		get_tree().paused = false
 		queue_free()
 		return

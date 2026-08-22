@@ -8,6 +8,8 @@ signal open_document()
 signal open_dialogue(dialogue : Array[Dictionary])
 @warning_ignore("unused_signal")
 signal notify_player(note)
+@warning_ignore("unused_signal")
+signal dialogue_ended
 
 var current_box = {}
 

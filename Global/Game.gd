@@ -70,7 +70,6 @@ func _open_dialogue(dialogue):
 	var box = load("res://UI/DialogueBox.tscn").instantiate()
 	if "dialogue" in box:
 		box.dialogue = dialogue
-	box.dialogue_ended.connect(on_dialogue_ended)
 	$CanvasLayer.add_child(box)
 	player.in_dialogue = true
 	player.sprite.play("Idle " + Utils.nearest_cardinal_direction(player.facing, true))
@@ -456,6 +455,7 @@ func _ready():
 	Dialogue.open_document.connect(_open_document)
 	Dialogue.open_dialogue.connect(_open_dialogue)
 	Dialogue.notify_player.connect(_notify_player)
+	Dialogue.dialogue_ended.connect(on_dialogue_ended)
 	
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)

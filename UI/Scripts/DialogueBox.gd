@@ -1,6 +1,5 @@
 extends Control
 
-signal dialogue_ended()
 
 var reveal_sounds = ["res://Assets/Sounds/UI/RevealDialogueSound1.ogg", "res://Assets/Sounds/UI/RevealDialogueSound2.ogg", "res://Assets/Sounds/RevealDialogueSound3.ogg"]
 var portraits = {"Player" : load("res://Assets/Student/DialoguePortrait.png"),
@@ -36,7 +35,7 @@ func display_next():
 	displaying = true
 	$TextureRect/RichTextLabel.visible_characters = 0
 	if current_index > dialogue.size()-1:
-		dialogue_ended.emit()
+		Dialogue.dialogue_ended.emit()
 		closing = true
 		return
 	if current_index == dialogue.size()-1:
