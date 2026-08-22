@@ -14,5 +14,4 @@ func init():
 	pass
 	
 func _ready():
-	interaction_message = "Z to talk"
 	call_deferred("init")

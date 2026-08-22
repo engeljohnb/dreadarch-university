@@ -26,7 +26,6 @@ var intro_dialogue : Array[Dictionary] = [
 
 func _ready():
 	sprite.play("Idle")
-	interaction_message = "Z to examine"
 	visual_travel.travel_ended.connect(_on_travel_ended)
 	player = get_tree().get_nodes_in_group("Player")[0]
 	global_position = player.global_position
@@ -45,7 +44,6 @@ func _process(delta):
 		if _timer >= _open_duration:
 			_opening = false
 			is_open = true
-			interaction_message = "Z to talk"
 			waiting_for_player = true
 		else:
 			var spotlight_size = Utils.padink(_timer, _open_duration, 0.75, 1.1, 1.2, 0.0, 0.63)

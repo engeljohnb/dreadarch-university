@@ -6,8 +6,6 @@ var inscription = [
 	}
 ]
 
-func _ready():
-	interaction_message = "Z to read"
 	
 func activate(_using_item : Variant = null, _count = 0):
 	Dialogue.notify_player.emit(inscription)

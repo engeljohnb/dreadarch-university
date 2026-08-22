@@ -72,5 +72,4 @@ func _ready():
 	frame_counter = 0
 	player_placed_items = []
 	amounts = [1]
-	interaction_message = "Z to search"
 	_waiting_for_dialogue = false

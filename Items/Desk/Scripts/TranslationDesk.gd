@@ -3,8 +3,6 @@ extends Interactable
 var _trans_menu = preload("res://UI/TranslationMenu.tscn")
 var canvas = null
 
-func _ready():
-	interaction_message = "Z to translate"
 func on_closed():
 	# Idk it crashed once.
 	if canvas != null:

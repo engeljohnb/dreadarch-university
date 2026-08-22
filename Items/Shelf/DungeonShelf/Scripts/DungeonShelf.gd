@@ -14,7 +14,6 @@ func _ready():
 	frame_counter = 0
 	player_placed_items = []
 	amounts = []
-	interaction_message = "Z to search"
 	var drop_generator = RandomNumberGenerator.new()
 	$Blinker.blink_duration = blink_duration
 	$Blinker.flip.connect(on_blinker_flipped)

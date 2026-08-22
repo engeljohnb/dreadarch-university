@@ -11,7 +11,6 @@ func on_blinker_flipped(state):
 
 func init():
 	var drop_generator = RandomNumberGenerator.new()
-	interaction_message = "Z to search"
 	$Blinker.blink_duration = blink_duration
 	$Blinker.flip.connect(on_blinker_flipped)
 	$AnimatedSprite2D.frame = int(abs(global_position.x/3.0)) % 8

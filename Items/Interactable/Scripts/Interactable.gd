@@ -3,7 +3,6 @@ extends StaticBody2D
 class_name Interactable
 
 const _my_scene = "res://Items/Interactable/Interactable.tscn"
-var interaction_message = "Z to interact"
 
 var can_drop = [ItemCollection.HEART, ItemCollection.SCROLL_FRAGMENT, ItemCollection.TREASURE]
 var has = []

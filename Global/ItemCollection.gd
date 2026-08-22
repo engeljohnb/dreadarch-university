@@ -170,16 +170,9 @@ func load_collected_scroll_fragments(collected : Array):
 	if collected.size() == scroll_fragments.size():
 		all_scroll_fragments_collected = true
 		
-func on_scroll_frag_yes():
-	Dialogue.open_document.emit()
-	Tutorial.messages_shown[ItemCollection.SCROLL_FRAGMENT] = false
-	
 func on_scroll_frag_no():
 	pass
 	
-func prompt_to_read_scroll_fragment():
-	Dialogue.prompt_player.emit("You found a scroll fragment! Read it?", on_scroll_frag_yes, on_scroll_frag_no, "yes", "no")
-
 func get_next_fragment(index = null):
 	if index is int:
 		return scroll_fragments[index]
