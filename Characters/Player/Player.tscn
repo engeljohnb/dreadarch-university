@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
 [ext_resource type="SpriteFrames" uid="uid://bvv0ts1bnyyou" path="res://Characters/Player/player_sprite_frames.tres" id="2_14m2a"]
-[ext_resource type="Texture2D" uid="uid://dr7ojdborfpou" path="res://Assets/UI/InteractionIcon/InteractionIcon.png" id="8_6fff4"]
-[ext_resource type="Shader" uid="uid://cdx6elvesqeri" path="res://Characters/Player/Scripts/InteractionIcon.gdshader" id="8_6h4vt"]
+[ext_resource type="PackedScene" uid="uid://dd2uqbjul1fue" path="res://UI/InteractionCursor.tscn" id="8_6fff4"]
 [ext_resource type="AudioStream" uid="uid://dyv2fwabyrx60" path="res://Assets/Sounds/Student/DeathSound.ogg" id="9_1niqm"]
 [ext_resource type="AudioStream" uid="uid://dp02rx74yaod3" path="res://Assets/Sounds/Student/KnockbackSound.ogg" id="10_6fff4"]
 [ext_resource type="Texture2D" uid="uid://b7v0h5tvciv0f" path="res://Utils/RadialGradient.tres" id="148_yo137"]
@@ -884,20 +883,6 @@ states/Walk/position = Vector2(382, 241)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ey64d"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_agvow"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_nahvi")]
 graph_offset = Vector2(23.7683, 82.7943)
 
-[sub_resource type="Gradient" id="Gradient_6h4vt"]
-offsets = PackedFloat32Array(0.3445946, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wraqo"]
-gradient = SubResource("Gradient_6h4vt")
-fill = 1
-fill_from = Vector2(0.46969697, 0.5050505)
-fill_to = Vector2(0.8632075, 0.22169812)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wraqo"]
-shader = ExtResource("8_6h4vt")
-shader_parameter/alpha = SubResource("GradientTexture2D_wraqo")
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmhg"]
 radius = 9.0
 height = 56.0
@@ -979,11 +964,8 @@ collision_mask = 136
 collide_with_areas = true
 script = ExtResource("150_2va3f")
 
-[node name="InteractionIcon" type="Sprite2D" parent="InteractionRay" unique_id=279337970]
-z_index = 2
-material = SubResource("ShaderMaterial_wraqo")
+[node name="InteractionIcon" parent="InteractionRay" unique_id=1579403067 instance=ExtResource("8_6fff4")]
 position = Vector2(0, 49)
-texture = ExtResource("8_6fff4")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=832514264]
 position = Vector2(0, -17)

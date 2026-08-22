@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dd2uqbjul1fue"]
+
+[ext_resource type="Shader" uid="uid://cdx6elvesqeri" path="res://Characters/Player/Scripts/InteractionIcon.gdshader" id="1_637eb"]
+[ext_resource type="Texture2D" uid="uid://dr7ojdborfpou" path="res://Assets/UI/InteractionIcon/InteractionIcon.png" id="2_736mv"]
+
+[sub_resource type="Gradient" id="Gradient_6h4vt"]
+offsets = PackedFloat32Array(0.3445946, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wraqo"]
+gradient = SubResource("Gradient_6h4vt")
+fill = 1
+fill_from = Vector2(0.46969697, 0.5050505)
+fill_to = Vector2(0.8632075, 0.22169812)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wraqo"]
+shader = ExtResource("1_637eb")
+shader_parameter/alpha = SubResource("GradientTexture2D_wraqo")
+
+[node name="InteractionIcon" type="Sprite2D" unique_id=1579403067]
+z_index = 2
+material = SubResource("ShaderMaterial_wraqo")
+texture = ExtResource("2_736mv")

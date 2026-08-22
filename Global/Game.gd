@@ -4,7 +4,6 @@
 	# "update" is progressing the simulation based on input
 extends Node2D
 
-const DUNGEON_MUSIC = "res://Music/DungeonMusic.ogg"
 const DEATH_MUSIC = "res://Music/DeathMusic.ogg"
 @onready var hud = $CanvasLayer/HUD
 @onready var pause_menu = $CanvasLayer/PauseMenu
@@ -46,7 +45,7 @@ func new_game():
 	_save.player = _player
 	init_player()
 	player.init_for_newgame()
-	SceneTransition.enter_scene("Dungeons/01/01-01.tscn")
+	SceneTransition.enter_scene("Dungeons/00/00-05.tscn", Vector2(-100,-10))
 
 func _prompt_player(text, on_yes, on_no, yes_text = "yes", no_text = "no"):
 	var prompt = load("res://UI/Prompt.tscn").instantiate()
@@ -459,11 +458,13 @@ func _ready():
 	
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)
+	current_scene.newgame_button.pressed.connect(new_game)
 	
 	ItemCollection.item_collected.connect(hud.on_item_collected)
 	ItemCollection.item_collected.connect(ItemCollection.on_item_collected)
 	SceneTransition.new_scene.connect(on_new_scene)
 	SceneTransition.won.connect(on_won)
+
 	get_tree().paused = true
 
 func save_current_scene():

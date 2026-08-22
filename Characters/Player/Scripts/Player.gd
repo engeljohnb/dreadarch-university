@@ -19,6 +19,7 @@ signal item_equipped(item, count)
 @onready var sprite = $AnimatedSprite2D
 @onready var step_sound = $StepSound
 @onready var camera = $Camera2D
+@onready var interaction_ray = $InteractionRay
 
 
 const LEFT = Vector2(-1, 0)
@@ -88,7 +89,6 @@ func init_for_newgame():
 	zero_inventory()
 	life = 3
 	total_life = 3
-	position = Vector2()
 	
 func on_scroll_fragment_translated(scroll_fragment):
 	for scroll in documents:

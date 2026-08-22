@@ -1,5 +1,6 @@
 extends Control
 
+
 @onready var newgame_button = $Buttons/NewGame
 @onready var loadgame_button = $Buttons/LoadGame
 @onready var quit_button = $Buttons/Quit
@@ -51,8 +52,9 @@ func hide_all():
 	quit_button.visible = false
 	quit_button.focus_mode = FocusMode.FOCUS_NONE
 
-func on_new_game():
-	SceneTransition.enter_scene("Dungeons/01/01-01.tscn")
+#func on_new_game():
+#	new_game.emit()
+	#SceneTransition.enter_scene("Dungeons/01/01-01.tscn")
 	
 func on_quit():
 	get_tree().quit()
@@ -68,7 +70,7 @@ func init_sounds():
 	quit_button.focus_exited.connect(menu_select_sound.play)
 	
 func _ready():
-	newgame_button.pressed.connect(on_new_game)
+	#newgame_button.pressed.connect(on_new_game)
 	quit_button.pressed.connect(on_quit)
 	total_energy = lamplight.energy
 	feedback_button.pressed.connect(on_feedback)

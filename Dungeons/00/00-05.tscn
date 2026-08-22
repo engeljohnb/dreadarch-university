@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://b27m84lv4cl57" path="res://Assets/Tiles/HomeInterior/HomeAttic.png" id="2_05q5l"]
 [ext_resource type="PackedScene" uid="uid://m13guvu1fxgg" path="res://Items/Ladder/LadderTop.tscn" id="3_wbhm8"]
 [ext_resource type="Texture2D" uid="uid://byjvsilmuj462" path="res://Assets/Decoration/HomeInterior/ChimneySegments.png" id="4_7hjbj"]
+[ext_resource type="PackedScene" uid="uid://dd2uqbjul1fue" path="res://UI/InteractionCursor.tscn" id="5_43ff0"]
+[ext_resource type="Script" uid="uid://dp0tfp8k0buw5" path="res://Dungeons/Scripts/FirstRoomTutorial.gd" id="5_cwf0t"]
+[ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="6_r30ie"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wbhm8"]
 texture = ExtResource("2_05q5l")
@@ -55,7 +58,7 @@ fill_from = Vector2(0.25213677, 0.115384616)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wbhm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hjbj"]
-size = Vector2(479.14374, 17.483673)
+size = Vector2(583.9807, 12.598801)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43ff0"]
 size = Vector2(188.59174, 7.603119)
@@ -64,7 +67,29 @@ size = Vector2(188.59174, 7.603119)
 size = Vector2(312.32355, 5.888892)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k7fg"]
-size = Vector2(14783.315, 0.61414385)
+size = Vector2(18427.09, 0.61414385)
+
+[sub_resource type="Theme" id="Theme_43ff0"]
+default_font = ExtResource("6_r30ie")
+
+[sub_resource type="Gradient" id="Gradient_r30ie"]
+offsets = PackedFloat32Array(0.9722222, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7k7fg"]
+gradient = SubResource("Gradient_r30ie")
+width = 113
+height = 101
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.96153843, 0.008547009)
+
+[sub_resource type="GDScript" id="GDScript_7k7fg"]
+script/source = "extends Decoration
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwf0t"]
+size = Vector2(97, 142)
 
 [node name="00-05" type="Node2D" unique_id=1912938039]
 script = ExtResource("1_0cupr")
@@ -74,7 +99,7 @@ metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2066130451 groups=["FloorLayer"]]
 modulate = Color(0.29586658, 0.29586646, 0.29586652, 1)
-tile_map_data = PackedByteArray("AAABAP7/AQABAAAAAAABAP//AQABAAEAAAABAAAAAQABAAIAAAABAAEAAQABAAMAAAACAP7/AQABAAAAAAACAP//AQABAAEAAAACAAAAAQABAAIAAAACAAEAAQABAAMAAAADAP7/AQABAAAAAAADAP//AQABAAEAAAADAAAAAQABAAIAAAADAAEAAQABAAMAAAAEAP7/AQABAAAAAAAEAP//AQABAAEAAAAEAAAAAQABAAIAAAAEAAEAAQABAAMAAAAFAP7/AQABAAAAAAAFAP//AQABAAEAAAAFAAAAAQABAAIAAAAFAAEAAQABAAMAAAAGAP7/AQABAAAAAAAGAP//AQABAAEAAAAGAAAAAQABAAIAAAAGAAEAAQABAAMAAAAHAP7/AQABAAAAAAAHAP//AQABAAEAAAAHAAAAAQABAAIAAAAHAAEAAQABAAMAAAAIAP7/AQACAAAAAAAIAP//AQACAAEAAAAIAAAAAQACAAIAAAAIAAEAAQADAAIAAAAIAAIAAQADAAMAAAD///7/AQAAAAAAAAD/////AQAAAAEAAAD//wAAAQAAAAIAAAD//wEAAQAAAAMAAAAAAP7/AQABAAAAAAAAAP//AQABAAEAAAAAAAAAAQABAAIAAAAAAAEAAQABAAMAAAA=")
+tile_map_data = PackedByteArray("AAABAAAAAQABAAIAAAABAAEAAQABAAMAAAACAAAAAQABAAIAAAACAAEAAQABAAMAAAADAAAAAQABAAIAAAADAAEAAQABAAMAAAAEAAAAAQABAAIAAAAEAAEAAQABAAMAAAAFAAAAAQABAAIAAAAFAAEAAQABAAMAAAAGAAAAAQABAAIAAAAGAAEAAQABAAMAAAAHAAAAAQABAAIAAAAHAAEAAQABAAMAAAAIAAAAAQACAAIAAAAIAAEAAQADAAIAAAAIAAIAAQADAAMAAAAAAAAAAQABAAIAAAAAAAEAAQABAAMAAAAAAP7/AQABAAEAAAABAP7/AQABAAEAAAACAP7/AQABAAEAAAADAP7/AQABAAEAAAAEAP7/AQABAAEAAAAFAP7/AQABAAEAAAAGAP7/AQABAAEAAAAHAP7/AQABAAEAAAAIAP7/AQACAAEAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQABAAAAAAAHAP3/AQABAAAAAAAIAP3/AQACAAAAAAAAAP//AQABAAIAAAABAP//AQABAAIAAAACAP//AQABAAIAAAADAP//AQABAAIAAAAEAP//AQABAAIAAAAFAP//AQABAAIAAAAGAP//AQABAAIAAAAHAP//AQABAAIAAAAIAP//AQACAAIAAAD9//3/AQAAAAAAAAD9//7/AQAAAAEAAAD9////AQAAAAIAAAD9/wAAAQAAAAIAAAD9/wEAAQAAAAMAAAD///3/AQABAAAAAAD///7/AQABAAEAAAD/////AQABAAIAAAD//wAAAQABAAIAAAD//wEAAQABAAMAAAD+//3/AQABAAAAAAD+//7/AQABAAEAAAD+////AQABAAIAAAD+/wAAAQABAAIAAAD+/wEAAQABAAMAAAA=")
 tile_set = SubResource("TileSet_0lbud")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1615297304]
@@ -103,7 +128,7 @@ collision_mask = 32
 physics_material_override = SubResource("PhysicsMaterial_wbhm8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=917727065]
-position = Vector2(510.5, 609)
+position = Vector2(443, 550)
 scale = Vector2(1.2877138, 2.2224324)
 shape = SubResource("RectangleShape2D_7hjbj")
 
@@ -114,12 +139,12 @@ scale = Vector2(0.9517916, 2.2751427)
 shape = SubResource("RectangleShape2D_43ff0")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" unique_id=1551319136]
-position = Vector2(198, 675.0935)
+position = Vector2(72.000015, 653.00006)
 scale = Vector2(0.038421694, 30.937393)
 shape = SubResource("RectangleShape2D_r30ie")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" unique_id=1876877449]
-position = Vector2(485, 750.5)
+position = Vector2(415, 750.5)
 scale = Vector2(0.038421694, 30.937393)
 shape = SubResource("RectangleShape2D_7k7fg")
 
@@ -136,3 +161,35 @@ texture = ExtResource("4_7hjbj")
 position = Vector2(355, -81)
 scale = Vector2(0.73583746, 0.73583746)
 texture = ExtResource("4_7hjbj")
+
+[node name="Tutorial" type="Node2D" parent="." unique_id=855592094]
+position = Vector2(191, 23)
+script = ExtResource("5_cwf0t")
+
+[node name="InteractionIcon" parent="Tutorial" unique_id=1579403067 instance=ExtResource("5_43ff0")]
+modulate = Color(1, 1, 1, 0.693)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial" unique_id=1937620296]
+modulate = Color(1, 1, 1, 0.88900006)
+offset_left = -48.0
+offset_top = -52.0
+offset_right = 60.0
+offset_bottom = -24.0
+theme = SubResource("Theme_43ff0")
+text = "Z for Tutorial"
+
+[node name="Border" type="Sprite2D" parent="Tutorial" unique_id=236524937]
+modulate = Color(1, 1, 1, 0.245)
+position = Vector2(5, 1)
+texture = SubResource("GradientTexture2D_7k7fg")
+
+[node name="Decoration" type="Area2D" parent="Tutorial" unique_id=1550314830 groups=["Interactable"]]
+collision_layer = 8
+collision_mask = 8
+script = SubResource("GDScript_7k7fg")
+interaction_message = Array[String](["Press Z to search things, interact with things, or talk to people."])
+metadata/_custom_type_script = "uid://dk8r88sncv36u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Decoration" unique_id=119357525]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_cwf0t")
