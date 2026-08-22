@@ -1,6 +1,7 @@
 extends Control
 
 func close_prompt():
+	Dialogue.dialogue_ended.emit()
 	get_tree().paused = false
 	queue_free()
 	

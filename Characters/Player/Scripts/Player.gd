@@ -98,9 +98,7 @@ func on_scroll_fragment_translated(scroll_fragment):
 func handle_collected_document(document : Dictionary, count : int):
 	if count > 0:
 		document["collected"] = true
-		if documents.is_empty():
-			ItemCollection.prompt_to_read_scroll_fragment()
-		elif documents.size() == ItemCollection.fragments_to_level_up-1:
+		if documents.size() == ItemCollection.fragments_to_level_up-1:
 			Dialogue.open_dialogue.emit(level_up_dialogue)
 		documents.append(document)
 	elif count < 0:

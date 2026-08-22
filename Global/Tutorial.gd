@@ -5,9 +5,7 @@ signal message_ended
 var messages_shown = {
 		ItemCollection.TALONS : false,
 		ItemCollection.NECTAR : false,
-		ItemCollection.SCROLL_FRAGMENT : true,
-		#TODO: Make this not necessary
-		"stupid_first_shelf_thing" : false
+		ItemCollection.SCROLL_FRAGMENT : false
 }
 var messages = {
 	ItemCollection.TALONS:[
@@ -43,15 +41,13 @@ func message_shown(item : Variant) -> bool:
 	return true
 	
 func show_message(item):
-	if ItemCollection.is_scroll_fragment(item):
-		if not messages_shown[ItemCollection.SCROLL_FRAGMENT]:
-			messages_shown[ItemCollection.SCROLL_FRAGMENT] = true
-	else:
-		if not messages_shown[item]:
-			Dialogue.notify_player.emit(messages[item])
-			messages_shown[item] = true
+	if not messages_shown[item]:
+		Dialogue.notify_player.emit(messages[item])
+		messages_shown[item] = true
 	
 func load_completed_tutorial_prompts(completed):
+	for key in messages_shown:
+		messages_shown[key] = false
 	for c in completed:
 		messages_shown[int(c)] = true
 	
@@ -61,4 +57,3 @@ func get_completed_tutorial_prompts():
 		if messages_shown[key]:
 			completed.append(int(key))
 	return completed
-	

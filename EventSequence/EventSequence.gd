@@ -16,7 +16,7 @@ class Event:
 		pass
 	func end():
 		queue_free()
-	func _process(delta : float) -> void:
+	func _process(_delta : float) -> void:
 		pass
 		
 class NotificationEvent:
@@ -32,6 +32,17 @@ class NotificationEvent:
 				Tutorial.show_message(tutorial_key)
 		else:
 			Dialogue.notify_player.emit(message)
+	
+class PromptEvent:
+	extends Event
+	var message : String
+	var on_yes : Callable
+	var on_no : Callable
+	var yes_text : String = "Yes"
+	var no_text : String = "No"
+	func start():
+		Dialogue.dialogue_ended.connect(_set_finished.bind(true))
+		Dialogue.prompt_player.emit(message, on_yes, on_no, yes_text, no_text)
 	
 class DialogueEvent:
 	extends Event
@@ -76,25 +87,44 @@ func _process(_delta):
 				#   so process has to be called manually. 
 				event._process(_delta)
 
-func add_event(event : Event):
+func add_event(event : Event) -> Event:
 	queue.append(event)
+	return event
 
-func add_dialogue_event(dialogue : Array):
+func add_dialogue_event(dialogue : Array) -> DialogueEvent:
 	var event = DialogueEvent.new()
 	event.dialogue = dialogue
 	add_event(event)
+	return event
 	
-func add_notification_event(message : Array = [], tutorial_key : int = ItemCollection.IDs.MAX_TYPES):
+func add_notification_event(message : Array = [], tutorial_key : int = ItemCollection.IDs.MAX_TYPES) -> NotificationEvent:
 	var event = NotificationEvent.new()
 	event.message = message
 	event.tutorial_key = tutorial_key
 	add_event(event)
+	return event
 	
-func add_found_item_event(item : Variant, count : int = 1):
+func add_found_item_event(item : Variant, count : int = 1, dialogue_quote : String = "") -> FoundItemEvent:
 	var event = FoundItemEvent.new()
+	event.dialogue_quote = dialogue_quote
 	event.item = item
 	event.count = count
 	add_event(event)
+	return event
 
+func add_prompt_event(message : String, on_yes : Callable, on_no : Callable, yes_text := "Yes", no_text := "No") -> PromptEvent:
+	var event = PromptEvent.new()
+	event.message = message
+	event.on_yes = on_yes
+	event.on_no = on_no
+	event.yes_text = yes_text
+	event.no_text = no_text
+	add_event(event)
+	return event
+	
 func start_events():
 	_started = true
+
+func remove_event(event : Event):
+	queue.erase(event)
+	event.queue_free()

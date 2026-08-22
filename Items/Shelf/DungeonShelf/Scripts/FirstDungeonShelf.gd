@@ -1,8 +1,6 @@
 extends Pot
 
 var _waiting_for_dialogue := false
-var _ui : Variant = null
-var _c : int = 0
 var search_shelf_dialogue = [
 	{
 		"text":"Looks like the military picked it clean.",
@@ -13,6 +11,17 @@ var search_shelf_dialogue = [
 		"speaker":"Player"
 	}
 ]
+var found_scroll_dialogue = [
+	{
+			"text":"It's in Latin.",
+			"speaker":"Player"
+		},
+		{
+			"text":"I should've paid more attention in class.",
+			"speaker":"Player"
+		}
+]
+
 
 func on_blinker_flipped(state):
 	if state:
@@ -21,28 +30,37 @@ func on_blinker_flipped(state):
 		modulate = Color(1,1,1)
 
 func is_first_search():
-	return not Tutorial.message_shown("stupid_first_shelf_thing")
+	return not Tutorial.message_shown(ItemCollection.SCROLL_FRAGMENT)
 		
+func _remove_events(seq : EventSequence, events : Array):
+	for event in events:
+		seq.remove_event(event)
+		
+func _launch_event_sequence():
+	var seq : EventSequence = EventSequence.new()
+	var prompt = "You found a scroll fragment! Do you want to read it?"
+	var on_yes = func(): pass
+	var on_no = func(): pass
+	
+	seq.add_dialogue_event(search_shelf_dialogue)
+	var prompt_event = seq.add_prompt_event(prompt, on_yes, on_no)
+	seq.add_found_item_event(ItemCollection.SCROLL_FRAGMENT, 1, "Aelia...")
+	var dialogue_event = seq.add_dialogue_event(found_scroll_dialogue)
+	
+	prompt_event.on_no = _remove_events.bind(seq, [prompt_event, dialogue_event])
+	
+	add_child(seq)
+	seq.start_events()
+	
 func activate(using_item : Variant = null, count : int = 1):
 	var first_search = is_first_search()
 	if first_search:
-		Tutorial.messages_shown["stupid_first_shelf_thing"] = true
-		Dialogue.open_dialogue.emit(search_shelf_dialogue)
-		_waiting_for_dialogue = true
-		_ui = using_item
-		_c = count
+		_launch_event_sequence()
+		Tutorial.messages_shown[ItemCollection.SCROLL_FRAGMENT] = true
 	else:
 		has.clear()
 		search(using_item, count)
 		
-func _process(_delta):
-	if _waiting_for_dialogue:
-		if not Dialogue.dialogue_open():
-			_waiting_for_dialogue = false
-			if _ui == null:
-				search(null, 1, "Aelia...")
-			else:
-				search(_ui, _c)
 
 func _ready():
 	$Blinker.flip.connect(on_blinker_flipped)

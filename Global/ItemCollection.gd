@@ -174,9 +174,6 @@ func on_scroll_frag_yes():
 	Dialogue.open_document.emit()
 	Tutorial.messages_shown[ItemCollection.SCROLL_FRAGMENT] = false
 	
-func disable_scroll_fragment_tutorial():
-	Tutorial.messages_shown[ItemCollection.SCROLL_FRAGMENT] = true
-	
 func on_scroll_frag_no():
 	pass
 	
