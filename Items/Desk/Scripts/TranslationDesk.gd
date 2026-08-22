@@ -6,7 +6,9 @@ var canvas = null
 func _ready():
 	interaction_message = "Z to translate"
 func on_closed():
-	canvas.queue_free()
+	# Idk it crashed once.
+	if canvas != null:
+		canvas.queue_free()
 	
 func activate(_using_item : Variant = null, _count = 0):
 	var scroll_frags = get_tree().get_nodes_in_group("Player")[0].documents

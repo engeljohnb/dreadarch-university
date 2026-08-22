@@ -1,0 +1,46 @@
+extends Node
+const MUSIC_DIRECTORY = "res://Music/"
+
+enum {
+	DUNGEON_MUSIC,
+	INTRO_MUSIC,
+	ALCHEMY_LAB_MUSIC,
+	DEATH_MUSIC,
+	OVERWORLD_MUSIC,
+	UNIVERSITY_MUSIC,
+	HOME_INTERIOR_MUSIC,
+	SHALLOW_RUINS_MUSIC
+}
+	
+var all_tracks = [
+	{"name":"DungeonMusic", "path":MUSIC_DIRECTORY + "DungeonMusic.ogg", "volume":-7.3},
+	{"name":"IntroMusic", "path":MUSIC_DIRECTORY + "IntroMusic.ogg", "volume":0.0},
+	{"name":"AlchemyLabMusic", "path":MUSIC_DIRECTORY + "AlchemyLabMusic.ogg", "volume":0.0},
+	{"name":"DeathMusic", "path":MUSIC_DIRECTORY + "DeathMusic.ogg", "volume":0.0},
+	{"name":"OverworldMusic", "path":MUSIC_DIRECTORY + "OverworldMusic.ogg", "volume":10.0},
+	{"name":"UniversityMusic", "path":MUSIC_DIRECTORY + "UniversityMusic.ogg", "volume":-25.0},
+	{"name":"HomeInteriorMusic", "path":MUSIC_DIRECTORY + "HomeInteriorMusic.ogg", "volume":2.0},
+	{"name":"ShallowRuinsMusic", "path":MUSIC_DIRECTORY + "ShallowRuinsMusic.ogg", "volume":2.5}
+]
+
+var tracks_by_room = [
+	{"01-01" : SHALLOW_RUINS_MUSIC},
+	{"01-02" : SHALLOW_RUINS_MUSIC},
+	{"01-03" : ALCHEMY_LAB_MUSIC},
+	{"01-04" : UNIVERSITY_MUSIC},
+	{"01-05" : SHALLOW_RUINS_MUSIC},
+	{"00-01" : OVERWORLD_MUSIC},
+	{"00-02" : OVERWORLD_MUSIC},
+	{"00-03" : UNIVERSITY_MUSIC},
+	{"00-04" : HOME_INTERIOR_MUSIC},
+	{"00-05" : HOME_INTERIOR_MUSIC},
+	{"00-06" : OVERWORLD_MUSIC}
+]
+
+func get_music_track_from_room_name(room_name : String) -> Dictionary:
+	for track in tracks_by_room:
+		var track_index = track.get(room_name)
+		if track_index != null:
+			return all_tracks[track_index]
+	Error.error("invalid room name: " + room_name)
+	return {}

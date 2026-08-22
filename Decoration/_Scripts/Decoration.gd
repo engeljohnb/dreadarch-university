@@ -20,7 +20,6 @@ func _ready():
 	
 func activate(_using_item = null, _count = 0):
 	if not interaction_message.is_empty():
-		breakpoint
 		Dialogue.notify_player.emit(_int_msg)
 	elif not interaction_dialogue.is_empty():
 		Dialogue.open_dialogue.emit(interaction_dialogue)

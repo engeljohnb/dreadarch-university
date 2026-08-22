@@ -164,13 +164,13 @@ var retiring_dialogue = [
 	}
 ]
 
-
 func init():
-	status = {
-		"gone" : false,
-		"introduced" : false,
-		"offered_failed_bribe" : false
-	}
+	# This is here from before I implemented check_status,
+	#  it works so it stays.
+	if status.get("introduced") == null:
+		status["introduced"] = false
+	if status.get("offered_failed_bribe") == null:
+		status["offered_failed_bribe"] = false
 	sprite.play("Idle")
 
 func offering_inadequate_bribe(using_item : Variant, item_count):

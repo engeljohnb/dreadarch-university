@@ -13,7 +13,7 @@ var total_enemies = 0
 var exorcised = false
 
 func init_music():
-	var music_track = Music.get_music_track_from_room_name(SceneTransition.current_scene_name)
+	var music_track = MusicSelection.get_music_track_from_room_name(SceneTransition.current_scene_name)
 	if not music_track.is_empty():
 		music = music_track["path"]
 		music_volume = music_track["volume"]

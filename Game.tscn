@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bq2lvogek4uis" path="res://UI/Hud.tscn" id="2_xkndl"]
 [ext_resource type="PackedScene" uid="uid://ctcsa2iivywjj" path="res://UI/PauseMenu.tscn" id="3_u44n3"]
 [ext_resource type="AudioStream" uid="uid://cw6stupps6s14" path="res://Assets/Sounds/CloseMenu.mp3" id="4_sb48q"]
-[ext_resource type="Script" uid="uid://dbuo31ijjr74k" path="res://Global/Music.gd" id="4_t88pq"]
+[ext_resource type="Script" uid="uid://dbuo31ijjr74k" path="res://Music/Scripts/Music.gd" id="4_t88pq"]
 
 [sub_resource type="Gradient" id="Gradient_t88pq"]
 offsets = PackedFloat32Array(0)

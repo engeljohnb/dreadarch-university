@@ -11,13 +11,14 @@ var _blink_duration := 0.5
 var _icon_state := false
 
 func check_for_interactable():
-	if is_colliding(): 
+	if is_colliding():
 		var col = get_collider()
 		# IDk it randomly crashed once bc col was null. I think it's because it intersects with
 		# ONe of the enemy's projectiles right as the enemy's killed -- freeing all the projectiles.
 		if col == null:
 			return
-		# TODO: Would col is Interactable work?
+		# col is Interactable wouldn't work because not every interactable thing 
+		#  is of the Interactable type.
 		if col.is_in_group("Interactable"):
 			_icon_state = true
 			if not get_parent().in_dialogue:
@@ -44,8 +45,10 @@ func _process(_delta):
 	icon.modulate = Color.WHITE
 	if Input.is_action_just_pressed("Interact"):
 		icon.position = target_position
-		check_for_interactable()
-		check_for_collectible()
+		# I still want the animation to play when a notification pops up
+		if not get_tree().paused:
+			check_for_interactable()
+			check_for_collectible()
 		# Here because there's one part when meeting Aurelia
 		#  when the player sits, and I don't want them to be able 
 		#  to click while sitting, and this is the only way to check

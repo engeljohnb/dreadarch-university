@@ -92,6 +92,9 @@ func is_scroll_fragment(document):
 		return false
 	return document.get("document_type") == ItemCollection.SCROLL_FRAGMENT
 
+func is_document(document):
+	return document is Dictionary
+	
 # Why isn't this stuff implemented in Collectible? Because I made 
 #  this first and it still works. 
 	

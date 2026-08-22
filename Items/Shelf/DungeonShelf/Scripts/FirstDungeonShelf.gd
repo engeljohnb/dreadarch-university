@@ -52,7 +52,7 @@ func _ready():
 	activated = false
 	blink_duration = 0.33
 	frame_counter = 0
-	has_overrides = []
+	player_placed_items = []
 	amounts = [1]
 	interaction_message = "Z to search"
 	_waiting_for_dialogue = false

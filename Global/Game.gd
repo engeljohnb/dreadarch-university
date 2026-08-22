@@ -162,10 +162,10 @@ func save_room_interactables(scene_node : Node2D, interactables : Array):
 	var saved_npcs = []
 	for i in interactables:
 		if i is Pot:
-			if (not i.activated) and (not i.has_overrides.is_empty()):
-				if ItemCollection.GOLDEN_DAGGER in i.has_overrides:
-					i.has_overrides.erase(ItemCollection.GOLDEN_DAGGER)
-				scene_node.save_data["pots"].append({"name":i.name,"has":i.has_overrides,"amounts":i.amounts})
+			if (not i.activated) and (not i.player_placed_items.is_empty()):
+				if ItemCollection.GOLDEN_DAGGER in i.player_placed_items:
+					i.player_placed_items.erase(ItemCollection.GOLDEN_DAGGER)
+				scene_node.save_data["pots"].append({"name":i.name,"has":i.player_placed_items,"amounts":i.amounts})
 		elif i is NPC:
 			if "status" in i:
 				var npc = {"name":i.name, "status":i.status}
@@ -207,16 +207,17 @@ func save_room_node(scene_node : Node2D, scene_name : String):
 	save_room_treasures(scene_node)
 	_save.rooms[scene_name] = scene_node.save_data
 
-
-
 func load_room_interactables_save_data(scene_node : Node2D):
 	var scene_path = str(get_path_to(scene_node))
 	if _save.rooms[SceneTransition.current_scene_name].get("pots"):
 		for i in _save.rooms[SceneTransition.current_scene_name]["pots"]:
 			var pot = get_node(NodePath(scene_path + "/Pots/" + i["name"]))
 			pot.activated = false
-			pot.has_overrides = i["has"]
+			pot.player_placed_items = i["has"]
 			pot.amounts = i["amounts"]
+			for j in pot.player_placed_items.size():
+				if pot.player_placed_items[j] is float:
+					pot.player_placed_items[j] = int(pot.player_placed_items[j])
 	if _save.rooms[SceneTransition.current_scene_name].get("NPCs"):
 		for i in _save.rooms[SceneTransition.current_scene_name]["NPCs"]:
 			var npc = get_node(NodePath(scene_path + "/NPCs/" + i["name"]))
@@ -389,7 +390,6 @@ func open_load_game_menu(pos = null):
 			pause_menu.hide_all()
 			menu.closed.connect(pause_menu.show_all)
 		hud.add_child(menu)
-	#load_game()
 	
 func get_all_save_filenames():
 	var saves : Array[String]

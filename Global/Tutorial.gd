@@ -43,7 +43,6 @@ func message_shown(item : Variant) -> bool:
 func show_message(item):
 	if ItemCollection.is_scroll_fragment(item):
 		if not messages_shown[ItemCollection.SCROLL_FRAGMENT]:
-			Dialogue.open_dialogue.emit(messages[ItemCollection.SCROLL_FRAGMENT])
 			messages_shown[ItemCollection.SCROLL_FRAGMENT] = true
 	else:
 		if not messages_shown[item]:

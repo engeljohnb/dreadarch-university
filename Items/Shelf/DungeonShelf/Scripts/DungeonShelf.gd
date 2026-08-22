@@ -12,7 +12,7 @@ func _ready():
 	activated = false
 	blink_duration = 0.33
 	frame_counter = 0
-	has_overrides = []
+	player_placed_items = []
 	amounts = []
 	interaction_message = "Z to search"
 	var drop_generator = RandomNumberGenerator.new()

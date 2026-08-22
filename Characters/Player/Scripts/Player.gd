@@ -95,17 +95,27 @@ func on_scroll_fragment_translated(scroll_fragment):
 		if scroll["latin_text"] == scroll_fragment["latin_text"]:
 			scroll["translated"] = true
 	
+func handle_collected_document(document : Dictionary, count : int):
+	if count > 0:
+		document["collected"] = true
+		if documents.is_empty():
+			ItemCollection.prompt_to_read_scroll_fragment()
+		elif documents.size() == ItemCollection.fragments_to_level_up-1:
+			Dialogue.open_dialogue.emit(level_up_dialogue)
+		documents.append(document)
+	elif count < 0:
+		documents.erase(document)
+		
+func handle_golden_dagger_collected(count : int):
+	if count < 0:
+		inventory[ItemCollection.GOLDEN_DAGGER] = 0
+	else:
+		inventory[ItemCollection.GOLDEN_DAGGER] = 1
+		set_equipped(ItemCollection.GOLDEN_DAGGER)
+	
 func on_item_collected(item, count, _should_play_sound):
-	if item is Dictionary:
-		if count > 0:
-			item["collected"] = true
-			if documents.is_empty():
-				ItemCollection.prompt_to_read_scroll_fragment()
-			elif documents.size() == ItemCollection.fragments_to_level_up-1:
-				Dialogue.open_dialogue.emit(level_up_dialogue)
-			documents.append(item)
-		elif count < 0:
-			documents.erase(item)
+	if ItemCollection.is_document(item):
+		handle_collected_document(item, count)
 		return
 	if item == ItemCollection.HEART:
 		gain_life(1)
@@ -114,15 +124,11 @@ func on_item_collected(item, count, _should_play_sound):
 		inventory[item] = count
 	else:
 		inventory[item] += count
-	if not item_available(item):
+	if inventory[item] < 0:
 		inventory[item] = 0
 	if item == ItemCollection.GOLDEN_DAGGER:
-		if count < 0:
-			inventory[ItemCollection.GOLDEN_DAGGER] = 0
-		else:
-			inventory[ItemCollection.GOLDEN_DAGGER] = 1
-			set_equipped(item)
-		
+		handle_golden_dagger_collected(count)
+			
 func direction_just_released():
 	return (Input.is_action_just_released("Left")
 		or Input.is_action_just_released("Right")
@@ -248,29 +254,30 @@ func end_cutscene(to_idle = true, direction = facing):
 func is_cutscene_over():
 	return cutscene_timer >= cutscene_duration
 	
+
 func play_door_cutscene_walk_animation(dir, arriving):
 	match dir:
 			"North":
-				if equipped == ItemCollection.GOLDEN_DAGGER:
+				if golden_dagger_equipped:
 					sprite.play("Walk Knife Up")
 				else:
 					sprite.play("Walk Up")
 				if arriving:
 					door_cutscene["min_scale"] = 1.2
 			"South":
-				if equipped == ItemCollection.GOLDEN_DAGGER:
+				if golden_dagger_equipped:
 					sprite.play("Walk Knife Down")
 				else:
 					sprite.play("Walk Down")
 				if not arriving:
 					door_cutscene["min_scale"] = 1.2
 			"West":
-				if equipped == ItemCollection.GOLDEN_DAGGER:
+				if golden_dagger_equipped:
 					sprite.play("Walk Knife Left")
 				else:
 					sprite.play("Walk Left")
 			"East":
-				if equipped == ItemCollection.GOLDEN_DAGGER:
+				if golden_dagger_equipped:
 					sprite.play("Walk Knife Right")
 				else:
 					sprite.play("Walk Right")
@@ -564,10 +571,10 @@ func on_blinker_flip(state):
 	else:
 		set_modulate(Color(1,1,1))
 func on_dialogue_opened(_dialogue):
+	set_state_machine_state("End")
 	$AnimatedSprite2D.play("Idle " + Utils.nearest_cardinal_direction(facing, true))
-	set_state_machine_state("Idle")
 	
-func _ready():
+func _ready(): 
 	get_tree().paused = true
 	blinker.flip.connect(on_blinker_flip)
 	reset_inventory()
@@ -596,11 +603,8 @@ func set_equipped(item : int):
 func on_inventory_action_chosen(action, item, count):
 	match action:
 		"Use":
-			$InteractionRay.temp_message = "Z to " + action
 			$InteractionRay.using_item = item
 			$InteractionRay.using_item_count = count
-			if $InteractionRay.message_showing:
-				$InteractionRay.message.text = "Z to " + action
 		"Equip":
 			set_equipped(item)
 		"Drink":
@@ -636,7 +640,8 @@ func item_available(item) -> bool:
 	if inventory.get(item) == null:
 		return false
 	if inventory.get(item) is Dictionary:
-		return true
+		Error.error("Document detected in the non-document inventory.")
+		return false
 	return inventory[item] > 0
 	
 func item_equippable(item) -> bool:
@@ -790,7 +795,6 @@ func _process(delta):
 			stupid_post_door_cutscene_correction()
 	#else:
 	#	set_state_machine_state("End")
-
 	
 # I can't figure out another way to solve the moonwalking bugs.
 var _c = 0
