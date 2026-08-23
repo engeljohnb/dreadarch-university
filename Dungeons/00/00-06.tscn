@@ -36,8 +36,7 @@ size = Vector2(79, 1391)
 
 [node name="00-06" type="Node2D" unique_id=714027877]
 script = ExtResource("1_8pm71")
-music = "res://Music/OverworldMusic.ogg"
-player_light_on = false
+default_light_on = false
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
 [node name="UniversityPlantTiles" parent="." unique_id=1215643145 instance=ExtResource("2_q5pgn")]

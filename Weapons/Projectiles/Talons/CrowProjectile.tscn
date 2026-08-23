@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ca0orotistvqw"]
+[gd_scene format=3 uid="uid://cd2vgedkkb15w"]
 
 [ext_resource type="Script" uid="uid://c7oo7ofgvo6b3" path="res://Weapons/Projectiles/Talons/CrowProjectile.gd" id="1_c6877"]
 [ext_resource type="SpriteFrames" uid="uid://d37cvije2wlux" path="res://Weapons/Projectiles/Talons/CrowProjectileSpriteframes.tres" id="2_nl4gd"]
@@ -620,6 +620,7 @@ texture = SubResource("GradientTexture2D_m0ud5")
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=1410925561]
 stream = ExtResource("16_ookoj")
+volume_db = -3.04
 
 [node name="Death" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=593951645]
 stream = ExtResource("17_ookoj")

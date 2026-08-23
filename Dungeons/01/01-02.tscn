@@ -851,7 +851,7 @@ next_scene = "res://Dungeons/01/01-04.tscn"
 
 [node name="Door2" parent="." unique_id=1213004506 instance=ExtResource("1_hccqk")]
 position = Vector2(-7544, -23)
-next_start_position = Vector2(0, 3817)
+next_start_position = Vector2(223, 1641)
 next_scene = "res://Dungeons/01/01-03.tscn"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1376860362]

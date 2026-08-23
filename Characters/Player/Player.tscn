@@ -883,6 +883,17 @@ states/Walk/position = Vector2(382, 241)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ey64d"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_agvow"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_nahvi")]
 graph_offset = Vector2(23.7683, 82.7943)
 
+[sub_resource type="Gradient" id="Gradient_6fff4"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6h4vt"]
+gradient = SubResource("Gradient_6fff4")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.4871795, 0.50427353)
+fill_to = Vector2(0.8119658, 0.14957266)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmhg"]
 radius = 9.0
 height = 56.0
@@ -928,7 +939,14 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=302395096]
 zoom = Vector2(1.5, 1.5)
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1982829775]
+[node name="LowRangeLight" type="PointLight2D" parent="." unique_id=812505896]
+visible = false
+position = Vector2(-7.6293945e-06, -19.999992)
+scale = Vector2(2.40625, 2.40625)
+energy = 4.0
+texture = SubResource("GradientTexture2D_6h4vt")
+
+[node name="DefaultLight" type="PointLight2D" parent="." unique_id=1982829775]
 position = Vector2(-0.999985, 3.50002)
 scale = Vector2(12.0312, 11.9844)
 color = Color(0.932758, 0.866686, 0.697715, 1)
@@ -936,7 +954,7 @@ energy = 3.0
 shadow_item_cull_mask = 19
 texture = ExtResource("148_yo137")
 
-[node name="PointLight2D" type="PointLight2D" parent="PointLight2D" unique_id=175653234]
+[node name="PointLight2D" type="PointLight2D" parent="DefaultLight" unique_id=175653234]
 light_mask = 4
 visibility_layer = 4
 position = Vector2(0.166233, -0.542375)

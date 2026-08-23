@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbih13xim6o3o"]
+[gd_scene format=3 uid="uid://bbih13xim6o3o"]
 
 [ext_resource type="Texture2D" uid="uid://bylpclpsu7xps" path="res://Assets/Decoration/Fire/0000.png" id="1_wtkkw"]
 [ext_resource type="Texture2D" uid="uid://danxlas0qm0m6" path="res://Assets/Decoration/Fire/0001.png" id="2_mmdtu"]
@@ -59,13 +59,13 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Torch" type="AnimatedSprite2D"]
+[node name="Torch" type="AnimatedSprite2D" unique_id=500713503]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_wu0uh")
 frame_progress = 0.88239807
 script = ExtResource("13_ypbt0")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1042237550]
 position = Vector2(-0.9999962, -13.000004)
 scale = Vector2(2.71875, 2.71875)
 color = Color(0.9999997, 0.8506041, 0.5971922, 1)

@@ -24,6 +24,7 @@ size = Vector2(1009, 885)
 [node name="00-03" type="Node2D" unique_id=51547128 groups=["Horizontal"]]
 process_priority = 5
 script = ExtResource("1_x1c8a")
+default_light_on = false
 
 [node name="BookTiles" parent="." unique_id=1141370287 instance=ExtResource("1_f8rm5")]
 position = Vector2(0, -191)

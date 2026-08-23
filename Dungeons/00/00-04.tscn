@@ -95,7 +95,7 @@ size = Vector2(268, 65)
 
 [node name="00-04" type="Node2D" unique_id=766342440]
 script = ExtResource("1_4snip")
-player_light_on = false
+default_light_on = false
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1447676216 groups=["FloorLayer"]]

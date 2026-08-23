@@ -341,6 +341,17 @@ func play_scene_entrance_cutscene():
 		player.play_climb_cutscene(0.0,
 		{"position":start_pos, "start_pos":start_pos, "direction":direction, "arriving":true})
 		
+func set_player_lights():
+	if current_scene.default_light_on:
+		player.turn_up_default_light()
+	else:
+		player.turn_down_default_light()
+	
+	if current_scene.low_range_light_on:
+		player.turn_up_low_range_light()
+	else:
+		player.turn_down_low_range_light()
+		
 func on_new_scene():
 	if SceneTransition.scene_changed():
 		if not (current_scene is Control):
@@ -352,10 +363,7 @@ func on_new_scene():
 	if _save.rooms.get(scene_name):
 		if not _save.rooms[scene_name].is_empty():
 			load_room_save_data(current_scene)
-	if current_scene.player_light_on:
-		player.turn_up_light()
-	else:
-		player.turn_down_light()
+	set_player_lights()
 	pause_menu.visible = false
 	load_player_for_new_scene()
 	play_scene_entrance_cutscene()

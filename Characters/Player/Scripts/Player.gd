@@ -14,7 +14,8 @@ signal item_equipped(item, count)
 @onready var anim_player = $AnimationPlayer
 @onready var hitbox = $Hitbox
 @onready var blinker = $Blinker
-@onready var light = $PointLight2D
+@onready var light = $DefaultLight
+@onready var low_range_light = $LowRangeLight
 @onready var attack_sound = $AttackSound
 @onready var sprite = $AnimatedSprite2D
 @onready var step_sound = $StepSound
@@ -687,12 +688,18 @@ func toggle_light():
 	else:
 		light.energy = 3.0
 		modulate = Color(1,1,1)
-func turn_down_light():
+func turn_down_default_light():
 	light.energy = 1.0
 	modulate = Color(1.3,1.3,1.3)
-func turn_up_light():
+func turn_up_default_light():
 	light.energy = 3.0
 	modulate = Color(1,1,1)
+	
+func turn_down_low_range_light():
+	low_range_light.visible = false
+	
+func turn_up_low_range_light():
+	low_range_light.visible = true
 	
 func update_equipment():
 	if Input.is_action_just_pressed("ChangeEquipmentLeft"):

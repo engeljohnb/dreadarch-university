@@ -29,7 +29,7 @@ size = Vector2(77, 156)
 [node name="00-02" type="Node2D" unique_id=1029984848]
 y_sort_enabled = true
 script = ExtResource("1_1xwj2")
-player_light_on = false
+default_light_on = false
 
 [node name="GroundTiles" parent="." unique_id=689394461 groups=["Horizontal"] instance=ExtResource("1_8dl3p")]
 position = Vector2(9, 0)
