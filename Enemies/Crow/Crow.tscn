@@ -14,7 +14,7 @@ height = 44.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qepe3"]
 radius = 20.0
-height = 54.0
+height = 74.0
 
 [node name="Crow" type="CharacterBody2D" unique_id=863658450]
 collision_layer = 10

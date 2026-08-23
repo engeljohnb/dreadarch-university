@@ -45,20 +45,16 @@ func activate(attacker : Variant, direction : Vector2 = attacker.facing):
 	call_deferred("free")
 	
 func transform_into(_weapon_type : int, _num_weapons : int = 1) -> Attack:
-	#weapon_node = Weapon.create_instance(_weapon_type)
 	num_weapons = _num_weapons
 	weapon_type = _weapon_type
-	#weapon_node.type = _weapon_type
 	return self
 	
 func transform_into_talons_attack(_num_weapons : int = 1) -> Attack:
-	#weapon_node = Weapon.create_instance(Weapon.Types.TALONS)
 	num_weapons = _num_weapons
 	weapon_type = Weapon.Types.TALONS
 	return self
 	
 func transform_into_orbiter_attack(_num_weapons : int = 1) -> Attack:
-	#weapon_node = Weapon.create_instance(Weapon.Types.ORBITER)
 	num_weapons = _num_weapons
 	weapon_type = Weapon.Types.ORBITER
 	return self

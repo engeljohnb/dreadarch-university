@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dd2uqbjul1fue" path="res://UI/InteractionCursor.tscn" id="5_43ff0"]
 [ext_resource type="Script" uid="uid://dp0tfp8k0buw5" path="res://Dungeons/Scripts/FirstRoomTutorial.gd" id="5_cwf0t"]
 [ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="6_r30ie"]
+[ext_resource type="Script" uid="uid://dk8r88sncv36u" path="res://Decoration/_Scripts/Decoration.gd" id="8_cwf0t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wbhm8"]
 texture = ExtResource("2_05q5l")
@@ -84,17 +85,11 @@ fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.96153843, 0.008547009)
 
-[sub_resource type="GDScript" id="GDScript_7k7fg"]
-script/source = "extends Decoration
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwf0t"]
 size = Vector2(49, 141)
 
 [node name="00-05" type="Node2D" unique_id=1912938039]
 script = ExtResource("1_7k7fg")
-music = "res://Music/HomeInteriorMusic.ogg"
-music_volume = 2.0
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2066130451 groups=["FloorLayer"]]
@@ -163,7 +158,7 @@ scale = Vector2(0.73583746, 0.73583746)
 texture = ExtResource("4_7hjbj")
 
 [node name="Tutorial" type="Node2D" parent="." unique_id=855592094]
-position = Vector2(191, 23)
+position = Vector2(191, -14)
 script = ExtResource("5_cwf0t")
 
 [node name="InteractionIcon" parent="Tutorial" unique_id=1579403067 instance=ExtResource("5_43ff0")]
@@ -186,7 +181,7 @@ texture = SubResource("GradientTexture2D_7k7fg")
 [node name="Decoration" type="Area2D" parent="Tutorial" unique_id=1550314830 groups=["Interactable"]]
 collision_layer = 8
 collision_mask = 8
-script = SubResource("GDScript_7k7fg")
+script = ExtResource("8_cwf0t")
 interaction_message = Array[String](["Press Z to search things, interact with things, or talk to people."])
 metadata/_custom_type_script = "uid://dk8r88sncv36u"
 

@@ -20,6 +20,7 @@ fill_from = Vector2(0.50427353, 0.491453)
 fill_to = Vector2(0.32478634, 1)
 
 [node name="Twinkle" type="Node2D" unique_id=2012087131]
+z_index = 1
 material = SubResource("ShaderMaterial_6h1h2")
 script = ExtResource("2_n5nwa")
 

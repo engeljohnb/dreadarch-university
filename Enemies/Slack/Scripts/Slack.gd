@@ -27,9 +27,10 @@ func init():
 		sprite.scale.x = -sprite.scale.x
 	$SearchArea.player_nearby.connect(func (_body): player_nearby = true)
 	$SearchArea.player_went_away.connect(func (): player_nearby = false)
-	attack_delay = 0.5
+	attack_delay = 0.66
 	life = 1
-	can_drop[ItemCollection.ORBITER] = 1.0
+	can_drop[ItemCollection.HEART] = 1.0
+	can_drop[ItemCollection.TREASURE] = 0.2
 
 func hit(_actor : Variant):
 	life = 0

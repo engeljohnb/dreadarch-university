@@ -10,6 +10,7 @@ signal lost_life(damage)
 signal gained_life(life)
 signal gained_temporary_life(life)
 signal item_equipped(item, count)
+signal cutscene_ended(cutscene : Callable)
 @onready var anim_tree = $AnimationTree
 @onready var anim_player = $AnimationPlayer
 @onready var hitbox = $Hitbox
@@ -115,6 +116,9 @@ func handle_golden_dagger_collected(count : int):
 func on_item_collected(item, count, _should_play_sound):
 	if ItemCollection.is_document(item):
 		handle_collected_document(item, count)
+		return
+	if item == ItemCollection.SCROLL_FRAGMENT:
+		ItemCollection.collect_scroll_fragment()
 		return
 	if item == ItemCollection.HEART:
 		gain_life(1)
@@ -238,6 +242,7 @@ func end_cutscene(to_idle = true, direction = facing):
 	in_cutscene = false
 	cutscene_timer = 0.0
 	cutscene_duration = 0.0
+	cutscene_ended.emit(current_cutscene)
 	current_cutscene = null
 	sprite.stop()
 	update_direction()
@@ -598,6 +603,8 @@ func set_equipped(item : int):
 		equipped = ItemCollection.GOLDEN_DAGGER
 		golden_dagger_equipped = true
 		return
+	if golden_dagger_equipped and (inventory[ItemCollection.GOLDEN_DAGGER] == 0):
+		Error.error("Finally triggered that weird equipment inventory bug.")
 				
 func on_inventory_action_chosen(action, item, count):
 	match action:
@@ -680,7 +687,6 @@ func change_equipment_quick(direction : String):
 			Error.error("while loop is out of control, cannot find next equippable item.")
 			break
 	set_equipped(item)
-		
 func toggle_light():
 	if light.energy == 3.0:
 		light.energy = 1.0
@@ -825,6 +831,7 @@ var _waiting_to_stand := false
 func play_surprised_cutscene(delta : float):
 	if delta == 0.0:
 		init_cutscene(play_surprised_cutscene, 1.0)
+		$StepSound.stop()
 		sprite.play("Surprised")
 		_waiting_to_stand = false
 	else:
@@ -842,6 +849,25 @@ func play_surprised_cutscene(delta : float):
 		else:
 			cutscene_timer += delta
 		
+func play_sit_down_cutscene(delta : float):
+	if delta == 0.0:
+		$StepSound.stop()
+		init_cutscene(play_sit_down_cutscene, 1.0)
+		sprite.play_backwards("Stand Up")
+		_waiting_to_stand = false
+	else:
+		if cutscene_timer >= (1.0/8.0)*4.0:
+			sprite.play("Sitting")
+			if direction_just_pressed():
+				_waiting_to_stand = true
+				cutscene_timer = 0.0
+				sprite.play("Stand Up")
+		if _waiting_to_stand:
+			if cutscene_timer >= (1.0/8.0)*4.0:
+				end_cutscene()
+				_waiting_to_stand = false
+		cutscene_timer += delta
+	
 func play_water_splash_cutscene(delta : float):
 	if delta == 0.0:
 		cutscene_duration = (1.0/12.0)*4.0

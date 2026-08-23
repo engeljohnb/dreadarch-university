@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dscdpbo0q1xt"]
+
+[ext_resource type="Script" uid="uid://b4pijihfemvku" path="res://Items/Interactable/Scripts/InteractionEvent.gd" id="1_5xifh"]
+
+[node name="InteractionEvent" type="StaticBody2D" unique_id=2139308415]
+script = ExtResource("1_5xifh")
+metadata/_custom_type_script = "uid://ca4een8or37u7"

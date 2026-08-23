@@ -42,9 +42,13 @@ func message_shown(item : Variant) -> bool:
 	return true
 	
 func show_message(item):
+	if messages_shown.get(item) == null:
+		return
 	if not messages_shown[item]:
-		Dialogue.notify_player.emit(messages[item])
-		messages_shown[item] = true
+		# Sometimes the tutorial stuff is handled elsewhere.
+		if messages.get(item) != null:
+			Dialogue.notify_player.emit(messages[item])
+			messages_shown[item] = true
 	
 func load_completed_tutorial_prompts(completed):
 	for key in messages_shown:

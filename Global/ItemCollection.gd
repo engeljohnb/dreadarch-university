@@ -169,10 +169,7 @@ func load_collected_scroll_fragments(collected : Array):
 				frag["collected"] = true
 	if collected.size() == scroll_fragments.size():
 		all_scroll_fragments_collected = true
-		
-func on_scroll_frag_no():
-	pass
-	
+
 func get_next_fragment(index = null):
 	if index is int:
 		return scroll_fragments[index]

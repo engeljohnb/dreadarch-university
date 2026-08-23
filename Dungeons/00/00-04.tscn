@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cbkqoy8gc1vmp" path="res://Assets/Decoration/HomeInterior/HomeTable.png" id="8_hkp35"]
 [ext_resource type="Texture2D" uid="uid://c2pqknn7hbl1c" path="res://Assets/Decoration/HomeInterior/HomeBucket.png" id="9_kf7s3"]
 [ext_resource type="Texture2D" uid="uid://bxv0cv2grx0nx" path="res://Assets/Decoration/HomeInterior/HomeShelf.png" id="11_3ybje"]
+[ext_resource type="Script" uid="uid://b4pijihfemvku" path="res://Items/Interactable/Scripts/InteractionEvent.gd" id="11_na0us"]
+[ext_resource type="Script" uid="uid://b8w0ui558dfld" path="res://EventSequence/Events/CutsceneEvent.gd" id="12_na0us"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uwcm"]
 texture = ExtResource("2_vh348")
@@ -93,6 +95,9 @@ size = Vector2(8458.763, 0.6787896)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dshyd"]
 size = Vector2(268, 65)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na0us"]
+size = Vector2(242.34015, 186.88809)
+
 [node name="00-04" type="Node2D" unique_id=766342440]
 script = ExtResource("1_4snip")
 default_light_on = false
@@ -136,7 +141,7 @@ collision_mask = 32
 physics_material_override = SubResource("PhysicsMaterial_0uwcm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=92314683]
-position = Vector2(488.5001, 447.00003)
+position = Vector2(488.5001, 436)
 scale = Vector2(1.2877138, 2.2224324)
 shape = SubResource("RectangleShape2D_acyvh")
 
@@ -211,3 +216,19 @@ texture = ExtResource("9_kf7s3")
 position = Vector2(-1061.0203, -147.35406)
 scale = Vector2(1.9361683, 1.7970008)
 texture = ExtResource("11_3ybje")
+
+[node name="EventInteractable" type="StaticBody2D" parent="Decorations" unique_id=437748175 node_paths=PackedStringArray("event") groups=["Interactable"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("11_na0us")
+event = NodePath("CutsceneEvent")
+metadata/_custom_type_script = "uid://b4pijihfemvku"
+
+[node name="CutsceneEvent" type="Node" parent="Decorations/EventInteractable" unique_id=951665122]
+script = ExtResource("12_na0us")
+cutscene = &"play_sit_down_cutscene"
+metadata/_custom_type_script = "uid://b8w0ui558dfld"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/EventInteractable" unique_id=1885597712]
+position = Vector2(-355.4464, -138.36906)
+shape = SubResource("RectangleShape2D_na0us")

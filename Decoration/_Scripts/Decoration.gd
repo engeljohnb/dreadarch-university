@@ -1,5 +1,5 @@
 extends Area2D
-class_name Decoration
+class_name InteractionMessage
 @export var sprite : Sprite2D
 @export var interaction_message : Array[String] = []
 @export var interaction_dialogue : Array[Dictionary] = []
@@ -23,4 +23,3 @@ func activate(_using_item = null, _count = 0):
 		Dialogue.notify_player.emit(_int_msg)
 	elif not interaction_dialogue.is_empty():
 		Dialogue.open_dialogue.emit(interaction_dialogue)
-#

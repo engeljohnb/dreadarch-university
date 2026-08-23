@@ -19,8 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://qjcfgosppblv" path="res://Assets/Badguys/Crow/Attack/Projectile/Launch Effect/0008.png" id="25_iscry"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5175p"]
-radius = 6.0
-height = 16.75
+radius = 11.0
+height = 22.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_845w8"]
 

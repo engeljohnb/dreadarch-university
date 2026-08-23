@@ -52,6 +52,8 @@ func init():
 func _ready():
 	var twinkle = _twinkle.instantiate()
 	add_child(twinkle)
+	twinkle.global_position = position
+	twinkle.z_index = 1
 	body_entered.connect(on_body_entered)
 	area_entered.connect(on_body_entered)
 	init()
