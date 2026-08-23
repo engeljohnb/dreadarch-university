@@ -111,7 +111,8 @@ next_scene = "res://Dungeons/00/00-03.tscn"
 direction = "North"
 
 [node name="Node2D" type="Node2D" parent="BuildingTiles" unique_id=1655912623]
-position = Vector2(0, -7)
+y_sort_enabled = true
+position = Vector2(0, 92)
 
 [node name="SmallRelief01" type="Sprite2D" parent="BuildingTiles/Node2D" unique_id=1603246449]
 modulate = Color(0.7507996, 0.7507996, 0.7507996, 1)
@@ -119,7 +120,7 @@ y_sort_enabled = true
 position = Vector2(-1856, -127.99999)
 scale = Vector2(0.6622141, 0.66221416)
 texture = ExtResource("7_thpib")
-offset = Vector2(0, 51.88)
+offset = Vector2(0, -94.915)
 
 [node name="Decoration" type="Area2D" parent="BuildingTiles/Node2D" unique_id=1069997506]
 collision_layer = 40
@@ -129,7 +130,7 @@ interaction_message = Array[String](["In memory of Sofia Vienta."])
 metadata/_custom_type_script = "uid://dk8r88sncv36u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingTiles/Node2D/Decoration" unique_id=560772411]
-position = Vector2(-1854.5, -90)
+position = Vector2(-1854.5, -193)
 shape = SubResource("RectangleShape2D_jbko3")
 
 [node name="OutsideDoor2" parent="." unique_id=255079650 instance=ExtResource("5_lskhw")]

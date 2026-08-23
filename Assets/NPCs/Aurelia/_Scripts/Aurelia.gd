@@ -24,7 +24,7 @@ var intro_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Player",
-		"text":"If only P-Professor were here..."
+		"text":"...If only P-Professor were here..."
 	},
 	{
 		"speaker":"Aurelia",
