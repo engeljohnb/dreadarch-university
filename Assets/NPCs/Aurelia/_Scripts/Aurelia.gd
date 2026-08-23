@@ -16,7 +16,7 @@ var waiting_for_player = false
 var intro_dialogue : Array[Dictionary] = [
 	{
 		"speaker":"Aurelia",
-		"text":"Qui es? Quid agis? Noli timere."
+		"text":"Quis es? Quid agis? Noli timere."
 	},
 	{
 		"speaker":"Player",
