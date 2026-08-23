@@ -13,5 +13,6 @@ func show_professor_letter():
 	_showing_letter = true
 	
 func _ready():
+	$Tutorial.darken()
 	if not Tutorial.message_shown("letter_from_professor"):
 		show_professor_letter()

@@ -64,6 +64,12 @@ class FoundItemEvent:
 		ItemCollection.show_collected_item(item, null, Vector2(0,-50))
 		_finished = true
 
+class ViewDocumentEvent:
+	extends Event
+	func start():
+		Dialogue.dialogue_ended.connect(_set_finished.bind(true))
+		Dialogue.open_document.emit()
+		
 var queue : Array[Event] = []
 
 func _process(_delta):
@@ -119,6 +125,11 @@ func add_prompt_event(message : String, on_yes : Callable, on_no : Callable, yes
 	event.on_no = on_no
 	event.yes_text = yes_text
 	event.no_text = no_text
+	add_event(event)
+	return event
+	
+func add_view_document_event() -> ViewDocumentEvent:
+	var event := ViewDocumentEvent.new()
 	add_event(event)
 	return event
 	

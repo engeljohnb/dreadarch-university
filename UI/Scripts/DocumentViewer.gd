@@ -9,6 +9,7 @@ func on_done():
 	for frag in ItemCollection.scroll_fragments:
 		if frag["collected"]:
 			collected.append(frag)
+	Dialogue.dialogue_ended.emit()
 	queue_free()
 
 func _ready():

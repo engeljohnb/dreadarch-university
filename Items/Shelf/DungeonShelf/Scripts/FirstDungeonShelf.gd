@@ -45,9 +45,10 @@ func _launch_event_sequence():
 	seq.add_dialogue_event(search_shelf_dialogue)
 	var prompt_event = seq.add_prompt_event(prompt, on_yes, on_no)
 	seq.add_found_item_event(ItemCollection.SCROLL_FRAGMENT, 1, "Aelia...")
+	var document_event = seq.add_view_document_event()
 	var dialogue_event = seq.add_dialogue_event(found_scroll_dialogue)
 	
-	prompt_event.on_no = _remove_events.bind(seq, [prompt_event, dialogue_event])
+	prompt_event.on_no = _remove_events.bind(seq, [prompt_event, dialogue_event, document_event])
 	
 	add_child(seq)
 	seq.start_events()
