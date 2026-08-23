@@ -30,6 +30,8 @@ var all_tracks = [
 ]
 
 var tracks_by_room = [
+	{"WelcomeMenu" : DUNGEON_MUSIC},
+	{"DeathMenu" : DEATH_MUSIC},
 	{"01-01" : SHALLOW_RUINS_MUSIC},
 	{"01-02" : SHALLOW_RUINS_MUSIC},
 	{"01-03" : ALCHEMY_LAB_MUSIC},
@@ -56,32 +58,22 @@ func transition_to_next(next, _next_volume = volume_db):
 	next_volume = _next_volume
 	fading_out = true
 		
-func starting_new_music(scene):
+func starting_new_music(path : String):
 	var nm = true
 	if stream:
-		if stream.resource_path == scene.music:
+		if stream.resource_path == path:
 			nm = false
 	return nm
 		
-func update(current_scene, fade = true, starting_game = false):
-	if "music" in current_scene:
-		if starting_new_music(current_scene):
-			if fade:
-				if "music_volume" in current_scene:
-					transition_to_next(load(current_scene.music), current_scene.music_volume)
-				else:
-					transition_to_next(load(current_scene.music), 0.0)
-				
-			else:
-				if "music_volume" in current_scene:
-					volume_db = current_scene.music_volume
-				stream = load(current_scene.music)
-				play()
-	if starting_game:
-			if current_scene.music.contains("DungeonMusic.ogg"):
-				if "music_volume" in current_scene:
-					volume_db = current_scene.music_volume
-				play(66.36)
+func update(fade = true):
+	var track = get_music_track_from_room_name(SceneTransition.current_scene_name)
+	var path = track["path"]
+	var volume = track["volume"]
+	if starting_new_music(path):
+		if fade:
+			transition_to_next(load(path), volume)
+		else:
+			transition_to_next(load(path), 0.0)
 	if stream:
 		stream.loop = true
 

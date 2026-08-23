@@ -39,7 +39,7 @@ var dialogues = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"I am Aelia. In life I was a scolere of alchymie for the Queen.",
+		"text":"I am Elfreda. In life I was a scolere of alchymie for the Queen.",
 		"speaker":"Aelia"
 	},
 	{
@@ -104,7 +104,7 @@ var translate_dialogue = [
 		"speaker":"Aelia"
 	},
 	{
-		"text":"\"Aelia, let go of your fey work to make the nectar of Juppiter.",
+		"text":"\"Elfreda, let go of your fey work to make the nectar of Juppiter.",
 		"speaker":"Aelia"
 	},
 	{
@@ -129,7 +129,7 @@ func activate(_using_item : Variant = null, _count = 0):
 		if _using_item is Dictionary:
 			var text = _using_item.get("latin_text")
 			if text:
-				if text.contains("Aelia"):
+				if text.contains("Elfreda"):
 					Dialogue.open_dialogue.emit(translate_dialogue)
 					scroll_fragment = _using_item
 					return

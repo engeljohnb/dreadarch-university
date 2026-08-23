@@ -302,11 +302,7 @@ func init_current_scene():
 	var world_level = SceneTransition.current_scene_name.substr(0, 2)
 	if world_level == "00":
 		player.step_sound.bus = "Master"
-	current_scene.init_music()
-	if SceneTransition.current_scene_name == "WelcomeMenu" or SceneTransition.prev_scene_name == "WelcomeMenu":
-		music.update(current_scene, false, true)
-	else:
-		music.update(current_scene)
+	music.update()
 	get_tree().paused = false
 		
 func load_player_for_new_scene():

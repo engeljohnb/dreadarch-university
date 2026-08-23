@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dy8no6w2vq5ur"]
 
+[ext_resource type="Script" uid="uid://dmvh37l51y7ei" path="res://Dungeons/Scripts/BasicRoom.gd" id="1_2la7i"]
 [ext_resource type="PackedScene" uid="uid://dtdx4k7brygo3" path="res://Tiles/DungeonBuildingTiles.tscn" id="1_fwxwi"]
-[ext_resource type="Script" uid="uid://cygbqcqg782g8" path="res://Dungeons/01/Scripts/01-01.gd" id="1_h53ss"]
 [ext_resource type="PackedScene" uid="uid://d3qxn6n8d8bn1" path="res://Items/Door/ReliefDoor/ReliefDoor.tscn" id="2_2la7i"]
 [ext_resource type="PackedScene" uid="uid://e0pns0rnrf62" path="res://Tiles/DungeonGroundTiles.tscn" id="2_h53ss"]
 [ext_resource type="PackedScene" uid="uid://bod7jgxpa8fed" path="res://Items/Door/Door.tscn" id="2_puiu4"]
@@ -514,7 +514,7 @@ polygon = PackedVector2Array(-1080, -1409, 214, -1404, 212, -368, -981.8668, -37
 modulate = Color(0.5921569, 0.5921569, 0.5921569, 1)
 light_mask = 17
 y_sort_enabled = true
-script = ExtResource("1_h53ss")
+script = ExtResource("1_2la7i")
 
 [node name="ReliefDoor" parent="." unique_id=386765253 instance=ExtResource("2_2la7i")]
 position = Vector2(-2721, -23)

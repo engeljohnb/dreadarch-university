@@ -1,7 +1,5 @@
 extends Node2D
 class_name Room
-@export var music : String = "res://Music/DungeonMusic.ogg"
-@export var music_volume : float = -7.3
 @export var player_light_on = true
 const TARGET_COLOR = Color(0.258, 0.287, 0.527)
 var save_data : Dictionary = {
@@ -11,12 +9,6 @@ var save_data : Dictionary = {
 }
 var total_enemies = 0
 var exorcised = false
-
-func init_music():
-	var music_track = MusicSelection.get_music_track_from_room_name(SceneTransition.current_scene_name)
-	if not music_track.is_empty():
-		music = music_track["path"]
-		music_volume = music_track["volume"]
 		
 func get_num_enemies() -> int:
 	if get_node_or_null("Enemies") == null:
