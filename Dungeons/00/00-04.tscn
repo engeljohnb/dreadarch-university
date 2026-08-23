@@ -90,10 +90,11 @@ size = Vector2(388.64282, 14.945473)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxlk7"]
 size = Vector2(8458.763, 0.6787896)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dshyd"]
+size = Vector2(268, 65)
+
 [node name="00-04" type="Node2D" unique_id=766342440]
 script = ExtResource("1_4snip")
-music = "res://Music/HomeInteriorMusic.ogg"
-music_volume = 2.0
 player_light_on = false
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
@@ -135,7 +136,7 @@ collision_mask = 32
 physics_material_override = SubResource("PhysicsMaterial_0uwcm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=92314683]
-position = Vector2(488.5001, 434.00003)
+position = Vector2(488.5001, 447.00003)
 scale = Vector2(1.2877138, 2.2224324)
 shape = SubResource("RectangleShape2D_acyvh")
 
@@ -159,6 +160,10 @@ shape = SubResource("RectangleShape2D_yxlk7")
 position = Vector2(283.00003, 710)
 scale = Vector2(0.038421694, 30.937393)
 shape = SubResource("RectangleShape2D_yxlk7")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls" unique_id=1122961830]
+position = Vector2(670, 645.5)
+shape = SubResource("RectangleShape2D_dshyd")
 
 [node name="Ladder" parent="." unique_id=2087545314 instance=ExtResource("4_acyvh")]
 visible = false
