@@ -28,7 +28,7 @@ var intro_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"Let it be as fortune would have it. Do not be afraid."
+		"text":"Do not be afraid."
 	},
 	{
 		"speaker":"Aurelia",
@@ -40,15 +40,11 @@ var intro_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"This place is dangerous, but I am not. An abominable figure, but a human heart."
+		"text":"This place is dangerous, but I am not. I have a human heart."
 	},
 	{
 		"speaker":"Player",
-		"text":"If you're nothing to fear, you could show it with a favor. Have you seen my Professor?"
-	},
-	{
-		"speaker":"Player",
-		"text":"She's tall and old, with light hair. She's been here for some weeks."
+		"text":"Have you seen my Professor? She's been excavating this place for some weeks."
 	},
 	{
 		"speaker":"Aurelia",
@@ -67,15 +63,15 @@ var second_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"I am old. I am cursed. I am betrayed."
+		"text":"How can I answer? I am not a scientist."
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"Most grievous of all, I am the Queen. But I will not hold you to courtly manners. You may call me Aurelia."
+		"text":"I am the Queen. But I will not hold you to courtly manners. You may call me Aurelia."
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"When you have found whom you seek, come talk with me again. It has been long since I have talked with anyone."
+		"text":"When you have found whom you seek, please come talk with me again. It has been long since I have talked with anyone."
 	}
 ]
 

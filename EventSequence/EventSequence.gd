@@ -18,9 +18,7 @@ func _process(_delta):
 			#  is implemented by only by subclasses, and I want to avoid having
 			#  a chore for each subclass to have to remember.
 			event._started = true
-		# For some reason (this HAS to be a bug, right?) if I just use "else"
-		#	this branch executes even though event._started is true.
-		if event._started == false:
+		else:
 			if event.is_finished():
 				queue.erase(event)
 				if free_on_finish:

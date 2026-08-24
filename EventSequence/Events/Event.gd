@@ -5,7 +5,6 @@ var _finished : bool = false
 @warning_ignore("unused_private_class_variable")
 var _started := false
 func _set_finished(state : bool):
-	breakpoint
 	_finished = state
 func is_finished() -> bool:
 	return _finished
