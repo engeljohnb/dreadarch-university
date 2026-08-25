@@ -6,10 +6,15 @@ var _started := false
 		
 var queue : Array[Event] = []
 
+func stop():
+	if free_on_finish:
+		queue_free()
+		_started = false
+		
 func _process(_delta):
 	if _started:
 		if queue.is_empty():
-			queue_free()
+			stop()
 			return
 		var event = queue[0]
 		if not event._started:
@@ -21,12 +26,10 @@ func _process(_delta):
 		else:
 			if event.is_finished():
 				queue.erase(event)
-				if free_on_finish:
-					event.end()
+				event.end()
 			else:
-				# The events aren't children, so they're not in the scene tree,
-				#   so process has to be called manually. 
-				event._process(_delta)
+				if not event.is_inside_tree(): 
+					event._process(_delta)
 
 func add_event(event : Event) -> Event:
 	queue.append(event)
