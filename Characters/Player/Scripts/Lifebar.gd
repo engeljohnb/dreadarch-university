@@ -36,9 +36,9 @@ func set_segment_colors(lt):
 			rect.color = full_color
 		if i >= lt:
 			rect.color = temporary_life_color
-		rect.position = Vector2(-20,-20)
-		rect.size = Vector2(40,40)
-		rect.position.x += (i*40)
+		rect.position = Vector2(-32,-16)
+		rect.size = Vector2(32,32)
+		rect.position.x += (i*32)
 		rect.z_index = -1
 		add_child(rect)
 		rects.append(rect)
@@ -46,7 +46,7 @@ func set_segment_colors(lt):
 func create_middle_segments(seg_count):
 	for i in range(0, seg_count):
 		var middle_segment = _segment.instantiate()
-		middle_segment.position.x += (i*40)
+		middle_segment.position.x += 16.0+(i*32.0)
 		middle_segment.play("Middle")
 		outline_segs.append(middle_segment)
 
@@ -58,7 +58,8 @@ func set_life_total(lt, _life = lt):
 	var seg_count = lt+temporary_life+1
 	var left_segment = _segment.instantiate()
 	var right_segment = _segment.instantiate()
-	right_segment.position.x += (seg_count - 2) * 40
+	right_segment.position.x += (seg_count - 2) * 32.0
+	left_segment.position.x -= 32.0
 	outline_segs.append(left_segment)
 	left_segment.play("Left")
 	right_segment.play("Right")

@@ -25,14 +25,14 @@ func on_item_collected(item, amount, _should_play_sound):
 
 func on_item_equipped(item, count):
 	equipped = item
-	var equipment_sprite : AnimatedSprite2D = $Equipped/CanvasLayer/RichTextLabel/AnimatedSprite2D
+	var equipment_sprite : Sprite2D = $Equipped/CanvasLayer/RichTextLabel/Sprite2D
 	var equipment_text : RichTextLabel = $Equipped/CanvasLayer/RichTextLabel
 	if not ItemCollection.is_item_id_valid(item):
 		Error.error("Attempting to equip invalid item")
 		$Equipped/CanvasLayer.visible = false
 		return
 	equipment_text.visible = true
-	equipment_sprite.sprite_frames = ItemCollection.spriteframes[equipped]
+	equipment_sprite.texture = ItemCollection.textures[equipped]
 	if equipped == ItemCollection.GOLDEN_DAGGER:
 		if count == 0:
 			equipment_sprite.visible = false

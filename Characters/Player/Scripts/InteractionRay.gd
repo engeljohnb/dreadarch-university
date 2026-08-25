@@ -49,6 +49,8 @@ func _process(_delta):
 		if not get_tree().paused:
 			check_for_interactable()
 			check_for_collectible()
+		else:
+			return
 		# Here because there's one part when meeting Aurelia
 		#  when the player sits, and I don't want them to be able 
 		#  to click while sitting, and this is the only way to check

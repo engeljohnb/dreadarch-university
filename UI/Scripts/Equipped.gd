@@ -1,7 +1,7 @@
 extends Node2D
 @onready var canvas = $CanvasLayer
 @onready var label = $CanvasLayer/RichTextLabel
-@onready var sprite = $CanvasLayer/RichTextLabel/AnimatedSprite2D
+@onready var sprite = $CanvasLayer/RichTextLabel/Sprite2D
 
 
 var for_save_slot = false
@@ -20,8 +20,6 @@ func _ready():
 		shrink_label(0.9)
 		visible = true
 		z_index = 1000
-	else:
-		sprite.play("default")
 		
 func set_counter(treasure : int):
 	var treasure_string = str(treasure)

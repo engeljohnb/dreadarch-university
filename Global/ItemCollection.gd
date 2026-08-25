@@ -47,7 +47,7 @@ var textures = {
 	HEART:preload("res://Assets/Items/Heart/0000.png"),
 	SCROLL_FRAGMENT:preload("res://Assets/Items/ScrollFragment/Scroll.png"),
 	TREASURE:preload("res://Assets/Items/Treasure/treasure32.png"),
-	TALONS:preload("res://Assets/Badguys/Crow/Attack/Projectile/Down/0000.png"),
+	TALONS:preload("res://Assets/Items/Talons/Talons.png"),
 	GOLDEN_DAGGER:preload("res://Assets/Items/GoldenDagger/GoldenDagger.png"),
 	NECTAR:preload("res://Assets/Items/Nectar/0000.png"),
 	ORBITER:preload("res://Assets/Badguys/Slack/Projectile/0000.png")
@@ -61,15 +61,6 @@ var streams = {
 	GOLDEN_DAGGER:preload("res://Assets/Sounds/Items/SwordCollectedSound.ogg"),
 	NECTAR:preload("res://Assets/Sounds/Heart/CollectSound.ogg"),
 	ORBITER:preload("res://Assets/Sounds/EnemyDeath.ogg")
-}
-
-var spriteframes = {
-	HEART:preload("res://Items/Heart/Heart.tres"),
-	SCROLL_FRAGMENT:null,
-	TREASURE:preload("res://Items/Treasure/Treasure.tres"),
-	TALONS:preload("res://Weapons/Projectiles/Talons/CrowProjectileSpriteframes.tres"),
-	GOLDEN_DAGGER:preload("res://Items/GoldenDagger/GoldenDagger.tres"),
-	ORBITER:preload("res://Items/Orbiter/orbiter_spriteframes.tres")
 }
 
 var descriptions = {

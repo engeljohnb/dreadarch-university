@@ -9,6 +9,7 @@ func transform_into(type : int) -> Node2D:
 	z_index = 1
 	var sprite : Sprite2D = Sprite2D.new()
 	sprite.texture = ItemCollection.textures.get(type)
+	sprite.material = load("res://UI/no_modulate_material.tres")
 	if sprite.texture == null:
 		push_warning("item has no texture.")
 		return self

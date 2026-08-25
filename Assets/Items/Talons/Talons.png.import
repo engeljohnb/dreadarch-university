@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da1gcg6lv7jqy"
-path="res://.godot/imported/0002.png-e85561927360089ae927e0f35dd5b5d3.ctex"
+uid="uid://62e5yq6ig32j"
+path="res://.godot/imported/Talons.png-2cb732de15119d81d6a4752690ab6271.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Items/Heart/0002.png"
-dest_files=["res://.godot/imported/0002.png-e85561927360089ae927e0f35dd5b5d3.ctex"]
+source_file="res://Assets/Items/Talons/Talons.png"
+dest_files=["res://.godot/imported/Talons.png-2cb732de15119d81d6a4752690ab6271.ctex"]
 
 [params]
 
