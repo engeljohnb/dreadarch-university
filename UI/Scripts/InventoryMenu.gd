@@ -28,7 +28,7 @@ var last_selected_item_index = -1
 var just_opened = false
 @onready var stupid_submenu = submenu
 @onready var box_icons_list = $BookBorder/BoxIcons
-var box_icon = load("res://Assets/UI/empty_inventory_slot.png")
+var box_icon = load("res://Assets/UI/empty_inventory_slot2.png")
 
 func _ready():
 	submenu.action_chosen.connect(on_submenu_action_chosen)
@@ -99,6 +99,7 @@ func create_count_label(item:InventoryItem):
 	label.bbcode_enabled = true
 	return label
 	
+#TODO: Break up this function
 func open(inventory, documents):
 	just_opened = true
 	inventory_items = []

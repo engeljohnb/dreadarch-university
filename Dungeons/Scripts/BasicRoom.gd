@@ -1,5 +1,6 @@
 extends Node2D
 class_name Room
+#TODO: 01-05 dagger disappears on saves where it shouldn't      
 @export var default_light_on = true
 @export var low_range_light_on = false
 const TARGET_COLOR = Color(0.258, 0.287, 0.527)

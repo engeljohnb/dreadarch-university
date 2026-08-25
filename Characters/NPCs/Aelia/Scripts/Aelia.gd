@@ -31,7 +31,7 @@ var dialogues = [
 ],
 [
 	{
-		"text":"This is probably a stupid question, but... Are you a ghost?",
+		"text":"Are you a ghost?",
 		"speaker":"Player"
 	},
 	{

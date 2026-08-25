@@ -5,7 +5,7 @@ class_name EventInteractable
 #	Because for some reason when I try to assign
 #	one of the elements in the editor, Godot says 
 #	"Attempted to set an object into a TypedArray, that does not inherit from 'GDScript'"
-#	No idea what it means.
+#	No idea why it doesn't want me to do that.
 @export var event: Event
 var event_sequence : EventSequence = EventSequence.new()
 

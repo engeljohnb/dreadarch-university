@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cs08el3h671jy" path="res://Assets/UI/LongButton/LongButtonFocused.png" id="1_7yvmn"]
 [ext_resource type="FontFile" uid="uid://dnifhrv1s7o35" path="res://Assets/UI/Fonts/princess-sofia/PrincessSofia-Regular.ttf" id="1_dkc3k"]
+[ext_resource type="Texture2D" uid="uid://ci33546vel7s6" path="res://Assets/UI/LongButton/Select2.png" id="4_dkc3k"]
+[ext_resource type="FontFile" uid="uid://03h1uxbj4b1v" path="res://Assets/UI/Fonts/patrick-hand/PatrickHand-Regular.ttf" id="4_iop8y"]
 [ext_resource type="Texture2D" uid="uid://dvj312qe5cnd6" path="res://Assets/UI/Parchment.jpg" id="4_jvgvs"]
 [ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="5_iop8y"]
 [ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="6_dkc3k"]
@@ -44,6 +46,7 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4u18l"]
+texture = ExtResource("4_dkc3k")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iop8y"]
 content_margin_left = 4.0
@@ -122,7 +125,7 @@ ItemList/constants/line_separation = 2
 ItemList/constants/outline_size = 0
 ItemList/constants/v_separation = 25
 ItemList/font_sizes/font_size = 55
-ItemList/fonts/font = ExtResource("1_dkc3k")
+ItemList/fonts/font = ExtResource("4_iop8y")
 ItemList/styles/cursor = SubResource("StyleBoxFlat_dkc3k")
 ItemList/styles/cursor_unfocused = SubResource("StyleBoxFlat_dkc3k")
 ItemList/styles/focus = SubResource("StyleBoxTexture_4u18l")
@@ -136,6 +139,6 @@ Panel/styles/panel = SubResource("StyleBoxTexture_7yvmn")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 0.7)
 RichTextLabel/font_sizes/interaction_font_size = 15
 RichTextLabel/font_sizes/normal_font_size = 100
-RichTextLabel/fonts/interaction_font = ExtResource("6_dkc3k")
+RichTextLabel/fonts/interaction_font = ExtResource("4_iop8y")
 RichTextLabel/fonts/normal_font = ExtResource("6_oh7n6")
 SpinBox/fonts/Font = ExtResource("6_dkc3k")
