@@ -32,5 +32,6 @@ animations = [{
 }]
 
 [node name="LifebarSegment" type="AnimatedSprite2D" unique_id=1321874169]
+modulate = Color(1, 1, 1, 0.813)
 sprite_frames = SubResource("SpriteFrames_fe8ex")
 animation = &"Left"

@@ -18,7 +18,7 @@ func _ready():
 		label.position.y += 35
 		sprite.position.x = 60
 		shrink_label(0.9)
-		visible = true
+	#	visible = true
 		z_index = 1000
 	else:
 		sprite.play("default")

@@ -72,3 +72,6 @@ func _process(_delta):
 				attack_finished = true
 	if falling:
 		play_falling_animation(_delta)
+	var player_pos = Utils.player_position
+	if global_position.distance_to(player_pos) < 15.0:
+		collect()

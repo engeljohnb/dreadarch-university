@@ -48,11 +48,7 @@ var intro_dialogue = [
 		"speaker" : "Fitzroy"
 	},
 	{
-		"text" : "Uh... well... ",
-		"speaker" : "Player"
-	},
-	{
-		"text" : "I'm helping with the excavation. I'm supposed to go in there.",
+		"text" : "I'm helping with the excavation. I'm expected in there.",
 		"speaker" : "Player"
 	},
 	{

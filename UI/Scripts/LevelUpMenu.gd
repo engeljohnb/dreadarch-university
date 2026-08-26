@@ -1,7 +1,7 @@
 extends Control
 signal closed()
 
-#TODO: If the player translates 5 fragments, but clicks out before levling,
+#TODO: If the player translates 5 fragments, but clicks out before leveling,
 #	They miss their chance forever.
 func close():
 	closed.emit()

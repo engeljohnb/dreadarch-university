@@ -44,7 +44,7 @@ var intro_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Player",
-		"text":"Have you seen my Professor? She's been excavating this place for some weeks."
+		"text":"Have you seen my Professor? She's been working down here for some weeks."
 	},
 	{
 		"speaker":"Aurelia",

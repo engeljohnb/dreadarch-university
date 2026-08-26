@@ -6,9 +6,9 @@ var life = 3
 var temporary_life = 0
 var rects = []
 var outline_segs = []
-var full_color = Color(0.6, 0.2, 0.15)
+var full_color = Color(0.6, 0.2, 0.15) * 0.866
 var temporary_life_color = Color(0.9, 0.8, 0.3)
-var empty_color = Color(0.5,0.5,0.5)
+var empty_color = Color(0,0,0,0.5)
 var for_save_slot = false
 
 func _ready():

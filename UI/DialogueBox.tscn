@@ -78,7 +78,7 @@ texture = ExtResource("3_rn55j")
 stretch_mode = 2
 
 [node name="DialogueRevealSound" type="AudioStreamPlayer" parent="." unique_id=742667260]
-volume_db = -13.0
+volume_db = -14.5
 
 [node name="OpenMenuSound" type="AudioStreamPlayer" parent="." unique_id=1984481321]
 stream = ExtResource("14_67n4p")

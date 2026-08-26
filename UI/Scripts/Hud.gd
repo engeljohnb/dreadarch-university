@@ -53,5 +53,5 @@ func _hide():
 	
 func _show():
 	visible = true
-	$Treasure/CanvasLayer.visible = true
+	#$Treasure/CanvasLayer.visible = true
 	$Equipped/CanvasLayer.visible = true

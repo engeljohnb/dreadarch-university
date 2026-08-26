@@ -26,6 +26,7 @@ var document_selector_open = false
 var document_items = [ItemCollection.SCROLL_FRAGMENT]
 var last_selected_item_index = -1
 var just_opened = false
+var _stupid_submenu_just_closed := false
 @onready var stupid_submenu = submenu
 @onready var box_icons_list = $BookBorder/BoxIcons
 var box_icon = load("res://Assets/UI/empty_inventory_slot2.png")
@@ -40,30 +41,39 @@ func _ready():
 	item_list.grab_focus()
 	item_list.clear()
 	
+func select_top_submenu_button():
+	if chosen_item_type in ItemCollection.drinkable:
+		submenu.select("Drink")
+	elif chosen_item_type in ItemCollection.equippable:
+		submenu.select("Equip")
+	else:
+		submenu.select("Use")
+	
 func open_submenu():
 	submenu.clear()
-	submenu.add_button("Use")
-	if chosen_item_type in ItemCollection.equippable:
-		submenu.add_button("Equip")
 	if chosen_item_type in ItemCollection.drinkable:
 		submenu.add_button("Drink")
+	if chosen_item_type in ItemCollection.equippable:
+		submenu.add_button("Equip")
+	submenu.add_button("Use")
 	submenu.add_button("Cancel")
 	submenu_open = true
 	$OpenSound.play()
 	submenu.visible = true
 	item_list.deselect_all()
-	submenu.select("Use")
+	select_top_submenu_button()
 	for index in range(0, item_list.item_count):
 		item_list.set_item_disabled(index, true)
-		
 	description_label.visible = false
+	set_inventory_menu_focus(Control.FOCUS_NONE)
 	
 func on_document_used(document):
 	inventory_action_chosen.emit("Use", document, 1)
 	close()
 	
 func on_document_selector_closed():
-	just_opened = true
+	if not Input.is_action_just_released("CloseInventory"):
+		_stupid_submenu_just_closed = true
 	visible = true
 	item_list.visible = true
 	box_icons_list.visible = true
@@ -72,14 +82,25 @@ func on_document_selector_closed():
 	document_selector_open = false
 	$BookBorder/DocumentSelector.visible = false
 	$BookBorder/DocumentSelector.process_mode = Node.PROCESS_MODE_DISABLED
+	$BookBorder/DocumentSelector.focus_mode = Control.FOCUS_NONE
+	
+func set_item_description_visible(state : bool):
+	$BookBorder/NameLabel.visible = state
+	$BookBorder/DescriptionLabel.visible = state
+	$BookBorder/ItemCloseup.visible = state
+	
+func set_inventory_menu_focus(mode : Control.FocusMode):
+	$BookBorder/ItemList.focus_mode = mode
+	
 	
 func open_document_selector(documents):
 	$BookBorder/DocumentSelector.process_mode = Node.PROCESS_MODE_INHERIT
+	$BookBorder/DocumentSelector.focus_mode = Control.FOCUS_ALL
 	$BookBorder/DocumentSelector.visible = true
 	$BookBorder/DocumentSelector.open(documents)
 	document_selector_open = true
-	item_list.visible = false
-	box_icons_list.visible = false
+	set_item_description_visible(false)
+	set_inventory_menu_focus(Control.FOCUS_NONE)
 	
 func create_count_label(item:InventoryItem):
 	var label = RichTextLabel.new()
@@ -100,8 +121,9 @@ func create_count_label(item:InventoryItem):
 	return label
 	
 #TODO: Break up this function
-func open(inventory, documents):
-	just_opened = true
+func open(inventory, documents, _just_opened := true):
+	set_item_description_visible(true)
+	just_opened = _just_opened
 	inventory_items = []
 	for child in item_list.get_children():
 		child.queue_free()
@@ -145,6 +167,7 @@ func open(inventory, documents):
 		item_list.select(last_selected_item_index)
 	else:
 		item_list.select(0)
+	set_inventory_menu_focus(Control.FOCUS_ALL)
 	item_list.grab_focus()
 
 func close():
@@ -173,6 +196,8 @@ func close_submenu():
 	item_list.clear()
 	submenu.visible = false
 	description_label.visible = true
+	if Input.is_action_just_released("ui_accept"):
+		_stupid_submenu_just_closed = true
 		
 func on_submenu_action_chosen(action_name):
 	chosen_action = action_name
@@ -191,9 +216,15 @@ func on_submenu_action_chosen(action_name):
 			inventory_action_chosen.emit(chosen_action, chosen_item_type, 1)
 			close()
 
+#TODO: break up this function
 func _process(_delta):
 	if document_selector_open:
 		return
+	elif not submenu_open:
+		if not $BookBorder/DescriptionLabel.visible:
+			set_item_description_visible(true)
+			set_inventory_menu_focus(Control.FOCUS_ALL)
+			$BookBorder/ItemList.grab_focus()
 	if not submenu_open and not number_box_open:
 		if item_list.is_anything_selected():
 			var chosen_index = item_list.get_selected_items().get(0)
@@ -213,7 +244,7 @@ func _process(_delta):
 			open_submenu()
 		elif submenu_open:
 			close_submenu()
-			open(_inventory, _documents)
+			open(_inventory, _documents, false)
 		else:
 			if not (just_opened):
 				close()
@@ -233,14 +264,17 @@ func _process(_delta):
 				chosen_item_total = inventory_items[chosen_index].count
 				chosen_item_type = inventory_items[chosen_index].type
 				if chosen_item_type in document_items:
-					open_document_selector(_documents)
+					if not _stupid_submenu_just_closed:
+						open_document_selector(_documents)
+					else:
+						_stupid_submenu_just_closed = false
 				else:
-					open_submenu()
+					if not _stupid_submenu_just_closed:
+						open_submenu()
+					else:
+						_stupid_submenu_just_closed = false
 			return
 		elif number_box_open:
-			if just_opened:
-				just_opened = false
-				return
 			chosen_item_count = int($Numberbox/RichTextLabel.text)
 			if chosen_item_count > 0:
 				inventory_action_chosen.emit(chosen_action, chosen_item_type, chosen_item_count)

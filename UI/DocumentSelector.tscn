@@ -41,6 +41,12 @@ offset_left = 1102.0
 offset_top = 700.0
 offset_right = 1209.0
 offset_bottom = 765.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Back")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Back")
+focus_previous = NodePath("../Back")
 theme_override_font_sizes/font_size = 35
 text = "Use
 "
@@ -52,6 +58,12 @@ offset_left = 1219.0
 offset_top = 700.0
 offset_right = 1326.0
 offset_bottom = 765.0
+focus_neighbor_left = NodePath("../Use")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Use")
+focus_previous = NodePath("../Use")
 theme_override_font_sizes/font_size = 35
 text = "Back"
 

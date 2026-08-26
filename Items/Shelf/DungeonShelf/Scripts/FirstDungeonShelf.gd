@@ -3,11 +3,11 @@ extends Pot
 var _waiting_for_dialogue := false
 var search_shelf_dialogue = [
 	{
-		"text":"Looks like the military picked it clean.",
+		"text":"Drat. They've already taken all the scrolls.",
 		"speaker":"Player"
 	},
 	{
-		"text":"Hey, wait... Seems they didn't get everything.",
+		"text":"Or, have they? What's this?",
 		"speaker":"Player"
 	}
 ]
