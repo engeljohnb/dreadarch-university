@@ -36,11 +36,16 @@ expand_mode = 1
 
 [node name="Use" type="Button" parent="." unique_id=633838862]
 self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
-layout_mode = 0
-offset_left = 1102.0
-offset_top = 700.0
-offset_right = 1209.0
-offset_bottom = 765.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.574
+anchor_top = 0.648
+anchor_right = 0.63000005
+anchor_bottom = 0.708
+offset_left = -0.079956055
+offset_top = 0.15997314
+offset_right = -0.60009766
+offset_bottom = 0.35998535
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../Back")
@@ -53,11 +58,16 @@ text = "Use
 
 [node name="Back" type="Button" parent="." unique_id=1219546964]
 self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
-layout_mode = 0
-offset_left = 1219.0
-offset_top = 700.0
-offset_right = 1326.0
-offset_bottom = 765.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.63500005
+anchor_top = 0.648
+anchor_right = 0.69100004
+anchor_bottom = 0.708
+offset_left = -0.20007324
+offset_top = 0.15997314
+offset_right = -0.7200928
+offset_bottom = 0.35998535
 focus_neighbor_left = NodePath("../Use")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
