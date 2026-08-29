@@ -606,7 +606,7 @@ y_sort_origin = -1
 navigation_enabled = false
 
 [node name="VerinaDistant" parent="ParallaxBackground/ParallaxLayer" unique_id=1736039859 instance=ExtResource("14_e507w")]
-position = Vector2(-1701, -110)
+position = Vector2(-1802, -192)
 
 [node name="Decoration" type="Node2D" parent="." unique_id=909976892 groups=["Vertical"]]
 position = Vector2(-973, -60)
