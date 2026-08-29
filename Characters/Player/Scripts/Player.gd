@@ -878,3 +878,14 @@ func play_water_splash_cutscene(delta : float):
 		if cutscene_timer >= cutscene_duration:
 			end_cutscene()
 		cutscene_timer += delta
+
+func play_wave_cutscene(delta : float):
+	if delta == 0.0:
+		$StepSound.stop()
+		init_cutscene(play_wave_cutscene, (1.0/12.0)*42.0)
+		sprite.play("Wave")
+	else:
+		if cutscene_timer >= cutscene_duration:
+			end_cutscene()
+		cutscene_timer += delta
+		

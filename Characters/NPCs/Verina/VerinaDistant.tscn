@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://uw0rs32do5tl"]
+
+[ext_resource type="Script" uid="uid://b7aplyqh7r8wa" path="res://Characters/NPCs/Verina/_Scripts/VerinaDistant.gd" id="1_85ija"]
+[ext_resource type="Texture2D" uid="uid://fdj54y4s81vi" path="res://Assets/NPCs/Verina/Distant/0000.png" id="2_85ija"]
+[ext_resource type="Texture2D" uid="uid://iosf4ts4j6k5" path="res://Assets/NPCs/Verina/Distant/0001.png" id="3_ga0oy"]
+[ext_resource type="Texture2D" uid="uid://cuqnldrg11vex" path="res://Assets/NPCs/Verina/Distant/0002.png" id="4_32hyp"]
+[ext_resource type="Texture2D" uid="uid://5gh0xtwegmmc" path="res://Assets/NPCs/Verina/Distant/0003.png" id="5_5y46q"]
+[ext_resource type="Texture2D" uid="uid://b48rlvcq225a1" path="res://Assets/NPCs/Verina/Distant/0004.png" id="6_tevru"]
+[ext_resource type="Texture2D" uid="uid://cobix2rtfoil5" path="res://Assets/NPCs/Verina/Distant/0005.png" id="7_fwm6v"]
+[ext_resource type="Texture2D" uid="uid://bnv8dv61y2tre" path="res://Assets/NPCs/Verina/Distant/0006.png" id="8_vlb0d"]
+[ext_resource type="Texture2D" uid="uid://b6uitx6knc418" path="res://Assets/NPCs/Verina/Distant/0007.png" id="9_iyhxw"]
+[ext_resource type="Texture2D" uid="uid://bow5dhxj3ovfu" path="res://Assets/NPCs/Verina/Distant/0008.png" id="10_ktfuh"]
+[ext_resource type="Texture2D" uid="uid://d1ibofagx5uv0" path="res://Assets/NPCs/Verina/Distant/0009.png" id="11_e0frm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ce8k4"]
+size = Vector2(64, 58)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_85ija"]
+light_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y74qh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_85ija")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ga0oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_32hyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ga0oy")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5y46q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tevru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fwm6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vlb0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyhxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e0frm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyhxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e0frm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyhxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e0frm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyhxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e0frm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyhxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e0frm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iyhxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e0frm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ktfuh")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
+
+[node name="VerinaDistant" type="StaticBody2D" unique_id=1736039859 groups=["Interactable"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_85ija")
+metadata/_custom_type_script = "uid://bgfg4g0sb1sc7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421705526]
+visible = false
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_ce8k4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1529031770]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_85ija")
+sprite_frames = SubResource("SpriteFrames_y74qh")
+animation = &"Run"

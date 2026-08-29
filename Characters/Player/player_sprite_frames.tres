@@ -207,6 +207,28 @@
 [ext_resource type="Texture2D" uid="uid://c7n3e016pp5fx" path="res://Assets/Student/Walk/Up/0008.png" id="190_0scts"]
 [ext_resource type="Texture2D" uid="uid://bigo7yb3jjxtx" path="res://Assets/Student/Walk/Up/0009.png" id="191_eriye"]
 [ext_resource type="Texture2D" uid="uid://crj06mj47acem" path="res://Assets/Student/Walk/Up/0010.png" id="192_o5u20"]
+[ext_resource type="Texture2D" uid="uid://dx17xdw0f2bsl" path="res://Assets/Student/Wave/0000.png" id="208_1d47a"]
+[ext_resource type="Texture2D" uid="uid://3vat6h075e86" path="res://Assets/Student/Wave/0001.png" id="209_s8kcp"]
+[ext_resource type="Texture2D" uid="uid://b7od6q5qhk4lc" path="res://Assets/Student/Wave/0002.png" id="210_4gi62"]
+[ext_resource type="Texture2D" uid="uid://cw78jy1yisekh" path="res://Assets/Student/Wave/0003.png" id="211_l5jcl"]
+[ext_resource type="Texture2D" uid="uid://dhfkgxcj571m3" path="res://Assets/Student/Wave/0004.png" id="212_hn5lc"]
+[ext_resource type="Texture2D" uid="uid://mxtfdywh0i3i" path="res://Assets/Student/Wave/0005.png" id="213_jyiyo"]
+[ext_resource type="Texture2D" uid="uid://cwccw1fuw1adi" path="res://Assets/Student/Wave/0006.png" id="214_0r4li"]
+[ext_resource type="Texture2D" uid="uid://bab8mbuqshvyw" path="res://Assets/Student/Wave/0007.png" id="215_hc61u"]
+[ext_resource type="Texture2D" uid="uid://fdf2qdk7d11h" path="res://Assets/Student/Wave/0008.png" id="216_awd6i"]
+[ext_resource type="Texture2D" uid="uid://bm0piw58f1bw1" path="res://Assets/Student/Wave/0009.png" id="217_exvgo"]
+[ext_resource type="Texture2D" uid="uid://c7c3vf0fexxmr" path="res://Assets/Student/Wave/0010.png" id="218_fghra"]
+[ext_resource type="Texture2D" uid="uid://hwnnxek8te34" path="res://Assets/Student/Wave/0011.png" id="219_7mxgu"]
+[ext_resource type="Texture2D" uid="uid://b04ama1ixqtdm" path="res://Assets/Student/Wave/0012.png" id="220_dnpsv"]
+[ext_resource type="Texture2D" uid="uid://bxbmoh5sbsx25" path="res://Assets/Student/Wave/0013.png" id="221_6cpfp"]
+[ext_resource type="Texture2D" uid="uid://buwd2iawq1hai" path="res://Assets/Student/Wave/0014.png" id="222_v7n3c"]
+[ext_resource type="Texture2D" uid="uid://cyoqwbasliobb" path="res://Assets/Student/Wave/0015.png" id="223_q8ian"]
+[ext_resource type="Texture2D" uid="uid://dmkoaojksx1a2" path="res://Assets/Student/Wave/0016.png" id="224_81e6h"]
+[ext_resource type="Texture2D" uid="uid://bk8a3u15kemp" path="res://Assets/Student/Wave/0017.png" id="225_xshcb"]
+[ext_resource type="Texture2D" uid="uid://dh8ee0ruq3r1o" path="res://Assets/Student/Wave/0018.png" id="226_qylty"]
+[ext_resource type="Texture2D" uid="uid://dfqkkooi33tlk" path="res://Assets/Student/Wave/0019.png" id="227_4rdpc"]
+[ext_resource type="Texture2D" uid="uid://bwl867ydd5v5e" path="res://Assets/Student/Wave/0020.png" id="228_erdi5"]
+[ext_resource type="Texture2D" uid="uid://cvattct6540dt" path="res://Assets/Student/Wave/0021.png" id="229_xgtbo"]
 
 [resource]
 animations = [{
@@ -223,7 +245,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_vo75a")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Attack Down",
 "speed": 12.0
 }, {
@@ -240,7 +262,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_bdt0l")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Attack Left",
 "speed": 12.0
 }, {
@@ -257,7 +279,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_31qbx")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Attack Right",
 "speed": 12.0
 }, {
@@ -274,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_uhc2s")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Attack Up",
 "speed": 12.0
 }, {
@@ -303,7 +325,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("24_7t7ga")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Climb Down",
 "speed": 12.0
 }, {
@@ -338,7 +360,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("34_1dmlq")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Climb Down Transition",
 "speed": 12.0
 }, {
@@ -433,7 +455,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("49_7mxgu")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Death",
 "speed": 12.0
 }, {
@@ -474,7 +496,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("51_6cpfp")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle Down",
 "speed": 5.0
 }, {
@@ -515,7 +537,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("58_erdi5")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle Knife Down",
 "speed": 5.0
 }, {
@@ -556,7 +578,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("65_71ysr")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle Knife Left",
 "speed": 5.0
 }, {
@@ -597,7 +619,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("72_n3dtn")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle Knife Right",
 "speed": 5.0
 }, {
@@ -638,7 +660,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("79_ewiom")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle Left",
 "speed": 5.0
 }, {
@@ -679,7 +701,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("85_5qi4j")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle Right",
 "speed": 5.0
 }, {
@@ -720,7 +742,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("92_2swmo")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle Up",
 "speed": 5.0
 }, {
@@ -737,7 +759,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("97_ite4w")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Sitting",
 "speed": 12.0
 }, {
@@ -754,7 +776,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25_h0tij")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Stand Up",
 "speed": 8.0
 }, {
@@ -795,7 +817,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("107_7t7ga")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Surprised",
 "speed": 12.0
 }, {
@@ -812,7 +834,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("99_4ivqo")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Throw Down",
 "speed": 12.0
 }, {
@@ -829,7 +851,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("103_5p8j1")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Throw Left",
 "speed": 12.0
 }, {
@@ -846,7 +868,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("107_klagu")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Throw Right",
 "speed": 12.0
 }, {
@@ -863,7 +885,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("111_mx6fr")
 }],
-"loop": 0,
+"loop": false,
 "name": &"Throw Up",
 "speed": 12.0
 }, {
@@ -898,7 +920,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("121_rsbys")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Down",
 "speed": 12.0
 }, {
@@ -933,7 +955,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("131_kpnqs")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Knife Down",
 "speed": 12.0
 }, {
@@ -968,7 +990,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("141_vo87q")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Knife Left",
 "speed": 12.0
 }, {
@@ -1003,7 +1025,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("151_fr3sg")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Knife Right",
 "speed": 12.0
 }, {
@@ -1041,7 +1063,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("162_kubwd")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Knife Up",
 "speed": 12.0
 }, {
@@ -1076,7 +1098,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("172_lcwnw")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Left",
 "speed": 12.0
 }, {
@@ -1111,7 +1133,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("182_g7c58")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Right",
 "speed": 12.0
 }, {
@@ -1146,7 +1168,138 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("192_o5u20")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Walk Up",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("208_1d47a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_s8kcp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("210_4gi62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_l5jcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("212_hn5lc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("213_jyiyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("214_0r4li")
+}, {
+"duration": 1.0,
+"texture": ExtResource("215_hc61u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("216_awd6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("217_exvgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("218_fghra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("219_7mxgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("217_exvgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("218_fghra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("216_awd6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("217_exvgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("220_dnpsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("221_6cpfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("222_v7n3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("223_q8ian")
+}, {
+"duration": 1.0,
+"texture": ExtResource("224_81e6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("225_xshcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("226_qylty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("224_81e6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("225_xshcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("226_qylty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("224_81e6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("227_4rdpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_erdi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("229_xgtbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_erdi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("227_4rdpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_erdi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("229_xgtbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_erdi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("227_4rdpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("226_qylty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("225_xshcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("220_dnpsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("214_0r4li")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_l5jcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_s8kcp")
+}],
+"loop": false,
+"name": &"Wave",
 "speed": 12.0
 }]

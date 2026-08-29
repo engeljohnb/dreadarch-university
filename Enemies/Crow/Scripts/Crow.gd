@@ -1,5 +1,5 @@
 extends Enemy
-
+@export var default_idle : bool = false
 var timer = 0.0
 
 func set_drops():
@@ -11,7 +11,10 @@ func init():
 	sprite = $AnimatedSprite2D
 	can_transition.append("Walk")
 	can_transition.append("Projectile")
-	set_action(Actions.WALK)
+	if default_idle:
+		set_action(Actions.IDLE)
+	else:
+		set_action(Actions.WALK)
 	set_drops()
 	attack_delay = 0.33
 	aggro_range = 400.0

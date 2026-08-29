@@ -71,6 +71,16 @@ func add_view_document_event() -> ViewDocumentEvent:
 	add_event(event)
 	return event
 	
+func add_cutscene_event(cutscene : StringName, target : Variant = "Player", one_time : bool = false) -> CutsceneEvent:
+	var event : CutsceneEvent = CutsceneEvent.new()
+	event.cutscene = cutscene
+	event.target = target
+	event.one_time = one_time
+	add_event(event)
+	# Cutscene events need to be in the tree to work
+	add_child(event)
+	return event
+	
 func start_events():
 	_started = true
 

@@ -1,6 +1,9 @@
 extends Interactable
 class_name NPC
 
+@warning_ignore("unused_signal")
+signal cutscene_ended(cutscene : Callable)
+
 var status = {"gone":false}
 func check_status(key : String, default : bool = false):
 	var s = status.get(key)

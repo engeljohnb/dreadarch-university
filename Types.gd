@@ -37,9 +37,11 @@ class Save:
 	var player: Player
 	var rooms : Dictionary
 	var completed_tutorial_prompts : Array
+	var global_story_state : Dictionary
 	func init():
 		current_scene = "01-01"
 		current_scene_path = "res://Dungeons/01/01-01.tscn"
 		player = null
 		rooms = {}
 		completed_tutorial_prompts = []
+		global_story_state = {}

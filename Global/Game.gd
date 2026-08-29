@@ -42,6 +42,7 @@ func new_game():
 	_player.init()
 	ItemCollection.load_collected_scroll_fragments([])
 	Tutorial.messages_shown[ItemCollection.SCROLL_FRAGMENT] = false
+	StoryState.reset()
 	_save.player = _player
 	init_player()
 	player.init_for_newgame()
@@ -170,6 +171,8 @@ func save_room_interactables(scene_node : Node2D, interactables : Array):
 					i.player_placed_items.erase(ItemCollection.GOLDEN_DAGGER)
 				scene_node.save_data["pots"].append({"name":i.name,"has":i.player_placed_items,"amounts":i.amounts})
 		elif i is NPC:
+			if i.get_parent().name != "NPCs":
+				continue
 			if "status" in i:
 				var npc = {"name":i.name, "status":i.status}
 				if npc not in scene_node.save_data["NPCs"]:
@@ -492,6 +495,7 @@ func update_save_data():
 	save_room_node(current_scene, SceneTransition.current_scene_name)
 	_save.completed_tutorial_prompts = Tutorial.get_completed_tutorial_prompts()
 	_save.player.level = player.level
+	_save.global_story_state = StoryState.state
 	
 func save_game(filename = "user://SaveFiles/save.da"):
 	update_save_data()
@@ -526,6 +530,7 @@ func load_game(filename = "user://SaveFiles/save.da"):
 	
 	Tutorial.load_completed_tutorial_prompts(_save.completed_tutorial_prompts)
 	SceneTransition.enter_scene(_save.current_scene_path, player.global_position)
+	StoryState.state = _save.global_story_state
 
 func open_inventory():
 	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()
