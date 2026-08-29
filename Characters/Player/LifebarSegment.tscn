@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cso8xftk6i6m2"]
 
-[ext_resource type="Texture2D" uid="uid://b23xtf5f4475h" path="res://Assets/Student/Lifebar/Left/0000.png" id="1_c6o27"]
-[ext_resource type="Texture2D" uid="uid://cw1tnedpnd1ov" path="res://Assets/Student/Lifebar/Middle/0000.png" id="5_vkg6y"]
-[ext_resource type="Texture2D" uid="uid://dtr0m1oipnljw" path="res://Assets/Student/Lifebar/Right/0000.png" id="9_8u33x"]
+[ext_resource type="Texture2D" uid="uid://if6thacah2jg" path="res://Assets/Student/Lifebar/Left/0000.png" id="1_c6o27"]
+[ext_resource type="Texture2D" uid="uid://dldcoh2o0vscp" path="res://Assets/Student/Lifebar/Middle/0000.png" id="5_vkg6y"]
+[ext_resource type="Texture2D" uid="uid://bwmlx51pw3v03" path="res://Assets/Student/Lifebar/Right/0000.png" id="9_8u33x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fe8ex"]
 animations = [{
@@ -34,4 +34,4 @@ animations = [{
 [node name="LifebarSegment" type="AnimatedSprite2D" unique_id=1321874169]
 modulate = Color(1, 1, 1, 0.813)
 sprite_frames = SubResource("SpriteFrames_fe8ex")
-animation = &"Left"
+animation = &"Right"

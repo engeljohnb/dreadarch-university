@@ -20,7 +20,7 @@ var intro_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Player",
-		"text":"D-Discipulum... sum..."
+		"text":"D-Discipulus... sum... Or am I supposed to say discipula?"
 	},
 	{
 		"speaker":"Player",

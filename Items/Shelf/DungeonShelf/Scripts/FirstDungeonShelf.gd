@@ -58,8 +58,8 @@ func activate(using_item : Variant = null, count : int = 1):
 	if first_search:
 		_launch_event_sequence()
 		Tutorial.messages_shown[ItemCollection.SCROLL_FRAGMENT] = true
-	else:
 		has.clear()
+	else:
 		search(using_item, count)
 		
 

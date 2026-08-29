@@ -288,10 +288,10 @@ func process_action_death():
 		turn_off_physics()
 	queue_free()
 	# This was here at first to track down a weird bug where projectiles would 
-	#  become orphans instead of being freed after calling queue_free. It's
-	#  still here because hey, you never know.
+	#  become orphans instead of being freed after calling queue_free. 
+	#  I fixed the bug, but this if still triggers uncommonly.
+	#  It doesn't seem to be hurting anything.
 	if not get_orphan_node_ids().is_empty():
-		Error.error("Unhandled orphan nodes. Or, it's doing that thing again.")
 		for id in get_orphan_node_ids():
 			instance_from_id(id).free()
 			

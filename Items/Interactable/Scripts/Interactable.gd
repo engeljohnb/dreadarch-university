@@ -26,7 +26,6 @@ func use_item(item: Variant, count : int = 1):
 		$Blinker.blink(0.33)
 		ItemCollection.item_collected.emit(item, -count, true)
 		activated = false
-		
 func give_scroll_fragment(document_quote):
 	if ItemCollection.all_scroll_fragments_collected:
 		has = []

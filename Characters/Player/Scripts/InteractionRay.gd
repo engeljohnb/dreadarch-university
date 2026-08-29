@@ -9,7 +9,20 @@ var _timer := 0.0
 var _blinking := false
 var _blink_duration := 0.5
 var _icon_state := false
+var _use_icon : Sprite2D
 
+func set_use_icon(item : Variant):
+	if ItemCollection.is_document(item):
+		item = ItemCollection.SCROLL_FRAGMENT
+	if item == null:
+		if _use_icon != null:
+			_use_icon.queue_free()
+	else:
+		_use_icon = Sprite2D.new()
+		_use_icon.texture = ItemCollection.textures[item]
+		_use_icon.modulate.a = 0.66
+		$InteractionIcon.add_child(_use_icon)
+	
 func check_for_interactable():
 	if is_colliding():
 		var col = get_collider()
@@ -42,8 +55,9 @@ func check_for_collectible():
 			
 func _process(_delta):
 	place_icon()
-	icon.modulate = Color.WHITE
+	icon.self_modulate = Color.WHITE
 	if Input.is_action_just_pressed("Interact"):
+		set_use_icon(null)
 		icon.position = target_position
 		# I still want the animation to play when a notification pops up
 		if not get_tree().paused:
@@ -64,15 +78,15 @@ func _process(_delta):
 		blink_icon(_icon_state)
 		_timer += _delta
 	else:
-		icon.modulate.a = 0.2
+		icon.self_modulate.a = 0.2
 		
 func place_icon():
 	icon.position = lerp(Vector2(0,-55), target_position, 0.66)
 	
 func blink_icon(state : bool):
 	if state:
-		icon.modulate = positive_color
+		icon.self_modulate = positive_color
 	else:
-		icon.modulate = negative_color
+		icon.self_modulate = negative_color
 	var padink = Utils.padink(_timer, _blink_duration, 0.3, 1.5, 2.0, 0.0, 0.66)
-	icon.modulate.a = padink
+	icon.self_modulate.a = padink

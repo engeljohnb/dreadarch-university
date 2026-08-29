@@ -44,7 +44,7 @@ func set_segment_colors(lt):
 		rects.append(rect)
 		
 func create_middle_segments(seg_count):
-	for i in range(0, seg_count):
+	for i in range(0, seg_count-1):
 		var middle_segment = _segment.instantiate()
 		middle_segment.position.x += 16.0+(i*32.0)
 		middle_segment.play("Middle")

@@ -144,6 +144,7 @@ func activate(_using_item : Variant = null, _count = 0):
 		Dialogue.open_dialogue.emit(dialogues[-1].slice(-1, dialogues[-1].size()))
 		
 func _process(_delta):
+	# TODO: Use EventSequence instead of doing this.
 	if Dialogue.current_box == dialogues[0][-1]:
 		if not status["paid"]:
 			status["paid"] = true

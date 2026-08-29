@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxqkcjmpaa7"]
 
-[ext_resource type="Texture2D" uid="uid://gt7i85h0e74q" path="res://Assets/Items/Treasure/0000.png" id="1_2uiaa"]
+[ext_resource type="Texture2D" uid="uid://iwlojpwq6c48" path="res://Assets/Items/Treasure/0000.png" id="1_2uiaa"]
 [ext_resource type="Script" uid="uid://dg4aisack662u" path="res://UI/Scripts/Treasure.gd" id="1_ml3wv"]
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="2_etjus"]
 

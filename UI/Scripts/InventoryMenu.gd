@@ -77,12 +77,14 @@ func on_document_selector_closed():
 	visible = true
 	item_list.visible = true
 	box_icons_list.visible = true
-	item_list.grab_focus()
-	item_list.select(last_selected_item_index)
 	document_selector_open = false
 	$BookBorder/DocumentSelector.visible = false
 	$BookBorder/DocumentSelector.process_mode = Node.PROCESS_MODE_DISABLED
 	$BookBorder/DocumentSelector.focus_mode = Control.FOCUS_NONE
+	set_item_description_visible(true)
+	set_inventory_menu_focus(Control.FOCUS_ALL)
+	item_list.grab_focus()
+	item_list.select(last_selected_item_index)
 	
 func set_item_description_visible(state : bool):
 	$BookBorder/NameLabel.visible = state
@@ -221,11 +223,6 @@ func _process(_delta):
 	Error.set_breakpoint()
 	if document_selector_open:
 		return
-	elif not submenu_open:
-		if not $BookBorder/DescriptionLabel.visible:
-			set_item_description_visible(true)
-			set_inventory_menu_focus(Control.FOCUS_ALL)
-			$BookBorder/ItemList.grab_focus()
 	if not submenu_open and not number_box_open:
 		if item_list.is_anything_selected():
 			var chosen_index = item_list.get_selected_items().get(0)

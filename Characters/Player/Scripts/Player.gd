@@ -611,6 +611,7 @@ func on_inventory_action_chosen(action, item, count):
 		"Use":
 			$InteractionRay.using_item = item
 			$InteractionRay.using_item_count = count
+			$InteractionRay.set_use_icon(item)
 		"Equip":
 			set_equipped(item)
 		"Drink":

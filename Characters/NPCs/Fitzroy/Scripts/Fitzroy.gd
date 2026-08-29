@@ -10,7 +10,7 @@ var bribe_amount = 25
 
 var translation_dialogue = [
 	{
-		"text":"Look at this writing... Can you tell me what it says in English??",
+		"text":"Look at this writing... Can you tell me what it says in English?",
 		"speaker":"Player"
 	},
 	{
