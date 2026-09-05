@@ -13,13 +13,16 @@ func on_flip(state):
 func fill():
 	$TranslatedSound.play()
 	$Sprite2D.texture = fill_texture
+	$Sprite2D.visible = true
 	$Blinker.blink(1.0)
 	
 func set_full():
 	$Sprite2D.texture = fill_texture
 func reset():
+	$Sprite2D.visible = false
 	$Sprite2D.texture = blank_texture
 	
 func _ready():
+	$Sprite2D.visible = false
 	$Blinker.blink_duration = blink_duration
 	$Blinker.flip.connect(on_flip)

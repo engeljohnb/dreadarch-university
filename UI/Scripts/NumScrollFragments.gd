@@ -15,5 +15,5 @@ func set_brightness(brightness : float):
 	
 func set_position_for_mini_gui(y_pos):
 	$CanvasLayer/RichTextLabel.position = Vector2(0, y_pos)
-	$CanvasLayer/RichTextLabel.position.x = -1120
-	shrink_for_mini_gui(0.9)
+	$CanvasLayer/RichTextLabel.position.x += 235.0
+	shrink_for_mini_gui(0.45)

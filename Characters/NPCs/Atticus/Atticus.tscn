@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://6t11h4nn86a1"]
+
+[ext_resource type="Script" uid="uid://c1824y321q5ok" path="res://Characters/NPCs/Atticus/Scripts/Atticus.gd" id="1_u671l"]
+[ext_resource type="Texture2D" uid="uid://07aelldgoi0a" path="res://Assets/NPCs/Atticus/Idle Left/0000.png" id="2_c2ibt"]
+[ext_resource type="Texture2D" uid="uid://dbjqxc5bqxqyr" path="res://Assets/NPCs/Atticus/Idle Left/0001.png" id="3_7gpdi"]
+[ext_resource type="Texture2D" uid="uid://cwvmvypkmrp1c" path="res://Assets/NPCs/Atticus/Idle Left/0002.png" id="4_6ua6y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_437yd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c2ibt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7gpdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ua6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7gpdi")
+}],
+"loop": true,
+"name": &"Idle Left",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8g2o"]
+size = Vector2(48, 106)
+
+[node name="NPC" type="StaticBody2D" unique_id=850451362 groups=["Interactable"]]
+collision_layer = 8
+collision_mask = 12
+script = ExtResource("1_u671l")
+metadata/_custom_type_script = "uid://bgfg4g0sb1sc7"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=416050373]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_437yd")
+animation = &"Idle Left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1247016336]
+position = Vector2(5, 10)
+shape = SubResource("RectangleShape2D_v8g2o")

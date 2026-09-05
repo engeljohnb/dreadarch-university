@@ -16,7 +16,7 @@ theme = ExtResource("1_krf5r")
 script = ExtResource("2_vvn8s")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1166427193]
-self_modulate = Color(0.868985, 0.868985, 0.868985, 0.73)
+self_modulate = Color(0.7677944, 0.72605294, 0.6813416, 0.8784314)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
@@ -40,6 +40,7 @@ offset_left = -0.6800537
 offset_top = 0.23995972
 offset_right = -0.16015625
 offset_bottom = 0.16000366
+theme_override_font_sizes/normal_font_size = 50
 text = "Level Up!"
 
 [node name="ChooseOneLabel" type="RichTextLabel" parent="." unique_id=1339652758]
@@ -59,10 +60,10 @@ anchor_top = 0.643
 anchor_right = 0.72900003
 anchor_bottom = 0.726
 offset_left = -0.8400879
-offset_top = -92.44
+offset_top = -53.97998
 offset_right = 0.3199463
-offset_bottom = -99.08002
-theme_override_font_sizes/font_size = 40
+offset_bottom = -60.619995
+theme_override_font_sizes/font_size = 20
 text = "Increase Attack Damage"
 
 [node name="IncreaseLifeTotal" type="Button" parent="." unique_id=1182977240]
@@ -73,8 +74,8 @@ anchor_top = 0.64900005
 anchor_right = 0.5
 anchor_bottom = 0.726
 offset_left = -0.08001709
-offset_top = -98.920044
+offset_top = -60.460022
 offset_right = 3.0
-offset_bottom = -99.08002
-theme_override_font_sizes/font_size = 40
+offset_bottom = -60.619995
+theme_override_font_sizes/font_size = 20
 text = "Increase Life Total"

@@ -8,7 +8,7 @@ var _trans_prog = load("res://UI/TranslationProgress.tscn")
 var _level_up_menu = load("res://UI/LevelUpMenu.tscn")
 var level_up_menu = null
 var progress_icons = []
-var starting_scroll_position = Vector2(570, 400)
+var starting_scroll_position = Vector2(200.0, 90.0)
 var progress_index = 0
 var level_up_open = false
 @onready var translate_button = $Translate
@@ -129,7 +129,7 @@ func open(_documents : Array):
 				documents.erase(doc)
 			num_translated = translated_remainder
 	next_document()
-	var width = level_up_total*84
+	var width = level_up_total*42
 	for i in range(0, level_up_total):
 		var icon = _trans_prog.instantiate()
 		icon.z_index = 11

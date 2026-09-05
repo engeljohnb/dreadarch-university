@@ -24,58 +24,19 @@ script = ExtResource("2_gumc0")
 self_modulate = Color(0.576471, 0.576471, 0.576471, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.034
-anchor_top = 0.615
-anchor_right = 0.97
-anchor_bottom = 1.021
-offset_left = -0.280006
-offset_top = -0.200012
-offset_right = 0.599976
-offset_bottom = -6.68005
+anchor_left = 0.07700001
+anchor_top = 0.578
+anchor_right = 0.933
+anchor_bottom = 0.90200007
+offset_left = -0.9200058
+offset_top = -0.11999512
+offset_right = 986.1111
+offset_bottom = 1574.9197
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.455, 0.1)
 texture = ExtResource("3_oaxx8")
 expand_mode = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=809218180]
-clip_contents = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.247
-anchor_top = 0.128
-anchor_right = 0.947
-anchor_bottom = 0.811
-offset_left = 0.399994
-offset_top = -0.120003
-offset_right = 0.399902
-offset_bottom = 0.059967
-theme_override_fonts/normal_font = ExtResource("4_gsxh0")
-theme_override_font_sizes/normal_font_size = 55
-
-[node name="Indicator" type="AnimatedSprite2D" parent="TextureRect" unique_id=572517986]
-texture_filter = 1
-position = Vector2(1587, 328)
-scale = Vector2(3.76, 3.76)
-sprite_frames = ExtResource("5_gsxh0")
-animation = &"Proceed"
-frame_progress = 0.0689687
-
-[node name="Portrait" type="TextureRect" parent="TextureRect" unique_id=1999796299]
-texture_filter = 1
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.09
-anchor_top = 0.164
-anchor_right = 0.216
-anchor_bottom = 0.69
-offset_left = 0.179993
-offset_top = 0.152
-offset_right = -194.368
-offset_bottom = -195.08
-scale = Vector2(7.09536, 7.09536)
-texture = ExtResource("3_rn55j")
-stretch_mode = 2
 
 [node name="DialogueRevealSound" type="AudioStreamPlayer" parent="." unique_id=742667260]
 volume_db = -14.5
@@ -88,3 +49,43 @@ autoplay = true
 [node name="DialogueSkipSound" type="AudioStreamPlayer" parent="." unique_id=1403387720]
 stream = ExtResource("15_67n4p")
 volume_db = -13.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=809218180]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24700001
+anchor_top = 0.61700004
+anchor_right = 0.86800003
+anchor_bottom = 0.89300007
+offset_left = -0.120010376
+offset_top = -0.1800232
+offset_right = -0.2800293
+offset_bottom = -0.22003174
+theme_override_fonts/normal_font = ExtResource("4_gsxh0")
+theme_override_font_sizes/normal_font_size = 30
+text = "This is a test of the emergencyu broadcasting system this is a test of the emergency broadcasting system."
+
+[node name="Portrait" type="TextureRect" parent="." unique_id=1999796299]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10300001
+anchor_top = 0.522
+anchor_right = 0.23600002
+anchor_bottom = 0.81500006
+offset_left = 0.11999512
+offset_top = 42.119995
+offset_right = -95.56001
+offset_bottom = -76.535
+scale = Vector2(4, 4)
+texture = ExtResource("3_rn55j")
+stretch_mode = 2
+
+[node name="Indicator" type="AnimatedSprite2D" parent="." unique_id=572517986]
+texture_filter = 1
+position = Vector2(825, 467)
+scale = Vector2(1.8531456, 1.8531456)
+sprite_frames = ExtResource("5_gsxh0")
+animation = &"Proceed"
+frame_progress = 0.0689687

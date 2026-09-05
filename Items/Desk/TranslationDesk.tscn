@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://b20khridkwk24"]
+[gd_scene format=3 uid="uid://b20khridkwk24"]
 
-[ext_resource type="Texture2D" uid="uid://cauynpnj8uogq" path="res://Assets/Desk/Desk.png" id="1_8wvcy"]
 [ext_resource type="Script" uid="uid://lyjwmcjl0bla" path="res://Items/Desk/Scripts/TranslationDesk.gd" id="1_hh7a4"]
+[ext_resource type="Texture2D" uid="uid://c5hfg50t2mahm" path="res://Assets/Items/Desk/Desk.png" id="2_hh7a4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnsct"]
-size = Vector2(153.5, 98.5)
+size = Vector2(132, 86)
 
-[node name="TranslationDesk" type="StaticBody2D" groups=["Interactable"]]
+[node name="TranslationDesk" type="StaticBody2D" unique_id=38062387 groups=["Interactable"]]
 collision_layer = 8
 collision_mask = 24
 script = ExtResource("1_hh7a4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.25, 15.75)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220921724]
+visible = false
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_qnsct")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8wvcy")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1310403922]
+texture = ExtResource("2_hh7a4")

@@ -14,6 +14,7 @@ signal notify_player(note)
 signal dialogue_ended
 
 var current_box = {}
+var current_ui_box : Control
 
 func dialogue_open() -> bool:
 	return get_tree().get_nodes_in_group("Player")[0].in_dialogue

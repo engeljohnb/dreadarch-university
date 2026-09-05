@@ -12,8 +12,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = 165.0
+offset_right = 240.0
+offset_bottom = 165.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("1_cppxa")
 script = ExtResource("2_125as")
 

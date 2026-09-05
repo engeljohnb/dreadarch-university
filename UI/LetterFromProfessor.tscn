@@ -45,7 +45,7 @@ offset_top = 0.14399719
 offset_right = 0.45996094
 offset_bottom = 0.29992676
 theme_override_fonts/normal_font = ExtResource("4_otjx5")
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 26
 text = "Classes delayed. The excavation goes poorly.
 
 I need you to find me in the ruins East of the University. Sneak in if you have to.
@@ -56,15 +56,15 @@ I need you to find me in the ruins East of the University. Sneak in if you have 
 [node name="Done" type="Button" parent="TextureRect" unique_id=586773865]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.78
-anchor_top = 0.707
-anchor_right = 0.938
-anchor_bottom = 0.857
-offset_left = 23.880005
-offset_top = 24.872986
-offset_right = 23.47998
-offset_bottom = 7.872986
-theme_override_font_sizes/font_size = 45
+anchor_left = 0.74300003
+anchor_top = 0.683
+anchor_right = 0.90000004
+anchor_bottom = 0.80200005
+offset_left = -0.16656494
+offset_top = 0.26522827
+offset_right = -0.06460571
+offset_bottom = 0.27365112
+theme_override_font_sizes/font_size = 22
 text = "Done"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=36265392]

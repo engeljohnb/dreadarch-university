@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cauynpnj8uogq"
-path="res://.godot/imported/Desk.png-b5384a7257f379fab7cdd1d256abed14.ctex"
+uid="uid://jtfgbekivglp"
+path="res://.godot/imported/0001.png-8dbe7017c8013ffe8d9e030faa11c4a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Desk/Desk.png"
-dest_files=["res://.godot/imported/Desk.png-b5384a7257f379fab7cdd1d256abed14.ctex"]
+source_file="res://Assets/NPCs/Atticus/Walk Right/0001.png"
+dest_files=["res://.godot/imported/0001.png-8dbe7017c8013ffe8d9e030faa11c4a4.ctex"]
 
 [params]
 

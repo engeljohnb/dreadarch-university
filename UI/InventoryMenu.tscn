@@ -93,10 +93,10 @@ expand_mode = 1
 [node name="Use" type="Button" parent="BookBorder/DocumentSelector" unique_id=633838862]
 self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
 layout_mode = 0
-offset_left = 227.0
-offset_top = 486.0
-offset_right = 334.0
-offset_bottom = 551.0
+offset_left = 45.930634
+offset_top = 304.70416
+offset_right = 152.93063
+offset_bottom = 369.70416
 theme_override_font_sizes/font_size = 35
 text = "Use
 "
@@ -104,10 +104,10 @@ text = "Use
 [node name="Back" type="Button" parent="BookBorder/DocumentSelector" unique_id=1219546964]
 self_modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.7294118)
 layout_mode = 0
-offset_left = 418.0
-offset_top = 486.0
-offset_right = 525.0
-offset_bottom = 551.0
+offset_left = 166.93063
+offset_top = 306.70416
+offset_right = 273.93063
+offset_bottom = 371.70416
 theme_override_font_sizes/font_size = 35
 text = "Cancel"
 
@@ -131,9 +131,9 @@ anchor_top = 0.31
 anchor_right = 0.025
 anchor_bottom = 0.347
 offset_left = 1.0
-offset_top = 0.040008545
-offset_right = 0.025030136
-offset_bottom = 0.08003235
+offset_top = 5.550171
+offset_right = 8.511399
+offset_bottom = 8.999527
 texture = ExtResource("9_6rj1i")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BookBorder/DocumentSelector" unique_id=2025291720]
@@ -147,7 +147,7 @@ offset_left = -0.37200546
 offset_top = -0.09998703
 offset_right = -0.23602295
 offset_bottom = 0.19995117
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 25
 text = "kjnkiuhiu"
 
 [node name="SelectSound" type="AudioStreamPlayer" parent="BookBorder/DocumentSelector" unique_id=234951252]
@@ -168,8 +168,8 @@ offset_right = 1.2544556
 offset_bottom = 0.3399048
 theme = ExtResource("1_3qx5f")
 allow_search = false
-max_columns = 8
-fixed_icon_size = Vector2i(64, 64)
+max_columns = 5
+fixed_icon_size = Vector2i(32, 32)
 
 [node name="BoxIcons" type="ItemList" parent="BookBorder" unique_id=229985507]
 texture_filter = 1
@@ -187,7 +187,7 @@ focus_mode = 0
 theme = ExtResource("1_c4t47")
 allow_search = false
 max_columns = 8
-fixed_icon_size = Vector2i(64, 64)
+fixed_icon_size = Vector2i(32, 32)
 
 [node name="NameLabel" type="RichTextLabel" parent="BookBorder" unique_id=1287008359]
 visible = false
@@ -201,6 +201,7 @@ offset_left = 4.1968384
 offset_top = 0.08999634
 offset_right = -0.45910645
 offset_bottom = -0.2800293
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]Inventory[/center]"
 
@@ -241,7 +242,7 @@ offset_top = -0.085998535
 offset_right = -0.3614502
 offset_bottom = 0.44799805
 theme_override_fonts/normal_font = ExtResource("13_3qx5f")
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_oqq54")
 text = "No Items"
 

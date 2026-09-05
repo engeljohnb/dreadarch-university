@@ -22,13 +22,13 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.176
 anchor_top = 0.196
-anchor_right = 0.872
-anchor_bottom = 0.641
-offset_left = -0.183998
-offset_top = 0.136002
-offset_right = -0.0480042
-offset_bottom = 0.0059967
-theme_override_font_sizes/normal_font_size = 100
+anchor_right = 0.96500003
+anchor_bottom = 0.77800006
+offset_left = -0.18399811
+offset_top = 0.13600159
+offset_right = 0.035812378
+offset_bottom = 0.004058838
+theme_override_font_sizes/normal_font_size = 50
 text = "0"
 
 [node name="DownButton" type="TextureRect" parent="RichTextLabel" unique_id=1300705823]

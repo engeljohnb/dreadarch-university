@@ -37,7 +37,6 @@ func _ready():
 	$Use.pressed.connect(on_used)
 	$Back.pressed.connect(close)
 	$Use.grab_focus()
-	
 # For some reason, the root DocumentSelector node keeps grabbing the focus
 #  and setting focus_mode doesn't stop it.
 var _prev_focus : Button

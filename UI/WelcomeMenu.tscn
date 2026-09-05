@@ -25,12 +25,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.131
 anchor_top = 0.054
-anchor_right = 0.887
-anchor_bottom = 0.269
-offset_left = 0.47998
-offset_top = -3.32
-offset_right = 0.567871
-offset_bottom = -0.344025
+anchor_right = 0.90000004
+anchor_bottom = 0.42400002
+offset_left = 0.47998047
+offset_top = -3.3199997
+offset_right = -6.1035156e-05
+offset_bottom = 0.039993286
 text = "Dreadarch University"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -40,10 +40,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 634.0
-offset_top = 323.0
-offset_right = -1246.0
-offset_bottom = -717.0
+offset_right = -960.0
+offset_bottom = -540.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -52,19 +50,23 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.825
 anchor_top = 3.9250002
-anchor_right = 14.250001
-anchor_bottom = 7.2000003
-offset_left = -2.0
-offset_right = -6.1035156e-05
+anchor_right = 1.825
+anchor_bottom = 3.9250002
+offset_left = 381.0
+offset_top = 311.0
+offset_right = 605.0
+offset_bottom = 391.0
 text = "Load Game"
 
 [node name="NewGame" type="Button" parent="Buttons" unique_id=2100294284]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.9000001
-anchor_right = 14.150001
-anchor_bottom = 3.2250001
-offset_right = 275.625
+anchor_right = 1.9000001
+offset_left = 391.0
+offset_top = 252.0
+offset_right = 666.625
+offset_bottom = 332.0
 scale = Vector2(0.64, 1)
 text = "New Game"
 
@@ -75,9 +77,10 @@ anchor_left = 1.7
 anchor_top = 11.450001
 anchor_right = 14.425001
 anchor_bottom = 14.625001
-offset_top = -3.0517578e-05
-offset_right = -6.1035156e-05
-offset_bottom = -6.1035156e-05
+offset_left = 440.0
+offset_top = 429.0
+offset_right = 526.0
+offset_bottom = 509.0
 text = "Quit"
 
 [node name="Feedback" type="Button" parent="Buttons" unique_id=1503570130]
@@ -87,7 +90,10 @@ anchor_left = 1.7750001
 anchor_top = 7.7000003
 anchor_right = 14.275001
 anchor_bottom = 10.8
-offset_right = 1.0
+offset_left = 408.0
+offset_top = 374.0
+offset_right = 575.0
+offset_bottom = 454.0
 text = "Feedback"
 
 [node name="Panel" type="Panel" parent="." unique_id=1909986445]
@@ -113,8 +119,8 @@ grow_vertical = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
 [node name="LampLight" parent="." unique_id=1929235277 instance=ExtResource("4_yxqvu")]
-position = Vector2(1191, 575)
-scale = Vector2(37.7031, 22.8594)
+position = Vector2(522, 291)
+scale = Vector2(18.852, 11.43)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=956884093]
 

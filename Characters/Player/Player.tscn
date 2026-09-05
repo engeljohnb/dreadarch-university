@@ -940,7 +940,6 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 [node name="Blinker" parent="." unique_id=738379771 instance=ExtResource("166_qqhww")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=302395096]
-zoom = Vector2(1.75, 1.75)
 
 [node name="LowRangeLight" type="PointLight2D" parent="." unique_id=812505896]
 visible = false
@@ -962,7 +961,7 @@ texture = ExtResource("148_yo137")
 light_mask = 4
 visibility_layer = 4
 position = Vector2(0.166233, -0.542375)
-scale = Vector2(0.924085, 0.924085)
+scale = Vector2(0.462, 0.462)
 color = Color(0.940371, 0.870002, 0.737402, 1)
 energy = 3.0
 range_item_cull_mask = 4

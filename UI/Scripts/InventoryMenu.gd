@@ -108,13 +108,13 @@ func create_count_label(item:InventoryItem):
 	var label = RichTextLabel.new()
 	label.text =  str(item.count)
 	var offset_x = -50#55.0 - 60.0
-	var separation = 85
+	var separation = 61.0
 	var width_x = 75.0
 	var x_index = inventory_items.size() % item_list.max_columns
 	var y_index = int(inventory_items.size() / item_list.max_columns)
-	label.add_theme_font_size_override("normal_font_size", 45)
+	label.add_theme_font_size_override("normal_font_size", 19)
 	label.grow_vertical = Control.GROW_DIRECTION_END
-	label.offset_top = (separation * y_index) + 70.0
+	label.offset_top = (separation * y_index) + 45.0
 	label.offset_bottom = (separation * y_index) + 70.0
 	label.offset_left = offset_x + (x_index * separation)
 	label.offset_right = offset_x + (x_index * separation) + width_x

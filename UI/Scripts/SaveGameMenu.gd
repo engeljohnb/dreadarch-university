@@ -71,7 +71,7 @@ func make_save_slot_mini_gui(button, pos):
 	var scroll_icon = load("res://UI/NumScrollFragments.tscn").instantiate()
 	var num_scroll_fragments = save_data.player.documents.size()
 	scroll_icon.set_num_scroll_fragments(num_scroll_fragments)
-	scroll_icon.set_position_for_mini_gui(pos.y + button.position.y - 10)
+	scroll_icon.set_position_for_mini_gui(pos.y + button.position.y + 37.5 )
 	button.add_child(scroll_icon)
 	icons.append(scroll_icon)
 	
@@ -87,12 +87,12 @@ func set_mini_gui_icon_brightness(brightness: float):
 func make_button(save_filename, pos, slot_num):
 	var button = Button.new()
 	var index = slot_num-1
-	button.size.x = 499
-	button.size.y = 131
-	button.position.y = 150*(int(index))
+	button.size.x = 250
+	button.size.y = 64
+	button.position.y = 75*(int(index))
 	button.z_index = 100
 	button.z_as_relative = false
-	button.add_theme_font_size_override("font_size", 75)
+	button.add_theme_font_size_override("font_size", 37)
 	var scene_name = ""
 	if Utils.is_valid_save_filename(save_filename):
 		if _mode == OpenModes.LOAD:
@@ -119,9 +119,9 @@ func make_empty_save_slot(slot_num):
 	var index = slot_num-1
 	button.text = EMPTY_SLOT_NAME
 	button.disabled = true
-	button.size.x = 499
-	button.size.y = 131
-	button.position.y = 150*index
+	button.size.x = 250
+	button.size.y = 64
+	button.position.y = 75*index
 	button.focus_mode = FocusMode.FOCUS_NONE
 	return button
 
@@ -147,9 +147,9 @@ func open(all_save_filenames : Array[String], mode = OpenModes.SAVE, pos = Vecto
 		add_child(button)
 		if all_buttons.find(button) < max_save_files:
 			var separator = HSeparator.new()
-			separator.size.x = 750
-			separator.position.x -= 125
-			separator.position.y = button.position.y+131
+			separator.size.x = 375
+			separator.position.x -= 62
+			separator.position.y = button.position.y+64
 			add_child(separator)
 	position = pos
 

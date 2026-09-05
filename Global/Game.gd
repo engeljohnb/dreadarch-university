@@ -79,6 +79,7 @@ func _open_dialogue(dialogue):
 	player.in_dialogue = true
 	player.sprite.play("Idle " + Utils.nearest_cardinal_direction(player.facing, true))
 	player.step_sound.stop()
+	Dialogue.current_ui_box = box
 	
 func on_player_lost_dagger():
 	$CanvasLayer/HUD/Equipped/CanvasLayer.visible = false
@@ -371,15 +372,15 @@ func on_new_scene():
 	load_player_for_new_scene()
 	play_scene_entrance_cutscene()
 	update_footstep_sound_source()
-	
+
 func open_load_game_menu(pos = null):
 	var menu = load("res://UI/SaveGameMenu.tscn").instantiate()
 	menu.save_file_chosen.connect(load_game)
 	
 	var menu_pos : Vector2
 	if not pos:
-		var menu_pos_y = 250+menu.size.y+10
-		var menu_pos_x = (1920.0/2.0) - (250)
+		var menu_pos_y = 115+menu.size.y
+		var menu_pos_x = (960/2.0) - (125)
 		menu_pos = Vector2(menu_pos_x, menu_pos_y)
 	else:
 		menu_pos = pos
@@ -393,7 +394,11 @@ func open_load_game_menu(pos = null):
 		menu.set_mini_gui_icon_brightness(0.66)
 		current_scene.add_child(menu)
 		current_scene.hide_all()
+		if "show_title" in current_scene:
+			menu.closed.connect(current_scene.show_title)
 		menu.closed.connect(current_scene.show_all)
+		if "hide_title" in current_scene:
+			current_scene.hide_title()
 	else:
 		menu.set_mini_gui_icon_brightness(0.8)
 		if pause_menu.visible:
@@ -422,8 +427,8 @@ func open_save_game_menu(pos = null):
 
 	var menu_pos : Vector2
 	if not pos:
-		var menu_pos_y = 250+menu.size.y+10
-		var menu_pos_x = (get_window().size.x/2.0) - (250)
+		var menu_pos_y = 115+menu.size.y
+		var menu_pos_x = (get_window().size.x/2.0) - (125)
 		menu_pos = Vector2(menu_pos_x, menu_pos_y)
 	else:
 		menu_pos = pos
@@ -458,8 +463,8 @@ func _ready():
 	music.update(current_scene)
 	init_player()
 	
-	pause_menu.save_button.pressed.connect(open_save_game_menu.bind(Vector2(720,200)))
-	pause_menu.load_button.pressed.connect(open_load_game_menu.bind(Vector2(720,200)))
+	pause_menu.save_button.pressed.connect(open_save_game_menu.bind(Vector2(360,100)))
+	pause_menu.load_button.pressed.connect(open_load_game_menu.bind(Vector2(360,100)))
 	pause_menu.continue_button.pressed.connect(close_menu_sound.play)
 	
 	Dialogue.prompt_player.connect(_prompt_player)
@@ -471,6 +476,7 @@ func _ready():
 	
 	canvas.add_child(current_scene)
 	current_scene.loadgame_button.pressed.connect(open_load_game_menu)
+	current_scene.loadgame_button.pressed.connect(current_scene.hide_title)
 	current_scene.newgame_button.pressed.connect(new_game)
 	
 	ItemCollection.item_collected.connect(hud.on_item_collected)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctcsa2iivywjj"]
 
-[ext_resource type="FontFile" uid="uid://bulvrkgvcig85" path="res://Assets/UI/Fonts/days_of_charity/Days of Charity.otf" id="1_pbsus"]
+[ext_resource type="FontFile" uid="uid://dnifhrv1s7o35" path="res://Assets/UI/Fonts/princess-sofia/PrincessSofia-Regular.ttf" id="1_jsuq4"]
 [ext_resource type="Script" uid="uid://8n2h3lit7oky" path="res://UI/Scripts/PauseMenu.gd" id="1_tsvmi"]
 [ext_resource type="Texture2D" uid="uid://cs08el3h671jy" path="res://Assets/UI/LongButton/LongButtonFocused.png" id="2_4lql7"]
 [ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="3_jsuq4"]
@@ -35,7 +35,7 @@ Button/colors/font_focus_color = Color(0, 0, 0, 0.8)
 Button/colors/font_hover_color = Color(0, 0, 0, 0.8)
 Button/colors/font_pressed_color = Color(0, 0, 0, 0.4)
 Button/font_sizes/font_size = 50
-Button/fonts/font = ExtResource("1_pbsus")
+Button/fonts/font = ExtResource("1_jsuq4")
 Button/styles/focus = SubResource("StyleBoxTexture_wf1sp")
 Button/styles/hover = SubResource("StyleBoxEmpty_qxt2n")
 Button/styles/normal = SubResource("StyleBoxEmpty_jsuq4")
@@ -65,9 +65,9 @@ theme = SubResource("Theme_wi1q8")
 script = ExtResource("1_tsvmi")
 
 [node name="LampLight" parent="." unique_id=546000046 instance=ExtResource("8_4lql7")]
-position = Vector2(928, 558.00006)
+position = Vector2(511, 226)
 rotation = 1.5707964
-scale = Vector2(20.4591, 36.0143)
+scale = Vector2(10.23, 18.008)
 
 [node name="Panel" type="Panel" parent="." unique_id=518653901]
 z_index = -1
@@ -80,7 +80,7 @@ offset_top = 0.47999573
 offset_right = 0.15991211
 
 [node name="Load" type="Button" parent="." unique_id=1957597766]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.46300003
@@ -95,7 +95,7 @@ text = "Load
 "
 
 [node name="Continue" type="Button" parent="." unique_id=1774944729]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.46300003
@@ -109,7 +109,7 @@ offset_bottom = 0.3199768
 text = "Continue"
 
 [node name="Save" type="Button" parent="." unique_id=581589319]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.46300003
@@ -123,7 +123,7 @@ offset_bottom = 0.047912598
 text = "Save"
 
 [node name="Quit" type="Button" parent="." unique_id=1471874376]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.46300003

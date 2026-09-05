@@ -3,6 +3,8 @@ signal closed()
 
 #TODO: If the player translates 5 fragments, but clicks out before leveling,
 #	They miss their chance forever.
+
+#TODO: Still shows single translated document if you open after translating everything.
 func close():
 	closed.emit()
 	queue_free()
