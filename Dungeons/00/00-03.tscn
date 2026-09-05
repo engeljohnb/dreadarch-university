@@ -156,5 +156,5 @@ texture = SubResource("GradientTexture2D_oo7g1")
 
 [node name="NPCs" type="Node2D" parent="." unique_id=1400747757]
 
-[node name="NPC" parent="NPCs" unique_id=850451362 instance=ExtResource("6_oo7g1")]
-position = Vector2(299, -1878)
+[node name="Atticus" parent="NPCs" unique_id=850451362 instance=ExtResource("6_oo7g1")]
+position = Vector2(400, -1895)

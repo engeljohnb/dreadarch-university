@@ -84,8 +84,7 @@ stretch_mode = 2
 
 [node name="Indicator" type="AnimatedSprite2D" parent="." unique_id=572517986]
 texture_filter = 1
-position = Vector2(825, 467)
+position = Vector2(825, 438)
 scale = Vector2(1.8531456, 1.8531456)
 sprite_frames = ExtResource("5_gsxh0")
 animation = &"Proceed"
-frame_progress = 0.0689687

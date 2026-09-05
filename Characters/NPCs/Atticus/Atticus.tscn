@@ -4,9 +4,65 @@
 [ext_resource type="Texture2D" uid="uid://07aelldgoi0a" path="res://Assets/NPCs/Atticus/Idle Left/0000.png" id="2_c2ibt"]
 [ext_resource type="Texture2D" uid="uid://dbjqxc5bqxqyr" path="res://Assets/NPCs/Atticus/Idle Left/0001.png" id="3_7gpdi"]
 [ext_resource type="Texture2D" uid="uid://cwvmvypkmrp1c" path="res://Assets/NPCs/Atticus/Idle Left/0002.png" id="4_6ua6y"]
+[ext_resource type="Texture2D" uid="uid://4uy2t01ca2iu" path="res://Assets/NPCs/Atticus/Walk Left/0000.png" id="5_poybx"]
+[ext_resource type="Texture2D" uid="uid://b0cptgiarp4ui" path="res://Assets/NPCs/Atticus/Idle Up LeftFoot/0000.png" id="5_wdbls"]
+[ext_resource type="Texture2D" uid="uid://cq830ch8cu5wc" path="res://Assets/NPCs/Atticus/Walk Left/0001.png" id="6_1ndx5"]
+[ext_resource type="Texture2D" uid="uid://boxqww8yis7c7" path="res://Assets/NPCs/Atticus/Idle Up LeftFoot/0001.png" id="6_jmd3l"]
+[ext_resource type="Texture2D" uid="uid://bgd8oihkpvwel" path="res://Assets/NPCs/Atticus/Walk Left/0002.png" id="7_bmyff"]
+[ext_resource type="Texture2D" uid="uid://cif0op0o3t31a" path="res://Assets/NPCs/Atticus/Idle Up LeftFoot/0002.png" id="7_eqt6p"]
+[ext_resource type="Texture2D" uid="uid://dba8pvwxxulhs" path="res://Assets/NPCs/Atticus/Walk Left/0003.png" id="8_4167c"]
+[ext_resource type="Texture2D" uid="uid://xhgpqm1vd4cv" path="res://Assets/NPCs/Atticus/Idle Up RightFoot/0000.png" id="8_ny5ox"]
+[ext_resource type="Texture2D" uid="uid://dm1lqfw5e8m8u" path="res://Assets/NPCs/Atticus/Walk Left/0004.png" id="9_cdwiv"]
+[ext_resource type="Texture2D" uid="uid://bph33jgma2q8g" path="res://Assets/NPCs/Atticus/Idle Up RightFoot/0001.png" id="9_lkta3"]
+[ext_resource type="Texture2D" uid="uid://bomeftd1qxisi" path="res://Assets/NPCs/Atticus/Walk Left/0005.png" id="10_ib4or"]
+[ext_resource type="Texture2D" uid="uid://chphpuitovjes" path="res://Assets/NPCs/Atticus/Idle Up RightFoot/0002.png" id="10_sd8wp"]
+[ext_resource type="Texture2D" uid="uid://q08do4g5x3h8" path="res://Assets/NPCs/Atticus/Walk Left/0006.png" id="11_4at47"]
+[ext_resource type="Texture2D" uid="uid://dpk0ycivvhb5j" path="res://Assets/NPCs/Atticus/Search/0000.png" id="11_mqply"]
+[ext_resource type="Texture2D" uid="uid://msov3bj2slcw" path="res://Assets/NPCs/Atticus/Search/0001.png" id="12_46f3b"]
+[ext_resource type="Texture2D" uid="uid://6nncqhe30wyk" path="res://Assets/NPCs/Atticus/Walk Left/0007.png" id="12_pyjn3"]
+[ext_resource type="Texture2D" uid="uid://b6ld0achuhk7h" path="res://Assets/NPCs/Atticus/Search/0002.png" id="13_1sa68"]
+[ext_resource type="Texture2D" uid="uid://camv7fh3xxjnr" path="res://Assets/NPCs/Atticus/Walk Left/0008.png" id="13_7jvtf"]
+[ext_resource type="Texture2D" uid="uid://bj68f4r3tr7df" path="res://Assets/NPCs/Atticus/Search/0003.png" id="14_lmmwq"]
+[ext_resource type="Texture2D" uid="uid://dxvs2wwjv7biu" path="res://Assets/NPCs/Atticus/Search/0004.png" id="15_es8ky"]
+[ext_resource type="Texture2D" uid="uid://bn4moq5uaqnmq" path="res://Assets/NPCs/Atticus/Search/0005.png" id="16_8w6g5"]
+[ext_resource type="Texture2D" uid="uid://rbhlnl2y670f" path="res://Assets/NPCs/Atticus/Search/0006.png" id="17_xi6on"]
+[ext_resource type="Texture2D" uid="uid://dlr87ji1um200" path="res://Assets/NPCs/Atticus/Search/0007.png" id="18_6e36y"]
+[ext_resource type="Texture2D" uid="uid://byxb4s02mjo81" path="res://Assets/NPCs/Atticus/Shift/0000.png" id="19_2c1i8"]
+[ext_resource type="Texture2D" uid="uid://dqfgtfehqrwqf" path="res://Assets/NPCs/Atticus/Walk Right/0000.png" id="20_0hlfn"]
+[ext_resource type="Texture2D" uid="uid://biam7d5mcm5cg" path="res://Assets/NPCs/Atticus/Shift/0001.png" id="20_v5pi4"]
+[ext_resource type="Texture2D" uid="uid://b18u4fjmdyxli" path="res://Assets/NPCs/Atticus/Shift/0002.png" id="21_0qrb1"]
+[ext_resource type="Texture2D" uid="uid://jtfgbekivglp" path="res://Assets/NPCs/Atticus/Walk Right/0001.png" id="21_qbrub"]
+[ext_resource type="Texture2D" uid="uid://b7l8kaayuddpk" path="res://Assets/NPCs/Atticus/Shift/0003.png" id="22_j850y"]
+[ext_resource type="Texture2D" uid="uid://vssxdajmv88c" path="res://Assets/NPCs/Atticus/Walk Right/0002.png" id="22_wy434"]
+[ext_resource type="Texture2D" uid="uid://l0iswg8achkg" path="res://Assets/NPCs/Atticus/Shift/0004.png" id="23_65e3v"]
+[ext_resource type="Texture2D" uid="uid://jqdlv1j4o8oe" path="res://Assets/NPCs/Atticus/Walk Right/0003.png" id="23_x75xi"]
+[ext_resource type="Texture2D" uid="uid://pdwa68x6lo20" path="res://Assets/NPCs/Atticus/Walk Right/0004.png" id="24_1lew3"]
+[ext_resource type="Texture2D" uid="uid://djhh64t5y4wi2" path="res://Assets/NPCs/Atticus/Shift/0005.png" id="24_ax6ax"]
+[ext_resource type="Texture2D" uid="uid://p7b5jjnlgc2s" path="res://Assets/NPCs/Atticus/Shift/0006.png" id="25_43cld"]
+[ext_resource type="Texture2D" uid="uid://6ya2wxh702w4" path="res://Assets/NPCs/Atticus/Walk Right/0005.png" id="25_qplij"]
+[ext_resource type="Texture2D" uid="uid://bkluvu8yjlh5x" path="res://Assets/NPCs/Atticus/Walk Right/0006.png" id="26_e180b"]
+[ext_resource type="Texture2D" uid="uid://duqeo3l46vwg1" path="res://Assets/NPCs/Atticus/Walk Right/0007.png" id="27_k8jg2"]
+[ext_resource type="Texture2D" uid="uid://dlx1f3mx2k3y3" path="res://Assets/NPCs/Atticus/Walk Right/0008.png" id="28_s3gqv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_437yd"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_xi6on")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6e36y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_xi6on")
+}],
+"loop": 1,
+"name": &"Examine Book",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_c2ibt")
@@ -20,8 +76,214 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_7gpdi")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wdbls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jmd3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_eqt6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jmd3l")
+}],
+"loop": 1,
+"name": &"Idle Up LeftFoot",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ny5ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lkta3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sd8wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lkta3")
+}],
+"loop": 1,
+"name": &"Idle Up RightFoot",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_mqply")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_46f3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1sa68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lmmwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_es8ky")
+}],
+"loop": 0,
+"name": &"Pull From Shelf",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_es8ky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lmmwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1sa68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_46f3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_mqply")
+}],
+"loop": 0,
+"name": &"Return to Shelf",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_2c1i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_v5pi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0qrb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j850y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_65e3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ax6ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_43cld")
+}],
+"loop": 0,
+"name": &"Shift",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_poybx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1ndx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bmyff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4167c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cdwiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ib4or")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4at47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pyjn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7jvtf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pyjn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4at47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ib4or")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cdwiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4167c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bmyff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1ndx5")
+}],
+"loop": 1,
+"name": &"Walk Left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_0hlfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qbrub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_wy434")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_x75xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_1lew3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_qplij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_e180b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_k8jg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_s3gqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_k8jg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_e180b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_qplij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_1lew3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_x75xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_wy434")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qbrub")
+}],
+"loop": 1,
+"name": &"Walk Right",
 "speed": 12.0
 }]
 
@@ -35,10 +297,10 @@ script = ExtResource("1_u671l")
 metadata/_custom_type_script = "uid://bgfg4g0sb1sc7"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=416050373]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_437yd")
-animation = &"Idle Left"
+animation = &"Examine Book"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1247016336]
+visible = false
 position = Vector2(5, 10)
 shape = SubResource("RectangleShape2D_v8g2o")
