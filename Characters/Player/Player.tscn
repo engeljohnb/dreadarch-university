@@ -1000,7 +1000,6 @@ volume_db = -12.0
 
 [node name="StepSound" type="AudioStreamPlayer" parent="." unique_id=1906482170]
 stream = ExtResource("155_j8ien")
-volume_db = -12.0
 bus = &"FXReverb"
 parameters/looping = true
 

@@ -728,10 +728,10 @@ func get_step_sound(sound_name):
 		"Soft":
 			return soft_step_sound
 			
-func update_step_sound(sound_source):
+func update_step_sound(sound_source : Variant, init : bool = false):
 	# In case the player processes after the scene has been freed.
 	if (not sound_source):
-		return
+		return 
 	if sound_source is TileMapLayer:
 		var tilemap = sound_source
 		var map = tilemap.local_to_map(tilemap.to_local(global_position))
@@ -740,20 +740,20 @@ func update_step_sound(sound_source):
 			return
 		var sound_name = data.get_custom_data("Sound")
 		var stream = get_step_sound(sound_name)
-		if stream != step_sound.stream:
+		if (stream != step_sound.stream) or (init):
 			step_sound.stream = stream
 			match sound_name:
 				"Soft":
-					step_sound.volume_db = -17.0
+					step_sound.volume_db = -24.0
 				"Hard":
-					step_sound.volume_db = -8.0
+					step_sound.volume_db = -13.0
 	elif (sound_source is String) or (sound_source is StringName):
 		var sound_name = sound_source
 		match sound_name:
 			"Grass":
 				if not (step_sound.stream == grass_step_sound):
 					step_sound.stream = grass_step_sound
-					step_sound.volume_db = -24.0
+					step_sound.volume_db = -30.0
 
 # These are here because of a bug every time the player goes through a door,
 #  when they press and hold a direction key after the scene switches

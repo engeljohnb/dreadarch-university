@@ -300,6 +300,7 @@ func init_player_for_new_scene():
 	else:
 		current_scene.add_child(player)
 	hud.lifebar.set_life_total(player.total_life, player.life+player.temporary_life)
+
 	
 func init_current_scene():
 	add_child(current_scene)
@@ -363,6 +364,8 @@ func on_new_scene():
 	load_current_scene_node()
 	init_player_for_new_scene()
 	init_current_scene()
+	update_footstep_sound_source()
+	player.update_step_sound(step_sound_source, true)
 	var scene_name = SceneTransition.current_scene_name
 	if _save.rooms.get(scene_name):
 		if not _save.rooms[scene_name].is_empty():
@@ -371,7 +374,7 @@ func on_new_scene():
 	pause_menu.visible = false
 	load_player_for_new_scene()
 	play_scene_entrance_cutscene()
-	update_footstep_sound_source()
+
 
 func open_load_game_menu(pos = null):
 	var menu = load("res://UI/SaveGameMenu.tscn").instantiate()
