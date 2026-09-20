@@ -1719,6 +1719,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("42_gxn4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_0ab0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_7liqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_nahvi")
+}],
+"loop": 0,
+"name": &"Stand Up",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("87_dn1ce")
 }, {
 "duration": 1.0,
@@ -2261,7 +2278,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_k8aph")
 position = Vector2(0, -24)
 sprite_frames = ExtResource("2_14m2a")
-animation = &"Wave"
+animation = &"Stand Up"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1259551559]
 z_index = -1
@@ -2362,7 +2379,7 @@ volume_db = -6.0
 [node name="BumpMap" type="AnimatedSprite2D" parent="." unique_id=1416454394 node_paths=PackedStringArray("target")]
 visible = false
 sprite_frames = SubResource("SpriteFrames_kkyey")
-animation = &"Wave"
+animation = &"Sitting"
 script = ExtResource("20_870kv")
 target = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://cnq1mcm71wgew"
