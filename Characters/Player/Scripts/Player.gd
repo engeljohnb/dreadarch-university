@@ -22,6 +22,8 @@ signal cutscene_ended(cutscene : Callable)
 @onready var step_sound = $StepSound
 @onready var camera = $Camera2D
 @onready var interaction_ray = $InteractionRay
+@onready var bump_map = $BumpMap
+@onready var clouds = $Camera2D/Clouds
 
 
 const LEFT = Vector2(-1, 0)
@@ -296,7 +298,7 @@ func door_cutscene_update(delta):
 		if door_cutscene["arriving"]:
 			var target_position = Vector2(door_cutscene["position"].x - hitbox.get_shape().get_rect().size.x+60.0, door_cutscene["position"].y)
 			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
-			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
+			#scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
 		else:
 			var x_difference = (door_cutscene["position"].x - door_cutscene["player_start_pos"].x)
 			var x_total = door_cutscene["player_start_pos"].x + x_difference
@@ -306,16 +308,16 @@ func door_cutscene_update(delta):
 		if door_cutscene["arriving"]:
 			var target_position = Vector2(door_cutscene["position"].x, door_cutscene["position"].y - hitbox.get_shape().get_rect().size.y+60.0)
 			global_position = lerp(SceneTransition.player_start_position, target_position, cutscene_timer)
-			scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
+			#scale = lerp(Vector2(1.0,1.0)*door_cutscene["min_scale"], Vector2(1.0,1.0), cutscene_timer)
 		else:
-			scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
+			#scale = lerp(Vector2(1.0,1.0), Vector2(1.0,1.0)*door_cutscene["min_scale"],  cutscene_timer)
 			global_position = lerp(door_cutscene["player_start_pos"], door_cutscene["position"], cutscene_timer)
 
 func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arriving = false):
 	if delta == 0.0:
 		init_cutscene(play_door_cutscene, 1.0)
 		door_cutscene["arriving"] = arriving
-		door_cutscene["min_scale"] = 0.8
+	#	door_cutscene["min_scale"] = 0.8
 		modulate.a = 0
 		door_cutscene["position"] = door_position
 		door_cutscene["player_start_pos"] = global_position
@@ -325,7 +327,7 @@ func play_door_cutscene(delta, door_position = Vector2(), dir = "North", arrivin
 		door_cutscene_update(delta)
 		if is_cutscene_over():
 			if door_cutscene["arriving"]:
-				scale = Vector2(1.0,1.0)
+				#scale = Vector2(1.0,1.0)
 				modulate.a = 1.0
 				var held_direction = get_held_direction_name()
 				if held_direction != "None":
@@ -502,9 +504,6 @@ func update_attack_state():
 				return
 			else:
 				set_equipped(equipped)
-		if attacking and (not attack_fx):
-			attacking = false
-			return
 		if Input.is_action_just_pressed("Attack") and (not attacking):
 			attack_sound.play()
 			attacking = true
@@ -569,22 +568,19 @@ func hit(_body):
 	else:
 		$HitSound.play()
 	
-func on_blinker_flip(state):
-	if state:
-		set_modulate(Color(1.6, 1.6, 1.6))
-	else:
-		set_modulate(Color(1,1,1))
 func on_dialogue_opened(_dialogue):
 	set_state_machine_state("End")
 	$AnimatedSprite2D.play("Idle " + Utils.nearest_cardinal_direction(facing, true))
 	
 func _ready(): 
 	get_tree().paused = true
-	blinker.flip.connect(on_blinker_flip)
 	reset_inventory()
 	item_equipped.emit(equipped, 0)
 	Dialogue.open_dialogue.connect(on_dialogue_opened)
-
+	if not SceneTransition.scene_is_outside:
+		clouds.disable()
+	else:
+		clouds.enable()
 func set_equipped(item : int):
 	if not item_equippable(item):
 		Error.error("item is not equippable")
@@ -691,22 +687,34 @@ func change_equipment_quick(direction : String):
 func toggle_light():
 	if light.energy == 3.0:
 		light.energy = 1.0
-		modulate = Color(1.3,1.3,1.3)
 	else:
 		light.energy = 3.0
-		modulate = Color(1,1,1)
 func turn_down_default_light():
 	light.energy = 1.0
-	modulate = Color(1.3,1.3,1.3)
+	sprite.modulate = Color.WHITE * 0.5
+	sprite.modulate.a = 1.0
+	sprite.material.set_shader_parameter("strength", 1.25)
+	#sprite.material.set_shader_parameter("baseeline", 0.33)
+
 func turn_up_default_light():
 	light.energy = 3.0
-	modulate = Color(1,1,1)
+	sprite.modulate = Color.WHITE
+	sprite.modulate.a = 1.0
+	sprite.material.set_shader_parameter("strength", 1.66)
+	#sprite.material.set_shader_parameter("baseline", 5.0)
+
 	
 func turn_down_low_range_light():
 	low_range_light.visible = false
 	
 func turn_up_low_range_light():
 	low_range_light.visible = true
+	
+func set_brightness(value : float):
+	sprite.material.set_shader_parameter("strength", value)
+	
+func set_value(value : float): 
+	sprite.material.set_shader_parameter("baseline", value)
 	
 func update_equipment():
 	if Input.is_action_just_pressed("ChangeEquipmentLeft"):
@@ -784,10 +792,9 @@ func stupid_post_door_cutscene_correction():
 func set_state_machine_state(state : String):
 	var playback = anim_tree["parameters/playback"]
 	playback.travel(state)
-
 	
 func _process(delta):
-	if not in_dialogue:
+	if not in_dialogue and not attacking:
 		if not in_cutscene:
 			if Input.is_action_just_pressed("GainLifeCheat"):
 				gain_life(1)

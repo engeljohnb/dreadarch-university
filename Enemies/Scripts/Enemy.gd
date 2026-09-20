@@ -374,8 +374,9 @@ func wait():
 	var idle_animation = "Idle " + Utils.nearest_cardinal_direction(facing, true)
 	update_animation(idle_animation)
 	move_and_slide()
-	
+									  
 func process_action_attack():
+#	breakpoint
 	if action_timer == 0.0:
 		start_action_attack()
 	velocity = Vector2()

@@ -31,6 +31,8 @@ fill_from = Vector2(0.508547, 0.508547)
 process_priority = 5
 script = ExtResource("1_x1c8a")
 default_light_on = false
+player_brightness_override = 0.75
+player_value_override = 0.5
 
 [node name="BookTiles" parent="." unique_id=1141370287 instance=ExtResource("1_f8rm5")]
 self_modulate = Color(0.8217887, 0.82178867, 0.82178867, 1)

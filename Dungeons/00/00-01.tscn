@@ -27,7 +27,6 @@ size = Vector2(3640, 298)
 size = Vector2(433, 2756)
 
 [node name="00-01" type="Node2D" unique_id=1810423913]
-modulate = Color(0.8089983, 0.8089983, 0.8089982, 1)
 y_sort_enabled = true
 script = ExtResource("1_03ab6")
 default_light_on = false
@@ -85,7 +84,7 @@ tile_map_data = PackedByteArray("AADW//L/AAAAAAAAAQDW//P/AAAAAAAAAQDW//T/AAAAAAA
 [node name="Decoration" type="Node2D" parent="." unique_id=453201975]
 
 [node name="SunLight" type="DirectionalLight2D" parent="Decoration" unique_id=1019487067]
-energy = 0.5
+visible = false
 
 [node name="LeafEmmiters" type="Node2D" parent="Decoration" unique_id=742409693]
 modulate = Color(1.122, 1.122, 1.122, 1)

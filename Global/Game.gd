@@ -300,6 +300,11 @@ func init_player_for_new_scene():
 	else:
 		current_scene.add_child(player)
 	hud.lifebar.set_life_total(player.total_life, player.life+player.temporary_life)
+	if player.clouds:
+		if not SceneTransition.scene_is_outside:
+			player.clouds.disable()
+		else:
+			player.clouds.enable()
 
 	
 func init_current_scene():
@@ -356,6 +361,12 @@ func set_player_lights():
 		player.turn_up_low_range_light()
 	else:
 		player.turn_down_low_range_light()
+	if current_scene.player_brightness_override > 0.0:
+		player.set_brightness(current_scene.player_brightness_override)
+	if current_scene.player_value_override > 0.0:
+		player.set_value(current_scene.player_value_override)
+	else:
+		player.bump_map.set_default_value()
 		
 func on_new_scene():
 	if SceneTransition.scene_changed():

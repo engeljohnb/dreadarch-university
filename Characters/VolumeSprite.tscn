@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://464k6dq3vfs6"]
+
+[ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="1_4b77d"]
+
+[node name="VolumeSprite" type="AnimatedSprite2D" unique_id=1498369632]
+texture_filter = 1
+script = ExtResource("1_4b77d")

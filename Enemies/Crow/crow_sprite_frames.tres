@@ -218,7 +218,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_nvku8")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Aggro Down",
 "speed": 12.0
 }, {
@@ -241,7 +241,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_q2avp")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Aggro Left",
 "speed": 12.0
 }, {
@@ -264,7 +264,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_v2tvd")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Aggro Right",
 "speed": 12.0
 }, {
@@ -287,7 +287,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("22_rsojh")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Aggro Up",
 "speed": 12.0
 }, {
@@ -340,7 +340,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("78_tmr68")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Down",
 "speed": 12.0
 }, {
@@ -393,7 +393,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("94_o5mvy")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Left",
 "speed": 12.0
 }, {
@@ -446,7 +446,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("110_o2b1x")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Right",
 "speed": 12.0
 }, {
@@ -499,7 +499,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("126_o3unx")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Up",
 "speed": 12.0
 }, {
@@ -522,7 +522,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("132_78yr5")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Projectile Down",
 "speed": 12.0
 }, {
@@ -545,7 +545,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("138_tgxbs")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Projectile Left",
 "speed": 12.0
 }, {
@@ -568,7 +568,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("144_6vs0w")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Projectile Right",
 "speed": 12.0
 }, {
@@ -591,7 +591,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("148_jh8i2")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Projectile Up",
 "speed": 12.0
 }, {
@@ -614,7 +614,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("160_mto6a")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Walk Down",
 "speed": 12.0
 }, {
@@ -637,7 +637,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("172_rjddo")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Walk Left",
 "speed": 12.0
 }, {
@@ -660,7 +660,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("184_mi4ak")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Walk Right",
 "speed": 12.0
 }, {
@@ -683,7 +683,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("196_pel8i")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Prepare Walk Up",
 "speed": 12.0
 }, {
@@ -718,7 +718,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("32_48gs0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Projectile Down",
 "speed": 12.0
 }, {
@@ -753,7 +753,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("42_yub6a")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Projectile Left",
 "speed": 12.0
 }, {
@@ -788,7 +788,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("52_go1uj")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Projectile Right",
 "speed": 12.0
 }, {
@@ -823,7 +823,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("62_bukdw")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Projectile Up",
 "speed": 12.0
 }, {
@@ -846,7 +846,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("154_wpgl6")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Down",
 "speed": 12.0
 }, {
@@ -869,7 +869,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("166_uf87d")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Left",
 "speed": 12.0
 }, {
@@ -892,7 +892,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("178_8jocf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Right",
 "speed": 12.0
 }, {
@@ -915,7 +915,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("190_f8dlg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Up",
 "speed": 12.0
 }]

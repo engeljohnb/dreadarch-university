@@ -5,12 +5,11 @@ extends CharacterBody2D
 @onready var outline_sprite = $OutlineSprite
 
 func _ready():
-	var _scale = Vector2(0.34, 0.34)
+	var _scale = Vector2(0.2, 0.34)
 	$AnimatedSprite2D.scale = _scale
 	$OutlineSprite.scale = _scale
 	$CollisionPolygon2D.scale = _scale
 	$AnimatedSprite2D.animation_finished.connect(queue_free)
-	set_modulate(Color(0.7,0.4,0.3,0.8))
 	$OutlineSprite.set_modulate(Color(0,0,0))
 	$OutlineSprite.z_index = -1
 	$OutlineSprite.position.x -= 10

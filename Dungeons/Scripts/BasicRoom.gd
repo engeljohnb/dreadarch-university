@@ -3,6 +3,8 @@ class_name Room
 #TODO: 01-05 dagger disappears on saves where it shouldn't      
 @export var default_light_on = true
 @export var low_range_light_on = false
+@export var player_brightness_override : float = 0.0
+@export var player_value_override : float = 0.0
 const TARGET_COLOR = Color(0.258, 0.287, 0.527)
 var save_data : Dictionary = {
 	"pots":[],

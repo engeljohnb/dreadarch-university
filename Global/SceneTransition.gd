@@ -12,6 +12,13 @@ var by_ladder = false
 var ladder_direction = "Up"
 var climb_cutscene = {}
 var outdoor_light_progress = 0.0
+var scene_is_outside : bool = false
+
+var outdoor_scenes = [
+	"00-01",
+	"00-02",
+	"00-06"
+]
 
 func player_is_above_ground():
 	return current_scene_name.contains("00-")
@@ -34,6 +41,10 @@ func enter_scene(scene_path, _player_start_pos = null, _by_door = false, _by_out
 	by_outside_door = _by_outside_door
 	var instance = load(scene_path).instantiate()
 	current_scene_name = instance.name
+	if current_scene_name in outdoor_scenes:
+		scene_is_outside = true
+	else:
+		scene_is_outside = false
 	if _player_start_pos != null:
 		player_start_position = _player_start_pos
 	elif "player_start_position" in instance:

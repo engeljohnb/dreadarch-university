@@ -9,6 +9,10 @@ func set_drops():
 	
 func init():
 	sprite = $AnimatedSprite2D
+	sprite.material = ShaderMaterial.new()
+	sprite.material.shader = preload("res://Assets/BumpMap.gdshader")
+	sprite.material.set_shader_parameter("strength", 0.933)
+	sprite.material.set_shader_parameter("baseline", 0.166)
 	can_transition.append("Walk")
 	can_transition.append("Projectile")
 	if default_idle:

@@ -2,7 +2,7 @@ extends Node2D
 class_name EnemyDeathCutscene
 
 var timer = 0.0
-var duration = 1.0
+var duration = 0.5
 var speed = 2.66
 var playing = false
 var _actor : Variant = self
@@ -23,6 +23,7 @@ func play(delta = 0.0, actor = self):
 		timer += delta
 		var percent = timer/speed
 		deathlight.energy = 1.0/percent
+		deathlight.modulate.a -= delta
 		if timer >= duration:
 			queue_free()
 			if is_instance_valid(_actor):

@@ -514,7 +514,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("17_y31cg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Flying",
 "speed": 12.0
 }, {
@@ -549,7 +549,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25_iscry")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Init",
 "speed": 12.0
 }]

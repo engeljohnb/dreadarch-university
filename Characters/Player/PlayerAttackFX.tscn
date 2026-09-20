@@ -25,7 +25,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_hkbws")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 16.0
 }]
@@ -50,17 +50,20 @@ position = Vector2(0, -2)
 polygon = PackedVector2Array(-77, -95, -88.2353, -30.3529, -85.2941, 40.2353, -73.5294, 107.882, -61.7647, 128.471, 32.3529, 87.2941, 61.7647, 34.3529, 70.5882, -9.7647, 38.2353, -74.4706, -26, -90)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1499561086]
+modulate = Color(1, 1, 1, 0.54901963)
 sprite_frames = SubResource("SpriteFrames_l75vj")
 frame = 4
 frame_progress = 1.0
 
 [node name="OutlineSprite" type="AnimatedSprite2D" parent="." unique_id=950238460]
+visible = false
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_l75vj")
 frame = 4
 frame_progress = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=193698224]
+visible = false
 position = Vector2(-21.844772, -22.624235)
 scale = Vector2(8.684267, 7.3463383)
 color = Color(0.7, 0.3, 0.15, 1)

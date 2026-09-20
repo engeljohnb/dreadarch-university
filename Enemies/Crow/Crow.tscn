@@ -2,11 +2,20 @@
 
 [ext_resource type="Script" uid="uid://ce4aeql8kclix" path="res://Enemies/Crow/Scripts/Crow.gd" id="1_qepe3"]
 [ext_resource type="SpriteFrames" uid="uid://bgdb5enqo5b8d" path="res://Enemies/Crow/crow_sprite_frames.tres" id="2_if58j"]
+[ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_mbuj4"]
 [ext_resource type="Script" uid="uid://dposrh55326ml" path="res://Enemies/EnemyHitbox/Scripts/Hitbox.gd" id="3_if58j"]
 [ext_resource type="PackedScene" uid="uid://c5ktgkhr3ncko" path="res://_Components/SoundComponent.tscn" id="4_t0spy"]
 [ext_resource type="AudioStream" uid="uid://bsil6b1ege4ey" path="res://Assets/Sounds/Crow/HitSound.ogg" id="5_bxdm8"]
 [ext_resource type="AudioStream" uid="uid://ccebogped7sfp" path="res://Assets/Sounds/Crow/AggroSound.ogg" id="5_sc15c"]
 [ext_resource type="AudioStream" uid="uid://dqtfvvpc0gi7w" path="res://Assets/Sounds/Crow/DeathSound.ogg" id="6_sc15c"]
+[ext_resource type="SpriteFrames" uid="uid://co00wu80xfj75" path="res://Assets/Badguys/Crow/VolumeMaps/CrowVolumeMap.tres" id="9_a07ji"]
+[ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="27_vl6hi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6623x"]
+shader = ExtResource("2_mbuj4")
+shader_parameter/strength = 1.0000000475
+shader_parameter/baseline = 0.5
+shader_parameter/modulate = Vector4(1, 0.866, 0.8, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_frsu6"]
 radius = 15.0
@@ -23,9 +32,11 @@ motion_mode = 1
 script = ExtResource("1_qepe3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1253336344]
-texture_filter = 1
+process_priority = 1
+process_physics_priority = 1
+material = SubResource("ShaderMaterial_6623x")
 sprite_frames = ExtResource("2_if58j")
-animation = &"Prepare Projectile Right"
+animation = &"Idle Up"
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=1061759157]
 position = Vector2(3, -4)
@@ -53,3 +64,11 @@ volume_db = -3.0
 [node name="Death" type="AudioStreamPlayer2D" parent="SoundComponent" unique_id=1590557087]
 stream = ExtResource("6_sc15c")
 volume_db = -3.0
+
+[node name="VolumeSprite" type="AnimatedSprite2D" parent="." unique_id=1038600931 node_paths=PackedStringArray("target")]
+visible = false
+sprite_frames = ExtResource("9_a07ji")
+animation = &"Idle Up"
+script = ExtResource("27_vl6hi")
+target = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://cnq1mcm71wgew"
