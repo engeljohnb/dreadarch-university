@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://cp2jyt4q814k8"]
+
+[ext_resource type="Script" uid="uid://luudwy8e2dr1" path="res://Decoration/Rain/_Scripts/RainImpact.gd" id="1_5h2cm"]
+[ext_resource type="Script" uid="uid://mb0hhkcwm7sx" path="res://Decoration/Rain/_Scripts/Rain.gd" id="1_rebtx"]
+[ext_resource type="Shader" uid="uid://cw3gtcopc2kpg" path="res://Decoration/Rain/RainImpact.gdshader" id="2_7fpmj"]
+[ext_resource type="Texture2D" uid="uid://5jpjk6y1rxa2" path="res://Assets/Decoration/Rain/Impact/01/0000.png" id="2_emjv3"]
+[ext_resource type="Texture2D" uid="uid://dmwmsf1lntv2o" path="res://Assets/Decoration/Rain/Impact/01/0001.png" id="3_x4exq"]
+[ext_resource type="Texture2D" uid="uid://drxsosgf4g1m" path="res://Assets/Decoration/Rain/Impact/01/0002.png" id="4_uxt18"]
+[ext_resource type="Texture2D" uid="uid://blmrwujhuceq4" path="res://Assets/Decoration/Rain/Impact/01/0003.png" id="5_y40hm"]
+[ext_resource type="Texture2D" uid="uid://bw7k4kkusn75k" path="res://Assets/Decoration/Rain/Impact/01/0004.png" id="6_nhhrp"]
+[ext_resource type="Texture2D" uid="uid://lrf4wj881rid" path="res://Assets/Decoration/Rain/Impact/02/0000.png" id="7_5h2cm"]
+[ext_resource type="Texture2D" uid="uid://dxdthrbk4j0g4" path="res://Assets/Decoration/Rain/Impact/02/0001.png" id="8_in4f1"]
+[ext_resource type="Texture2D" uid="uid://blaim4ohk75ug" path="res://Assets/Decoration/Rain/Impact/02/0002.png" id="9_rebtx"]
+[ext_resource type="Texture2D" uid="uid://bkio8b8cffnyc" path="res://Assets/Decoration/Rain/Impact/02/0003.png" id="10_povmq"]
+[ext_resource type="Texture2D" uid="uid://qy02p0dkfgdy" path="res://Assets/Decoration/Rain/Impact/02/0004.png" id="11_ejxwk"]
+[ext_resource type="Texture2D" uid="uid://dwl2jsm2ne1em" path="res://Assets/Decoration/Rain/Impact/03/0000.png" id="12_mqb86"]
+[ext_resource type="Texture2D" uid="uid://lcmilxkbki4k" path="res://Assets/Decoration/Rain/Impact/03/0001.png" id="13_4sq2b"]
+[ext_resource type="Texture2D" uid="uid://dfx6f3i40bltd" path="res://Assets/Decoration/Rain/Impact/03/0002.png" id="14_ke11b"]
+[ext_resource type="Texture2D" uid="uid://uiq6drk7iun3" path="res://Assets/Decoration/Rain/Impact/03/0003.png" id="15_qnux4"]
+[ext_resource type="Texture2D" uid="uid://ckuc71ekr30a4" path="res://Assets/Decoration/Rain/Impact/03/0004.png" id="16_41rnm"]
+[ext_resource type="Texture2D" uid="uid://b8nr2ic15pm6n" path="res://Assets/Decoration/Rain/RainDrop.png" id="18_in4f1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5h2cm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_emjv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x4exq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uxt18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_y40hm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nhhrp")
+}],
+"loop": 0,
+"name": &"01",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_5h2cm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_in4f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rebtx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_povmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ejxwk")
+}],
+"loop": 0,
+"name": &"02",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_mqb86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4sq2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ke11b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qnux4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_41rnm")
+}],
+"loop": 0,
+"name": &"03",
+"speed": 12.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffjiu"]
+resource_local_to_scene = true
+shader = ExtResource("2_7fpmj")
+shader_parameter/animation_track_id = 0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5h2cm"]
+size = Vector2(8, 8)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7fpmj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(960, 540, 1)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5h2cm"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(960, 540, 1)
+direction = Vector3(0, 10, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+
+[node name="Rain" type="Node2D" unique_id=387090192]
+z_index = 2
+script = ExtResource("1_rebtx")
+
+[node name="Animation" type="AnimatedSprite2D" parent="." unique_id=934089529]
+visible = false
+sprite_frames = SubResource("SpriteFrames_5h2cm")
+animation = &"01"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1077670514]
+modulate = Color(0.5449209, 0.72538966, 0.59608823, 0.78300005)
+material = SubResource("ShaderMaterial_ffjiu")
+amount = 128
+amount_ratio = 0.5
+texture = SubResource("PlaceholderTexture2D_5h2cm")
+lifetime = 0.42
+preprocess = 2.17
+fixed_fps = 12
+process_material = SubResource("ParticleProcessMaterial_7fpmj")
+script = ExtResource("1_5h2cm")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." unique_id=336745059]
+modulate = Color(0.5449209, 0.72538966, 0.59608823, 0.78300005)
+material = SubResource("ShaderMaterial_ffjiu")
+amount = 128
+amount_ratio = 0.5
+texture = SubResource("PlaceholderTexture2D_5h2cm")
+lifetime = 0.42
+fixed_fps = 12
+process_material = SubResource("ParticleProcessMaterial_7fpmj")
+script = ExtResource("1_5h2cm")
+animation_track = -1
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="." unique_id=590808828]
+modulate = Color(0.5449209, 0.72538966, 0.59608823, 0.78300005)
+material = SubResource("ShaderMaterial_ffjiu")
+amount = 128
+amount_ratio = 0.5
+texture = SubResource("PlaceholderTexture2D_5h2cm")
+lifetime = 0.42
+fixed_fps = 12
+process_material = SubResource("ParticleProcessMaterial_7fpmj")
+script = ExtResource("1_5h2cm")
+animation_track = 2
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=997627689]
+modulate = Color(0.5449209, 0.7273974, 0.5943571, 0.35500002)
+position = Vector2(0, -219)
+amount = 256
+texture = ExtResource("18_in4f1")
+lifetime = 0.25
+speed_scale = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_5h2cm")

@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://r8py7ts46u7k"]
 
 [ext_resource type="Script" uid="uid://gg4jm34yh50x" path="res://Characters/Player/Scripts/Player.gd" id="1_q4m4l"]
+[ext_resource type="PackedScene" uid="uid://cp2jyt4q814k8" path="res://Decoration/Rain/Rain.tscn" id="2_3u2it"]
 [ext_resource type="SpriteFrames" uid="uid://bvv0ts1bnyyou" path="res://Characters/Player/player_sprite_frames.tres" id="2_14m2a"]
 [ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_74fb0"]
 [ext_resource type="Texture2D" uid="uid://bxnxr2xsxxrsk" path="res://Decoration/ShadowTextureCircle.tres" id="4_kgmck"]
 [ext_resource type="Script" uid="uid://dxm32gklaqug" path="res://Decoration/_Scripts/Clouds.gd" id="5_2kvxi"]
+[ext_resource type="Texture2D" uid="uid://ctinfktoi2mhm" path="res://Decoration/CloudLightTexture.tres" id="7_vqfyk"]
 [ext_resource type="PackedScene" uid="uid://dd2uqbjul1fue" path="res://UI/InteractionCursor.tscn" id="8_6fff4"]
 [ext_resource type="AudioStream" uid="uid://dyv2fwabyrx60" path="res://Assets/Sounds/Student/DeathSound.ogg" id="9_1niqm"]
+[ext_resource type="Script" uid="uid://hm8m2pgpcwl0" path="res://Decoration/_Scripts/CloudsSubtraction.gd" id="9_dhy68"]
 [ext_resource type="AudioStream" uid="uid://dp02rx74yaod3" path="res://Assets/Sounds/Student/KnockbackSound.ogg" id="10_6fff4"]
 [ext_resource type="Texture2D" uid="uid://bt36ae4i16bfp" path="res://Assets/Student/VolumeMaps/IdleDown/0000.png" id="12_k8aph"]
 [ext_resource type="Texture2D" uid="uid://bmg4qnop4nhg8" path="res://Assets/Student/VolumeMaps/IdleDown/0001.png" id="13_74fb0"]
@@ -1156,19 +1159,6 @@ states/Walk/position = Vector2(382, 241)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ey64d"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_agvow"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_nahvi")]
 graph_offset = Vector2(23.7683, 82.7943)
 
-[sub_resource type="Gradient" id="Gradient_2kvxi"]
-offsets = PackedFloat32Array(0, 0.5301205, 1)
-colors = PackedColorArray(1, 1, 1, 0, 0.64705884, 0.64705884, 0.64705884, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2kvxi"]
-noise_type = 0
-frequency = 0.0019
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2kvxi"]
-noise = SubResource("FastNoiseLite_2kvxi")
-color_ramp = SubResource("Gradient_2kvxi")
-
 [sub_resource type="Gradient" id="Gradient_6fff4"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
@@ -2266,6 +2256,8 @@ motion_mode = 1
 up_direction = Vector2(0, 1)
 script = ExtResource("1_q4m4l")
 
+[node name="Rain" parent="." unique_id=387090192 instance=ExtResource("2_3u2it")]
+
 [node name="ActorCollision" type="CollisionShape2D" parent="." unique_id=1956782250]
 visible = false
 shape = SubResource("CapsuleShape2D_hdxfm")
@@ -2307,10 +2299,15 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 [node name="Clouds" type="PointLight2D" parent="Camera2D" unique_id=1873966004]
 position = Vector2(0.49999237, -0.4999799)
 scale = Vector2(1.8886719, 1.060547)
-energy = 0.66
+energy = 0.75
 shadow_enabled = true
-texture = SubResource("NoiseTexture2D_2kvxi")
+texture = ExtResource("7_vqfyk")
 script = ExtResource("5_2kvxi")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Camera2D" unique_id=860444285]
+color = Color(0.8346143, 0.8346143, 0.8346143, 1)
+blend_mode = 1
+script = ExtResource("9_dhy68")
 
 [node name="LowRangeLight" type="PointLight2D" parent="." unique_id=812505896]
 visible = false

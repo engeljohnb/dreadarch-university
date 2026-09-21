@@ -210,7 +210,6 @@ func action_has_transition(action : int = current_action) -> bool:
 	
 func set_transitioning(value : bool):
 	transitioning = value
-	#breakpoint
 	
 func update_animation(animation_name : String = ""):
 	if animation_name.is_empty():
@@ -299,8 +298,6 @@ func process_action_death():
 func damage(actor : Variant):
 	actor.life -= 1
 	if actor.life <= 0:
-		if actor.life < 0:
-			breakpoint
 		actor.set_action(Actions.DEATH)
 		
 var knockback_applied : bool = false

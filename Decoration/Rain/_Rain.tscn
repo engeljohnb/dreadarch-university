@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://m6gwlup4ad54"]
+
+[ext_resource type="Script" uid="uid://bgbpu5ttmpylb" path="res://Decoration/Rain/_Scripts/_RainImpact.gd" id="1_dxnh6"]
+[ext_resource type="Material" uid="uid://bvjc84rgymohp" path="res://Decoration/Rain/RainImpactMaterial.tres" id="2_wymcl"]
+[ext_resource type="Texture2D" uid="uid://5jpjk6y1rxa2" path="res://Assets/Decoration/Rain/Impact/01/0000.png" id="3_a7sfw"]
+[ext_resource type="Texture2D" uid="uid://dmwmsf1lntv2o" path="res://Assets/Decoration/Rain/Impact/01/0001.png" id="4_ifdtu"]
+[ext_resource type="Texture2D" uid="uid://drxsosgf4g1m" path="res://Assets/Decoration/Rain/Impact/01/0002.png" id="5_1pq87"]
+[ext_resource type="Texture2D" uid="uid://blmrwujhuceq4" path="res://Assets/Decoration/Rain/Impact/01/0003.png" id="6_usltq"]
+[ext_resource type="Texture2D" uid="uid://bw7k4kkusn75k" path="res://Assets/Decoration/Rain/Impact/01/0004.png" id="7_ag3kp"]
+[ext_resource type="Texture2D" uid="uid://lrf4wj881rid" path="res://Assets/Decoration/Rain/Impact/02/0000.png" id="8_uo06e"]
+[ext_resource type="Texture2D" uid="uid://dxdthrbk4j0g4" path="res://Assets/Decoration/Rain/Impact/02/0001.png" id="9_blqup"]
+[ext_resource type="Texture2D" uid="uid://blaim4ohk75ug" path="res://Assets/Decoration/Rain/Impact/02/0002.png" id="10_nmeof"]
+[ext_resource type="Texture2D" uid="uid://bkio8b8cffnyc" path="res://Assets/Decoration/Rain/Impact/02/0003.png" id="11_ks5ik"]
+[ext_resource type="Texture2D" uid="uid://qy02p0dkfgdy" path="res://Assets/Decoration/Rain/Impact/02/0004.png" id="12_5o0ny"]
+[ext_resource type="Texture2D" uid="uid://dwl2jsm2ne1em" path="res://Assets/Decoration/Rain/Impact/03/0000.png" id="13_oro2w"]
+[ext_resource type="Texture2D" uid="uid://lcmilxkbki4k" path="res://Assets/Decoration/Rain/Impact/03/0001.png" id="14_w4g5u"]
+[ext_resource type="Texture2D" uid="uid://dfx6f3i40bltd" path="res://Assets/Decoration/Rain/Impact/03/0002.png" id="15_y4hxx"]
+[ext_resource type="Texture2D" uid="uid://uiq6drk7iun3" path="res://Assets/Decoration/Rain/Impact/03/0003.png" id="16_ao14b"]
+[ext_resource type="Texture2D" uid="uid://ckuc71ekr30a4" path="res://Assets/Decoration/Rain/Impact/03/0004.png" id="17_44cdx"]
+
+[sub_resource type="Gradient" id="Gradient_fpkma"]
+colors = PackedColorArray(0.45452422, 0.45452428, 0.45452422, 1, 0.41215247, 0.41215247, 0.41215247, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kkyey"]
+gradient = SubResource("Gradient_fpkma")
+width = 960
+height = 540
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_d5qoq"]
+size = Vector2(960, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkyey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a7sfw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ifdtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1pq87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_usltq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ag3kp")
+}],
+"loop": 0,
+"name": &"01",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_uo06e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_blqup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nmeof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ks5ik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5o0ny")
+}],
+"loop": 0,
+"name": &"02",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_oro2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_w4g5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_y4hxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ao14b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_44cdx")
+}],
+"loop": 0,
+"name": &"03",
+"speed": 12.0
+}]
+
+[node name="Rain" type="Node2D" unique_id=387090192]
+position = Vector2(482, 262)
+script = ExtResource("1_dxnh6")
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=468023421]
+self_modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
+texture = SubResource("GradientTexture2D_kkyey")
+
+[node name="Impact" type="Sprite2D" parent="." unique_id=1527628056]
+material = ExtResource("2_wymcl")
+texture = SubResource("PlaceholderTexture2D_d5qoq")
+
+[node name="Animation" type="AnimatedSprite2D" parent="." unique_id=142313156]
+visible = false
+sprite_frames = SubResource("SpriteFrames_kkyey")
+animation = &"01"

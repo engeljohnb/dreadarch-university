@@ -220,7 +220,6 @@ func on_submenu_action_chosen(action_name):
 
 #TODO: break up this function
 func _process(_delta):
-	Error.set_breakpoint()
 	if document_selector_open:
 		return
 	if not submenu_open and not number_box_open:

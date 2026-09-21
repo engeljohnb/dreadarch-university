@@ -31,6 +31,8 @@ size = Vector2(77, 156)
 y_sort_enabled = true
 script = ExtResource("1_1xwj2")
 default_light_on = false
+player_brightness_override = 1.75
+player_value_override = 1.33
 
 [node name="GroundTiles" parent="." unique_id=689394461 groups=["Horizontal"] instance=ExtResource("1_8dl3p")]
 position = Vector2(9, 0)

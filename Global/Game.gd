@@ -361,9 +361,9 @@ func set_player_lights():
 		player.turn_up_low_range_light()
 	else:
 		player.turn_down_low_range_light()
-	if current_scene.player_brightness_override > 0.0:
+	if current_scene.player_brightness_override != 0.0:
 		player.set_brightness(current_scene.player_brightness_override)
-	if current_scene.player_value_override > 0.0:
+	if current_scene.player_value_override != 0.0:
 		player.set_value(current_scene.player_value_override)
 	else:
 		player.bump_map.set_default_value()
@@ -548,9 +548,10 @@ func load_game(filename = "user://SaveFiles/save.da"):
 	load_player(_save.player)
 	load_hud(_save.player)
 	
+	StoryState.state = _save.global_story_state
+	WorldTimers.weather_timer = StoryState.state["weather_timer"]
 	Tutorial.load_completed_tutorial_prompts(_save.completed_tutorial_prompts)
 	SceneTransition.enter_scene(_save.current_scene_path, player.global_position)
-	StoryState.state = _save.global_story_state
 
 func open_inventory():
 	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()
@@ -583,6 +584,3 @@ func _process(_delta):
 		if player.in_cutscene:
 			player_death_cutscene(_delta)
 	Utils.update_player_position(player.global_position)
-
-		
-	

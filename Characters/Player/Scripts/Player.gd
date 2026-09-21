@@ -581,6 +581,7 @@ func _ready():
 		clouds.disable()
 	else:
 		clouds.enable()
+		
 func set_equipped(item : int):
 	if not item_equippable(item):
 		Error.error("item is not equippable")
