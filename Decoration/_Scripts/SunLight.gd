@@ -5,4 +5,4 @@ func _process(_delta):
 		visible = false
 	else:
 		visible = true
-		energy = lerp(0.0, 0.2, WorldTimers.cloud_density)
+		energy = lerp(0.0, 0.5, 1.0 - WorldTimers.cloud_density)

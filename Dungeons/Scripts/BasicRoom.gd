@@ -1,6 +1,6 @@
 extends Node2D
 class_name Room
-#TODO: 01-05 dagger disappears on saves where it shouldn't      
+#TODO: 01-05 dagger disappears on saves where it shouldn't 
 @export var default_light_on = true
 @export var low_range_light_on = false
 @export var player_brightness_override : float = 0.0
@@ -34,8 +34,6 @@ func notify_room_exorcised():
 	
 func update_exorcism():
 	var num_enemies = get_num_enemies()
-	#var ratio = float(num_enemies)/float(total_enemies)
-	#modulate = lerp(Color(1,1,1), TARGET_COLOR, ratio)
 	if num_enemies == 0:
 		if not exorcised:
 			exorcised = true

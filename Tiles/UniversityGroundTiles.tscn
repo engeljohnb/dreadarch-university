@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvj1eys178e34"]
+[gd_scene format=3 uid="uid://bvj1eys178e34"]
 
 [ext_resource type="Texture2D" uid="uid://bleol6g3j843v" path="res://Assets/Tiles/Dreadarch/ImageFiles/ground_tiles.png" id="1_dqv0o"]
 
@@ -202,7 +202,7 @@ custom_data_layer_0/name = "Sound"
 custom_data_layer_0/type = 21
 sources/0 = SubResource("TileSetAtlasSource_q24t0")
 
-[node name="GroundTiles" type="TileMapLayer" groups=["FloorLayer"]]
+[node name="GroundTiles" type="TileMapLayer" unique_id=1490599905 groups=["FloorLayer"]]
 z_index = -2
 y_sort_enabled = true
 tile_set = SubResource("TileSet_0015k")

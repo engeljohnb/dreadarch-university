@@ -78,7 +78,7 @@ func _process(_delta):
 		blink_icon(_icon_state)
 		_timer += _delta
 	else:
-		icon.self_modulate.a = 0.2
+		icon.self_modulate.a = 0.33
 		
 func place_icon():
 	icon.position = lerp(Vector2(0,-55), target_position, 0.66)

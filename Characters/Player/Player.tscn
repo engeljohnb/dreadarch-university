@@ -5,11 +5,9 @@
 [ext_resource type="SpriteFrames" uid="uid://bvv0ts1bnyyou" path="res://Characters/Player/player_sprite_frames.tres" id="2_14m2a"]
 [ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_74fb0"]
 [ext_resource type="Texture2D" uid="uid://bxnxr2xsxxrsk" path="res://Decoration/ShadowTextureCircle.tres" id="4_kgmck"]
-[ext_resource type="Script" uid="uid://dxm32gklaqug" path="res://Decoration/_Scripts/Clouds.gd" id="5_2kvxi"]
-[ext_resource type="Texture2D" uid="uid://ctinfktoi2mhm" path="res://Decoration/CloudLightTexture.tres" id="7_vqfyk"]
+[ext_resource type="Script" uid="uid://hm8m2pgpcwl0" path="res://Decoration/_Scripts/SunLight.gd" id="7_3u2it"]
 [ext_resource type="PackedScene" uid="uid://dd2uqbjul1fue" path="res://UI/InteractionCursor.tscn" id="8_6fff4"]
 [ext_resource type="AudioStream" uid="uid://dyv2fwabyrx60" path="res://Assets/Sounds/Student/DeathSound.ogg" id="9_1niqm"]
-[ext_resource type="Script" uid="uid://hm8m2pgpcwl0" path="res://Decoration/_Scripts/CloudsSubtraction.gd" id="9_dhy68"]
 [ext_resource type="AudioStream" uid="uid://dp02rx74yaod3" path="res://Assets/Sounds/Student/KnockbackSound.ogg" id="10_6fff4"]
 [ext_resource type="Texture2D" uid="uid://bt36ae4i16bfp" path="res://Assets/Student/VolumeMaps/IdleDown/0000.png" id="12_k8aph"]
 [ext_resource type="Texture2D" uid="uid://bmg4qnop4nhg8" path="res://Assets/Student/VolumeMaps/IdleDown/0001.png" id="13_74fb0"]
@@ -2296,18 +2294,12 @@ parameters/Walk/Walk/blend_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=302395096]
 
-[node name="Clouds" type="PointLight2D" parent="Camera2D" unique_id=1873966004]
-position = Vector2(0.49999237, -0.4999799)
-scale = Vector2(1.8886719, 1.060547)
-energy = 0.75
-shadow_enabled = true
-texture = ExtResource("7_vqfyk")
-script = ExtResource("5_2kvxi")
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Camera2D" unique_id=860444285]
-color = Color(0.8346143, 0.8346143, 0.8346143, 1)
-blend_mode = 1
-script = ExtResource("9_dhy68")
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=943653068]
+energy = 0.5
+range_layer_min = -2
+range_layer_max = 5
+max_distance = 2365.0
+script = ExtResource("7_3u2it")
 
 [node name="LowRangeLight" type="PointLight2D" parent="." unique_id=812505896]
 visible = false

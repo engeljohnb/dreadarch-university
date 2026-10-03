@@ -23,7 +23,6 @@ signal cutscene_ended(cutscene : Callable)
 @onready var camera = $Camera2D
 @onready var interaction_ray = $InteractionRay
 @onready var bump_map = $BumpMap
-@onready var clouds = $Camera2D/Clouds
 
 
 const LEFT = Vector2(-1, 0)
@@ -577,10 +576,6 @@ func _ready():
 	reset_inventory()
 	item_equipped.emit(equipped, 0)
 	Dialogue.open_dialogue.connect(on_dialogue_opened)
-	if not SceneTransition.scene_is_outside:
-		clouds.disable()
-	else:
-		clouds.enable()
 		
 func set_equipped(item : int):
 	if not item_equippable(item):

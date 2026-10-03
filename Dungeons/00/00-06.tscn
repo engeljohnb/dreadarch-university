@@ -37,8 +37,8 @@ size = Vector2(79, 1391)
 [node name="00-06" type="Node2D" unique_id=714027877]
 script = ExtResource("1_8pm71")
 default_light_on = false
-player_brightness_override = 1.75
-player_value_override = 1.33
+player_brightness_override = 0.8
+player_value_override = 0.5
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
 [node name="UniversityPlantTiles" parent="." unique_id=1215643145 instance=ExtResource("2_q5pgn")]
