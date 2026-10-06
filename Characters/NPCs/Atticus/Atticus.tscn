@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6t11h4nn86a1"]
 
 [ext_resource type="Script" uid="uid://c1824y321q5ok" path="res://Characters/NPCs/Atticus/Scripts/Atticus.gd" id="1_u671l"]
+[ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_1sa68"]
 [ext_resource type="Texture2D" uid="uid://07aelldgoi0a" path="res://Assets/NPCs/Atticus/Idle Left/0000.png" id="2_c2ibt"]
 [ext_resource type="Texture2D" uid="uid://dbjqxc5bqxqyr" path="res://Assets/NPCs/Atticus/Idle Left/0001.png" id="3_7gpdi"]
 [ext_resource type="Texture2D" uid="uid://cwvmvypkmrp1c" path="res://Assets/NPCs/Atticus/Idle Left/0002.png" id="4_6ua6y"]
@@ -43,6 +44,26 @@
 [ext_resource type="Texture2D" uid="uid://bkluvu8yjlh5x" path="res://Assets/NPCs/Atticus/Walk Right/0006.png" id="26_e180b"]
 [ext_resource type="Texture2D" uid="uid://duqeo3l46vwg1" path="res://Assets/NPCs/Atticus/Walk Right/0007.png" id="27_k8jg2"]
 [ext_resource type="Texture2D" uid="uid://dlx1f3mx2k3y3" path="res://Assets/NPCs/Atticus/Walk Right/0008.png" id="28_s3gqv"]
+[ext_resource type="Texture2D" uid="uid://bxh21o1fwurae" path="res://Assets/NPCs/Atticus/VolumeMaps/Search/0005.png" id="45_es8ky"]
+[ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="45_lmmwq"]
+[ext_resource type="Texture2D" uid="uid://w2wwapxx8hx3" path="res://Assets/NPCs/Atticus/VolumeMaps/Shift/0000.png" id="46_8w6g5"]
+[ext_resource type="Texture2D" uid="uid://dbiafqkqborcd" path="res://Assets/NPCs/Atticus/VolumeMaps/Shift/0006.png" id="47_8w6g5"]
+[ext_resource type="Texture2D" uid="uid://ckuee0llxf8ht" path="res://Assets/NPCs/Atticus/VolumeMaps/Search/0000.png" id="48_0qrb1"]
+[ext_resource type="Texture2D" uid="uid://dqdpm2uul38wi" path="res://Assets/NPCs/Atticus/VolumeMaps/Search/0001.png" id="49_j850y"]
+[ext_resource type="Texture2D" uid="uid://dl25aqtbur0wm" path="res://Assets/NPCs/Atticus/VolumeMaps/Search/0002.png" id="50_65e3v"]
+[ext_resource type="Texture2D" uid="uid://pyywuc1srkx6" path="res://Assets/NPCs/Atticus/VolumeMaps/Search/0003.png" id="51_ax6ax"]
+[ext_resource type="Texture2D" uid="uid://n5ufptx1ki3b" path="res://Assets/NPCs/Atticus/VolumeMaps/Search/0004.png" id="52_43cld"]
+[ext_resource type="Texture2D" uid="uid://d3dp76ephq80f" path="res://Assets/NPCs/Atticus/VolumeMaps/Shift/0001.png" id="53_2a802"]
+[ext_resource type="Texture2D" uid="uid://de03xsminssuy" path="res://Assets/NPCs/Atticus/VolumeMaps/Shift/0002.png" id="54_45xlu"]
+[ext_resource type="Texture2D" uid="uid://r2qc54lolpws" path="res://Assets/NPCs/Atticus/VolumeMaps/Shift/0003.png" id="55_psjna"]
+[ext_resource type="Texture2D" uid="uid://diu4qoggl6yx" path="res://Assets/NPCs/Atticus/VolumeMaps/Shift/0004.png" id="56_wxlpv"]
+[ext_resource type="Texture2D" uid="uid://bhis2sj6601hn" path="res://Assets/NPCs/Atticus/VolumeMaps/Shift/0005.png" id="57_e8pw1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7uf"]
+shader = ExtResource("2_1sa68")
+shader_parameter/strength = 1.5000000712500001
+shader_parameter/baseline = -0.15
+shader_parameter/modulate = Vector4(1, 1, 1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_437yd"]
 animations = [{
@@ -290,6 +311,126 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8g2o"]
 size = Vector2(48, 106)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_1sa68"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_es8ky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_es8ky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_es8ky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_es8ky")
+}],
+"loop": 1,
+"name": &"Examine Book",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("46_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_8w6g5")
+}],
+"loop": 1,
+"name": &"Idle Up LeftFoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("47_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_8w6g5")
+}],
+"loop": 1,
+"name": &"Idle Up RightFoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("48_0qrb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_j850y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_65e3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_ax6ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_43cld")
+}],
+"loop": 1,
+"name": &"Pull From Shelf",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("52_43cld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_ax6ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_65e3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_j850y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_0qrb1")
+}],
+"loop": 1,
+"name": &"Return to Shelf",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("46_8w6g5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_2a802")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_45xlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_psjna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_wxlpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_e8pw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_8w6g5")
+}],
+"loop": 1,
+"name": &"Shift",
+"speed": 5.0
+}]
+
 [node name="NPC" type="StaticBody2D" unique_id=850451362 groups=["Interactable"]]
 collision_layer = 8
 collision_mask = 12
@@ -297,10 +438,19 @@ script = ExtResource("1_u671l")
 metadata/_custom_type_script = "uid://bgfg4g0sb1sc7"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=416050373]
+material = SubResource("ShaderMaterial_yo7uf")
 sprite_frames = SubResource("SpriteFrames_437yd")
-animation = &"Examine Book"
+animation = &"Shift"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1247016336]
 visible = false
 position = Vector2(5, 10)
 shape = SubResource("RectangleShape2D_v8g2o")
+
+[node name="VolumeSprite" type="AnimatedSprite2D" parent="." unique_id=1639602316 node_paths=PackedStringArray("target")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_1sa68")
+animation = &"Shift"
+script = ExtResource("45_lmmwq")
+target = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://cnq1mcm71wgew"

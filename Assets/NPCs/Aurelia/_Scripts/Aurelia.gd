@@ -43,12 +43,8 @@ var intro_dialogue : Array[Dictionary] = [
 		"text":"This place is dangerous, but I am not. I have a human heart."
 	},
 	{
-		"speaker":"Player",
-		"text":"Have you seen my Professor? She's been working down here for some weeks."
-	},
-	{
 		"speaker":"Aurelia",
-		"text":"Leave this room and go North."
+		"text":"You are seeking the others, are you not? Leave this room and go North."
 	},
 	{
 		"speaker":"Aurelia",

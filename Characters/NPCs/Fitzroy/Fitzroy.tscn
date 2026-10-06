@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqywp2ok28b5u" path="res://Characters/NPCs/Fitzroy/Scripts/Fitzroy.gd" id="1_qr4xf"]
 [ext_resource type="Texture2D" uid="uid://cx4ao61pnoj5q" path="res://Assets/NPCs/PrivateFitzroy/Idle/0000.png" id="2_qmv6x"]
+[ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_ru60d"]
 [ext_resource type="Texture2D" uid="uid://b5dj3w5uuna40" path="res://Assets/NPCs/PrivateFitzroy/Idle/0001.png" id="3_s5drp"]
 [ext_resource type="Texture2D" uid="uid://ejak7xmbrryd" path="res://Assets/NPCs/PrivateFitzroy/Idle/0002.png" id="4_ovtbk"]
 [ext_resource type="Texture2D" uid="uid://vycktfbq3lqh" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0000.png" id="5_8hoto"]
@@ -16,6 +17,26 @@
 [ext_resource type="Texture2D" uid="uid://bvrwnugnma6i4" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0009.png" id="14_4om34"]
 [ext_resource type="Texture2D" uid="uid://bkpiospr7msgs" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0010.png" id="15_ina1y"]
 [ext_resource type="Texture2D" uid="uid://dhmpy8ge2jrft" path="res://Assets/NPCs/PrivateFitzroy/Walk/Left/0011.png" id="16_xvf2g"]
+[ext_resource type="Texture2D" uid="uid://dmdn8ipvt7t1t" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/Idle/0000.png" id="17_pcli4"]
+[ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="17_xewr6"]
+[ext_resource type="Texture2D" uid="uid://bg7rl0imnfs1v" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0000.png" id="18_ru60d"]
+[ext_resource type="Texture2D" uid="uid://c68oxmu62xgrb" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0001.png" id="19_y30kx"]
+[ext_resource type="Texture2D" uid="uid://k4pp1clejfwn" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0002.png" id="20_2cssi"]
+[ext_resource type="Texture2D" uid="uid://bs2wabt7gn48m" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0003.png" id="21_d3n3o"]
+[ext_resource type="Texture2D" uid="uid://843j6ytthr56" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0004.png" id="22_cb2st"]
+[ext_resource type="Texture2D" uid="uid://b435wniiepn25" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0005.png" id="23_3o8ki"]
+[ext_resource type="Texture2D" uid="uid://bdfwcrc66q0n3" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0006.png" id="24_6f0tm"]
+[ext_resource type="Texture2D" uid="uid://djup3wyhrlw1m" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0007.png" id="25_1dexv"]
+[ext_resource type="Texture2D" uid="uid://sxna6qv0xobj" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0008.png" id="26_udjl1"]
+[ext_resource type="Texture2D" uid="uid://bgoqpamblgr8l" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0009.png" id="27_gnlib"]
+[ext_resource type="Texture2D" uid="uid://dc6bh1imfbleq" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0010.png" id="28_uw7o7"]
+[ext_resource type="Texture2D" uid="uid://cqkoq8uny7yfq" path="res://Assets/NPCs/PrivateFitzroy/VolumeMaps/WalkLeft/0011.png" id="29_2a2il"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ru60d"]
+shader = ExtResource("2_ru60d")
+shader_parameter/strength = 1.66000007885
+shader_parameter/baseline = -0.1
+shader_parameter/modulate = Vector4(1, 1, 1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh7jb"]
 animations = [{
@@ -32,7 +53,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_s5drp")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 12.0
 }, {
@@ -73,13 +94,74 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_xvf2g")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk Left",
 "speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfyqh"]
 size = Vector2(119.99301, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yo7uf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_pcli4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pcli4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pcli4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pcli4")
+}],
+"loop": 0,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_ru60d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_y30kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2cssi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_d3n3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_cb2st")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_3o8ki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_6f0tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_1dexv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_udjl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_gnlib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_uw7o7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_2a2il")
+}],
+"loop": 1,
+"name": &"Walk Left",
+"speed": 5.0
+}]
 
 [node name="Fitzroy" type="StaticBody2D" unique_id=1727901641 groups=["Interactable"]]
 y_sort_enabled = true
@@ -90,6 +172,7 @@ script = ExtResource("1_qr4xf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=832298195]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_ru60d")
 sprite_frames = SubResource("SpriteFrames_sh7jb")
 animation = &"Walk Left"
 
@@ -97,3 +180,11 @@ animation = &"Walk Left"
 position = Vector2(1.0000002, 31)
 scale = Vector2(0.98113, 1)
 shape = SubResource("RectangleShape2D_mfyqh")
+
+[node name="VolumeSprite" type="AnimatedSprite2D" parent="." unique_id=502271079 node_paths=PackedStringArray("target")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_yo7uf")
+animation = &"Walk Left"
+script = ExtResource("17_xewr6")
+target = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://cnq1mcm71wgew"

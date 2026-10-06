@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blvk1oqmr857s" path="res://Enemies/Slack/Scripts/Slack.gd" id="1_l63p6"]
 [ext_resource type="Texture2D" uid="uid://bbjkavlt3tv47" path="res://Assets/Badguys/Slack/0000.png" id="2_6rbxy"]
 [ext_resource type="Script" uid="uid://dposrh55326ml" path="res://Enemies/EnemyHitbox/Scripts/Hitbox.gd" id="2_u4d2o"]
+[ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="3_q46x4"]
 [ext_resource type="Texture2D" uid="uid://b4480pyuhdsjs" path="res://Assets/Badguys/Slack/0001.png" id="3_wq8rr"]
 [ext_resource type="Texture2D" uid="uid://b1f2oknd02ynw" path="res://Assets/Badguys/Slack/0002.png" id="4_aq8l4"]
 [ext_resource type="Texture2D" uid="uid://byv2lcya0hwx4" path="res://Assets/Badguys/Slack/0003.png" id="5_u4d2o"]
@@ -21,10 +22,29 @@
 [ext_resource type="Texture2D" uid="uid://w8w1rsqnu65p" path="res://Assets/Badguys/Slack/0016.png" id="18_eq15d"]
 [ext_resource type="Script" uid="uid://dkdycuae880i1" path="res://Enemies/Slack/Scripts/SearchArea.gd" id="20_aq8l4"]
 [ext_resource type="PackedScene" uid="uid://c5ktgkhr3ncko" path="res://_Components/SoundComponent.tscn" id="21_8scmv"]
+[ext_resource type="Texture2D" uid="uid://dw34tpjwufryp" path="res://Assets/Badguys/Slack/VolumeMaps/0000.png" id="23_j16na"]
+[ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="23_wxla0"]
+[ext_resource type="Texture2D" uid="uid://cabt1rcdesdit" path="res://Assets/Badguys/Slack/VolumeMaps/0001.png" id="24_gnnmx"]
+[ext_resource type="Texture2D" uid="uid://cwqgw61roa55d" path="res://Assets/Badguys/Slack/VolumeMaps/0002.png" id="25_6y0rl"]
+[ext_resource type="Texture2D" uid="uid://duj68kj6lth2k" path="res://Assets/Badguys/Slack/VolumeMaps/0003.png" id="26_s5fp8"]
+[ext_resource type="Texture2D" uid="uid://32oialvs1xn6" path="res://Assets/Badguys/Slack/VolumeMaps/0004.png" id="27_unfk4"]
+[ext_resource type="Texture2D" uid="uid://dnq6u3vv152rg" path="res://Assets/Badguys/Slack/VolumeMaps/0005.png" id="28_vok12"]
+[ext_resource type="Texture2D" uid="uid://s1qf7vx5eath" path="res://Assets/Badguys/Slack/VolumeMaps/0006.png" id="29_4e0l0"]
+[ext_resource type="Texture2D" uid="uid://dmmm738kua50o" path="res://Assets/Badguys/Slack/VolumeMaps/0007.png" id="30_dinli"]
+[ext_resource type="Texture2D" uid="uid://dd8nbuqj740u0" path="res://Assets/Badguys/Slack/VolumeMaps/0008.png" id="31_ppv8p"]
+[ext_resource type="Texture2D" uid="uid://bhalyatn7kkod" path="res://Assets/Badguys/Slack/VolumeMaps/0009.png" id="32_e2u30"]
+[ext_resource type="Texture2D" uid="uid://dmcjlxaruthba" path="res://Assets/Badguys/Slack/VolumeMaps/0010.png" id="33_3qwaf"]
+[ext_resource type="Texture2D" uid="uid://cm2wj5d6am6ae" path="res://Assets/Badguys/Slack/VolumeMaps/0011.png" id="34_cx1wg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qepe3"]
 radius = 56.0
 height = 118.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7uf"]
+shader = ExtResource("3_q46x4")
+shader_parameter/strength = 1.0
+shader_parameter/baseline = 0.33
+shader_parameter/modulate = Vector4(1, 1, 1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j16na"]
 animations = [{
@@ -44,7 +64,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("18_eq15d")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Left",
 "speed": 12.0
 }, {
@@ -85,7 +105,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_xj30l")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Projectile Left",
 "speed": 12.0
 }]
@@ -94,6 +114,70 @@ animations = [{
 radius = 842.4991
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aq8l4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3fo5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_j16na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_j16na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_j16na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_j16na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_j16na")
+}],
+"loop": 1,
+"name": &"Idle Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_j16na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_gnnmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_6y0rl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_s5fp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_unfk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_vok12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_4e0l0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_dinli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ppv8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_e2u30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_3qwaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_cx1wg")
+}],
+"loop": 1,
+"name": &"Projectile Left",
+"speed": 5.0
+}]
 
 [node name="Slack" type="CharacterBody2D" unique_id=1710579108]
 collision_layer = 8
@@ -112,8 +196,9 @@ shape = SubResource("CapsuleShape2D_qepe3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=413050665]
 texture_filter = 1
+material = SubResource("ShaderMaterial_yo7uf")
 sprite_frames = SubResource("SpriteFrames_j16na")
-animation = &"Projectile Left"
+animation = &"Idle Left"
 
 [node name="SearchArea" type="Area2D" parent="." unique_id=1594172444]
 position = Vector2(143, 42)
@@ -130,3 +215,11 @@ shape = SubResource("CircleShape2D_aq8l4")
 shape = SubResource("CapsuleShape2D_aq8l4")
 
 [node name="SoundComponent" parent="." unique_id=1104324711 instance=ExtResource("21_8scmv")]
+
+[node name="VolumeSprite" type="AnimatedSprite2D" parent="." unique_id=999442244 node_paths=PackedStringArray("target")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_e3fo5")
+animation = &"Projectile Left"
+script = ExtResource("23_wxla0")
+target = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://cnq1mcm71wgew"

@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://blvk1oqmr857s" path="res://Enemies/Slack/Scripts/Slack.gd" id="6_nn3v7"]
 [ext_resource type="Script" uid="uid://dposrh55326ml" path="res://Enemies/EnemyHitbox/Scripts/Hitbox.gd" id="7_p2c2p"]
 [ext_resource type="Texture2D" uid="uid://2xtjdpfv47vq" path="res://Assets/Badguys/Slack/0012.png" id="8_gd7ak"]
+[ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="8_op814"]
 [ext_resource type="Texture2D" uid="uid://dan0ok74ywj0m" path="res://Assets/Badguys/Slack/0013.png" id="9_mbv26"]
 [ext_resource type="Texture2D" uid="uid://bq6sqtsn0y4i" path="res://Assets/Badguys/Slack/0014.png" id="10_p2c2p"]
 [ext_resource type="Texture2D" uid="uid://b26qkj6laxx23" path="res://Assets/Badguys/Slack/0015.png" id="11_gpsw1"]
@@ -26,12 +27,25 @@
 [ext_resource type="Texture2D" uid="uid://cnfy17knie20j" path="res://Assets/Badguys/Slack/0011.png" id="24_da1ro"]
 [ext_resource type="Script" uid="uid://dkdycuae880i1" path="res://Enemies/Slack/Scripts/SearchArea.gd" id="25_gpy7p"]
 [ext_resource type="PackedScene" uid="uid://c5ktgkhr3ncko" path="res://_Components/SoundComponent.tscn" id="26_op814"]
+[ext_resource type="Texture2D" uid="uid://dw34tpjwufryp" path="res://Assets/Badguys/Slack/VolumeMaps/0000.png" id="27_q7wct"]
 [ext_resource type="PackedScene" uid="uid://dbbb5y050y7vx" path="res://Items/Collectible/Collectible.tscn" id="28_gd7ak"]
+[ext_resource type="Texture2D" uid="uid://cabt1rcdesdit" path="res://Assets/Badguys/Slack/VolumeMaps/0001.png" id="28_uy7vf"]
 [ext_resource type="PackedScene" uid="uid://pnjjhjfeuic8" path="res://Items/Pot/pot.tscn" id="29_mbv26"]
+[ext_resource type="Texture2D" uid="uid://cwqgw61roa55d" path="res://Assets/Badguys/Slack/VolumeMaps/0002.png" id="29_ujdgm"]
+[ext_resource type="Texture2D" uid="uid://duj68kj6lth2k" path="res://Assets/Badguys/Slack/VolumeMaps/0003.png" id="30_045gd"]
 [ext_resource type="PackedScene" uid="uid://b42cqop27xms3" path="res://Decoration/DustEmitter/DustEmitter.tscn" id="30_p2c2p"]
+[ext_resource type="Texture2D" uid="uid://32oialvs1xn6" path="res://Assets/Badguys/Slack/VolumeMaps/0004.png" id="31_143by"]
 [ext_resource type="Texture2D" uid="uid://dpoglv7yebqp0" path="res://Assets/Decoration/LongReliefs/LongRelief01.png" id="31_gpsw1"]
 [ext_resource type="PackedScene" uid="uid://cqpa2n6eiq5js" path="res://Characters/NPCs/Aelia/Aelia.tscn" id="32_d3e13"]
+[ext_resource type="Texture2D" uid="uid://dnq6u3vv152rg" path="res://Assets/Badguys/Slack/VolumeMaps/0005.png" id="32_trlh7"]
+[ext_resource type="Texture2D" uid="uid://s1qf7vx5eath" path="res://Assets/Badguys/Slack/VolumeMaps/0006.png" id="33_b35b0"]
+[ext_resource type="Texture2D" uid="uid://dmmm738kua50o" path="res://Assets/Badguys/Slack/VolumeMaps/0007.png" id="34_vtvg2"]
+[ext_resource type="Texture2D" uid="uid://dd8nbuqj740u0" path="res://Assets/Badguys/Slack/VolumeMaps/0008.png" id="35_1jq7b"]
 [ext_resource type="PackedScene" uid="uid://xofedx7635yx" path="res://Enemies/Crow/Crow.tscn" id="35_beukq"]
+[ext_resource type="Texture2D" uid="uid://bhalyatn7kkod" path="res://Assets/Badguys/Slack/VolumeMaps/0009.png" id="36_g6cg6"]
+[ext_resource type="Texture2D" uid="uid://dmcjlxaruthba" path="res://Assets/Badguys/Slack/VolumeMaps/0010.png" id="37_12ffb"]
+[ext_resource type="Texture2D" uid="uid://cm2wj5d6am6ae" path="res://Assets/Badguys/Slack/VolumeMaps/0011.png" id="38_0cs0o"]
+[ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="39_bm4jt"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wwyq6"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -460,7 +474,7 @@ texture_region_size = Vector2i(64, 64)
 4:3/0/y_sort_origin = 31
 4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[sub_resource type="TileSet" id="TileSet_d3e13"]
+[sub_resource type="TileSet" id="TileSet_op814"]
 resource_local_to_scene = true
 tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 7
@@ -469,8 +483,14 @@ physics_layer_0/collision_mask = 12
 sources/0 = SubResource("TileSetAtlasSource_6gvea")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qepe3"]
-radius = 66.0
-height = 132.0
+radius = 56.0
+height = 118.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7uf"]
+shader = ExtResource("8_op814")
+shader_parameter/strength = 0.250000011875
+shader_parameter/baseline = 0.0
+shader_parameter/modulate = Vector4(1, 1, 1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j16na"]
 animations = [{
@@ -490,7 +510,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_d3e13")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle Left",
 "speed": 12.0
 }, {
@@ -531,25 +551,79 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("24_da1ro")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Projectile Left",
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_aq8l4"]
-radius = 842.4991
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aq8l4"]
 
-[sub_resource type="Gradient" id="Gradient_fbyob"]
-offsets = PackedFloat32Array(0.5, 1)
-colors = PackedColorArray(0.61745477, 0.61745477, 0.6174547, 1, 0, 0, 0, 1)
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4bgb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_q7wct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_q7wct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_q7wct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_q7wct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_q7wct")
+}],
+"loop": 1,
+"name": &"Idle Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_q7wct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_uy7vf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ujdgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_045gd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_143by")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_trlh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_b35b0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_vtvg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_1jq7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_g6cg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_12ffb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_0cs0o")
+}],
+"loop": 1,
+"name": &"Projectile Left",
+"speed": 5.0
+}]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mbv26"]
-gradient = SubResource("Gradient_fbyob")
-fill = 2
-fill_from = Vector2(0.8333333, 0.5555556)
-fill_to = Vector2(0.32051283, 0.20940171)
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq8l4"]
+radius = 842.4991
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gpsw1"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -971,13 +1045,23 @@ texture_region_size = Vector2i(64, 64)
 4:3/0/y_sort_origin = 31
 4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[sub_resource type="TileSet" id="TileSet_611f7"]
+[sub_resource type="TileSet" id="TileSet_q7wct"]
 resource_local_to_scene = true
 tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 7
 physics_layer_0/collision_layer = 40
 physics_layer_0/collision_mask = 12
 sources/0 = SubResource("TileSetAtlasSource_xmcyy")
+
+[sub_resource type="Gradient" id="Gradient_fbyob"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(0.61745477, 0.61745477, 0.6174547, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mbv26"]
+gradient = SubResource("Gradient_fbyob")
+fill = 2
+fill_from = Vector2(0.8333333, 0.5555556)
+fill_to = Vector2(0.32051283, 0.20940171)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpsw1"]
 size = Vector2(952, 117)
@@ -1013,7 +1097,7 @@ direction = "South"
 
 [node name="BuildingTiles" parent="." unique_id=1593192024 instance=ExtResource("4_xq20d")]
 tile_map_data = PackedByteArray("AAAFAA8AAAAAAAIABQAFABAAAAACAAIABgAFABEAAAACAAIABgAFABIAAAACAAIABgABABAAAAACAAIABQABABEAAAACAAIABQABABIAAAACAAIABQD+/wcAAAACAAIAAQD+/wgAAAACAAIAAQD+/wkAAAACAAIAAQD+/woAAAACAAIAAQD+/wsAAAACAAIAAQD+/wwAAAACAAIAAQD+/w0AAAACAAIAAQATAAwAAAACAAIADAATAAsAAAACAAIADAATAAoAAAACAAIADAATAAgAAAACAAIABgATAAcAAAACAAIABgATAAYAAAACAAIABgATAAUAAAACAAIABgATAAQAAAACAAIADAATAAMAAAACAAIADAATAAIAAAACAAIADAD+/wYAAAACAAIABQD+/wUAAAACAAIABQD+/wQAAAACAAIABQD+/wMAAAACAAIABQD+/wIAAAACAAIABQD+/wEAAAACAAIABQD+/wAAAAACAAIABQD+////AAACAAIABQADAPv/AAAHAAYAAAADAPz/AAAHAAcAAAADAP3/AAAHAAcAAAADAP7/AAAHAAgAAAAEAPv/AAAFAAgAAAAEAPz/AAAFAAkAAAAEAP3/AAAFAAkAAAAEAP7/AAAFAAoAAAAIAPr/AAABAAAABwAIAPv/AAAFAAgAAAAJAPr/AAABAAAABwAJAPv/AAAHAAYAAAAKAPr/AAABAAAABwAKAPv/AAAEAAgAAAALAPr/AAABAAAABwALAPv/AAAHAAYAAAAMAPr/AAABAAAABwAMAPv/AAAFAAgAAAANAPr/AAABAAAABwANAPv/AAAHAAYAAAAOAPr/AAABAAAABwAOAPv/AAAFAAgAAAAPAPr/AAABAAAABwAPAPv/AAAHAAYAAAAPAPz/AAAHAAcAAAAPAP3/AAAHAAcAAAAPAP7/AAAHAAgAAAAQAPr/AAABAAAABwAQAPv/AAAFAAgAAAAQAPz/AAAFAAkAAAAQAP3/AAAFAAkAAAAQAP7/AAAFAAoAAAARAPr/AAABAAAABwARAPv/AAAHAAYAAAARAPz/AAAHAAcAAAARAP3/AAAHAAcAAAARAP7/AAAHAAgAAAASAPr/AAABAAAABwASAPv/AAAFAAgAAAASAPz/AAAFAAkAAAASAP3/AAAFAAkAAAASAP7/AAAFAAoAAAATAPr/AAAAAAIABAABABMAAAACAAIABgAFABMAAAACAAIABgAEABQAAAABAAAAAAAFABQAAAACAAMABQABABQAAAACAAMAAQABABUAAAAHAAYAAQABABYAAAAHAAcAAQABABcAAAAHAAcAAQABABgAAAAHAAgAAAAFABUAAAAHAAYAAQAFABYAAAAHAAcAAQAFABcAAAAHAAcAAQAFABgAAAAHAAgAAAACABUAAAAHAAYAAAAEABUAAAAHAAYAAAACABYAAAAHAAcAAAAEABYAAAAHAAcAAAACABQAAAABAAAAAAADABUAAAAHAAYAAAADABYAAAAHAAcAAAADABQAAAABAAAAAAD+/w8AAAACAAMAAQD+/xAAAAAHAAYAAAD+/xEAAAAHAAcAAAD+/xIAAAAHAAcAAAD//w8AAAABAAAABwD//xAAAAAHAAYAAAD//xEAAAAHAAcAAAD//xIAAAAHAAcAAAAAAA8AAAABAAAABwAAABAAAAAHAAYAAAAAABEAAAAHAAcAAAAAABIAAAAHAAcAAAD+/xMAAAAHAAgAAAD//xMAAAAHAAgAAAAAABMAAAAHAAgAAAAGAA8AAAABAAAABwAGABAAAAAHAAYAAAAGABEAAAAHAAcAAAAGABIAAAAHAAcAAAAHAA8AAAABAAAABwAHABAAAAAHAAYAAAAHABEAAAAHAAcAAAAHABIAAAAHAAcAAAAIAA8AAAABAAAABwAIABAAAAAHAAYAAAAIABEAAAAHAAcAAAAIABIAAAAHAAcAAAAJAA8AAAABAAAABwAJABAAAAAHAAYAAAAJABEAAAAHAAcAAAAJABIAAAAHAAcAAAAKAA8AAAABAAAABwAKABAAAAAHAAYAAAAKABEAAAAHAAcAAAAKABIAAAAHAAcAAAALAA8AAAABAAAABwALABAAAAAHAAYAAAALABEAAAAHAAcAAAALABIAAAAHAAcAAAAMAA8AAAABAAAABwAMABAAAAAHAAYAAAAMABEAAAAHAAcAAAAMABIAAAAHAAcAAAANAA8AAAABAAAABwANABAAAAAHAAYAAAANABEAAAAHAAcAAAANABIAAAAHAAcAAAAOAA8AAAABAAAABwAOABAAAAAHAAYAAAAOABEAAAAHAAcAAAAOABIAAAAHAAcAAAAPAA8AAAABAAAABwAPABAAAAAHAAYAAAAPABEAAAAHAAcAAAAPABIAAAAHAAcAAAAQAA8AAAABAAAABwAQABAAAAAHAAYAAAAQABEAAAAHAAcAAAAQABIAAAAHAAcAAAARAA8AAAABAAAABwARABAAAAAHAAYAAAARABEAAAAHAAcAAAARABIAAAAHAAcAAAASAA8AAAABAAAABwASABAAAAAHAAYAAAASABEAAAAHAAcAAAASABIAAAAHAAcAAAATAA4AAAACAAIADAATAA8AAAACAAMABQATABAAAAAHAAYAAAATABEAAAAHAAcAAAATABIAAAAHAAcAAAAGABMAAAAHAAgAAAAHABMAAAAHAAgAAAAIABMAAAAHAAgAAAAJABMAAAAHAAgAAAAKABMAAAAHAAgAAAALABMAAAAHAAgAAAAMABMAAAAHAAgAAAANABMAAAAHAAgAAAAOABMAAAAHAAgAAAAPABMAAAAHAAgAAAAQABMAAAAHAAgAAAARABMAAAAHAAgAAAASABMAAAAHAAgAAAATABMAAAAHAAgAAAABAA8AAAAAAAIAAQATAA0AAAACAAIADAD+/w4AAAACAAIAAQADAPr/AAABAAAABwAEAPr/AAABAAAABwAEAPf/AAAAAAIABQAEAPj/AAACAAIABQAEAPn/AAACAAIABQAFAPf/AAABAAAABwAFAPj/AAAHAAYAAAAFAPn/AAAHAAcAAAAGAPf/AAABAAAABwAGAPj/AAAHAAYAAAAGAPn/AAAHAAcAAAAHAPf/AAABAAAABwAHAPj/AAAHAAYAAAAHAPn/AAAHAAcAAAAIAPf/AAAAAAIAAQAIAPj/AAACAAIABgAIAPn/AAACAAIABgACAPr/AAABAAAABwACAPv/AAAFAAgAAAACAPz/AAAFAAkAAAACAP3/AAAFAAkAAAACAP7/AAAFAAoAAAABAPr/AAABAAAABwABAPv/AAAHAAYAAAABAPz/AAAHAAcAAAABAP3/AAAHAAcAAAABAP7/AAAHAAgAAAAAAPr/AAABAAAABwAAAPv/AAAFAAgAAAAAAPz/AAAFAAkAAAAAAP3/AAAFAAkAAAAAAP7/AAAFAAoAAAD///r/AAABAAAABwD///v/AAAHAAYAAAD///z/AAAHAAcAAAD///3/AAAHAAcAAAD///7/AAAHAAgAAAD+//r/AAAAAAIABQD+//v/AAACAAIABQD+//z/AAACAAIABQD+//3/AAACAAIABQD+//7/AAACAAIABQALAPz/AAAGAAcAAAALAP3/AAAGAAcAAAALAP7/AAAHAAgAAAAMAP7/AAAFAAoAAAAMAP3/AAAFAAkAAAANAP3/AAAHAAcAAAANAPz/AAAHAAcAAAAMAPz/AAAFAAkAAAANAP7/AAAHAAgAAAAOAPz/AAAFAAkAAAAOAP3/AAAFAAkAAAAOAP7/AAAFAAoAAAAIAP7/AAAFAAoAAAAIAP3/AAAFAAkAAAAIAPz/AAAFAAkAAAAJAPz/AAAHAAcAAAAKAPz/AAAEAAkAAAAKAP3/AAAEAAkAAAAJAP3/AAAHAAcAAAAJAP7/AAAGAAgAAAAKAP7/AAAEAAoAAAATAAkAAAACAAIABgA=")
-tile_set = SubResource("TileSet_d3e13")
+tile_set = SubResource("TileSet_op814")
 
 [node name="GroundTiles" parent="." unique_id=869289843 instance=ExtResource("3_f8g50")]
 use_parent_material = true
@@ -1023,13 +1107,13 @@ tile_map_data = PackedByteArray("AAD/////AAACAAAAAAD//wAAAAACAAEAAAD//wEAAAAFAAE
 use_parent_material = true
 
 [node name="Slack" type="CharacterBody2D" parent="Enemies" unique_id=1710579108]
-position = Vector2(576, 377)
+position = Vector2(575, 387)
 collision_layer = 8
 collision_mask = 20
 script = ExtResource("6_nn3v7")
 
 [node name="EnemyHitbox" type="Area2D" parent="Enemies/Slack" unique_id=1828239180]
-position = Vector2(-3, 9)
+position = Vector2(-6, 9)
 collision_layer = 3
 collision_mask = 4
 script = ExtResource("7_p2c2p")
@@ -1040,24 +1124,33 @@ shape = SubResource("CapsuleShape2D_qepe3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/Slack" unique_id=413050665]
 texture_filter = 1
+material = SubResource("ShaderMaterial_yo7uf")
 sprite_frames = SubResource("SpriteFrames_j16na")
 animation = &"Projectile Left"
-
-[node name="SearchArea" type="Area2D" parent="Enemies/Slack" unique_id=1594172444]
-position = Vector2(143, 42)
-collision_layer = 16
-collision_mask = 8
-script = ExtResource("25_gpy7p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Slack/SearchArea" unique_id=505288334]
-position = Vector2(-134.99997, 9)
-scale = Vector2(0.85, 0.51)
-shape = SubResource("CircleShape2D_aq8l4")
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="Enemies/Slack" unique_id=454298957]
 shape = SubResource("CapsuleShape2D_aq8l4")
 
 [node name="SoundComponent" parent="Enemies/Slack" unique_id=1104324711 instance=ExtResource("26_op814")]
+
+[node name="VolumeSprite" type="AnimatedSprite2D" parent="Enemies/Slack" unique_id=999442244 node_paths=PackedStringArray("target")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_o4bgb")
+animation = &"Idle Left"
+script = ExtResource("39_bm4jt")
+target = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://cnq1mcm71wgew"
+
+[node name="SearchArea" type="Area2D" parent="Enemies/Slack" unique_id=474868642]
+position = Vector2(143, 42)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("25_gpy7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Slack/SearchArea" unique_id=220911907]
+position = Vector2(-134.99997, 9)
+scale = Vector2(0.85, 0.51)
+shape = SubResource("CircleShape2D_aq8l4")
 
 [node name="Crow" parent="Enemies" unique_id=544701326 instance=ExtResource("35_beukq")]
 position = Vector2(13, 245)
@@ -1104,11 +1197,20 @@ position = Vector2(106, -68)
 [node name="Pot4" parent="Pots" unique_id=450747843 instance=ExtResource("29_mbv26")]
 position = Vector2(172, -68)
 
-[node name="Decorations" type="Node2D" parent="." unique_id=1143482991]
+[node name="SecretBuildingTiles" parent="." unique_id=2023131998 instance=ExtResource("4_xq20d")]
+light_mask = 2
+tile_map_data = PackedByteArray("AAATAAAAAAADAAIABwATAP7/AAADAAIABgATAAEAAAADAAIABwATAP//AAADAAIABwATAPv/AAACAAIABgATAPz/AAACAAIABgATAP3/AAACAAIABgA=")
+tile_set = SubResource("TileSet_q7wct")
 
-[node name="Lights" type="Node2D" parent="Decorations" unique_id=1806221729]
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1133068768]
+collision_layer = 32
+collision_mask = 12
 
-[node name="PointLight2D" type="PointLight2D" parent="Decorations/Lights" unique_id=1210893967]
+[node name="Decorations" type="Node2D" parent="Walls" unique_id=1143482991]
+
+[node name="Lights" type="Node2D" parent="Walls/Decorations" unique_id=1806221729]
+
+[node name="PointLight2D" type="PointLight2D" parent="Walls/Decorations/Lights" unique_id=1210893967]
 position = Vector2(847, -110)
 scale = Vector2(13.59375, 6.0351567)
 color = Color(0.972549, 0.8627451, 0.5529412, 1)
@@ -1118,20 +1220,11 @@ shadow_enabled = true
 shadow_item_cull_mask = 18
 texture = SubResource("GradientTexture2D_mbv26")
 
-[node name="DustEmitter" parent="Decorations" unique_id=2102548086 instance=ExtResource("30_p2c2p")]
+[node name="DustEmitter" parent="Walls/Decorations" unique_id=2102548086 instance=ExtResource("30_p2c2p")]
 position = Vector2(1063, -173.99994)
 rotation = -0.9490526
 scale = Vector2(0.15417688, 11.03606)
 lifetime = 115.06
-
-[node name="SecretBuildingTiles" parent="." unique_id=2023131998 instance=ExtResource("4_xq20d")]
-light_mask = 2
-tile_map_data = PackedByteArray("AAATAAAAAAADAAIABwATAP7/AAADAAIABgATAAEAAAADAAIABwATAP//AAADAAIABwATAPv/AAACAAIABgATAPz/AAACAAIABgATAP3/AAACAAIABgA=")
-tile_set = SubResource("TileSet_611f7")
-
-[node name="Walls" type="StaticBody2D" parent="." unique_id=1133068768]
-collision_layer = 32
-collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" unique_id=950517004]
 position = Vector2(1763, -141)
