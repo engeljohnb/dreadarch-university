@@ -33,7 +33,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_ga0oy")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 12.0
 }, {
@@ -122,12 +122,13 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_ktfuh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Run",
 "speed": 12.0
 }]
 
 [node name="VerinaDistant" type="StaticBody2D" unique_id=1736039859 groups=["Interactable"]]
+modulate = Color(0.760999, 0.76099914, 0.76099914, 1)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_85ija")

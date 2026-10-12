@@ -20,19 +20,11 @@ var intro_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Player",
-		"text":"D-Discipulus... sum... Or am I supposed to say discipula?"
-	},
-	{
-		"speaker":"Player",
-		"text":"...If only P-Professor were here..."
+		"text":"D-Discipulus... sum... Or am I supposed to say discipula? If only P-Professor were here..."
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"Do not be afraid."
-	},
-	{
-		"speaker":"Aurelia",
-		"text":"Who are you? And what is it you do?"
+		"text":"Do not be afraid. Who are you? And what is it you do?"
 	},
 	{
 		"speaker":"Player",
@@ -44,7 +36,7 @@ var intro_dialogue : Array[Dictionary] = [
 	},
 	{
 		"speaker":"Aurelia",
-		"text":"You are seeking the others, are you not? Leave this room and go North."
+		"text":"\"Professor\" is whom you seek? Leave this room and go North."
 	},
 	{
 		"speaker":"Aurelia",

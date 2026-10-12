@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ce4aeql8kclix" path="res://Enemies/Crow/Scripts/Crow.gd" id="1_qepe3"]
 [ext_resource type="SpriteFrames" uid="uid://bgdb5enqo5b8d" path="res://Enemies/Crow/crow_sprite_frames.tres" id="2_if58j"]
 [ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_mbuj4"]
+[ext_resource type="Texture2D" uid="uid://ckx5bckcoup6y" path="res://Enemies/VanquishedDissolveNoise.tres" id="3_gh76p"]
 [ext_resource type="Script" uid="uid://dposrh55326ml" path="res://Enemies/EnemyHitbox/Scripts/Hitbox.gd" id="3_if58j"]
 [ext_resource type="PackedScene" uid="uid://c5ktgkhr3ncko" path="res://_Components/SoundComponent.tscn" id="4_t0spy"]
 [ext_resource type="AudioStream" uid="uid://bsil6b1ege4ey" path="res://Assets/Sounds/Crow/HitSound.ogg" id="5_bxdm8"]
@@ -11,8 +12,11 @@
 [ext_resource type="SpriteFrames" uid="uid://co00wu80xfj75" path="res://Assets/Badguys/Crow/VolumeMaps/CrowVolumeMap.tres" id="9_a07ji"]
 [ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="27_vl6hi"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gh76p"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6623x"]
 shader = ExtResource("2_mbuj4")
+shader_parameter/bump_map = ExtResource("3_gh76p")
 shader_parameter/strength = 1.0000000475
 shader_parameter/baseline = 0.5
 shader_parameter/modulate = Vector4(1, 0.866, 0.8, 1)
@@ -26,6 +30,7 @@ radius = 20.0
 height = 74.0
 
 [node name="Crow" type="CharacterBody2D" unique_id=863658450]
+material = SubResource("ShaderMaterial_gh76p")
 collision_layer = 10
 collision_mask = 120
 motion_mode = 1
@@ -36,7 +41,7 @@ process_priority = 1
 process_physics_priority = 1
 material = SubResource("ShaderMaterial_6623x")
 sprite_frames = ExtResource("2_if58j")
-animation = &"Idle Up"
+animation = &"Vanquished Right"
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=1061759157]
 position = Vector2(3, -4)
@@ -68,7 +73,7 @@ volume_db = -3.0
 [node name="VolumeSprite" type="AnimatedSprite2D" parent="." unique_id=1038600931 node_paths=PackedStringArray("target")]
 visible = false
 sprite_frames = ExtResource("9_a07ji")
-animation = &"Idle Up"
+animation = &"Vanquished Left"
 script = ExtResource("27_vl6hi")
 target = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://cnq1mcm71wgew"

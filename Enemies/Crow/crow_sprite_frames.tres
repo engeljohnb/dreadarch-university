@@ -172,23 +172,41 @@
 [ext_resource type="Texture2D" uid="uid://cuk4knaabpt7a" path="res://Assets/Badguys/Crow/Walk/Left/0003.png" id="170_sg6ht"]
 [ext_resource type="Texture2D" uid="uid://kr7hq0mn1far" path="res://Assets/Badguys/Crow/Walk/Left/0004.png" id="171_36wmd"]
 [ext_resource type="Texture2D" uid="uid://bhofj8kk5wdg" path="res://Assets/Badguys/Crow/Walk/Left/0005.png" id="172_rjddo"]
+[ext_resource type="Texture2D" uid="uid://xu5n5uyjyfgy" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0000.png" id="173_c4wui"]
 [ext_resource type="Texture2D" uid="uid://cr3jkau8odl6s" path="res://Assets/Badguys/Crow/Walk/Right/0006.png" id="173_if3vd"]
+[ext_resource type="Texture2D" uid="uid://bdpdpivvq0vh6" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0001.png" id="174_clr0o"]
 [ext_resource type="Texture2D" uid="uid://d0qpfv8pgwypq" path="res://Assets/Badguys/Crow/Walk/Right/0007.png" id="174_fn304"]
 [ext_resource type="Texture2D" uid="uid://qqxmhqs0yiga" path="res://Assets/Badguys/Crow/Walk/Right/0008.png" id="175_0wxfn"]
+[ext_resource type="Texture2D" uid="uid://d1rgml35ck6iq" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0002.png" id="175_da0b4"]
 [ext_resource type="Texture2D" uid="uid://dontsa8meir1x" path="res://Assets/Badguys/Crow/Walk/Right/0009.png" id="176_cxjde"]
+[ext_resource type="Texture2D" uid="uid://b7a1mggvv4lun" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0003.png" id="176_nihfh"]
+[ext_resource type="Texture2D" uid="uid://cac1rdthfiumm" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0004.png" id="177_blm2k"]
 [ext_resource type="Texture2D" uid="uid://cm7joxbuxetb4" path="res://Assets/Badguys/Crow/Walk/Right/0010.png" id="177_xq7ma"]
+[ext_resource type="Texture2D" uid="uid://do5gyqewf15ko" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0005.png" id="178_3kjyc"]
 [ext_resource type="Texture2D" uid="uid://u3ufyi8jiypd" path="res://Assets/Badguys/Crow/Walk/Right/0011.png" id="178_8jocf"]
 [ext_resource type="Texture2D" uid="uid://h57f85k4r8mm" path="res://Assets/Badguys/Crow/Walk/Right/0000.png" id="179_by5a1"]
+[ext_resource type="Texture2D" uid="uid://dt5k4ixroxywo" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0006.png" id="179_sfpvi"]
 [ext_resource type="Texture2D" uid="uid://c2ox0f1qfb1ph" path="res://Assets/Badguys/Crow/Walk/Right/0001.png" id="180_1hrud"]
+[ext_resource type="Texture2D" uid="uid://dtgwwjbepj8vb" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0007.png" id="180_klf8l"]
+[ext_resource type="Texture2D" uid="uid://dswdr6033tpgu" path="res://Assets/Badguys/Crow/Vanquished/Left/frame0008.png" id="181_iox6j"]
 [ext_resource type="Texture2D" uid="uid://dyypm3vlca4h5" path="res://Assets/Badguys/Crow/Walk/Right/0002.png" id="181_ye11d"]
 [ext_resource type="Texture2D" uid="uid://c7n6eflxdbmse" path="res://Assets/Badguys/Crow/Walk/Right/0003.png" id="182_kjt1g"]
+[ext_resource type="Texture2D" uid="uid://bj3gwrjcqff40" path="res://Assets/Badguys/Crow/Vanquished/Right/0000.png" id="182_qtg7l"]
 [ext_resource type="Texture2D" uid="uid://by4j46xlviwow" path="res://Assets/Badguys/Crow/Walk/Right/0004.png" id="183_178ij"]
+[ext_resource type="Texture2D" uid="uid://b7e4lgsb487x" path="res://Assets/Badguys/Crow/Vanquished/Right/0001.png" id="183_bak4q"]
+[ext_resource type="Texture2D" uid="uid://bibni0um28get" path="res://Assets/Badguys/Crow/Vanquished/Right/0002.png" id="184_h7ku2"]
 [ext_resource type="Texture2D" uid="uid://b2qdep63pxodt" path="res://Assets/Badguys/Crow/Walk/Right/0005.png" id="184_mi4ak"]
+[ext_resource type="Texture2D" uid="uid://dkkp1o3wy26nx" path="res://Assets/Badguys/Crow/Vanquished/Right/0003.png" id="185_4mlvy"]
 [ext_resource type="Texture2D" uid="uid://hpipej7ale86" path="res://Assets/Badguys/Crow/Walk/Up/0006.png" id="185_ie0hh"]
 [ext_resource type="Texture2D" uid="uid://d16agpo0w03ar" path="res://Assets/Badguys/Crow/Walk/Up/0007.png" id="186_5j6yw"]
+[ext_resource type="Texture2D" uid="uid://c4n6kdkq6hugy" path="res://Assets/Badguys/Crow/Vanquished/Right/0004.png" id="186_nemrg"]
 [ext_resource type="Texture2D" uid="uid://ctben8c0m5w55" path="res://Assets/Badguys/Crow/Walk/Up/0008.png" id="187_6wgtb"]
+[ext_resource type="Texture2D" uid="uid://bkbm5xy0fq64f" path="res://Assets/Badguys/Crow/Vanquished/Right/0005.png" id="187_n5squ"]
 [ext_resource type="Texture2D" uid="uid://ptbqrxyoitbm" path="res://Assets/Badguys/Crow/Walk/Up/0009.png" id="188_gdptx"]
+[ext_resource type="Texture2D" uid="uid://cgxp1hc5enmip" path="res://Assets/Badguys/Crow/Vanquished/Right/0006.png" id="188_ofolk"]
+[ext_resource type="Texture2D" uid="uid://gbk4dvk4xfgi" path="res://Assets/Badguys/Crow/Vanquished/Right/0007.png" id="189_5owh7"]
 [ext_resource type="Texture2D" uid="uid://kq6rutf3cq63" path="res://Assets/Badguys/Crow/Walk/Up/0010.png" id="189_33aw2"]
+[ext_resource type="Texture2D" uid="uid://bregbevc7cs3e" path="res://Assets/Badguys/Crow/Vanquished/Right/0008.png" id="190_5untl"]
 [ext_resource type="Texture2D" uid="uid://05372fg6kv2p" path="res://Assets/Badguys/Crow/Walk/Up/0011.png" id="190_f8dlg"]
 [ext_resource type="Texture2D" uid="uid://hosnd5mwuwdw" path="res://Assets/Badguys/Crow/Walk/Up/0000.png" id="191_q1atw"]
 [ext_resource type="Texture2D" uid="uid://b1oc1whqro3q0" path="res://Assets/Badguys/Crow/Walk/Up/0001.png" id="192_jdw31"]
@@ -825,6 +843,94 @@ animations = [{
 }],
 "loop": 0,
 "name": &"Projectile Up",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("173_c4wui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_clr0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_da0b4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_nihfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_blm2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_3kjyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_sfpvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_klf8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_iox6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_klf8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_sfpvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_klf8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_iox6j")
+}],
+"loop": 0,
+"name": &"Vanquished Left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("182_qtg7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_bak4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_h7ku2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_4mlvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_nemrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_n5squ")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_ofolk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_5owh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_5untl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_5owh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_ofolk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_5owh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_5untl")
+}],
+"loop": 0,
+"name": &"Vanquished Right",
 "speed": 12.0
 }, {
 "frames": [{

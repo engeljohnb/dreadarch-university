@@ -371,6 +371,9 @@ func wait():
 	var idle_animation = "Idle " + Utils.nearest_cardinal_direction(facing, true)
 	update_animation(idle_animation)
 	move_and_slide()
+	
+func get_current_animation_frame(animated_sprite : AnimatedSprite2D = sprite) -> Texture2D:
+	return animated_sprite.sprite_frames.get_frame_texture(get_animation_name(get_action_name()), animated_sprite.frame)
 									  
 func process_action_attack():
 #	breakpoint
