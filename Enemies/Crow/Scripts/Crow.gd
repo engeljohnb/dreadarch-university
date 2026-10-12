@@ -15,9 +15,7 @@ func change_shader():
 	mat.shader = preload("res://Enemies/vanquished.gdshader")
 	mat.set_shader_parameter("strength", strength)
 	mat.set_shader_parameter("baseline", baseline)
-	mat.set_shader_parameter("mix_ratio", 0.5)
 	mat.set_shader_parameter("dissolve_noise", preload("res://Enemies/VanquishedDissolveNoise.tres"))
-	#mat.set_shader_parameter("dissolve_gradient", preload("res://Enemies/VanquishedDissolveNoise.tres"))
 
 func process_action_death():
 	if not dead:
@@ -34,8 +32,6 @@ func process_action_death():
 	else:
 		var mat : ShaderMaterial = $AnimatedSprite2D.material
 		mat.set_shader_parameter("dissolve_value", (2.0 - (timer*2.0)))
-		mat.set_shader_parameter("dissolve_gradient", get_current_animation_frame())
-		#mat.set_shader_parameter("dissolve_noise", get_current_animation_frame($VolumeSprite))
 		timer += get_process_delta_time()
 	
 func init():
