@@ -121,7 +121,7 @@ tile_set = SubResource("TileSet_acyvh")
 [node name="Door" parent="." unique_id=386765253 instance=ExtResource("3_0uwcm")]
 visible = false
 position = Vector2(478, 820)
-next_start_position = Vector2(-323, 420)
+next_start_position = Vector2(-417, 414)
 next_scene = "res://Dungeons/00/00-06.tscn"
 direction = "South"
 
