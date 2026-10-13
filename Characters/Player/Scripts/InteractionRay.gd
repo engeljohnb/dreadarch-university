@@ -1,4 +1,4 @@
-extends RayCast2D
+extends Area2D
 
 @onready var icon = $InteractionIcon
 var using_item : Variant = null
@@ -10,6 +10,7 @@ var _blinking := false
 var _blink_duration := 0.5
 var _icon_state := false
 var _use_icon : Sprite2D
+var enabled = true
 
 func set_use_icon(item : Variant):
 	if ItemCollection.is_document(item):
@@ -24,65 +25,67 @@ func set_use_icon(item : Variant):
 		$InteractionIcon.add_child(_use_icon)
 	
 func check_for_interactable():
-	if is_colliding():
-		var col = get_collider()
-		# IDk it randomly crashed once bc col was null. I think it's because it intersects with
-		# ONe of the enemy's projectiles right as the enemy's killed -- freeing all the projectiles.
-		if col == null:
-			return
-		# col is Interactable wouldn't work because not every interactable thing 
-		#  is of the Interactable type.
-		if col.is_in_group("Interactable"):
-			_icon_state = true
-			if not get_parent().in_dialogue:
-				if "activate" in col:
-					if not using_item == null:
-						col.activate(using_item, using_item_count)
-					else:
-						col.activate()
-				using_item = null
-		else:
-			_icon_state = false
+	if (not has_overlapping_areas()) and not (has_overlapping_bodies()):
+		_icon_state = false
+		return
+	var interactable = null
+	if has_overlapping_bodies():
+		for i in get_overlapping_bodies():
+			if i.is_in_group("Interactable"):
+				interactable = i
+	if has_overlapping_areas():
+		for i in get_overlapping_areas():
+			if i.is_in_group("Interactable"):
+				interactable = i
+	if interactable == null:
+		return
+	if interactable.is_in_group("Interactable"):
+		if enabled:
+			interactable.activate(using_item, using_item_count)
+		_icon_state = true
 	else:
 		_icon_state = false
+
 				
 func check_for_collectible():
-	if is_colliding():
-		var col = get_collider()
-		if col is Collectible:
-			col.collect()
-			_icon_state = true
-			
+	var has_areas = has_overlapping_areas()
+	var has_bodies = has_overlapping_bodies()
+	if (not has_areas) and not (has_bodies):
+		_icon_state = false
+	if not has_areas:
+		return
+	var area = get_overlapping_areas()[0]
+	if area is Collectible:
+		area.collect()
+		_icon_state = true
+
+func should_update_state():
+	return (not _blinking) and (not get_parent().in_dialogue) and (not get_parent().in_cutscene)
 func _process(_delta):
-	place_icon()
-	icon.self_modulate = Color.WHITE
-	if Input.is_action_just_pressed("Interact"):
-		set_use_icon(null)
-		icon.position = target_position
-		# I still want the animation to play when a notification pops up
-		if not get_tree().paused:
-			check_for_interactable()
-			check_for_collectible()
-		else:
-			return
-		# Here because there's one part when meeting Aurelia
-		#  when the player sits, and I don't want them to be able 
-		#  to click while sitting, and this is the only way to check
-		#  without breaking the cursor in other situations.
-		if not get_parent()._waiting_to_stand:
-			_blinking = true
+	if should_update_state():
+		icon.self_modulate = Color.WHITE
+		icon.self_modulate.a = 0.33
+		if Input.is_action_just_pressed("Interact"):
+			set_use_icon(null)
+			# I still want the animation to play when a notification pops up
+			if not get_tree().paused:
+				check_for_interactable()
+				check_for_collectible()
+			else:
+				return
+			# Here because there's one part when meeting Aurelia
+			#  when the player sits, and I don't want them to be able 
+			#  to click while sitting, and this is the only way to check
+			#  without breaking the cursor in other situations.
+			if not get_parent()._waiting_to_stand:
+				_blinking = true
 	if _blinking:
 		if _timer >= _blink_duration:
 			_timer = 0.0
 			_blinking = false
 		blink_icon(_icon_state)
 		_timer += _delta
-	else:
-		icon.self_modulate.a = 0.33
-		
-func place_icon():
-	icon.position = lerp(Vector2(0,-55), target_position, 0.66)
-	
+
 func blink_icon(state : bool):
 	if state:
 		icon.self_modulate = positive_color

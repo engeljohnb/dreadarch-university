@@ -1168,6 +1168,9 @@ fill = 1
 fill_from = Vector2(0.4871795, 0.50427353)
 fill_to = Vector2(0.8119658, 0.14957266)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yo7uf"]
+size = Vector2(32, 33)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmhg"]
 radius = 9.0
 height = 56.0
@@ -2255,6 +2258,7 @@ up_direction = Vector2(0, 1)
 script = ExtResource("1_q4m4l")
 
 [node name="Rain" parent="." unique_id=387090192 instance=ExtResource("2_3u2it")]
+visible = false
 
 [node name="ActorCollision" type="CollisionShape2D" parent="." unique_id=1956782250]
 visible = false
@@ -2268,7 +2272,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_k8aph")
 position = Vector2(0, -24)
 sprite_frames = ExtResource("2_14m2a")
-animation = &"Stand Up"
+animation = &"Idle Knife Right"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1259551559]
 z_index = -1
@@ -2337,15 +2341,17 @@ stream = ExtResource("155_j8ien")
 bus = &"FXReverb"
 parameters/looping = true
 
-[node name="InteractionRay" type="RayCast2D" parent="." unique_id=1243106492]
+[node name="Cursor" type="Area2D" parent="." unique_id=476708971]
 process_mode = 3
-target_position = Vector2(0, 75)
+position = Vector2(0, -22)
+collision_layer = 9
 collision_mask = 136
-collide_with_areas = true
 script = ExtResource("150_2va3f")
 
-[node name="InteractionIcon" parent="InteractionRay" unique_id=1579403067 instance=ExtResource("8_6fff4")]
-position = Vector2(0, 49)
+[node name="InteractionIcon" parent="Cursor" unique_id=1579403067 instance=ExtResource("8_6fff4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor" unique_id=1606391956]
+shape = SubResource("RectangleShape2D_yo7uf")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=832514264]
 visible = false

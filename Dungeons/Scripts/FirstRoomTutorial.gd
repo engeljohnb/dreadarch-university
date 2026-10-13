@@ -21,7 +21,8 @@ func darken():
 func _process(_delta):
 	if player == null:
 		player = get_tree().get_nodes_in_group("Player")[0]
-	if player.interaction_ray.get_collider() == area:
-		brighten()
+	if player.cursor.has_overlapping_areas():
+		if player.cursor.get_overlapping_areas()[0] == area:
+			brighten()
 	else:
 		darken()

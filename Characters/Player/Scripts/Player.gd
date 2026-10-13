@@ -27,7 +27,7 @@ signal cutscene_ended(cutscene : Callable)
 @onready var sprite = $AnimatedSprite2D
 @onready var step_sound = $StepSound
 @onready var camera = $Camera2D
-@onready var interaction_ray = $InteractionRay
+@onready var cursor = $Cursor
 @onready var bump_map = $BumpMap
 
 
@@ -202,7 +202,7 @@ func play_outside_door_cutscene(delta, reverse = false):
 			outside_door_cutscene["reverse"] = false
 
 func init_cutscene(cutscene : Callable, duration : float):
-	$InteractionRay.enabled = false
+	$Cursor.enabled = false
 	set_state_machine_state("End")
 	in_cutscene = true
 	cutscene_timer = 0.0
@@ -248,7 +248,7 @@ func has_knife_equipped() -> bool:
 	return (is_equipped and has)
 	
 func end_cutscene(to_idle = true, direction = facing):
-	$InteractionRay.enabled = true
+	$Cursor.enabled = true
 	in_cutscene = false
 	cutscene_timer = 0.0
 	cutscene_duration = 0.0
@@ -489,8 +489,9 @@ func update_direction():
 		moving = true
 		facing = movement_direction
 		
-func update_interaction_ray():
-	$InteractionRay.target_position = 75.0*facing
+func update_cursor():
+	var player_center = Vector2(0.0, -22.0)
+	$Cursor.position = player_center + (50.0*facing)
 
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
@@ -622,9 +623,9 @@ func set_equipped(item : int):
 func on_inventory_action_chosen(action, item, count):
 	match action:
 		"Use":
-			$InteractionRay.using_item = item
-			$InteractionRay.using_item_count = count
-			$InteractionRay.set_use_icon(item)
+			cursor.using_item = item
+			cursor.using_item_count = count
+			cursor.set_use_icon(item)
 		"Equip":
 			set_equipped(item)
 		"Drink":
@@ -815,7 +816,7 @@ func _process(delta):
 		if not in_cutscene:
 			if Input.is_action_just_pressed("GainLifeCheat"):
 				gain_life(1)
-			update_interaction_ray()
+			update_cursor()
 			update_direction()
 			update_equipment()
 			update_attack_state()

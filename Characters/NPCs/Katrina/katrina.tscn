@@ -346,7 +346,6 @@ animation = &"Hug"
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766293745]
-visible = false
 position = Vector2(-3, -6)
 shape = SubResource("RectangleShape2D_yo7uf")
 
