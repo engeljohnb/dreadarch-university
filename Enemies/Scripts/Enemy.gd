@@ -13,7 +13,8 @@ class_name Enemy
 #			  because "attack" ID can have multiple action names ("Projectile", "Slice", etc)
 
 # State machine state can be set with set_action
-
+@warning_ignore("unused_signal")
+signal died
 
 enum Actions
 {

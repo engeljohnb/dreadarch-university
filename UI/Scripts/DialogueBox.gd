@@ -9,7 +9,8 @@ var portraits = {"Player" : load("res://Assets/Student/DialoguePortrait.png"),
 				"Fitzroy" : load("res://Assets/NPCs/PrivateFitzroy/Portrait.png"),
 				"Aelia" : load("res://Assets/NPCs/Aelia/Portrait.png"),
 				"Aurelia" : load("res://Assets/NPCs/Aurelia/Portrait.png"),
-				"Atticus" : load("res://Assets/NPCs/Atticus/portrait.png")
+				"Atticus" : load("res://Assets/NPCs/Atticus/portrait.png"),
+				"Katrina" : load("res://Assets/NPCs/Katrina/portrait.png")
 				}
 var dialogue : Array = []
 var current_index = 0

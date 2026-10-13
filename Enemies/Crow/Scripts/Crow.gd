@@ -19,6 +19,7 @@ func change_shader():
 
 func process_action_death():
 	if not dead:
+		died.emit()
 		dead = true
 		change_shader()
 		var dir = global_position.direction_to(Utils.player_position)

@@ -75,7 +75,8 @@ var level_up_dialogue = [
 		"speaker":"Player"
 	}
 ]
-	
+var walking_to_target : Vector2 = Vector2()
+var non_player_controlled = false
 func zero_inventory():
 	for i in range(0, ItemCollection.MAX_TYPES):
 		if ItemCollection.is_valid_counted_item(i):
@@ -808,8 +809,6 @@ func _process(delta):
 				current_cutscene.call(delta)
 		if cutscene_just_ended:
 			stupid_post_door_cutscene_correction()
-	#else:
-	#	set_state_machine_state("End")
 	
 # I can't figure out another way to solve the moonwalking bugs.
 var _c = 0
@@ -891,4 +890,22 @@ func play_wave_cutscene(delta : float):
 		if cutscene_timer >= cutscene_duration:
 			end_cutscene()
 		cutscene_timer += delta
+
+func _walk(delta : float):
+	var dir : String = Utils.nearest_cardinal_direction(facing, true)
+	if global_position.distance_to(walking_to_target) < 1.0:
+		sprite.play("Idle " + dir)
+	else:
+		sprite.play("Walk " + dir)
+		global_position = lerp(global_position, walking_to_target, (cutscene_timer/cutscene_duration))
+	if cutscene_timer >= cutscene_duration:
+		end_cutscene()
+		return
+	cutscene_timer += delta
 		
+func walk_to(_position : Vector2, duration : float):
+	init_cutscene(_walk, duration)
+	facing = global_position.direction_to(_position)
+	non_player_controlled = true
+	walking_to_target = _position
+	

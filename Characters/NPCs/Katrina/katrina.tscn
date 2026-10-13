@@ -1,0 +1,359 @@
+[gd_scene format=3 uid="uid://ddnuu188t17de"]
+
+[ext_resource type="Script" uid="uid://bhmbaeguft0bi" path="res://Characters/NPCs/Katrina/_Scripts/Katrina.gd" id="1_e7ew5"]
+[ext_resource type="Texture2D" uid="uid://8fxrr6sjatm1" path="res://Assets/NPCs/Katrina/Sweep/0008.png" id="2_3x30t"]
+[ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_a3pvs"]
+[ext_resource type="Texture2D" uid="uid://bgnx6mabm8fel" path="res://Assets/NPCs/Katrina/Hug/frame0000.png" id="3_2bdps"]
+[ext_resource type="Texture2D" uid="uid://5gqwgrg2bbuk" path="res://Assets/NPCs/Katrina/Sweep/0009.png" id="3_a3pvs"]
+[ext_resource type="Texture2D" uid="uid://bffbnhjt6g3ro" path="res://Assets/NPCs/Katrina/Hug/frame0001.png" id="4_def8h"]
+[ext_resource type="Texture2D" uid="uid://deq2vq4h53x2r" path="res://Assets/NPCs/Katrina/Sweep/0010.png" id="4_lk2v6"]
+[ext_resource type="Texture2D" uid="uid://bw8u1rbsj3ne6" path="res://Assets/NPCs/Katrina/Sweep/0011.png" id="5_ggpvr"]
+[ext_resource type="Texture2D" uid="uid://lc1wtlui0mng" path="res://Assets/NPCs/Katrina/Hug/frame0002.png" id="5_xxow7"]
+[ext_resource type="Texture2D" uid="uid://djewe1mwt2tod" path="res://Assets/NPCs/Katrina/Sweep/0012.png" id="6_fk6ng"]
+[ext_resource type="Texture2D" uid="uid://ds7ikhl3cpl8n" path="res://Assets/NPCs/Katrina/Hug/frame0003.png" id="6_menmw"]
+[ext_resource type="Texture2D" uid="uid://fwrvomxwm8ux" path="res://Assets/NPCs/Katrina/Hug/frame0004.png" id="7_4kb62"]
+[ext_resource type="Texture2D" uid="uid://uum81ob5avvo" path="res://Assets/NPCs/Katrina/Sweep/0013.png" id="7_yp5ei"]
+[ext_resource type="Texture2D" uid="uid://m5i1c8p08qdv" path="res://Assets/NPCs/Katrina/Sweep/0014.png" id="8_q6uoa"]
+[ext_resource type="Texture2D" uid="uid://0lqgf6f186ja" path="res://Assets/NPCs/Katrina/Hug/frame0005.png" id="8_vim2t"]
+[ext_resource type="Texture2D" uid="uid://bcyc7fihaqf4y" path="res://Assets/NPCs/Katrina/Sweep/0015.png" id="9_58hu1"]
+[ext_resource type="Texture2D" uid="uid://uyswfeudysel" path="res://Assets/NPCs/Katrina/Hug/frame0006.png" id="9_fojtw"]
+[ext_resource type="Texture2D" uid="uid://bvq120t0gtef4" path="res://Assets/NPCs/Katrina/Sweep/0016.png" id="10_0wa6v"]
+[ext_resource type="Texture2D" uid="uid://bp2brm8xljlkk" path="res://Assets/NPCs/Katrina/Hug/frame0007.png" id="10_vi06i"]
+[ext_resource type="Texture2D" uid="uid://bpreax5dwugso" path="res://Assets/NPCs/Katrina/Sweep/0000.png" id="11_8qn48"]
+[ext_resource type="Texture2D" uid="uid://bnyqcemy8c8lu" path="res://Assets/NPCs/Katrina/Hug/frame0008.png" id="11_32jgc"]
+[ext_resource type="Texture2D" uid="uid://dtx3kmbd8d56n" path="res://Assets/NPCs/Katrina/Hug/frame0009.png" id="12_74244"]
+[ext_resource type="Texture2D" uid="uid://bqhgc3y4lw5js" path="res://Assets/NPCs/Katrina/Sweep/0001.png" id="12_ueiqr"]
+[ext_resource type="Texture2D" uid="uid://bt1h6sf502e6h" path="res://Assets/NPCs/Katrina/Hug/frame0010.png" id="13_ky01b"]
+[ext_resource type="Texture2D" uid="uid://cq0o6lmf6jev4" path="res://Assets/NPCs/Katrina/Sweep/0002.png" id="13_o4ddx"]
+[ext_resource type="Texture2D" uid="uid://b00sbnbrq1hul" path="res://Assets/NPCs/Katrina/Sweep/0003.png" id="14_1jf36"]
+[ext_resource type="Texture2D" uid="uid://b4bwws7e4cb5m" path="res://Assets/NPCs/Katrina/Hug/frame0011.png" id="14_bjs8e"]
+[ext_resource type="Texture2D" uid="uid://cypbe8u0wlsrr" path="res://Assets/NPCs/Katrina/Sweep/0004.png" id="15_cdafn"]
+[ext_resource type="Texture2D" uid="uid://d3uumptygpp7n" path="res://Assets/NPCs/Katrina/Hug/frame0012.png" id="15_qohb2"]
+[ext_resource type="Texture2D" uid="uid://b46a6hs4pd3vq" path="res://Assets/NPCs/Katrina/Sweep/0005.png" id="16_c7jam"]
+[ext_resource type="Texture2D" uid="uid://blp87hi6fnceg" path="res://Assets/NPCs/Katrina/Hug/frame0013.png" id="16_xs157"]
+[ext_resource type="Texture2D" uid="uid://b4poom5voow7w" path="res://Assets/NPCs/Katrina/Hug/frame0014.png" id="17_1fe7t"]
+[ext_resource type="Texture2D" uid="uid://clxx2nro21y2" path="res://Assets/NPCs/Katrina/Sweep/0006.png" id="17_pyhrx"]
+[ext_resource type="Texture2D" uid="uid://cgqyny2crel3s" path="res://Assets/NPCs/Katrina/Hug/frame0015.png" id="18_6hgtk"]
+[ext_resource type="Texture2D" uid="uid://dk0xp484ffgjs" path="res://Assets/NPCs/Katrina/Sweep/0007.png" id="18_j1yij"]
+[ext_resource type="Texture2D" uid="uid://b4unwdhelqgjm" path="res://Assets/NPCs/Katrina/Hug/frame0016.png" id="19_pnq45"]
+[ext_resource type="Texture2D" uid="uid://y6qvdmjcicy5" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0000.png" id="20_00ypx"]
+[ext_resource type="Texture2D" uid="uid://cin21bimtk0s8" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0000.png" id="20_8qn48"]
+[ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="20_lk2v6"]
+[ext_resource type="Texture2D" uid="uid://bl2olhywop4fm" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0008.png" id="20_mnvmg"]
+[ext_resource type="Texture2D" uid="uid://73a2g2xhgug1" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0001.png" id="21_0l51u"]
+[ext_resource type="Texture2D" uid="uid://dprasc8m0ard2" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0009.png" id="21_5snpu"]
+[ext_resource type="Texture2D" uid="uid://rpcfuio8fygf" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0001.png" id="21_ueiqr"]
+[ext_resource type="Texture2D" uid="uid://b3ilayvg1e20m" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0010.png" id="22_gq6gc"]
+[ext_resource type="Texture2D" uid="uid://y0uraj2asy8n" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0002.png" id="22_ln6yi"]
+[ext_resource type="Texture2D" uid="uid://bqg0ior0pimb" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0002.png" id="22_o4ddx"]
+[ext_resource type="Texture2D" uid="uid://nlma4326w0hk" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0003.png" id="23_1jf36"]
+[ext_resource type="Texture2D" uid="uid://kljrg7rvbi2c" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0003.png" id="23_ljbkg"]
+[ext_resource type="Texture2D" uid="uid://cj3l27oubk7l4" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0011.png" id="23_sfyw4"]
+[ext_resource type="Texture2D" uid="uid://bw8e1x162pfu8" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0004.png" id="24_8igda"]
+[ext_resource type="Texture2D" uid="uid://c4kw5homdmssf" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0004.png" id="24_cdafn"]
+[ext_resource type="Texture2D" uid="uid://drtcvj76005ev" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0012.png" id="24_cgbsa"]
+[ext_resource type="Texture2D" uid="uid://bkaintc4j3w1u" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0005.png" id="25_c7jam"]
+[ext_resource type="Texture2D" uid="uid://cteefhphxl48k" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0013.png" id="25_igvh4"]
+[ext_resource type="Texture2D" uid="uid://nt7b050ptjk3" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0005.png" id="25_yyn0k"]
+[ext_resource type="Texture2D" uid="uid://m5bq4rbxqw10" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0014.png" id="26_0iade"]
+[ext_resource type="Texture2D" uid="uid://cfgf4qg0d3ak" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0006.png" id="26_83ebf"]
+[ext_resource type="Texture2D" uid="uid://dswl7g3vgg42v" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0006.png" id="26_pyhrx"]
+[ext_resource type="Texture2D" uid="uid://cmaao4evfd4j2" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0007.png" id="27_gli1g"]
+[ext_resource type="Texture2D" uid="uid://c7sb1qgun2vvu" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0007.png" id="27_j1yij"]
+[ext_resource type="Texture2D" uid="uid://dixamadwjm0yp" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0015.png" id="27_m25hp"]
+[ext_resource type="Texture2D" uid="uid://c1dc8sbh5o5g0" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0008.png" id="28_63if2"]
+[ext_resource type="Texture2D" uid="uid://ch8bai0dlsd2q" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0016.png" id="28_jcgw3"]
+[ext_resource type="Texture2D" uid="uid://bva0n4my1o28a" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0009.png" id="29_s6po3"]
+[ext_resource type="Texture2D" uid="uid://csph60imo5j2b" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0010.png" id="30_nkejc"]
+[ext_resource type="Texture2D" uid="uid://dpprgyow47xmm" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0011.png" id="31_l6mcq"]
+[ext_resource type="Texture2D" uid="uid://xrlg2o3ft786" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0012.png" id="32_ccw2g"]
+[ext_resource type="Texture2D" uid="uid://cnyss55opcohj" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0013.png" id="33_jrob1"]
+[ext_resource type="Texture2D" uid="uid://duyrh0w2amb5s" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0014.png" id="34_c0oxf"]
+[ext_resource type="Texture2D" uid="uid://de1tp8oyiqhq4" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0015.png" id="35_mbsp1"]
+[ext_resource type="Texture2D" uid="uid://dww8mdtm4glqh" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0016.png" id="36_g2lw6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7uf"]
+shader = ExtResource("2_a3pvs")
+shader_parameter/strength = 0.50000002375
+shader_parameter/baseline = 0.0
+shader_parameter/modulate = Vector4(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yo7uf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2bdps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_def8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xxow7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_menmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4kb62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vim2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fojtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vi06i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_32jgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_74244")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ky01b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bjs8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qohb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xs157")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_1fe7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6hgtk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pnq45")
+}],
+"loop": 2,
+"name": &"Hug",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3x30t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a3pvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lk2v6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ggpvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fk6ng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yp5ei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_q6uoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_58hu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0wa6v")
+}],
+"loop": 0,
+"name": &"Step",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_8qn48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ueiqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_o4ddx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_1jf36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_cdafn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_c7jam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pyhrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_j1yij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_cdafn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_o4ddx")
+}],
+"loop": 1,
+"name": &"Sweep",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yo7uf"]
+size = Vector2(20, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ggpvr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_00ypx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0l51u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ln6yi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ljbkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8igda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_yyn0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_83ebf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_gli1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_63if2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_s6po3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_nkejc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_l6mcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ccw2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_jrob1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_c0oxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_mbsp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_g2lw6")
+}],
+"loop": 1,
+"name": &"Hug",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_mnvmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5snpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_gq6gc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_sfyw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_cgbsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_igvh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_0iade")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_m25hp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_jcgw3")
+}],
+"loop": 1,
+"name": &"Step",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_8qn48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ueiqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_o4ddx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1jf36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_cdafn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_c7jam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_pyhrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_j1yij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_cdafn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_o4ddx")
+}],
+"loop": 1,
+"name": &"Sweep",
+"speed": 5.0
+}]
+
+[node name="Katrina" type="StaticBody2D" unique_id=337658701 groups=["Interactable"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_e7ew5")
+metadata/_custom_type_script = "uid://bgfg4g0sb1sc7"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=884679604]
+material = SubResource("ShaderMaterial_yo7uf")
+sprite_frames = SubResource("SpriteFrames_yo7uf")
+animation = &"Hug"
+frame = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766293745]
+visible = false
+position = Vector2(-3, -6)
+shape = SubResource("RectangleShape2D_yo7uf")
+
+[node name="VolumeSprite" type="AnimatedSprite2D" parent="." unique_id=1953127962 node_paths=PackedStringArray("target")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ggpvr")
+animation = &"Hug"
+script = ExtResource("20_lk2v6")
+target = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://cnq1mcm71wgew"

@@ -68,15 +68,14 @@ func _ready():
 	visual_travel.travel_ended.connect(_on_travel_ended)
 	player = get_tree().get_nodes_in_group("Player")[0]
 	global_position = player.global_position
-	ItemCollection.item_collected.connect(_on_item_collected)
 	
 func _is_speaking():
 	return Dialogue.dialogue_open() and Dialogue.current_box.get("speaker") == "Aurelia"
 	
 func _process(delta):
 	if not stationary:
-		if Input.is_action_just_released("ui_text_delete"):
-			following_player = false
+		#if Input.is_action_just_released("ui_text_delete"):
+		#	following_player = false
 		if following_player:
 			follow_player(delta)
 		else:
@@ -104,9 +103,8 @@ func should_surprise_player():
 	var distance_to_player = abs(global_position.y - player.global_position.y)
 	return (player.facing == Vector2.UP) and (distance_to_player < 125.0) and is_open
 	
-func _on_item_collected(item, _count, _should_play_sound):
-	if item == ItemCollection.GOLDEN_DAGGER:
-		following_player = false
+func trigger_transformation():
+	following_player = false
 	
 func _on_travel_ended():
 	visual_stationary.visible = true

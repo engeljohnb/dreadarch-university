@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bxv0cv2grx0nx" path="res://Assets/Decoration/HomeInterior/HomeShelf.png" id="11_3ybje"]
 [ext_resource type="Script" uid="uid://b4pijihfemvku" path="res://Items/Interactable/Scripts/InteractionEvent.gd" id="11_na0us"]
 [ext_resource type="Script" uid="uid://b8w0ui558dfld" path="res://EventSequence/Events/CutsceneEvent.gd" id="12_na0us"]
+[ext_resource type="PackedScene" uid="uid://ddnuu188t17de" path="res://Characters/NPCs/Katrina/katrina.tscn" id="13_qhrim"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uwcm"]
 texture = ExtResource("2_vh348")
@@ -243,3 +244,6 @@ metadata/_custom_type_script = "uid://b8w0ui558dfld"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/EventInteractable" unique_id=1885597712]
 position = Vector2(-355.4464, -138.36906)
 shape = SubResource("RectangleShape2D_na0us")
+
+[node name="Katrina" parent="." unique_id=337658701 instance=ExtResource("13_qhrim")]
+position = Vector2(415, 446)

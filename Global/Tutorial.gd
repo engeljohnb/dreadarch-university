@@ -6,7 +6,8 @@ var messages_shown = {
 		"letter_from_professor" : false,
 		ItemCollection.TALONS : false,
 		ItemCollection.NECTAR : false,
-		ItemCollection.SCROLL_FRAGMENT : false
+		ItemCollection.SCROLL_FRAGMENT : false,
+		ItemCollection.GOLDEN_DAGGER : false
 }
 var messages = {
 	ItemCollection.TALONS:[
@@ -25,6 +26,13 @@ var messages = {
 			"image":ItemCollection.textures[ItemCollection.NECTAR],
 			"text2":" Drinking these is good for your health. You can press I to open your inventory."
 		}
+	],
+	ItemCollection.GOLDEN_DAGGER:[
+		{
+			"text":"You found a weapon!",
+			"image":ItemCollection.textures[ItemCollection.GOLDEN_DAGGER],
+			"text2":"Press X to attack"
+		},
 	]
 }
 
