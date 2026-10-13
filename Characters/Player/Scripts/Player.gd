@@ -5,6 +5,12 @@ extends CharacterBody2D
 
 const GOD_MODE = false
 
+enum ControlSchemes
+{
+	KEYBOARD_ONLY,
+	MOUSE
+}
+
 signal died()
 signal lost_life(damage)
 signal gained_life(life)
@@ -31,6 +37,7 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 400.0
 
+var control_scheme : ControlSchemes = ControlSchemes.KEYBOARD_ONLY
 var level = 1
 var attack_damage = 1
 # Inventory already has a lot of systems in place
@@ -42,7 +49,8 @@ var documents: Array[Dictionary] = []
 var dead = false
 var in_cutscene = false
 var current_cutscene = null
-var cutscene_timer = 0.0
+var cutscene_timer = 0.0	#else:
+	#	set_state_machine_state("End")
 var cutscene_duration = 0.0
 var life = 3
 var total_life = 3
@@ -260,7 +268,6 @@ func end_cutscene(to_idle = true, direction = facing):
 func is_cutscene_over():
 	return cutscene_timer >= cutscene_duration
 	
-
 func play_door_cutscene_walk_animation(dir, arriving):
 	match dir:
 			"North":
@@ -423,23 +430,7 @@ func play_victory_cutscene(delta):
 func reset_direction_changed():
 	direction_changed = false
 
-func update_direction():
-	direction_changed = false
-	if moving:
-		if Input.is_action_just_pressed("Left"):
-			direction_priority = "Left"
-			direction_changed = true
-		if Input.is_action_just_pressed("Right"):
-			direction_priority = "Right"
-			direction_changed = true
-		if Input.is_action_just_pressed("Up"):
-			direction_priority = "Up"
-			direction_changed = true
-		if Input.is_action_just_pressed("Down"):
-			direction_priority = "Down"
-			direction_changed = true
-		if direction_just_released():
-			direction_changed = true
+func get_movement_direction_keyboard() -> Vector2:
 	var movement_direction = Vector2()
 	if Input.is_action_pressed("Left"):
 		if direction_priority == "Left":
@@ -462,6 +453,35 @@ func update_direction():
 		else:
 			movement_direction += DOWN
 	movement_direction = movement_direction.normalized()
+	return movement_direction
+	
+func get_movement_direction() -> Vector2:
+	match control_scheme:
+		ControlSchemes.KEYBOARD_ONLY:
+			return get_movement_direction_keyboard()
+	return get_movement_direction_keyboard()
+
+func update_direction_priority():
+	if Input.is_action_just_pressed("Left"):
+		direction_priority = "Left"
+		direction_changed = true
+	if Input.is_action_just_pressed("Right"):
+		direction_priority = "Right"
+		direction_changed = true
+	if Input.is_action_just_pressed("Up"):
+		direction_priority = "Up"
+		direction_changed = true
+	if Input.is_action_just_pressed("Down"):
+		direction_priority = "Down"
+		direction_changed = true
+	if direction_just_released():
+		direction_changed = true
+		
+func update_direction():
+	direction_changed = false
+	if moving and (control_scheme == ControlSchemes.KEYBOARD_ONLY):
+		update_direction_priority()
+	var movement_direction = get_movement_direction()
 	if movement_direction.is_zero_approx():
 		moving = false
 		facing = prev_facing
