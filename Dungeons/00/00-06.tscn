@@ -41,7 +41,7 @@ player_brightness_override = 0.8
 player_value_override = 0.5
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
-[node name="Chimney\\" parent="." unique_id=874337401 instance=ExtResource("2_bsmsq")]
+[node name="Chimneys" parent="." unique_id=874337401 instance=ExtResource("2_bsmsq")]
 position = Vector2(0, 5)
 tile_map_data = PackedByteArray("AAD7/wEAAQAEAAAAAAA=")
 

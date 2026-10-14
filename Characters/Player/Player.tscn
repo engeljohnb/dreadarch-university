@@ -503,8 +503,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_h88hr"]
 resource_name = "Switch Direction"
 length = 0.001
-loop_mode = 2
-step = 0.0833333
+step = 1.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -721,7 +720,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qfir1"]
 resource_name = "Walk Knife Right"
-step = 0.0833333
+step = 1.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -757,7 +756,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_oy8ms"]
 resource_name = "Walk Left"
-step = 0.0833333
+step = 1.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -775,7 +774,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_82ywc"]
 resource_name = "Walk Right"
-step = 0.0833333
+step = 1.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -793,7 +792,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vau5h"]
 resource_name = "Walk Up"
-step = 0.0833333
+step = 1.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1025,16 +1024,16 @@ animation = &"Walk Knife Right"
 animation = &"Walk Knife Down"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j7p2t"]
-animation = &"Walk Knife Up"
+animation = &"Walk Knife Right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s3j0o"]
-animation = &"Walk Knife Down"
+animation = &"Walk Knife Right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aqxpi"]
-animation = &"Walk Knife Down"
+animation = &"Walk Knife Left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7t4tm"]
-animation = &"Walk Knife Up"
+animation = &"Walk Knife Left"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gnh12"]
 blend_mode = 1
@@ -1075,6 +1074,18 @@ animation = &"Walk Left"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_82ywc"]
 animation = &"Walk Right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3u2it"]
+animation = &"Walk Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vqfyk"]
+animation = &"Walk Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dhy68"]
+animation = &"Walk Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m8kce"]
+animation = &"Walk Right"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vau5h"]
 blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_33rc2")
@@ -1089,6 +1100,18 @@ blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_82ywc")
 blend_point_3/pos = Vector2(1, 0)
 blend_point_3/name = &"3"
+blend_point_4/node = SubResource("AnimationNodeAnimation_3u2it")
+blend_point_4/pos = Vector2(-1, 1)
+blend_point_4/name = &"Walk Up"
+blend_point_5/node = SubResource("AnimationNodeAnimation_vqfyk")
+blend_point_5/pos = Vector2(1, 1)
+blend_point_5/name = &"Walk Up 2"
+blend_point_6/node = SubResource("AnimationNodeAnimation_dhy68")
+blend_point_6/pos = Vector2(-1, -1)
+blend_point_6/name = &"Walk Down"
+blend_point_7/node = SubResource("AnimationNodeAnimation_m8kce")
+blend_point_7/pos = Vector2(1, -1)
+blend_point_7/name = &"Walk Down 2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjbl7"]
 priority = 0
@@ -1112,22 +1135,14 @@ transitions = ["Start", "Walk Knife", SubResource("AnimationNodeStateMachineTran
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kauok"]
+priority = 0
 advance_mode = 2
-advance_expression = "moving"
+advance_condition = &"moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33rc2"]
 priority = 0
 advance_mode = 2
-advance_expression = "!moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tj7am"]
-advance_mode = 2
-advance_expression = "direction_changed"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxy43"]
-priority = 0
-advance_mode = 2
-advance_expression = "!direction_changed"
+advance_condition = &"not_moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ey64d"]
 switch_mode = 2
@@ -1135,11 +1150,21 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_agvow"]
 advance_mode = 2
-advance_expression = "attacking"
+advance_condition = &"attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nahvi"]
 advance_mode = 2
-advance_expression = "attacking"
+advance_condition = &"attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tj7am"]
+advance_mode = 2
+advance_condition = &"direction_changed"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxy43"]
+priority = 0
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"not_direction_changed"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s7t4j"]
 allow_transition_to_self = true
@@ -1151,11 +1176,11 @@ states/Idle/node = SubResource("AnimationNodeStateMachine_hjbl7")
 states/Idle/position = Vector2(382, 134)
 states/Start/position = Vector2(238, 241)
 "states/Switch Direction/node" = SubResource("AnimationNodeAnimation_ix2ws")
-"states/Switch Direction/position" = Vector2(382, 340.411)
+"states/Switch Direction/position" = Vector2(382, 341.07767)
 states/Walk/node = SubResource("AnimationNodeStateMachine_71w3q")
-states/Walk/position = Vector2(382, 241)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ey64d"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_agvow"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_nahvi")]
-graph_offset = Vector2(23.7683, 82.7943)
+states/Walk/position = Vector2(382.07407, 240.87654)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3vdys"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kauok"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_33rc2"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_ey64d"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_agvow"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_nahvi"), "Walk", "Switch Direction", SubResource("AnimationNodeStateMachineTransition_tj7am"), "Switch Direction", "Walk", SubResource("AnimationNodeStateMachineTransition_rxy43")]
+graph_offset = Vector2(-238.81702, 118.49196)
 
 [sub_resource type="Gradient" id="Gradient_6fff4"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -2246,6 +2271,8 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uodi5"]
+
 [node name="Player" type="CharacterBody2D" unique_id=364387035 groups=["Player", "Vertical"]]
 light_mask = 5
 visibility_layer = 5
@@ -2272,7 +2299,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_k8aph")
 position = Vector2(0, -24)
 sprite_frames = ExtResource("2_14m2a")
-animation = &"Idle Knife Right"
+animation = &"Wave"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1259551559]
 z_index = -1
@@ -2287,6 +2314,11 @@ libraries/ = SubResource("AnimationLibrary_oy8ms")
 tree_root = SubResource("AnimationNodeStateMachine_s7t4j")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attacking = false
+parameters/conditions/direction_changed = false
+parameters/conditions/moving = false
+parameters/conditions/not_direction_changed = false
+parameters/conditions/not_moving = false
 parameters/Attack/Attack/blend_position = Vector2(0, 0)
 parameters/Attack/Throw/blend_position = Vector2(0, 0)
 parameters/Idle/Idle/blend_position = Vector2(-0.000813663, -0.0044843)
@@ -2378,3 +2410,10 @@ animation = &"Sitting"
 script = ExtResource("20_870kv")
 target = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://cnq1mcm71wgew"
+
+[node name="MouseContainer" type="Area2D" parent="." unique_id=478623338]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseContainer" unique_id=1950808017]
+position = Vector2(0, -22.000002)
+scale = Vector2(12.382832, 12.382832)
+shape = SubResource("RectangleShape2D_uodi5")

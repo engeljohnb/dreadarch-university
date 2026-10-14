@@ -31,6 +31,7 @@ signal cutscene_ended(cutscene : Callable)
 @onready var bump_map = $BumpMap
 
 
+const MOUSE_CENTER = Vector2(480, 270)
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
 const UP = Vector2(0, -1)
@@ -85,6 +86,8 @@ var level_up_dialogue = [
 ]
 var walking_to_target : Vector2 = Vector2()
 var non_player_controlled = false
+var mouse_in_container = false
+
 func zero_inventory():
 	for i in range(0, ItemCollection.MAX_TYPES):
 		if ItemCollection.is_valid_counted_item(i):
@@ -454,12 +457,16 @@ func get_movement_direction_keyboard() -> Vector2:
 			movement_direction += DOWN
 	movement_direction = movement_direction.normalized()
 	return movement_direction
-	
-func get_movement_direction() -> Vector2:
-	match control_scheme:
-		ControlSchemes.KEYBOARD_ONLY:
-			return get_movement_direction_keyboard()
-	return get_movement_direction_keyboard()
+
+func get_mouse_direction() -> Vector2:
+	return (get_viewport().get_mouse_position() - MOUSE_CENTER).normalized()
+
+func get_movement_direction_mouse() -> Vector2:
+	if mouse_in_container:
+		return Vector2()
+	else:
+		return get_mouse_direction()
+		
 
 func update_direction_priority():
 	if Input.is_action_just_pressed("Left"):
@@ -477,11 +484,12 @@ func update_direction_priority():
 	if direction_just_released():
 		direction_changed = true
 		
-func update_direction():
+	
+func update_direction_keyboard():
 	direction_changed = false
-	if moving and (control_scheme == ControlSchemes.KEYBOARD_ONLY):
+	if moving:
 		update_direction_priority()
-	var movement_direction = get_movement_direction()
+	var movement_direction = get_movement_direction_keyboard()
 	if movement_direction.is_zero_approx():
 		moving = false
 		facing = prev_facing
@@ -489,9 +497,36 @@ func update_direction():
 		moving = true
 		facing = movement_direction
 		
+var prev_direction = "Down"
+func update_direction_mouse():
+	direction_changed = false
+	if mouse_in_container:
+		moving = false
+	else:
+		moving = true
+	facing = get_mouse_direction()
+	var direction = Utils.nearest_cardinal_direction(facing, true)
+	if direction != prev_direction:
+		direction_changed = true
+	else:
+		direction_changed = false
+	prev_direction = direction
+		
+func update_direction():
+	match control_scheme:
+		ControlSchemes.KEYBOARD_ONLY:
+			update_direction_keyboard()
+		ControlSchemes.MOUSE:
+			update_direction_mouse()
+		
 func update_cursor():
 	var player_center = Vector2(0.0, -22.0)
-	$Cursor.position = player_center + (50.0*facing)
+	match control_scheme:
+		ControlSchemes.KEYBOARD_ONLY:
+			cursor.position = player_center + (50.0*facing)
+		ControlSchemes.MOUSE:
+			var distance = MOUSE_CENTER.distance_to(get_viewport().get_mouse_position())
+			cursor.position = (facing * distance)
 
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
@@ -500,6 +535,22 @@ func update_animation_blend_positions():
 	anim_tree.set("parameters/Attack/Throw/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle Knife/blend_position", facing)
+	if moving:
+		anim_tree.set("parameters/conditions/moving", true)
+		anim_tree.set("parameters/conditions/not_moving", false)
+	else:
+		anim_tree.set("parameters/conditions/not_moving", true)
+		anim_tree.set("parameters/conditions/moving", false)
+	if attacking:
+		anim_tree.set("parameters/conditions/attacking", true)
+	else:
+		anim_tree.set("parameters/conditions/attacking", false)
+	if direction_changed:
+		anim_tree.set("parameters/conditions/direction_changed", true)
+		anim_tree.set("parameters/conditions/not_direction_changed", false)
+	else:
+		anim_tree.set("parameters/conditions/direction_changed", false)
+		anim_tree.set("parameters/conditions/not_direction_changed", true)
 
 func get_hitbox():
 	return $Hitbox
@@ -598,6 +649,8 @@ func _ready():
 	reset_inventory()
 	item_equipped.emit(equipped, 0)
 	Dialogue.open_dialogue.connect(on_dialogue_opened)
+	$MouseContainer.mouse_entered.connect(_on_mouse_entered_container)
+	$MouseContainer.mouse_exited.connect(_on_mouse_exited_container)
 		
 func set_equipped(item : int):
 	if not item_equippable(item):
@@ -719,7 +772,6 @@ func turn_up_default_light():
 	sprite.modulate = Color.WHITE
 	sprite.modulate.a = 1.0
 	sprite.material.set_shader_parameter("strength", 1.66)
-	#sprite.material.set_shader_parameter("baseline", 5.0)
 
 	
 func turn_down_low_range_light():
@@ -822,14 +874,14 @@ func _process(delta):
 			update_attack_state()
 			update_position(delta)
 			update_animation_blend_positions()
-			if not attacking:
-				correct_sprite_direction()
+		#	if not attacking:
+		#		correct_sprite_direction()
 			prev_facing = facing
 		else:
 			if current_cutscene:
 				current_cutscene.call(delta)
-		if cutscene_just_ended:
-			stupid_post_door_cutscene_correction()
+		#if cutscene_just_ended:
+		#	stupid_post_door_cutscene_correction()
 	
 # I can't figure out another way to solve the moonwalking bugs.
 var _c = 0
@@ -930,3 +982,7 @@ func walk_to(_position : Vector2, duration : float):
 	non_player_controlled = true
 	walking_to_target = _position
 	
+func _on_mouse_exited_container():
+	mouse_in_container = false
+func _on_mouse_entered_container():
+	mouse_in_container = true

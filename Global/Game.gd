@@ -70,6 +70,7 @@ func _open_letter():
 func on_dialogue_ended():
 	player.in_dialogue = false
 	player.anim_tree["parameters/playback"].travel("Start")
+	Utils.reset_mouse()
 	
 func _open_dialogue(dialogue):
 	var box = load("res://UI/DialogueBox.tscn").instantiate()
@@ -380,6 +381,7 @@ func on_new_scene():
 	pause_menu.visible = false
 	load_player_for_new_scene()
 	play_scene_entrance_cutscene()
+	Utils.reset_mouse()
 
 
 func open_load_game_menu(pos = null):

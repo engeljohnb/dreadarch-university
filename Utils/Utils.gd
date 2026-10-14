@@ -6,6 +6,13 @@ const DOWN = Vector2(0,1)
 const SAVE_FILE_DIRECTORY = "user://SaveFiles/"
 var player_position : Vector2
 		
+func reset_mouse():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	get_viewport().warp_mouse(get_viewport().get_visible_rect().get_center())
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
 func update_player_position(pos : Vector2):
 	player_position = pos
 	

@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var icon = $InteractionIcon
+const default_alpha = 0.66
 var using_item : Variant = null
 var using_item_count = 1
 var positive_color : Color = Color(0.2,0.85,0.2)
@@ -61,10 +62,11 @@ func check_for_collectible():
 
 func should_update_state():
 	return (not _blinking) and (not get_parent().in_dialogue) and (not get_parent().in_cutscene)
+	
 func _process(_delta):
 	if should_update_state():
 		icon.self_modulate = Color.WHITE
-		icon.self_modulate.a = 0.33
+		icon.self_modulate.a = default_alpha
 		if Input.is_action_just_pressed("Interact"):
 			set_use_icon(null)
 			# I still want the animation to play when a notification pops up
