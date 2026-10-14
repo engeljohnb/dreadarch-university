@@ -100,7 +100,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfyqh"]
-size = Vector2(119.99301, 23)
+size = Vector2(28.400284, 83.49999)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yo7uf"]
 animations = [{
@@ -177,7 +177,7 @@ sprite_frames = SubResource("SpriteFrames_sh7jb")
 animation = &"Walk Left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1594796520]
-position = Vector2(1.0000002, 31)
+position = Vector2(-2.3841858e-07, 0.7500038)
 scale = Vector2(0.98113, 1)
 shape = SubResource("RectangleShape2D_mfyqh")
 

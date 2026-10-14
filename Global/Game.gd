@@ -70,7 +70,6 @@ func _open_letter():
 func on_dialogue_ended():
 	player.in_dialogue = false
 	player.anim_tree["parameters/playback"].travel("Start")
-	Utils.reset_mouse()
 	
 func _open_dialogue(dialogue):
 	var box = load("res://UI/DialogueBox.tscn").instantiate()
@@ -365,6 +364,8 @@ func set_player_lights():
 		player.bump_map.set_default_value()
 		
 func on_new_scene():
+	if $CanvasLayer/PauseMenu.is_open:
+		$CanvasLayer/PauseMenu.is_open = false
 	if SceneTransition.scene_changed():
 		if not (current_scene is Control):
 			save_room_node(current_scene, SceneTransition.prev_scene_name)
@@ -381,7 +382,6 @@ func on_new_scene():
 	pause_menu.visible = false
 	load_player_for_new_scene()
 	play_scene_entrance_cutscene()
-	Utils.reset_mouse()
 
 
 func open_load_game_menu(pos = null):
@@ -453,11 +453,18 @@ func open_save_game_menu(pos = null):
 func on_won():
 	player.play_victory_cutscene(0.0)
 
+func set_custom_cursor():
+	var screen_height = DisplayServer.screen_get_size().y
+	if screen_height < 2160:
+		Input.set_custom_mouse_cursor(preload("res://Assets/UI/CursorMain32.png"))
+	else:
+		Input.set_custom_mouse_cursor(preload("res://Assets/UI/CursorMain.png"))
+		
 func init_wm_settings():
 	var screen_size = DisplayServer.window_get_size()
 	get_window().size = screen_size
 	ProjectSettings.set_setting("display/window/size/mode", DisplayServer.WindowMode.WINDOW_MODE_MAXIMIZED)
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	set_custom_cursor()
 
 func _ready():
 	seed(1)
@@ -477,6 +484,7 @@ func _ready():
 	pause_menu.save_button.pressed.connect(open_save_game_menu.bind(Vector2(360,100)))
 	pause_menu.load_button.pressed.connect(open_load_game_menu.bind(Vector2(360,100)))
 	pause_menu.continue_button.pressed.connect(close_menu_sound.play)
+	pause_menu.options_button.pressed.connect(open_options_menu)
 	
 	Dialogue.prompt_player.connect(_prompt_player)
 	Dialogue.open_document.connect(_open_document)
@@ -550,8 +558,22 @@ func load_game(filename = "user://SaveFiles/save.da"):
 	Tutorial.load_completed_tutorial_prompts(_save.completed_tutorial_prompts)
 	SceneTransition.enter_scene(_save.current_scene_path, player.global_position)
 
+func open_options_menu():
+	var from_gameplay = (current_scene.name != "WelcomeMenu")
+	if from_gameplay:
+		pause_menu.hide_all()
+	else:
+		current_scene.hide_all()
+	get_tree().paused = true
+	var options = load("res://Options/ControlsMenu/ControlsMenu.tscn").instantiate()
+	options.closed.connect(pause_menu.pause_game)
+	$CanvasLayer.add_child(options)
+
+var _inventory_open = false
 func open_inventory():
+	_inventory_open = true
 	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()
+	inventory.closed.connect(func(): _inventory_open = false)
 	inventory.top_level = true
 	$CanvasLayer.add_child(inventory)
 	inventory.open(player.inventory, player.documents)
@@ -566,9 +588,11 @@ func _process(_delta):
 				update_footstep_sound_source()
 			player.update_step_sound(step_sound_source)
 			if Input.is_action_just_pressed("Pause"):
-				pause_menu.pause_game()
-			if Input.is_action_just_pressed("OpenInventory"):
-				open_inventory()
+				if not _inventory_open:
+					pause_menu.pause_game()
+			if Input.is_action_just_pressed("Inventory"):
+				if (not pause_menu.is_open) and (not _inventory_open):
+					open_inventory()
 	if player.won:
 		# Victory Cutsceene needs to end first
 		if not player.in_cutscene:

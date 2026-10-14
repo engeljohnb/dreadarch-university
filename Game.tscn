@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctcsa2iivywjj" path="res://UI/PauseMenu.tscn" id="3_u44n3"]
 [ext_resource type="AudioStream" uid="uid://cw6stupps6s14" path="res://Assets/Sounds/CloseMenu.mp3" id="4_sb48q"]
 [ext_resource type="Script" uid="uid://dbuo31ijjr74k" path="res://Music/Scripts/Music.gd" id="4_t88pq"]
+[ext_resource type="Script" uid="uid://54a3uucp0w4k" path="res://UI/Scripts/MouseControl.gd" id="7_3mrqo"]
 
 [sub_resource type="Gradient" id="Gradient_t88pq"]
 offsets = PackedFloat32Array(0)
@@ -38,9 +39,21 @@ grow_vertical = 1
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=792860072 instance=ExtResource("3_u44n3")]
 
+[node name="DebugPrint" type="RichTextLabel" parent="CanvasLayer" unique_id=1218901153 groups=["Debug"]]
+anchors_preset = -1
+anchor_right = 0.27800003
+anchor_bottom = 0.18
+offset_right = 0.1199646
+offset_bottom = -0.20000458
+
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=556544341]
 process_mode = 3
 script = ExtResource("4_t88pq")
 
 [node name="CloseMenuSound" type="AudioStreamPlayer" parent="." unique_id=1943615444]
 stream = ExtResource("4_sb48q")
+
+[node name="MouseControl" type="Node" parent="." unique_id=1328791926]
+process_mode = 3
+process_priority = 1
+script = ExtResource("7_3mrqo")

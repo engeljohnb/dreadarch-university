@@ -5,11 +5,6 @@ extends CharacterBody2D
 
 const GOD_MODE = false
 
-enum ControlSchemes
-{
-	KEYBOARD_ONLY,
-	MOUSE
-}
 
 signal died()
 signal lost_life(damage)
@@ -38,7 +33,6 @@ const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 400.0
 
-var control_scheme : ControlSchemes = ControlSchemes.KEYBOARD_ONLY
 var level = 1
 var attack_damage = 1
 # Inventory already has a lot of systems in place
@@ -433,7 +427,7 @@ func play_victory_cutscene(delta):
 func reset_direction_changed():
 	direction_changed = false
 
-func get_movement_direction_keyboard() -> Vector2:
+func get_movement_direction_classic() -> Vector2:
 	var movement_direction = Vector2()
 	if Input.is_action_pressed("Left"):
 		if direction_priority == "Left":
@@ -485,11 +479,11 @@ func update_direction_priority():
 		direction_changed = true
 		
 	
-func update_direction_keyboard():
+func update_direction_classic():
 	direction_changed = false
 	if moving:
 		update_direction_priority()
-	var movement_direction = get_movement_direction_keyboard()
+	var movement_direction = get_movement_direction_classic()
 	if movement_direction.is_zero_approx():
 		moving = false
 		facing = prev_facing
@@ -513,20 +507,22 @@ func update_direction_mouse():
 	prev_direction = direction
 		
 func update_direction():
-	match control_scheme:
-		ControlSchemes.KEYBOARD_ONLY:
-			update_direction_keyboard()
-		ControlSchemes.MOUSE:
-			update_direction_mouse()
+	#match Controls.control_scheme:
+		#Controls.KEYBOARD_ONLY:
+	update_direction_classic()
+		#Controls.MOUSE:
+		#	update_direction_mouse()
 		
 func update_cursor():
 	var player_center = Vector2(0.0, -22.0)
-	match control_scheme:
-		ControlSchemes.KEYBOARD_ONLY:
+	match Controls.control_scheme:
+		Controls.KEYBOARD_ONLY:
 			cursor.position = player_center + (50.0*facing)
-		ControlSchemes.MOUSE:
-			var distance = MOUSE_CENTER.distance_to(get_viewport().get_mouse_position())
-			cursor.position = (facing * distance)
+		Controls.MOUSE:
+			var mouse_position = get_viewport().get_mouse_position()
+			var distance = MOUSE_CENTER.distance_to(mouse_position)
+			var direction = MOUSE_CENTER.direction_to(mouse_position)
+			cursor.position = player_center  + (distance * direction)
 
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
@@ -551,7 +547,7 @@ func update_animation_blend_positions():
 	else:
 		anim_tree.set("parameters/conditions/direction_changed", false)
 		anim_tree.set("parameters/conditions/not_direction_changed", true)
-
+	
 func get_hitbox():
 	return $Hitbox
 	
@@ -645,7 +641,7 @@ func on_dialogue_opened(_dialogue):
 	$AnimatedSprite2D.play("Idle " + Utils.nearest_cardinal_direction(facing, true))
 	
 func _ready(): 
-	get_tree().paused = true
+	#get_tree().paused = true
 	reset_inventory()
 	item_equipped.emit(equipped, 0)
 	Dialogue.open_dialogue.connect(on_dialogue_opened)
@@ -787,9 +783,9 @@ func set_value(value : float):
 	sprite.material.set_shader_parameter("baseline", value)
 	
 func update_equipment():
-	if Input.is_action_just_pressed("ChangeEquipmentLeft"):
+	if Input.is_action_just_pressed("Switch Equipped Left"):
 		change_equipment_quick("Left")
-	if Input.is_action_just_pressed("ChangeEquipmentRight"):
+	if Input.is_action_just_pressed("Switch Equipped Right"):
 		change_equipment_quick("Right")
 	if equipped < 0:
 		Error.error("equipped is < 0")
@@ -874,14 +870,10 @@ func _process(delta):
 			update_attack_state()
 			update_position(delta)
 			update_animation_blend_positions()
-		#	if not attacking:
-		#		correct_sprite_direction()
 			prev_facing = facing
 		else:
 			if current_cutscene:
 				current_cutscene.call(delta)
-		#if cutscene_just_ended:
-		#	stupid_post_door_cutscene_correction()
 	
 # I can't figure out another way to solve the moonwalking bugs.
 var _c = 0

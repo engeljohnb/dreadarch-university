@@ -56,7 +56,7 @@ func _stupid_fix_focus():
 			
 func _process(_delta):
 	_stupid_fix_focus()
-	if Input.is_action_just_released("CloseInventory"):
+	if Input.is_action_just_released("UI Cancel"):
 		close()
 	if Input.is_action_just_pressed("Up"):
 		$UpArrow.modulate.a = 0.6

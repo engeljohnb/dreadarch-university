@@ -155,7 +155,7 @@ func _ready():
 func _process(_delta):
 	if level_up_open:
 		return
-	if Input.is_action_just_released("CloseInventory"):
+	if Input.is_action_just_released("UI Cancel"):
 		if not safe_to_close:
 			safe_to_close = true
 			return

@@ -1023,18 +1023,6 @@ animation = &"Walk Knife Right"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xr4ud"]
 animation = &"Walk Knife Down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j7p2t"]
-animation = &"Walk Knife Right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s3j0o"]
-animation = &"Walk Knife Right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aqxpi"]
-animation = &"Walk Knife Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7t4tm"]
-animation = &"Walk Knife Left"
-
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gnh12"]
 blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_hjbl7")
@@ -1049,18 +1037,6 @@ blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_xr4ud")
 blend_point_3/pos = Vector2(0, 1)
 blend_point_3/name = &"3"
-blend_point_4/node = SubResource("AnimationNodeAnimation_j7p2t")
-blend_point_4/pos = Vector2(1, 1)
-blend_point_4/name = &"4"
-blend_point_5/node = SubResource("AnimationNodeAnimation_s3j0o")
-blend_point_5/pos = Vector2(1, -1)
-blend_point_5/name = &"5"
-blend_point_6/node = SubResource("AnimationNodeAnimation_aqxpi")
-blend_point_6/pos = Vector2(-1, -1)
-blend_point_6/name = &"6"
-blend_point_7/node = SubResource("AnimationNodeAnimation_7t4tm")
-blend_point_7/pos = Vector2(-1, 1)
-blend_point_7/name = &"7"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_33rc2"]
 animation = &"Walk Up"
@@ -1072,18 +1048,6 @@ animation = &"Walk Down"
 animation = &"Walk Left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_82ywc"]
-animation = &"Walk Right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3u2it"]
-animation = &"Walk Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vqfyk"]
-animation = &"Walk Right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dhy68"]
-animation = &"Walk Left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m8kce"]
 animation = &"Walk Right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vau5h"]
@@ -1100,18 +1064,6 @@ blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_82ywc")
 blend_point_3/pos = Vector2(1, 0)
 blend_point_3/name = &"3"
-blend_point_4/node = SubResource("AnimationNodeAnimation_3u2it")
-blend_point_4/pos = Vector2(-1, 1)
-blend_point_4/name = &"Walk Up"
-blend_point_5/node = SubResource("AnimationNodeAnimation_vqfyk")
-blend_point_5/pos = Vector2(1, 1)
-blend_point_5/name = &"Walk Up 2"
-blend_point_6/node = SubResource("AnimationNodeAnimation_dhy68")
-blend_point_6/pos = Vector2(-1, -1)
-blend_point_6/name = &"Walk Down"
-blend_point_7/node = SubResource("AnimationNodeAnimation_m8kce")
-blend_point_7/pos = Vector2(1, -1)
-blend_point_7/name = &"Walk Down 2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjbl7"]
 priority = 0
@@ -1162,9 +1114,8 @@ advance_condition = &"direction_changed"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxy43"]
 priority = 0
-switch_mode = 1
+switch_mode = 2
 advance_mode = 2
-advance_condition = &"not_direction_changed"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s7t4j"]
 allow_transition_to_self = true
@@ -2292,7 +2243,6 @@ visible = false
 shape = SubResource("CapsuleShape2D_hdxfm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1263146509]
-process_priority = 1
 light_mask = 9
 visibility_layer = 4
 texture_filter = 1
@@ -2317,7 +2267,6 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attacking = false
 parameters/conditions/direction_changed = false
 parameters/conditions/moving = false
-parameters/conditions/not_direction_changed = false
 parameters/conditions/not_moving = false
 parameters/Attack/Attack/blend_position = Vector2(0, 0)
 parameters/Attack/Throw/blend_position = Vector2(0, 0)

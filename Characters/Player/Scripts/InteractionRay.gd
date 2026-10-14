@@ -67,7 +67,7 @@ func _process(_delta):
 	if should_update_state():
 		icon.self_modulate = Color.WHITE
 		icon.self_modulate.a = default_alpha
-		if Input.is_action_just_pressed("Interact"):
+		if Input.is_action_just_pressed("Click"):
 			set_use_icon(null)
 			# I still want the animation to play when a notification pops up
 			if not get_tree().paused:

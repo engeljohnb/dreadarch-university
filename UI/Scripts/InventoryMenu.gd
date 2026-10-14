@@ -5,6 +5,7 @@ extends Control
 @onready var submenu = $BookBorder/Submenu
 @onready var description_label = $BookBorder/DescriptionLabel
 signal inventory_action_chosen(action, item, count)
+signal closed()
 
 class InventoryItem:
 	var name : String
@@ -72,7 +73,7 @@ func on_document_used(document):
 	close()
 	
 func on_document_selector_closed():
-	if not Input.is_action_just_released("CloseInventory"):
+	if not Input.is_action_just_released("UI Cancel"):
 		_stupid_submenu_just_closed = true
 	visible = true
 	item_list.visible = true
@@ -173,6 +174,7 @@ func open(inventory, documents, _just_opened := true):
 	item_list.grab_focus()
 
 func close():
+	closed.emit()
 	get_tree().paused = false
 	queue_free()
 
@@ -235,7 +237,7 @@ func _process(_delta):
 				description_label.text = ItemCollection.descriptions[type]
 			else:
 				description_label.text = "No description available."
-	if Input.is_action_just_released("CloseInventory"):
+	if Input.is_action_just_released("UI Cancel"):
 		if number_box_open:
 			close_number_box()
 			open_submenu()
@@ -250,7 +252,7 @@ func _process(_delta):
 	#  and the player will attack or something.
 			else:
 				just_opened = false
-	if Input.is_action_just_released("ui_accept"):
+	if Input.is_action_just_released("UI Accept"):
 		if just_opened:
 			just_opened = false
 			return
