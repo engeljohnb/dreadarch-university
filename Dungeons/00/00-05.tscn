@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dd2uqbjul1fue" path="res://UI/InteractionCursor.tscn" id="5_43ff0"]
 [ext_resource type="Script" uid="uid://dp0tfp8k0buw5" path="res://Dungeons/Scripts/FirstRoomTutorial.gd" id="5_cwf0t"]
 [ext_resource type="FontFile" uid="uid://b7ifiruukhhmh" path="res://Assets/UI/Fonts/lionel-of-paris/Lionelofparis.ttf" id="6_r30ie"]
-[ext_resource type="Script" uid="uid://dk8r88sncv36u" path="res://Decoration/_Scripts/Decoration.gd" id="8_cwf0t"]
+[ext_resource type="Script" uid="uid://dvkslwb7id0j2" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="8_3v7bd"]
+[ext_resource type="Script" uid="uid://bbhkg0s0xkj36" path="res://Decoration/_Scripts/Tutorial.gd" id="9_3v7bd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wbhm8"]
 texture = ExtResource("2_05q5l")
@@ -71,6 +72,13 @@ size = Vector2(18427.09, 0.61414385)
 
 [sub_resource type="Theme" id="Theme_43ff0"]
 default_font = ExtResource("6_r30ie")
+
+[sub_resource type="Texture2D" id="Texture2D_j3pel"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("8_3v7bd")
+path = "Click"
+metadata/_custom_type_script = "uid://dvkslwb7id0j2"
 
 [sub_resource type="Gradient" id="Gradient_r30ie"]
 offsets = PackedFloat32Array(0.9722222, 1)
@@ -174,7 +182,20 @@ offset_top = -52.0
 offset_right = 60.0
 offset_bottom = -24.0
 theme = SubResource("Theme_43ff0")
-text = "Z for Tutorial"
+text = "Tutorial"
+
+[node name="ButtonIcon" type="TextureRect" parent="Tutorial/RichTextLabel" unique_id=859251876]
+modulate = Color(0.4454878, 0.4454878, 0.4454878, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.611
+anchor_right = 0.95300007
+anchor_bottom = 1.0710001
+offset_left = 0.012001038
+offset_right = -0.00093078613
+offset_bottom = 0.011997223
+texture = SubResource("Texture2D_j3pel")
+expand_mode = 1
 
 [node name="Border" type="Sprite2D" parent="Tutorial" unique_id=236524937]
 modulate = Color(1, 1, 1, 0.245)
@@ -184,8 +205,7 @@ texture = SubResource("GradientTexture2D_7k7fg")
 [node name="Decoration" type="Area2D" parent="Tutorial" unique_id=1550314830 groups=["Interactable"]]
 collision_layer = 8
 collision_mask = 8
-script = ExtResource("8_cwf0t")
-interaction_message = Array[String](["Press Z to search things, interact with things, or talk to people."])
+script = ExtResource("9_3v7bd")
 metadata/_custom_type_script = "uid://dk8r88sncv36u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Decoration" unique_id=119357525]

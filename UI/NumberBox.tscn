@@ -58,3 +58,29 @@ offset_top = -0.0290012
 offset_right = -0.0150146
 offset_bottom = 0.0489998
 texture = ExtResource("2_ygq1g")
+
+[node name="Accept" type="Button" parent="." unique_id=1947592797]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.89400005
+anchor_right = 0.64400005
+anchor_bottom = 1.2040001
+offset_top = 0.032943726
+offset_right = -0.050712585
+offset_bottom = -1.6312561
+theme_override_font_sizes/font_size = 21
+text = "Accept
+"
+
+[node name="Cancel" type="Button" parent="." unique_id=269779781]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.89400005
+anchor_right = 0.64400005
+anchor_bottom = 1.2040001
+offset_left = 88.0
+offset_top = 0.032943726
+offset_right = 87.94929
+offset_bottom = -1.6312561
+theme_override_font_sizes/font_size = 21
+text = "Cancel"

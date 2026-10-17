@@ -2,7 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b0ldm7skvk02s" path="res://Options/ControlsMenu/_Scripts/ControlsMenu.gd" id="1_4ahkd"]
 [ext_resource type="Script" uid="uid://p634pvioxh5l" path="res://Options/ControlsMenu/_Scripts/MotionButton.gd" id="1_dq35o"]
+[ext_resource type="Script" uid="uid://ylbxs4y2r53" path="res://Options/ControlsMenu/_Scripts/ControlsTab.gd" id="2_q3syw"]
 [ext_resource type="Script" uid="uid://c7etr7olo0cxx" path="res://Options/ControlsMenu/_Scripts/RemapButton.gd" id="3_ls6of"]
+[ext_resource type="Texture2D" uid="uid://dn4ev6xf10f8l" path="res://Assets/UI/Keyboard_Mouse.png" id="4_qvdm5"]
+[ext_resource type="Script" uid="uid://c5s4xo2kk0aog" path="res://Options/ControlsMenu/_Scripts/PresetsMenu.gd" id="4_sanmu"]
+[ext_resource type="Texture2D" uid="uid://dgsmhyf52u3rm" path="res://Assets/UI/Keyboard_WASD.png" id="5_3x1xk"]
+[ext_resource type="Script" uid="uid://dr0wxkh6aiu22" path="res://Options/ControlsMenu/_Scripts/MouseToggleButton.gd" id="5_86606"]
+[ext_resource type="Texture2D" uid="uid://dju5hmuylbqe6" path="res://Assets/UI/Keyboard_Arrows.png" id="6_sanmu"]
+[ext_resource type="Texture2D" uid="uid://c2bwl7xvpa1qm" path="res://Assets/UI/ControllerIcon.png" id="7_3x1xk"]
 
 [node name="ControlsMenu" type="Control" unique_id=1264565918]
 process_mode = 2
@@ -15,51 +22,98 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4ahkd")
 
-[node name="MotionButton" type="Button" parent="." unique_id=280492572]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=2052088009]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -500.0
+current_tab = 0
+script = ExtResource("2_q3syw")
+
+[node name="Customize" type="Control" parent="TabContainer" unique_id=542597643]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MotionButton" type="Button" parent="TabContainer/Customize" unique_id=280492572]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.11400001
-anchor_top = 0.115
-anchor_right = 0.291
-anchor_bottom = 0.21700001
-offset_left = -0.44001007
-offset_top = -0.10000229
-offset_right = -0.36001587
-offset_bottom = -0.18000793
-text = "Mouse"
+anchor_top = 3.4440002
+anchor_right = 0.29000002
+anchor_bottom = 7.8890004
+offset_left = -0.5540085
+offset_top = 0.0039978027
+offset_right = 0.30996704
+offset_bottom = -0.0010070801
+text = "Free Crosshairs"
 script = ExtResource("1_dq35o")
 
-[node name="MotionLabel" type="RichTextLabel" parent="." unique_id=801233538]
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Customize/MotionButton" unique_id=1252220456]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0350001
+anchor_top = -0.2
+anchor_right = 2.253
+anchor_bottom = 1.291
+offset_left = 0.049987793
+offset_right = -0.010009766
+offset_bottom = -0.0049972534
+theme_override_font_sizes/normal_font_size = 13
+text = "Crosshairs can be controlled with mouse or joystick"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MotionLabel" type="RichTextLabel" parent="TabContainer/Customize" unique_id=801233538]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.012
-anchor_top = 0.13100001
+anchor_top = 4.0
 anchor_right = 0.105000004
-anchor_bottom = 0.20600002
-offset_left = 0.47999954
-offset_top = 0.2599945
-offset_right = 0.19999695
-offset_bottom = -0.2400055
+anchor_bottom = 7.333
+offset_left = 0.46799946
+offset_right = 0.18799591
+offset_bottom = 0.002998352
 focus_mode = 0
 mouse_filter = 2
 text = "Motion:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ClickButton" type="Button" parent="." unique_id=306704886]
+[node name="MouseLabel" type="RichTextLabel" parent="TabContainer/Customize" unique_id=1931954718]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012
+anchor_top = 4.0
+anchor_right = 0.105000004
+anchor_bottom = 7.333
+offset_left = 0.46799946
+offset_top = 56.0
+offset_right = 0.18799591
+offset_bottom = 56.003
+focus_mode = 0
+mouse_filter = 2
+text = "Mouse:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClickButton" type="Button" parent="TabContainer/Customize" unique_id=306704886]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.024
-anchor_top = 0.36900002
-anchor_right = 0.17500001
-anchor_bottom = 0.46100003
-offset_left = 0.9599991
-offset_top = 13.73999
-offset_right = 0.99998474
-offset_bottom = 14.059982
+anchor_top = 20.222
+anchor_right = 0.17600001
+anchor_bottom = 24.556002
+offset_left = 0.9359989
+offset_top = 0.0019989014
+offset_right = 0.015991211
+offset_bottom = -0.0040130615
 text = "Click"
 script = ExtResource("3_ls6of")
 action = "Click"
 
-[node name="ClickLabel" type="RichTextLabel" parent="ClickButton" unique_id=803423204]
+[node name="ClickLabel" type="RichTextLabel" parent="TabContainer/Customize/ClickButton" unique_id=803423204]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.78000003
@@ -70,22 +124,22 @@ text = "Click"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AttackButton" type="Button" parent="." unique_id=737802611]
+[node name="AttackButton" type="Button" parent="TabContainer/Customize" unique_id=737802611]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.201
-anchor_top = 0.36900002
+anchor_top = 20.222
 anchor_right = 0.35200003
-anchor_bottom = 0.46100003
-offset_left = 0.039993286
-offset_top = 13.73999
-offset_right = 0.07998657
-offset_bottom = 14.059982
+anchor_bottom = 24.556002
+offset_left = -0.16101074
+offset_top = 0.0019989014
+offset_right = -0.121032715
+offset_bottom = -0.0040130615
 text = "Attack"
 script = ExtResource("3_ls6of")
 action = "Attack"
 
-[node name="AttackLabel" type="RichTextLabel" parent="AttackButton" unique_id=1477490145]
+[node name="AttackLabel" type="RichTextLabel" parent="TabContainer/Customize/AttackButton" unique_id=1477490145]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.78000003
@@ -98,23 +152,23 @@ text = "Attack
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InventoryButton" type="Button" parent="." unique_id=1845821416]
+[node name="InventoryButton" type="Button" parent="TabContainer/Customize" unique_id=1845821416]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.024
-anchor_top = 0.606
+anchor_top = 34.333
 anchor_right = 0.17600001
-anchor_bottom = 0.698
-offset_left = 0.9599991
-offset_top = 12.76001
-offset_right = 0.039993286
-offset_bottom = 13.079987
+anchor_bottom = 38.667004
+offset_left = 0.9359989
+offset_top = 0.0029907227
+offset_right = 0.015991211
+offset_bottom = -0.0030212402
 text = "Inventory
 "
 script = ExtResource("3_ls6of")
 action = "Inventory"
 
-[node name="InventoryLabel" type="RichTextLabel" parent="InventoryButton" unique_id=1717454502]
+[node name="InventoryLabel" type="RichTextLabel" parent="TabContainer/Customize/InventoryButton" unique_id=1717454502]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -127,23 +181,23 @@ text = "Inventory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseButton" type="Button" parent="." unique_id=1123436552]
+[node name="PauseButton" type="Button" parent="TabContainer/Customize" unique_id=1123436552]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.201
-anchor_top = 0.606
-anchor_right = 0.35200003
-anchor_bottom = 0.698
-offset_left = -167.96
-offset_top = 130.76001
-offset_right = -167.92001
-offset_bottom = 131.07999
+anchor_left = 0.026
+anchor_top = 47.444004
+anchor_right = 0.177
+anchor_bottom = 51.778004
+offset_left = 0.013999939
+offset_top = 0.003967285
+offset_right = 0.054000854
+offset_bottom = -0.0020446777
 text = "Pause
 "
 script = ExtResource("3_ls6of")
 action = "Pause"
 
-[node name="PauseLabel" type="RichTextLabel" parent="PauseButton" unique_id=1251005215]
+[node name="PauseLabel" type="RichTextLabel" parent="TabContainer/Customize/PauseButton" unique_id=1251005215]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -156,22 +210,22 @@ text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AcceptButton" type="Button" parent="." unique_id=1297984868]
+[node name="AcceptButton" type="Button" parent="TabContainer/Customize" unique_id=1297984868]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.024
-anchor_top = 0.841
-anchor_right = 0.17600001
-anchor_bottom = 0.933
-offset_left = 324.96
-offset_top = 1.8599854
-offset_right = 324.03998
-offset_bottom = 2.1799927
+anchor_left = 0.36200002
+anchor_top = 47.222004
+anchor_right = 0.513
+anchor_bottom = 51.667004
+offset_left = 0.11798096
+offset_top = 0.001953125
+offset_right = 0.15899658
+offset_bottom = -0.0030212402
 text = "UI Accept"
 script = ExtResource("3_ls6of")
 action = "UI Accept"
 
-[node name="AcceptLabel" type="RichTextLabel" parent="AcceptButton" unique_id=1819236136]
+[node name="AcceptLabel" type="RichTextLabel" parent="TabContainer/Customize/AcceptButton" unique_id=1819236136]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -184,80 +238,79 @@ text = "UI Accept"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SwitchEqLeft" type="Button" parent="." unique_id=1264204171]
+[node name="SwitchEqLeft" type="Button" parent="TabContainer/Customize" unique_id=1264204171]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.53400004
-anchor_top = 0.10700001
+anchor_top = 9.111
 anchor_right = 0.711
-anchor_bottom = 0.2
-offset_left = 0.35998535
-offset_top = 55.219997
-offset_right = 0.44000244
-offset_bottom = 55.0
+anchor_bottom = 13.556001
+offset_left = -0.17401123
+offset_top = 0.0009994507
+offset_right = -0.09399414
+offset_bottom = -0.004005432
 text = "Switch Equipped Left"
 script = ExtResource("3_ls6of")
 action = "Switch Equipped Left"
 
-[node name="Label" type="RichTextLabel" parent="SwitchEqLeft" unique_id=275550508]
+[node name="Label" type="RichTextLabel" parent="TabContainer/Customize/SwitchEqLeft" unique_id=275550508]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.048
+anchor_left = -0.018000001
 anchor_top = -0.84000003
-anchor_right = 1.0760001
+anchor_right = 1.011
 anchor_bottom = -0.15
-offset_left = -11.160012
-offset_right = -11.120041
-offset_bottom = -0.007323742
+offset_left = 0.059987783
+offset_right = -0.07003784
+offset_bottom = -0.9999962
 text = "Switch Equipped Left"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SwitchEqRight" type="Button" parent="." unique_id=538014794]
+[node name="SwitchEqRight" type="Button" parent="TabContainer/Customize" unique_id=538014794]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75500005
-anchor_top = 0.10700001
-anchor_right = 0.943
-anchor_bottom = 0.2
-offset_left = 0.19995117
-offset_top = 55.219997
-offset_right = -0.2800293
-offset_bottom = 55.0
+anchor_top = 9.111
+anchor_right = 0.94200003
+anchor_bottom = 13.444
+offset_left = -0.5550537
+offset_top = 0.0009994507
+offset_right = -0.074035645
+offset_bottom = 0.0039978027
 text = "Switch Equipped Right"
 script = ExtResource("3_ls6of")
 action = "Switch Equipped Right"
 
-[node name="Label" type="RichTextLabel" parent="SwitchEqRight" unique_id=837477231]
+[node name="Label" type="RichTextLabel" parent="TabContainer/Customize/SwitchEqRight" unique_id=837477231]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.048
 anchor_top = -0.84000003
-anchor_right = 1.0760001
+anchor_right = 1.014
 anchor_bottom = -0.15
-offset_left = -11.160012
-offset_right = -11.120041
+offset_left = -2.520012
+offset_right = 0.051620483
 offset_bottom = -0.007323742
 text = "Switch Equipped Right"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CancelButton" type="Button" parent="." unique_id=1122205509]
+[node name="CancelButton" type="Button" parent="TabContainer/Customize" unique_id=1122205509]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.201
-anchor_top = 0.841
-anchor_right = 0.35200003
-anchor_bottom = 0.933
-offset_left = 155.04
-offset_top = -113.140015
-offset_right = 155.07999
-offset_bottom = -112.82001
+anchor_left = 0.36200002
+anchor_top = 34.444
+anchor_right = 0.513
+anchor_bottom = 38.778004
+offset_left = 0.11798096
+offset_top = 0.0039978027
+offset_right = 0.15899658
+offset_bottom = -0.0020446777
 text = "UI Cancel"
 script = ExtResource("3_ls6of")
 action = "UI Cancel"
 
-[node name="CancelLabel" type="RichTextLabel" parent="CancelButton" unique_id=996438160]
+[node name="CancelLabel" type="RichTextLabel" parent="TabContainer/Customize/CancelButton" unique_id=996438160]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -270,105 +323,197 @@ text = "UI Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UpButton" type="Button" parent="." unique_id=1729404154]
+[node name="UpButton" type="Button" parent="TabContainer/Customize" unique_id=1729404154]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.66400003
-anchor_top = 0.374
-anchor_right = 0.73600006
-anchor_bottom = 0.467
-offset_left = 116.55994
-offset_top = 66.03999
-offset_right = 117.43994
-offset_bottom = 65.81999
+anchor_left = 0.785
+anchor_top = 26.333002
+anchor_right = 0.85800004
+anchor_bottom = 29.778002
+offset_left = -0.38500977
+offset_top = 0.0029754639
+offset_right = -0.46502686
+offset_bottom = -0.0020141602
 text = "Up
 "
 text_overrun_behavior = 2
 script = ExtResource("3_ls6of")
 action = "Up"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UpButton" unique_id=755631162]
-layout_mode = 0
-offset_top = -64.0
-offset_right = 69.0
-offset_bottom = -11.0
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Customize/UpButton" unique_id=755631162]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.2800001
+anchor_right = 1.0
+anchor_bottom = -0.22000001
+offset_right = -1.0
 text = "Up"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DownButton" type="Button" parent="." unique_id=1922280288]
+[node name="DownButton" type="Button" parent="TabContainer/Customize" unique_id=1922280288]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.66400003
-anchor_top = 0.606
-anchor_right = 0.73600006
-anchor_bottom = 0.698
-offset_left = 116.55994
-offset_top = 65.76001
-offset_right = 117.43994
-offset_bottom = 66.07999
+anchor_left = 0.785
+anchor_top = 40.222
+anchor_right = 0.85800004
+anchor_bottom = 43.667004
+offset_left = -0.38500977
+offset_top = 0.0020141602
+offset_right = -0.46502686
+offset_bottom = -0.0030212402
 text = "Down"
 script = ExtResource("3_ls6of")
 action = "Down"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="DownButton" unique_id=477215929]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 54.0
-offset_right = 68.0
-offset_bottom = 107.0
+[node name="RichTextLabel3" type="RichTextLabel" parent="TabContainer/Customize/DownButton" unique_id=477215929]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.014
+anchor_top = 1.08
+anchor_right = 1.0
+anchor_bottom = 2.14
+offset_left = -0.01999998
+offset_right = -2.0
 text = "Down
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LeftButton" type="Button" parent="." unique_id=1908478214]
+[node name="LeftButton" type="Button" parent="TabContainer/Customize" unique_id=1908478214]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.52400005
-anchor_top = 0.48700002
-anchor_right = 0.597
-anchor_bottom = 0.568
-offset_left = 154.95996
-offset_top = 66.01999
-offset_right = 154.88
-offset_bottom = 72.28
+anchor_left = 0.68500006
+anchor_top = 33.111
+anchor_right = 0.758
+anchor_bottom = 36.556004
+offset_left = -0.28503418
+offset_top = 0.0010070801
+offset_right = -0.36499023
+offset_bottom = -0.0040283203
 text = "Left"
 script = ExtResource("3_ls6of")
 action = "Left"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="LeftButton" unique_id=1748787346]
-layout_mode = 0
+[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/Customize/LeftButton" unique_id=1748787346]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.1600001
+anchor_right = 1.0
 offset_left = 2.0
-offset_top = -58.0
-offset_right = 71.0
+offset_right = 1.0
 offset_bottom = -5.0
 text = "Left
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RightButton" type="Button" parent="." unique_id=1791579877]
+[node name="RightButton" type="Button" parent="TabContainer/Customize" unique_id=1791579877]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.79300004
-anchor_top = 0.48700002
-anchor_right = 0.86600006
-anchor_bottom = 0.58000004
-offset_left = 92.71997
-offset_top = 66.01999
-offset_right = 92.63995
-offset_bottom = 65.79999
+anchor_left = 0.89000005
+anchor_top = 33.111
+anchor_right = 0.9620001
+anchor_bottom = 36.556004
+offset_left = -1.2900391
+offset_top = 0.0010070801
+offset_right = -0.4100952
+offset_bottom = -0.0040283203
 text = "Right"
 script = ExtResource("3_ls6of")
 action = "Right"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="RightButton" unique_id=1533610881]
-layout_mode = 0
-offset_top = -58.0
-offset_right = 69.0
-offset_bottom = -5.0
+[node name="RichTextLabel3" type="RichTextLabel" parent="TabContainer/Customize/RightButton" unique_id=1533610881]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.1600001
+anchor_right = 0.98600006
+anchor_bottom = -0.1
+offset_right = -0.020004272
 text = "Right
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MouseButton" type="Button" parent="TabContainer/Customize" unique_id=1189566801]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11400001
+anchor_top = 9.889001
+anchor_right = 0.291
+anchor_bottom = 14.333001
+offset_left = 0.44599152
+offset_top = -0.0010070801
+offset_right = 0.34899902
+offset_bottom = 0.0029907227
+text = "Visible"
+script = ExtResource("5_86606")
+
+[node name="Presets" type="Control" parent="TabContainer" unique_id=604632134]
+visible = false
+layout_mode = 2
+script = ExtResource("4_sanmu")
+metadata/_tab_index = 1
+
+[node name="Cancel" type="Button" parent="TabContainer/Presets" unique_id=2147438242]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.643
+anchor_top = 39.222
+anchor_right = 0.851
+anchor_bottom = 43.333
+offset_left = 0.07696533
+offset_top = 0.0020141602
+offset_right = 0.18896484
+offset_bottom = 0.0029907227
+disabled = true
+text = "Cancel
+"
+
+[node name="Apply" type="Button" parent="TabContainer/Presets" unique_id=1842371285]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.643
+anchor_top = 33.667
+anchor_right = 0.851
+anchor_bottom = 37.778004
+offset_left = 0.07696533
+offset_top = -0.0029907227
+offset_right = 0.18896484
+offset_bottom = -0.0020446777
+disabled = true
+text = "Apply
+"
+
+[node name="Panel" type="Panel" parent="TabContainer/Presets" unique_id=1282322286]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.9990001
+anchor_bottom = 56.333004
+offset_right = -0.0390625
+offset_bottom = 0.002960205
+
+[node name="ItemList" type="ItemList" parent="TabContainer/Presets" unique_id=1774671709]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.081
+anchor_top = 1.7780001
+anchor_right = 0.623
+anchor_bottom = 56.000004
+offset_left = 0.15899658
+offset_top = -0.0020008087
+offset_right = 0.29699707
+offset_bottom = -3.0517578e-05
+theme_override_constants/v_separation = 46
+wraparound_items = false
+item_count = 4
+item_0/text = "        Keyboard and Mouse"
+item_0/icon = ExtResource("4_qvdm5")
+item_1/text = "        Keyboard Only - WASD"
+item_1/icon = ExtResource("5_3x1xk")
+item_2/text = "        Keyboard Only - Arrows"
+item_2/icon = ExtResource("6_sanmu")
+item_3/text = "          Gamepad"
+item_3/icon = ExtResource("7_3x1xk")

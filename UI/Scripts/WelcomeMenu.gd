@@ -81,7 +81,7 @@ func _process(_delta):
 		fade_timer += _delta
 		var fade_percent = fade_timer/fade_duration
 		lamplight.energy = total_energy*fade_percent
-		if (fade_timer >= fade_duration) or Input.is_action_just_pressed("ui_accept")  or Input.is_action_just_pressed("Pause"):
+		if (fade_timer >= fade_duration) or Input.is_action_just_pressed("UI Accept")  or Input.is_action_just_pressed("Pause"):
 				fading = false
 				fade_timer = 0.0
 				fade_duration = 0.0

@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var icon = $InteractionIcon
-const default_alpha = 0.66
+const default_alpha = 0.6
 var using_item : Variant = null
 var using_item_count = 1
 var positive_color : Color = Color(0.2,0.85,0.2)
@@ -39,15 +39,17 @@ func check_for_interactable():
 			if i.is_in_group("Interactable"):
 				interactable = i
 	if interactable == null:
+		_icon_state = false
 		return
 	if interactable.is_in_group("Interactable"):
 		if enabled:
 			interactable.activate(using_item, using_item_count)
-		_icon_state = true
+			_icon_state = true
+		else:
+			_icon_state = false
 	else:
 		_icon_state = false
 
-				
 func check_for_collectible():
 	var has_areas = has_overlapping_areas()
 	var has_bodies = has_overlapping_bodies()
@@ -64,23 +66,6 @@ func should_update_state():
 	return (not _blinking) and (not get_parent().in_dialogue) and (not get_parent().in_cutscene)
 	
 func _process(_delta):
-	if should_update_state():
-		icon.self_modulate = Color.WHITE
-		icon.self_modulate.a = default_alpha
-		if Input.is_action_just_pressed("Click"):
-			set_use_icon(null)
-			# I still want the animation to play when a notification pops up
-			if not get_tree().paused:
-				check_for_interactable()
-				check_for_collectible()
-			else:
-				return
-			# Here because there's one part when meeting Aurelia
-			#  when the player sits, and I don't want them to be able 
-			#  to click while sitting, and this is the only way to check
-			#  without breaking the cursor in other situations.
-			if not get_parent()._waiting_to_stand:
-				_blinking = true
 	if _blinking:
 		if _timer >= _blink_duration:
 			_timer = 0.0
@@ -95,3 +80,24 @@ func blink_icon(state : bool):
 		icon.self_modulate = negative_color
 	var padink = Utils.padink(_timer, _blink_duration, 0.3, 1.5, 2.0, 0.0, 0.66)
 	icon.self_modulate.a = padink
+
+func _unhandled_input(event : InputEvent):
+	if should_update_state():
+		icon.self_modulate = Color.WHITE
+		icon.self_modulate.a = default_alpha
+		if event.is_action_pressed("Click") and not event.is_echo():
+			set_use_icon(null)
+			# I still want the animation to play when a notification pops up
+			if not get_tree().paused:
+				check_for_interactable()
+				check_for_collectible()
+			else:
+				return
+			# Here because there's one part when meeting Aurelia
+			#  when the player sits, and I don't want them to be able 
+			#  to click while sitting, and this is the only way to check
+			#  without breaking the cursor in other situations.
+			if not get_parent()._waiting_to_stand:
+				_blinking = true
+			using_item = null
+			using_item_count = 1

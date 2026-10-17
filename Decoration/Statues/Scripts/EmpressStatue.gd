@@ -1,9 +1,7 @@
 extends Interactable
 
 var inscription = [
-	{
-		"text":"Regina aeterna sine fine regnet."
-	}
+	"Regina aeterna sine fine regnet."
 ]
 
 	

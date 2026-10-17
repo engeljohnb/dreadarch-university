@@ -2,6 +2,9 @@ extends Node2D
 @onready var label = $CanvasLayer/RichTextLabel
 @onready var sprite = $CanvasLayer/RichTextLabel/AnimatedSprite2D
 
+# HERE!!! The problem for the weird scroll fragment glitch thingy is I think probably HERE
+
+
 func set_num_scroll_fragments(num : int):
 	$CanvasLayer/RichTextLabel.text = str(num)
 func shrink_for_mini_gui(size):

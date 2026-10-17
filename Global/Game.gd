@@ -384,25 +384,18 @@ func on_new_scene():
 	play_scene_entrance_cutscene()
 
 
-func open_load_game_menu(pos = null):
+func open_load_game_menu():
 	var menu = load("res://UI/SaveGameMenu.tscn").instantiate()
 	menu.save_file_chosen.connect(load_game)
 	
-	var menu_pos : Vector2
-	if not pos:
-		var menu_pos_y = 115+menu.size.y
-		var menu_pos_x = (960/2.0) - (125)
-		menu_pos = Vector2(menu_pos_x, menu_pos_y)
-	else:
-		menu_pos = pos
 	var saves = get_all_save_filenames()
-	menu.open(saves, menu.OpenModes.LOAD, menu_pos, max_save_files)
+	menu.open(saves, menu.OpenModes.LOAD, max_save_files)
 	var from_gameplay = not ((current_scene.name == "WelcomeMenu") or (current_scene.name == "DeathMenu"))
 	if not from_gameplay:
 		# Because in the welcome and death menus, the lifebar looks really dark
 		# compared to the bright bg
-		menu.set_mini_gui_lifebar_brightness(3.0)
-		menu.set_mini_gui_icon_brightness(0.66)
+	#	menu.set_mini_gui_lifebar_brightness(3.0)
+	#	menu.set_mini_gui_icon_brightness(0.66)
 		current_scene.add_child(menu)
 		current_scene.hide_all()
 		if "show_title" in current_scene:
@@ -411,11 +404,11 @@ func open_load_game_menu(pos = null):
 		if "hide_title" in current_scene:
 			current_scene.hide_title()
 	else:
-		menu.set_mini_gui_icon_brightness(0.8)
+		#menu.set_mini_gui_icon_brightness(0.8)
 		if pause_menu.visible:
 			pause_menu.hide_all()
 			menu.closed.connect(pause_menu.show_all)
-		hud.add_child(menu)
+		$CanvasLayer.add_child(menu)
 	
 func get_all_save_filenames():
 	var saves : Array[String]
@@ -430,25 +423,17 @@ func get_all_save_filenames():
 			break
 	return saves
 
-func open_save_game_menu(pos = null):
+func open_save_game_menu():
 	var menu = load("res://UI/SaveGameMenu.tscn").instantiate()
 	menu.save_file_chosen.connect(save_game)
 	menu.save_file_chosen.connect(pause_menu.on_save_file_chosen)
 	var all_saves = get_all_save_filenames()
-
-	var menu_pos : Vector2
-	if not pos:
-		var menu_pos_y = 115+menu.size.y
-		var menu_pos_x = (get_window().size.x/2.0) - (125)
-		menu_pos = Vector2(menu_pos_x, menu_pos_y)
-	else:
-		menu_pos = pos
-	menu.open(all_saves, menu.OpenModes.SAVE, menu_pos, max_save_files)
+	menu.open(all_saves, menu.OpenModes.SAVE, max_save_files)
 	menu.set_mini_gui_icon_brightness(0.8)
 	if pause_menu.visible:
 		pause_menu.hide_all()
 		menu.closed.connect(pause_menu.show_all)
-	hud.add_child(menu)
+	$CanvasLayer.add_child(menu)
 		
 func on_won():
 	player.play_victory_cutscene(0.0)
@@ -467,6 +452,10 @@ func init_wm_settings():
 	set_custom_cursor()
 
 func _ready():
+	if Input.get_connected_joypads().size() > 0:
+		Controls.set_controls_gamepad()
+	else:
+		Controls.set_controls_mouse()
 	seed(1)
 	init_wm_settings()
 	music.stream = load("res://Music/DungeonMusic.ogg")
@@ -481,8 +470,8 @@ func _ready():
 	music.update(current_scene)
 	init_player()
 	
-	pause_menu.save_button.pressed.connect(open_save_game_menu.bind(Vector2(360,100)))
-	pause_menu.load_button.pressed.connect(open_load_game_menu.bind(Vector2(360,100)))
+	pause_menu.save_button.pressed.connect(open_save_game_menu)
+	pause_menu.load_button.pressed.connect(open_load_game_menu)
 	pause_menu.continue_button.pressed.connect(close_menu_sound.play)
 	pause_menu.options_button.pressed.connect(open_options_menu)
 	
@@ -571,14 +560,27 @@ func open_options_menu():
 
 var _inventory_open = false
 func open_inventory():
+	get_tree().paused = true
 	_inventory_open = true
 	var inventory = load("res://UI/InventoryMenu.tscn").instantiate()
 	inventory.closed.connect(func(): _inventory_open = false)
+	inventory.closed.connect(func(): get_tree().paused = false)
 	inventory.top_level = true
 	$CanvasLayer.add_child(inventory)
 	inventory.open(player.inventory, player.documents)
 	inventory.inventory_action_chosen.connect(player.on_inventory_action_chosen)
-
+	
+var stupid_inv_counter = 0
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("Pause") and not event.is_echo():
+		if event.is_action_pressed("UI Accept") and (not Dialogue.dialogue_open()): 
+			if (not _inventory_open):
+				pause_menu.pause_game()
+				pause_menu.accept_event()
+	if event.is_action_pressed("Inventory") and not event.is_echo():
+		if (not pause_menu.is_open) and (not _inventory_open):
+			open_inventory()
+			
 func _process(_delta):
 	if player:
 		if (not player.in_cutscene) and (not player.in_dialogue):
@@ -587,12 +589,6 @@ func _process(_delta):
 			if not step_sound_source:
 				update_footstep_sound_source()
 			player.update_step_sound(step_sound_source)
-			if Input.is_action_just_pressed("Pause"):
-				if not _inventory_open:
-					pause_menu.pause_game()
-			if Input.is_action_just_pressed("Inventory"):
-				if (not pause_menu.is_open) and (not _inventory_open):
-					open_inventory()
 	if player.won:
 		# Victory Cutsceene needs to end first
 		if not player.in_cutscene:

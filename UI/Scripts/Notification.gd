@@ -9,6 +9,8 @@ var timer = 0.0
 	
 func _ready():
 	get_tree().paused = true
+	if not $TextureRect/RichTextLabel.bbcode_enabled:
+		$TextureRect/RichTextLabel.bbcode_enabled = true
 	visible = true
 	top_level = true
 	
@@ -42,15 +44,11 @@ func advance():
 	if current_line == total_lines-1:
 		$TextureRect/AnimatedSprite2D.play("End")
 	for key in _note[current_line]:
-		if key.contains("image"):
-				var new_texture = adjust_texture(_note[current_line][key])
-				$TextureRect/RichTextLabel.add_image(new_texture, 64, 64)
-		if key.contains("text"):
-				$TextureRect/RichTextLabel.add_text(_note[current_line][key])
+		$TextureRect/RichTextLabel.text = _note[current_line]
 	current_line += 1
 		
 func _process(_delta):
 	timer += _delta
 	if timer >= 0.2:
-		if Input.is_action_just_released("ui_accept"):
+		if Input.is_action_just_released("UI Accept"):
 			advance()

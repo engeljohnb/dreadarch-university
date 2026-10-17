@@ -241,7 +241,7 @@ shader_parameter/modulate = Vector4(1, 1, 1, 1)
 [sub_resource type="Animation" id="Animation_hjbl7"]
 resource_name = "Attack Down"
 length = 0.333342
-step = 0.0833333
+step = 0.016666668
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -263,18 +263,15 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reset_attack_state"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_r0rls"]
 resource_name = "Attack Left"
 length = 0.333342
-step = 0.0833333
+step = 0.016666668
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -296,18 +293,15 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reset_attack_state"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_33rc2"]
 resource_name = "Attack Right"
 length = 0.333342
-step = 0.0833333
+step = 0.016666668
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -329,18 +323,15 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reset_attack_state"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_gnh12"]
 resource_name = "Attack Up"
 length = 0.333342
-step = 0.0833333
+step = 0.016666668
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -362,12 +353,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reset_attack_state"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_3vdys"]
@@ -544,14 +532,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"throw_projectile"
-}, {
-"args": [],
-"method": &"reset_attack_state"
 }]
 }
 
@@ -580,14 +565,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"throw_projectile"
-}, {
-"args": [],
-"method": &"reset_attack_state"
 }]
 }
 
@@ -616,14 +598,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"throw_projectile"
-}, {
-"args": [],
-"method": &"reset_attack_state"
 }]
 }
 
@@ -652,14 +631,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"throw_projectile"
-}, {
-"args": [],
-"method": &"reset_attack_state"
 }]
 }
 
@@ -1089,33 +1065,33 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kauok"]
 priority = 0
 advance_mode = 2
-advance_condition = &"moving"
+advance_expression = "moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33rc2"]
-priority = 0
 advance_mode = 2
-advance_condition = &"not_moving"
+advance_expression = "!moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ey64d"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_agvow"]
+priority = 0
 advance_mode = 2
-advance_condition = &"attacking"
+advance_expression = "attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nahvi"]
 advance_mode = 2
-advance_condition = &"attacking"
+advance_expression = "attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tj7am"]
 advance_mode = 2
-advance_condition = &"direction_changed"
+advance_expression = "direction_changed"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxy43"]
-priority = 0
 switch_mode = 2
 advance_mode = 2
+advance_expression = "!direction_changed"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s7t4j"]
 allow_transition_to_self = true
@@ -2249,7 +2225,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_k8aph")
 position = Vector2(0, -24)
 sprite_frames = ExtResource("2_14m2a")
-animation = &"Wave"
+animation = &"Attack Right"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1259551559]
 z_index = -1
@@ -2264,10 +2240,6 @@ libraries/ = SubResource("AnimationLibrary_oy8ms")
 tree_root = SubResource("AnimationNodeStateMachine_s7t4j")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/attacking = false
-parameters/conditions/direction_changed = false
-parameters/conditions/moving = false
-parameters/conditions/not_moving = false
 parameters/Attack/Attack/blend_position = Vector2(0, 0)
 parameters/Attack/Throw/blend_position = Vector2(0, 0)
 parameters/Idle/Idle/blend_position = Vector2(-0.000813663, -0.0044843)

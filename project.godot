@@ -36,6 +36,7 @@ MusicSelection="*uid://utvideltw4bp"
 StoryState="*uid://bdpfwgswm7fil"
 WorldTimers="*uid://oigwh5p0fubw"
 Controls="*uid://d4bkvcbbbr85j"
+ControllerIcons="*uid://b61j3avbjrivv"
 
 [display]
 
@@ -49,6 +50,10 @@ window/hdr_2d=false
 [dotnet]
 
 project/assembly_name="Dreadarch University"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg", "res://addons/godot_object_serializer/plugin.cfg")
 
 [global_group]
 

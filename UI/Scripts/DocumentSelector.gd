@@ -46,7 +46,7 @@ func _stupid_fix_focus():
 	elif $Back.has_focus():
 		_prev_focus = $Back
 	elif has_focus():
-		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("Up") or Input.is_action_pressed("Down"):
 			_prev_focus.grab_focus()
 			return
 		if _prev_focus == $Use:

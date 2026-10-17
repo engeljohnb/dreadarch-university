@@ -488,7 +488,8 @@ func update_direction_classic():
 		moving = false
 		facing = prev_facing
 	else:
-		moving = true
+		if not attacking:
+			moving = true
 		facing = movement_direction
 		
 var prev_direction = "Down"
@@ -508,17 +509,17 @@ func update_direction_mouse():
 		
 func update_direction():
 	#match Controls.control_scheme:
-		#Controls.KEYBOARD_ONLY:
+		#Controls.FIXED_CROSSHAIRS:
 	update_direction_classic()
-		#Controls.MOUSE:
+		#Controls.FREE_CROSSHAIRS:
 		#	update_direction_mouse()
 		
 func update_cursor():
 	var player_center = Vector2(0.0, -22.0)
 	match Controls.control_scheme:
-		Controls.KEYBOARD_ONLY:
+		Controls.FIXED_CROSSHAIRS:
 			cursor.position = player_center + (50.0*facing)
-		Controls.MOUSE:
+		Controls.FREE_CROSSHAIRS:
 			var mouse_position = get_viewport().get_mouse_position()
 			var distance = MOUSE_CENTER.distance_to(mouse_position)
 			var direction = MOUSE_CENTER.direction_to(mouse_position)
@@ -531,22 +532,10 @@ func update_animation_blend_positions():
 	anim_tree.set("parameters/Attack/Throw/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle/blend_position", facing)
 	anim_tree.set("parameters/Idle/Idle Knife/blend_position", facing)
-	if moving:
-		anim_tree.set("parameters/conditions/moving", true)
-		anim_tree.set("parameters/conditions/not_moving", false)
-	else:
-		anim_tree.set("parameters/conditions/not_moving", true)
-		anim_tree.set("parameters/conditions/moving", false)
-	if attacking:
-		anim_tree.set("parameters/conditions/attacking", true)
-	else:
-		anim_tree.set("parameters/conditions/attacking", false)
-	if direction_changed:
-		anim_tree.set("parameters/conditions/direction_changed", true)
-		anim_tree.set("parameters/conditions/not_direction_changed", false)
-	else:
-		anim_tree.set("parameters/conditions/direction_changed", false)
-		anim_tree.set("parameters/conditions/not_direction_changed", true)
+	#if attacking:
+	#	anim_tree.set("parameters/conditions/attacking", true)
+	#else:
+	#	anim_tree.set("parameters/conditions/attacking", false)
 	
 func get_hitbox():
 	return $Hitbox
@@ -589,7 +578,6 @@ func reset_attack_state():
 		attack_fx.queue_free()
 		attack_fx = null
 	attacking = false
-	set_state_machine_state("Idle")
 	if inventory.get(equipped):
 		if inventory[equipped] is int:
 			if inventory[equipped] < 0:
@@ -859,21 +847,28 @@ func set_state_machine_state(state : String):
 	var playback = anim_tree["parameters/playback"]
 	playback.travel(state)
 	
+var _attack_timer = 0.0
+var _attack_duration = (1.0/12.0)*4.0
 func _process(delta):
+	update_cursor()
 	if not in_dialogue and not attacking:
 		if not in_cutscene:
 			if Input.is_action_just_pressed("GainLifeCheat"):
 				gain_life(1)
-			update_cursor()
 			update_direction()
 			update_equipment()
-			update_attack_state()
 			update_position(delta)
 			update_animation_blend_positions()
 			prev_facing = facing
 		else:
 			if current_cutscene:
 				current_cutscene.call(delta)
+	if attacking:
+		if _attack_timer >= _attack_duration:
+			reset_attack_state()
+			_attack_timer = 0.0
+		_attack_timer += delta
+				
 	
 # I can't figure out another way to solve the moonwalking bugs.
 var _c = 0
@@ -926,7 +921,7 @@ func play_sit_down_cutscene(delta : float):
 	else:
 		if cutscene_timer >= (1.0/8.0)*4.0:
 			sprite.play("Sitting")
-			if direction_just_pressed():
+			if direction_just_pressed() or Input.is_action_just_pressed("Attack") or Input.is_action_just_pressed("Click"):
 				_waiting_to_stand = true
 				cutscene_timer = 0.0
 				sprite.play("Stand Up")
@@ -936,6 +931,7 @@ func play_sit_down_cutscene(delta : float):
 				_waiting_to_stand = false
 		cutscene_timer += delta
 	
+#TODO: Make this an EventSequence so the player will walk to it before splashing if in free_crosshair mode
 func play_water_splash_cutscene(delta : float):
 	if delta == 0.0:
 		cutscene_duration = (1.0/12.0)*4.0
@@ -978,3 +974,22 @@ func _on_mouse_exited_container():
 	mouse_in_container = false
 func _on_mouse_entered_container():
 	mouse_in_container = true
+
+func _unhandled_input(event : InputEvent):
+	if equipped == ItemCollection.GOLDEN_DAGGER:
+		if inventory.get(equipped) != null:
+			if inventory[equipped] == 0:
+				return
+			else:
+				set_equipped(equipped)
+		if event.is_action_pressed("Attack") and (not attacking) and (not event.is_echo()):
+			attack_sound.play()
+			attacking = true
+			attack_fx = _attack_fx.instantiate()
+			attack_fx.change_direction(facing)
+			hitbox.ignore.append(attack_fx)
+			add_child(attack_fx)
+	else:
+		if event.is_action_pressed("Attack") and (not attacking) and (not event.is_echo()):
+			if inventory[equipped] > 0:
+				attacking = true

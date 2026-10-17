@@ -17,5 +17,6 @@ func clear():
 func add_button(_name):
 	var button = Button.new()
 	button.text = _name
+	button.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 	button.pressed.connect(on_button_pressed.bind(_name))
 	container.add_child(button)

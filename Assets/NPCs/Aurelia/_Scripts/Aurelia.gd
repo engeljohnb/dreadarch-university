@@ -74,8 +74,6 @@ func _is_speaking():
 	
 func _process(delta):
 	if not stationary:
-		#if Input.is_action_just_released("ui_text_delete"):
-		#	following_player = false
 		if following_player:
 			follow_player(delta)
 		else:

@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dldsjmp7glisc"]
+
+[ext_resource type="Script" uid="uid://x5u717vvqp4" path="res://UI/Inventory/InventorySpinBox.gd" id="2_3y471"]
+[ext_resource type="Script" uid="uid://bqykoodrvx2hl" path="res://UI/Inventory/InventoryButton.gd" id="2_nyld8"]
+
+[node name="MenuButton" type="MenuButton" unique_id=987354855]
+custom_minimum_size = Vector2(128, 86)
+custom_maximum_size = Vector2(128, 86)
+anchors_preset = -1
+anchor_right = 0.133
+anchor_bottom = 0.15900001
+offset_right = 0.3199997
+offset_bottom = 0.13999176
+focus_mode = 2
+action_mode = 1
+icon_alignment = 1
+vertical_icon_alignment = 2
+script = ExtResource("2_nyld8")
+
+[node name="Count" type="RichTextLabel" parent="." unique_id=2105818146]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22700001
+anchor_top = 0.98800004
+anchor_right = 0.76900005
+anchor_bottom = 1.2440001
+offset_left = -0.056001663
+offset_top = 0.03199768
+offset_right = 0.034996033
+offset_bottom = 0.015991211
+theme_override_font_sizes/normal_font_size = 10
+text = "32"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="." unique_id=1234062806]
+process_mode = 4
+visible = false
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.94500005
+anchor_bottom = 0.791
+offset_right = 0.039993286
+offset_bottom = -0.026000977
+alignment = 1
+script = ExtResource("2_3y471")
+
+[node name="Accept" type="Button" parent="SpinBox" unique_id=2069193128]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.058000002
+anchor_top = 1.059
+anchor_right = 0.437
+anchor_bottom = 1.544
+offset_left = 0.018000126
+offset_top = -0.012001038
+offset_right = 0.1230011
+offset_bottom = 0.0079956055
+focus_neighbor_top = NodePath("..")
+focus_neighbor_right = NodePath("../Cancel")
+text = "Accept"
+
+[node name="Cancel" type="Button" parent="SpinBox" unique_id=228957739]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43800002
+anchor_top = 1.059
+anchor_right = 0.91700006
+anchor_bottom = 1.544
+offset_left = 0.0019989014
+offset_top = -0.012001038
+offset_right = 2.0429916
+offset_bottom = 0.0079956055
+focus_neighbor_left = NodePath("../Accept")
+focus_neighbor_top = NodePath("..")
+text = "Cancel"

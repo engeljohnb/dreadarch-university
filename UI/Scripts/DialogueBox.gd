@@ -85,7 +85,7 @@ func _process(_delta):
 		anchor_right = lerp(_anchor_right, anchor_left+0.75, (opening_timer/opening_duration))
 		if opening_timer >= closing_duration:
 			end()
-	if Input.is_action_just_released("ui_accept"):
+	if Input.is_action_just_released("UI Accept"):
 		if displaying:
 			label.visible_characters = -1
 			$DialogueRevealSound.stop()

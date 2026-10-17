@@ -43,14 +43,23 @@ var equippable : Array[int] = [TALONS, GOLDEN_DAGGER, ORBITER]
 
 var drinkable = [NECTAR]
 
+var icon_paths = {
+	HEART:"res://Assets/Items/Heart/0000.png",
+	SCROLL_FRAGMENT:"res://Assets/Items/ScrollFragment/Scroll.png",
+	TREASURE:"res://Assets/Items/Treasure/treasure32.png",
+	TALONS:"res://Assets/Items/Talons/Talons.png",
+	GOLDEN_DAGGER:"res://Assets/Items/GoldenDagger/GoldenDagger.png",
+	NECTAR:"res://Assets/Items/Nectar/0000.png",
+	ORBITER:"res://Assets/Badguys/Slack/Projectile/0000.png"
+}
 var textures = {
-	HEART:preload("res://Assets/Items/Heart/0000.png"),
-	SCROLL_FRAGMENT:preload("res://Assets/Items/ScrollFragment/Scroll.png"),
-	TREASURE:preload("res://Assets/Items/Treasure/treasure32.png"),
-	TALONS:preload("res://Assets/Items/Talons/Talons.png"),
-	GOLDEN_DAGGER:preload("res://Assets/Items/GoldenDagger/GoldenDagger.png"),
-	NECTAR:preload("res://Assets/Items/Nectar/0000.png"),
-	ORBITER:preload("res://Assets/Badguys/Slack/Projectile/0000.png")
+	HEART:load("res://Assets/Items/Heart/0000.png"),
+	SCROLL_FRAGMENT:load("res://Assets/Items/ScrollFragment/Scroll.png"),
+	TREASURE:load("res://Assets/Items/Treasure/treasure32.png"),
+	TALONS:load("res://Assets/Items/Talons/Talons.png"),
+	GOLDEN_DAGGER:load("res://Assets/Items/GoldenDagger/GoldenDagger.png"),
+	NECTAR:load("res://Assets/Items/Nectar/0000.png"),
+	ORBITER:load("res://Assets/Badguys/Slack/Projectile/0000.png")
 }
 
 var streams = {
@@ -83,13 +92,19 @@ func is_scroll_fragment(document):
 		return false
 	return document.get("document_type") == ItemCollection.SCROLL_FRAGMENT
 
+func is_drinkable(item : int):
+	return (item in drinkable)
+
+func is_equippable(item : int):
+	return (item in equippable)
+
 func is_document(document):
 	return document is Dictionary
 	
-# Why isn't this stuff implemented in Collectible? Because I made 
+# Why isn't some of this stuff implemented in Collectible? Because I made 
 #  this first and it still works. 
 	
-func get_string(item : int):
+func get_string(item : int) -> StringName:
 	match item:
 		HEART: return "Heart"
 		SCROLL_FRAGMENT: return "Scroll Fragment"
@@ -98,8 +113,20 @@ func get_string(item : int):
 		GOLDEN_DAGGER: return "Golden Dagger"
 		NECTAR: return "Nectar"
 		ORBITER: return "Little Sprite"
-		item: return "Invalid Item ID"
+	return "Invalid Item ID"
 		
+func get_id(item : String) -> int:
+#	breakpoint
+	match item:
+		"Heart": return HEART
+		"Scroll Fragment": return SCROLL_FRAGMENT
+		"Treasure": return TREASURE
+		"Talons": return TALONS
+		"Golden Dagger": return GOLDEN_DAGGER
+		"Nectar": return NECTAR
+		"Little Sprite": return ORBITER
+	return -1
+	
 func is_item_id_valid(item : int):
 	return (item >= 0) and (item < MAX_TYPES)
 	

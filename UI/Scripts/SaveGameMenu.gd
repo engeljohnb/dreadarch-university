@@ -20,10 +20,10 @@ func _ready():
 	if not DirAccess.dir_exists_absolute(Utils.SAVE_FILE_DIRECTORY):
 		DirAccess.make_dir_recursive_absolute(Utils.SAVE_FILE_DIRECTORY)
 	save_file_chosen.connect(on_save_file_chosen)
-	if all_buttons.size() > 0:
-		for button in all_buttons:
-			if button.disabled == false:
-				button.grab_focus()
+	for child in get_children():
+		if child is Button:
+			if child.disabled == false:
+				child.grab_focus()
 				break
 
 func get_button_name(filename : String):
@@ -39,7 +39,7 @@ func get_location_name(room_name):
 	else:
 		return "Shallow Ruins"
 	
-func make_save_slot_mini_gui(button, pos):
+func make_save_slot_mini_gui(button : Button):
 	var save_data = Utils.read_save_data_from_slot(button.text[0])
 	if save_data == null:
 		print("ERROR: Can't open save slot ", button.text[0])
@@ -64,14 +64,14 @@ func make_save_slot_mini_gui(button, pos):
 		treasure = 0
 	treasure_icon.set_treasure(treasure)
 	treasure_icon.for_save_slot = true
-	treasure_icon.save_slot_position = pos + button.position
+	treasure_icon.save_slot_position = button.position
 	button.add_child(treasure_icon)
 	icons.append(treasure_icon)
 	
 	var scroll_icon = load("res://UI/NumScrollFragments.tscn").instantiate()
 	var num_scroll_fragments = save_data.player.documents.size()
 	scroll_icon.set_num_scroll_fragments(num_scroll_fragments)
-	scroll_icon.set_position_for_mini_gui(pos.y + button.position.y + 37.5 )
+	scroll_icon.set_position_for_mini_gui(button.position.y + 300.0)
 	button.add_child(scroll_icon)
 	icons.append(scroll_icon)
 	
@@ -84,14 +84,8 @@ func set_mini_gui_icon_brightness(brightness: float):
 	for icon in icons:
 		icon.set_brightness(brightness)
 	
-func make_button(save_filename, pos, slot_num):
-	var button = Button.new()
-	var index = slot_num-1
-	button.size.x = 250
-	button.size.y = 64
-	button.position.y = 75*(int(index))
-	button.z_index = 100
-	button.z_as_relative = false
+func make_button(save_filename, button : Button, index : int):
+	var slot_num = index+1
 	button.add_theme_font_size_override("font_size", 37)
 	var scene_name = ""
 	if Utils.is_valid_save_filename(save_filename):
@@ -99,7 +93,7 @@ func make_button(save_filename, pos, slot_num):
 			var save_data = Utils.read_save_data_from_file(save_filename)
 			if save_data == null:
 				print("ERROR: Can't open file: ", save_filename)
-				return make_empty_save_slot(slot_num)
+				return make_empty_save_slot(button)
 			scene_name = save_data.current_scene
 		else:
 			scene_name = SceneTransition.current_scene_name
@@ -110,28 +104,24 @@ func make_button(save_filename, pos, slot_num):
 	var location_name = get_location_name(scene_name)
 	var button_filename : String = get_save_filename(location_name, slot_num)
 	if not save_filename == EMPTY_SLOT_NAME:
-		make_save_slot_mini_gui(button, pos)
+		make_save_slot_mini_gui(button)
 	button.pressed.connect(save_file_chosen.emit.bind(button_filename))
 	return button
 
-func make_empty_save_slot(slot_num):
-	var button = Button.new()
-	var index = slot_num-1
+func make_empty_save_slot(button : Button):
 	button.text = EMPTY_SLOT_NAME
 	button.disabled = true
-	button.size.x = 250
-	button.size.y = 64
-	button.position.y = 75*index
 	button.focus_mode = FocusMode.FOCUS_NONE
 	return button
 
-func open(all_save_filenames : Array[String], mode = OpenModes.SAVE, pos = Vector2(), max_save_files : int = 5):
+func open(all_save_filenames : Array[String], mode = OpenModes.SAVE, max_save_files : int = 5):
 	_mode = mode
 	var occupied_save_slots = []
 	for filename in all_save_filenames:
 		if Utils.is_valid_save_filename(filename):
 			var slot_num = int(get_button_name(filename)[0])
-			all_buttons.append(make_button(filename, pos, slot_num))
+			var button : Button = get_node(str(slot_num-1))
+			all_buttons.append(make_button(filename, button, slot_num-1))
 			occupied_save_slots.append(slot_num)
 		else:
 			print("ERROR: invalid save filename: ", filename)
@@ -139,24 +129,22 @@ func open(all_save_filenames : Array[String], mode = OpenModes.SAVE, pos = Vecto
 	for i in range(0, max_save_files):
 		var slot_num = i+1
 		if slot_num not in occupied_save_slots:
+			var button : Button = get_node(str(slot_num-1))
 			if mode == OpenModes.SAVE:
-				all_buttons.append(make_button(EMPTY_SLOT_NAME, pos, slot_num))
+				all_buttons.append(make_button(EMPTY_SLOT_NAME, button, slot_num-1))
 			else:
-				all_buttons.append(make_empty_save_slot(slot_num))
+				all_buttons.append(make_empty_save_slot(button))
 	for button in all_buttons:
-		add_child(button)
 		if all_buttons.find(button) < max_save_files:
 			var separator = HSeparator.new()
 			separator.size.x = 375
 			separator.position.x -= 62
 			separator.position.y = button.position.y+64
-			add_child(separator)
-	position = pos
-
+	
 func close():
 	closed.emit()
 	queue_free()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("UI Cancel"):
-			close()
+		close()

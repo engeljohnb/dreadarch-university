@@ -53,7 +53,7 @@ func toggle_level_up_mode():
 		
 func on_translate():
 	if selected_document.is_empty():
-		Dialogue.notify_player.emit([{"text":"Nothing to translate."}])
+		Dialogue.notify_player.emit(["Nothing to translate."])
 		closed.emit()
 		queue_free()
 		return

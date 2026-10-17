@@ -21,6 +21,7 @@ script = ExtResource("2_1hmi0")
 [node name="LampLight" parent="." unique_id=456196650 instance=ExtResource("3_lw4sn")]
 position = Vector2(1008.75, 574.501)
 scale = Vector2(32.3828, 18.8281)
+energy = 3.0
 
 [node name="NewGame" type="Button" parent="." unique_id=2078669500]
 custom_minimum_size = Vector2(400, 100)
@@ -28,8 +29,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.33
 anchor_top = 0.2
-anchor_right = 0.66
-anchor_bottom = 0.35
+anchor_right = 0.74700004
+anchor_bottom = 0.38500002
+offset_right = -83.52002
+offset_bottom = -18.90001
 text = "New Game"
 
 [node name="LoadGame" type="Button" parent="." unique_id=1625093890]
@@ -38,10 +41,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.33
 anchor_top = 0.4
-anchor_right = 0.66
-anchor_bottom = 0.55
+anchor_right = 0.74700004
+anchor_bottom = 0.58500004
 offset_top = -0.248001
-offset_bottom = -0.279999
+offset_right = -83.52002
+offset_bottom = -19.180023
 text = "Load Game"
 
 [node name="Quit" type="Button" parent="." unique_id=1472972704]
@@ -50,10 +54,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.33
 anchor_top = 0.6
-anchor_right = 0.66
-anchor_bottom = 0.75
-offset_right = 19.84
-offset_bottom = 2.80002
+anchor_right = 0.74700004
+anchor_bottom = 0.80700004
+offset_right = -63.679993
+offset_bottom = -27.980011
 text = "Quit
 "
 
@@ -66,6 +70,7 @@ anchor_right = 0.997
 anchor_bottom = 1.006
 offset_right = 0.455933
 offset_bottom = 0.112
+mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1739235014]
 z_index = 1
@@ -78,6 +83,8 @@ offset_left = -0.128021
 offset_top = -9.0
 offset_right = -0.264038
 offset_bottom = -0.192001
+focus_mode = 0
+mouse_filter = 2
 bbcode_enabled = true
 text = "You Died
 "
@@ -95,6 +102,7 @@ offset_right = -1.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
 
 [node name="MenuSelectSound" type="AudioStreamPlayer" parent="." unique_id=2087760731]

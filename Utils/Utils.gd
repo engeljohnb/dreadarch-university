@@ -16,6 +16,7 @@ func reset_mouse():
 func update_player_position(pos : Vector2):
 	player_position = pos
 	
+
 func nearest_cardinal_direction(direction : Vector2, as_text = false):
 	var x = direction.x
 	var y = direction.y

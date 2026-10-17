@@ -56,5 +56,5 @@ offset_bottom = -0.1800232
 grow_horizontal = 0
 theme_override_fonts/normal_font = ExtResource("5_3sdsw")
 theme_override_font_sizes/normal_font_size = 66
-text = "This is a test of the emergency broadcasting system. This isa test of The "
+bbcode_enabled = true
 scroll_active = false

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bdkfh1gtoy0pf"]
+
+[ext_resource type="Script" uid="uid://dlpn6u82yc7bd" path="res://UI/Scripts/InventoryItemList.gd" id="1_cud8a"]
+
+[node name="Control" type="Control" unique_id=454719031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="." unique_id=1586061886]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.36800003
+anchor_bottom = 0.43100002
+offset_right = -0.2800293
+offset_bottom = 0.2599945
+item_count = 3
+item_0/text = "F"
+item_1/text = "D"
+item_2/text = "P"
+script = ExtResource("1_cud8a")

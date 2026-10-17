@@ -120,7 +120,7 @@ func _ready():
 	load_button.pressed.connect(on_alt_menu)
 	options_button.pressed.connect(on_alt_menu)
 	hide_all()
-	
+		
 func _process(_delta):
 	if Input.is_action_just_pressed("UI Cancel"):
 		if not alt_menu_open:

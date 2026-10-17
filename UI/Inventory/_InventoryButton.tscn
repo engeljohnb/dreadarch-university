@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dca4fxg4tqxpt"]
+
+[ext_resource type="Texture2D" uid="uid://62e5yq6ig32j" path="res://Assets/Items/Talons/Talons.png" id="1_nnpdj"]
+
+[node name="MenuButton" type="MenuButton" unique_id=1419369182]
+process_mode = 3
+anchors_preset = -1
+anchor_top = 0.006
+anchor_right = 0.042000003
+anchor_bottom = 0.126
+offset_top = -3.24
+offset_right = -0.3200035
+offset_bottom = -0.040000916
+focus_mode = 2
+theme_override_font_sizes/font_size = 10
+button_pressed = true
+text = "Talons"
+icon = ExtResource("1_nnpdj")
+text_overrun_behavior = 1
+icon_alignment = 1
+vertical_icon_alignment = 2
+item_count = 3
+popup/item_0/text = "Use"
+popup/item_0/id = 0
+popup/item_1/text = "Equip"
+popup/item_1/id = 1
+popup/item_2/text = "Cancel"
+popup/item_2/id = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=325691508]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.119
+anchor_top = 0.87200004
+anchor_right = 0.79700005
+anchor_bottom = 1.2420001
+offset_left = -0.020999908
+offset_top = -0.29600143
+offset_right = -0.023002625
+offset_bottom = 0.0019989014
+focus_mode = 0
+theme_override_font_sizes/normal_font_size = 10
+text = "32"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=1607824108]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -2.0
