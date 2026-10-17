@@ -13,7 +13,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_xhyat")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]

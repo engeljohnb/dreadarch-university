@@ -1,17 +1,10 @@
-extends Area2D
-@export var next_start_position : Vector2
-@export var next_scene : String
-@export var direction : String
-
-var player_entered = false
-var player : CharacterBody2D
+extends Door
 
 func on_body_entered(body):
 	if body.is_in_group("Player"):
 		if not body.in_cutscene:
-			player_entered = true
 			player = body
-			player.play_door_cutscene(0.0, global_position - Vector2(0,64))
+			start_transition(global_position - Vector2(0,64))
 		$AnimatedSprite2D.frame = 1
 		
 func on_body_exited(body):

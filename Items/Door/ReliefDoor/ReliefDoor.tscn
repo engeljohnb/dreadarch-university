@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d3qxn6n8d8bn1"]
 
-[ext_resource type="Script" uid="uid://uk4afpexxsvc" path="res://Items/Door/Scripts/Door.gd" id="1_bntcl"]
+[ext_resource type="Script" uid="uid://uk4afpexxsvc" path="res://Items/Door/Scripts/DefaultDoor.gd" id="1_bntcl"]
 [ext_resource type="Texture2D" uid="uid://mtj0qp27anr5" path="res://Assets/Items/Stairs/ReliefDoorNorth.png" id="2_uul3g"]
 [ext_resource type="Texture2D" uid="uid://drbd2uecf4513" path="res://Assets/Items/Stairs/ReliefDoorSouth.png" id="3_hum1d"]
 
@@ -17,7 +17,6 @@ y_sort_enabled = true
 collision_layer = 32
 collision_mask = 12
 script = ExtResource("1_bntcl")
-direction = "North"
 
 [node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=86857958]
 collision_layer = 32

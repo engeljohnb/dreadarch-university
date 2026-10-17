@@ -44,25 +44,26 @@ func should_show_player():
 	
 func play_hug_cutscene(_delta : float):
 	in_cutscene = true
-	var player = get_tree().get_nodes_in_group("Player")[0]
+	var player = get_tree().get_first_node_in_group("Player")
 	if _delta == 0.0:
 		current_action = Actions.HUG
 		action_duration = (1.0/12.0) * 32.0
 		action_timer = 0.0
 		sprite.play("Hug")
-		player.walk_to(position + Vector2(22,30), (1.0/12.0) * 10.0)
 	if should_show_player():
 		player.sprite.visible = true
 	elif should_hide_player():
 		player.sprite.visible = false
 	if action_timer >= (1.0/12.0) * 32.0:
-		switch_action()
 		player.sprite.visible = true
 			
 func activate(_using_item = null, _count = 0):
 	if not introduced:
 		var seq : EventSequence = EventSequence.new()
 		seq.add_dialogue_event(intro_dialogue)
+		var player = get_tree().get_first_node_in_group("Player")
+		var duration = global_position.distance_to(player.global_position) / player.SPEED
+		seq.add_walk_event(global_position + Vector2(22,30), duration)
 		seq.add_cutscene_event("play_hug_cutscene", self)
 		add_child(seq)
 		seq.start_events()

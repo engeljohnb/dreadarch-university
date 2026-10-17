@@ -1,13 +1,6 @@
-extends Area2D
-@export var next_start_position : Vector2
-@export var next_scene : String
-@export var direction : String
-
-var player_entered = false
-var player : CharacterBody2D
+extends Door
 var timer = 0.0
 var safe_to_climb = false
-
 func on_body_entered(body):
 	if not safe_to_climb:
 		return

@@ -32,7 +32,9 @@ const RIGHT = Vector2(1, 0)
 const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
 const SPEED = 400.0
+const FIXED_CROSSHAIR_DISTANCE = 50.0
 
+var _player_center = Vector2(0, -22)
 var level = 1
 var attack_damage = 1
 # Inventory already has a lot of systems in place
@@ -79,6 +81,7 @@ var level_up_dialogue = [
 	}
 ]
 var walking_to_target : Vector2 = Vector2()
+var _walk_starting_pos : Vector2 = Vector2()
 var non_player_controlled = false
 var mouse_in_container = false
 
@@ -513,17 +516,20 @@ func update_direction():
 	update_direction_classic()
 		#Controls.FREE_CROSSHAIRS:
 		#	update_direction_mouse()
-		
+	
+# TODO: Update all "cursor" to "crosshair"
+func get_crosshair_distance():
+	return (global_position + _player_center).distance_to(cursor.global_position)
+	
 func update_cursor():
-	var player_center = Vector2(0.0, -22.0)
 	match Controls.control_scheme:
 		Controls.FIXED_CROSSHAIRS:
-			cursor.position = player_center + (50.0*facing)
+			cursor.position = _player_center + (FIXED_CROSSHAIR_DISTANCE*facing)
 		Controls.FREE_CROSSHAIRS:
 			var mouse_position = get_viewport().get_mouse_position()
 			var distance = MOUSE_CENTER.distance_to(mouse_position)
 			var direction = MOUSE_CENTER.direction_to(mouse_position)
-			cursor.position = player_center  + (distance * direction)
+			cursor.position = _player_center  + (distance * direction)
 
 func update_animation_blend_positions():
 	anim_tree.set("parameters/Walk/Walk/blend_position", facing)
@@ -958,7 +964,7 @@ func _walk(delta : float):
 		sprite.play("Idle " + dir)
 	else:
 		sprite.play("Walk " + dir)
-		global_position = lerp(global_position, walking_to_target, (cutscene_timer/cutscene_duration))
+		global_position = lerp(_walk_starting_pos, walking_to_target, (cutscene_timer/cutscene_duration))
 	if cutscene_timer >= cutscene_duration:
 		end_cutscene()
 		return
@@ -969,6 +975,7 @@ func walk_to(_position : Vector2, duration : float):
 	facing = global_position.direction_to(_position)
 	non_player_controlled = true
 	walking_to_target = _position
+	_walk_starting_pos = global_position
 	
 func _on_mouse_exited_container():
 	mouse_in_container = false

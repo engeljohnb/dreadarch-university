@@ -1,17 +1,10 @@
-extends Area2D
+extends Door
 
-var player_entered = false
-var player = null
-@export var next_scene : String
-@export var next_start_position : Vector2
-@export var should_open_next_door : bool = false
-@export var direction = "North"
 
 func on_body_entered(body):
 	if body.is_in_group("Player"):
-		body.play_door_cutscene(0.0, global_position, direction)
-		player_entered = true
 		player = body
+		start_transition()
 	
 func _ready():
 	body_entered.connect(on_body_entered)

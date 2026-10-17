@@ -10,6 +10,17 @@ const PRESET_GAMEPAD = 3
 
 var control_scheme = FREE_CROSSHAIRS
 
+var can_use_mouse = false
+# This is necessary because if the player sets the mouse
+#  invisible manually, the game's just going to show the mouse
+#  again when the player opens one of the menus.
+var player_set_mouse_invisible = false
+var _prev_mouse_pos := Vector2()
+	
+func _init():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+func _ready():
+	_prev_mouse_pos = get_viewport().get_mouse_position()
 	
 func set_control_mouse_button(action : StringName, button : MouseButton, erase : bool = true):
 	if erase:
@@ -197,3 +208,7 @@ func set_controls_mouse():
 	
 	control_scheme = FREE_CROSSHAIRS
 	ControllerIcons.refresh()
+
+func _input(event : InputEvent):
+	if event is InputEventMouse:
+		can_use_mouse = true

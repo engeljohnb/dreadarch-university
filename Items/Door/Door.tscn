@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bod7jgxpa8fed"]
 
-[ext_resource type="Script" uid="uid://uk4afpexxsvc" path="res://Items/Door/Scripts/Door.gd" id="1_sl0wq"]
+[ext_resource type="Script" uid="uid://uk4afpexxsvc" path="res://Items/Door/Scripts/DefaultDoor.gd" id="1_sl0wq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1065n"]
 size = Vector2(56.75, 49)
@@ -22,7 +22,6 @@ y_sort_enabled = true
 collision_layer = 32
 collision_mask = 12
 script = ExtResource("1_sl0wq")
-direction = "North"
 
 [node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=86857958]
 collision_layer = 32

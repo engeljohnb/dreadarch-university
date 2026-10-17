@@ -14,13 +14,13 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_7p8m3")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="LadderTop" type="Area2D" unique_id=2081510321]
-collision_layer = 32
+[node name="LadderTop" type="Area2D" unique_id=2081510321 groups=["Interactable"]]
+collision_layer = 40
 collision_mask = 8
 script = ExtResource("1_7p8m3")
 

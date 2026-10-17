@@ -1,12 +1,15 @@
 extends Node
 class_name EventSequence
 
+signal ended
+
 var free_on_finish = true
 var _started := false
 		
 var queue : Array[Event] = []
 
 func stop():
+	ended.emit()
 	if free_on_finish:
 		queue_free()
 		_started = false
@@ -78,6 +81,14 @@ func add_cutscene_event(cutscene : StringName, target : Variant = "Player", one_
 	event.one_time = one_time
 	add_event(event)
 	# Cutscene events need to be in the tree to work
+	add_child(event)
+	return event
+	
+func add_walk_event(target_position : Vector2, duration : float) -> WalkEvent:
+	var event : WalkEvent = WalkEvent.new()
+	event.target_position = target_position
+	event.duration = duration
+	add_event(event)
 	add_child(event)
 	return event
 	

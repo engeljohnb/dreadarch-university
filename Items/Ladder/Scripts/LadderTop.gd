@@ -1,10 +1,4 @@
-extends Area2D
-@export var next_start_position : Vector2
-@export var next_scene : String
-@export var direction : String
-
-var player_entered = false
-var player : CharacterBody2D
+extends Door
 
 func on_body_entered(body):
 	if body.is_in_group("Player"):
