@@ -6,8 +6,6 @@ var style = "01"
 var segment_type = "Middle"
 
 func activate(_using_item = null, _count = 0):
-	var player = get_tree().get_nodes_in_group("Player")[0]
-	player.play_water_splash_cutscene(0.0)
 	splash()
 	splashed.emit(self)
 	
@@ -16,9 +14,11 @@ func on_animation_finished():
 	$AnimatedSprite2D.animation_finished.disconnect(on_animation_finished)
 
 func splash():
-	$AnimatedSprite2D.play(style + " " + "Splash")
 	$AnimatedSprite2D.animation_finished.connect(on_animation_finished)
 	splashed.emit(self)
+
+func play_splash_animation():
+	$AnimatedSprite2D.play(style + " " + "Splash")
 	
 func on_body_entered(body):
 	if body.is_in_group("Damaging"):

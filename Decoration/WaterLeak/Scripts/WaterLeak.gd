@@ -15,7 +15,10 @@ func on_splash_finished():
 		"01":
 			$Splash01.play()
 	
-func on_splash(segment):
+func begin_splash(segment):
+	var player = get_tree().get_nodes_in_group("Player")[0]
+	player.play_water_splash_cutscene(0.0)
+	segment.play_splash_animation()
 	var segment_index = 0
 	for i in range(0, segments.size()):
 		if segments[i] == segment:
@@ -23,6 +26,28 @@ func on_splash(segment):
 			break
 	for i in range(segment_index+1, segments.size()):
 		segments[i].visible = false
+		
+func on_splash(segment):
+	if Utils.player_in_touching_distance():
+		begin_splash(segment)
+	else:
+		var seq : EventSequence = EventSequence.new()
+		var target_position = Vector2()
+		var p_player = Utils.player_position
+		var t_left = segments[-1].global_position + Vector2(50.0, 0.0)
+		var t_right = segments[-1].global_position - Vector2(50.0, 0.0)
+		var d_left = p_player.distance_to(t_left)
+		var d_right = p_player.distance_to(t_right)
+		if d_left > d_right:
+			target_position = t_right
+		else:
+			target_position = t_left
+		var duration = Utils.get_walk_duration(target_position)
+		seq.add_walk_event(target_position, duration)
+		seq.ended.connect(begin_splash.bind(segment))
+		add_child(seq)
+		seq.start_events()
+		
 	
 func _ready():
 	for i in range(0, num_segments):

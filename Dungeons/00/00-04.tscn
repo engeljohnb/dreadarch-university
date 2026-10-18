@@ -116,18 +116,19 @@ player_value_override = 0.33
 metadata/_custom_type_script = "uid://dmvh37l51y7ei"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1447676216 groups=["FloorLayer"]]
+position = Vector2(-192, -320)
 tile_map_data = PackedByteArray("AAAHAAgAAAABAAIAAAAGAAgAAAABAAIAAAAGAAcAAAABAAIAAAAFAAcAAAABAAIAAAAFAAgAAAABAAIAAAAJAAgAAAABAAIAAAAIAAgAAAABAAIAAAAHAAcAAAABAAIAAAAJAAcAAAABAAIAAAAIAAcAAAABAAIAAAAFAAYAAAAAAAEAAAAGAAYAAAACAAEAAAAHAAYAAAADAAEAAAAIAAYAAAAAAAEAAAAJAAYAAAACAAEAAAAGAAUAAAABAAAAAAAEAAYAAAADAAEAAAAEAAcAAAACAAIAAAAEAAgAAAACAAIAAAAEAAUAAAADAAAAAAAFAAUAAAAAAAAAAAAHAAUAAAADAAAAAAAIAAUAAAAAAAAAAAAJAAUAAAACAAAAAAAMAAUAAAAEAAAAAAAMAAYAAAAEAAEAAAAMAAcAAAAEAAIAAAAMAAgAAAADAAIAAAALAAUAAAAAAAAAAAALAAYAAAAAAAEAAAALAAcAAAABAAIAAAALAAgAAAABAAIAAAAKAAUAAAADAAAAAAAKAAYAAAADAAEAAAAKAAcAAAABAAIAAAAKAAgAAAABAAIAAAADAAUAAAAAAAAAAAADAAYAAAAAAAEAAAADAAcAAAAAAAIAAAADAAgAAAAAAAIAAAADAAoAAAAAAAMAAAAEAAoAAAACAAMAAAAFAAoAAAABAAMAAAAGAAoAAAABAAMAAAAHAAoAAAABAAIAAAAIAAoAAAABAAMAAAAJAAoAAAABAAMAAAAKAAoAAAABAAMAAAALAAoAAAABAAMAAAAMAAoAAAADAAMAAAADAAkAAAAAAAIAAAAEAAkAAAACAAIAAAAFAAkAAAABAAIAAAAGAAkAAAABAAIAAAAHAAkAAAABAAIAAAAIAAkAAAABAAIAAAAJAAkAAAABAAIAAAAKAAkAAAABAAIAAAALAAkAAAABAAIAAAAMAAkAAAADAAIAAAAHAAsAAAABAAIAAAA=")
 tile_set = SubResource("TileSet_acyvh")
 
 [node name="Door" parent="." unique_id=386765253 instance=ExtResource("3_0uwcm")]
 visible = false
-position = Vector2(478, 820)
+position = Vector2(285, 495)
 next_scene = "res://Dungeons/00/00-06.tscn"
 next_start_position = Vector2(-417, 414)
 direction = "South"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=809317086]
-position = Vector2(419.00006, 356)
+position = Vector2(224.97957, 31.718689)
 rotation = -1.5707964
 scale = Vector2(-14.741208, 18.780611)
 color = Color(1, 0.9608298, 0.756731, 1)
@@ -135,19 +136,20 @@ energy = 0.26
 texture = SubResource("GradientTexture2D_acyvh")
 
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=84553391]
-position = Vector2(480, 790.00006)
+position = Vector2(285.9795, 465.71875)
 scale = Vector2(2.5624995, 5.4218745)
 energy = 0.5
 texture = SubResource("GradientTexture2D_7f26i")
 
 [node name="PointLight2D3" type="PointLight2D" parent="." unique_id=946783209]
-position = Vector2(796, 326.00003)
+position = Vector2(601.9795, 1.7187195)
 scale = Vector2(3.3131702, -3.276587)
 color = Color(0.86981654, 0.67631733, 0.012920001, 1)
 energy = 1.13
 texture = SubResource("GradientTexture2D_ijy2q")
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=1354173522]
+position = Vector2(-194.02051, -324.2813)
 collision_layer = 12
 collision_mask = 32
 physics_material_override = SubResource("PhysicsMaterial_0uwcm")
@@ -184,66 +186,67 @@ shape = SubResource("RectangleShape2D_dshyd")
 
 [node name="Ladder" parent="." unique_id=2087545314 instance=ExtResource("4_acyvh")]
 visible = false
-position = Vector2(794, 492)
+position = Vector2(605, 132)
 scale = Vector2(0.516484, 0.5564828)
 next_scene = "res://Dungeons/00/00-05.tscn"
 next_start_position = Vector2(542, 168)
 
 [node name="Decorations" type="Node2D" parent="." unique_id=265920384]
-position = Vector2(794, 492)
 scale = Vector2(0.516484, 0.5564828)
 
 [node name="Fireplace" type="Sprite2D" parent="Decorations" unique_id=374174430]
-position = Vector2(-349.3573, -175.21759)
+position = Vector2(827.83307, 132.06955)
 scale = Vector2(1.3132014, 1.2116476)
 texture = ExtResource("5_7f26i")
 
 [node name="BigFire" parent="Decorations" unique_id=212832800 instance=ExtResource("6_ijy2q")]
-position = Vector2(-348.51025, -96.1496)
+position = Vector2(828.6801, 230.0161)
 scale = Vector2(1.9476155, 1.7970008)
 
+[node name="EventInteractable" type="StaticBody2D" parent="Decorations/BigFire" unique_id=437748175 node_paths=PackedStringArray("event") groups=["Interactable"]]
+position = Vector2(0, -25.494408)
+scale = Vector2(0.51344836, 0.5564828)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("11_na0us")
+event = NodePath("CutsceneEvent")
+target_position = Vector2(0, 30)
+metadata/_custom_type_script = "uid://b4pijihfemvku"
+
+[node name="CutsceneEvent" type="Node" parent="Decorations/BigFire/EventInteractable" unique_id=951665122]
+script = ExtResource("12_na0us")
+cutscene = &"play_sit_down_cutscene"
+metadata/_custom_type_script = "uid://b8w0ui558dfld"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/BigFire/EventInteractable" unique_id=1885597712]
+shape = SubResource("RectangleShape2D_na0us")
+
 [node name="HomeChair" type="Sprite2D" parent="Decorations" unique_id=1966255842]
-position = Vector2(-30.978638, 259.09125)
+position = Vector2(1146.2115, 566.37836)
 scale = Vector2(1.638958, 1.5122126)
 texture = ExtResource("7_yxlk7")
 
 [node name="HomeChair2" type="Sprite2D" parent="Decorations" unique_id=231972845]
-position = Vector2(-453.06335, 261.78668)
+position = Vector2(724.1269, 569.0738)
 rotation = -3.1415925
 scale = Vector2(1.638958, -1.5122126)
 texture = ExtResource("7_yxlk7")
 
 [node name="HomeTable" type="Sprite2D" parent="Decorations" unique_id=661238109]
-position = Vector2(-245.89331, 278.53516)
+position = Vector2(931.29706, 585.8223)
 scale = Vector2(1.9476155, 1.7970008)
 texture = ExtResource("8_hkp35")
 
 [node name="HomeBucket" type="Sprite2D" parent="Decorations" unique_id=1218161666]
-position = Vector2(-840.29706, -71.88003)
+position = Vector2(336.8933, 235.4071)
 rotation = -3.1415925
 scale = Vector2(1.9476155, -1.7970008)
 texture = ExtResource("9_kf7s3")
 
 [node name="HomeShelf" type="Sprite2D" parent="Decorations" unique_id=101746540]
-position = Vector2(-1061.0203, -147.35406)
+position = Vector2(116.1701, 159.93307)
 scale = Vector2(1.9361683, 1.7970008)
 texture = ExtResource("11_3ybje")
 
-[node name="EventInteractable" type="StaticBody2D" parent="Decorations" unique_id=437748175 node_paths=PackedStringArray("event") groups=["Interactable"]]
-collision_layer = 8
-collision_mask = 8
-script = ExtResource("11_na0us")
-event = NodePath("CutsceneEvent")
-metadata/_custom_type_script = "uid://b4pijihfemvku"
-
-[node name="CutsceneEvent" type="Node" parent="Decorations/EventInteractable" unique_id=951665122]
-script = ExtResource("12_na0us")
-cutscene = &"play_sit_down_cutscene"
-metadata/_custom_type_script = "uid://b8w0ui558dfld"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/EventInteractable" unique_id=1885597712]
-position = Vector2(-355.4464, -138.36906)
-shape = SubResource("RectangleShape2D_na0us")
-
 [node name="Katrina" parent="." unique_id=337658701 instance=ExtResource("13_qhrim")]
-position = Vector2(415, 446)
+position = Vector2(220.97949, 121.71869)

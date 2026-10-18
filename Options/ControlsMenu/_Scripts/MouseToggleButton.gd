@@ -11,6 +11,8 @@ func on_pressed():
 	if Input.mouse_mode == Input.MOUSE_MODE_HIDDEN:
 		text = "Visible"
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		Controls.can_use_mouse = true
 	else:
 		text = "Hidden"
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		Controls.can_use_mouse = false

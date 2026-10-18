@@ -518,8 +518,11 @@ func update_direction():
 		#	update_direction_mouse()
 	
 # TODO: Update all "cursor" to "crosshair"
-func get_crosshair_distance():
+func get_crosshair_distance() -> float:
 	return (global_position + _player_center).distance_to(cursor.global_position)
+	
+func direction_to_crosshair() -> Vector2:
+	return (global_position.direction_to(cursor.global_position))
 	
 func update_cursor():
 	match Controls.control_scheme:
@@ -942,6 +945,8 @@ func play_water_splash_cutscene(delta : float):
 	if delta == 0.0:
 		cutscene_duration = (1.0/12.0)*4.0
 		init_cutscene(play_water_splash_cutscene, cutscene_duration)
+		if Controls.can_use_mouse:
+			facing = direction_to_crosshair()
 		sprite.play("Throw " + Utils.nearest_cardinal_direction(facing, true))
 	else:
 		if cutscene_timer >= cutscene_duration:

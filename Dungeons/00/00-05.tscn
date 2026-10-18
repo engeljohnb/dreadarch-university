@@ -123,8 +123,8 @@ texture = SubResource("GradientTexture2D_7hjbj")
 [node name="LadderTop" parent="." unique_id=2081510321 instance=ExtResource("3_wbhm8")]
 visible = false
 position = Vector2(542, 168)
-next_start_position = Vector2(798, 483)
 next_scene = "res://Dungeons/00/00-04.tscn"
+next_start_position = Vector2(605, 132)
 direction = "Down"
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=733601515]

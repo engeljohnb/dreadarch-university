@@ -4,6 +4,7 @@ const RIGHT = Vector2(1, 0)
 const UP = Vector2(0,-1)
 const DOWN = Vector2(0,1)
 const SAVE_FILE_DIRECTORY = "user://SaveFiles/"
+const PLAYER_SPEED = 400.0
 var player_position : Vector2
 		
 func reset_mouse():
@@ -137,3 +138,10 @@ func padink(time : float, duration : float, pa := 0.2, pa_scale := 1.2, dink_sca
 		return lerp(end*dink_scale, end, (percent-pa)*(1.0/dink))
 	else:
 		return end
+
+func player_in_touching_distance() -> bool:
+	var player = get_tree().get_first_node_in_group("Player")
+	return (player.get_crosshair_distance() <= player.FIXED_CROSSHAIR_DISTANCE)
+
+func get_walk_duration(target_pos : Vector2) -> float:
+	return (target_pos.distance_to(player_position) / PLAYER_SPEED)

@@ -107,9 +107,8 @@ modulate = Color(0.7469797, 0.74697965, 0.74697965, 1)
 z_index = 1
 position = Vector2(-417, 414)
 scale = Vector2(1.21, 1)
-next_start_position = Vector2(478, 820)
 next_scene = "res://Dungeons/00/00-04.tscn"
-direction = "North"
+next_start_position = Vector2(285, 495)
 
 [node name="Message" type="RichTextLabel" parent="." unique_id=1788492315]
 offset_left = 183.0

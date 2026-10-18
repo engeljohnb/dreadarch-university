@@ -77,6 +77,7 @@ func _open_dialogue(dialogue):
 		box.dialogue = dialogue
 	$CanvasLayer.add_child(box)
 	player.in_dialogue = true
+	player.facing = player.direction_to_crosshair()
 	player.sprite.play("Idle " + Utils.nearest_cardinal_direction(player.facing, true))
 	player.step_sound.stop()
 	Dialogue.current_ui_box = box

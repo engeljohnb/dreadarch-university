@@ -21,12 +21,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
 size = Vector2(61, 148)
 
-[node name="Door" type="Area2D" unique_id=1433235993]
+[node name="Door" type="Area2D" unique_id=1433235993 groups=["Interactable"]]
 process_priority = 1
 process_physics_priority = 1
 z_index = -1
 y_sort_enabled = true
-collision_layer = 32
+collision_layer = 40
 collision_mask = 12
 script = ExtResource("1_ayr08")
 
