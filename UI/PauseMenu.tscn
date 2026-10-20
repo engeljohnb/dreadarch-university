@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://knupkwryaj8c" path="res://Assets/UI/LongButton/Select.png" id="3_jsuq4"]
 [ext_resource type="Texture2D" uid="uid://by0g62qxl6xvi" path="res://Assets/UI/BookBorder.png" id="5_qxt2n"]
 [ext_resource type="FontFile" uid="uid://bbg2g22ht2tgr" path="res://Assets/UI/Fonts/chomsky/Chomsky.otf" id="6_1p4m1"]
-[ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="8_4lql7"]
 [ext_resource type="AudioStream" uid="uid://cb2n5f70bhkux" path="res://Assets/Sounds/OpenMenu.mp3" id="9_jsuq4"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="10_qxt2n"]
 
@@ -63,12 +62,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_wi1q8")
 script = ExtResource("1_tsvmi")
-
-[node name="LampLight" parent="." unique_id=546000046 instance=ExtResource("8_4lql7")]
-position = Vector2(511, 226)
-rotation = 1.5707964
-scale = Vector2(10.23, 18.008)
-energy = 3.0
 
 [node name="Panel" type="Panel" parent="." unique_id=518653901]
 z_index = -1

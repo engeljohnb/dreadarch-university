@@ -14,7 +14,8 @@ func _ready():
 	$Use.pressed.connect(on_used)
 	$Cancel.pressed.connect(on_cancel)
 	populate_item_list()
-	$ItemList.focus_entered.connect(func (): $ItemList.select(focused_index))
+	$ItemList.focus_entered.connect(func (): if not $ItemList.get_selected_items().is_empty():
+		$ItemList.select(focused_index))
 	item_list.grab_focus()
 
 func on_used():
@@ -53,7 +54,8 @@ func show_item(document : Dictionary):
 	
 func _process(_delta):
 	var selected_document : Dictionary = get_selected_document()
-	focused_index = $ItemList.get_selected_items()[0]
+	if not $ItemList.get_selected_items().is_empty():
+		focused_index = $ItemList.get_selected_items()[0]
 	if selected_document.is_empty():
 		$Use.disabled = true
 	else:

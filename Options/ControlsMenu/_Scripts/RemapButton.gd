@@ -18,12 +18,20 @@ func _toggled(_pressed):
 		update_button_text()
 		grab_focus()
 		
+func _gui_input(event : InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if not event.pressed:
+			if text == "[...]":
+				InputMap.action_erase_events(action)
+				InputMap.action_add_event(action, event)
+				button_pressed = false
+				accept_event()
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.pressed:
 		InputMap.action_erase_events(action)
 		InputMap.action_add_event(action, event)
 		button_pressed = false
-		
 		
 func remove_button_text_junk(string: String) -> String:
 	string = string.replace(" - Physical", "")

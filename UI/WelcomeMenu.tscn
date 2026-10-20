@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="1_sh2gw"]
 [ext_resource type="Script" uid="uid://i0fseqrk78fi" path="res://UI/Scripts/WelcomeMenu.gd" id="2_dj11p"]
-[ext_resource type="PackedScene" uid="uid://cf180idxwrjwm" path="res://UI/Lights/LampLight.tscn" id="4_yxqvu"]
 [ext_resource type="AudioStream" uid="uid://xg7g6517uarm" path="res://Assets/Sounds/MenuSelect.mp3" id="5_7of3o"]
 
 [node name="WelcomeMenu" type="Control" unique_id=613233811]
@@ -126,11 +125,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.221971, 0.198227, 0.204396, 1)
-
-[node name="LampLight" parent="." unique_id=1929235277 instance=ExtResource("4_yxqvu")]
-position = Vector2(522, 291)
-scale = Vector2(18.852, 11.43)
-energy = 6.66
 
 [node name="MenuSelectSound" type="AudioStreamPlayer" parent="." unique_id=203391043]
 stream = ExtResource("5_7of3o")

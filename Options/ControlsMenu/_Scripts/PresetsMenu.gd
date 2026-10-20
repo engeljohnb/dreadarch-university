@@ -15,15 +15,20 @@ func set_preset():
 			Controls.set_controls_keyboard_arrows()
 		"        Gamepad":
 			Controls.set_controls_gamepad()
+	closed.emit()
 			
 func activate_buttons(_selected_item):
 	cancel.disabled = false
 	apply.disabled = false
-	cancel.visible = true
-	apply.visible = true
 	apply.grab_focus()
 	
+func deactivate_buttons():
+	cancel.disabled = true
+	apply.disabled = true
+	
 func _ready() -> void:
-	preset_list.item_selected.connect(activate_buttons)
+	preset_list.item_activated.connect(activate_buttons)
 	apply.pressed.connect(set_preset)
-	cancel.pressed.connect(closed.emit)
+	cancel.pressed.connect(func (): preset_list.grab_focus())
+	cancel.pressed.connect(deactivate_buttons)
+	
