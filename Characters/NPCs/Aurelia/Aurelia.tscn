@@ -80,10 +80,13 @@ size = Vector2(256, 256)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lrul2"]
 size = Vector2(251.5, 259)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkyey"]
+size = Vector2(59.5, 62)
+
 [node name="Aurelia" type="StaticBody2D" unique_id=1904058509 groups=["Interactable"]]
 y_sort_enabled = true
-collision_layer = 8
-collision_mask = 8
+collision_layer = 1024
+collision_mask = 1024
 script = ExtResource("1_lrul2")
 
 [node name="VisualTravel" type="Node2D" parent="." unique_id=1976511712]
@@ -130,3 +133,7 @@ offset = Vector2(0, -131.3)
 position = Vector2(-1, -186)
 shape = SubResource("RectangleShape2D_lrul2")
 disabled = true
+
+[node name="StationaryCollision" type="CollisionShape2D" parent="." unique_id=1161352217]
+position = Vector2(0, -185)
+shape = SubResource("RectangleShape2D_kkyey")

@@ -24,7 +24,7 @@ var messages = {
 	],
 	ItemCollection.NECTAR:[
 		"You found nectar! [img]" + ItemCollection.icon_paths[ItemCollection.NECTAR] + "[/img]",
-		"Drinking these is good for your health. [img]" + controller_icons["Inventory"] + "[/img] to open your inventory."
+		"Drinking these is good for your health. [img]" + controller_icons["Inventory"] + "[/img] for inventory."
 	],
 	ItemCollection.GOLDEN_DAGGER:[
 		"You found a weapon! [img]" + ItemCollection.icon_paths[ItemCollection.GOLDEN_DAGGER] + "[/img]",

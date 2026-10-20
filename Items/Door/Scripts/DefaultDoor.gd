@@ -1,7 +1,18 @@
 extends Door
+
 @onready var north_sprite = $North
 @onready var south_sprite = $South
 
+func activate(_using_item = null, _count = 0):
+	player = get_tree().get_first_node_in_group("Player")
+	var seq : EventSequence = EventSequence.new()
+	seq.add_walk_event(global_position, Utils.get_walk_duration(global_position))
+	if direction == "North":
+		seq.ended.connect(start_transition.bind(global_position - Vector2(0,64)))
+	else:
+		seq.ended.connect(start_transition.bind(global_position + Vector2(0,64)))
+	add_child(seq)
+	seq.start_events()
 
 func on_body_entered(body):
 	if body.is_in_group("Player"):

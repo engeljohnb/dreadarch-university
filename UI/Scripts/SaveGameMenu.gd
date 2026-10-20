@@ -39,7 +39,7 @@ func get_location_name(room_name):
 	else:
 		return "Shallow Ruins"
 	
-func make_save_slot_mini_gui(button : Button):
+func make_save_slot_mini_gui(button : Button, index : int):
 	var save_data = Utils.read_save_data_from_slot(button.text[0])
 	if save_data == null:
 		print("ERROR: Can't open save slot ", button.text[0])
@@ -56,33 +56,25 @@ func make_save_slot_mini_gui(button : Button):
 	lifebar.set_life_total(total_life, life)
 	if temp_life > 0:
 		lifebar.gain_temporary_life(temp_life)
+	lifebar.modulate *= 2.0
 	lifebars.append(lifebar)
 	
-	var treasure_icon = load("res://UI/Treasure.tscn").instantiate()
-	var treasure = save_data.player.inventory[ItemCollection.TREASURE]
-	if treasure == null:
-		treasure = 0
-	treasure_icon.set_treasure(treasure)
-	treasure_icon.for_save_slot = true
-	treasure_icon.save_slot_position = button.position
-	button.add_child(treasure_icon)
-	icons.append(treasure_icon)
+	#var treasure_icon = load("res://UI/Treasure.tscn").instantiate()
+	#var treasure = save_data.player.inventory[ItemCollection.TREASURE]
+	#if treasure == null:
+	#	treasure = 0
+	#treasure_icon.set_treasure(treasure)
+	#treasure_icon.for_save_slot = true
+	#treasure_icon.save_slot_position = button.position
+	#button.add_child(treasure_icon)
+	#icons.append(treasure_icon)
 	
 	var scroll_icon = load("res://UI/NumScrollFragments.tscn").instantiate()
 	var num_scroll_fragments = save_data.player.documents.size()
 	scroll_icon.set_num_scroll_fragments(num_scroll_fragments)
-	scroll_icon.set_position_for_mini_gui(button.position.y + 300.0)
-	button.add_child(scroll_icon)
+	scroll_icon.position = Vector2(-100, (button.position.y + 35) + (75.0 * index))
+	add_child(scroll_icon)
 	icons.append(scroll_icon)
-	
-func set_mini_gui_lifebar_brightness(brightness : float):
-	for lifebar in lifebars:
-		lifebar.modulate *= brightness
-		lifebar.modulate.a = 1.0
-
-func set_mini_gui_icon_brightness(brightness: float):
-	for icon in icons:
-		icon.set_brightness(brightness)
 	
 func make_button(save_filename, button : Button, index : int):
 	var slot_num = index+1
@@ -104,7 +96,7 @@ func make_button(save_filename, button : Button, index : int):
 	var location_name = get_location_name(scene_name)
 	var button_filename : String = get_save_filename(location_name, slot_num)
 	if not save_filename == EMPTY_SLOT_NAME:
-		make_save_slot_mini_gui(button)
+		make_save_slot_mini_gui(button, index)
 	button.pressed.connect(save_file_chosen.emit.bind(button_filename))
 	return button
 

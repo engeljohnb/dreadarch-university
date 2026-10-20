@@ -10,11 +10,11 @@ size = Vector2(56.75, 49)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
 size = Vector2(79, 66.5)
 
-[node name="ReliefDoor" type="Area2D" unique_id=386765253]
+[node name="ReliefDoor" type="Area2D" unique_id=386765253 groups=["Interactable"]]
 process_priority = 1
 process_physics_priority = 1
 y_sort_enabled = true
-collision_layer = 32
+collision_layer = 40
 collision_mask = 12
 script = ExtResource("1_bntcl")
 

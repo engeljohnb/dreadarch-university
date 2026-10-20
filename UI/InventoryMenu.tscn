@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://p4lnn7thw38q" path="res://UI/Scripts/InventoryItemsMenu.gd" id="2_c4t47"]
 [ext_resource type="Script" uid="uid://7c3ymrmnjl2p" path="res://UI/Scripts/InventoryMenu.gd" id="2_tp6yt"]
+[ext_resource type="PackedScene" uid="uid://dgxq5hvyi31x5" path="res://UI/Inventory/ScrollFragmentSelector.tscn" id="3_8aric"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aric"]
 bg_color = Color(0.07846785, 0.07846785, 0.07846785, 0.92)
@@ -114,20 +115,15 @@ offset_bottom = 0.031982422
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Documents" type="Control" parent="TabContainer" unique_id=1537859304]
+[node name="Scroll Fragments" type="Control" parent="TabContainer" unique_id=1537859304]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="TestingTabs" type="MenuButton" parent="TabContainer/Documents" unique_id=963870070]
+[node name="ScrollFragmentSelector" parent="TabContainer/Scroll Fragments" unique_id=1910798552 instance=ExtResource("3_8aric")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.086
-anchor_top = 0.065000005
-anchor_right = 0.155
-anchor_bottom = 0.19800001
-offset_left = 0.1819992
-offset_top = -0.21500397
-offset_right = -0.2649994
-offset_bottom = -0.17800903
-text = "Item3"
+
+[node name="Journal" type="Control" parent="TabContainer" unique_id=1574680041]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

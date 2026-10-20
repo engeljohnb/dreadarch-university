@@ -90,7 +90,6 @@ func _unhandled_input(event : InputEvent):
 			# I still want the animation to play when a notification pops up
 			if not get_tree().paused:
 				check_for_interactable()
-				check_for_collectible()
 			else:
 				return
 			# Here because there's one part when meeting Aurelia

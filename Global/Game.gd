@@ -48,7 +48,6 @@ func new_game():
 	player.init_for_newgame()
 	SceneTransition.enter_scene("Dungeons/00/00-05.tscn", Vector2(-100,-10))
 	
-
 func _prompt_player(text, on_yes, on_no, yes_text = "yes", no_text = "no"):
 	var prompt = load("res://UI/Prompt.tscn").instantiate()
 	$CanvasLayer.add_child(prompt)
@@ -393,10 +392,6 @@ func open_load_game_menu():
 	menu.open(saves, menu.OpenModes.LOAD, max_save_files)
 	var from_gameplay = not ((current_scene.name == "WelcomeMenu") or (current_scene.name == "DeathMenu"))
 	if not from_gameplay:
-		# Because in the welcome and death menus, the lifebar looks really dark
-		# compared to the bright bg
-	#	menu.set_mini_gui_lifebar_brightness(3.0)
-	#	menu.set_mini_gui_icon_brightness(0.66)
 		current_scene.add_child(menu)
 		current_scene.hide_all()
 		if "show_title" in current_scene:
@@ -405,7 +400,6 @@ func open_load_game_menu():
 		if "hide_title" in current_scene:
 			current_scene.hide_title()
 	else:
-		#menu.set_mini_gui_icon_brightness(0.8)
 		if pause_menu.visible:
 			pause_menu.hide_all()
 			menu.closed.connect(pause_menu.show_all)
@@ -430,7 +424,6 @@ func open_save_game_menu():
 	menu.save_file_chosen.connect(pause_menu.on_save_file_chosen)
 	var all_saves = get_all_save_filenames()
 	menu.open(all_saves, menu.OpenModes.SAVE, max_save_files)
-	menu.set_mini_gui_icon_brightness(0.8)
 	if pause_menu.visible:
 		pause_menu.hide_all()
 		menu.closed.connect(pause_menu.show_all)
@@ -568,7 +561,7 @@ func open_inventory():
 	inventory.closed.connect(func(): get_tree().paused = false)
 	inventory.top_level = true
 	$CanvasLayer.add_child(inventory)
-	inventory.open(player.inventory, player.documents)
+	inventory.open(player.inventory)
 	inventory.inventory_action_chosen.connect(player.on_inventory_action_chosen)
 	
 var stupid_inv_counter = 0

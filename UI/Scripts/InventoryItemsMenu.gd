@@ -2,7 +2,6 @@ extends Control
 
 @onready var grid = $GridContainer
 @onready var info = $Info
-signal item_grid_focused
 
 var spinbox_open = false
 
@@ -40,12 +39,3 @@ func display_info(button : Button):
 	$Info/Image.texture = ItemCollection.textures[id]
 	$Info/Description.text = ItemCollection.descriptions[id]
 	$Info/ItemName.text = item_name
-
-func _input(event : InputEvent):
-	# This is the only way I can figure out to make it so the first button in the
-	#  inventory grid is focused when the focus exits from the TabContainer.
-	#  Everything else I try, Godot just ignores the focus neighbors and focuses
-	#  the last button in the grid.
-	if event.is_action_pressed("ui_down"):
-		if get_parent().get_tab_bar().has_focus():
-			item_grid_focused.emit()

@@ -130,6 +130,7 @@ color = Color(0.221971, 0.198227, 0.204396, 1)
 [node name="LampLight" parent="." unique_id=1929235277 instance=ExtResource("4_yxqvu")]
 position = Vector2(522, 291)
 scale = Vector2(18.852, 11.43)
+energy = 6.66
 
 [node name="MenuSelectSound" type="AudioStreamPlayer" parent="." unique_id=203391043]
 stream = ExtResource("5_7of3o")

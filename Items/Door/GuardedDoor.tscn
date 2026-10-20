@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ct6rmxyge2sdk"]
+
+[ext_resource type="Script" uid="uid://bky8fixaoyj8v" path="res://Items/Door/Scripts/GaurdedDoor.gd" id="1_dlpde"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1065n"]
+size = Vector2(56.75, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnujl"]
+size = Vector2(79, 66.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fnujl"]
+load_path = "res://.godot/imported/door_north.png-2adc2d8e7275d2121cc7a5bc355ddb58.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sl0wq"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/door_south.png-a63f68e7285fc6fdc1a4780bd2f59070.ctex"
+
+[node name="Door" type="Area2D" unique_id=386765253 groups=["Interactable"]]
+process_priority = 1
+process_physics_priority = 1
+y_sort_enabled = true
+collision_layer = 1056
+collision_mask = 1036
+script = ExtResource("1_dlpde")
+
+[node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=86857958]
+collision_layer = 32
+collision_mask = 268
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" unique_id=746618906]
+position = Vector2(-67.625, -67)
+shape = SubResource("RectangleShape2D_1065n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=415919912]
+position = Vector2(68.25, -66)
+shape = SubResource("RectangleShape2D_1065n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1741278523]
+y_sort_enabled = true
+position = Vector2(0, -76.75)
+shape = SubResource("RectangleShape2D_fnujl")
+
+[node name="North" type="Sprite2D" parent="." unique_id=1658847753]
+visible = false
+y_sort_enabled = true
+position = Vector2(-1, -111)
+texture = SubResource("CompressedTexture2D_fnujl")
+
+[node name="South" type="Sprite2D" parent="." unique_id=1409924729]
+y_sort_enabled = true
+position = Vector2(1, -137)
+texture = SubResource("CompressedTexture2D_sl0wq")

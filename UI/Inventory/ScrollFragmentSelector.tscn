@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dgxq5hvyi31x5"]
+
+[ext_resource type="Script" uid="uid://bvmlbxi8hkjrv" path="res://UI/Inventory/ScrollFragmentSelector.gd" id="1_dlnyo"]
+[ext_resource type="Texture2D" uid="uid://bqsk2ymg6f8er" path="res://Assets/Items/ScrollFragment/Scroll.png" id="2_1hnof"]
+
+[node name="ScrollFragmentSelector" type="Control" unique_id=1910798552]
+layout_mode = 3
+anchor_right = 0.9480001
+anchor_bottom = 0.94100004
+offset_right = -0.080078125
+offset_bottom = -0.14001465
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dlnyo")
+
+[node name="ItemList" type="ItemList" parent="." unique_id=1168109360]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.549
+anchor_bottom = 1.0
+offset_right = 0.40997314
+focus_neighbor_right = NodePath("../Use")
+item_count = 3
+item_0/text = "Aelia... Relinque blah balh balah"
+item_0/icon = ExtResource("2_1hnof")
+item_1/text = "This is a test o fthe emergency broadcasting ssytem "
+item_1/icon = ExtResource("2_1hnof")
+item_2/text = "If you aint got no money take your broke ass hoeme say"
+item_2/icon = ExtResource("2_1hnof")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1054643567]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55600005
+anchor_right = 1.0350001
+anchor_bottom = 0.661
+offset_left = 0.03994751
+offset_right = 0.14990234
+offset_bottom = 0.21200562
+focus_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Use" type="Button" parent="." unique_id=411166891]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65300006
+anchor_top = 0.717
+anchor_right = 0.76400006
+anchor_bottom = 0.809
+offset_left = -0.2300415
+offset_top = -0.23599243
+offset_right = -0.009277344
+offset_bottom = 0.02798462
+focus_neighbor_left = NodePath("../ItemList")
+text = "Use
+"
+
+[node name="Cancel" type="Button" parent="." unique_id=102369456]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65300006
+anchor_top = 0.717
+anchor_right = 0.76400006
+anchor_bottom = 0.809
+offset_left = 128.76996
+offset_top = -0.23599243
+offset_right = 128.99072
+offset_bottom = 0.02798462
+focus_neighbor_left = NodePath("../Use")
+text = "Cancel
+"

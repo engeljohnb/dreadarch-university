@@ -255,13 +255,16 @@ func end_cutscene(to_idle = true, direction = facing):
 	cutscene_ended.emit(current_cutscene)
 	current_cutscene = null
 	sprite.stop()
-	update_direction()
 	if direction != facing:
 		facing = direction
 	update_animation_blend_positions()
 	var playback = anim_tree["parameters/playback"]
 	if to_idle:
 		playback.travel("Idle")
+	else:
+		stupid_post_cutscene_correction()
+		update_direction()
+		reset_direction_changed()
 	if door_cutscene["arriving"]:
 		cutscene_just_ended = true
 
@@ -550,18 +553,17 @@ func get_hitbox():
 	return $Hitbox
 	
 func throw_projectile():
+	facing = direction_to_crosshair()
+	update_animation_blend_positions()
+	sprite.play("Throw " + Utils.nearest_cardinal_direction(facing, true))
 	match equipped:
 		ItemCollection.TALONS:
 			Attack.new().transform_into_talons_attack().activate(self, facing)
 		ItemCollection.ORBITER:
 			Attack.new().transform_into_orbiter_attack().activate(self, facing)
-	var equip_dagger = false
-	if inventory[equipped] == 1:
-		if inventory[ItemCollection.GOLDEN_DAGGER] > 0:
-			equip_dagger = true
+		ItemCollection.GOLDEN_DAGGER:
+			Error.error("Trying to throw Golden Dagger!")
 	ItemCollection.item_collected.emit(equipped, -1, false)
-	if equip_dagger:
-		on_inventory_action_chosen("Equip", ItemCollection.GOLDEN_DAGGER, 1)
 
 func update_attack_state():
 	if equipped == ItemCollection.GOLDEN_DAGGER:
@@ -649,22 +651,13 @@ func set_equipped(item : int):
 	if not item_equippable(item):
 		Error.error("item is not equippable")
 		return
-	match item:
-		ItemCollection.GOLDEN_DAGGER:
-			equipped = ItemCollection.GOLDEN_DAGGER
-			golden_dagger_equipped = true
-		item:
-			equipped = item
-			golden_dagger_equipped = false
 	if item_available(item):
 		item_equipped.emit(item, inventory[item])
-	else:
-		# when the last one is spent...
-		equipped = ItemCollection.GOLDEN_DAGGER
-		golden_dagger_equipped = true
-		return
-	if golden_dagger_equipped and (inventory[ItemCollection.GOLDEN_DAGGER] == 0):
-		Error.error("Finally triggered that weird equipment inventory bug.")
+		equipped = item
+		if item == ItemCollection.GOLDEN_DAGGER:
+			golden_dagger_equipped = true
+		else:
+			golden_dagger_equipped = false
 				
 func on_inventory_action_chosen(action, item, count):
 	match action:
@@ -791,6 +784,9 @@ func update_equipment():
 			if equipped == ItemCollection.GOLDEN_DAGGER:
 				golden_dagger_equipped = false
 			inventory[equipped] = 0
+	else:
+		if item_available(ItemCollection.GOLDEN_DAGGER):
+			set_equipped(ItemCollection.GOLDEN_DAGGER)
 
 func get_step_sound(sound_name):
 	match sound_name:
@@ -838,19 +834,19 @@ func update_step_sound(sound_source : Variant, init : bool = false):
 # I've tried so hard to figure out what's messing up the animation. I give up.
 #  I'm doing this cludge and I'll think about actually fixing it if it
 #  causes other problems.
-var stupid_counter = 0
-func stupid_post_door_cutscene_correction():
-	if stupid_counter < 4:
-		stupid_counter += 1
-	else:
+#var stupid_counter = 0
+func stupid_post_cutscene_correction():
+	#if stupid_counter < 4:
+	#	stupid_counter += 1
+	#else:
 		var held_direction = get_held_direction_name()
 		if held_direction != "None":
 			if has_knife_equipped():
 				sprite.play("Walk Knife " + held_direction)
 			else:
 				sprite.play("Walk " + held_direction)
-		stupid_counter = 0
-		cutscene_just_ended = false
+	#	stupid_counter = 0
+		#cutscene_just_ended = false
 		
 func set_state_machine_state(state : String):
 	var playback = anim_tree["parameters/playback"]
@@ -900,6 +896,7 @@ func correct_sprite_direction():
 					sprite.play("Idle " + dir)
 
 var _waiting_to_stand := false
+var _sitting := false
 func play_surprised_cutscene(delta : float):
 	if delta == 0.0:
 		init_cutscene(play_surprised_cutscene, 1.0)
@@ -930,8 +927,10 @@ func play_sit_down_cutscene(delta : float):
 	else:
 		if cutscene_timer >= (1.0/8.0)*4.0:
 			sprite.play("Sitting")
-			if direction_just_pressed() or Input.is_action_just_pressed("Attack") or Input.is_action_just_pressed("Click"):
+			_sitting = true
+			if direction_just_pressed():
 				_waiting_to_stand = true
+				_sitting = false
 				cutscene_timer = 0.0
 				sprite.play("Stand Up")
 		if _waiting_to_stand:
@@ -994,13 +993,20 @@ func _unhandled_input(event : InputEvent):
 				return
 			else:
 				set_equipped(equipped)
-		if event.is_action_pressed("Attack") and (not attacking) and (not event.is_echo()):
-			attack_sound.play()
-			attacking = true
-			attack_fx = _attack_fx.instantiate()
-			attack_fx.change_direction(facing)
-			hitbox.ignore.append(attack_fx)
-			add_child(attack_fx)
+		if event.is_action_pressed("Attack") and (not attacking) and (not in_cutscene) and  (not _waiting_to_stand) and (not event.is_echo()):
+			if _sitting:
+				breakpoint
+				_waiting_to_stand = true
+				_sitting = false
+				cutscene_timer = 0.0
+				sprite.play("Stand Up")
+			else:
+				attack_sound.play()
+				attacking = true
+				attack_fx = _attack_fx.instantiate()
+				attack_fx.change_direction(facing)
+				hitbox.ignore.append(attack_fx)
+				add_child(attack_fx)
 	else:
 		if event.is_action_pressed("Attack") and (not attacking) and (not event.is_echo()):
 			if inventory[equipped] > 0:

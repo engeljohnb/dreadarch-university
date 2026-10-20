@@ -141,6 +141,7 @@ func padink(time : float, duration : float, pa := 0.2, pa_scale := 1.2, dink_sca
 
 func player_in_touching_distance() -> bool:
 	var player = get_tree().get_first_node_in_group("Player")
+	print(player.get_crosshair_distance)
 	return (player.get_crosshair_distance() <= player.FIXED_CROSSHAIR_DISTANCE)
 
 func get_walk_duration(target_pos : Vector2) -> float:

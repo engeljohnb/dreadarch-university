@@ -8,6 +8,7 @@ func spawn_crow():
 	var aurelia = get_node_or_null("NPCs/Aurelia")
 	if aurelia:
 		crow.died.connect(aurelia.trigger_transformation)
+		crow.died.connect(func (): $Decorations/Decoration/CollisionShape2D.disabled = true)
 
 func _process(_delta):
 	if Tutorial.messages_shown[ItemCollection.GOLDEN_DAGGER]:

@@ -3,7 +3,7 @@ extends Control
 @warning_ignore("unused_signal")
 signal inventory_action_chosen(action, item, count)
 signal closed
-
+				
 func _unhandled_input(event: InputEvent):
 	if event.is_action_pressed("Inventory") and not event.is_echo():
 		close()
@@ -11,6 +11,12 @@ func _unhandled_input(event: InputEvent):
 		if event.keycode == KEY_ESCAPE:
 			if event.pressed:
 				close()
+
+	if event is InputEventJoypadButton:
+		if event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
+			$TabContainer.select_next_available()
+		elif event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+			$TabContainer.select_previous_available()
 		
 func set_button_actions(item : int, button : InventoryItemButton):
 	var popup = button.get_popup()
@@ -50,15 +56,23 @@ func fill_item_grid(inventory):
 		item_button.closed_spinbox.connect(func (): $TabContainer/Items.spinbox_open = false)
 		grid.add_child(item_button)
 
-@warning_ignore("unused_parameter")
-func open(inventory : Dictionary, documents : Array):
+func open(inventory : Dictionary):
 	fill_item_grid(inventory)
-	var buttons = $TabContainer/Items/GridContainer.get_children()
-	if buttons.size() > 0:
-		buttons[0].grab_focus()
-		$TabContainer/Items.item_grid_focused.connect(func (): if buttons[0]:
-			buttons[0].grab_focus())
-		
+	if $TabContainer.get_tab_bar().current_tab == 0:
+		var buttons = $TabContainer/Items/GridContainer.get_children()
+		if buttons.size() > 0:
+			buttons[0].grab_focus()
+			if buttons.size() > 1:
+				buttons[0].focus_neighbor_left = buttons[-1].get_path()
+				buttons[-1].focus_neighbor_right = buttons[0].get_path()
+	$"TabContainer/Scroll Fragments/ScrollFragmentSelector".action_chosen.connect(on_action_chosen)
+	var document_item_list_path : NodePath = $"TabContainer/Scroll Fragments/ScrollFragmentSelector/ItemList".get_path()
+	var scroll_frag_tab = $"TabContainer/Scroll Fragments"
+	scroll_frag_tab.focus_neighbor_bottom = document_item_list_path
+	$TabContainer.tab_changed.connect(set_tab_focus_neighbors)
+	$"TabContainer/Scroll Fragments/ScrollFragmentSelector".closed.connect(close)
+	set_tab_focus_neighbors(0)
+	
 func set_focus_neighbors(grid: GridContainer):
 # Source: https://dredyson.com/why-focus-neighbor-on-identical-nodes-in-a-specific-group-matters-more-than-you-think-an-experts-deep-dive-analysis-of-godot-4-7-gridcontainer-focus-management-with-proven-methods-step-by-step-con/
 	var children = grid.get_children()
@@ -81,3 +95,19 @@ func set_focus_neighbors(grid: GridContainer):
 func close():
 	closed.emit()
 	queue_free()
+
+func set_tab_focus_neighbors(_tab):
+	var tab_bar = $TabContainer.get_tab_bar()
+	var tab_name = $TabContainer.get_current_tab_control().name
+	match tab_name:
+		"Items":
+			var items = $TabContainer/Items/GridContainer.get_children()
+			if items.is_empty():
+				return
+			tab_bar.focus_neighbor_bottom = items[0].get_path()
+		"Scroll Fragments":
+			var item_list = $"TabContainer/Scroll Fragments/ScrollFragmentSelector/ItemList"
+			tab_bar.focus_neighbor_bottom = item_list.get_path()
+			item_list.focus_neighbor_top = tab_bar.get_path()
+		"Journal":
+			return

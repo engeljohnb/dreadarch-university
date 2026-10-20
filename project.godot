@@ -44,7 +44,7 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/size/mode=3
 window/size/resizable=false
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/hdr_2d=false
 
 [dotnet]
@@ -185,6 +185,7 @@ Inventory={
 2d_physics/layer_8="Collectibles"
 2d_physics/layer_9="StopsFallingObjects"
 2d_physics/layer_10="Decoration"
+2d_physics/layer_11="InteractableNoPhysics"
 
 [rendering]
 

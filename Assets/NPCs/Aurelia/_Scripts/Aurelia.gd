@@ -13,6 +13,12 @@ var stationary = false
 var waiting_for_player = false
 @export var following_player : bool = true
 
+var follow_player_dialogue : Array[Dictionary] = [
+	{
+		"speaker":"Player",
+		"text":"What was that? It must have been my imagination."
+	}
+]
 var intro_dialogue : Array[Dictionary] = [
 	{
 		"speaker":"Aurelia",
@@ -116,7 +122,9 @@ func open():
 	_opening = true
 
 func activate(_using_item : Variant = null, _count = 1):
-	if check_status("introduced"):
+	if not stationary:
+		start_dialogue(follow_player_dialogue)
+	elif check_status("introduced"):
 		if check_status("invited_return"):
 			start_dialogue([second_dialogue[-1]])
 		else:

@@ -34,8 +34,8 @@ func on_pressed(index : int):
 	var total = int($Count.text)
 	if action_name == "Cancel":
 		return
-	if total == 1:
-		action_chosen.emit(action_name, item_id, total)
+	if (total == 1) or (action_name != "Use"):
+		action_chosen.emit(action_name, item_id, 1)
 		close_inventory.emit()
 	else:
 		show_spinbox()

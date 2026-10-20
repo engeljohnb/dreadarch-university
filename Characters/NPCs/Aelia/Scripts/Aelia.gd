@@ -2,6 +2,12 @@ extends NPC
 var scroll_fragment = {}
 var retired = false
 
+var post_gift_dialogue = [
+	{
+		"text":"It is olde, but it sholde still be bracing.",
+		"speaker":"Aelia"
+	}
+]
 var dialogues = [
 [
 	{
@@ -22,10 +28,6 @@ var dialogues = [
 	},
 	{
 		"text":"Take this for the kyndness. It is all I have.",
-		"speaker":"Aelia"
-	},
-	{
-		"text":"It is olde, but it sholde still be bracing.",
 		"speaker":"Aelia"
 	}
 ],
@@ -137,7 +139,15 @@ func activate(_using_item : Variant = null, _count = 0):
 			Dialogue.open_dialogue.emit(use_dialogue)
 			return
 	if status["times_spoken_to"] < dialogues.size():
-		Dialogue.open_dialogue.emit(dialogues[status["times_spoken_to"]])
+		if status["times_spoken_to"] == 0:
+			var seq := EventSequence.new()
+			seq.add_dialogue_event(dialogues[0])
+			seq.add_found_item_event(ItemCollection.NECTAR, 5)
+			seq.add_dialogue_event(post_gift_dialogue)
+			add_child(seq)
+			seq.start_events()
+		else:
+			Dialogue.open_dialogue.emit(dialogues[status["times_spoken_to"]])
 		status["times_spoken_to"] += 1
 		return
 	else:
@@ -145,9 +155,5 @@ func activate(_using_item : Variant = null, _count = 0):
 		
 func _process(_delta):
 	# TODO: Use EventSequence instead of doing this.
-	if Dialogue.current_box == dialogues[0][-1]:
-		if not status["paid"]:
-			status["paid"] = true
-			ItemCollection.item_collected.emit(ItemCollection.NECTAR, 5, true)
 	if Dialogue.current_box == translate_dialogue[-1]:
 		ItemCollection.scroll_fragment_translated.emit(scroll_fragment)

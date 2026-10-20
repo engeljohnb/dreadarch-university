@@ -41,7 +41,7 @@ process_priority = 1
 process_physics_priority = 1
 material = SubResource("ShaderMaterial_6623x")
 sprite_frames = ExtResource("2_if58j")
-animation = &"Vanquished Right"
+animation = &"Aggro Up"
 
 [node name="PhysicsShape" type="CollisionShape2D" parent="." unique_id=1061759157]
 position = Vector2(3, -4)
@@ -73,7 +73,7 @@ volume_db = -3.0
 [node name="VolumeSprite" type="AnimatedSprite2D" parent="." unique_id=1038600931 node_paths=PackedStringArray("target")]
 visible = false
 sprite_frames = ExtResource("9_a07ji")
-animation = &"Vanquished Left"
+animation = &"Aggro Up"
 script = ExtResource("27_vl6hi")
 target = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://cnq1mcm71wgew"

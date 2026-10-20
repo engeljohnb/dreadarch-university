@@ -4,38 +4,39 @@
 [ext_resource type="Texture2D" uid="uid://bqsk2ymg6f8er" path="res://Assets/Items/ScrollFragment/Scroll.png" id="1_eo1qy"]
 [ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="2_5vag4"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ifbw7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_eo1qy")
-}],
-"loop": 0,
-"name": &"default",
-"speed": 0.5
-}]
-
-[node name="NumScrollFragments" type="Node2D" unique_id=1135087315]
+[node name="NumScrollFragments" type="Control" unique_id=1332677016]
 z_index = 1001
 z_as_relative = false
+layout_mode = 3
+anchor_right = 0.09200001
+anchor_bottom = 0.07
+offset_right = -0.32000732
+offset_bottom = -0.073970795
 script = ExtResource("1_0lwf4")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1165737692]
-layer = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=2008351127]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2008351127]
+layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.117000006
-anchor_bottom = 0.087000005
-offset_right = -0.32000732
-offset_bottom = 0.019996643
+anchor_right = 0.61800003
+anchor_bottom = 0.73600006
+offset_right = 0.019996643
+offset_bottom = -0.008003235
 theme = ExtResource("2_5vag4")
-theme_override_colors/default_color = Color(1, 1, 1, 0.768)
-theme_override_font_sizes/normal_font_size = 45
-text = "0"
-horizontal_alignment = 2
+theme_override_font_sizes/normal_font_size = 17
+vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/RichTextLabel" unique_id=1796828628]
+[node name="Texture" type="TextureRect" parent="." unique_id=2123795434]
+modulate = Color(2.1382592, 2.1382592, 2.1382592, 1)
 texture_filter = 1
-position = Vector2(57, 25)
-sprite_frames = SubResource("SpriteFrames_ifbw7")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.106000006
+anchor_right = 0.578
+anchor_bottom = 0.638
+offset_left = -0.040000916
+offset_top = 0.0010406971
+offset_right = -0.0399971
+offset_bottom = 0.011795044
+texture = ExtResource("1_eo1qy")
+expand_mode = 1

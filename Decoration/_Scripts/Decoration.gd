@@ -9,7 +9,6 @@ func _ready():
 		add_to_group("Interactable")
 	if sprite != null:
 		add_child(sprite)
-
 	
 func activate(_using_item = null, _count = 0):
 	if not interaction_message.is_empty():

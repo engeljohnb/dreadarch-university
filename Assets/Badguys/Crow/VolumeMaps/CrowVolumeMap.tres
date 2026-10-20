@@ -284,6 +284,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("64_1b4uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_haytv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_nc5an")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_bhmny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_7vo6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_yjfay")
+}],
+"loop": 1,
+"name": &"Aggro Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("19_7yupo")
 }, {
 "duration": 1.0,

@@ -17,6 +17,16 @@ func activate(_using_item = null, _count = 0):
 	
 func activate_event_sequence():
 	var seq = EventSequence.new()
+	if not Utils.player_in_touching_distance():
+		var player_pos = Utils.player_position
+		if player_pos.y < (global_position.y - 15.0):
+			# SO the player doesn't walk over the gap in the floor
+			var corner_pos = global_position + Vector2(64*5, 69)
+			var corner_duration = Utils.get_walk_duration(corner_pos)
+			seq.add_walk_event(corner_pos, corner_duration)
+		var pos = global_position - Vector2(0,-75)
+		var duration = Utils.get_walk_duration(pos)
+		seq.add_walk_event(pos, duration)
 	seq.add_cutscene_event("play_wave_cutscene")
 	seq.add_cutscene_event("play_run_cutscene", self, true)
 	add_child(seq)

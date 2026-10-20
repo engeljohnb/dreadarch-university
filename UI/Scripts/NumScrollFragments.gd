@@ -1,22 +1,20 @@
-extends Node2D
-@onready var label = $CanvasLayer/RichTextLabel
-@onready var sprite = $CanvasLayer/RichTextLabel/AnimatedSprite2D
-
-# HERE!!! The problem for the weird scroll fragment glitch thingy is I think probably HERE
+extends Control
+@onready var label = $RichTextLabel
+@onready var sprite = $Texture
 
 
 func set_num_scroll_fragments(num : int):
-	$CanvasLayer/RichTextLabel.text = str(num)
-func shrink_for_mini_gui(size):
-	$CanvasLayer/RichTextLabel.scale = Vector2(size, size)
+	$RichTextLabel.text = str(num)
+	
+func shrink_for_mini_gui(_size):
+	$RichTextLabel.size = Vector2(_size, _size)
 	
 func set_brightness(brightness : float):
-	$CanvasLayer/RichTextLabel.modulate *= brightness
-	$CanvasLayer/RichTextLabel/AnimatedSprite2D.modulate *= brightness
-	$CanvasLayer/RichTextLabel.modulate.a = 1.0
-	$CanvasLayer/RichTextLabel/AnimatedSprite2D.modulate.a = 1.0
+	$RichTextLabel.modulate *= brightness
+	$Texture.modulate *= brightness
+	$RichTextLabel.modulate.a = 1.0
+	$Texture.modulate.a = 1.0
 	
-func set_position_for_mini_gui(y_pos):
-	$CanvasLayer/RichTextLabel.position = Vector2(0, y_pos)
-	$CanvasLayer/RichTextLabel.position.x += 235.0
-	shrink_for_mini_gui(0.45)
+#func set_position_for_mini_gui(pos : Vector2):
+#	position = Vector2(0, y_pos)
+	#shrink_for_mini_gui(0.45)
