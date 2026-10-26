@@ -54,31 +54,23 @@ func make_save_slot_mini_gui(button : Button, index : int):
 	button.add_child(lifebar)
 	lifebar.name = "Lifebar"
 	lifebar.set_life_total(total_life, life)
+	lifebar.position.x += 25
 	if temp_life > 0:
 		lifebar.gain_temporary_life(temp_life)
-	lifebar.modulate *= 2.0
+	lifebar.modulate *= 1.2
 	lifebars.append(lifebar)
-	
-	#var treasure_icon = load("res://UI/Treasure.tscn").instantiate()
-	#var treasure = save_data.player.inventory[ItemCollection.TREASURE]
-	#if treasure == null:
-	#	treasure = 0
-	#treasure_icon.set_treasure(treasure)
-	#treasure_icon.for_save_slot = true
-	#treasure_icon.save_slot_position = button.position
-	#button.add_child(treasure_icon)
-	#icons.append(treasure_icon)
 	
 	var scroll_icon = load("res://UI/NumScrollFragments.tscn").instantiate()
 	var num_scroll_fragments = save_data.player.documents.size()
 	scroll_icon.set_num_scroll_fragments(num_scroll_fragments)
-	scroll_icon.position = Vector2(-100, (button.position.y + 35) + (75.0 * index))
+	scroll_icon.position = Vector2(-75, (button.position.y + 35) + (75.0 * index))
+	scroll_icon.modulate /= 1.5
 	add_child(scroll_icon)
 	icons.append(scroll_icon)
 	
 func make_button(save_filename, button : Button, index : int):
 	var slot_num = index+1
-	button.add_theme_font_size_override("font_size", 37)
+	button.add_theme_font_size_override("font_size", 32)
 	var scene_name = ""
 	if Utils.is_valid_save_filename(save_filename):
 		if _mode == OpenModes.LOAD:
@@ -98,6 +90,7 @@ func make_button(save_filename, button : Button, index : int):
 	if not save_filename == EMPTY_SLOT_NAME:
 		make_save_slot_mini_gui(button, index)
 	button.pressed.connect(save_file_chosen.emit.bind(button_filename))
+	button.set_deferred("size.x", 302.0)
 	return button
 
 func make_empty_save_slot(button : Button):

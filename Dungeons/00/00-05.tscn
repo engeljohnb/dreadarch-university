@@ -93,7 +93,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.96153843, 0.008547009)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwf0t"]
-size = Vector2(49, 141)
+size = Vector2(105, 97)
 
 [node name="00-05" type="Node2D" unique_id=1912938039]
 script = ExtResource("1_7k7fg")
@@ -209,5 +209,5 @@ script = ExtResource("9_3v7bd")
 metadata/_custom_type_script = "uid://dk8r88sncv36u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Decoration" unique_id=119357525]
-position = Vector2(1, 0)
+position = Vector2(4.5, 0.5)
 shape = SubResource("RectangleShape2D_cwf0t")

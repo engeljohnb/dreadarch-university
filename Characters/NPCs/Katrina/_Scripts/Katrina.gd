@@ -29,11 +29,15 @@ var intro_dialogue = [
 	},
 	{
 		"speaker":"Player",
-		"text":"I'm helping with an excavation!"
+		"text":"I'm helping Professor with the excavation."
 	},
 	{
 		"speaker":"Katrina",
-		"text":"That's wonderful. Don't try to leave without this."
+		"text":"Strange. I thought that was all shut down."
+	},
+	{
+		"speaker":"Katrina",
+		"text":"Well, don't try to leave without this."
 	}
 ]
 func should_hide_player():

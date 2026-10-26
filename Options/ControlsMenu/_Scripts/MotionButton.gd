@@ -8,7 +8,7 @@ func _ready():
 	update_button_text()
 	
 func update_button_text():
-	match Controls.control_scheme:
+	match Controls.crosshair_mode:
 		Controls.FIXED_CROSSHAIRS:
 			text = "Fixed"
 			$RichTextLabel.text = fixed_description
@@ -16,12 +16,12 @@ func update_button_text():
 			text = "Free"
 			$RichTextLabel.text = free_description
 func toggle():
-	match Controls.control_scheme:
+	match Controls.crosshair_mode:
 		Controls.FIXED_CROSSHAIRS:
 			text = "Free"
-			Controls.control_scheme = Controls.FREE_CROSSHAIRS
+			Controls.crosshair_mode = Controls.FREE_CROSSHAIRS
 			$RichTextLabel.text = free_description
 		Controls.FREE_CROSSHAIRS:
 			text = "Fixed"
-			Controls.control_scheme = Controls.FIXED_CROSSHAIRS
+			Controls.crosshair_mode = Controls.FIXED_CROSSHAIRS
 			$RichTextLabel.text = fixed_description

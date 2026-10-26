@@ -3,7 +3,7 @@ extends Pot
 var _waiting_for_dialogue := false
 var search_shelf_dialogue = [
 	{
-		"text":"Drat. They've already taken all the scrolls.",
+		"text":"Drat. If there were any scrolls here, they've already been taken.",
 		"speaker":"Player"
 	},
 	{
@@ -62,7 +62,6 @@ func activate(using_item : Variant = null, count : int = 1):
 	else:
 		search(using_item, count)
 		
-
 func _ready():
 	$Blinker.flip.connect(on_blinker_flipped)
 	$Blinker.blink_duration = blink_duration

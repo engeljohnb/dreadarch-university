@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bsr1sgya2vc0d" path="res://UI/Scripts/NumScrollFragments.gd" id="1_0lwf4"]
 [ext_resource type="Texture2D" uid="uid://bqsk2ymg6f8er" path="res://Assets/Items/ScrollFragment/Scroll.png" id="1_eo1qy"]
-[ext_resource type="Theme" uid="uid://bv31ndrorpesn" path="res://UI/Themes/MainUITheme.tres" id="2_5vag4"]
+[ext_resource type="Theme" uid="uid://dx3gpwygl1arn" path="res://UI/Themes/MainTheme.tres" id="1_f22ng"]
 
 [node name="NumScrollFragments" type="Control" unique_id=1332677016]
 z_index = 1001
@@ -12,6 +12,7 @@ anchor_right = 0.09200001
 anchor_bottom = 0.07
 offset_right = -0.32000732
 offset_bottom = -0.073970795
+theme = ExtResource("1_f22ng")
 script = ExtResource("1_0lwf4")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2008351127]
@@ -21,7 +22,8 @@ anchor_right = 0.61800003
 anchor_bottom = 0.73600006
 offset_right = 0.019996643
 offset_bottom = -0.008003235
-theme = ExtResource("2_5vag4")
+theme = ExtResource("1_f22ng")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 17
 vertical_alignment = 1
 

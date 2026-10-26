@@ -514,11 +514,7 @@ func update_direction_mouse():
 	prev_direction = direction
 		
 func update_direction():
-	#match Controls.control_scheme:
-		#Controls.FIXED_CROSSHAIRS:
 	update_direction_classic()
-		#Controls.FREE_CROSSHAIRS:
-		#	update_direction_mouse()
 	
 # TODO: Update all "cursor" to "crosshair"
 func get_crosshair_distance() -> float:
@@ -528,7 +524,7 @@ func direction_to_crosshair() -> Vector2:
 	return (global_position.direction_to(cursor.global_position))
 	
 func update_cursor():
-	match Controls.control_scheme:
+	match Controls.crosshair_mode:
 		Controls.FIXED_CROSSHAIRS:
 			cursor.position = _player_center + (FIXED_CROSSHAIR_DISTANCE*facing)
 		Controls.FREE_CROSSHAIRS:
@@ -937,6 +933,7 @@ func play_sit_down_cutscene(delta : float):
 			if cutscene_timer >= (1.0/8.0)*4.0:
 				end_cutscene()
 				_waiting_to_stand = false
+				_sitting = false
 		cutscene_timer += delta
 	
 #TODO: Make this an EventSequence so the player will walk to it before splashing if in free_crosshair mode
@@ -993,9 +990,8 @@ func _unhandled_input(event : InputEvent):
 				return
 			else:
 				set_equipped(equipped)
-		if event.is_action_pressed("Attack") and (not attacking) and (not in_cutscene) and  (not _waiting_to_stand) and (not event.is_echo()):
+		if event.is_action_pressed("Attack") and (not attacking) and (not in_cutscene) and  (not _waiting_to_stand) and (not event.is_echo()) and not (in_dialogue):
 			if _sitting:
-				breakpoint
 				_waiting_to_stand = true
 				_sitting = false
 				cutscene_timer = 0.0

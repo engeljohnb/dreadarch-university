@@ -30,6 +30,7 @@ texture = SubResource("GradientTexture1D_r0x5m")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1947700564]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1696318474 instance=ExtResource("2_xkndl")]
+visible = false
 z_as_relative = false
 anchors_preset = 0
 anchor_right = 0.0
@@ -38,8 +39,10 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=792860072 instance=ExtResource("3_u44n3")]
+visible = false
 
 [node name="DebugPrint" type="RichTextLabel" parent="CanvasLayer" unique_id=1218901153 groups=["Debug"]]
+visible = false
 anchors_preset = -1
 anchor_right = 0.27800003
 anchor_bottom = 0.18
@@ -53,7 +56,7 @@ script = ExtResource("4_t88pq")
 [node name="CloseMenuSound" type="AudioStreamPlayer" parent="." unique_id=1943615444]
 stream = ExtResource("4_sb48q")
 
-[node name="MouseControl" type="Node" parent="." unique_id=1328791926]
+[node name="ControllerListener" type="Node" parent="." unique_id=1328791926]
 process_mode = 3
-process_priority = 1
+process_priority = 2
 script = ExtResource("7_3mrqo")

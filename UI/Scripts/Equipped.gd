@@ -11,6 +11,7 @@ func shrink_label(size : float):
 	sprite.scale = Vector2(size*2, size*2)
 	
 func _ready():
+	$CanvasLayer/RichTextLabel.text = ""
 	if for_save_slot:
 		canvas.layer = 2
 		label.position = save_slot_position

@@ -1,14 +1,9 @@
 [gd_scene format=3 uid="uid://cvi2j681otj65"]
 
+[ext_resource type="Theme" uid="uid://dx3gpwygl1arn" path="res://UI/Themes/MainTheme.tres" id="1_c4t47"]
 [ext_resource type="Script" uid="uid://p4lnn7thw38q" path="res://UI/Scripts/InventoryItemsMenu.gd" id="2_c4t47"]
 [ext_resource type="Script" uid="uid://7c3ymrmnjl2p" path="res://UI/Scripts/InventoryMenu.gd" id="2_tp6yt"]
 [ext_resource type="PackedScene" uid="uid://dgxq5hvyi31x5" path="res://UI/Inventory/ScrollFragmentSelector.tscn" id="3_8aric"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aric"]
-bg_color = Color(0.07846785, 0.07846785, 0.07846785, 0.92)
-
-[sub_resource type="Theme" id="Theme_yo7uf"]
-TabContainer/styles/panel = SubResource("StyleBoxFlat_8aric")
 
 [node name="InventoryMenu" type="Control" unique_id=447715096]
 process_mode = 2
@@ -23,7 +18,7 @@ offset_right = -109.0
 offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_yo7uf")
+theme = ExtResource("1_c4t47")
 script = ExtResource("2_tp6yt")
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1692710781]

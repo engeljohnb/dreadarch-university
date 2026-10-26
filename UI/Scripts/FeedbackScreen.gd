@@ -4,8 +4,6 @@ extends Control
 
 func on_back():
 	var welcome = load("UI/WelcomeMenu.tscn").instantiate()
-	welcome.fading = false
-	welcome.fade_timer = welcome.fade_duration
 	add_sibling(welcome)
 	welcome.newgame_button.grab_focus()
 	var game_node = get_parent().get_parent()

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dxqkcjmpaa7"]
+[gd_scene format=3 uid="uid://cjw8v6jf61tc7"]
 
 [ext_resource type="Texture2D" uid="uid://iwlojpwq6c48" path="res://Assets/Items/Treasure/0000.png" id="1_2uiaa"]
 [ext_resource type="Script" uid="uid://dg4aisack662u" path="res://UI/Scripts/Treasure.gd" id="1_ml3wv"]
@@ -10,12 +10,13 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_2uiaa")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 12.0
 }]
 
 [node name="Treasure" type="Node2D" unique_id=289583915]
+visible = false
 z_index = 6
 z_as_relative = false
 script = ExtResource("1_ml3wv")

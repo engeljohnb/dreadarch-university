@@ -3,39 +3,39 @@
 [ext_resource type="Script" uid="uid://bhmbaeguft0bi" path="res://Characters/NPCs/Katrina/_Scripts/Katrina.gd" id="1_e7ew5"]
 [ext_resource type="Texture2D" uid="uid://8fxrr6sjatm1" path="res://Assets/NPCs/Katrina/Sweep/0008.png" id="2_3x30t"]
 [ext_resource type="Shader" uid="uid://doeemgqnx6jy8" path="res://Assets/BumpMap.gdshader" id="2_a3pvs"]
-[ext_resource type="Texture2D" uid="uid://bgnx6mabm8fel" path="res://Assets/NPCs/Katrina/Hug/frame0000.png" id="3_2bdps"]
+[ext_resource type="Texture2D" uid="uid://ddrot8lxe8h2x" path="res://Assets/NPCs/Katrina/Hug/0000.png" id="3_2bdps"]
 [ext_resource type="Texture2D" uid="uid://5gqwgrg2bbuk" path="res://Assets/NPCs/Katrina/Sweep/0009.png" id="3_a3pvs"]
-[ext_resource type="Texture2D" uid="uid://bffbnhjt6g3ro" path="res://Assets/NPCs/Katrina/Hug/frame0001.png" id="4_def8h"]
+[ext_resource type="Texture2D" uid="uid://2ukwxvpid65t" path="res://Assets/NPCs/Katrina/Hug/0001.png" id="4_def8h"]
 [ext_resource type="Texture2D" uid="uid://deq2vq4h53x2r" path="res://Assets/NPCs/Katrina/Sweep/0010.png" id="4_lk2v6"]
 [ext_resource type="Texture2D" uid="uid://bw8u1rbsj3ne6" path="res://Assets/NPCs/Katrina/Sweep/0011.png" id="5_ggpvr"]
-[ext_resource type="Texture2D" uid="uid://lc1wtlui0mng" path="res://Assets/NPCs/Katrina/Hug/frame0002.png" id="5_xxow7"]
+[ext_resource type="Texture2D" uid="uid://d3wm4m1b1kclp" path="res://Assets/NPCs/Katrina/Hug/0002.png" id="5_xxow7"]
 [ext_resource type="Texture2D" uid="uid://djewe1mwt2tod" path="res://Assets/NPCs/Katrina/Sweep/0012.png" id="6_fk6ng"]
-[ext_resource type="Texture2D" uid="uid://ds7ikhl3cpl8n" path="res://Assets/NPCs/Katrina/Hug/frame0003.png" id="6_menmw"]
-[ext_resource type="Texture2D" uid="uid://fwrvomxwm8ux" path="res://Assets/NPCs/Katrina/Hug/frame0004.png" id="7_4kb62"]
+[ext_resource type="Texture2D" uid="uid://dgdvwrflikhf3" path="res://Assets/NPCs/Katrina/Hug/0003.png" id="6_menmw"]
+[ext_resource type="Texture2D" uid="uid://ctwhb2d876vaf" path="res://Assets/NPCs/Katrina/Hug/0004.png" id="7_4kb62"]
 [ext_resource type="Texture2D" uid="uid://uum81ob5avvo" path="res://Assets/NPCs/Katrina/Sweep/0013.png" id="7_yp5ei"]
 [ext_resource type="Texture2D" uid="uid://m5i1c8p08qdv" path="res://Assets/NPCs/Katrina/Sweep/0014.png" id="8_q6uoa"]
-[ext_resource type="Texture2D" uid="uid://0lqgf6f186ja" path="res://Assets/NPCs/Katrina/Hug/frame0005.png" id="8_vim2t"]
+[ext_resource type="Texture2D" uid="uid://dlwoo2kia2jy8" path="res://Assets/NPCs/Katrina/Hug/0005.png" id="8_vim2t"]
 [ext_resource type="Texture2D" uid="uid://bcyc7fihaqf4y" path="res://Assets/NPCs/Katrina/Sweep/0015.png" id="9_58hu1"]
-[ext_resource type="Texture2D" uid="uid://uyswfeudysel" path="res://Assets/NPCs/Katrina/Hug/frame0006.png" id="9_fojtw"]
+[ext_resource type="Texture2D" uid="uid://iprioipe82i4" path="res://Assets/NPCs/Katrina/Hug/0006.png" id="9_fojtw"]
 [ext_resource type="Texture2D" uid="uid://bvq120t0gtef4" path="res://Assets/NPCs/Katrina/Sweep/0016.png" id="10_0wa6v"]
-[ext_resource type="Texture2D" uid="uid://bp2brm8xljlkk" path="res://Assets/NPCs/Katrina/Hug/frame0007.png" id="10_vi06i"]
+[ext_resource type="Texture2D" uid="uid://dwe1jjj0ir7td" path="res://Assets/NPCs/Katrina/Hug/0007.png" id="10_vi06i"]
 [ext_resource type="Texture2D" uid="uid://bpreax5dwugso" path="res://Assets/NPCs/Katrina/Sweep/0000.png" id="11_8qn48"]
-[ext_resource type="Texture2D" uid="uid://bnyqcemy8c8lu" path="res://Assets/NPCs/Katrina/Hug/frame0008.png" id="11_32jgc"]
-[ext_resource type="Texture2D" uid="uid://dtx3kmbd8d56n" path="res://Assets/NPCs/Katrina/Hug/frame0009.png" id="12_74244"]
+[ext_resource type="Texture2D" uid="uid://dlmq40iuv6w1w" path="res://Assets/NPCs/Katrina/Hug/0008.png" id="11_32jgc"]
+[ext_resource type="Texture2D" uid="uid://d3o2arc6hxvu8" path="res://Assets/NPCs/Katrina/Hug/0009.png" id="12_74244"]
 [ext_resource type="Texture2D" uid="uid://bqhgc3y4lw5js" path="res://Assets/NPCs/Katrina/Sweep/0001.png" id="12_ueiqr"]
-[ext_resource type="Texture2D" uid="uid://bt1h6sf502e6h" path="res://Assets/NPCs/Katrina/Hug/frame0010.png" id="13_ky01b"]
+[ext_resource type="Texture2D" uid="uid://nogurmtocme0" path="res://Assets/NPCs/Katrina/Hug/0010.png" id="13_ky01b"]
 [ext_resource type="Texture2D" uid="uid://cq0o6lmf6jev4" path="res://Assets/NPCs/Katrina/Sweep/0002.png" id="13_o4ddx"]
 [ext_resource type="Texture2D" uid="uid://b00sbnbrq1hul" path="res://Assets/NPCs/Katrina/Sweep/0003.png" id="14_1jf36"]
-[ext_resource type="Texture2D" uid="uid://b4bwws7e4cb5m" path="res://Assets/NPCs/Katrina/Hug/frame0011.png" id="14_bjs8e"]
+[ext_resource type="Texture2D" uid="uid://bgrb31b74r3ln" path="res://Assets/NPCs/Katrina/Hug/0011.png" id="14_bjs8e"]
 [ext_resource type="Texture2D" uid="uid://cypbe8u0wlsrr" path="res://Assets/NPCs/Katrina/Sweep/0004.png" id="15_cdafn"]
-[ext_resource type="Texture2D" uid="uid://d3uumptygpp7n" path="res://Assets/NPCs/Katrina/Hug/frame0012.png" id="15_qohb2"]
+[ext_resource type="Texture2D" uid="uid://8kexb5afluxa" path="res://Assets/NPCs/Katrina/Hug/0012.png" id="15_qohb2"]
 [ext_resource type="Texture2D" uid="uid://b46a6hs4pd3vq" path="res://Assets/NPCs/Katrina/Sweep/0005.png" id="16_c7jam"]
-[ext_resource type="Texture2D" uid="uid://blp87hi6fnceg" path="res://Assets/NPCs/Katrina/Hug/frame0013.png" id="16_xs157"]
-[ext_resource type="Texture2D" uid="uid://b4poom5voow7w" path="res://Assets/NPCs/Katrina/Hug/frame0014.png" id="17_1fe7t"]
+[ext_resource type="Texture2D" uid="uid://bhbatu41fxwmy" path="res://Assets/NPCs/Katrina/Hug/0013.png" id="16_xs157"]
+[ext_resource type="Texture2D" uid="uid://cnh60bnil72j5" path="res://Assets/NPCs/Katrina/Hug/0014.png" id="17_1fe7t"]
 [ext_resource type="Texture2D" uid="uid://clxx2nro21y2" path="res://Assets/NPCs/Katrina/Sweep/0006.png" id="17_pyhrx"]
-[ext_resource type="Texture2D" uid="uid://cgqyny2crel3s" path="res://Assets/NPCs/Katrina/Hug/frame0015.png" id="18_6hgtk"]
+[ext_resource type="Texture2D" uid="uid://dwxwpqornlvfx" path="res://Assets/NPCs/Katrina/Hug/0015.png" id="18_6hgtk"]
 [ext_resource type="Texture2D" uid="uid://dk0xp484ffgjs" path="res://Assets/NPCs/Katrina/Sweep/0007.png" id="18_j1yij"]
-[ext_resource type="Texture2D" uid="uid://b4unwdhelqgjm" path="res://Assets/NPCs/Katrina/Hug/frame0016.png" id="19_pnq45"]
+[ext_resource type="Texture2D" uid="uid://iditkujue6xd" path="res://Assets/NPCs/Katrina/Hug/0016.png" id="19_pnq45"]
 [ext_resource type="Texture2D" uid="uid://y6qvdmjcicy5" path="res://Assets/NPCs/Katrina/VolumeMaps/Hug/0000.png" id="20_00ypx"]
 [ext_resource type="Texture2D" uid="uid://cin21bimtk0s8" path="res://Assets/NPCs/Katrina/VolumeMaps/Sweep/0000.png" id="20_8qn48"]
 [ext_resource type="Script" uid="uid://cnq1mcm71wgew" path="res://Characters/VolumeSprite.gd" id="20_lk2v6"]
@@ -74,8 +74,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7uf"]
 shader = ExtResource("2_a3pvs")
-shader_parameter/strength = 0.50000002375
-shader_parameter/baseline = 0.0
+shader_parameter/strength = 0.66000003135
+shader_parameter/baseline = 0.15
 shader_parameter/modulate = Vector4(1, 1, 1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yo7uf"]
@@ -343,7 +343,6 @@ metadata/_custom_type_script = "uid://bgfg4g0sb1sc7"
 material = SubResource("ShaderMaterial_yo7uf")
 sprite_frames = SubResource("SpriteFrames_yo7uf")
 animation = &"Hug"
-frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766293745]
 position = Vector2(-3, -6)

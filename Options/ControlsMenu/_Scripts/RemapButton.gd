@@ -1,5 +1,6 @@
 extends Button
 class_name RemapButton
+signal found_input
 @export var action : String
 
 func _init():
@@ -22,16 +23,23 @@ func _gui_input(event : InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if not event.pressed:
 			if text == "[...]":
-				InputMap.action_erase_events(action)
-				InputMap.action_add_event(action, event)
+				Controls.set_control_mouse_button(action, event.button_index)
 				button_pressed = false
 				accept_event()
 		
-func _unhandled_input(event: InputEvent) -> void:
-	if event.pressed:
-		InputMap.action_erase_events(action)
-		InputMap.action_add_event(action, event)
+func _unhandled_input(event: InputEvent) -> void:      
+	if event is InputEventJoypadMotion:
+		Controls.set_control_joystick(action, event.axis, event.axis_value)
+		found_input.emit()
+	elif event.pressed:
+		if event is InputEventMouseButton:
+			Controls.set_control_mouse_button(action, event.button_index)
+		elif event is InputEventKey:
+			Controls.set_control_key(action, event.keycode)
+		elif event is InputEventJoypadButton:
+			Controls.set_control_button(action, event.button_index)
 		button_pressed = false
+		found_input.emit()
 		
 func remove_button_text_junk(string: String) -> String:
 	string = string.replace(" - Physical", "")

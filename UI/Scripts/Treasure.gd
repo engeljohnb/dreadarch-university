@@ -22,10 +22,6 @@ func _ready():
 		z_index = 1000
 	else:
 		sprite.play("default")
-		
-func set_treasure(treasure : int):
-	var treasure_string = str(treasure)
-	$CanvasLayer/RichTextLabel.text = treasure_string
 	
 func set_brightness(brightness : float):
 	$CanvasLayer/RichTextLabel.modulate *= brightness

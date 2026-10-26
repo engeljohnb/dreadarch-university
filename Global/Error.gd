@@ -1,6 +1,6 @@
 extends Node
 
-const DEBUG_BUILD = true
+const DEBUG_BUILD = false
 
 func error(message : String):
 	push_error(message)

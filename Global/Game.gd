@@ -99,7 +99,6 @@ func init_player():
 	player.inventory = _player.inventory
 	if not player.item_equipped.is_connected(hud.on_item_equipped):
 		player.item_equipped.connect(hud.on_item_equipped)
-	hud.set_treasure(0)
 	if not ItemCollection.item_collected.is_connected(player.on_item_collected):
 		ItemCollection.item_collected.connect(player.on_item_collected)
 	if not ItemCollection.scroll_fragment_translated.is_connected(player.on_scroll_fragment_translated):
@@ -446,10 +445,6 @@ func init_wm_settings():
 	set_custom_cursor()
 
 func _ready():
-	if Input.get_connected_joypads().size() > 0:
-		Controls.set_controls_gamepad()
-	else:
-		Controls.set_controls_mouse()
 	seed(1)
 	init_wm_settings()
 	music.stream = load("res://Music/DungeonMusic.ogg")
@@ -527,7 +522,6 @@ func load_hud(player_data):
 	hud.lifebar.temporary_life = player_data.temporary_life
 	hud.lifebar.life = player_data.life
 	hud.lifebar.set_life_total(player.total_life, player.total_life+player.temporary_life)
-	hud.set_treasure(player.inventory[ItemCollection.TREASURE])
 	
 func load_game(filename = "user://SaveFiles/save.da"):
 	_save = null
@@ -567,8 +561,8 @@ func open_inventory():
 var stupid_inv_counter = 0
 func _unhandled_input(event: InputEvent):
 	if event.is_action_pressed("Pause") and not event.is_echo():
-		if event.is_action_pressed("UI Accept") and (not Dialogue.dialogue_open()): 
-			if (not _inventory_open):
+		if not Dialogue.dialogue_open(): 
+			if not _inventory_open:
 				pause_menu.pause_game()
 				pause_menu.accept_event()
 	if event.is_action_pressed("Inventory") and not event.is_echo():

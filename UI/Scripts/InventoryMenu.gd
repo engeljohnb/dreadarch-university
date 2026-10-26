@@ -4,19 +4,22 @@ extends Control
 signal inventory_action_chosen(action, item, count)
 signal closed
 				
-func _unhandled_input(event: InputEvent):
+func _input(event: InputEvent):
 	if event.is_action_pressed("Inventory") and not event.is_echo():
 		close()
-	if event is InputEventKey:
-		if event.keycode == KEY_ESCAPE:
-			if event.pressed:
-				close()
-
+		accept_event()
 	if event is InputEventJoypadButton:
 		if event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
-			$TabContainer.select_next_available()
+			if event.pressed and (not event.is_echo()):
+				$TabContainer.select_next_available()
+				accept_event()
 		elif event.button_index == JOY_BUTTON_LEFT_SHOULDER:
-			$TabContainer.select_previous_available()
+			if event.pressed and (not event.is_echo()):
+				$TabContainer.select_previous_available()
+				accept_event()
+	if event.is_action_pressed("UI Cancel"):
+		close()
+		accept_event()
 		
 func set_button_actions(item : int, button : InventoryItemButton):
 	var popup = button.get_popup()
