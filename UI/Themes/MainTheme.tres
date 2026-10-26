@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://wphiklukuu8l" path="res://Assets/UI/Fonts/cormorant-garamond/CormorantGaramond-SemiBold.ttf" id="1_ny885"]
 [ext_resource type="Texture2D" uid="uid://bgvl1hylsl1vh" path="res://Assets/UI/MainTheme/ButtonBorderHovered.png" id="1_rpnwg"]
+[ext_resource type="Texture2D" uid="uid://dalh2j3h55nl6" path="res://Assets/UI/MainTheme/BookBorderDisabled.png" id="2_ligxh"]
 [ext_resource type="Texture2D" uid="uid://b6eaygfx3wsww" path="res://Assets/UI/MainTheme/ButtonBorder.png" id="2_xn4ai"]
 [ext_resource type="Texture2D" uid="uid://vsx28a666hb" path="res://Assets/UI/MainTheme/ButtonBorderPressed.png" id="3_k2f2x"]
 [ext_resource type="Texture2D" uid="uid://bee1nt4ytrhm8" path="res://Assets/UI/MainTheme/Panel.png" id="4_8snbf"]
@@ -9,17 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://criu3l2aol5i1" path="res://Assets/UI/MainTheme/TabSelected.png" id="4_xn4ai"]
 [ext_resource type="Texture2D" uid="uid://b2fsqm1i33dka" path="res://Assets/UI/MainTheme/TabNonSelected.png" id="5_k2f2x"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wg5u"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8xnw"]
+texture = ExtResource("2_ligxh")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i40pw"]
 texture = ExtResource("1_rpnwg")
@@ -28,7 +24,7 @@ texture_margin_top = 12.0
 texture_margin_right = 12.0
 texture_margin_bottom = 12.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8xnw"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h78tu"]
 texture = ExtResource("1_rpnwg")
 texture_margin_left = 12.0
 texture_margin_top = 12.0
@@ -107,9 +103,9 @@ Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 21
 Button/fonts/font = ExtResource("1_ny885")
-Button/styles/disabled = SubResource("StyleBoxFlat_7wg5u")
+Button/styles/disabled = SubResource("StyleBoxTexture_j8xnw")
 Button/styles/focus = SubResource("StyleBoxTexture_i40pw")
-Button/styles/hover = SubResource("StyleBoxTexture_j8xnw")
+Button/styles/hover = SubResource("StyleBoxTexture_h78tu")
 Button/styles/normal = SubResource("StyleBoxTexture_n4fbb")
 Button/styles/pressed = SubResource("StyleBoxTexture_sf2cw")
 Panel/styles/panel = SubResource("StyleBoxTexture_ny885")
